@@ -1,0 +1,110 @@
+@import "fonts.scss";
+@import "settings.scss";
+
+
+body {
+    font-family: selawk;
+    /*For debugging, leave overflow-x: hidden out!*/
+    overflow-x: hidden;
+
+    background-color: map-get($map: $theme, $key: background);
+    color: map-get($map: $theme, $key: foreground);
+}
+
+h1 {
+    font-family: "SegoeUi_b";
+    color: map-get($map: $color-pallet, $key: main);
+}
+
+// colors
+.color-extra-light {
+    background-color: map-get($color-pallet, extra-light);
+}
+.color-light {
+    background-color: map-get($color-pallet, light);
+}
+.color-lighter {
+    background-color: map-get($color-pallet, lighter);
+}
+.color-main
+{
+    background-color: map-get($color-pallet, main);
+}
+.color-darker {
+    background-color: map-get($color-pallet, darker);
+}
+.color-dark {
+    background-color: map-get($color-pallet, dark);
+}
+.color-extra-dark {
+    background-color: map-get($color-pallet, extra-dark);
+}
+
+:focus {
+    outline: none;
+}
+
+// Button
+button {
+    cursor: pointer;
+    font-family: "SegoeUi_sb";
+    padding: .5rem 1rem .5rem 1rem;
+    margin: 15px 0 15px 0;
+    border: none;
+    background-color: map-get($theme, component-background);
+    color: map-get($theme, foreground);
+    border-radius: $border-radius;
+    box-shadow: $shadow map-get($theme, shadow-color);
+}
+
+button:hover {
+    background-color: lighten(map-get($theme, component-background), 20%);
+}
+
+button:active {
+    background-color: darken(map-get($theme, component-background), 3%);
+    box-shadow: $shadow-pressed map-get($theme, shadow-color);
+}
+
+button.important {
+    background: map-get($map: $color-pallet, $key: main);
+    color: map-get($map: $color-pallet, $key: text);
+    transition: background-color .07s, box-shadow .1s;
+}
+
+button.important:hover {
+    background: map-get($map: $color-pallet, $key: lighter);
+}
+
+button.important:active {
+    background: map-get($map: $color-pallet, $key: darker);
+    box-shadow: $shadow-pressed map-get($theme, shadow-color);
+}
+
+// Inputs -------------------------------------------------------------------------------
+input {
+    font-size: .8rem;
+    font-family: "SegoeUi";
+    //background-color: map-get($theme, component-background);
+    border-radius: $border-radius;
+    padding: .5rem 1.1rem .5rem 1.1rem;
+    border: none;
+    color: map-get($theme, foreground);
+    box-shadow: $shadow map-get($theme, shadow-color), inset 0px 1.8px 1.3px rgba(lighten(map-get($theme, component-background), 8%), .9);
+}
+
+input::placeholder {
+    color: darken(map-get($theme, foreground), 30%);
+}
+
+input[type="button"] {
+    @extend button;
+}
+
+input[type="submit"] {
+    @extend button, .important;
+}
+
+input[type="submit"] {
+    @extend button, .important;
+}

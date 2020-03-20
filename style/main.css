@@ -1,0 +1,124 @@
+@font-face {
+  font-family: "selawk";
+  src: url(../fonts/selawik/selawk.ttf);
+}
+@font-face {
+  font-family: "selawksb";
+  src: url(../fonts/selawik/selawksb.ttf);
+}
+@font-face {
+  font-family: "selawkl";
+  src: url(../fonts/selawik/selawkl.ttf);
+}
+@font-face {
+  font-family: "SegoeUI_b";
+  src: url(../fonts/SegoeUI/segoeuib.ttf);
+}
+@font-face {
+  font-family: "SegoeUI";
+  src: url(../fonts/SegoeUI/segoeui.ttf);
+}
+@font-face {
+  font-family: "Century_Gothic";
+  src: url(../fonts/century-gothic/GOTHIC.TTF);
+}
+@font-face {
+  font-family: "SegoeUI_sb";
+  src: url(../fonts/SegoeUI/seguisb.ttf);
+}
+body {
+  font-family: selawk;
+  /*For debugging, leave overflow-x: hidden out!*/
+  overflow-x: hidden;
+  background-color: white;
+  color: black;
+}
+
+h1 {
+  font-family: "SegoeUi_b";
+  color: #0079d6;
+}
+
+.color-extra-light {
+  background-color: #52e5ff;
+}
+
+.color-light {
+  background-color: #37c2f1;
+}
+
+.color-lighter {
+  background-color: #199be1;
+}
+
+.color-main {
+  background-color: #0079d6;
+}
+
+.color-darker {
+  background-color: #0d61ab;
+}
+
+.color-dark {
+  background-color: #194f86;
+}
+
+.color-extra-dark {
+  background-color: #173f6d;
+}
+
+:focus {
+  outline: none;
+}
+
+button, input[type=submit], input[type=button] {
+  cursor: pointer;
+  font-family: "SegoeUi_sb";
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  margin: 15px 0 15px 0;
+  border: none;
+  background-color: #fafafa;
+  color: black;
+  border-radius: 8px;
+  box-shadow: 1.2px 1.2px 6px rgba(0, 0, 0, 0.25);
+}
+
+button:hover, input[type=submit]:hover, input[type=button]:hover {
+  background-color: white;
+}
+
+button:active, input[type=submit]:active, input[type=button]:active {
+  background-color: #f2f2f2;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
+}
+
+button.important, input[type=submit], input.important[type=button] {
+  background: #0079d6;
+  color: white;
+  transition: background-color 0.07s, box-shadow 0.1s;
+}
+
+button.important:hover, input[type=submit]:hover, input.important[type=button]:hover {
+  background: #199be1;
+}
+
+button.important:active, input[type=submit]:active, input.important[type=button]:active {
+  background: #0d61ab;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
+}
+
+input {
+  font-size: 0.8rem;
+  font-family: "SegoeUi";
+  border-radius: 8px;
+  padding: 0.5rem 1.1rem 0.5rem 1.1rem;
+  border: none;
+  color: black;
+  box-shadow: 1.2px 1.2px 6px rgba(0, 0, 0, 0.25), inset 0px 1.8px 1.3px rgba(255, 255, 255, 0.9);
+}
+
+input::placeholder {
+  color: black;
+}
+
+/*# sourceMappingURL=main.css.map */
