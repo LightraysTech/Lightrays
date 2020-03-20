@@ -55,56 +55,73 @@ button {
     color: map-get($theme, foreground);
     border-radius: $border-radius;
     box-shadow: $shadow map-get($theme, shadow-color);
-}
+    &:hover {
+        background-color: lighten(map-get($theme, component-background), 20%);
+    }
+    &:active {
+        background-color: darken(map-get($theme, component-background), 3%);
+        box-shadow: $shadow-pressed map-get($theme, shadow-color);
+    }
 
-button:hover {
-    background-color: lighten(map-get($theme, component-background), 20%);
+    .important {
+        background: map-get($map: $color-pallet, $key: main);
+        color: map-get($map: $color-pallet, $key: text);
+        transition: background-color .07s, box-shadow .1s;
+        &:hover {
+            background: map-get($map: $color-pallet, $key: lighter);
+        }
+        &:active {
+            background: map-get($map: $color-pallet, $key: darker);
+            box-shadow: $shadow-pressed map-get($theme, shadow-color);
+        }
+    }
 }
-
-button:active {
-    background-color: darken(map-get($theme, component-background), 3%);
-    box-shadow: $shadow-pressed map-get($theme, shadow-color);
-}
-
-button.important {
-    background: map-get($map: $color-pallet, $key: main);
-    color: map-get($map: $color-pallet, $key: text);
-    transition: background-color .07s, box-shadow .1s;
-}
-
-button.important:hover {
-    background: map-get($map: $color-pallet, $key: lighter);
-}
-
-button.important:active {
-    background: map-get($map: $color-pallet, $key: darker);
-    box-shadow: $shadow-pressed map-get($theme, shadow-color);
-}
-
 // Inputs -------------------------------------------------------------------------------
 input {
     font-size: .8rem;
     font-family: "SegoeUi";
-    //background-color: map-get($theme, component-background);
+    background-color: map-get($theme, component-background);
     border-radius: $border-radius;
     padding: .5rem 1.1rem .5rem 1.1rem;
+    margin: 5px;
     border: none;
     color: map-get($theme, foreground);
     box-shadow: $shadow map-get($theme, shadow-color), inset 0px 1.8px 1.3px rgba(lighten(map-get($theme, component-background), 8%), .9);
-}
+    &::placeholder {
+        color: darken(map-get($theme, foreground), 30%);
+    }
 
-input::placeholder {
-    color: darken(map-get($theme, foreground), 30%);
-}
-
-input[type="button"] {
-    @extend button;
-}
-
-input[type="submit"] {
-    @extend button, .important;
-}
-
-input[type="submit"] {
-    @extend button, .important;
+    &[type="reset"], &[type="button"] {
+        @extend button;
+    }
+    &[type="submit"] {
+        @extend button, .important;
+    }
+    &[type="checkbox"] {
+        background-color: map-get($theme, component-background);
+        box-shadow: $shadow map-get($theme, shadow-color);
+    }
+    &[type='range'] {
+        appearance: none;
+        -webkit-appearance: none;
+        padding: none;
+        box-shadow: none;
+        border-radius: 5pt;
+        width: 150pt;
+        height: 4pt;
+        background-color: map-get($theme, component-background);
+        outline: none;
+        &::-webkit-slider-thumb, &::-moz-range-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            border: none;
+            background: map-get($color-pallet, main);
+            cursor: pointer;
+        }
+        &::-moz-range-thumb:hover {background: map-get($color-pallet, lighter);}
+        &::-moz-range-thumb:active {background: map-get($color-pallet, darker);}
+    }
 }

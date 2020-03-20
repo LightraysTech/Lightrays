@@ -71,7 +71,7 @@ h1 {
   outline: none;
 }
 
-button, input[type=submit], input[type=button] {
+button, input[type=submit], input[type=reset], input[type=button] {
   cursor: pointer;
   font-family: "SegoeUi_sb";
   padding: 0.5rem 1rem 0.5rem 1rem;
@@ -82,27 +82,22 @@ button, input[type=submit], input[type=button] {
   border-radius: 8px;
   box-shadow: 1.2px 1.2px 6px rgba(0, 0, 0, 0.25);
 }
-
-button:hover, input[type=submit]:hover, input[type=button]:hover {
+button:hover, input[type=submit]:hover, input[type=reset]:hover, input[type=button]:hover {
   background-color: white;
 }
-
-button:active, input[type=submit]:active, input[type=button]:active {
+button:active, input[type=submit]:active, input[type=reset]:active, input[type=button]:active {
   background-color: #f2f2f2;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
 }
-
-button.important, input[type=submit], input.important[type=button] {
+button .important, button input[type=submit], input[type=submit] .important, input[type=submit] input[type=submit], input[type=reset] .important, input[type=reset] input[type=submit], input[type=button] .important, input[type=button] input[type=submit] {
   background: #0079d6;
   color: white;
   transition: background-color 0.07s, box-shadow 0.1s;
 }
-
-button.important:hover, input[type=submit]:hover, input.important[type=button]:hover {
+button .important:hover, button input[type=submit]:hover, input[type=submit] .important:hover, input[type=submit] input[type=submit]:hover, input[type=reset] .important:hover, input[type=reset] input[type=submit]:hover, input[type=button] .important:hover, input[type=button] input[type=submit]:hover {
   background: #199be1;
 }
-
-button.important:active, input[type=submit]:active, input.important[type=button]:active {
+button .important:active, button input[type=submit]:active, input[type=submit] .important:active, input[type=submit] input[type=submit]:active, input[type=reset] .important:active, input[type=reset] input[type=submit]:active, input[type=button] .important:active, input[type=button] input[type=submit]:active {
   background: #0d61ab;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
 }
@@ -110,15 +105,47 @@ button.important:active, input[type=submit]:active, input.important[type=button]
 input {
   font-size: 0.8rem;
   font-family: "SegoeUi";
+  background-color: #fafafa;
   border-radius: 8px;
   padding: 0.5rem 1.1rem 0.5rem 1.1rem;
+  margin: 5px;
   border: none;
   color: black;
   box-shadow: 1.2px 1.2px 6px rgba(0, 0, 0, 0.25), inset 0px 1.8px 1.3px rgba(255, 255, 255, 0.9);
 }
-
 input::placeholder {
   color: black;
+}
+input[type=checkbox] {
+  background-color: #fafafa;
+  box-shadow: 1.2px 1.2px 6px rgba(0, 0, 0, 0.25);
+}
+input[type=range] {
+  appearance: none;
+  -webkit-appearance: none;
+  padding: none;
+  box-shadow: none;
+  border-radius: 5pt;
+  width: 150pt;
+  height: 4pt;
+  background-color: #fafafa;
+  outline: none;
+}
+input[type=range]::-webkit-slider-thumb, input[type=range]::-moz-range-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: none;
+  background: #0079d6;
+  cursor: pointer;
+}
+input[type=range]::-moz-range-thumb:hover {
+  background: #199be1;
+}
+input[type=range]::-moz-range-thumb:active {
+  background: #0d61ab;
 }
 
 /*# sourceMappingURL=main.css.map */
