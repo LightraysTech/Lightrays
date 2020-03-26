@@ -231,7 +231,7 @@ input {
     //box-shadow: var(--box-shadow), inset 0px 1.8px 1.3px rgba(lighten(map-get($theme, component-background), 8%), .9);
 
     &::placeholder {
-        color: darken(map-get($theme, foreground), 30%);
+        color: hsl(0, 0%, 70%);
     }
 
     &[type="reset"], &[type="button"] {
@@ -241,8 +241,8 @@ input {
         @extend button, .important;
     }
     &[type="checkbox"] {
-        background-color: map-get($theme, component-background);
-        box-shadow: $shadow map-get($theme, shadow-color);
+        background-color: var(--component-background);
+        box-shadow: var(--box-shadow);
     }
     &[type='range'] {
         appearance: none;
@@ -252,7 +252,7 @@ input {
         border-radius: 5pt;
         width: 150pt;
         height: 4pt;
-        background-color: map-get($theme, component-background);
+        background-color: var(--component-background);
         outline: none;
         &::-webkit-slider-thumb, &::-moz-range-thumb {
             -webkit-appearance: none;

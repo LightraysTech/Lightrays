@@ -91,11 +91,6 @@
   outline: none;
 }
 
-.center {
-  display: flex;
-  justify-content: center;
-}
-
 body {
   font-family: selawk;
   background-color: var(--background);
@@ -118,7 +113,7 @@ h1 {
   color: #0079d6;
 }
 
-button, input[type=submit], input[type=button] {
+button, input[type=submit], input[type=reset], input[type=button] {
   cursor: pointer;
   font-family: "SegoeUi_sb";
   padding: 0.5rem 1rem 0.5rem 1rem;
@@ -130,38 +125,28 @@ button, input[type=submit], input[type=button] {
   box-shadow: var(--box-shadow);
 }
 
-button:hover, input[type=submit]:hover, input[type=button]:hover {
+button:hover, input[type=submit]:hover, input[type=reset]:hover, input[type=button]:hover {
   background-color: var(--component-background-hover);
 }
 
-button:active, input[type=submit]:active, input[type=button]:active {
+button:active, input[type=submit]:active, input[type=reset]:active, input[type=button]:active {
   background-color: var(--component-background-active);
   box-shadow: var(--box-shadow);
 }
 
-button.important, input[type=submit], input.important[type=button] {
+button.important, input[type=submit], input.important[type=reset], input.important[type=button] {
   background: #0079d6;
   color: white;
   transition: background-color 0.07s, box-shadow 0.1s;
 }
 
-button.important:hover, input[type=submit]:hover, input.important[type=button]:hover {
+button.important:hover, input[type=submit]:hover, input.important[type=reset]:hover, input.important[type=button]:hover {
   background: #199be1;
 }
 
-button.important:active, input[type=submit]:active, input.important[type=button]:active {
+button.important:active, input[type=submit]:active, input.important[type=reset]:active, input.important[type=button]:active {
   background: #0d61ab;
   box-shadow: var(--box-shadow-active);
-}
-
-input {
-  font-size: 0.8rem;
-  font-family: "SegoeUi";
-  background-color: var(--component-background);
-  border-radius: 8px;
-  padding: 0.5rem 1.1rem 0.5rem 1.1rem;
-  border: none;
-  color: var(--foreground);
 }
 
 nav {
@@ -219,6 +204,51 @@ nav .wrap-container div:active {
   background: center center/auto 45px no-repeat;
   background-color: var(--background);
   border-radius: 100px;
+}
+
+input {
+  font-size: 0.8rem;
+  font-family: "SegoeUi";
+  background-color: var(--component-background);
+  border-radius: 8px;
+  padding: 0.5rem 1.1rem 0.5rem 1.1rem;
+  margin: 5px;
+  border: none;
+  color: var(--foreground);
+}
+input::placeholder {
+  color: #b3b3b3;
+}
+input[type=checkbox] {
+  background-color: var(--component-background);
+  box-shadow: var(--box-shadow);
+}
+input[type=range] {
+  appearance: none;
+  -webkit-appearance: none;
+  padding: none;
+  box-shadow: none;
+  border-radius: 5pt;
+  width: 150pt;
+  height: 4pt;
+  background-color: var(--component-background);
+  outline: none;
+}
+input[type=range]::-webkit-slider-thumb, input[type=range]::-moz-range-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: none;
+  background: #0079d6;
+  cursor: pointer;
+}
+input[type=range]::-moz-range-thumb:hover {
+  background: #199be1;
+}
+input[type=range]::-moz-range-thumb:active {
+  background: #0d61ab;
 }
 
 /*# sourceMappingURL=main.css.map */
