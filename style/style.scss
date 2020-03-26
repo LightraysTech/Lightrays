@@ -2,21 +2,59 @@
 @import "settings.scss";
 
 
-body {
-    font-family: selawk;
-    /*For debugging, leave overflow-x: hidden out!*/
-    overflow-x: hidden;
 
-    background-color: map-get($map: $theme, $key: background);
-    color: map-get($map: $theme, $key: foreground);
+// Themes
+@mixin getTheme($thm) {
+    @if $thm == light {
+        :root {
+            --foreground: black;
+            --background: white;
+            --background-hover: hsl(0, 3%, 85%);
+            --background-active: hsl(0, 0%, 83%);
+            --transparent-background: hsla(0, 0%, 99%, 0.95);
+
+            --component-background: hsl(0, 0%, 94%);
+            --component-background-hover: hsl(0, 0%, 87%);
+            --component-background-active: hsl(0, 0%, 81%);
+
+            --box-shadow: 1.2px 1.2px 6px rgba(0, 0, 0, 0.25);
+            --box-shadow-active: 1px 1px 3px rgba(0, 0, 0, 0.25);
+            --linear-gradient: linear-gradient(white, rgb(233, 231, 231));
+        }
+    } @else {
+        :root {
+            --foreground: white;
+            --background: hsl(0, 0%, 21%);
+            --background-hover: hsl(0, 0%, 18%);
+            --background-active: hsl(0, 0%, 15%);
+            --transparent-background: hsla(0, 0%, 21%, 0.97);
+
+            --component-background: hsl(0, 0%, 37%);
+            --component-background-hover: hsl(0, 0%, 33%);
+            --component-background-active: hsl(0, 0%, 29%);
+
+            --box-shadow: 1.2px 1.2px 6px rgba(0, 0, 0, 0.75);
+            --box-shadow-active: s1px 1px 3px rgba(0, 0, 0, 0.75);
+            --linear-gradient: linear-gradient(rgb(78, 78, 78), rgb(27, 27, 27));
+        }
+    }
 }
 
-h1 {
-    font-family: "SegoeUi_b";
-    color: map-get($map: $color-pallet, $key: main);
+@if $theme == systemTheme {
+    @include getTheme(light);
+    @media (prefers-color-scheme: dark) {
+        @include getTheme(dark);
+    }
+
+} @else if $theme == lightTheme {
+    @include getTheme(light);
+
+} @else if $theme == darkTheme {
+    @include getTheme(dark);
 }
 
-// colors
+
+// Colors
 .color-extra-light {
     background-color: map-get($color-pallet, extra-light);
 }
@@ -44,6 +82,49 @@ h1 {
     outline: none;
 }
 
+
+// Functions
+@mixin fixed-center {
+    position: fixed;
+    left: -9999px;
+    right: -9999px;
+    top: 0;
+    margin: auto;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+
+// General
+body {
+    font-family: selawk;
+
+    background-color: var(--background);
+    color: var(--foreground);
+}
+
+.inline-box {
+    background-color: var(--component-background);
+    border-radius: 10px;
+    padding: 10px;
+    margin: 5px;
+    box-shadow: var(--box-shadow);
+    border: medium;
+    border-image: var(--linear-gradient);
+}
+
+
+
+// Headers
+h1 {
+    font-family: "SegoeUi_b";
+    font-weight: normal;
+    color: map-get($map: $color-pallet, $key: main);
+}
+
 // Button
 button {
     cursor: pointer;
@@ -51,50 +132,52 @@ button {
     padding: .5rem 1rem .5rem 1rem;
     margin: 15px 0 15px 0;
     border: none;
-    background-color: map-get($theme, component-background);
-    color: map-get($theme, foreground);
+    background-color: var(--component-background);
+    color: var(--foreground);
     border-radius: $border-radius;
-    box-shadow: $shadow map-get($theme, shadow-color);
+    box-shadow: var(--box-shadow);
 }
 
 button:hover {
-    background-color: lighten(map-get($theme, component-background), 20%);
+    background-color: var(--component-background-hover);
 }
 
 button:active {
-    background-color: darken(map-get($theme, component-background), 3%);
-    box-shadow: $shadow-pressed map-get($theme, shadow-color);
+    background-color: var(--component-background-active);
+    box-shadow: var(--box-shadow);
 }
 
 button.important {
-    background: map-get($map: $color-pallet, $key: main);
-    color: map-get($map: $color-pallet, $key: text);
+    background: map-get($color-pallet, main);
+    color: map-get($color-pallet, text);
     transition: background-color .07s, box-shadow .1s;
 }
 
 button.important:hover {
-    background: map-get($map: $color-pallet, $key: lighter);
+    background: map-get($color-pallet, lighter);
 }
 
 button.important:active {
-    background: map-get($map: $color-pallet, $key: darker);
-    box-shadow: $shadow-pressed map-get($theme, shadow-color);
+    background: map-get($color-pallet, darker);
+    box-shadow: var(--box-shadow-active);
 }
 
-// Inputs -------------------------------------------------------------------------------
+
+
+// Inputs
 input {
     font-size: .8rem;
     font-family: "SegoeUi";
-    //background-color: map-get($theme, component-background);
+    background-color: var(--component-background);
     border-radius: $border-radius;
     padding: .5rem 1.1rem .5rem 1.1rem;
     border: none;
-    color: map-get($theme, foreground);
-    box-shadow: $shadow map-get($theme, shadow-color), inset 0px 1.8px 1.3px rgba(lighten(map-get($theme, component-background), 8%), .9);
+    color: var(--foreground);
+    //box-shadow: var(--box-shadow), inset 0px 1.8px 1.3px rgba(lighten(map-get($theme, component-background), 8%), .9);
 }
 
 input::placeholder {
-    color: darken(map-get($theme, foreground), 30%);
+    //color: darken(map-get($theme, foreground), 30%);
 }
 
 input[type="button"] {
@@ -107,4 +190,60 @@ input[type="submit"] {
 
 input[type="submit"] {
     @extend button, .important;
+}
+
+
+
+//Navigation
+nav {
+    @include fixed-center();
+    display: flex;
+    justify-content: center;
+    height: 85px;
+
+    .wrap-container {
+        display: flex;
+        justify-content: center;
+        width: 650px;
+        height: 85px;
+        padding: 0 40px 0 40px;
+        background-color: var(--transparent-background);
+        border-radius: 0 0 15px 15px;
+        box-shadow: var(--box-shadow);
+
+        div {
+            background: center center /  auto 32px no-repeat;
+            width: 100%;
+            padding: 0 20px 0 20px;
+
+            &:hover {
+                background-color: var(--background-hover);
+            }
+
+            &:active {
+                background-color: var(--background-active);
+            }
+        }
+    }
+}
+
+.nav-logo {
+    @include fixed-center();
+    width: 90px;
+    height: 90px;
+    top: 15px;
+    background: var(--linear-gradient);
+    border-radius: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: var(--box-shadow);
+    z-index: 1;
+    div {
+        width: 84px;
+        height: 84px;
+        background: center center /  auto 45px no-repeat;
+        background-color: var(--background);
+        border-radius: 100px;
+    }
 }

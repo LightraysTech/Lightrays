@@ -1,44 +1,64 @@
 @font-face {
   font-family: "selawk";
-  src: url(../fonts/selawik/selawk.ttf);
+  src: url(../Lighted-Web-Design-2.0/fonts/selawik/selawk.ttf);
 }
 @font-face {
   font-family: "selawksb";
-  src: url(../fonts/selawik/selawksb.ttf);
+  src: url(../Lighted-Web-Design-2.0/fonts/selawik/selawksb.ttf);
+}
+@font-face {
+  font-family: "selawkb";
+  src: url(../Lighted-Web-Design-2.0/fonts/selawik/selawkb.ttf);
 }
 @font-face {
   font-family: "selawkl";
-  src: url(../fonts/selawik/selawkl.ttf);
+  src: url(../Lighted-Web-Design-2.0/fonts/selawik/selawkl.ttf);
 }
 @font-face {
   font-family: "SegoeUI_b";
-  src: url(../fonts/SegoeUI/segoeuib.ttf);
+  src: url(../Lighted-Web-Design-2.0/fonts/SegoeUI/segoeuib.ttf);
 }
 @font-face {
   font-family: "SegoeUI";
-  src: url(../fonts/SegoeUI/segoeui.ttf);
+  src: url(../Lighted-Web-Design-2.0/fonts/SegoeUI/segoeui.ttf);
 }
 @font-face {
   font-family: "Century_Gothic";
-  src: url(../fonts/century-gothic/GOTHIC.TTF);
+  src: url(../Lighted-Web-Design-2.0/fonts/century-gothic/GOTHIC.TTF);
 }
 @font-face {
   font-family: "SegoeUI_sb";
-  src: url(../fonts/SegoeUI/seguisb.ttf);
+  src: url(../Lighted-Web-Design-2.0/fonts/SegoeUI/seguisb.ttf);
 }
-body {
-  font-family: selawk;
-  /*For debugging, leave overflow-x: hidden out!*/
-  overflow-x: hidden;
-  background-color: white;
-  color: black;
+:root {
+  --foreground: black;
+  --background: white;
+  --background-hover: hsl(0, 3%, 85%);
+  --background-active: hsl(0, 0%, 83%);
+  --transparent-background: hsla(0, 0%, 99%, 0.95);
+  --component-background: hsl(0, 0%, 94%);
+  --component-background-hover: hsl(0, 0%, 87%);
+  --component-background-active: hsl(0, 0%, 81%);
+  --box-shadow: 1.2px 1.2px 6px rgba(0, 0, 0, 0.25);
+  --box-shadow-active: 1px 1px 3px rgba(0, 0, 0, 0.25);
+  --linear-gradient: linear-gradient(white, rgb(233, 231, 231));
 }
 
-h1 {
-  font-family: "SegoeUi_b";
-  color: #0079d6;
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground: white;
+    --background: hsl(0, 0%, 21%);
+    --background-hover: hsl(0, 0%, 18%);
+    --background-active: hsl(0, 0%, 15%);
+    --transparent-background: hsla(0, 0%, 21%, 0.97);
+    --component-background: hsl(0, 0%, 37%);
+    --component-background-hover: hsl(0, 0%, 33%);
+    --component-background-active: hsl(0, 0%, 29%);
+    --box-shadow: 1.2px 1.2px 6px rgba(0, 0, 0, 0.75);
+    --box-shadow-active: s1px 1px 3px rgba(0, 0, 0, 0.75);
+    --linear-gradient: linear-gradient(rgb(78, 78, 78), rgb(27, 27, 27));
+  }
 }
-
 .color-extra-light {
   background-color: #52e5ff;
 }
@@ -71,25 +91,52 @@ h1 {
   outline: none;
 }
 
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+body {
+  font-family: selawk;
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+.inline-box {
+  background-color: var(--component-background);
+  border-radius: 10px;
+  padding: 10px;
+  margin: 5px;
+  box-shadow: var(--box-shadow);
+  border: medium;
+  border-image: var(--linear-gradient);
+}
+
+h1 {
+  font-family: "SegoeUi_b";
+  font-weight: normal;
+  color: #0079d6;
+}
+
 button, input[type=submit], input[type=button] {
   cursor: pointer;
   font-family: "SegoeUi_sb";
   padding: 0.5rem 1rem 0.5rem 1rem;
   margin: 15px 0 15px 0;
   border: none;
-  background-color: #fafafa;
-  color: black;
+  background-color: var(--component-background);
+  color: var(--foreground);
   border-radius: 8px;
-  box-shadow: 1.2px 1.2px 6px rgba(0, 0, 0, 0.25);
+  box-shadow: var(--box-shadow);
 }
 
 button:hover, input[type=submit]:hover, input[type=button]:hover {
-  background-color: white;
+  background-color: var(--component-background-hover);
 }
 
 button:active, input[type=submit]:active, input[type=button]:active {
-  background-color: #f2f2f2;
-  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
+  background-color: var(--component-background-active);
+  box-shadow: var(--box-shadow);
 }
 
 button.important, input[type=submit], input.important[type=button] {
@@ -104,21 +151,74 @@ button.important:hover, input[type=submit]:hover, input.important[type=button]:h
 
 button.important:active, input[type=submit]:active, input.important[type=button]:active {
   background: #0d61ab;
-  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
+  box-shadow: var(--box-shadow-active);
 }
 
 input {
   font-size: 0.8rem;
   font-family: "SegoeUi";
+  background-color: var(--component-background);
   border-radius: 8px;
   padding: 0.5rem 1.1rem 0.5rem 1.1rem;
   border: none;
-  color: black;
-  box-shadow: 1.2px 1.2px 6px rgba(0, 0, 0, 0.25), inset 0px 1.8px 1.3px rgba(255, 255, 255, 0.9);
+  color: var(--foreground);
 }
 
-input::placeholder {
-  color: black;
+nav {
+  position: fixed;
+  left: -9999px;
+  right: -9999px;
+  top: 0;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  height: 85px;
+}
+nav .wrap-container {
+  display: flex;
+  justify-content: center;
+  width: 650px;
+  height: 85px;
+  padding: 0 40px 0 40px;
+  background-color: var(--transparent-background);
+  border-radius: 0 0 15px 15px;
+  box-shadow: var(--box-shadow);
+}
+nav .wrap-container div {
+  background: center center/auto 32px no-repeat;
+  width: 100%;
+  padding: 0 20px 0 20px;
+}
+nav .wrap-container div:hover {
+  background-color: var(--background-hover);
+}
+nav .wrap-container div:active {
+  background-color: var(--background-active);
+}
+
+.nav-logo {
+  position: fixed;
+  left: -9999px;
+  right: -9999px;
+  top: 0;
+  margin: auto;
+  width: 90px;
+  height: 90px;
+  top: 15px;
+  background: var(--linear-gradient);
+  border-radius: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: var(--box-shadow);
+  z-index: 1;
+}
+.nav-logo div {
+  width: 84px;
+  height: 84px;
+  background: center center/auto 45px no-repeat;
+  background-color: var(--background);
+  border-radius: 100px;
 }
 
 /*# sourceMappingURL=main.css.map */
