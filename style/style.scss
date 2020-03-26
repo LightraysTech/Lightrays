@@ -92,10 +92,6 @@
     margin: auto;
 }
 
-.center {
-    display: flex;
-    justify-content: center;
-}
 
 
 // General
@@ -124,6 +120,8 @@ h1 {
     font-weight: normal;
     color: map-get($map: $color-pallet, $key: main);
 }
+
+
 
 // Button
 button {
@@ -160,36 +158,6 @@ button.important:hover {
 button.important:active {
     background: map-get($color-pallet, darker);
     box-shadow: var(--box-shadow-active);
-}
-
-
-
-// Inputs
-input {
-    font-size: .8rem;
-    font-family: "SegoeUi";
-    background-color: var(--component-background);
-    border-radius: $border-radius;
-    padding: .5rem 1.1rem .5rem 1.1rem;
-    border: none;
-    color: var(--foreground);
-    //box-shadow: var(--box-shadow), inset 0px 1.8px 1.3px rgba(lighten(map-get($theme, component-background), 8%), .9);
-}
-
-input::placeholder {
-    //color: darken(map-get($theme, foreground), 30%);
-}
-
-input[type="button"] {
-    @extend button;
-}
-
-input[type="submit"] {
-    @extend button, .important;
-}
-
-input[type="submit"] {
-    @extend button, .important;
 }
 
 
@@ -245,5 +213,58 @@ nav {
         background: center center /  auto 45px no-repeat;
         background-color: var(--background);
         border-radius: 100px;
+    }
+}
+
+
+
+// Inputs
+input {
+    font-size: .8rem;
+    font-family: "SegoeUi";
+    background-color: var(--component-background);
+    border-radius: $border-radius;
+    padding: .5rem 1.1rem .5rem 1.1rem;
+    margin: 5px;
+    border: none;
+    color: var(--foreground);
+    //box-shadow: var(--box-shadow), inset 0px 1.8px 1.3px rgba(lighten(map-get($theme, component-background), 8%), .9);
+
+    &::placeholder {
+        color: darken(map-get($theme, foreground), 30%);
+    }
+
+    &[type="reset"], &[type="button"] {
+        @extend button;
+    }
+    &[type="submit"] {
+        @extend button, .important;
+    }
+    &[type="checkbox"] {
+        background-color: map-get($theme, component-background);
+        box-shadow: $shadow map-get($theme, shadow-color);
+    }
+    &[type='range'] {
+        appearance: none;
+        -webkit-appearance: none;
+        padding: none;
+        box-shadow: none;
+        border-radius: 5pt;
+        width: 150pt;
+        height: 4pt;
+        background-color: map-get($theme, component-background);
+        outline: none;
+        &::-webkit-slider-thumb, &::-moz-range-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            border: none;
+            background: map-get($color-pallet, main);
+            cursor: pointer;
+        }
+        &::-moz-range-thumb:hover {background: map-get($color-pallet, lighter);}
+        &::-moz-range-thumb:active {background: map-get($color-pallet, darker);}
     }
 }
