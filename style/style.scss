@@ -241,9 +241,25 @@ input {
         @extend button, .important;
     }
     &[type="checkbox"] {
-        background-color: var(--component-background);
+        appearance: none;
+        background-color: white;
         box-shadow: var(--box-shadow);
+        -webkit-appearance: none;
+        border: 2px solid rgb(236, 236, 236);
+        border-radius: 5px;
+        width: 5px;
+        height: 5px;
+        padding: 9px;
+        cursor: pointer;
+        
+        &:checked {
+            background-image: url("src/checked.png");
+            background-repeat: no-repeat;
+            background-size: 13px;
+            background-position: center center;
+        }
     }
+
     &[type='range'] {
         appearance: none;
         -webkit-appearance: none;

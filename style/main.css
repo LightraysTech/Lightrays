@@ -220,8 +220,22 @@ input::placeholder {
   color: #b3b3b3;
 }
 input[type=checkbox] {
-  background-color: var(--component-background);
+  appearance: none;
+  background-color: white;
   box-shadow: var(--box-shadow);
+  -webkit-appearance: none;
+  border: 2px solid #ececec;
+  border-radius: 5px;
+  width: 5px;
+  height: 5px;
+  padding: 9px;
+  cursor: pointer;
+}
+input[type=checkbox]:checked {
+  background-image: url("src/checked.png");
+  background-repeat: no-repeat;
+  background-size: 13px;
+  background-position: center center;
 }
 input[type=range] {
   appearance: none;
