@@ -2,7 +2,6 @@
 @import "settings.scss";
 
 
-
 // Themes
 @mixin getTheme($thm) {
     @if $thm == light {
@@ -92,6 +91,16 @@
     margin: auto;
 }
 
+@mixin inline-box {
+    background-color: var(--component-background);
+    border-radius: 10px;
+    padding: 10px;
+    margin: 5px;
+    box-shadow: var(--box-shadow);
+    border: medium;
+    border-image: var(--linear-gradient);
+}
+
 
 
 // General
@@ -103,13 +112,7 @@ body {
 }
 
 .inline-box {
-    background-color: var(--component-background);
-    border-radius: 10px;
-    padding: 10px;
-    margin: 5px;
-    box-shadow: var(--box-shadow);
-    border: medium;
-    border-image: var(--linear-gradient);
+    @include inline-box;
 }
 
 
