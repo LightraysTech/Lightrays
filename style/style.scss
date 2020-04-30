@@ -166,11 +166,13 @@ button.important:active {
 
 
 //Navigation
-nav {
+
+@mixin top-icon-nav {
     @include fixed-center();
     display: flex;
     justify-content: center;
     height: 85px;
+    z-index: 99;
 
     .wrap-container {
         display: flex;
@@ -198,6 +200,10 @@ nav {
     }
 }
 
+nav.top-icon-nav {
+    @include top-icon-nav();
+}
+
 .nav-logo {
     @include fixed-center();
     width: 90px;
@@ -209,7 +215,7 @@ nav {
     justify-content: center;
     align-items: center;
     box-shadow: var(--box-shadow);
-    z-index: 1;
+    z-index: 100;
     div {
         width: 84px;
         height: 84px;

@@ -1,7 +1,7 @@
 //Navigation
 
 //HTML of Navigation links
-var navHTMl = document.querySelector("nav .wrap-container").innerHTML;
+var navHTMl = document.querySelector(".top-icon-nav .wrap-container").innerHTML;
 
 if (navHTMl != undefined || navHTMl != null) {
     //Number of menuLinks
@@ -17,4 +17,6 @@ if (navHTMl != undefined || navHTMl != null) {
     } else {
         console.error("LWD2.0 Error: The menu must have an even number of menu items");
     }
+} else {
+    console.log("LWD2.0 Error: Navigation Error");
 }
