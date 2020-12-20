@@ -1,39 +1,49 @@
+$pathToLWD: "../" !default;
+  
 @font-face {
     font-family: "selawk";
-    src: url(../Lighted-Web-Design-2.0/fonts/selawik/selawk.ttf);
+    src: url("#{$pathToLWD}/fonts/selawik/selawk.ttf");
+    font-display: swap;
   }
 
 @font-face {
     font-family: "selawksb";
-    src: url(../Lighted-Web-Design-2.0/fonts/selawik/selawksb.ttf);
+    src: url("#{$pathToLWD}/fonts/selawik/selawksb.ttf");
+    font-display: swap;
 }
 
 @font-face {
     font-family: "selawkb";
-    src: url(../Lighted-Web-Design-2.0/fonts/selawik/selawkb.ttf);
+    src: url("#{$pathToLWD}/fonts/selawik/selawkb.ttf");
+    font-display: swap;
 }
 
 @font-face {
     font-family: "selawkl";
-    src: url(../Lighted-Web-Design-2.0/fonts/selawik/selawkl.ttf);
+    src: url("#{$pathToLWD}/fonts/selawik/selawkl.ttf");
+    font-display: swap;
 }
 
 @font-face {
     font-family: "SegoeUI_b";
-    src: url(../Lighted-Web-Design-2.0/fonts/SegoeUI/segoeuib.ttf);
+    src: url("#{$pathToLWD}/fonts/SegoeUI/segoeuib.ttf");
+    font-display: swap;
 }
 
 @font-face {
     font-family: "SegoeUI";
-    src: url(../Lighted-Web-Design-2.0/fonts/SegoeUI/segoeui.ttf);
+    src: url("#{$pathToLWD}/fonts/SegoeUI/segoeui.ttf");
+    font-display: swap;
 }
 
 @font-face {
     font-family: "Century_Gothic";
-    src: url(../Lighted-Web-Design-2.0/fonts/century-gothic/GOTHIC.TTF);
+    src: url("#{$pathToLWD}/fonts/century-gothic/GOTHIC.TTF");
+    font-display: swap;
 }
 
 @font-face {
     font-family: "SegoeUI_sb";
-    src: url(../Lighted-Web-Design-2.0/fonts/SegoeUI/seguisb.ttf);
+    src: url("#{$pathToLWD}/fonts/SegoeUI/seguisb.ttf");
+    font-display: swap;
 }
