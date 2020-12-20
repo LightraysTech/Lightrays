@@ -1,0 +1,288 @@
+@import "fonts.scss";
+@import "settings.scss";
+
+
+// Themes
+@mixin getTheme($thm) {
+    @if $thm == light {
+        :root {
+            --foreground: black;
+            --background: white;
+            --background-hover: hsl(0, 3%, 85%);
+            --background-active: hsl(0, 0%, 83%);
+            --transparent-background: hsla(0, 0%, 99%, 0.95);
+
+            --component-background: hsl(0, 0%, 93%);
+            --component-background-hover: hsl(0, 0%, 87%);
+            --component-background-active: hsl(0, 0%, 81%);
+
+            --box-shadow: 0px 1.6px 8px rgba(0, 0, 0, 0.13), 0px 0px 2.9px rgba(0, 0, 0, 0.11);
+            --box-shadow-active: 1px 1px 3px rgba(0, 0, 0, 0.25);
+            --linear-gradient: linear-gradient(white, rgb(233, 231, 231));
+        }
+    } @else {
+        :root {
+            --foreground: white;
+            --background: hsl(0, 0%, 21%);
+            --background-hover: hsl(0, 0%, 18%);
+            --background-active: hsl(0, 0%, 15%);
+            --transparent-background: hsla(0, 0%, 21%, 0.97);
+
+            --component-background: hsl(0, 0%, 37%);
+            --component-background-hover: hsl(0, 0%, 33%);
+            --component-background-active: hsl(0, 0%, 29%);
+
+            --box-shadow: 1.2px 1.2px 6px rgba(0, 0, 0, 0.75);
+            --box-shadow-active: 1px 1px 3px rgba(0, 0, 0, 0.75);
+            --linear-gradient: linear-gradient(rgb(78, 78, 78), rgb(27, 27, 27));
+        }
+    }
+}
+
+@if $theme == systemTheme {
+    @include getTheme(light);
+    @media (prefers-color-scheme: dark) {
+        @include getTheme(dark);
+    }
+
+} @else if $theme == lightTheme {
+    @include getTheme(light);
+
+} @else if $theme == darkTheme {
+    @include getTheme(dark);
+}
+
+
+// Colors
+.color-extra-light {
+    background-color: map-get($color-pallet, extra-light);
+}
+.color-light {
+    background-color: map-get($color-pallet, light);
+}
+.color-lighter {
+    background-color: map-get($color-pallet, lighter);
+}
+.color-main
+{
+    background-color: map-get($color-pallet, main);
+}
+.color-darker {
+    background-color: map-get($color-pallet, darker);
+}
+.color-dark {
+    background-color: map-get($color-pallet, dark);
+}
+.color-extra-dark {
+    background-color: map-get($color-pallet, extra-dark);
+}
+
+
+// Functions
+@mixin fixed-center {
+    position: fixed;
+    left: -9999px;
+    right: -9999px;
+    top: 0;
+    margin: auto;
+}
+
+@mixin inline-box {
+    background-color: var(--component-background);
+    border-radius: 10px;
+    padding: 10px;
+    margin: 5px;
+    box-shadow: var(--box-shadow);
+    border: medium;
+    border-image: var(--linear-gradient);
+}
+
+
+
+// General
+body {
+    font-family: selawk;
+
+    background-color: var(--background);
+    color: var(--foreground);
+}
+
+.inline-box {
+    @include inline-box;
+}
+
+
+
+// Headers
+h1 {
+    font-family: "SegoeUi_b";
+    font-weight: normal;
+    color: map-get($map: $color-pallet, $key: main);
+}
+
+
+
+// Button
+button {
+    cursor: pointer;
+    font-family: "SegoeUi_sb";
+    padding: .5rem 1rem .5rem 1rem;
+    margin: 15px 0 15px 0;
+    border: none;
+    background-color: var(--component-background);
+    color: var(--foreground);
+    border-radius: $border-radius;
+    box-shadow: var(--box-shadow);
+
+    &:hover {
+        background-color: var(--component-background-hover);
+    }
+    &:active {
+        background-color: var(--component-background-active);
+        box-shadow: var(--box-shadow);
+    }
+    &.important {
+        background: map-get($color-pallet, main);
+        color: map-get($color-pallet, text);
+        transition: background-color .07s, box-shadow .1s;
+        &:hover {
+            background: map-get($color-pallet, lighter);
+        }
+        &:active {
+            background: map-get($color-pallet, darker);
+            box-shadow: var(--box-shadow-active);
+        }
+    }
+}
+
+
+
+//Navigation
+
+@mixin top-icon-nav {
+    @include fixed-center();
+    display: flex;
+    justify-content: center;
+    height: 85px;
+    z-index: 99;
+
+    .wrap-container {
+        display: flex;
+        justify-content: center;
+        width: 650px;
+        height: 85px;
+        padding: 0 40px 0 40px;
+        background-color: var(--transparent-background);
+        border-radius: 0 0 15px 15px;
+        box-shadow: var(--box-shadow);
+
+        a {
+            background: center center /  auto 32px no-repeat;
+            width: 100%;
+            padding: 0 20px 0 20px;
+
+            &:hover {
+                background-color: var(--background-hover);
+            }
+
+            &:active {
+                background-color: var(--background-active);
+            }
+        }
+    }
+}
+
+nav.top-icon-nav {
+    @include top-icon-nav();
+}
+
+.nav-logo {
+    @include fixed-center();
+    width: 90px;
+    height: 90px;
+    top: 15px;
+    background: var(--linear-gradient);
+    border-radius: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: var(--box-shadow);
+    z-index: 100;
+    div {
+        width: 84px;
+        height: 84px;
+        background: center center /  auto 45px no-repeat;
+        background-color: var(--background);
+        border-radius: 100px;
+    }
+}
+
+
+
+// Inputs
+input {
+    font-size: .8rem;
+    font-family: "SegoeUi";
+    background-color: var(--component-background);
+    border-radius: $border-radius;
+    padding: .5rem 1.1rem .5rem 1.1rem;
+    margin: 5px;
+    border: none;
+    color: var(--foreground);
+    //box-shadow: var(--box-shadow), inset 0px 1.8px 1.3px rgba(lighten(map-get($theme, component-background), 8%), .9);
+
+    &::placeholder {
+        color: hsl(0, 0%, 70%);
+    }
+
+
+    &[type="reset"], &[type="button"] {
+        @extend button;
+    }
+    &[type="submit"] {
+        @extend button, .important;
+    }
+    &[type="checkbox"] {
+        appearance: none;
+        background-color: white;
+        box-shadow: var(--box-shadow);
+        -webkit-appearance: none;
+        border: 2px solid rgb(236, 236, 236);
+        border-radius: 5px;
+        width: 5px;
+        height: 5px;
+        padding: 9px;
+        cursor: pointer;
+        
+        &:checked {
+            background-image: url("src/checked.png");
+            background-repeat: no-repeat;
+            background-size: 13px;
+            background-position: center center;
+        }
+    }
+
+    &[type='range'] {
+        appearance: none;
+        -webkit-appearance: none;
+        padding: none;
+        box-shadow: none;
+        border-radius: 5pt;
+        width: 150pt;
+        height: 4pt;
+        background-color: var(--component-background);
+        outline: none;
+        &::-webkit-slider-thumb, &::-moz-range-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            border: none;
+            background: map-get($color-pallet, main);
+            cursor: pointer;
+        }
+        &::-moz-range-thumb:hover {background: map-get($color-pallet, lighter);}
+        &::-moz-range-thumb:active {background: map-get($color-pallet, darker);}
+    }
+}
