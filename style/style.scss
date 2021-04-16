@@ -2,11 +2,13 @@
 @import "settings.scss";
 
 :root {
-    --light-color: #ffd74f;
-    --lighter-color: #ffcc26;
-    --main-color: #ffc400;
-    --darker-color: #ffb500;
-    --dark-color: #ffa200;
+    --color-extra-light: hsl(189, 100%, 66%);
+    --color-light:       hsl(195, 87%, 58%);
+    --color-lighter:     hsl(201, 80%, 49%);
+    --color-main:        hsl(206, 100%, 42%);
+    --color-darker:      hsl(208, 86%, 36%);
+    --color-dark:        hsl(210, 69%, 31%);
+    --color-extra-dark:  hsl(212, 65%, 26%);
 }
 
 // Themes
@@ -62,26 +64,26 @@
 
 // Colors
 .color-extra-light {
-    background-color: map-get($color-pallet, extra-light);
+    background-color: var(--color-extra-light);
 }
 .color-light {
-    background-color: map-get($color-pallet, light);
+    background-color: var(--color-light);
 }
 .color-lighter {
-    background-color: map-get($color-pallet, lighter);
+    background-color: var(--color-lighter);
 }
 .color-main
 {
-    background-color: map-get($color-pallet, main);
+    background-color: var(--color-main);
 }
 .color-darker {
-    background-color: map-get($color-pallet, darker);
+    background-color: var(--color-darker);
 }
 .color-dark {
-    background-color: map-get($color-pallet, dark);
+    background-color: var(--color-dark);
 }
 .color-extra-dark {
-    background-color: map-get($color-pallet, extra-dark);
+    background-color: var(--color-extra-dark);
 }
 
 
@@ -149,14 +151,14 @@ button {
         box-shadow: var(--box-shadow);
     }
     &.important {
-        background: map-get($color-pallet, main);
+        background: var(--color-main);
         color: map-get($color-pallet, text);
         transition: background-color .07s, box-shadow .1s;
         &:hover {
-            background: map-get($color-pallet, lighter);
+            background: var(--color-lighter);
         }
         &:active {
-            background: map-get($color-pallet, darker);
+            background: var(--color-darker);
             box-shadow: var(--box-shadow-active);
         }
     }
@@ -286,10 +288,10 @@ input {
             height: 15px;
             border-radius: 50%;
             border: none;
-            background: map-get($color-pallet, main);
+            background: var(--color-main);
             cursor: pointer;
         }
-        &::-moz-range-thumb:hover {background: map-get($color-pallet, lighter);}
-        &::-moz-range-thumb:active {background: map-get($color-pallet, darker);}
+        &::-moz-range-thumb:hover {background: var(--color-lighter);}
+        &::-moz-range-thumb:active {background: var(--color-darker);}
     }
 }
