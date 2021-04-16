@@ -1,6 +1,13 @@
 @import "fonts.scss";
 @import "settings.scss";
 
+:root {
+    --light-color: #ffd74f;
+    --lighter-color: #ffcc26;
+    --main-color: #ffc400;
+    --darker-color: #ffb500;
+    --dark-color: #ffa200;
+}
 
 // Themes
 @mixin getTheme($thm) {
