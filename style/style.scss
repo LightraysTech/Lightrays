@@ -1,6 +1,13 @@
 @import "fonts.scss";
 @import "settings.scss";
 
+:root {
+    --light-color: #ffd74f;
+    --lighter-color: #ffcc26;
+    --main-color: #ffc400;
+    --darker-color: #ffb500;
+    --dark-color: #ffa200;
+}
 
 // Themes
 @mixin getTheme($thm) {
@@ -16,8 +23,8 @@
             --component-background-hover: hsl(0, 0%, 87%);
             --component-background-active: hsl(0, 0%, 81%);
 
-            --box-shadow: 1.2px 1.2px 6px rgba(0, 0, 0, 0.25), inset 0 10px 10px -10px white;
-            --box-shadow-active: 1px 1px 3px rgba(0, 0, 0, 0.25), inset 0 10px 10px -10px white;
+            --box-shadow: 0px 1.6px 8px rgba(0, 0, 0, 0.13), 0px 0px 2.9px rgba(0, 0, 0, 0.11);
+            --box-shadow-active: 1px 1px 3px rgba(0, 0, 0, 0.25);
             --linear-gradient: linear-gradient(white, rgb(233, 231, 231));
         }
     } @else {
@@ -32,8 +39,8 @@
             --component-background-hover: hsl(0, 0%, 33%);
             --component-background-active: hsl(0, 0%, 29%);
 
-            --box-shadow: 1.2px 1.2px 6px rgba(0, 0, 0, 0.75), inset 0 10px 10px -13px hsl(0, 0%, 54%);
-            --box-shadow-active: 1px 1px 3px rgba(0, 0, 0, 0.75), inset 0 10px 10px -13px hsl(0, 0%, 54%);
+            --box-shadow: 1.2px 1.2px 6px rgba(0, 0, 0, 0.75);
+            --box-shadow-active: 1px 1px 3px rgba(0, 0, 0, 0.75);
             --linear-gradient: linear-gradient(rgb(78, 78, 78), rgb(27, 27, 27));
         }
     }
@@ -75,10 +82,6 @@
 }
 .color-extra-dark {
     background-color: map-get($color-pallet, extra-dark);
-}
-
-:focus {
-    outline: none;
 }
 
 
@@ -137,30 +140,26 @@ button {
     color: var(--foreground);
     border-radius: $border-radius;
     box-shadow: var(--box-shadow);
-}
 
-button:hover {
-    background-color: var(--component-background-hover);
-}
-
-button:active {
-    background-color: var(--component-background-active);
-    box-shadow: var(--box-shadow);
-}
-
-button.important {
-    background: map-get($color-pallet, main);
-    color: map-get($color-pallet, text);
-    transition: background-color .07s, box-shadow .1s;
-}
-
-button.important:hover {
-    background: map-get($color-pallet, lighter);
-}
-
-button.important:active {
-    background: map-get($color-pallet, darker);
-    box-shadow: var(--box-shadow-active);
+    &:hover {
+        background-color: var(--component-background-hover);
+    }
+    &:active {
+        background-color: var(--component-background-active);
+        box-shadow: var(--box-shadow);
+    }
+    &.important {
+        background: map-get($color-pallet, main);
+        color: map-get($color-pallet, text);
+        transition: background-color .07s, box-shadow .1s;
+        &:hover {
+            background: map-get($color-pallet, lighter);
+        }
+        &:active {
+            background: map-get($color-pallet, darker);
+            box-shadow: var(--box-shadow-active);
+        }
+    }
 }
 
 
@@ -242,6 +241,7 @@ input {
     &::placeholder {
         color: hsl(0, 0%, 70%);
     }
+
 
     &[type="reset"], &[type="button"] {
         @extend button;
