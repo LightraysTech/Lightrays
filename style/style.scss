@@ -9,6 +9,7 @@
     --color-darker:      hsl(208, 86%, 36%);
     --color-dark:        hsl(210, 69%, 31%);
     --color-extra-dark:  hsl(212, 65%, 26%);
+    --color-text:  white;
 }
 
 // Themes
@@ -16,16 +17,17 @@
     @if $thm == light {
         :root {
             --foreground: black;
-            --background: white;
+            --background: hsl(0, 0%, 96%);
             --background-hover: hsl(0, 3%, 85%);
             --background-active: hsl(0, 0%, 83%);
             --transparent-background: hsla(0, 0%, 99%, 0.95);
 
-            --component-background: hsl(0, 0%, 93%);
+            --component-background: white;
             --component-background-hover: hsl(0, 0%, 87%);
             --component-background-active: hsl(0, 0%, 81%);
 
-            --box-shadow: 0px 1.6px 8px rgba(0, 0, 0, 0.13), 0px 0px 2.9px rgba(0, 0, 0, 0.11);
+            --box-shadow: 0px 1.6px 7px rgb(0 0 0 / 9%);
+            --box-shadow-2: 0px 1.6px 8px rgba(0, 0, 0, 0.13), 0px 0px 2.9px rgba(0, 0, 0, 0.11);
             --box-shadow-active: 1px 1px 3px rgba(0, 0, 0, 0.25);
             --linear-gradient: linear-gradient(white, rgb(233, 231, 231));
         }
@@ -111,7 +113,7 @@
 // General
 body {
     font-family: selawk;
-
+    margin: 0;
     background-color: var(--background);
     color: var(--foreground);
 }
@@ -126,7 +128,17 @@ body {
 h1 {
     font-family: "SegoeUi_b";
     font-weight: normal;
-    color: map-get($map: $color-pallet, $key: main);
+    color: var(--color-main);
+}
+
+h2 {
+    font-family: "SegoeUi_b";
+    font-weight: normal;
+}
+
+h3 {
+    font-family: "SegoeUi_b";
+    font-weight: normal;
 }
 
 
@@ -152,7 +164,7 @@ button {
     }
     &.important {
         background: var(--color-main);
-        color: map-get($color-pallet, text);
+        color: var(--color-text);
         transition: background-color .07s, box-shadow .1s;
         &:hover {
             background: var(--color-lighter);
@@ -294,4 +306,23 @@ input {
         &::-moz-range-thumb:hover {background: var(--color-lighter);}
         &::-moz-range-thumb:active {background: var(--color-darker);}
     }
+}
+
+lwd-nav, lwd-nav.nav-type1 {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    grid-template-rows: 80px;
+    grid-auto-rows: 40px;
+    align-items: center;
+    justify-items: stretch;
+    overflow-x: scroll;
+    position: fixed;
+    width: 380px;
+    height: 100%;
+    padding-top: 20px;
+    background-color: var(--component-background);
+    box-shadow: var(--box-shadow);
+    left: 0px;
+    top: 0;
+    transition: left 0.25s;
 }
