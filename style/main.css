@@ -1,45 +1,65 @@
 @font-face {
   font-family: "selawk";
-  src: url(../fonts/selawik/selawk.ttf);
+  src: url("../fonts/selawik/selawk.ttf");
+  font-display: swap;
 }
 @font-face {
   font-family: "selawksb";
-  src: url(../fonts/selawik/selawksb.ttf);
+  src: url("../fonts/selawik/selawksb.ttf");
+  font-display: swap;
 }
 @font-face {
   font-family: "selawkb";
-  src: url(../fonts/selawik/selawkb.ttf);
+  src: url("../fonts/selawik/selawkb.ttf");
+  font-display: swap;
 }
 @font-face {
   font-family: "selawkl";
-  src: url(../fonts/selawik/selawkl.ttf);
+  src: url("../fonts/selawik/selawkl.ttf");
+  font-display: swap;
 }
 @font-face {
   font-family: "SegoeUI_b";
-  src: url(../fonts/SegoeUI/segoeuib.ttf);
+  src: url("../fonts/SegoeUI/segoeuib.ttf");
+  font-display: swap;
 }
 @font-face {
   font-family: "SegoeUI";
-  src: url(../fonts/SegoeUI/segoeui.ttf);
+  src: url("../fonts/SegoeUI/segoeui.ttf");
+  font-display: swap;
 }
 @font-face {
   font-family: "Century_Gothic";
-  src: url(../fonts/century-gothic/GOTHIC.TTF);
+  src: url("../fonts/century-gothic/GOTHIC.TTF");
+  font-display: swap;
 }
 @font-face {
   font-family: "SegoeUI_sb";
-  src: url(../fonts/SegoeUI/seguisb.ttf);
+  src: url("../fonts/SegoeUI/seguisb.ttf");
+  font-display: swap;
 }
 :root {
+  --color-extra-light: hsl(189, 100%, 66%);
+  --color-light: hsl(195, 87%, 58%);
+  --color-lighter: hsl(201, 80%, 49%);
+  --color-main: hsl(206, 100%, 42%);
+  --color-darker: hsl(208, 86%, 36%);
+  --color-dark: hsl(210, 69%, 31%);
+  --color-extra-dark: hsl(212, 65%, 26%);
+  --color-text: white;
+}
+
+:root {
   --foreground: black;
-  --background: white;
+  --background: hsl(0, 0%, 96%);
   --background-hover: hsl(0, 3%, 85%);
   --background-active: hsl(0, 0%, 83%);
   --transparent-background: hsla(0, 0%, 99%, 0.95);
-  --component-background: hsl(0, 0%, 93%);
+  --component-background: white;
   --component-background-hover: hsl(0, 0%, 87%);
   --component-background-active: hsl(0, 0%, 81%);
-  --box-shadow: 0px 1.6px 3.6px rgba(0, 0, 0, 0.13), 0px 0px 2.9px rgba(0, 0, 0, 0.11);
+  --box-shadow: 0px 1.6px 7px rgb(0 0 0 / 9%);
+  --box-shadow-2: 0px 1.6px 8px rgba(0, 0, 0, 0.13), 0px 0px 2.9px rgba(0, 0, 0, 0.11);
   --box-shadow-active: 1px 1px 3px rgba(0, 0, 0, 0.25);
   --linear-gradient: linear-gradient(white, rgb(233, 231, 231));
 }
@@ -60,35 +80,36 @@
   }
 }
 .color-extra-light {
-  background-color: #52e5ff;
+  background-color: var(--color-extra-light);
 }
 
 .color-light {
-  background-color: #37c2f1;
+  background-color: var(--color-light);
 }
 
 .color-lighter {
-  background-color: #199be1;
+  background-color: var(--color-lighter);
 }
 
 .color-main {
-  background-color: #0079d6;
+  background-color: var(--color-main);
 }
 
 .color-darker {
-  background-color: #0d61ab;
+  background-color: var(--color-darker);
 }
 
 .color-dark {
-  background-color: #194f86;
+  background-color: var(--color-dark);
 }
 
 .color-extra-dark {
-  background-color: #173f6d;
+  background-color: var(--color-extra-dark);
 }
 
 body {
   font-family: selawk;
+  margin: 0;
   background-color: var(--background);
   color: var(--foreground);
 }
@@ -106,7 +127,17 @@ body {
 h1 {
   font-family: "SegoeUi_b";
   font-weight: normal;
-  color: #0079d6;
+  color: var(--color-main);
+}
+
+h2 {
+  font-family: "SegoeUi_b";
+  font-weight: normal;
+}
+
+h3 {
+  font-family: "SegoeUi_b";
+  font-weight: normal;
 }
 
 button, input[type=submit], input[type=reset], input[type=button] {
@@ -117,7 +148,7 @@ button, input[type=submit], input[type=reset], input[type=button] {
   border: none;
   background-color: var(--component-background);
   color: var(--foreground);
-  border-radius: 8px;
+  border-radius: 6px;
   box-shadow: var(--box-shadow);
 }
 button:hover, input[type=submit]:hover, input[type=reset]:hover, input[type=button]:hover {
@@ -128,15 +159,15 @@ button:active, input[type=submit]:active, input[type=reset]:active, input[type=b
   box-shadow: var(--box-shadow);
 }
 button.important, input[type=submit], input.important[type=reset], input.important[type=button] {
-  background: #0079d6;
-  color: white;
+  background: var(--color-main);
+  color: var(--color-text);
   transition: background-color 0.07s, box-shadow 0.1s;
 }
 button.important:hover, input[type=submit]:hover, input.important[type=reset]:hover, input.important[type=button]:hover {
-  background: #199be1;
+  background: var(--color-lighter);
 }
 button.important:active, input[type=submit]:active, input.important[type=reset]:active, input.important[type=button]:active {
-  background: #0d61ab;
+  background: var(--color-darker);
   box-shadow: var(--box-shadow-active);
 }
 
@@ -202,7 +233,7 @@ input {
   font-size: 0.8rem;
   font-family: "SegoeUi";
   background-color: var(--component-background);
-  border-radius: 8px;
+  border-radius: 6px;
   padding: 0.5rem 1.1rem 0.5rem 1.1rem;
   margin: 5px;
   border: none;
@@ -247,14 +278,33 @@ input[type=range]::-webkit-slider-thumb, input[type=range]::-moz-range-thumb {
   height: 15px;
   border-radius: 50%;
   border: none;
-  background: #0079d6;
+  background: var(--color-main);
   cursor: pointer;
 }
 input[type=range]::-moz-range-thumb:hover {
-  background: #199be1;
+  background: var(--color-lighter);
 }
 input[type=range]::-moz-range-thumb:active {
-  background: #0d61ab;
+  background: var(--color-darker);
+}
+
+lwd-nav, lwd-nav.nav-type1 {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  grid-template-rows: 80px;
+  grid-auto-rows: 40px;
+  align-items: center;
+  justify-items: stretch;
+  overflow-x: scroll;
+  position: fixed;
+  width: 380px;
+  height: 100%;
+  padding-top: 20px;
+  background-color: var(--component-background);
+  box-shadow: var(--box-shadow);
+  left: 0px;
+  top: 0;
+  transition: left 0.25s;
 }
 
 /*# sourceMappingURL=main.css.map */

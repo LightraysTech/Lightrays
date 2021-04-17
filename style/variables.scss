@@ -2,11 +2,11 @@
 $shadow: 1.2px 1.2px 6px;
 $shadow-pressed: 1px 1px 3px;
 
-$border-radius: 8px;
+$border-radius: 6px;
 
 // themes
 $light-theme: (
-    background: white,
+    background: black,
     background-hover: hsl(0, 3%, 85%),
     background-active: hsl(0, 0%, 83%),
     component-background: hsl(0, 0%, 98%),
@@ -30,81 +30,3 @@ $dark-theme: (
 
 // filters
 $blur: blur(10pt) saturate(125%);
-
-// colors
-$blue-accent: (
-    extra-light: hsl(189, 100%, 66%),
-    light:       hsl(195, 87%, 58%),
-    lighter:     hsl(201, 80%, 49%),
-    main:        hsl(206, 100%, 42%),
-    darker:      hsl(208, 86%, 36%),
-    dark:        hsl(210, 69%, 31%),
-    extra-dark:  hsl(212, 65%, 26%),
-    text:        white
-);
-
-$purple-blue-accent: (
-    extra-light: hsl(238, 78%, 80%),
-    light:       hsl(236, 80%, 75%),
-    lighter:     hsl(236, 74%, 70%),
-    main:        hsl(235, 52%, 55%),
-    darker:      hsl(236, 44%, 50%),
-    dark:        hsl(236, 52%, 40%),
-    extra-dark:  hsl(236, 55%, 36%),
-    text:        white
-);
-
-$gray-accent: (
-    extra-light: hsl(0, 0%, 96%),
-    light:       rgb(240, 240, 240),
-    lighter:     rgb(204, 204, 204),
-    main:        rgb(153, 153, 153),
-    darker:      rgb(102, 102, 102),
-    dark:        rgb(64, 64, 64),
-    extra-dark:  rgb(36, 36, 36),
-    text:        white
-);
-
-$yellow-accent: (
-    extra-light: hsl(39, 100%, 73%),
-    light:       hsl(41, 96%, 67%),
-    lighter:     hsl(45, 95%, 50%),
-    main:        hsl(43, 97%, 48%),
-    darker:      hsl(40, 97%, 44%),
-    dark:        hsl(37, 97%, 40%),
-    extra-dark:  hsl(35, 98%, 37%),
-    text:        white
-);
-
-$red-accent: (
-    extra-light: hsl(15, 100%, 73%),
-    light:       hsl(14, 95%, 68%),
-    lighter:     hsl(13, 82%, 60%),
-    main:        hsl(13, 65%, 51%),
-    darker:      hsl(11, 79%, 41%),
-    dark:        hsl(8, 75%, 37%),
-    extra-dark:  hsl(6, 75%, 34%),
-    text:        white
-);
-
-$green-accent: (
-    extra-light: hsl(150, 57%, 55%),
-    light:       hsl(152, 59%, 46%),
-    lighter:     hsl(152, 66%, 38%),
-    main:        hsl(147, 77%, 27%),
-    darker:      hsl(147, 59%, 23%),
-    dark:        hsl(144, 57%, 20%),
-    extra-dark:  hsl(140, 60%, 16%),
-    text:        white
-);
-
-$purple-accent: (
-    extra-light: hsl(290, 82%, 74%),
-    light:       hsl(286, 76%, 65%),
-    lighter:     hsl(283, 62%, 56%),
-    main:        hsl(281, 59%, 47%),
-    darker:      hsl(279, 71%, 40%),
-    dark:        hsl(277, 76%, 36%),
-    extra-dark:  hsl(274, 79%, 32%),
-    text:        white
-);
