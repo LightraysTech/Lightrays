@@ -309,7 +309,7 @@ lwd-nav[type=side] lwd-navitem .navItemIcon, lwd-nav:not([type]) lwd-navitem .na
   order: 1;
   margin-left: 20px;
 }
-lwd-nav[type=side] lwd-navitem:first-child, lwd-nav:not([type]) lwd-navitem:first-child {
+lwd-nav[type=side] lwd-navitem.header, lwd-nav:not([type]) lwd-navitem.header {
   margin: 20px 0;
 }
 lwd-nav[type=side][alt-state], lwd-nav[alt-state]:not([type]) {

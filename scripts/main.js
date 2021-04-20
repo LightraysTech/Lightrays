@@ -39,7 +39,7 @@ class LwdNav extends HTMLElement {
         side: {
             initialize(navElem) {
                 let menuHead = document.createElement("lwd-navitem");
-                menuHead.classList.add("hide-in-mobile", "generated-nav-element");
+                menuHead.classList.add("hide-in-mobile", "generated-nav-element", "header");
 
                 let navBtn = document.createElement("img");
                 navBtn.classList.add("navItemIcon");
@@ -68,7 +68,7 @@ class LwdNav extends HTMLElement {
         side: {
             initialize(navElem) {
                 let menuHead = document.createElement("lwd-navitem");
-                menuHead.classList.add("hide-in-not-mobile", "generated-nav-element");
+                menuHead.classList.add("hide-in-not-mobile", "generated-nav-element", "header");
 
                 let navBtn = document.createElement("img");
                 navBtn.classList.add("navItemIcon");
