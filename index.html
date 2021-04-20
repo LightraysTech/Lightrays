@@ -11,19 +11,8 @@
     <title>Lighted Web Design - Example</title>
 </head>
 <body>
-    <script>
-        lwd.setAccentColor("yellow");
-    </script>
-
-    <lwd-nav type="side" collapseAt="1020px">
-        <style id="navMediaQueryStyle">
-            @media screen and (max-width: 1020px) {
-                lwd-nav {
-                    color: red;
-                }
-            }
-        </style>
-        <lwd-navitem>
+    <lwd-nav type="side" mobile-type="side" style="width: 380px;">
+        <lwd-navitem onclick="console.log('sdfghj')">
             <ion-icon class="navItemIcon" name="home-outline"></ion-icon>
             <span class="navItemLabel">Home</span>
         </lwd-navitem>
@@ -36,6 +25,8 @@
             <ion-icon class="navItemIcon" name="settings-outline"></ion-icon>
         </lwd-navitem>
     </lwd-nav>
+
+    
     <h1>Header</h1>
     <h3>color-pallete</h3>
     <div style="display: flex;">   

@@ -47,6 +47,7 @@
   --color-dark: hsl(210, 69%, 31%);
   --color-extra-dark: hsl(212, 65%, 26%);
   --color-text: white;
+  --mobile-at: 1020px;
 }
 
 :root {
@@ -96,10 +97,24 @@ body {
   border-image: var(--linear-gradient);
 }
 
-@media screen and (max-width: 1030px) {
+@media screen and (max-width: 1020px) {
   .hide-in-mobile {
     display: none;
+    visibility: hidden;
+    position: absolute;
   }
+}
+
+@media screen and (min-width: 1020px) {
+  .hide-in-not-mobile {
+    display: none;
+    visibility: hidden;
+    position: absolute;
+  }
+}
+
+:focus {
+  outline: none;
 }
 
 h1 {
@@ -266,19 +281,19 @@ input[type=range]::-moz-range-thumb:active {
   background: var(--color-darker);
 }
 
-lwd-nav, lwd-nav.nav-type1 {
+lwd-nav[type=side], lwd-nav:not([type]) {
   overflow-x: scroll;
   position: fixed;
-  width: 380px;
+  min-width: 250px;
   height: 100%;
   padding-top: 10px;
   background-color: var(--component-background);
   box-shadow: var(--box-shadow-2);
-  left: 0px;
+  left: 0;
   top: 0;
   transition: left 0.25s;
 }
-lwd-nav lwd-navitem, lwd-nav.nav-type1 lwd-navitem {
+lwd-nav[type=side] lwd-navitem, lwd-nav:not([type]) lwd-navitem {
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -286,16 +301,35 @@ lwd-nav lwd-navitem, lwd-nav.nav-type1 lwd-navitem {
   vertical-align: middle;
   width: 100%;
 }
-lwd-nav lwd-navitem .navItemLabel, lwd-nav.nav-type1 lwd-navitem .navItemLabel {
+lwd-nav[type=side] lwd-navitem .navItemLabel, lwd-nav:not([type]) lwd-navitem .navItemLabel {
   order: 2;
-  margin-left: 20px;
+  margin: 0 20px;
 }
-lwd-nav lwd-navitem .navItemIcon, lwd-nav.nav-type1 lwd-navitem .navItemIcon {
+lwd-nav[type=side] lwd-navitem .navItemIcon, lwd-nav:not([type]) lwd-navitem .navItemIcon {
   order: 1;
   margin-left: 20px;
 }
-lwd-nav lwd-navitem:first-child, lwd-nav.nav-type1 lwd-navitem:first-child {
+lwd-nav[type=side] lwd-navitem:first-child, lwd-nav:not([type]) lwd-navitem:first-child {
   margin: 20px 0;
+}
+lwd-nav[type=side][alt-state], lwd-nav[alt-state]:not([type]) {
+  left: -400px;
+}
+lwd-nav[type=test] {
+  background: red;
+}
+@media screen and (max-width: 1020px) {
+  lwd-nav[mobile-type=side], lwd-nav[type=side]:not([mobile-type]), lwd-nav:not([mobile-type]):not([type]) {
+    left: -400px;
+  }
+  lwd-nav[mobile-type=side][alt-state], lwd-nav[alt-state][type=side]:not([mobile-type]), lwd-nav[alt-state]:not([mobile-type]):not([type]) {
+    left: 0;
+  }
+}
+@media screen and (max-width: 1020px) {
+  lwd-nav[mobile-type=test], lwd-nav[type=test]:not([mobile-type]) {
+    left: 10px;
+  }
 }
 
 /*# sourceMappingURL=main.css.map */

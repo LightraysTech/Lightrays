@@ -28,38 +28,16 @@ var lwd = {
     },
 }
 
+
+
 class LwdNav extends HTMLElement {
     constructor() {
         super();
     }
 
-    expanded = false;
-    set (val) { this.expanded = val; this.onExpandedChange(); }
-    toggleExpanded() {
-        this.expanded = !this.expanded;
-    }
-
     navTypes = {
-        side: {expandable: true}
-    }
-
-    connectedCallback() {
-        this.createMediaQuery();
-        this.createTypeSpecificElements();
-        this.onExpandedChange();
-    }
-
-    createTypeSpecificElements() {
-        this.querySelectorAll(".generated-nav-element").forEach(element => {  // first remove all elements
-            element.remove()
-        });
-
-        switch (this.getNavType()) {
-            case this.navTypes:
-                break;
-            
-            case this.navTypes.side:
-            default:
+        side: {
+            initialize(navElem) {
                 let menuHead = document.createElement("lwd-navitem");
                 menuHead.classList.add("hide-in-mobile", "generated-nav-element");
 
@@ -68,34 +46,62 @@ class LwdNav extends HTMLElement {
                 navBtn.setAttribute("src", "img/menu-btn.svg");
                 navBtn.setAttribute("width", "18");
                 navBtn.addEventListener("click", () => {
-                    this.toggleExpanded();
+                    navElem.toggleAltState();
                 });
 
                 let navLabel = document.createElement("h4");
                 navLabel.classList.add("navItemLabel");
-                navLabel.innerText = this.getNavTitle();
+                navLabel.innerHTML = navElem.getNavTitle();
                 menuHead.appendChild(navLabel);
                 menuHead.appendChild(navBtn);
-                this.insertBefore(menuHead, this.firstChild);
-                break;
+                navElem.insertBefore(menuHead, navElem.firstChild);
+            }
+        },
+        test: {
+            initialize(navElem) {
+
+            }
         }
     }
 
-    createMediaQuery() {
-        if (this.getNavType() != null) {
-            switch (this.getNavType()) {
-                case this.navTypes.side:                
-                default:
-                    if (this.querySelector("#navMediaQueryStyle") != null) {
-                        this.querySelector("#navMediaQueryStyle").innerHTML = "";
-                    } else {
-                        let newStyle = document.createElement("style");
-                        newStyle.innerHTML = "esdfghj";
-                        this.appendChild(newStyle);
-                    }
-                break;
+    mobileNavTypes = {
+        side: {
+            initialize(navElem) {
+                let menuHead = document.createElement("lwd-navitem");
+                menuHead.classList.add("hide-in-not-mobile", "generated-nav-element");
+
+                let navBtn = document.createElement("img");
+                navBtn.classList.add("navItemIcon");
+                navBtn.setAttribute("src", "img/menu-btn.svg");
+                navBtn.setAttribute("width", "18");
+                navBtn.addEventListener("click", () => {
+                    navElem.toggleAltState();
+                });
+
+                let navLabel = document.createElement("h4");
+                navLabel.classList.add("navItemLabel");
+                navLabel.innerHTML = navElem.getNavTitle();
+                menuHead.appendChild(navLabel);
+                menuHead.appendChild(navBtn);
+                navElem.insertBefore(menuHead, navElem.firstChild);
             }
-        }
+        },
+    }
+
+    initialize() {
+        this.removeGeneratedElements();
+        this.getNavType()?.initialize(this);
+        this.getMobileNavType().initialize(this);        
+    }
+
+    connectedCallback() {
+        this.initialize();
+    }
+
+    removeGeneratedElements() {
+        this.querySelectorAll(".generated-nav-element").forEach(element => {
+            element.remove();
+        });
     }
 
     getNavTitle() {
@@ -103,66 +109,42 @@ class LwdNav extends HTMLElement {
     }
 
     getNavType() {
-        if (this.getAttribute("type") != null) {
+        if (this.hasAttribute("type")) {
             if (this.navTypes[this.getAttribute("type")] != undefined) {
                 return this.navTypes[this.getAttribute("type")];
             } else {
+                console.error("LWD: Navigation type '" + this.getAttribute("type") + "' is not found. Valid types: " + Object.keys(this.navTypes).toString());
                 return null;
             }
         }
-        return null;
+        return this.navTypes.side;
     }
 
-    onExpandedChange() {
-        if (this.getNavType() != null && this.getNavType().expandable) {
-            switch (this.getNavType()) {
-                case this.navTypes.side:
-                default:
-                    if (this.expanded) {
-                        this.style.setProperty("left", "0");
-                    } else {
-                        this.style.setProperty("left", "-380px");
-                    }
-                    break;
+    getMobileNavType() {
+        if (this.hasAttribute("mobile-type")) {
+            if (this.mobileNavTypes[this.getAttribute("mobile-type")] != undefined) {
+                return this.mobileNavTypes[this.getAttribute("mobile-type")];
+            } else {
+                console.warn("LWD: Navigation mobile-type '" + this.getAttribute("mobile-type") + "' is not found.");
+                return this.mobileNavTypes.side; // return default
             }
+        }
+        return this.mobileNavTypes.side;
+    }
+
+    toggleAltState() {
+        if (this.hasAttribute("alt-state")) {
+            this.removeAttribute("alt-state");
         } else {
-            console.warn("LWD: current nav type is not expandable");
+            this.setAttribute("alt-state", "");
         }
     }
-
 
     attributeChangedCallback(name, oldValue, newValue) {
-        if (name == "type") { // type has changed
-            this.createTypeSpecificElements();
-        }
-        if (name == "expandat") {
-            this.createMediaQuery();
-        }
+        this.initialize();
     }
-    static get observedAttributes() { return ['type', 'expandat']; }
+    static get observedAttributes() { return ['type', 'mobile-type']; }
 }
 
 // Define the new element
 customElements.define('lwd-nav', LwdNav);
-//Navigation
-/*
-//HTML of Navigation links
-var navHTMl = document.querySelector(".top-icon-nav .wrap-container").innerHTML;
-
-if (navHTMl != undefined || navHTMl != null) {
-    //Number of menuLinks
-    var menuItems = navHTMl.split("</a>").length-1;
-    
-    //Get the middle of all Links (where new element has to be inserted)
-    menuMiddle = menuItems/2;
-
-    //Check if number is integer
-    if (menuMiddle % 1 == 0) {
-        var menuMiddle = document.querySelector("nav .wrap-container a:nth-child(" + menuMiddle + ")");
-        menuMiddle.style.margin = "0 100px 0 0";
-    } else {
-        console.error("LWD2.0 Error: The menu must have an even number of menu items");
-    }
-} else {
-    console.log("LWD2.0 Error: Navigation Error");
-}*/
