@@ -24,8 +24,21 @@ var lwd = {
     },
     
     setTheme: function(theme) {
-        this.currentTheme = theme;
-    },
+      fetch(this.settingsPath)
+      .then(res => res.json())
+      .then(out => {
+          if (typeof(out.themes[theme]) != "undefined") {
+              this.currentTheme = theme;
+              let keys = Object.keys(out.themes[theme]);
+              for (let i = 0; i < keys.length; i++) {
+                  this.cssVariables.setProperty("--" + keys[i], out.themes[theme][keys[i]]);
+              }
+          } else {
+              console.error("LWD:  Theme '" + theme + "' was not found.");
+          }
+      })
+      .catch(err => { throw err });
+    }
 }
 
 
@@ -148,3 +161,19 @@ class LwdNav extends HTMLElement {
 
 // Define the new element
 customElements.define('lwd-nav', LwdNav);
+
+
+//old nav
+  //Get the middle of all Links (where new element has to be inserted)
+  menuMiddle = menuItems/2;
+
+  //Check if number is integer
+  if (menuMiddle % 1 == 0) {
+      var menuMiddle = document.querySelector("nav .wrap-container a:nth-child(" + menuMiddle + ")");
+      menuMiddle.style.margin = "0 100px 0 0";
+  } else {
+      console.error("LWD2.0 Error: The menu must have an even number of menu items");
+  }
+} else {
+    console.log("LWD2.0 Error: Navigation Error");
+}

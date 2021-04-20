@@ -23,25 +23,21 @@
 }
 
 @font-face {
-    font-family: "SegoeUI_b";
-    src: url("../fonts/SegoeUI/segoeuib.ttf");
-    font-display: swap;
-}
-
-@font-face {
     font-family: "SegoeUI";
-    src: url("../fonts/SegoeUI/segoeui.ttf");
-    font-display: swap;
-}
-
-@font-face {
-    font-family: "Century_Gothic";
-    src: url("../fonts/century-gothic/GOTHIC.TTF");
-    font-display: swap;
+    src: url(../Lighted-Web-Design-2.0/fonts/SegoeUI/segoeui.ttf);
 }
 
 @font-face {
     font-family: "SegoeUI_sb";
-    src: url("../fonts/SegoeUI/seguisb.ttf");
-    font-display: swap;
+    src: url(../Lighted-Web-Design-2.0/fonts/SegoeUI/seguisb.ttf);
+}
+
+@font-face {
+    font-family: "SegoeUI_b";
+    src: url(../Lighted-Web-Design-2.0/fonts/SegoeUI/segoeuib.ttf);
+}
+
+@font-face {
+    font-family: "Century_Gothic";
+    src: url(../Lighted-Web-Design-2.0/fonts/century-gothic/GOTHIC.TTF);
 }
