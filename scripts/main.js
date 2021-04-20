@@ -24,9 +24,23 @@ var lwd = {
     },
     
     setTheme: function(theme) {
-        this.currentTheme = theme;
-    },
+      fetch(this.settingsPath)
+      .then(res => res.json())
+      .then(out => {
+          if (typeof(out.themes[theme]) != "undefined") {
+              this.currentTheme = theme;
+              let keys = Object.keys(out.themes[theme]);
+              for (let i = 0; i < keys.length; i++) {
+                  this.cssVariables.setProperty("--" + keys[i], out.themes[theme][keys[i]]);
+              }
+          } else {
+              console.error("LWD:  Theme '" + theme + "' was not found.");
+          }
+      })
+      .catch(err => { throw err });
+    }
 }
+
 
 class LwdNav extends HTMLElement {
     constructor() {
