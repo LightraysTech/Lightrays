@@ -311,24 +311,7 @@ input {
     }
 }
 
-lwd-nav, lwd-nav.nav-type1 {
-    display: grid;
-    grid-template-columns: 60px 1fr;
-    grid-template-rows: 80px;
-    grid-auto-rows: 40px;
-    align-items: center;
-    justify-items: stretch;
-    overflow-x: scroll;
-    position: fixed;
-    width: 380px;
-    height: 100%;
-    padding-top: 20px;
-    background-color: var(--component-background);
-    box-shadow: var(--box-shadow);
-    left: 0px;
-    top: 0;
-    transition: left 0.25s;
-}
+
 
 lwd-nav {
     &:not([type]) { // no type specified

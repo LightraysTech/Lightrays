@@ -161,19 +161,3 @@ class LwdNav extends HTMLElement {
 
 // Define the new element
 customElements.define('lwd-nav', LwdNav);
-
-
-//old nav
-  //Get the middle of all Links (where new element has to be inserted)
-  menuMiddle = menuItems/2;
-
-  //Check if number is integer
-  if (menuMiddle % 1 == 0) {
-      var menuMiddle = document.querySelector("nav .wrap-container a:nth-child(" + menuMiddle + ")");
-      menuMiddle.style.margin = "0 100px 0 0";
-  } else {
-      console.error("LWD2.0 Error: The menu must have an even number of menu items");
-  }
-} else {
-    console.log("LWD2.0 Error: Navigation Error");
-}
