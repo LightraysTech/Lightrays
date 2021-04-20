@@ -10,6 +10,8 @@
     --color-dark:        hsl(210, 69%, 31%);
     --color-extra-dark:  hsl(212, 65%, 26%);
     --color-text:  white;
+
+    --mobile-at: 1020px;
 }
 
 // Themes
@@ -63,32 +65,6 @@
     @include getTheme(dark);
 }
 
-
-// Colors
-.color-extra-light {
-    background-color: var(--color-extra-light);
-}
-.color-light {
-    background-color: var(--color-light);
-}
-.color-lighter {
-    background-color: var(--color-lighter);
-}
-.color-main
-{
-    background-color: var(--color-main);
-}
-.color-darker {
-    background-color: var(--color-darker);
-}
-.color-dark {
-    background-color: var(--color-dark);
-}
-.color-extra-dark {
-    background-color: var(--color-extra-dark);
-}
-
-
 // Functions
 @mixin fixed-center {
     position: fixed;
@@ -108,12 +84,21 @@
     border-image: var(--linear-gradient);
 }
 
+@mixin mobile() {
+    @media screen and (max-width: 1020px) {
+        @content;
+    }    
+}
 
+@mixin not-mobile() {
+    @media screen and (min-width: 1020px) {
+        @content;
+    }    
+}
 
 // General
 body {
     font-family: selawk;
-    margin: 0;
     background-color: var(--background);
     color: var(--foreground);
 }
@@ -122,7 +107,25 @@ body {
     @include inline-box;
 }
 
+.hide-in-mobile {
+    @include mobile() {
+        display: none;
+        visibility: hidden;
+        position: absolute;
+    }
+}
 
+.hide-in-not-mobile {
+    @include not-mobile() {
+        display: none;
+        visibility: hidden;
+        position: absolute;
+    }
+}
+
+:focus {
+    outline: none;
+}
 
 // Headers
 h1 {
@@ -325,4 +328,78 @@ lwd-nav, lwd-nav.nav-type1 {
     left: 0px;
     top: 0;
     transition: left 0.25s;
+}
+
+lwd-nav {
+    &:not([type]) { // no type specified
+        @extend [type = side]; // default
+    }
+}
+
+lwd-nav {
+    &[type = side] {
+        &:not([mobile-type]) { // no mobile-type specified
+            @extend [mobile-type = side];
+        }
+        overflow-x: scroll;
+        position: fixed;
+        min-width: 250px;
+        height: 100%;
+        padding-top: 10px;
+        background-color: var(--component-background);
+        box-shadow: var(--box-shadow-2);
+        left: 0;
+        top: 0;
+        transition: left 0.25s;
+    
+        lwd-navitem {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            height: 45px;
+            vertical-align: middle;
+            width: 100%;
+            
+    
+            .navItemLabel {
+                order: 2;
+                margin: 0 20px;
+            }
+            .navItemIcon {
+                order: 1;
+                margin-left: 20px;
+            }
+    
+            &.header {
+                margin: 20px 0 ;
+            }
+        }
+
+        &[alt-state] {
+            left: -400px;
+        }
+    }
+
+    &[type = test] {
+        &:not([mobile-type]) { // no mobile-type specified
+            @extend [mobile-type = test];
+        }
+        background: red;
+    }
+
+    &[mobile-type = side] {
+        @include mobile() {
+            left: -400px;
+            &[alt-state] {
+                left: 0;
+            }
+        }
+    }
+
+    &[mobile-type = test] {
+        @include mobile() {
+            left: 10px;
+        }
+    }
+
 }

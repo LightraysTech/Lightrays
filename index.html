@@ -6,20 +6,27 @@
     <link rel="stylesheet" href="style/main.css">
     <link rel="stylesheet" href="content.css">
     <script src="scripts/main.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule="" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.js"></script>
     <title>Lighted Web Design - Example</title>
 </head>
 <body>
-    <script>
-        lwd.setAccentColor("yellow");
-    </script>
-
-    <lwd-nav>
+    <lwd-nav type="side" mobile-type="side" style="width: 380px;">
+        <lwd-navitem onclick="console.log('sdfghj')">
+            <ion-icon class="navItemIcon" name="home-outline"></ion-icon>
+            <span class="navItemLabel">Home</span>
+        </lwd-navitem>
         <lwd-navitem>
-            <navicon><img></navicon>
-            <div>Home</div>
-        </lwd-navitem>>
+            <ion-icon class="navItemIcon" name="newspaper-outline"></ion-icon>
+            <span class="navItemLabel">News</span>
+        </lwd-navitem>
+        <lwd-navitem>
+            <span class="navItemLabel">Settings</span>
+            <ion-icon class="navItemIcon" name="settings-outline"></ion-icon>
+        </lwd-navitem>
     </lwd-nav>
-    <h1>Header</h1>
+
+        <h1>Header</h1>
     <h3>color-pallete</h3>
     <div style="display: flex;">   
         <div class="color-extra-light"></div>
