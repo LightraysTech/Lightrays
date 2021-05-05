@@ -101,8 +101,19 @@ body {
     font-family: selawk;
     background-color: var(--background);
     color: var(--foreground);
+    & ::-webkit-scrollbar {
+        width: 0.5em;
+        background: white;
+    }
+    & ::-webkit-scrollbar-track {
+    }
+    
+    & ::-webkit-scrollbar-thumb {
+        background-color: darkgrey;
+        border-radius: 8px;
+        margin: 5px
+    }
 }
-
 .inline-box {
     @include inline-box;
 }
@@ -140,7 +151,12 @@ h2 {
 }
 
 h3 {
-    font-family: "SegoeUi_b";
+    font-family: "SegoeUi_sb";
+    font-weight: normal;
+}
+
+h4 {
+    font-family: "SegoeUi_sb";
     font-weight: normal;
 }
 
@@ -326,40 +342,77 @@ lwd-nav {
         }
         overflow-x: scroll;
         position: fixed;
-        min-width: 250px;
+        width: 340px;
         height: 100%;
         padding-top: 10px;
         background-color: var(--component-background);
         box-shadow: var(--box-shadow-2);
         left: 0;
         top: 0;
-        transition: left 0.25s;
-    
+        transition: left 0.25s, width 0.25s;
+        -webkit-transition: left 0.25s, width 0.25s;
+
         lwd-navitem {
             cursor: pointer;
             display: flex;
             align-items: center;
-            height: 45px;
+            height: 35px;
             vertical-align: middle;
-            width: 100%;
-            
-    
+            margin: 5px 12.5px;
+            width: calc(100% - 25px);
+        
             .navItemLabel {
                 order: 2;
                 margin: 0 20px;
             }
             .navItemIcon {
                 order: 1;
-                margin-left: 20px;
+                width: 30px;
+                padding: 10px;
+                flex-shrink: 0;
             }
     
             &.header {
-                margin: 20px 0 ;
+                 margin: 20px 0;
+                .navItemIcon {
+                    width: 18px;
+                    padding: 16px;
+                }
+            }
+            &[active] {
+                background: linear-gradient(to right, #50e6ff, #199ae1);
+                border-radius: 7px;
+                box-shadow: 0px 1.6px 3.6px rgb(0 0 0 / 13%), 0px 0px 2.9px rgb(0 0 0 / 11%);
+            }
+        }
+
+        lwd-navgroup {
+            display: block;
+            border-top: 1.5px solid rgb(242, 242, 242);
+            border-bottom: 1.5px solid rgb(242, 242, 242);
+            padding: 5px 0;
+            margin: 5px 0;
+            & ~ lwd-navgroup {
+                border-top: none;
+                margin-top: 0;
+                padding-top: 0;
             }
         }
 
         &[alt-state] {
-            left: -400px;
+            min-width: unset;
+            overflow: hidden;
+            width: 55px;
+            lwd-navitem {
+                justify-content: center;
+                transition: width 0.2s;
+                width: calc(100% - 10px);
+                margin-left: 5px;
+                margin-right: 5px;
+            }
+            .navItemLabel {
+                display: none;
+            }
         }
     }
 

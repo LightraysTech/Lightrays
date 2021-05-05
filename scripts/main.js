@@ -46,6 +46,7 @@ var lwd = {
 class LwdNav extends HTMLElement {
     constructor() {
         super();
+
     }
 
     navTypes = {
@@ -57,7 +58,6 @@ class LwdNav extends HTMLElement {
                 let navBtn = document.createElement("img");
                 navBtn.classList.add("navItemIcon");
                 navBtn.setAttribute("src", "img/menu-btn.svg");
-                navBtn.setAttribute("width", "18");
                 navBtn.addEventListener("click", () => {
                     navElem.toggleAltState();
                 });
@@ -108,7 +108,9 @@ class LwdNav extends HTMLElement {
     }
 
     connectedCallback() {
-        this.initialize();
+        //this.initialize();
+        super.connectedCallback;
+        console.log(this.querySelectorAll("*"));
     }
 
     removeGeneratedElements() {
@@ -118,7 +120,7 @@ class LwdNav extends HTMLElement {
     }
 
     getNavTitle() {
-        return "Lighted Web Design 2.0"; // TODO: getNavTitle
+        return "Page Title"; // TODO: getNavTitle
     }
 
     getNavType() {
@@ -138,7 +140,7 @@ class LwdNav extends HTMLElement {
             if (this.mobileNavTypes[this.getAttribute("mobile-type")] != undefined) {
                 return this.mobileNavTypes[this.getAttribute("mobile-type")];
             } else {
-                console.warn("LWD: Navigation mobile-type '" + this.getAttribute("mobile-type") + "' is not found.");
+                console.warn("LWD: Navigation mobile-type '" + this.getAttribute("mobile-type") + "' is not found. Switching to default.");
                 return this.mobileNavTypes.side; // return default
             }
         }
