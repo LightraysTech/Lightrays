@@ -1,13 +1,13 @@
 var lwd = {
     cssVariables: document.querySelector(":root").style,
-    settingsPath: document.currentScript.src.substr(0, document.currentScript.src.lastIndexOf("/")) + "/../settings.json",
+    rootFolderPath: document.currentScript.src.substr(0, document.currentScript.src.lastIndexOf("/")) + "/..",
 
     currentAccentColor: "blue",
     currentTheme: "light",
     
 
     setAccentColor: function(color) {
-        fetch(this.settingsPath)
+        fetch(this.rootFolderPath + "/settings.json")
         .then(res => res.json())
         .then(out => {
             if (typeof(out.colors[color]) != "undefined") {
@@ -24,7 +24,7 @@ var lwd = {
     },
     
     setTheme: function(theme) {
-      fetch(this.settingsPath)
+      fetch(this.rootFolderPath + "/settings.json")
       .then(res => res.json())
       .then(out => {
           if (typeof(out.themes[theme]) != "undefined") {
@@ -57,7 +57,7 @@ class LwdNav extends HTMLElement {
 
                 let navBtn = document.createElement("img");
                 navBtn.classList.add("navItemIcon");
-                navBtn.setAttribute("src", "img/menu-btn.svg");
+                navBtn.setAttribute("src", lwd.rootFolderPath + "/img/menu-btn.svg");
                 navBtn.addEventListener("click", () => {
                     navElem.toggleAltState();
                 });

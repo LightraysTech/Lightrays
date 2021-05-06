@@ -159,7 +159,121 @@ h4 {
     font-weight: normal;
 }
 
+// NAVIGATION
+lwd-nav {
+    &:not([type]) { // no type specified
+        @extend [type = side]; // default
+    }
+}
 
+lwd-nav {
+    &[type = side] {
+        &:not([mobile-type]) { // no mobile-type specified
+            @extend [mobile-type = side];
+        }
+        @include not-mobile() {
+            overflow-x: scroll;
+            position: fixed;
+            width: 340px;
+            height: 100%;
+            padding-top: 10px;
+            background-color: var(--component-background);
+            box-shadow: var(--box-shadow-2);
+            left: 0;
+            top: 0;
+            transition: left 0.25s, width 0.25s;
+            -webkit-transition: left 0.25s, width 0.25s;
+            
+            lwd-navitem {
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                height: 35px;
+                vertical-align: middle;
+                margin: 5px 12.5px;
+                width: calc(100% - 25px);
+            
+                .navItemLabel {
+                    order: 2;
+                    margin: 0 20px;
+                }
+                .navItemIcon {
+                    order: 1;
+                    width: 30px;
+                    padding: 10px;
+                    flex-shrink: 0;
+                }
+        
+                &.header {
+                     margin-top: 15px;
+                     margin-bottom: 20px;
+                    .navItemIcon {
+                        width: 18px;
+                        padding: 16px;
+                    }
+                }
+    
+                &[selected] {
+                    background: linear-gradient(to right, var(--color-extra-light), var(--color-lighter));
+                    border-radius: 8px;
+                    box-shadow: 0px 1.6px 3.6px rgb(0 0 0 / 13%), 0px 0px 2.9px rgb(0 0 0 / 11%);
+                }
+            }
+    
+            lwd-navgroup {
+                display: block;
+                border-top: 1.5px solid rgb(242, 242, 242);
+                border-bottom: 1.5px solid rgb(242, 242, 242);
+                padding: 5px 0;
+                margin: 5px 0;
+                & ~ lwd-navgroup {
+                    border-top-color: transparent;
+                    margin-top: 0;
+                    padding-top: 0;
+                }
+            }
+    
+            &[alt-state] {
+                min-width: unset;
+                overflow: hidden;
+                width: 55px;
+                lwd-navitem {
+                    justify-content: center;
+                    transition: width 0.2s;
+                    width: calc(100% - 10px);
+                    margin-left: 5px;
+                    margin-right: 5px;
+                }
+                .navItemLabel {
+                    display: none;
+                }
+            }    
+        }
+    }
+
+    &[type = test] {
+        &:not([mobile-type]) { // no mobile-type specified
+            @extend [mobile-type = test];
+        }
+        background: red;
+    }
+
+    &[mobile-type = side] {
+        @include mobile() {
+            left: -400px;
+            &[alt-state] {
+                left: 0;
+            }
+        }
+    }
+
+    &[mobile-type = test] {
+        @include mobile() {
+            left: 10px;
+        }
+    }
+
+}
 
 // Button
 button {
@@ -326,117 +440,33 @@ input {
     }
 }
 
-
-
-lwd-nav {
-    &:not([type]) { // no type specified
-        @extend [type = side]; // default
+.flex-list {
+    font-size: 15px;
+    display: grid;
+    grid-auto-rows: 48px;
+    grid-gap: 10px;
+    overflow-y: initial;
+    div {
+        @extend .lwd-box; 
+    }
+    &.round-corners {
+        div {
+            border-radius: 7px;
+        }
     }
 }
 
-lwd-nav {
-    &[type = side] {
-        &:not([mobile-type]) { // no mobile-type specified
-            @extend [mobile-type = side];
-        }
-        overflow-x: scroll;
-        position: fixed;
-        width: 340px;
-        height: 100%;
-        padding-top: 10px;
-        background-color: var(--component-background);
-        box-shadow: var(--box-shadow-2);
-        left: 0;
-        top: 0;
-        transition: left 0.25s, width 0.25s;
-        -webkit-transition: left 0.25s, width 0.25s;
-
-        lwd-navitem {
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            height: 35px;
-            vertical-align: middle;
-            margin: 5px 12.5px;
-            width: calc(100% - 25px);
-        
-            .navItemLabel {
-                order: 2;
-                margin: 0 20px;
-            }
-            .navItemIcon {
-                order: 1;
-                width: 30px;
-                padding: 10px;
-                flex-shrink: 0;
-            }
+div.lwd-box {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    box-shadow: 0px 1.6px 7px rgb(0 0 0 / 9%);
+    border-radius: 2px;
+    width: auto;
+    height: auto;
+    padding: 0 15px;
     
-            &.header {
-                 margin-top: 15px;
-                 margin-bottom: 20px;
-                .navItemIcon {
-                    width: 18px;
-                    padding: 16px;
-                }
-            }
-            
-            &[active] {
-                background: linear-gradient(to right, #50e6ff, #199ae1);
-                border-radius: 8px;
-                box-shadow: 0px 1.6px 3.6px rgb(0 0 0 / 13%), 0px 0px 2.9px rgb(0 0 0 / 11%);
-            }
-        }
-
-        lwd-navgroup {
-            display: block;
-            border-top: 1.5px solid rgb(242, 242, 242);
-            border-bottom: 1.5px solid rgb(242, 242, 242);
-            padding: 5px 0;
-            margin: 5px 0;
-            & ~ lwd-navgroup {
-                border-top: none;
-                margin-top: 0;
-                padding-top: 0;
-            }
-        }
-
-        &[alt-state] {
-            min-width: unset;
-            overflow: hidden;
-            width: 55px;
-            lwd-navitem {
-                justify-content: center;
-                transition: width 0.2s;
-                width: calc(100% - 10px);
-                margin-left: 5px;
-                margin-right: 5px;
-            }
-            .navItemLabel {
-                display: none;
-            }
-        }
+    &.round-corners {
+        border-radius: 7px;
     }
-
-    &[type = test] {
-        &:not([mobile-type]) { // no mobile-type specified
-            @extend [mobile-type = test];
-        }
-        background: red;
-    }
-
-    &[mobile-type = side] {
-        @include mobile() {
-            left: -400px;
-            &[alt-state] {
-                left: 0;
-            }
-        }
-    }
-
-    &[mobile-type = test] {
-        @include mobile() {
-            left: 10px;
-        }
-    }
-
 }

@@ -143,6 +143,97 @@ h4 {
   font-weight: normal;
 }
 
+@media screen and (min-width: 1020px) {
+  lwd-nav[type=side], lwd-nav:not([type]) {
+    overflow-x: scroll;
+    position: fixed;
+    width: 340px;
+    height: 100%;
+    padding-top: 10px;
+    background-color: var(--component-background);
+    box-shadow: var(--box-shadow-2);
+    left: 0;
+    top: 0;
+    transition: left 0.25s, width 0.25s;
+    -webkit-transition: left 0.25s, width 0.25s;
+  }
+  lwd-nav[type=side] lwd-navitem, lwd-nav:not([type]) lwd-navitem {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    height: 35px;
+    vertical-align: middle;
+    margin: 5px 12.5px;
+    width: calc(100% - 25px);
+  }
+  lwd-nav[type=side] lwd-navitem .navItemLabel, lwd-nav:not([type]) lwd-navitem .navItemLabel {
+    order: 2;
+    margin: 0 20px;
+  }
+  lwd-nav[type=side] lwd-navitem .navItemIcon, lwd-nav:not([type]) lwd-navitem .navItemIcon {
+    order: 1;
+    width: 30px;
+    padding: 10px;
+    flex-shrink: 0;
+  }
+  lwd-nav[type=side] lwd-navitem.header, lwd-nav:not([type]) lwd-navitem.header {
+    margin-top: 15px;
+    margin-bottom: 20px;
+  }
+  lwd-nav[type=side] lwd-navitem.header .navItemIcon, lwd-nav:not([type]) lwd-navitem.header .navItemIcon {
+    width: 18px;
+    padding: 16px;
+  }
+  lwd-nav[type=side] lwd-navitem[selected], lwd-nav:not([type]) lwd-navitem[selected] {
+    background: linear-gradient(to right, var(--color-extra-light), var(--color-lighter));
+    border-radius: 8px;
+    box-shadow: 0px 1.6px 3.6px rgba(0, 0, 0, 0.13), 0px 0px 2.9px rgba(0, 0, 0, 0.11);
+  }
+  lwd-nav[type=side] lwd-navgroup, lwd-nav:not([type]) lwd-navgroup {
+    display: block;
+    border-top: 1.5px solid #f2f2f2;
+    border-bottom: 1.5px solid #f2f2f2;
+    padding: 5px 0;
+    margin: 5px 0;
+  }
+  lwd-nav[type=side] lwd-navgroup ~ lwd-navgroup, lwd-nav:not([type]) lwd-navgroup ~ lwd-navgroup {
+    border-top-color: transparent;
+    margin-top: 0;
+    padding-top: 0;
+  }
+  lwd-nav[type=side][alt-state], lwd-nav[alt-state]:not([type]) {
+    min-width: unset;
+    overflow: hidden;
+    width: 55px;
+  }
+  lwd-nav[type=side][alt-state] lwd-navitem, lwd-nav[alt-state]:not([type]) lwd-navitem {
+    justify-content: center;
+    transition: width 0.2s;
+    width: calc(100% - 10px);
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+  lwd-nav[type=side][alt-state] .navItemLabel, lwd-nav[alt-state]:not([type]) .navItemLabel {
+    display: none;
+  }
+}
+lwd-nav[type=test] {
+  background: red;
+}
+@media screen and (max-width: 1020px) {
+  lwd-nav[mobile-type=side], lwd-nav[type=side]:not([mobile-type]), lwd-nav:not([mobile-type]):not([type]) {
+    left: -400px;
+  }
+  lwd-nav[mobile-type=side][alt-state], lwd-nav[alt-state][type=side]:not([mobile-type]), lwd-nav[alt-state]:not([mobile-type]):not([type]) {
+    left: 0;
+  }
+}
+@media screen and (max-width: 1020px) {
+  lwd-nav[mobile-type=test], lwd-nav[type=test]:not([mobile-type]) {
+    left: 10px;
+  }
+}
+
 button, input[type=submit], input[type=reset], input[type=button] {
   cursor: pointer;
   font-family: "SegoeUi_sb";
@@ -291,93 +382,29 @@ input[type=range]::-moz-range-thumb:active {
   background: var(--color-darker);
 }
 
-lwd-nav[type=side], lwd-nav:not([type]) {
-  overflow-x: scroll;
-  position: fixed;
-  width: 340px;
-  height: 100%;
-  padding-top: 10px;
-  background-color: var(--component-background);
-  box-shadow: var(--box-shadow-2);
-  left: 0;
-  top: 0;
-  transition: left 0.25s, width 0.25s;
-  -webkit-transition: left 0.25s, width 0.25s;
+.flex-list {
+  font-size: 15px;
+  display: grid;
+  grid-auto-rows: 48px;
+  grid-gap: 10px;
+  overflow-y: initial;
 }
-lwd-nav[type=side] lwd-navitem, lwd-nav:not([type]) lwd-navitem {
-  cursor: pointer;
+.flex-list.round-corners div {
+  border-radius: 7px;
+}
+
+div.lwd-box, .flex-list div {
   display: flex;
   align-items: center;
-  height: 35px;
-  vertical-align: middle;
-  margin: 5px 12.5px;
-  width: calc(100% - 25px);
+  background-color: white;
+  box-shadow: 0px 1.6px 7px rgba(0, 0, 0, 0.09);
+  border-radius: 2px;
+  width: auto;
+  height: auto;
+  padding: 0 15px;
 }
-lwd-nav[type=side] lwd-navitem .navItemLabel, lwd-nav:not([type]) lwd-navitem .navItemLabel {
-  order: 2;
-  margin: 0 20px;
-}
-lwd-nav[type=side] lwd-navitem .navItemIcon, lwd-nav:not([type]) lwd-navitem .navItemIcon {
-  order: 1;
-  width: 30px;
-  padding: 10px;
-  flex-shrink: 0;
-}
-lwd-nav[type=side] lwd-navitem.header, lwd-nav:not([type]) lwd-navitem.header {
-  margin-top: 15px;
-  margin-bottom: 20px;
-}
-lwd-nav[type=side] lwd-navitem.header .navItemIcon, lwd-nav:not([type]) lwd-navitem.header .navItemIcon {
-  width: 18px;
-  padding: 16px;
-}
-lwd-nav[type=side] lwd-navitem[active], lwd-nav:not([type]) lwd-navitem[active] {
-  background: linear-gradient(to right, #50e6ff, #199ae1);
-  border-radius: 8px;
-  box-shadow: 0px 1.6px 3.6px rgba(0, 0, 0, 0.13), 0px 0px 2.9px rgba(0, 0, 0, 0.11);
-}
-lwd-nav[type=side] lwd-navgroup, lwd-nav:not([type]) lwd-navgroup {
-  display: block;
-  border-top: 1.5px solid #f2f2f2;
-  border-bottom: 1.5px solid #f2f2f2;
-  padding: 5px 0;
-  margin: 5px 0;
-}
-lwd-nav[type=side] lwd-navgroup ~ lwd-navgroup, lwd-nav:not([type]) lwd-navgroup ~ lwd-navgroup {
-  border-top: none;
-  margin-top: 0;
-  padding-top: 0;
-}
-lwd-nav[type=side][alt-state], lwd-nav[alt-state]:not([type]) {
-  min-width: unset;
-  overflow: hidden;
-  width: 55px;
-}
-lwd-nav[type=side][alt-state] lwd-navitem, lwd-nav[alt-state]:not([type]) lwd-navitem {
-  justify-content: center;
-  transition: width 0.2s;
-  width: calc(100% - 10px);
-  margin-left: 5px;
-  margin-right: 5px;
-}
-lwd-nav[type=side][alt-state] .navItemLabel, lwd-nav[alt-state]:not([type]) .navItemLabel {
-  display: none;
-}
-lwd-nav[type=test] {
-  background: red;
-}
-@media screen and (max-width: 1020px) {
-  lwd-nav[mobile-type=side], lwd-nav[type=side]:not([mobile-type]), lwd-nav:not([mobile-type]):not([type]) {
-    left: -400px;
-  }
-  lwd-nav[mobile-type=side][alt-state], lwd-nav[alt-state][type=side]:not([mobile-type]), lwd-nav[alt-state]:not([mobile-type]):not([type]) {
-    left: 0;
-  }
-}
-@media screen and (max-width: 1020px) {
-  lwd-nav[mobile-type=test], lwd-nav[type=test]:not([mobile-type]) {
-    left: 10px;
-  }
+div.lwd-box.round-corners, .flex-list div.round-corners {
+  border-radius: 7px;
 }
 
 /*# sourceMappingURL=main.css.map */
