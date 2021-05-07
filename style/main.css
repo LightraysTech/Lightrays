@@ -185,7 +185,7 @@ h4 {
     padding: 16px;
   }
   lwd-nav[type=side] lwd-navitem[selected], lwd-nav:not([type]) lwd-navitem[selected] {
-    background: linear-gradient(to right, var(--color-extra-light), var(--color-lighter));
+    background: linear-gradient(to right, var(--color-light), var(--color-main));
     border-radius: 8px;
     box-shadow: 0px 1.6px 3.6px rgba(0, 0, 0, 0.13), 0px 0px 2.9px rgba(0, 0, 0, 0.11);
   }
@@ -335,6 +335,10 @@ input {
 }
 input::placeholder {
   color: #b3b3b3;
+}
+input[type=color] {
+  padding: 0;
+  border-radius: 0;
 }
 input[type=checkbox] {
   appearance: none;

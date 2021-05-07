@@ -7,20 +7,30 @@ var lwd = {
     
 
     setAccentColor: function(color) {
-        fetch(this.rootFolderPath + "/settings.json")
-        .then(res => res.json())
-        .then(out => {
-            if (typeof(out.colors[color]) != "undefined") {
-                this.currentAccentColor = color;
-                let keys = Object.keys(out.colors[color]);
-                for (let i = 0; i < keys.length; i++) {
-                    this.cssVariables.setProperty("--color-" + keys[i], out.colors[color][keys[i]]);
-                }
-            } else {
-                console.error("LWD:  Accent-color '" + color + "' was not found.");
+        if (typeof(color) == "object") {
+            console.log(color);
+            this.currentAccentColor = "custom";
+            let keys = Object.keys(color);
+            for (let i = 0; i < keys.length; i++) {
+                console.log("--color-" + keys[i], color[keys[i]]);
+                this.cssVariables.setProperty("--color-" + keys[i], color[keys[i]]);
             }
-        })
-        .catch(err => { throw err });
+        } else {
+            fetch(this.rootFolderPath + "/settings.json")
+            .then(res => res.json())
+            .then(out => {
+                if (typeof(out.colors[color]) != "undefined") {
+                    this.currentAccentColor = color;
+                    let keys = Object.keys(out.colors[color]);
+                    for (let i = 0; i < keys.length; i++) {
+                        this.cssVariables.setProperty("--color-" + keys[i], out.colors[color][keys[i]]);
+                    }
+                } else {
+                    console.error("LWD:  Accent-color '" + color + "' was not found.");
+                }
+            })
+            .catch(err => { throw err });
+        }
     },
     
     setTheme: function(theme) {
@@ -38,6 +48,36 @@ var lwd = {
           }
       })
       .catch(err => { throw err });
+    },
+
+    getAccentColor: function(color) {
+        return new Promise(resolve => {
+            fetch(this.rootFolderPath + "/settings.json")
+            .then(res => res.json())
+            .then(out => {
+                if (typeof(out.colors[color]) != "undefined") {
+                    resolve(out.colors[color]);
+                } else {
+                    console.error("LWD:  Accent-color '" + color + "' was not found.");
+                    resolve(null);
+                }
+            });
+        });
+        fetch(this.rootFolderPath + "/settings.json")
+        .then(res => res.json())
+        .then(out => {
+            if (typeof(out.colors[color]) != "undefined") {
+                this.currentAccentColor = color;
+                let keys = Object.keys(out.colors[color]);
+                for (let i = 0; i < keys.length; i++) {
+                    this.cssVariables.setProperty("--color-" + keys[i], out.colors[color][keys[i]]);
+                }
+            } else {
+                console.error("LWD:  Accent-color '" + color + "' was not found.");
+            }
+        })
+        .catch(err => { throw err });
+
     }
 }
 

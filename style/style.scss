@@ -214,7 +214,7 @@ lwd-nav {
                 }
     
                 &[selected] {
-                    background: linear-gradient(to right, var(--color-extra-light), var(--color-lighter));
+                    background: linear-gradient(to right, var(--color-light), var(--color-main));
                     border-radius: 8px;
                     box-shadow: 0px 1.6px 3.6px rgb(0 0 0 / 13%), 0px 0px 2.9px rgb(0 0 0 / 11%);
                 }
@@ -395,6 +395,12 @@ input {
     &[type="submit"] {
         @extend button, .important;
     }
+
+    &[type="color"] {
+        padding: 0;
+        border-radius: 0;
+    }
+
     &[type="checkbox"] {
         appearance: none;
         background-color: white;
