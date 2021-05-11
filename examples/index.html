@@ -35,102 +35,113 @@
         <h1>Header</h1>
         Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing.
         <br><br>
-        <h3>Flex-List</h3>
-        <div class="flex-list" style="max-width: 80em;">  
+        <h3>lwd-List</h3>
+        <div class="lwd-list" style="max-width: 80em;">  
             <div>First Item</div>
             <div>Second Item</div>
             <div>Third Item</div>
         </div><br>
-        <h3>Flex-List with round corners</h3>
-        <div class="flex-list round-corners" style="max-width: 80em;">  
+        <h3>lwd-List with round corners</h3>
+        <div class="lwd-list round-corners" style="max-width: 80em;">  
             <div>First Item</div>
             <div>Second Item</div>
             <div>Third Item</div>
         </div><br>
-    
-        <table>
-            <thead>
-                <th>Standard</th>
-                <th>Class: Important</th>
-            </thead>
-            <tr>
-                <td><button>Button</button></td>
-                <td><button class="important">Button</button></td>
-            </tr>
-            <tr>
-                <td><input type="button" value="Input, type: button"></td>
-                <td><input class="important" type="button" value="Input, type: button"></td>
-            </tr>
-            <tr>
-                <td><input type="checkbox" value="Input, type: checkbox"></td>
-                <td><input class="important" type="checkbox" value="Input, type: checkbox"></td>
-            </tr>
-            <tr>
-                <td><input type="color" value="Input, type: color"></td>
-                <td><input class="important" type="color" value="Input, type: color"></td>
-            </tr>
-            <tr>
-                <td><input type="date" value="Input, type: date"></td>
-                <td><input class="important" type="date" value="Input, type: date"></td>
-            </tr>
-            <tr>
-                <td><input type="datetime" value="Input, type: datetime"></td>
-                <td><input class="important" type="datetime" value="Input, type: datetime"></td>
-            </tr>
-            <tr>
-                <td><input type="datetime-local" value="Input, type: datetime-local"></td>
-                <td><input class="important" type="datetime-local" value="Input, type: datetime-local"></td>
-            </tr>
-            <tr>
-                <td><input type="email" value="Input, type: email"></td>
-                <td><input class="important" type="email" value="Input, type: email"></td>
-            </tr>
-            <tr>
-                <td><input type="month" value="Input, type: month"></td>
-                <td><input class="important" type="month" value="Input, type: month"></td>
-            </tr>
-            <tr>
-                <td><input type="number" value="1"></td>
-                <td><input class="important" type="number" value="1"></td>
-            </tr>
-            <tr>
-                <td><input type="password" value="Input, type: password"></td>
-                <td><input class="important" type="password" value="Input, type: password"></td>
-            </tr>
-            <tr>
-                <td><input type="radio" value="Input, type: radio"></td>
-                <td><input class="important" type="radio" value="Input, type: radio"></td>
-            </tr>
-            <tr>
-                <td><input type="range" value="Input, type: range"></td>
-                <td><input class="important" type="range" value="Input, type: range"></td>
-            </tr>
-        </table>
-
+        
+        <h3>Input types</h3>
         <form>
-            <input type="button" value="Input : button">
-            <input type="button" value="Input type: button class: important" class="important"><br>
-            <input type="checkbox" value="checkbox"><br>
-            <input type="color" value="color"><br>
-            <input type="date" value="date"><br>
-            <input type="datetime" value="datetime"><br>
-            <input type="datetime-local" value="datetime-local"><br>
-            <input type="email" value="email"><br>
-            <input type="image" value="image"><br>
-            <input type="month" value="month"><br>
-            <input type="number" value="number"><br>
-            <input type="password" value="password"><br>
-            <input type="radio" value="radio"><br>
-            <input type="range" value="range"><br>
-            <input type="reset" value="reset"><br>
-            <input type="search" value="search"><br>
-            <input type="submit" value="submit"><br>
-            <input type="tel" value="tel"><br>
-            <input type="text" value="text"><br>
-            <input type="time" value="time"><br>
-            <input type="url" value="url"><br>
-            <input type="week" value="week"><br>
+            <label>
+                No type:
+                <input placeholder="Input">
+            </label><br>
+            <label>
+                Search:
+                <input type="search" placeholder="Search">
+            </label><br>
+            <label>
+                Text:
+                <input type="text" placeholder="text">
+            </label><br>
+            <label>
+                Url:
+                <input type="url" placeholder="url">
+            </label><br>
+            <label>
+                Email:
+                <input type="email" value="example@email.com">
+            </label><br>
+            <label>
+                Number:
+                <input type="number" value="0">
+            </label><br>
+            <label>
+                Password:
+                <input type="password" placeholder="Password">
+            </label><br>
+            
+            <br>
+            
+            <label>
+                checkbox:
+                <input type="checkbox">
+            </label><br>
+            <label>
+                Radio:
+                <input type="radio">
+            </label><br>
+            <label>
+                Range:
+                <input type="range">
+            </label><br>
+            <label>
+                Color:
+                <input type="color" value="#0000FF">
+            </label><br>
+
+            <br>
+            
+            <label>
+                Date:
+                <input type="date" value="2021-01-01">
+            </label><br>
+            <label>
+                Datetime-local:
+                <input type="datetime-local" value="2021-01-01T12:00">
+            </label><br>
+            <label>
+                Month:
+                <input type="month" value="2021-01">
+            </label><br>
+            <label>
+                Time:
+                <input type="time" value="12:00">
+            </label><br>
+            <label>
+                Week:
+                <input type="week" value="2021-W01">
+            </label><br>
+
+            <br>
+            
+            <label>
+                Button:
+                <input type="button" value="Button">
+            </label><br>
+            <label>
+                Button (class: important):
+                <input type="button" class="important" value="Button">
+            </label><br>
+            <label>
+                Reset:
+                <input type="reset">
+            </label><br>
+            <label>
+                Submit:
+                <input type="submit">
+            </label><br>
+            
         </form>
+        
     </main>
 </body>
 </html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,6 +19,7 @@
         }
     </style>
 </head>
+
 <body style="padding-left: 60px;">
     <lwd-nav type="side" mobile-type="side" alt-state>
         <lwd-navgroup>
@@ -34,13 +36,13 @@
             <lwd-navitem>
                 <span class="navItemLabel">Settings</span>
                 <ion-icon class="navItemIcon" name="settings-outline"></ion-icon>
-            </lwd-navitem>    
+            </lwd-navitem>
         </lwd-navgroup>
     </lwd-nav>
 
-    
+
     <main>
-        <h1>Color-palette-creator</h1>
+        <h1>Color Palette Creator</h1>
         <input type="color" value="#ceeef2" id="colorpicker-extra-light" onchange="generateColorJson()">
         <input type="color" value="#52e5ff" id="colorpicker-light" onchange="generateColorJson()">
         <input type="color" value="#37c2f1" id="colorpicker-lighter" onchange="generateColorJson()">
@@ -50,9 +52,11 @@
         <input type="color" value="#014989" id="colorpicker-extra-dark" onchange="generateColorJson()">
         <input type="color" value="#014989" id="colorpicker-text" onchange="generateColorJson()">
         <br>
-        <code id="output">
-            
-        </code>
+        <h3>Generated Code:</h3>
+        <div class="lwd-box round-corners" style="width: 350px">
+            <button class="important" onclick="copyGeneratedCode()" style="float: right; margin: 0" >Copy</button>
+            <textarea id="output" rows="10" cols="30" style="border: none"></textarea>
+        </div>
 
         <script>
             let colorpicker_extra_light = document.getElementById("colorpicker-extra-light");
@@ -65,15 +69,6 @@
             let colorpicker_text = document.getElementById("colorpicker-text");
             let output = document.getElementById("output");
 
-            /*
-            colorpicker_extra_light
-            colorpicker_light
-            colorpicker_lighter
-            colorpicker_main
-            colorpicker_darker
-            colorpicker_dark
-            colorpicker_extra_dark
-            */
 
             function setColorPickers(color) {
                 lwd.getAccentColor(color).then(col => {
@@ -91,32 +86,45 @@
             setColorPickers("blue");
 
             function generateColorJson(params) {
-                out = "{<br>";
-                out += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"extra-light\": \"" + colorpicker_extra_light.value + "\",<br>";
-                out += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"light\": \"" + colorpicker_light.value + "\",<br>";
-                out += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"lighter\": \"" + colorpicker_lighter.value + "\",<br>";
-                out += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"main\": \"" + colorpicker_main.value + "\",<br>";
-                out += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"darker\": \"" + colorpicker_darker.value + "\",<br>";
-                out += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"dark\": \"" + colorpicker_dark.value + "\",<br>";
-                out += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"extra-dark\": \"" + colorpicker_extra_dark.value + "\",<br>";
-                out += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"text\": \"" + colorpicker_text.value + "\"<br>";
+                out = "{\r\n";
+                out += "    \"extra-light\": \"" + colorpicker_extra_light.value + "\",\r\n";
+                out += "    \"light\": \"" + colorpicker_light.value + "\",\r\n";
+                out += "    \"lighter\": \"" + colorpicker_lighter.value + "\",\r\n";
+                out += "    \"main\": \"" + colorpicker_main.value + "\",\r\n";
+                out += "    \"darker\": \"" + colorpicker_darker.value + "\",\r\n";
+                out += "    \"dark\": \"" + colorpicker_dark.value + "\",\r\n";
+                out += "    \"extra-dark\": \"" + colorpicker_extra_dark.value + "\",\r\n";
+                out += "    \"text\": \"" + colorpicker_text.value + "\"\r\n";
                 out += "}";
-                output.innerHTML = out;
+                output.value = out;
 
                 obj = {
                     "extra-light": colorpicker_extra_light.value,
-                    "light":       colorpicker_light.value,
-                    "lighter":     colorpicker_lighter.value,
-                    "main":        colorpicker_main.value,
-                    "darker":      colorpicker_dark.value,
-                    "dark":        colorpicker_darker.value,
-                    "extra-dark":  colorpicker_extra_dark.value,
-                    "text":        colorpicker_text.value
+                    "light": colorpicker_light.value,
+                    "lighter": colorpicker_lighter.value,
+                    "main": colorpicker_main.value,
+                    "darker": colorpicker_darker.value,
+                    "dark": colorpicker_dark.value,
+                    "extra-dark": colorpicker_extra_dark.value,
+                    "text": colorpicker_text.value
                 }
-                console.log(output.innerText, obj);
+
                 lwd.setAccentColor(obj);
+            }
+
+
+            function copyGeneratedCode() {
+                var copyText = document.getElementById("output");
+
+                /* Select the text field */
+                copyText.select();
+                copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+                /* Copy the text inside the text field */
+                document.execCommand("copy");
             }
         </script>
     </main>
 </body>
+
 </html>

@@ -1,15 +1,15 @@
 {
     "colors": {
         "blue": {
-            "extra-light": "#adf5ff",
-            "light": "#52e5ff",
+            "extra-light": "#a3f4ff",
+            "light": "#8ae2ff",
             "lighter": "#37c2f1",
             "main": "#199be1",
             "darker": "#0079d6",
             "dark": "#0d61ab",
             "extra-dark": "#014989",
-            "text": "white"
-       },
+            "text": "#ffffff"
+        },
         "purple-blue": {
             "extra-light": "#a4a7f4",
             "light": "#8c93f2",
