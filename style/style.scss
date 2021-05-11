@@ -2,14 +2,14 @@
 @import "settings.scss";
 
 :root {
-    --color-extra-light: hsl(189, 100%, 66%);
-    --color-light:       hsl(195, 87%, 58%);
-    --color-lighter:     hsl(201, 80%, 49%);
-    --color-main:        hsl(206, 100%, 42%);
-    --color-darker:      hsl(208, 86%, 36%);
-    --color-dark:        hsl(210, 69%, 31%);
-    --color-extra-dark:  hsl(212, 65%, 26%);
-    --color-text:  white;
+    --color-extra-light: #a3f4ff;
+    --color-light: #8ae2ff;
+    --color-lighter: #37c2f1;
+    --color-main: #199be1;
+    --color-darker: #0079d6;
+    --color-dark: #0d61ab;
+    --color-extra-dark: #014989;
+    --color-text: #ffffff;
 
     --mobile-at: 1020px;
 }
@@ -280,7 +280,7 @@ button {
     cursor: pointer;
     font-family: "SegoeUi_sb";
     padding: .5rem 1rem .5rem 1rem;
-    margin: 15px 0 15px 0;
+    margin: 7px;
     border: none;
     background-color: var(--component-background);
     color: var(--foreground);
@@ -382,12 +382,11 @@ input {
     margin: 5px;
     border: none;
     color: var(--foreground);
-    //box-shadow: var(--box-shadow), inset 0px 1.8px 1.3px rgba(lighten(map-get($theme, component-background), 8%), .9);
+    box-shadow: var(--box-shadow);
 
     &::placeholder {
         color: hsl(0, 0%, 70%);
     }
-
 
     &[type="reset"], &[type="button"] {
         @extend button;
@@ -424,16 +423,14 @@ input {
     &[type='range'] {
         appearance: none;
         -webkit-appearance: none;
-        padding: none;
+        padding: initial;
         box-shadow: none;
         border-radius: 5pt;
         width: 150pt;
-        height: 4pt;
+        height: 4px;
         background-color: var(--component-background);
         outline: none;
         &::-webkit-slider-thumb, &::-moz-range-thumb {
-            -webkit-appearance: none;
-            appearance: none;
             width: 15px;
             height: 15px;
             border-radius: 50%;
@@ -441,38 +438,43 @@ input {
             background: var(--color-main);
             cursor: pointer;
         }
-        &::-moz-range-thumb:hover {background: var(--color-lighter);}
-        &::-moz-range-thumb:active {background: var(--color-darker);}
+        &::-webkit-range-thumb:hover {background: var(--color-lighter);}
+        &::-webkit-range-thumb:active {background: var(--color-darker);}
+        &::-webkit-range-progress {
+            background-color: red;
+        }
+    }
+}
+::-webkit-range-progress {
+    background-color: red;
+}
+div.lwd-box {
+    background-color: white;
+    box-shadow: 0px 1.6px 7px rgb(0 0 0 / 9%);
+    border-radius: 2px;
+    width: auto;
+    height: auto;
+    padding: 15px;
+    width: fit-content;
+
+    &.round-corners {
+        border-radius: 7px;
     }
 }
 
-.flex-list {
+.lwd-list {
     font-size: 15px;
     display: grid;
     grid-auto-rows: 48px;
     grid-gap: 10px;
     overflow-y: initial;
     div {
-        @extend .lwd-box; 
+        @extend .lwd-box;
+        width: initial;
     }
     &.round-corners {
         div {
             border-radius: 7px;
         }
-    }
-}
-
-div.lwd-box {
-    display: flex;
-    align-items: center;
-    background-color: white;
-    box-shadow: 0px 1.6px 7px rgb(0 0 0 / 9%);
-    border-radius: 2px;
-    width: auto;
-    height: auto;
-    padding: 0 15px;
-    
-    &.round-corners {
-        border-radius: 7px;
     }
 }
