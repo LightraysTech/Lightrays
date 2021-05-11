@@ -110,7 +110,16 @@ class LwdNav extends HTMLElement {
     }
 
     getNavTitle() {
-        return "Lighted Web Design 2.0"; // TODO: getNavTitle
+        let pageTitle = document.querySelector("h1.pageTitle");
+        let customNavTitle = document.querySelector(".navTitle");
+        if (customNavTitle != undefined) {
+            customNavTitle.style.display = "none";
+            return customNavTitle.innerHTML;
+        } else if (pageTitle != undefined) {
+            return pageTitle.innerHTML;
+        } else {
+            return document.title;
+        }
     }
 
     getNavButton(width) {
