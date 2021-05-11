@@ -478,3 +478,40 @@ div.lwd-box {
         }
     }
 }
+
+.linkbox-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+
+    a {
+        background: center 30px /  auto 80px no-repeat;
+        @include inline-box;
+        background-color: var(--background);
+        width: 140px;
+        height: 145px;
+        margin: 0 20px 30px 20px;
+        padding-bottom: 20px;
+        border-radius: 15px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: flex-end;
+        font-family: SegoeUI_sb;
+        transition: transform .2s;
+
+        div {
+            width: 100%;
+            text-align: center;
+        }
+
+        &:hover {
+            background: linear-gradient(to left top, var(--color-lighter), var(--color-extra-light));
+            color: white;
+            animation: pop-out .3s;
+            transform: scale(1.1);
+            box-shadow: 0px 0px 10pt 2px rgba(0, 0, 0, 0.2);
+        }
+    }
+}

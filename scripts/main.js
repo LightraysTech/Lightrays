@@ -90,23 +90,18 @@ class LwdNav extends HTMLElement {
     }
 
     navTypes = {
-        side: {
-            initialize(navElem) {
+        side:  {
+            initialize: function(navElem) {
                 let menuHead = document.createElement("lwd-navitem");
                 menuHead.classList.add("hide-in-mobile", "generated-nav-element", "header");
-
-                let navBtn = document.createElement("img");
-                navBtn.classList.add("navItemIcon");
-                navBtn.setAttribute("src", lwd.rootFolderPath + "/img/menu-btn.svg");
-                navBtn.addEventListener("click", () => {
-                    navElem.toggleAltState();
-                });
 
                 let navLabel = document.createElement("h4");
                 navLabel.classList.add("navItemLabel");
                 navLabel.innerHTML = navElem.getNavTitle();
+
                 menuHead.appendChild(navLabel);
-                menuHead.appendChild(navBtn);
+                menuHead.appendChild(navElem.getNavButton(18));
+
                 navElem.insertBefore(menuHead, navElem.firstChild);
             }
         },
@@ -123,44 +118,71 @@ class LwdNav extends HTMLElement {
                 let menuHead = document.createElement("lwd-navitem");
                 menuHead.classList.add("hide-in-not-mobile", "generated-nav-element", "header");
 
-                let navBtn = document.createElement("img");
-                navBtn.classList.add("navItemIcon");
-                navBtn.setAttribute("src", "img/menu-btn.svg");
-                navBtn.setAttribute("width", "18");
-                navBtn.addEventListener("click", () => {
-                    navElem.toggleAltState();
-                });
-
                 let navLabel = document.createElement("h4");
                 navLabel.classList.add("navItemLabel");
                 navLabel.innerHTML = navElem.getNavTitle();
+
                 menuHead.appendChild(navLabel);
-                menuHead.appendChild(navBtn);
+                menuHead.appendChild(navElem.getNavButton(18));
+
                 navElem.insertBefore(menuHead, navElem.firstChild);
             }
         },
     }
 
     initialize() {
-        this.removeGeneratedElements();
-        this.getNavType()?.initialize(this);
-        this.getMobileNavType().initialize(this);        
+        window.addEventListener("load", () => {
+            console.log("in initialize");
+            this.removeGeneratedElements();
+            this.getNavType()?.initialize(this);
+            this.getMobileNavType().initialize(this);  
+        });
     }
 
     connectedCallback() {
         //this.initialize();
         super.connectedCallback;
-        console.log(this.querySelectorAll("*"));
     }
 
     removeGeneratedElements() {
+        console.log("in removeGEneratedElements");
         this.querySelectorAll(".generated-nav-element").forEach(element => {
             element.remove();
         });
     }
 
     getNavTitle() {
-        return "Page Title"; // TODO: getNavTitle
+        let pageTitle = document.querySelector("h1.pageTitle");
+        let customNavTitle = document.querySelector(".navTitle");
+        if (customNavTitle != undefined) {
+            customNavTitle.style.display = "none";
+            return customNavTitle.innerHTML;
+        } else if (pageTitle != undefined) {
+            return pageTitle.innerHTML;
+        } else {
+            return document.title;
+        }
+    }
+
+    getNavButton(width) {
+        let specifiedNavButton = document.querySelector(".navButton");
+        let navButton;
+        if (specifiedNavButton == null) {
+            console.log("navButton not found");
+            navButton = document.createElement("img");
+            navButton.setAttribute("src", "img/menu-btn.svg");
+            navButton.setAttribute("width", width);
+        } else {
+            console.log("navButton found");
+            navButton = specifiedNavButton.cloneNode();
+            navButton.style.removeProperty("display");
+            navButton.classList.remove("navButton");
+
+            specifiedNavButton.style.setProperty("display", "none");
+        }
+        navButton.classList.add("navItemIcon");
+        navButton.addEventListener("click", () => this.toggleAltState());
+        return navButton;
     }
 
     getNavType() {
@@ -196,6 +218,7 @@ class LwdNav extends HTMLElement {
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
+        console.log("in attributeChangeCallback");
         this.initialize();
     }
     static get observedAttributes() { return ['type', 'mobile-type']; }
