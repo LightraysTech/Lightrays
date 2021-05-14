@@ -102,7 +102,7 @@ body {
   border-image: var(--linear-gradient);
 }
 
-@media screen and (max-width: 1020px) {
+@media screen and (max-width: 850px) {
   .hide-in-mobile {
     display: none;
     visibility: hidden;
@@ -110,8 +110,8 @@ body {
   }
 }
 
-@media screen and (min-width: 1020px) {
-  .hide-in-not-mobile {
+@media screen and (min-width: 850px) {
+  .hide-in-desktop {
     display: none;
     visibility: hidden;
     position: absolute;
@@ -143,28 +143,47 @@ h4 {
   font-weight: normal;
 }
 
-@media screen and (min-width: 1020px) {
+@media screen and (min-width: 850px) {
+  body[nav-type=side] {
+    margin-left: 350px;
+  }
+  body[nav-type=side][nav-alt-state] {
+    margin-left: 80px;
+  }
+}
+@media screen and (max-width: 1300px) {
+  body[nav-type=side] {
+    margin-left: 65px;
+  }
+}
+@media screen and (max-width: 850px) {
+  body[nav-type=side] {
+    margin-left: 10px;
+  }
+}
+
+@media screen and (min-width: 850px) {
   lwd-nav[type=side], lwd-nav:not([type]) {
     overflow-x: scroll;
     position: fixed;
+    left: 0;
+    top: 0;
     width: 340px;
     height: 100%;
     padding-top: 10px;
     background-color: var(--component-background);
     box-shadow: var(--box-shadow-2);
-    left: 0;
-    top: 0;
     transition: left 0.25s, width 0.25s;
     -webkit-transition: left 0.25s, width 0.25s;
   }
   lwd-nav[type=side] lwd-navitem, lwd-nav:not([type]) lwd-navitem {
-    cursor: pointer;
     display: flex;
     align-items: center;
-    height: 35px;
     vertical-align: middle;
-    margin: 5px 12.5px;
     width: calc(100% - 25px);
+    height: 35px;
+    margin: 5px 12.5px;
+    cursor: pointer;
   }
   lwd-nav[type=side] lwd-navitem .navItemLabel, lwd-nav:not([type]) lwd-navitem .navItemLabel {
     order: 2;
@@ -193,47 +212,71 @@ h4 {
     display: block;
     border-top: 1.5px solid #f2f2f2;
     border-bottom: 1.5px solid #f2f2f2;
-    padding: 5px 0;
     margin: 5px 0;
+    padding: 5px 0;
   }
   lwd-nav[type=side] lwd-navgroup ~ lwd-navgroup, lwd-nav:not([type]) lwd-navgroup ~ lwd-navgroup {
     border-top-color: transparent;
     margin-top: 0;
     padding-top: 0;
   }
-  lwd-nav[type=side][alt-state], lwd-nav[alt-state]:not([type]) {
-    min-width: unset;
+}
+@media screen and (max-width: 1300px) {
+  lwd-nav[type=side], lwd-nav:not([type]) {
     overflow: hidden;
     width: 55px;
+    min-width: unset;
   }
-  lwd-nav[type=side][alt-state] lwd-navitem, lwd-nav[alt-state]:not([type]) lwd-navitem {
+  lwd-nav[type=side] lwd-navitem, lwd-nav:not([type]) lwd-navitem {
     justify-content: center;
     transition: width 0.2s;
     width: calc(100% - 10px);
     margin-left: 5px;
     margin-right: 5px;
   }
-  lwd-nav[type=side][alt-state] .navItemLabel, lwd-nav[alt-state]:not([type]) .navItemLabel {
+  lwd-nav[type=side] .navItemLabel, lwd-nav:not([type]) .navItemLabel {
     display: none;
   }
 }
 lwd-nav[type=test] {
   background: red;
 }
-@media screen and (max-width: 1020px) {
-  lwd-nav[mobile-type=side], lwd-nav[type=side]:not([mobile-type]), lwd-nav:not([mobile-type]):not([type]) {
-    left: -400px;
-  }
-  lwd-nav[mobile-type=side][alt-state], lwd-nav[alt-state][type=side]:not([mobile-type]), lwd-nav[alt-state]:not([mobile-type]):not([type]) {
-    left: 0;
-  }
-}
-@media screen and (max-width: 1020px) {
-  lwd-nav[mobile-type=test], lwd-nav[type=test]:not([mobile-type]) {
+@media screen and (max-width: 850px) {
+  lwd-nav[mobile-type=test] {
     left: 10px;
   }
 }
 
+body[nav-alt-state] lwd-nav[type=side], body[nav-alt-state] lwd-nav:not([type]) {
+  width: 55px;
+  min-width: unset;
+  overflow: hidden;
+}
+body[nav-alt-state] lwd-nav[type=side] lwd-navitem, body[nav-alt-state] lwd-nav:not([type]) lwd-navitem {
+  justify-content: center;
+  transition: width 0.2s;
+  width: calc(100% - 10px);
+  margin-left: 5px;
+  margin-right: 5px;
+}
+body[nav-alt-state] lwd-nav[type=side] .navItemLabel, body[nav-alt-state] lwd-nav:not([type]) .navItemLabel {
+  display: none;
+}
+@media screen and (max-width: 1300px) {
+  body[nav-alt-state] lwd-nav[type=side], body[nav-alt-state] lwd-nav:not([type]) {
+    overflow: initial;
+    width: 340px;
+  }
+  body[nav-alt-state] lwd-nav[type=side] lwd-navitem, body[nav-alt-state] lwd-nav:not([type]) lwd-navitem {
+    justify-content: unset;
+    width: calc(100% - 25px);
+    transition: width 0.2s;
+    margin: 5px 0;
+  }
+  body[nav-alt-state] lwd-nav[type=side] .navItemLabel, body[nav-alt-state] lwd-nav:not([type]) .navItemLabel {
+    display: unset;
+  }
+}
 button, input[type=submit], input[type=reset], input[type=button] {
   cursor: pointer;
   font-family: "SegoeUi_sb";

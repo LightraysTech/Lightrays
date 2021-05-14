@@ -1,69 +1,13 @@
 var lwd = {
     cssVariables: document.querySelector(":root").style,
-    rootFolderPath: document.currentScript.src.substr(0, document.currentScript.src.lastIndexOf("/")) + "/..",
+    settingsPath: document.currentScript.src.substr(0, document.currentScript.src.lastIndexOf("/")) + "/../settings.json",
 
     currentAccentColor: "blue",
     currentTheme: "light",
     
 
     setAccentColor: function(color) {
-        if (typeof(color) == "object") {
-            console.log(color);
-            this.currentAccentColor = "custom";
-            let keys = Object.keys(color);
-            for (let i = 0; i < keys.length; i++) {
-                console.log("--color-" + keys[i], color[keys[i]]);
-                this.cssVariables.setProperty("--color-" + keys[i], color[keys[i]]);
-            }
-        } else {
-            fetch(this.rootFolderPath + "/settings.json")
-            .then(res => res.json())
-            .then(out => {
-                if (typeof(out.colors[color]) != "undefined") {
-                    this.currentAccentColor = color;
-                    let keys = Object.keys(out.colors[color]);
-                    for (let i = 0; i < keys.length; i++) {
-                        this.cssVariables.setProperty("--color-" + keys[i], out.colors[color][keys[i]]);
-                    }
-                } else {
-                    console.error("LWD:  Accent-color '" + color + "' was not found.");
-                }
-            })
-            .catch(err => { throw err });
-        }
-    },
-    
-    setTheme: function(theme) {
-      fetch(this.rootFolderPath + "/settings.json")
-      .then(res => res.json())
-      .then(out => {
-          if (typeof(out.themes[theme]) != "undefined") {
-              this.currentTheme = theme;
-              let keys = Object.keys(out.themes[theme]);
-              for (let i = 0; i < keys.length; i++) {
-                  this.cssVariables.setProperty("--" + keys[i], out.themes[theme][keys[i]]);
-              }
-          } else {
-              console.error("LWD:  Theme '" + theme + "' was not found.");
-          }
-      })
-      .catch(err => { throw err });
-    },
-
-    getAccentColor: function(color) {
-        return new Promise(resolve => {
-            fetch(this.rootFolderPath + "/settings.json")
-            .then(res => res.json())
-            .then(out => {
-                if (typeof(out.colors[color]) != "undefined") {
-                    resolve(out.colors[color]);
-                } else {
-                    console.error("LWD:  Accent-color '" + color + "' was not found.");
-                    resolve(null);
-                }
-            });
-        });
-        fetch(this.rootFolderPath + "/settings.json")
+        fetch(this.settingsPath)
         .then(res => res.json())
         .then(out => {
             if (typeof(out.colors[color]) != "undefined") {
@@ -77,16 +21,30 @@ var lwd = {
             }
         })
         .catch(err => { throw err });
-
+    },
+    
+    setTheme: function(theme) {
+      fetch(this.settingsPath)
+      .then(res => res.json())
+      .then(out => {
+          if (typeof(out.themes[theme]) != "undefined") {
+              this.currentTheme = theme;
+              let keys = Object.keys(out.themes[theme]);
+              for (let i = 0; i < keys.length; i++) {
+                  this.cssVariables.setProperty("--" + keys[i], out.themes[theme][keys[i]]);
+              }
+          } else {
+              console.error("LWD:  Theme '" + theme + "' was not found.");
+          }
+      })
+      .catch(err => { throw err });
     }
 }
-
 
 
 class LwdNav extends HTMLElement {
     constructor() {
         super();
-
     }
 
     navTypes = {
@@ -116,7 +74,7 @@ class LwdNav extends HTMLElement {
         side: {
             initialize(navElem) {
                 let menuHead = document.createElement("lwd-navitem");
-                menuHead.classList.add("hide-in-not-mobile", "generated-nav-element", "header");
+                menuHead.classList.add("hide-in-desktop", "generated-nav-element", "header");
 
                 let navLabel = document.createElement("h4");
                 navLabel.classList.add("navItemLabel");
@@ -140,8 +98,7 @@ class LwdNav extends HTMLElement {
     }
 
     connectedCallback() {
-        //this.initialize();
-        super.connectedCallback;
+        console.log("in connetedCallback");
     }
 
     removeGeneratedElements() {
@@ -202,7 +159,7 @@ class LwdNav extends HTMLElement {
             if (this.mobileNavTypes[this.getAttribute("mobile-type")] != undefined) {
                 return this.mobileNavTypes[this.getAttribute("mobile-type")];
             } else {
-                console.warn("LWD: Navigation mobile-type '" + this.getAttribute("mobile-type") + "' is not found. Switching to default.");
+                console.warn("LWD: Navigation mobile-type '" + this.getAttribute("mobile-type") + "' is not found.");
                 return this.mobileNavTypes.side; // return default
             }
         }
@@ -218,10 +175,27 @@ class LwdNav extends HTMLElement {
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
+        var body = document.querySelector("body");
         console.log("in attributeChangeCallback");
+        console.log("switch case:", name);
+        switch (name) {
+            case "type":
+                body.setAttribute("nav-type", newValue);
+                break;
+            case "mobile-type":
+                body.setAttribute("mobile-nav-type", newValue);
+                break;
+            case "alt-state":
+                if (newValue == null) {
+                    body.removeAttribute("nav-alt-state");
+                } else {
+                    body.setAttribute("nav-alt-state", "");
+                }
+                break;
+        }
         this.initialize();
     }
-    static get observedAttributes() { return ['type', 'mobile-type']; }
+    static get observedAttributes() { return ['type', 'mobile-type', 'alt-state']; }
 }
 
 // Define the new element
