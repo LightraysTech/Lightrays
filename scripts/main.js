@@ -170,7 +170,7 @@ class LwdNav extends HTMLElement {
         if (specifiedNavButton == null) {
             console.log("navButton not found");
             navButton = document.createElement("img");
-            navButton.setAttribute("src", "img/menu-btn.svg");
+            navButton.setAttribute("src", lwd.rootFolderPath + "/img/menu-btn.svg");
             navButton.setAttribute("width", width);
         } else {
             console.log("navButton found");
