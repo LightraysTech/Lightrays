@@ -4,14 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style/main.css">
-    <link rel="stylesheet" href="/content.css">
+    <link rel="stylesheet" href="content.css">
     <script src="../scripts/main.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule="" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.js"></script>
     <title>Lighted Web Design - Example</title>
 </head>
 <body>
-    <lwd-nav type="side" mobile-type="side">
+    <lwd-nav type="side" mobile-type="side" alt-state>
+        <!--img class="navButton" src="img/Logos/LWD_light.png" width="18px"-->
+        <div class="navTitle">Lighted Web Design</div>
         <lwd-navgroup>
             <lwd-navitem onclick="location.href = 'index.html'" selected>
                 <ion-icon class="navItemIcon" name="easel-outline"></ion-icon>
