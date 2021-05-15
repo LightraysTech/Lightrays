@@ -85,15 +85,21 @@
 }
 
 @mixin mobile() {
-    @media screen and (max-width: 1020px) {
+    @media screen and (max-width: 850px) {
         @content;
     }    
 }
 
-@mixin not-mobile() {
-    @media screen and (min-width: 1020px) {
+@mixin desktop() {
+    @media screen and (min-width: 850px) {
         @content;
     }    
+}
+
+@mixin tablet() {
+    @media screen and (max-width: 1300px) {
+        @content;
+    }
 }
 
 // General
@@ -125,8 +131,8 @@ body {
     }
 }
 
-.hide-in-not-mobile {
-    @include not-mobile() {
+.hide-in-desktop {
+    @include desktop() {
         display: none;
         visibility: hidden;
         position: absolute;
@@ -137,7 +143,7 @@ body {
     outline: none;
 }
 
-// Headers
+// Headers ------------------------------------------------
 h1 {
     font-family: "SegoeUi_b";
     font-weight: normal;
@@ -159,39 +165,45 @@ h4 {
     font-weight: normal;
 }
 
-// NAVIGATION
+
+
+// Navigation --------------------------------------------------
 lwd-nav {
     &:not([type]) { // no type specified
         @extend [type = side]; // default
     }
 }
 
+body {
+    &[nav-type = side] {
+        @include desktop() {
+            margin-left: 350px;
+            &[nav-alt-state] {margin-left: 80px;}
+        }
+        @include tablet() {margin-left: 65px;}
+        @include mobile() {margin-left: 10px;}
+    }
+}
+
 lwd-nav {
     &[type = side] {
-        &:not([mobile-type]) { // no mobile-type specified
-            @extend [mobile-type = side];
-        }
-        @include not-mobile() {
+        &:not([mobile-type]) {@extend [mobile-type = side];}// no mobile-type specified
+
+        @include desktop() {
             overflow-x: scroll;
-            position: fixed;
-            width: 340px;
-            height: 100%;
+            position: fixed; left: 0; top: 0;
+            width: 340px; height: 100%;
             padding-top: 10px;
             background-color: var(--component-background);
             box-shadow: var(--box-shadow-2);
-            left: 0;
-            top: 0;
-            transition: left 0.25s, width 0.25s;
-            -webkit-transition: left 0.25s, width 0.25s;
+            transition: left 0.25s, width 0.25s; -webkit-transition: left 0.25s, width 0.25s;
             
             lwd-navitem {
-                cursor: pointer;
                 display: flex;
-                align-items: center;
-                height: 35px;
-                vertical-align: middle;
+                align-items: center; vertical-align: middle;
+                width: calc(100% - 25px); height: 35px;
                 margin: 5px 12.5px;
-                width: calc(100% - 25px);
+                cursor: pointer;
             
                 .navItemLabel {
                     order: 2;
@@ -199,81 +211,144 @@ lwd-nav {
                 }
                 .navItemIcon {
                     order: 1;
-                    width: 30px;
-                    padding: 10px;
+                    width: 30px; padding: 10px;
                     flex-shrink: 0;
                 }
-        
+
                 &.header {
-                     margin-top: 15px;
-                     margin-bottom: 20px;
-                    .navItemIcon {
-                        width: 18px;
-                        padding: 16px;
-                    }
+                    margin-top: 15px; margin-bottom: 20px;
+                    .navItemIcon {width: 18px; padding: 16px;}
                 }
-    
+
                 &[selected] {
                     background: linear-gradient(to right, var(--color-light), var(--color-main));
                     border-radius: 8px;
                     box-shadow: 0px 1.6px 3.6px rgb(0 0 0 / 13%), 0px 0px 2.9px rgb(0 0 0 / 11%);
                 }
             }
-    
+
             lwd-navgroup {
                 display: block;
-                border-top: 1.5px solid rgb(242, 242, 242);
-                border-bottom: 1.5px solid rgb(242, 242, 242);
-                padding: 5px 0;
-                margin: 5px 0;
+                border-top: 1.5px solid rgb(242, 242, 242); border-bottom: 1.5px solid rgb(242, 242, 242);
+                margin: 5px 0; padding: 5px 0;
                 & ~ lwd-navgroup {
                     border-top-color: transparent;
-                    margin-top: 0;
-                    padding-top: 0;
+                    margin-top: 0; padding-top: 0;
                 }
             }
-    
-            &[alt-state] {
-                min-width: unset;
-                overflow: hidden;
-                width: 55px;
-                lwd-navitem {
-                    justify-content: center;
-                    transition: width 0.2s;
-                    width: calc(100% - 10px);
-                    margin-left: 5px;
-                    margin-right: 5px;
-                }
-                .navItemLabel {
-                    display: none;
-                }
-            }    
         }
-    }
-
-    &[type = test] {
-        &:not([mobile-type]) { // no mobile-type specified
-            @extend [mobile-type = test];
+        @include tablet() {
+            overflow: hidden;
+            width: 55px; min-width: unset;
+            lwd-navitem {
+                justify-content: center;
+                transition: width 0.2s;
+                width: calc(100% - 10px);
+                margin-left: 5px; margin-right: 5px;
+            }
+            .navItemLabel {display: none;}
         }
-        background: red;
     }
 
     &[mobile-type = side] {
-        @include mobile() {
-            left: -400px;
-            &[alt-state] {
-                left: 0;
+    }
+
+    &[type = floatingSymbol] {
+        &:not([mobile-type]) {@extend [mobile-type = floatingSymbol];}// no mobile-type specified
+        @include desktop() {
+        display: flex; flex-wrap: nowrap;
+        width: calc(100% - 70px);
+        padding: 10px 15px 10px 15px;
+        position: sticky; top: 20px;
+        z-index: 100;        
+        
+        lwd-navitem {
+            @include inline-box;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            min-width: 30px; height: 30px;
+            color: var(--foreground);
+            text-decoration: none; border-radius: 30px;
+            margin-right: 10px;
+            background: center center /  auto 30px no-repeat;
+            background-color: var(--component-background);
+            cursor: pointer;
+        }
+
+        lwd-navgroup {
+            @include inline-box;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            min-width: 30px; height: 30px;
+            color: var(--foreground);
+            text-decoration: none; border-radius: 30px;
+            margin-right: 10px;
+            background: center center /  auto 30px no-repeat;
+            background-color: var(--component-background);
+            cursor: pointer;
+
+            lwd-navitem {
+                background: none;
+                box-shadow: none;
+                min-width: 15px;
+                width: 40px;
+                padding: 0;
             }
         }
-    }
 
-    &[mobile-type = test] {
-        @include mobile() {
-            left: 10px;
+        .navItemIcon {
+        }
+
+        .navItemLabel {
+            padding-bottom: 2px;
         }
     }
+    }
 
+    &[mobile-type = floatingSymbol] {
+        @include mobile() {
+            color:red;
+        }
+    }
 }
+
+body[nav-alt-state] lwd-nav {
+    &[type = side] {
+        width: 55px; min-width: unset;
+        overflow: hidden;
+        lwd-navitem {
+            justify-content: center;
+            transition: width 0.2s;
+            width: calc(100% - 10px);
+            margin-left: 5px; margin-right: 5px;
+        }
+        .navItemLabel {display: none;}
+
+        @include tablet() {
+            overflow: initial;
+            width: 340px;
+            lwd-navitem {
+                justify-content: unset;
+                width: calc(100% - 25px);
+                transition: width 0.2s;
+                margin: 5px 0;
+
+            }
+            .navItemLabel {display: unset;}
+        }
+    }
+    &[mobile-type = side] {
+        @include mobile() {
+        }
+    }
+}
+
+
+
+
+//LWD inputs -----------------------------------------------------------------
 
 // Button
 button {
