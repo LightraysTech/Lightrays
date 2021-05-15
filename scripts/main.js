@@ -63,8 +63,8 @@ class LwdNav extends HTMLElement {
                 navElem.insertBefore(menuHead, navElem.firstChild);
             }
         },
-        test: {
-            initialize(navElem) {
+        floatingSymbol: {
+            initialize: function(navElem) {
 
             }
         }
@@ -86,11 +86,13 @@ class LwdNav extends HTMLElement {
                 navElem.insertBefore(menuHead, navElem.firstChild);
             }
         },
+        floatingSymbol: function(navElem) {
+
+        }
     }
 
     initialize() {
         window.addEventListener("load", () => {
-            console.log("in initialize");
             this.removeGeneratedElements();
             this.getNavType()?.initialize(this);
             this.getMobileNavType().initialize(this);  
@@ -98,11 +100,9 @@ class LwdNav extends HTMLElement {
     }
 
     connectedCallback() {
-        console.log("in connetedCallback");
     }
 
     removeGeneratedElements() {
-        console.log("in removeGEneratedElements");
         this.querySelectorAll(".generated-nav-element").forEach(element => {
             element.remove();
         });
@@ -125,12 +125,12 @@ class LwdNav extends HTMLElement {
         let specifiedNavButton = document.querySelector(".navButton");
         let navButton;
         if (specifiedNavButton == null) {
-            console.log("navButton not found");
+            console.info("LWD: no navButton found, switched to default");
             navButton = document.createElement("img");
             navButton.setAttribute("src", "img/menu-btn.svg");
             navButton.setAttribute("width", width);
         } else {
-            console.log("navButton found");
+            console.info("LWD: navButton found");
             navButton = specifiedNavButton.cloneNode();
             navButton.style.removeProperty("display");
             navButton.classList.remove("navButton");
@@ -160,10 +160,18 @@ class LwdNav extends HTMLElement {
                 return this.mobileNavTypes[this.getAttribute("mobile-type")];
             } else {
                 console.warn("LWD: Navigation mobile-type '" + this.getAttribute("mobile-type") + "' is not found.");
-                return this.mobileNavTypes.side; // return default
+                return this.mobileNavTypies.sde; // return default
             }
         }
-        return this.mobileNavTypes.side;
+        if (this.hasAttribute("type")) {
+            if (this.mobileNavTypes[this.getAttribute("type")] != undefined) {
+                return this.mobileNavTypes[this.getAttribute("type")];
+            } else {
+                console.warn("LWD: Navigation mobile-type '" + this.getAttribute("type") + "' is not found.");
+                return null;
+            }
+        }
+        return this.mobileNavTypes.side;    
     }
 
     toggleAltState() {
@@ -176,8 +184,6 @@ class LwdNav extends HTMLElement {
 
     attributeChangedCallback(name, oldValue, newValue) {
         var body = document.querySelector("body");
-        console.log("in attributeChangeCallback");
-        console.log("switch case:", name);
         switch (name) {
             case "type":
                 body.setAttribute("nav-type", newValue);
