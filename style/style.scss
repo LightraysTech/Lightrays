@@ -539,10 +539,8 @@ div.lwd-box {
 
 .lwd-list {
     font-size: 15px;
-    display: grid;
-    grid-auto-rows: 48px;
-    grid-gap: 10px;
     overflow-y: initial;
+    margin: 0 10px;
     div {
         @extend .lwd-box;
         width: initial;
