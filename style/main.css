@@ -495,7 +495,7 @@ input[type=range]::-webkit-range-progress {
   background-color: red;
 }
 
-div.lwd-box, .lwd-list div {
+div.lwd-box, .lwd-list > div {
   background-color: white;
   box-shadow: 0px 1.6px 7px rgba(0, 0, 0, 0.09);
   border-radius: 2px;
@@ -503,17 +503,17 @@ div.lwd-box, .lwd-list div {
   height: auto;
   padding: 15px;
   width: fit-content;
+  margin: 10px 0;
 }
-div.lwd-box.round-corners, .lwd-list div.round-corners {
+div.lwd-box.round-corners, .lwd-list > div.round-corners {
   border-radius: 7px;
 }
 
 .lwd-list {
   font-size: 15px;
   overflow-y: initial;
-  margin: 0 10px;
 }
-.lwd-list div {
+.lwd-list > div {
   width: initial;
 }
 .lwd-list.round-corners div {

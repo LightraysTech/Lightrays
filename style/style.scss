@@ -531,6 +531,7 @@ div.lwd-box {
     height: auto;
     padding: 15px;
     width: fit-content;
+    margin: 10px 0;
 
     &.round-corners {
         border-radius: 7px;
@@ -540,8 +541,7 @@ div.lwd-box {
 .lwd-list {
     font-size: 15px;
     overflow-y: initial;
-    margin: 0 10px;
-    div {
+    & > div {
         @extend .lwd-box;
         width: initial;
     }
