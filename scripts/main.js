@@ -65,7 +65,16 @@ class LwdNav extends HTMLElement {
         },
         floatingSymbol: {
             initialize: function(navElem) {
-
+                document.querySelectorAll(".reversed-alignment")[0].style.setProperty("margin-left", "auto");
+                
+                let navitems = document.querySelectorAll("lwd-navitem");
+                let justTextNavItems = [];
+                navitems.forEach(item => {
+                    if (item.querySelectorAll(".navItemIcon").length == 0) {
+                        justTextNavItems.push(item);
+                    }
+                });
+                justTextNavItems.forEach(item => {item.classList.add("justTextNavItem")});
             }
         }
     }
@@ -86,8 +95,16 @@ class LwdNav extends HTMLElement {
                 navElem.insertBefore(menuHead, navElem.firstChild);
             }
         },
-        floatingSymbol: function(navElem) {
+        floatingSymbol: {
+            initialize(navElem) {
+                let menuHead = document.createElement("lwd-navitem");
+                menuHead.classList.add("hide-in-desktop", "generated-nav-element", "header"); 
+                menuHead.appendChild(navElem.getNavButton(18));
 
+                navElem.insertBefore(menuHead, navElem.firstChild);
+
+                document.querySelectorAll("lwd-navitem")
+            }
         }
     }
 
@@ -171,7 +188,7 @@ class LwdNav extends HTMLElement {
                 return null;
             }
         }
-        return this.mobileNavTypes.side;    
+        return this.mobileNavTypes.side;
     }
 
     toggleAltState() {
