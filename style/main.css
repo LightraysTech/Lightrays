@@ -242,8 +242,7 @@ h4 {
   lwd-nav[type=floatingSymbol] {
     display: flex;
     flex-wrap: nowrap;
-    width: calc(100% - 70px);
-    padding: 10px 15px 10px 15px;
+    width: 100%;
     position: sticky;
     top: 20px;
     z-index: 100;
@@ -264,7 +263,6 @@ h4 {
     color: var(--foreground);
     text-decoration: none;
     border-radius: 30px;
-    margin-right: 10px;
     background: center center/auto 30px no-repeat;
     background-color: var(--component-background);
     cursor: pointer;
@@ -278,32 +276,79 @@ h4 {
     border: medium;
     border-image: var(--linear-gradient);
     display: inline-flex;
+    gap: 5px;
     justify-content: center;
     align-items: center;
-    min-width: 30px;
     height: 30px;
-    color: var(--foreground);
     text-decoration: none;
     border-radius: 30px;
-    margin-right: 10px;
-    background: center center/auto 30px no-repeat;
+    color: var(--foreground);
     background-color: var(--component-background);
     cursor: pointer;
   }
   lwd-nav[type=floatingSymbol] lwd-navgroup lwd-navitem {
+    display: inline-flex;
     background: none;
     box-shadow: none;
-    min-width: 15px;
-    width: 40px;
-    padding: 0;
+    flex: 0 1 30px;
+  }
+  lwd-nav[type=floatingSymbol] .navItemIcon {
+    order: 1;
+    min-width: 30px;
   }
   lwd-nav[type=floatingSymbol] .navItemLabel {
-    padding-bottom: 2px;
+    order: 2;
+    padding: 0 5px 2px 5px;
+  }
+  lwd-nav[type=floatingSymbol] .justTextNavItem {
+    background: none;
+    box-shadow: none;
+    font-size: 1.2em;
+    font-family: "Segoe dUI", selawk;
+    font-weight: bold;
+    margin: auto 0;
   }
 }
 @media screen and (max-width: 850px) {
   lwd-nav[mobile-type=floatingSymbol], lwd-nav[type=floatingSymbol]:not([mobile-type]) {
-    color: red;
+    background-color: var(--component-background);
+    border-radius: 10px;
+    padding: 10px;
+    margin: 5px;
+    box-shadow: var(--box-shadow);
+    border: medium;
+    border-image: var(--linear-gradient);
+    display: block;
+    top: 20px;
+    height: 30px;
+    width: calc(100% - 110px);
+    color: var(--foreground);
+    text-decoration: none;
+    border-radius: 30px;
+    background: center center/auto 30px no-repeat;
+    background-color: var(--component-background);
+    margin: 0 0 0 70px;
+    cursor: pointer;
+  }
+  lwd-nav[mobile-type=floatingSymbol] ion-icon, lwd-nav[type=floatingSymbol]:not([mobile-type]) ion-icon {
+    font-size: 20px;
+  }
+  lwd-nav[mobile-type=floatingSymbol] lwd-navitem, lwd-nav[type=floatingSymbol]:not([mobile-type]) lwd-navitem {
+    display: block;
+    width: 135px;
+  }
+  lwd-nav[mobile-type=floatingSymbol] .header, lwd-nav[type=floatingSymbol]:not([mobile-type]) .header {
+    position: fixed;
+    left: 0px;
+    top: 20px;
+    width: 60px;
+    height: 50px;
+    margin-left: 5px;
+    padding: 0;
+    background-color: #0079d6;
+  }
+  lwd-nav[mobile-type=floatingSymbol] .navItemLabel, lwd-nav[type=floatingSymbol]:not([mobile-type]) .navItemLabel, lwd-nav[mobile-type=floatingSymbol] .justTextNavItem, lwd-nav[type=floatingSymbol]:not([mobile-type]) .justTextNavItem {
+    display: none;
   }
 }
 

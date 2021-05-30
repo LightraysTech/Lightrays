@@ -12,9 +12,7 @@
 </head>
 <body>
     <lwd-nav type="floatingSymbol">
-            <lwd-navitem>
-                <ion-icon class="navItemIcon" name="menu-outline"></ion-icon>
-            </lwd-navitem>
+            <ion-icon class="navItemIcon navButton" name="menu-outline"></ion-icon>
 
             <lwd-navgroup>
                 <lwd-navitem onclick="location.href = 'index.html'" selected>
@@ -28,8 +26,15 @@
                 </lwd-navitem>
             </lwd-navgroup>
 
+            <lwd-navitem onclick="location.href = 'Color-palette-creator.html'">
+                <ion-icon class="navItemIcon" name="eyedrop-outline"></ion-icon>
+                <span class="navItemLabel">CP Creator</span>
+            </lwd-navitem>
+            <lwd-navitem class="reversed-alignment" onclick="location.href = 'floatingSymbolNav.html'">
+                <span class="navItemLabel">Only Text example</span>
+            </lwd-navitem>
+
             <lwd-navitem  class="reversed-alignment">
-                <span class="navItemLabel">Settings</span>
                 <ion-icon class="navItemIcon" name="settings-outline"></ion-icon>
             </lwd-navitem>    
     </lwd-nav>

@@ -255,10 +255,10 @@ lwd-nav {
 
     &[type = floatingSymbol] {
         &:not([mobile-type]) {@extend [mobile-type = floatingSymbol];}// no mobile-type specified
+
         @include desktop() {
         display: flex; flex-wrap: nowrap;
-        width: calc(100% - 70px);
-        padding: 10px 15px 10px 15px;
+        width: 100%;
         position: sticky; top: 20px;
         z-index: 100;        
         
@@ -270,7 +270,6 @@ lwd-nav {
             min-width: 30px; height: 30px;
             color: var(--foreground);
             text-decoration: none; border-radius: 30px;
-            margin-right: 10px;
             background: center center /  auto 30px no-repeat;
             background-color: var(--component-background);
             cursor: pointer;
@@ -278,41 +277,63 @@ lwd-nav {
 
         lwd-navgroup {
             @include inline-box;
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            min-width: 30px; height: 30px;
-            color: var(--foreground);
+            display: inline-flex; gap: 5px;
+            justify-content: center; align-items: center;
+            height: 30px;
             text-decoration: none; border-radius: 30px;
-            margin-right: 10px;
-            background: center center /  auto 30px no-repeat;
-            background-color: var(--component-background);
+            color: var(--foreground); background-color: var(--component-background);
             cursor: pointer;
 
             lwd-navitem {
-                background: none;
-                box-shadow: none;
-                min-width: 15px;
-                width: 40px;
-                padding: 0;
+                display: inline-flex;
+                background: none; box-shadow: none;
+                flex: 0 1 30px;
             }
         }
-
         .navItemIcon {
+            order: 1; min-width: 30px;
         }
-
         .navItemLabel {
-            padding-bottom: 2px;
+            order: 2; padding: 0 5px 2px 5px;
+        }
+        .justTextNavItem {
+            background: none; box-shadow: none;
+            font-size: 1.2em; font-family: 'Segoe dUI', selawk; font-weight: bold;
+            margin: auto 0;
         }
     }
     }
+
 
     &[mobile-type = floatingSymbol] {
         @include mobile() {
-            color:red;
+            @include inline-box;
+            display: block; top: 20px;
+            height: 30px; width: calc(100% - 110px);
+            color: var(--foreground);
+            text-decoration: none; border-radius: 30px;
+            background: center center /  auto 30px no-repeat;
+            background-color: var(--component-background);
+            margin: 0 0 0 70px;
+            cursor: pointer;
+            ion-icon{font-size: 20px}
+
+            lwd-navitem {
+                display: block;
+                width: 135px;
+            }
+
+            .header {
+                position: fixed; left: 0px; top: 20px;
+                width: 60px; height: 50px; margin-left: 5px; padding: 0;
+                background-color: #0079d6;
+            }
+
+            .navItemLabel, .justTextNavItem {display: none;}
         }
     }
 }
+
 
 body[nav-alt-state] lwd-nav {
     &[type = side] {
