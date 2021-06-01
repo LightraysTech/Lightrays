@@ -102,8 +102,16 @@ class LwdNav extends HTMLElement {
                 menuHead.appendChild(navElem.getNavButton(18));
 
                 navElem.insertBefore(menuHead, navElem.firstChild);
+                console.log("inserted menuHead");
 
-                document.querySelectorAll("lwd-navitem")
+                let navItems = document.querySelectorAll("lwd-navitem");
+                navItems.forEach((item) => {
+                    let clonedItem = item.cloneNode();
+                    clonedItem.classList.add("hide-in-desktop");
+                    navElem.appendChild(clonedItem);
+                    console.log("inserted clonedItem");
+                });
+                
             }
         }
     }
