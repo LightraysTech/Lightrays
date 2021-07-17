@@ -1,19 +1,6 @@
 @import "fonts.scss";
 @import "settings.scss";
 
-:root {
-    --color-extra-light: #a3f4ff;
-    --color-light: #8ae2ff;
-    --color-lighter: #37c2f1;
-    --color-main: #199be1;
-    --color-darker: #0079d6;
-    --color-dark: #0d61ab;
-    --color-extra-dark: #014989;
-    --color-text: #ffffff;
-
-    --mobile-at: 1020px;
-}
-
 // Themes
 @mixin getTheme($thm) {
     @if $thm == light {
@@ -97,14 +84,14 @@
 }
 
 @mixin tablet() {
-    @media screen and (max-width: 1300px) {
+    @media screen and (min-width: 850px) and (max-width: 1300px) {
         @content;
     }
 }
 
 // General
 body {
-    font-family: selawk;
+    font-family: $default-font;
     background-color: var(--background);
     color: var(--foreground);
 }
@@ -123,21 +110,6 @@ body {
     @include inline-box;
 }
 
-.hide-in-mobile {
-    @include mobile() {
-        display: none;
-        visibility: hidden;
-        position: absolute;
-    }
-}
-
-.hide-in-desktop {
-    @include desktop() {
-        display: none;
-        visibility: hidden;
-        position: absolute;
-    }
-}
 
 :focus {
     outline: none;
@@ -145,23 +117,23 @@ body {
 
 // Headers ------------------------------------------------
 h1 {
-    font-family: "SegoeUi_b";
+    font-family: $bold-font;
     font-weight: normal;
     color: var(--color-main);
 }
 
 h2 {
-    font-family: "SegoeUi_b";
+    font-family: $bold-font;
     font-weight: normal;
 }
 
 h3 {
-    font-family: "SegoeUi_sb";
+    font-family: $semibold-font;
     font-weight: normal;
 }
 
 h4 {
-    font-family: "SegoeUi_sb";
+    font-family: $semibold-font;
     font-weight: normal;
 }
 
@@ -177,10 +149,14 @@ lwd-nav {
 body {
     &[nav-type = side] {
         @include desktop() {
-            margin-left: 350px;
+            transition: margin-left .2s ease-in-out;
+            margin-left: 365px;
             &[nav-alt-state] {margin-left: 80px;}
         }
-        @include tablet() {margin-left: 65px;}
+        @include tablet() {
+            margin-left: 65px;
+            &[nav-alt-state] {margin-left: 65px}
+        }
         @include mobile() {margin-left: 10px;}
     }
 }
@@ -188,17 +164,19 @@ body {
 lwd-nav {
     &[type = side] {
         &:not([mobile-type]) {@extend [mobile-type = side];}// no mobile-type specified
-
+        
         @include desktop() {
             overflow-x: scroll;
             position: fixed; left: 0; top: 0;
             width: 340px; height: 100%;
             padding-top: 10px;
+            white-space: nowrap;
             background-color: var(--component-background);
             box-shadow: var(--box-shadow-2);
-            transition: left 0.25s, width 0.25s; -webkit-transition: left 0.25s, width 0.25s;
+            transition: width .2s ease-in-out; -webkit-transition: width .2s ease-in-out;
             
             lwd-navitem {
+                transition: margin .2s ease-in-out; -webkit-transition: margin .2s ease-in-out;
                 display: flex;
                 align-items: center; vertical-align: middle;
                 width: calc(100% - 25px); height: 35px;
@@ -222,6 +200,7 @@ lwd-nav {
 
                 &[selected] {
                     background: linear-gradient(to right, var(--color-light), var(--color-main));
+                    color: var(--color-text);
                     border-radius: 8px;
                     box-shadow: 0px 1.6px 3.6px rgb(0 0 0 / 13%), 0px 0px 2.9px rgb(0 0 0 / 11%);
                 }
@@ -229,28 +208,98 @@ lwd-nav {
 
             lwd-navgroup {
                 display: block;
-                border-top: 1.5px solid rgb(242, 242, 242); border-bottom: 1.5px solid rgb(242, 242, 242);
+                border-top: 1.5px solid var(--background); border-bottom: 1.5px solid var(--background);
                 margin: 5px 0; padding: 5px 0;
                 & ~ lwd-navgroup {
                     border-top-color: transparent;
                     margin-top: 0; padding-top: 0;
                 }
             }
+
+            &[alt-state] {
+                width: 55px;
+                lwd-navitem {
+                    justify-content: center;
+                    width: calc(55px - 10px);
+                    margin-left: 5px; margin-right: 5px;
+                }
+                .navItemLabel {
+                    display: none;
+                }    
+            }
         }
         @include tablet() {
-            overflow: hidden;
-            width: 55px; min-width: unset;
+            width: 55px;
             lwd-navitem {
                 justify-content: center;
-                transition: width 0.2s;
-                width: calc(100% - 10px);
+                width: calc(55px - 10px);
                 margin-left: 5px; margin-right: 5px;
             }
-            .navItemLabel {display: none;}
+            .navItemLabel {
+                display: none;
+            }
+
+            &[alt-state] {
+                width: 340px;
+                lwd-navitem {
+                    justify-content: unset;
+                    width: calc(100% - 25px);
+                    margin: 5px 12.5px;
+                    
+                &.header {
+                    margin-top: 15px; margin-bottom: 20px;
+                    .navItemIcon {width: 18px; padding: 16px;}
+                }
+
+                }
+                .navItemLabel {
+                    display: initial;
+                }   
+            }
         }
     }
 
     &[mobile-type = side] {
+        @include mobile() {
+            overflow-x: scroll;
+            position: fixed; left: 0; top: 0;
+            width: 100%; height: 100px;
+            white-space: nowrap;
+            background-color: var(--component-background);
+            box-shadow: var(--box-shadow-2);
+            transition: width .2s ease-in-out; -webkit-transition: width .2s ease-in-out;
+            
+            lwd-navitem {
+                transition: margin .2s ease-in-out; -webkit-transition: margin .2s ease-in-out;
+                display: none;
+                align-items: center; vertical-align: middle;
+                width: calc(100% - 25px); height: 35px;
+                margin: 5px 12.5px;
+                cursor: pointer;
+                .navItemLabel {
+                    order: 2;
+                    margin: 0 20px;
+                }
+                .navItemIcon {
+                    order: 1;
+                    width: 30px; padding: 10px;
+                    flex-shrink: 0;
+                }
+
+                &.header {
+                    display: flex;
+                    margin-top: 15px; margin-bottom: 20px;
+                    .navItemIcon {width: 18px; padding: 16px;}
+                }
+
+                &[selected] {
+                    background: linear-gradient(to right, var(--color-light), var(--color-main));
+                    border-radius: 8px;
+                    box-shadow: 0px 1.6px 3.6px rgb(0 0 0 / 13%), 0px 0px 2.9px rgb(0 0 0 / 11%);
+                }
+            }
+
+        }
     }
 
     &[type = floatingSymbol] {
@@ -314,37 +363,79 @@ lwd-nav {
     }
 }
 
-body[nav-alt-state] lwd-nav {
+/*body[nav-alt-state] lwd-nav {
     &[type = side] {
-        width: 55px; min-width: unset;
-        overflow: hidden;
-        lwd-navitem {
-            justify-content: center;
-            transition: width 0.2s;
-            width: calc(100% - 10px);
-            margin-left: 5px; margin-right: 5px;
+        @include desktop() {
+            width: 55px; min-width: unset;
+            lwd-navitem {
+                justify-content: center;
+                width: calc(55px - 10px);
+                margin-left: 5px; margin-right: 5px;
+            }
+            .navItemLabel {
+                display: none;
+            }
         }
-        .navItemLabel {display: none;}
 
         @include tablet() {
-            overflow: initial;
-            width: 340px;
+            overflow-x: scroll;
+            position: fixed; left: 0; top: 0;
+            width: 340px; height: 100%;
+            padding-top: 10px;
+            white-space: nowrap;
+            background-color: var(--component-background);
+            box-shadow: var(--box-shadow-2);
+            transition: width .2s ease-in-out; -webkit-transition: width .2s ease-in-out;
+            
             lwd-navitem {
-                justify-content: unset;
-                width: calc(100% - 25px);
-                transition: width 0.2s;
-                margin: 5px 0;
+                transition: margin .2s ease-in-out; -webkit-transition: margin .2s ease-in-out;
+                display: flex;
+                align-items: center; vertical-align: middle;
+                justify-content: initial;
+                width: calc(100% - 25px); height: 35px;
+                margin: 5px 12.5px;
+                cursor: pointer;
+            
+                .navItemLabel {
+                    display: initial;
+                    order: 2;
+                    margin: 0 20px;
+                }
+                .navItemIcon {
+                    order: 1;
+                    width: 30px; padding: 10px;
+                    flex-shrink: 0;
+                }
 
+                &.header {
+                    margin-top: 15px; margin-bottom: 20px;
+                    .navItemIcon {width: 18px; padding: 16px;}
+                }
+
+                &[selected] {
+                    background: linear-gradient(to right, var(--color-light), var(--color-main));
+                    border-radius: 8px;
+                    box-shadow: 0px 1.6px 3.6px rgb(0 0 0 / 13%), 0px 0px 2.9px rgb(0 0 0 / 11%);
+                }
             }
-            .navItemLabel {display: unset;}
+
+            lwd-navgroup {
+                display: block;
+                border-top: 1.5px solid rgb(242, 242, 242); border-bottom: 1.5px solid rgb(242, 242, 242);
+                margin: 5px 0; padding: 5px 0;
+                & ~ lwd-navgroup {
+                    border-top-color: transparent;
+                    margin-top: 0; padding-top: 0;
+                }
+            }
         }
     }
     &[mobile-type = side] {
         @include mobile() {
+            
         }
     }
-}
-
+}*/
 
 
 
@@ -353,7 +444,7 @@ body[nav-alt-state] lwd-nav {
 // Button
 button {
     cursor: pointer;
-    font-family: "SegoeUi_sb";
+    font-family: $semibold-font;
     padding: .5rem 1rem .5rem 1rem;
     margin: 7px;
     border: none;
@@ -361,12 +452,16 @@ button {
     color: var(--foreground);
     border-radius: $border-radius;
     box-shadow: var(--box-shadow);
+    transition: background-color .2s, color .2s, transform .1s ease-in;
+    
 
     &:hover {
         background-color: var(--component-background-hover);
     }
     &:active {
-        background-color: var(--component-background-active);
+        background-color: var(--color-main);
+        color: var(--color-text);
+        transform: scale(.95);
         box-shadow: var(--box-shadow);
     }
     &.important {
@@ -450,7 +545,7 @@ nav.top-icon-nav {
 // Inputs
 input {
     font-size: .8rem;
-    font-family: "SegoeUi";
+    font-family: $default-font;
     background-color: var(--component-background);
     border-radius: $border-radius;
     padding: .5rem 1.1rem .5rem 1.1rem;
@@ -571,7 +666,7 @@ div.lwd-box {
         flex-wrap: wrap;
         justify-content: center;
         align-items: flex-end;
-        font-family: SegoeUI_sb;
+        font-family: $semibold-font;
         transition: transform .2s;
 
         div {
@@ -597,4 +692,31 @@ div.lwd-box {
 
 .background-gradient {
     background: linear-gradient(to right bottom, var(--color-light), var(--color-main));
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.hide-in-mobile {
+    @include mobile() {
+        display: none;
+        visibility: hidden;
+        position: absolute;
+    }
+}
+
+.hide-in-desktop {
+    @include desktop() {
+        display: none;
+        visibility: hidden;
+        position: absolute;
+    }
 }
