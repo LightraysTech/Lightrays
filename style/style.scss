@@ -19,22 +19,24 @@
             --box-shadow-2: 0px 1.6px 8px rgba(0, 0, 0, 0.13), 0px 0px 2.9px rgba(0, 0, 0, 0.11);
             --box-shadow-active: 1px 1px 3px rgba(0, 0, 0, 0.25);
             --linear-gradient: linear-gradient(white, rgb(233, 231, 231));
+            --border: solid #ececec 1px;
         }
     } @else {
         :root {
             --foreground: white;
-            --background: hsl(0, 0%, 21%);
+            --background: #333333;
             --background-hover: hsl(0, 0%, 18%);
             --background-active: hsl(0, 0%, 15%);
             --transparent-background: hsla(0, 0%, 21%, 0.97);
 
-            --component-background: hsl(0, 0%, 37%);
+            --component-background: #3f3f3f;
             --component-background-hover: hsl(0, 0%, 33%);
             --component-background-active: hsl(0, 0%, 29%);
 
             --box-shadow: 1.2px 1.2px 6px rgba(0, 0, 0, 0.75);
             --box-shadow-active: 1px 1px 3px rgba(0, 0, 0, 0.75);
             --linear-gradient: linear-gradient(rgb(78, 78, 78), rgb(27, 27, 27));
+            --border: solid #2e2e2e 1px;
         }
     }
 }
@@ -72,13 +74,13 @@
 }
 
 @mixin mobile() {
-    @media screen and (max-width: 850px) {
+    @media screen and (max-width: 650px) {
         @content;
     }    
 }
 
 @mixin desktop() {
-    @media screen and (min-width: 850px) {
+    @media screen and (min-width: 650px) {
         @content;
     }    
 }
@@ -304,10 +306,10 @@ lwd-nav {
 
     &[type = floatingSymbol] {
         &:not([mobile-type]) {@extend [mobile-type = floatingSymbol];}// no mobile-type specified
+
         @include desktop() {
         display: flex; flex-wrap: nowrap;
-        width: calc(100% - 70px);
-        padding: 10px 15px 10px 15px;
+        width: 100%;
         position: sticky; top: 20px;
         z-index: 100;        
         
@@ -319,7 +321,6 @@ lwd-nav {
             min-width: 30px; height: 30px;
             color: var(--foreground);
             text-decoration: none; border-radius: 30px;
-            margin-right: 10px;
             background: center center /  auto 30px no-repeat;
             background-color: var(--component-background);
             cursor: pointer;
@@ -327,116 +328,60 @@ lwd-nav {
 
         lwd-navgroup {
             @include inline-box;
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            min-width: 30px; height: 30px;
-            color: var(--foreground);
+            display: inline-flex; gap: 5px;
+            justify-content: center; align-items: center;
+            height: 30px;
             text-decoration: none; border-radius: 30px;
-            margin-right: 10px;
-            background: center center /  auto 30px no-repeat;
-            background-color: var(--component-background);
+            color: var(--foreground); background-color: var(--component-background);
             cursor: pointer;
 
             lwd-navitem {
-                background: none;
-                box-shadow: none;
-                min-width: 15px;
-                width: 40px;
-                padding: 0;
+                display: inline-flex;
+                background: none; box-shadow: none;
+                flex: 0 1 30px;
             }
         }
-
         .navItemIcon {
+            order: 1; min-width: 30px;
         }
-
         .navItemLabel {
-            padding-bottom: 2px;
+            order: 2; padding: 0 5px 2px 5px;
+        }
+        .justTextNavItem {
+            background: none; box-shadow: none;
+            font-size: 1.2em; font-family: 'Segoe dUI', selawk; font-weight: bold;
+            margin: auto 0;
         }
     }
     }
+
 
     &[mobile-type = floatingSymbol] {
         @include mobile() {
-            color:red;
+            @include inline-box;
+            position: sticky; top: 20px;
+            display: flex; justify-content: space-around; align-items: center;
+            height: 30px; width: calc(100% - 110px); margin: 0 0 0 80px;
+            color: var(--foreground); text-decoration: none; border-radius: 17px; cursor: pointer;
+            background: center center /  auto 30px no-repeat; background-color: var(--component-background);
+            
+            ion-icon{font-size: 20px}
+
+            lwd-navitem {display: none; flex: 0 1 200px; justify-content: center;}
+
+            .header {
+                display: flex; justify-content: center; align-items: center;
+                position: fixed; left: 0px; top: 20px;
+                width: 50px; height: 50px; 
+                margin-left: 15px; padding: 0;
+                ion-icon {font-size: 1.5em;}
+            }
+
+            .navItemLabel, .justTextNavItem, lwd-navgroup {display: none;}
+            .mobile-nav-item {display: flex;}
         }
     }
 }
-
-/*body[nav-alt-state] lwd-nav {
-    &[type = side] {
-        @include desktop() {
-            width: 55px; min-width: unset;
-            lwd-navitem {
-                justify-content: center;
-                width: calc(55px - 10px);
-                margin-left: 5px; margin-right: 5px;
-            }
-            .navItemLabel {
-                display: none;
-            }
-        }
-
-        @include tablet() {
-            overflow-x: scroll;
-            position: fixed; left: 0; top: 0;
-            width: 340px; height: 100%;
-            padding-top: 10px;
-            white-space: nowrap;
-            background-color: var(--component-background);
-            box-shadow: var(--box-shadow-2);
-            transition: width .2s ease-in-out; -webkit-transition: width .2s ease-in-out;
-            
-            lwd-navitem {
-                transition: margin .2s ease-in-out; -webkit-transition: margin .2s ease-in-out;
-                display: flex;
-                align-items: center; vertical-align: middle;
-                justify-content: initial;
-                width: calc(100% - 25px); height: 35px;
-                margin: 5px 12.5px;
-                cursor: pointer;
-            
-                .navItemLabel {
-                    display: initial;
-                    order: 2;
-                    margin: 0 20px;
-                }
-                .navItemIcon {
-                    order: 1;
-                    width: 30px; padding: 10px;
-                    flex-shrink: 0;
-                }
-
-                &.header {
-                    margin-top: 15px; margin-bottom: 20px;
-                    .navItemIcon {width: 18px; padding: 16px;}
-                }
-
-                &[selected] {
-                    background: linear-gradient(to right, var(--color-light), var(--color-main));
-                    border-radius: 8px;
-                    box-shadow: 0px 1.6px 3.6px rgb(0 0 0 / 13%), 0px 0px 2.9px rgb(0 0 0 / 11%);
-                }
-            }
-
-            lwd-navgroup {
-                display: block;
-                border-top: 1.5px solid rgb(242, 242, 242); border-bottom: 1.5px solid rgb(242, 242, 242);
-                margin: 5px 0; padding: 5px 0;
-                & ~ lwd-navgroup {
-                    border-top-color: transparent;
-                    margin-top: 0; padding-top: 0;
-                }
-            }
-        }
-    }
-    &[mobile-type = side] {
-        @include mobile() {
-            
-        }
-    }
-}*/
-
 
 
 //LWD inputs -----------------------------------------------------------------
@@ -547,12 +492,19 @@ input {
     font-size: .8rem;
     font-family: $default-font;
     background-color: var(--component-background);
+    border: var(--border);
     border-radius: $border-radius;
     padding: .5rem 1.1rem .5rem 1.1rem;
     margin: 5px;
-    border: none;
     color: var(--foreground);
-    box-shadow: var(--box-shadow);
+
+    &:focus {
+        border-bottom-color: var(--color-darker);
+        border-width: 2px;
+        margin: 4px;
+        transition: all .1s;
+        box-shadow: var(--box-shadow);
+    }
 
     &::placeholder {
         color: hsl(0, 0%, 70%);
@@ -619,14 +571,15 @@ input {
     background-color: red;
 }
 div.lwd-box {
-    background-color: white;
+    background-color: var(--component-background);
     box-shadow: 0px 1.6px 7px rgb(0 0 0 / 9%);
-    border-radius: 2px;
+    border-radius: 3px;
     width: auto;
     height: auto;
     padding: 15px;
     width: fit-content;
     margin: 10px 0;
+    align-self: center;
 
     &.round-corners {
         border-radius: 7px;
@@ -643,6 +596,12 @@ div.lwd-box {
     &.round-corners {
         & > div {
             border-radius: 7px;
+        }
+    }
+    &.flat {
+        div {
+            border: var(--border);
+            box-shadow: none;
         }
     }
 }
