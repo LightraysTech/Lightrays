@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style/main.css">
+    <link rel="stylesheet" href="../examples/content.css">
+    <script src="../scripts/main.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule="" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.js"></script>
+    <title>Lighted Web Design - Example</title>
+</head>
+<body>
+    <lwd-nav type="floatingSymbol">
+            <ion-icon class="navItemIcon navButton" name="menu-outline"></ion-icon>
+
+            <lwd-navgroup>
+                <lwd-navitem onclick="location.href = 'index.html'" selected>
+                    <ion-icon class="navItemIcon" name="easel-outline"></ion-icon>
+                </lwd-navitem>
+                <lwd-navitem onclick="location.href = 'Color-palette-creator.html'">
+                    <ion-icon class="navItemIcon" name="eyedrop-outline"></ion-icon>
+                </lwd-navitem>
+                <lwd-navitem onclick="location.href = 'floatingSymbolNav.html'">
+                    <ion-icon class="navItemIcon" name = "terminal-outline"></ion-icon>
+                </lwd-navitem>
+            </lwd-navgroup>
+
+            <lwd-navitem onclick="location.href = 'Color-palette-creator.html'">
+                <ion-icon class="navItemIcon" name="eyedrop-outline"></ion-icon>
+                <span class="navItemLabel">CP Creator</span>
+            </lwd-navitem>
+            <lwd-navitem class="reversed-alignment" onclick="location.href = 'floatingSymbolNav.html'">
+                <span class="navItemLabel">Only Text example</span>
+            </lwd-navitem>
+
+            <lwd-navitem  class="reversed-alignment">
+                <ion-icon class="navItemIcon" name="settings-outline"></ion-icon>
+            </lwd-navitem>
+    </lwd-nav>
+
+    
+    <main>
+        <h1>Header</h1>
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing.
+        <br><br>
+        <h3>lwd-List</h3>
+        <div class="lwd-list" style="max-width: 80em;">  
+            <div>First Item</div>
+            <div>Second Item</div>
+            <div>Third Item</div>
+        </div><br>
+        <h3>lwd-List with round corners</h3>
+        <div class="lwd-list round-corners" style="max-width: 80em;">  
+            <div>First Item</div>
+            <div>Second Item</div>
+            <div>Third Item</div>
+        </div><br>
+        <h3>Lwd-List flat (and round corners)</h3>
+        <div class="lwd-list flat round-corners" style="max-width: 80em;">  
+            <div>First Item</div>
+            <div>Second Item</div>
+            <div>Third Item</div>
+        </div><br>
+        
+        <h3>Input types</h3>
+        <form class="input-grid">
+            <label>No type:</label><input placeholder="Input">
+            <label>Search:</label><input type="search" placeholder="Search">
+            <label>Text:</label><input type="text" placeholder="text">
+            <label>Url:</label><input type="url" placeholder="url">
+            <label>Email:</label><input type="email" value="example@email.com">
+            <label>Number:</label><input type="number" value="0">
+            <label>Password:</label><input type="password" placeholder="Password">                        
+            <label>checkbox:</label><input type="checkbox">
+            <label>Radio:</label><input type="radio">
+            <label>Range:</label><input type="range">
+            <label>Color:</label><input type="color" value="#0000FF">            
+            <label>Date:</label><input type="date" value="2021-01-01">
+            <label>Datetime-local:</label><input type="datetime-local" value="2021-01-01T12:00">
+            <label>Month:</label><input type="month" value="2021-01">
+            <label>Time:</label><input type="time" value="12:00">
+            <label>Week:</label><input type="week" value="2021-W01">
+            <label>Button:</label><input type="button" value="Button">
+            <label>Button (class: important):</label><input type="button" class="important" value="Button">
+            <label>Reset:</label><input type="reset">
+            <label>Submit:</label><input type="submit">            
+        </form>
+        
+    </main>
+</body>
+</html>

@@ -32,22 +32,24 @@
             --box-shadow-2: 0px 1.6px 8px rgba(0, 0, 0, 0.13), 0px 0px 2.9px rgba(0, 0, 0, 0.11);
             --box-shadow-active: 1px 1px 3px rgba(0, 0, 0, 0.25);
             --linear-gradient: linear-gradient(white, rgb(233, 231, 231));
+            --border: solid #ececec 1px;
         }
     } @else {
         :root {
             --foreground: white;
-            --background: hsl(0, 0%, 21%);
+            --background: #333333;
             --background-hover: hsl(0, 0%, 18%);
             --background-active: hsl(0, 0%, 15%);
             --transparent-background: hsla(0, 0%, 21%, 0.97);
 
-            --component-background: hsl(0, 0%, 37%);
+            --component-background: #3f3f3f;
             --component-background-hover: hsl(0, 0%, 33%);
             --component-background-active: hsl(0, 0%, 29%);
 
             --box-shadow: 1.2px 1.2px 6px rgba(0, 0, 0, 0.75);
             --box-shadow-active: 1px 1px 3px rgba(0, 0, 0, 0.75);
             --linear-gradient: linear-gradient(rgb(78, 78, 78), rgb(27, 27, 27));
+            --border: solid #2e2e2e 1px;
         }
     }
 }
@@ -85,20 +87,26 @@
 }
 
 @mixin mobile() {
-    @media screen and (max-width: 1020px) {
+    @media screen and (max-width: 650px) {
         @content;
     }    
 }
 
-@mixin not-mobile() {
-    @media screen and (min-width: 1020px) {
+@mixin desktop() {
+    @media screen and (min-width: 650px) {
         @content;
     }    
+}
+
+@mixin tablet() {
+    @media screen and (max-width: 1300px) {
+        @content;
+    }
 }
 
 // General
 body {
-    font-family: selawk;
+    font-family: 'Segoe UI', selawk, sans-serif;
     background-color: var(--background);
     color: var(--foreground);
 }
@@ -125,8 +133,8 @@ body {
     }
 }
 
-.hide-in-not-mobile {
-    @include not-mobile() {
+.hide-in-desktop {
+    @include desktop() {
         display: none;
         visibility: hidden;
         position: absolute;
@@ -137,7 +145,7 @@ body {
     outline: none;
 }
 
-// Headers
+// Headers ------------------------------------------------
 h1 {
     font-family: "SegoeUi_b";
     font-weight: normal;
@@ -159,39 +167,45 @@ h4 {
     font-weight: normal;
 }
 
-// NAVIGATION
+
+
+// Navigation --------------------------------------------------
 lwd-nav {
     &:not([type]) { // no type specified
         @extend [type = side]; // default
     }
 }
 
+body {
+    &[nav-type = side] {
+        @include desktop() {
+            margin-left: 350px;
+            &[nav-alt-state] {margin-left: 80px;}
+        }
+        @include tablet() {margin-left: 65px;}
+        @include mobile() {margin-left: 10px;}
+    }
+}
+
 lwd-nav {
     &[type = side] {
-        &:not([mobile-type]) { // no mobile-type specified
-            @extend [mobile-type = side];
-        }
-        @include not-mobile() {
+        &:not([mobile-type]) {@extend [mobile-type = side];}// no mobile-type specified
+
+        @include desktop() {
             overflow-x: scroll;
-            position: fixed;
-            width: 340px;
-            height: 100%;
+            position: fixed; left: 0; top: 0;
+            width: 340px; height: 100%;
             padding-top: 10px;
             background-color: var(--component-background);
             box-shadow: var(--box-shadow-2);
-            left: 0;
-            top: 0;
-            transition: left 0.25s, width 0.25s;
-            -webkit-transition: left 0.25s, width 0.25s;
+            transition: left 0.25s, width 0.25s; -webkit-transition: left 0.25s, width 0.25s;
             
             lwd-navitem {
-                cursor: pointer;
                 display: flex;
-                align-items: center;
-                height: 35px;
-                vertical-align: middle;
+                align-items: center; vertical-align: middle;
+                width: calc(100% - 25px); height: 35px;
                 margin: 5px 12.5px;
-                width: calc(100% - 25px);
+                cursor: pointer;
             
                 .navItemLabel {
                     order: 2;
@@ -199,81 +213,163 @@ lwd-nav {
                 }
                 .navItemIcon {
                     order: 1;
-                    width: 30px;
-                    padding: 10px;
+                    width: 30px; padding: 10px;
                     flex-shrink: 0;
                 }
-        
+
                 &.header {
-                     margin-top: 15px;
-                     margin-bottom: 20px;
-                    .navItemIcon {
-                        width: 18px;
-                        padding: 16px;
-                    }
+                    margin-top: 15px; margin-bottom: 20px;
+                    .navItemIcon {width: 18px; padding: 16px;}
                 }
-    
+
                 &[selected] {
                     background: linear-gradient(to right, var(--color-light), var(--color-main));
                     border-radius: 8px;
                     box-shadow: 0px 1.6px 3.6px rgb(0 0 0 / 13%), 0px 0px 2.9px rgb(0 0 0 / 11%);
                 }
             }
-    
+
             lwd-navgroup {
                 display: block;
-                border-top: 1.5px solid rgb(242, 242, 242);
-                border-bottom: 1.5px solid rgb(242, 242, 242);
-                padding: 5px 0;
-                margin: 5px 0;
+                border-top: 1.5px solid rgb(242, 242, 242); border-bottom: 1.5px solid rgb(242, 242, 242);
+                margin: 5px 0; padding: 5px 0;
                 & ~ lwd-navgroup {
                     border-top-color: transparent;
-                    margin-top: 0;
-                    padding-top: 0;
+                    margin-top: 0; padding-top: 0;
                 }
             }
-    
-            &[alt-state] {
-                min-width: unset;
-                overflow: hidden;
-                width: 55px;
-                lwd-navitem {
-                    justify-content: center;
-                    transition: width 0.2s;
-                    width: calc(100% - 10px);
-                    margin-left: 5px;
-                    margin-right: 5px;
-                }
-                .navItemLabel {
-                    display: none;
-                }
-            }    
         }
-    }
-
-    &[type = test] {
-        &:not([mobile-type]) { // no mobile-type specified
-            @extend [mobile-type = test];
+        @include tablet() {
+            overflow: hidden;
+            width: 55px; min-width: unset;
+            lwd-navitem {
+                justify-content: center;
+                transition: width 0.2s;
+                width: calc(100% - 10px);
+                margin-left: 5px; margin-right: 5px;
+            }
+            .navItemLabel {display: none;}
         }
-        background: red;
     }
 
     &[mobile-type = side] {
-        @include mobile() {
-            left: -400px;
-            &[alt-state] {
-                left: 0;
+    }
+
+    &[type = floatingSymbol] {
+        &:not([mobile-type]) {@extend [mobile-type = floatingSymbol];}// no mobile-type specified
+
+        @include desktop() {
+        display: flex; flex-wrap: nowrap;
+        width: 100%;
+        position: sticky; top: 20px;
+        z-index: 100;        
+        
+        lwd-navitem {
+            @include inline-box;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            min-width: 30px; height: 30px;
+            color: var(--foreground);
+            text-decoration: none; border-radius: 30px;
+            background: center center /  auto 30px no-repeat;
+            background-color: var(--component-background);
+            cursor: pointer;
+        }
+
+        lwd-navgroup {
+            @include inline-box;
+            display: inline-flex; gap: 5px;
+            justify-content: center; align-items: center;
+            height: 30px;
+            text-decoration: none; border-radius: 30px;
+            color: var(--foreground); background-color: var(--component-background);
+            cursor: pointer;
+
+            lwd-navitem {
+                display: inline-flex;
+                background: none; box-shadow: none;
+                flex: 0 1 30px;
             }
         }
-    }
-
-    &[mobile-type = test] {
-        @include mobile() {
-            left: 10px;
+        .navItemIcon {
+            order: 1; min-width: 30px;
+        }
+        .navItemLabel {
+            order: 2; padding: 0 5px 2px 5px;
+        }
+        .justTextNavItem {
+            background: none; box-shadow: none;
+            font-size: 1.2em; font-family: 'Segoe dUI', selawk; font-weight: bold;
+            margin: auto 0;
         }
     }
+    }
 
+
+    &[mobile-type = floatingSymbol] {
+        @include mobile() {
+            @include inline-box;
+            position: sticky; top: 20px;
+            display: flex; justify-content: space-around; align-items: center;
+            height: 30px; width: calc(100% - 110px); margin: 0 0 0 80px;
+            color: var(--foreground); text-decoration: none; border-radius: 17px; cursor: pointer;
+            background: center center /  auto 30px no-repeat; background-color: var(--component-background);
+            
+            ion-icon{font-size: 20px}
+
+            lwd-navitem {display: none; flex: 0 1 200px; justify-content: center;}
+
+            .header {
+                display: flex; justify-content: center; align-items: center;
+                position: fixed; left: 0px; top: 20px;
+                width: 50px; height: 50px; 
+                margin-left: 15px; padding: 0;
+                ion-icon {font-size: 1.5em;}
+            }
+
+            .navItemLabel, .justTextNavItem, lwd-navgroup {display: none;}
+            .mobile-nav-item {display: flex;}
+        }
+    }
 }
+
+
+body[nav-alt-state] lwd-nav {
+    &[type = side] {
+        width: 55px; min-width: unset;
+        overflow: hidden;
+        lwd-navitem {
+            justify-content: center;
+            transition: width 0.2s;
+            width: calc(100% - 10px);
+            margin-left: 5px; margin-right: 5px;
+        }
+        .navItemLabel {display: none;}
+
+        @include tablet() {
+            overflow: initial;
+            width: 340px;
+            lwd-navitem {
+                justify-content: unset;
+                width: calc(100% - 25px);
+                transition: width 0.2s;
+                margin: 5px 0;
+
+            }
+            .navItemLabel {display: unset;}
+        }
+    }
+    &[mobile-type = side] {
+        @include mobile() {
+        }
+    }
+}
+
+
+
+
+//LWD inputs -----------------------------------------------------------------
 
 // Button
 button {
@@ -377,12 +473,19 @@ input {
     font-size: .8rem;
     font-family: "SegoeUi";
     background-color: var(--component-background);
+    border: var(--border);
     border-radius: $border-radius;
     padding: .5rem 1.1rem .5rem 1.1rem;
     margin: 5px;
-    border: none;
     color: var(--foreground);
-    box-shadow: var(--box-shadow);
+
+    &:focus {
+        border-bottom-color: var(--color-darker);
+        border-width: 2px;
+        margin: 4px;
+        transition: all .1s;
+        box-shadow: var(--box-shadow);
+    }
 
     &::placeholder {
         color: hsl(0, 0%, 70%);
@@ -449,13 +552,14 @@ input {
     background-color: red;
 }
 div.lwd-box {
-    background-color: white;
+    background-color: var(--component-background);
     box-shadow: 0px 1.6px 7px rgb(0 0 0 / 9%);
-    border-radius: 2px;
+    border-radius: 3px;
     width: auto;
     height: auto;
     padding: 15px;
     width: fit-content;
+    align-self: center;
 
     &.round-corners {
         border-radius: 7px;
@@ -468,6 +572,7 @@ div.lwd-box {
     grid-auto-rows: 48px;
     grid-gap: 10px;
     overflow-y: initial;
+    
     div {
         @extend .lwd-box;
         width: initial;
@@ -475,6 +580,12 @@ div.lwd-box {
     &.round-corners {
         div {
             border-radius: 7px;
+        }
+    }
+    &.flat {
+        div {
+            border: var(--border);
+            box-shadow: none;
         }
     }
 }

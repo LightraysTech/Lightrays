@@ -34,6 +34,66 @@
   font-family: "Century_Gothic";
   src: url(../fonts/century-gothic/GOTHIC.TTF);
 }
+@font-face {
+  font-family: "Myriad_Regular";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Myriad Pro Regular"), url("MYRIADPRO-REGULAR.woff") format("woff");
+}
+@font-face {
+  font-family: "Myriad_Condensed";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Myriad Pro Condensed"), url("MYRIADPRO-COND.woff") format("woff");
+}
+@font-face {
+  font-family: "Myriad_Condensed_Italic";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Myriad Pro Condensed Italic"), url("MYRIADPRO-CONDIT.woff") format("woff");
+}
+@font-face {
+  font-family: "Myriad_Light";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Myriad_Light"), url("MyriadPro-Light.woff") format("woff");
+}
+@font-face {
+  font-family: "Myriad_Semibold";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Myriad Pro Semibold"), url("MYRIADPRO-SEMIBOLD.woff") format("woff");
+}
+@font-face {
+  font-family: "Myriad_Semibold_Italic";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Myriad Pro Semibold Italic"), url("MYRIADPRO-SEMIBOLDIT.woff") format("woff");
+}
+@font-face {
+  font-family: "Myriad_Bold_Condensed";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Myriad Pro Bold Condensed"), url("MYRIADPRO-BOLDCOND.woff") format("woff");
+}
+@font-face {
+  font-family: "Myriad_Bold";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Myriad Pro Bold"), url("MYRIADPRO-BOLD.woff") format("woff");
+}
+@font-face {
+  font-family: "Myriad_Bold_Italic";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Myriad_Bold_Italic"), url("MYRIADPRO-BOLDIT.woff") format("woff");
+}
+@font-face {
+  font-family: "Myriad_Bold_Condensed_Italic";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Myriad Pro Bold Condensed Italic"), url("MYRIADPRO-BOLDCONDIT.woff") format("woff");
+}
 :root {
   --color-extra-light: #a3f4ff;
   --color-light: #8ae2ff;
@@ -59,25 +119,27 @@
   --box-shadow-2: 0px 1.6px 8px rgba(0, 0, 0, 0.13), 0px 0px 2.9px rgba(0, 0, 0, 0.11);
   --box-shadow-active: 1px 1px 3px rgba(0, 0, 0, 0.25);
   --linear-gradient: linear-gradient(white, rgb(233, 231, 231));
+  --border: solid #ececec 1px;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground: white;
-    --background: hsl(0, 0%, 21%);
+    --background: #333333;
     --background-hover: hsl(0, 0%, 18%);
     --background-active: hsl(0, 0%, 15%);
     --transparent-background: hsla(0, 0%, 21%, 0.97);
-    --component-background: hsl(0, 0%, 37%);
+    --component-background: #3f3f3f;
     --component-background-hover: hsl(0, 0%, 33%);
     --component-background-active: hsl(0, 0%, 29%);
     --box-shadow: 1.2px 1.2px 6px rgba(0, 0, 0, 0.75);
     --box-shadow-active: 1px 1px 3px rgba(0, 0, 0, 0.75);
     --linear-gradient: linear-gradient(rgb(78, 78, 78), rgb(27, 27, 27));
+    --border: solid #2e2e2e 1px;
   }
 }
 body {
-  font-family: selawk;
+  font-family: "Segoe UI", selawk, sans-serif;
   background-color: var(--background);
   color: var(--foreground);
 }
@@ -102,7 +164,7 @@ body {
   border-image: var(--linear-gradient);
 }
 
-@media screen and (max-width: 1020px) {
+@media screen and (max-width: 650px) {
   .hide-in-mobile {
     display: none;
     visibility: hidden;
@@ -110,8 +172,8 @@ body {
   }
 }
 
-@media screen and (min-width: 1020px) {
-  .hide-in-not-mobile {
+@media screen and (min-width: 650px) {
+  .hide-in-desktop {
     display: none;
     visibility: hidden;
     position: absolute;
@@ -143,28 +205,47 @@ h4 {
   font-weight: normal;
 }
 
-@media screen and (min-width: 1020px) {
+@media screen and (min-width: 650px) {
+  body[nav-type=side] {
+    margin-left: 350px;
+  }
+  body[nav-type=side][nav-alt-state] {
+    margin-left: 80px;
+  }
+}
+@media screen and (max-width: 1300px) {
+  body[nav-type=side] {
+    margin-left: 65px;
+  }
+}
+@media screen and (max-width: 650px) {
+  body[nav-type=side] {
+    margin-left: 10px;
+  }
+}
+
+@media screen and (min-width: 650px) {
   lwd-nav[type=side], lwd-nav:not([type]) {
     overflow-x: scroll;
     position: fixed;
+    left: 0;
+    top: 0;
     width: 340px;
     height: 100%;
     padding-top: 10px;
     background-color: var(--component-background);
     box-shadow: var(--box-shadow-2);
-    left: 0;
-    top: 0;
     transition: left 0.25s, width 0.25s;
     -webkit-transition: left 0.25s, width 0.25s;
   }
   lwd-nav[type=side] lwd-navitem, lwd-nav:not([type]) lwd-navitem {
-    cursor: pointer;
     display: flex;
     align-items: center;
-    height: 35px;
     vertical-align: middle;
-    margin: 5px 12.5px;
     width: calc(100% - 25px);
+    height: 35px;
+    margin: 5px 12.5px;
+    cursor: pointer;
   }
   lwd-nav[type=side] lwd-navitem .navItemLabel, lwd-nav:not([type]) lwd-navitem .navItemLabel {
     order: 2;
@@ -193,47 +274,188 @@ h4 {
     display: block;
     border-top: 1.5px solid #f2f2f2;
     border-bottom: 1.5px solid #f2f2f2;
-    padding: 5px 0;
     margin: 5px 0;
+    padding: 5px 0;
   }
   lwd-nav[type=side] lwd-navgroup ~ lwd-navgroup, lwd-nav:not([type]) lwd-navgroup ~ lwd-navgroup {
     border-top-color: transparent;
     margin-top: 0;
     padding-top: 0;
   }
-  lwd-nav[type=side][alt-state], lwd-nav[alt-state]:not([type]) {
-    min-width: unset;
+}
+@media screen and (max-width: 1300px) {
+  lwd-nav[type=side], lwd-nav:not([type]) {
     overflow: hidden;
     width: 55px;
+    min-width: unset;
   }
-  lwd-nav[type=side][alt-state] lwd-navitem, lwd-nav[alt-state]:not([type]) lwd-navitem {
+  lwd-nav[type=side] lwd-navitem, lwd-nav:not([type]) lwd-navitem {
     justify-content: center;
     transition: width 0.2s;
     width: calc(100% - 10px);
     margin-left: 5px;
     margin-right: 5px;
   }
-  lwd-nav[type=side][alt-state] .navItemLabel, lwd-nav[alt-state]:not([type]) .navItemLabel {
+  lwd-nav[type=side] .navItemLabel, lwd-nav:not([type]) .navItemLabel {
     display: none;
   }
 }
-lwd-nav[type=test] {
-  background: red;
-}
-@media screen and (max-width: 1020px) {
-  lwd-nav[mobile-type=side], lwd-nav[type=side]:not([mobile-type]), lwd-nav:not([mobile-type]):not([type]) {
-    left: -400px;
+@media screen and (min-width: 650px) {
+  lwd-nav[type=floatingSymbol] {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    position: sticky;
+    top: 20px;
+    z-index: 100;
   }
-  lwd-nav[mobile-type=side][alt-state], lwd-nav[alt-state][type=side]:not([mobile-type]), lwd-nav[alt-state]:not([mobile-type]):not([type]) {
-    left: 0;
+  lwd-nav[type=floatingSymbol] lwd-navitem {
+    background-color: var(--component-background);
+    border-radius: 10px;
+    padding: 10px;
+    margin: 5px;
+    box-shadow: var(--box-shadow);
+    border: medium;
+    border-image: var(--linear-gradient);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 30px;
+    height: 30px;
+    color: var(--foreground);
+    text-decoration: none;
+    border-radius: 30px;
+    background: center center/auto 30px no-repeat;
+    background-color: var(--component-background);
+    cursor: pointer;
+  }
+  lwd-nav[type=floatingSymbol] lwd-navgroup {
+    background-color: var(--component-background);
+    border-radius: 10px;
+    padding: 10px;
+    margin: 5px;
+    box-shadow: var(--box-shadow);
+    border: medium;
+    border-image: var(--linear-gradient);
+    display: inline-flex;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    text-decoration: none;
+    border-radius: 30px;
+    color: var(--foreground);
+    background-color: var(--component-background);
+    cursor: pointer;
+  }
+  lwd-nav[type=floatingSymbol] lwd-navgroup lwd-navitem {
+    display: inline-flex;
+    background: none;
+    box-shadow: none;
+    flex: 0 1 30px;
+  }
+  lwd-nav[type=floatingSymbol] .navItemIcon {
+    order: 1;
+    min-width: 30px;
+  }
+  lwd-nav[type=floatingSymbol] .navItemLabel {
+    order: 2;
+    padding: 0 5px 2px 5px;
+  }
+  lwd-nav[type=floatingSymbol] .justTextNavItem {
+    background: none;
+    box-shadow: none;
+    font-size: 1.2em;
+    font-family: "Segoe dUI", selawk;
+    font-weight: bold;
+    margin: auto 0;
   }
 }
-@media screen and (max-width: 1020px) {
-  lwd-nav[mobile-type=test], lwd-nav[type=test]:not([mobile-type]) {
-    left: 10px;
+@media screen and (max-width: 650px) {
+  lwd-nav[mobile-type=floatingSymbol], lwd-nav[type=floatingSymbol]:not([mobile-type]) {
+    background-color: var(--component-background);
+    border-radius: 10px;
+    padding: 10px;
+    margin: 5px;
+    box-shadow: var(--box-shadow);
+    border: medium;
+    border-image: var(--linear-gradient);
+    position: sticky;
+    top: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 30px;
+    width: calc(100% - 110px);
+    margin: 0 0 0 80px;
+    color: var(--foreground);
+    text-decoration: none;
+    border-radius: 17px;
+    cursor: pointer;
+    background: center center/auto 30px no-repeat;
+    background-color: var(--component-background);
+  }
+  lwd-nav[mobile-type=floatingSymbol] ion-icon, lwd-nav[type=floatingSymbol]:not([mobile-type]) ion-icon {
+    font-size: 20px;
+  }
+  lwd-nav[mobile-type=floatingSymbol] lwd-navitem, lwd-nav[type=floatingSymbol]:not([mobile-type]) lwd-navitem {
+    display: none;
+    flex: 0 1 200px;
+    justify-content: center;
+  }
+  lwd-nav[mobile-type=floatingSymbol] .header, lwd-nav[type=floatingSymbol]:not([mobile-type]) .header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    left: 0px;
+    top: 20px;
+    width: 50px;
+    height: 50px;
+    margin-left: 15px;
+    padding: 0;
+  }
+  lwd-nav[mobile-type=floatingSymbol] .header ion-icon, lwd-nav[type=floatingSymbol]:not([mobile-type]) .header ion-icon {
+    font-size: 1.5em;
+  }
+  lwd-nav[mobile-type=floatingSymbol] .navItemLabel, lwd-nav[type=floatingSymbol]:not([mobile-type]) .navItemLabel, lwd-nav[mobile-type=floatingSymbol] .justTextNavItem, lwd-nav[type=floatingSymbol]:not([mobile-type]) .justTextNavItem, lwd-nav[mobile-type=floatingSymbol] lwd-navgroup, lwd-nav[type=floatingSymbol]:not([mobile-type]) lwd-navgroup {
+    display: none;
+  }
+  lwd-nav[mobile-type=floatingSymbol] .mobile-nav-item, lwd-nav[type=floatingSymbol]:not([mobile-type]) .mobile-nav-item {
+    display: flex;
   }
 }
 
+body[nav-alt-state] lwd-nav[type=side], body[nav-alt-state] lwd-nav:not([type]) {
+  width: 55px;
+  min-width: unset;
+  overflow: hidden;
+}
+body[nav-alt-state] lwd-nav[type=side] lwd-navitem, body[nav-alt-state] lwd-nav:not([type]) lwd-navitem {
+  justify-content: center;
+  transition: width 0.2s;
+  width: calc(100% - 10px);
+  margin-left: 5px;
+  margin-right: 5px;
+}
+body[nav-alt-state] lwd-nav[type=side] .navItemLabel, body[nav-alt-state] lwd-nav:not([type]) .navItemLabel {
+  display: none;
+}
+@media screen and (max-width: 1300px) {
+  body[nav-alt-state] lwd-nav[type=side], body[nav-alt-state] lwd-nav:not([type]) {
+    overflow: initial;
+    width: 340px;
+  }
+  body[nav-alt-state] lwd-nav[type=side] lwd-navitem, body[nav-alt-state] lwd-nav:not([type]) lwd-navitem {
+    justify-content: unset;
+    width: calc(100% - 25px);
+    transition: width 0.2s;
+    margin: 5px 0;
+  }
+  body[nav-alt-state] lwd-nav[type=side] .navItemLabel, body[nav-alt-state] lwd-nav:not([type]) .navItemLabel {
+    display: unset;
+  }
+}
 button, input[type=submit], input[type=reset], input[type=button] {
   cursor: pointer;
   font-family: "SegoeUi_sb";
@@ -327,11 +549,17 @@ input {
   font-size: 0.8rem;
   font-family: "SegoeUi";
   background-color: var(--component-background);
+  border: var(--border);
   border-radius: 6px;
   padding: 0.5rem 1.1rem 0.5rem 1.1rem;
   margin: 5px;
-  border: none;
   color: var(--foreground);
+}
+input:focus {
+  border-bottom-color: var(--color-darker);
+  border-width: 2px;
+  margin: 4px;
+  transition: all 0.1s;
   box-shadow: var(--box-shadow);
 }
 input::placeholder {
@@ -393,13 +621,14 @@ input[type=range]::-webkit-range-progress {
 }
 
 div.lwd-box, .lwd-list div {
-  background-color: white;
+  background-color: var(--component-background);
   box-shadow: 0px 1.6px 7px rgba(0, 0, 0, 0.09);
-  border-radius: 2px;
+  border-radius: 3px;
   width: auto;
   height: auto;
   padding: 15px;
   width: fit-content;
+  align-self: center;
 }
 div.lwd-box.round-corners, .lwd-list div.round-corners {
   border-radius: 7px;
@@ -417,6 +646,10 @@ div.lwd-box.round-corners, .lwd-list div.round-corners {
 }
 .lwd-list.round-corners div {
   border-radius: 7px;
+}
+.lwd-list.flat div {
+  border: var(--border);
+  box-shadow: none;
 }
 
 .linkbox-container {

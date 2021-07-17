@@ -97,29 +97,13 @@ class LwdNav extends HTMLElement {
         },
         floatingSymbol: {
             initialize(navElem) {
-                let navItems = document.querySelectorAll("lwd-navitem");
-                console.log(navItems[0].children);
-
-                navItems.forEach((item) => {
-                    if (!item.classList.contains("navButton") && !item.classList.contains("justTextNavItem")) {
-                        let clonedNavItem = item.cloneNode();
-                        for(let child of item.children) {
-                            clonedNavItem.appendChild(child.cloneNode());
-                        }
-                        clonedNavItem.classList.add("hide-in-desktop", "mobile-nav-item");
-    
-                        navElem.appendChild(clonedNavItem);
-                        console.log("inserted clonedItem");
-                    }
-                });
-
-
                 let menuHead = document.createElement("lwd-navitem");
                 menuHead.classList.add("hide-in-desktop", "generated-nav-element", "header"); 
                 menuHead.appendChild(navElem.getNavButton(18));
 
                 navElem.insertBefore(menuHead, navElem.firstChild);
-                console.log("inserted menuHead");
+
+                document.querySelectorAll("lwd-navitem")
             }
         }
     }
@@ -193,7 +177,7 @@ class LwdNav extends HTMLElement {
                 return this.mobileNavTypes[this.getAttribute("mobile-type")];
             } else {
                 console.warn("LWD: Navigation mobile-type '" + this.getAttribute("mobile-type") + "' is not found.");
-                return this.mobileNavTypies.sde; // return default
+                return this.mobileNavTypes.side; // return default
             }
         }
         if (this.hasAttribute("type")) {
