@@ -34,6 +34,66 @@
   font-family: "Century_Gothic";
   src: url(../fonts/century-gothic/GOTHIC.TTF);
 }
+@font-face {
+  font-family: "Myriad_Regular";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Myriad Pro Regular"), url("MYRIADPRO-REGULAR.woff") format("woff");
+}
+@font-face {
+  font-family: "Myriad_Condensed";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Myriad Pro Condensed"), url("MYRIADPRO-COND.woff") format("woff");
+}
+@font-face {
+  font-family: "Myriad_Condensed_Italic";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Myriad Pro Condensed Italic"), url("MYRIADPRO-CONDIT.woff") format("woff");
+}
+@font-face {
+  font-family: "Myriad_Light";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Myriad_Light"), url("MyriadPro-Light.woff") format("woff");
+}
+@font-face {
+  font-family: "Myriad_Semibold";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Myriad Pro Semibold"), url("MYRIADPRO-SEMIBOLD.woff") format("woff");
+}
+@font-face {
+  font-family: "Myriad_Semibold_Italic";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Myriad Pro Semibold Italic"), url("MYRIADPRO-SEMIBOLDIT.woff") format("woff");
+}
+@font-face {
+  font-family: "Myriad_Bold_Condensed";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Myriad Pro Bold Condensed"), url("MYRIADPRO-BOLDCOND.woff") format("woff");
+}
+@font-face {
+  font-family: "Myriad_Bold";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Myriad Pro Bold"), url("MYRIADPRO-BOLD.woff") format("woff");
+}
+@font-face {
+  font-family: "Myriad_Bold_Italic";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Myriad_Bold_Italic"), url("MYRIADPRO-BOLDIT.woff") format("woff");
+}
+@font-face {
+  font-family: "Myriad_Bold_Condensed_Italic";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Myriad Pro Bold Condensed Italic"), url("MYRIADPRO-BOLDCONDIT.woff") format("woff");
+}
 :root {
   --color-extra-light: #a3f4ff;
   --color-light: #8ae2ff;
@@ -59,25 +119,27 @@
   --box-shadow-2: 0px 1.6px 8px rgba(0, 0, 0, 0.13), 0px 0px 2.9px rgba(0, 0, 0, 0.11);
   --box-shadow-active: 1px 1px 3px rgba(0, 0, 0, 0.25);
   --linear-gradient: linear-gradient(white, rgb(233, 231, 231));
+  --border: solid #ececec 1px;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground: white;
-    --background: hsl(0, 0%, 21%);
+    --background: #333333;
     --background-hover: hsl(0, 0%, 18%);
     --background-active: hsl(0, 0%, 15%);
     --transparent-background: hsla(0, 0%, 21%, 0.97);
-    --component-background: hsl(0, 0%, 37%);
+    --component-background: #3f3f3f;
     --component-background-hover: hsl(0, 0%, 33%);
     --component-background-active: hsl(0, 0%, 29%);
     --box-shadow: 1.2px 1.2px 6px rgba(0, 0, 0, 0.75);
     --box-shadow-active: 1px 1px 3px rgba(0, 0, 0, 0.75);
     --linear-gradient: linear-gradient(rgb(78, 78, 78), rgb(27, 27, 27));
+    --border: solid #2e2e2e 1px;
   }
 }
 body {
-  font-family: selawk;
+  font-family: "Segoe UI", selawk, sans-serif;
   background-color: var(--background);
   color: var(--foreground);
 }
@@ -102,7 +164,7 @@ body {
   border-image: var(--linear-gradient);
 }
 
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 650px) {
   .hide-in-mobile {
     display: none;
     visibility: hidden;
@@ -110,7 +172,7 @@ body {
   }
 }
 
-@media screen and (min-width: 850px) {
+@media screen and (min-width: 650px) {
   .hide-in-desktop {
     display: none;
     visibility: hidden;
@@ -143,7 +205,7 @@ h4 {
   font-weight: normal;
 }
 
-@media screen and (min-width: 850px) {
+@media screen and (min-width: 650px) {
   body[nav-type=side] {
     margin-left: 350px;
   }
@@ -156,13 +218,13 @@ h4 {
     margin-left: 65px;
   }
 }
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 650px) {
   body[nav-type=side] {
     margin-left: 10px;
   }
 }
 
-@media screen and (min-width: 850px) {
+@media screen and (min-width: 650px) {
   lwd-nav[type=side], lwd-nav:not([type]) {
     overflow-x: scroll;
     position: fixed;
@@ -238,7 +300,7 @@ h4 {
     display: none;
   }
 }
-@media screen and (min-width: 850px) {
+@media screen and (min-width: 650px) {
   lwd-nav[type=floatingSymbol] {
     display: flex;
     flex-wrap: nowrap;
@@ -309,7 +371,7 @@ h4 {
     margin: auto 0;
   }
 }
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 650px) {
   lwd-nav[mobile-type=floatingSymbol], lwd-nav[type=floatingSymbol]:not([mobile-type]) {
     background-color: var(--component-background);
     border-radius: 10px;
@@ -318,37 +380,49 @@ h4 {
     box-shadow: var(--box-shadow);
     border: medium;
     border-image: var(--linear-gradient);
-    display: block;
+    position: sticky;
     top: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     height: 30px;
     width: calc(100% - 110px);
+    margin: 0 0 0 80px;
     color: var(--foreground);
     text-decoration: none;
-    border-radius: 30px;
+    border-radius: 17px;
+    cursor: pointer;
     background: center center/auto 30px no-repeat;
     background-color: var(--component-background);
-    margin: 0 0 0 70px;
-    cursor: pointer;
   }
   lwd-nav[mobile-type=floatingSymbol] ion-icon, lwd-nav[type=floatingSymbol]:not([mobile-type]) ion-icon {
     font-size: 20px;
   }
   lwd-nav[mobile-type=floatingSymbol] lwd-navitem, lwd-nav[type=floatingSymbol]:not([mobile-type]) lwd-navitem {
-    display: block;
-    width: 135px;
+    display: none;
+    flex: 0 1 200px;
+    justify-content: center;
   }
   lwd-nav[mobile-type=floatingSymbol] .header, lwd-nav[type=floatingSymbol]:not([mobile-type]) .header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: fixed;
     left: 0px;
     top: 20px;
-    width: 60px;
+    width: 50px;
     height: 50px;
-    margin-left: 5px;
+    margin-left: 15px;
     padding: 0;
-    background-color: #0079d6;
   }
-  lwd-nav[mobile-type=floatingSymbol] .navItemLabel, lwd-nav[type=floatingSymbol]:not([mobile-type]) .navItemLabel, lwd-nav[mobile-type=floatingSymbol] .justTextNavItem, lwd-nav[type=floatingSymbol]:not([mobile-type]) .justTextNavItem {
+  lwd-nav[mobile-type=floatingSymbol] .header ion-icon, lwd-nav[type=floatingSymbol]:not([mobile-type]) .header ion-icon {
+    font-size: 1.5em;
+  }
+  lwd-nav[mobile-type=floatingSymbol] .navItemLabel, lwd-nav[type=floatingSymbol]:not([mobile-type]) .navItemLabel, lwd-nav[mobile-type=floatingSymbol] .justTextNavItem, lwd-nav[type=floatingSymbol]:not([mobile-type]) .justTextNavItem, lwd-nav[mobile-type=floatingSymbol] lwd-navgroup, lwd-nav[type=floatingSymbol]:not([mobile-type]) lwd-navgroup {
     display: none;
+  }
+  lwd-nav[mobile-type=floatingSymbol] .mobile-nav-item, lwd-nav[type=floatingSymbol]:not([mobile-type]) .mobile-nav-item {
+    display: flex;
   }
 }
 
@@ -475,11 +549,17 @@ input {
   font-size: 0.8rem;
   font-family: "SegoeUi";
   background-color: var(--component-background);
+  border: var(--border);
   border-radius: 6px;
   padding: 0.5rem 1.1rem 0.5rem 1.1rem;
   margin: 5px;
-  border: none;
   color: var(--foreground);
+}
+input:focus {
+  border-bottom-color: var(--color-darker);
+  border-width: 2px;
+  margin: 4px;
+  transition: all 0.1s;
   box-shadow: var(--box-shadow);
 }
 input::placeholder {
@@ -541,13 +621,14 @@ input[type=range]::-webkit-range-progress {
 }
 
 div.lwd-box, .lwd-list div {
-  background-color: white;
+  background-color: var(--component-background);
   box-shadow: 0px 1.6px 7px rgba(0, 0, 0, 0.09);
-  border-radius: 2px;
+  border-radius: 3px;
   width: auto;
   height: auto;
   padding: 15px;
   width: fit-content;
+  align-self: center;
 }
 div.lwd-box.round-corners, .lwd-list div.round-corners {
   border-radius: 7px;
@@ -565,6 +646,10 @@ div.lwd-box.round-corners, .lwd-list div.round-corners {
 }
 .lwd-list.round-corners div {
   border-radius: 7px;
+}
+.lwd-list.flat div {
+  border: var(--border);
+  box-shadow: none;
 }
 
 .linkbox-container {

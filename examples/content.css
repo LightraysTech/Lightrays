@@ -1,0 +1,6 @@
+.input-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    flex-wrap: wrap;
+    justify-content: center;
+}

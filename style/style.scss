@@ -32,22 +32,24 @@
             --box-shadow-2: 0px 1.6px 8px rgba(0, 0, 0, 0.13), 0px 0px 2.9px rgba(0, 0, 0, 0.11);
             --box-shadow-active: 1px 1px 3px rgba(0, 0, 0, 0.25);
             --linear-gradient: linear-gradient(white, rgb(233, 231, 231));
+            --border: solid #ececec 1px;
         }
     } @else {
         :root {
             --foreground: white;
-            --background: hsl(0, 0%, 21%);
+            --background: #333333;
             --background-hover: hsl(0, 0%, 18%);
             --background-active: hsl(0, 0%, 15%);
             --transparent-background: hsla(0, 0%, 21%, 0.97);
 
-            --component-background: hsl(0, 0%, 37%);
+            --component-background: #3f3f3f;
             --component-background-hover: hsl(0, 0%, 33%);
             --component-background-active: hsl(0, 0%, 29%);
 
             --box-shadow: 1.2px 1.2px 6px rgba(0, 0, 0, 0.75);
             --box-shadow-active: 1px 1px 3px rgba(0, 0, 0, 0.75);
             --linear-gradient: linear-gradient(rgb(78, 78, 78), rgb(27, 27, 27));
+            --border: solid #2e2e2e 1px;
         }
     }
 }
@@ -85,13 +87,13 @@
 }
 
 @mixin mobile() {
-    @media screen and (max-width: 850px) {
+    @media screen and (max-width: 650px) {
         @content;
     }    
 }
 
 @mixin desktop() {
-    @media screen and (min-width: 850px) {
+    @media screen and (min-width: 650px) {
         @content;
     }    
 }
@@ -104,7 +106,7 @@
 
 // General
 body {
-    font-family: selawk;
+    font-family: 'Segoe UI', selawk, sans-serif;
     background-color: var(--background);
     color: var(--foreground);
 }
@@ -308,28 +310,26 @@ lwd-nav {
     &[mobile-type = floatingSymbol] {
         @include mobile() {
             @include inline-box;
-            display: block; top: 20px;
-            height: 30px; width: calc(100% - 110px);
-            color: var(--foreground);
-            text-decoration: none; border-radius: 30px;
-            background: center center /  auto 30px no-repeat;
-            background-color: var(--component-background);
-            margin: 0 0 0 70px;
-            cursor: pointer;
+            position: sticky; top: 20px;
+            display: flex; justify-content: space-around; align-items: center;
+            height: 30px; width: calc(100% - 110px); margin: 0 0 0 80px;
+            color: var(--foreground); text-decoration: none; border-radius: 17px; cursor: pointer;
+            background: center center /  auto 30px no-repeat; background-color: var(--component-background);
+            
             ion-icon{font-size: 20px}
 
-            lwd-navitem {
-                display: block;
-                width: 135px;
-            }
+            lwd-navitem {display: none; flex: 0 1 200px; justify-content: center;}
 
             .header {
+                display: flex; justify-content: center; align-items: center;
                 position: fixed; left: 0px; top: 20px;
-                width: 60px; height: 50px; margin-left: 5px; padding: 0;
-                background-color: #0079d6;
+                width: 50px; height: 50px; 
+                margin-left: 15px; padding: 0;
+                ion-icon {font-size: 1.5em;}
             }
 
-            .navItemLabel, .justTextNavItem {display: none;}
+            .navItemLabel, .justTextNavItem, lwd-navgroup {display: none;}
+            .mobile-nav-item {display: flex;}
         }
     }
 }
@@ -473,12 +473,19 @@ input {
     font-size: .8rem;
     font-family: "SegoeUi";
     background-color: var(--component-background);
+    border: var(--border);
     border-radius: $border-radius;
     padding: .5rem 1.1rem .5rem 1.1rem;
     margin: 5px;
-    border: none;
     color: var(--foreground);
-    box-shadow: var(--box-shadow);
+
+    &:focus {
+        border-bottom-color: var(--color-darker);
+        border-width: 2px;
+        margin: 4px;
+        transition: all .1s;
+        box-shadow: var(--box-shadow);
+    }
 
     &::placeholder {
         color: hsl(0, 0%, 70%);
@@ -545,13 +552,14 @@ input {
     background-color: red;
 }
 div.lwd-box {
-    background-color: white;
+    background-color: var(--component-background);
     box-shadow: 0px 1.6px 7px rgb(0 0 0 / 9%);
-    border-radius: 2px;
+    border-radius: 3px;
     width: auto;
     height: auto;
     padding: 15px;
     width: fit-content;
+    align-self: center;
 
     &.round-corners {
         border-radius: 7px;
@@ -564,6 +572,7 @@ div.lwd-box {
     grid-auto-rows: 48px;
     grid-gap: 10px;
     overflow-y: initial;
+    
     div {
         @extend .lwd-box;
         width: initial;
@@ -571,6 +580,12 @@ div.lwd-box {
     &.round-corners {
         div {
             border-radius: 7px;
+        }
+    }
+    &.flat {
+        div {
+            border: var(--border);
+            box-shadow: none;
         }
     }
 }

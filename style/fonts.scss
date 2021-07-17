@@ -1,43 +1,120 @@
 @font-face {
-    font-family: "selawk";
-    src: url("../fonts/selawik/selawk.ttf");
-    font-display: swap;
-  }
-
-@font-face {
-    font-family: "selawksb";
-    src: url("../fonts/selawik/selawksb.ttf");
-    font-display: swap;
+  font-family: "selawk";
+  src: url("../fonts/selawik/selawk.ttf");
+  font-display: swap;
 }
 
 @font-face {
-    font-family: "selawkb";
-    src: url("../fonts/selawik/selawkb.ttf");
-    font-display: swap;
+  font-family: "selawksb";
+  src: url("../fonts/selawik/selawksb.ttf");
+  font-display: swap;
 }
 
 @font-face {
-    font-family: "selawkl";
-    src: url("../fonts/selawik/selawkl.ttf");
-    font-display: swap;
+  font-family: "selawkb";
+  src: url("../fonts/selawik/selawkb.ttf");
+  font-display: swap;
 }
 
 @font-face {
-    font-family: "SegoeUI";
-    src: url(../fonts/SegoeUI/segoeui.ttf);
+  font-family: "selawkl";
+  src: url("../fonts/selawik/selawkl.ttf");
+  font-display: swap;
 }
 
 @font-face {
-    font-family: "SegoeUI_sb";
-    src: url(../fonts/SegoeUI/seguisb.ttf);
+  font-family: "SegoeUI";
+  src: url(../fonts/SegoeUI/segoeui.ttf);
 }
 
 @font-face {
-    font-family: "SegoeUI_b";
-    src: url(../fonts/SegoeUI/segoeuib.ttf);
+  font-family: "SegoeUI_sb";
+  src: url(../fonts/SegoeUI/seguisb.ttf);
 }
 
 @font-face {
-    font-family: "Century_Gothic";
-    src: url(../fonts/century-gothic/GOTHIC.TTF);
+  font-family: "SegoeUI_b";
+  src: url(../fonts/SegoeUI/segoeuib.ttf);
+}
+
+@font-face {
+  font-family: "Century_Gothic";
+  src: url(../fonts/century-gothic/GOTHIC.TTF);
+}
+
+//Myriad (TEST)
+@font-face {
+  font-family: "Myriad_Regular";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Myriad Pro Regular"), url("MYRIADPRO-REGULAR.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Myriad_Condensed";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Myriad Pro Condensed"), url("MYRIADPRO-COND.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Myriad_Condensed_Italic";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Myriad Pro Condensed Italic"),
+    url("MYRIADPRO-CONDIT.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Myriad_Light";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Myriad_Light"), url("MyriadPro-Light.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Myriad_Semibold";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Myriad Pro Semibold"),
+    url("MYRIADPRO-SEMIBOLD.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Myriad_Semibold_Italic";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Myriad Pro Semibold Italic"),
+    url("MYRIADPRO-SEMIBOLDIT.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Myriad_Bold_Condensed";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Myriad Pro Bold Condensed"),
+    url("MYRIADPRO-BOLDCOND.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Myriad_Bold";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Myriad Pro Bold"), url("MYRIADPRO-BOLD.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Myriad_Bold_Italic";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Myriad_Bold_Italic"),
+    url("MYRIADPRO-BOLDIT.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Myriad_Bold_Condensed_Italic";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Myriad Pro Bold Condensed Italic"),
+    url("MYRIADPRO-BOLDCONDIT.woff") format("woff");
 }

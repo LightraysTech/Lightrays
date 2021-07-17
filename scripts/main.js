@@ -97,21 +97,29 @@ class LwdNav extends HTMLElement {
         },
         floatingSymbol: {
             initialize(navElem) {
+                let navItems = document.querySelectorAll("lwd-navitem");
+                console.log(navItems[0].children);
+
+                navItems.forEach((item) => {
+                    if (!item.classList.contains("navButton") && !item.classList.contains("justTextNavItem")) {
+                        let clonedNavItem = item.cloneNode();
+                        for(let child of item.children) {
+                            clonedNavItem.appendChild(child.cloneNode());
+                        }
+                        clonedNavItem.classList.add("hide-in-desktop", "mobile-nav-item");
+    
+                        navElem.appendChild(clonedNavItem);
+                        console.log("inserted clonedItem");
+                    }
+                });
+
+
                 let menuHead = document.createElement("lwd-navitem");
                 menuHead.classList.add("hide-in-desktop", "generated-nav-element", "header"); 
                 menuHead.appendChild(navElem.getNavButton(18));
 
                 navElem.insertBefore(menuHead, navElem.firstChild);
                 console.log("inserted menuHead");
-
-                let navItems = document.querySelectorAll("lwd-navitem");
-                navItems.forEach((item) => {
-                    let clonedItem = item.cloneNode();
-                    clonedItem.classList.add("hide-in-desktop");
-                    navElem.appendChild(clonedItem);
-                    console.log("inserted clonedItem");
-                });
-                
             }
         }
     }
