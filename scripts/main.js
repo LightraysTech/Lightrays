@@ -1,4 +1,4 @@
-class lwd {
+class Lwd {
     static cssVariables = document.querySelector(":root").style;
     static rootFolderPath = document.currentScript.src.substr(0, document.currentScript.src.lastIndexOf("/")) + "/..";
 
@@ -110,11 +110,31 @@ class lwd {
         }
         return "";
     }
+
+    static wrapElement(elem, wrapper) {
+        elem.parentNode.insertBefore(wrapper, elem);
+        wrapper.appendChild(elem);
+    }
 }
 
 
 window.addEventListener("load", () => {
-    lwd.init();
+    Lwd.init();
+
+    //wrap inputs into container
+    document.querySelectorAll("input").forEach(elem => {
+        if (elem.type != "radio" && elem.type != "range" && elem.type != "button" && elem.type != "color" && elem.type != "checkbox" && elem.type != "submit" && elem.type != "reset") {
+            let container = document.createElement("div");
+            container.classList.add("lwd-ip-container");
+            Lwd.wrapElement(elem, container);
+
+            elem.addEventListener("focus", () => {
+                console.log("focused");
+                container.style = "var(--ip-background-size);";
+                //Lwd.cssVariables.setProperty("--ip-background-size", "100% auto");
+            });
+        }
+    });
 });
 
 class LwdNav extends HTMLElement {
@@ -173,7 +193,6 @@ class LwdNav extends HTMLElement {
         floatingSymbol: {
             initialize(navElem) {
                 let navItems = document.querySelectorAll("lwd-navitem");
-                console.log(navItems[0].children);
 
                 navItems.forEach((item) => {
                     if (!item.classList.contains("navButton") && !item.classList.contains("justTextNavItem")) {

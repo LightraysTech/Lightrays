@@ -53,6 +53,9 @@
 } @else if $theme == darkTheme {
     @include getTheme(dark);
 }
+:root {
+    --ip-background-size: 100% auto;
+}
 
 // Functions
 @mixin fixed-center {
@@ -488,22 +491,39 @@ nav.top-icon-nav {
 
 
 // Inputs
+.lwd-ip-container {
+    position: relative;
+    display: grid;
+    grid-template-columns: calc(100% + 2px);
+    margin: 5px 0;
+     &::after {
+        content: "";
+        position: absolute; left: 0px; right: 0px; bottom: 0px;
+        height: 5%;
+        border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;
+        background-position: 0% 0%;
+        background: linear-gradient(to right, var(--color-lighter), var(--color-darker));
+        background-size: var(--ip-background-size);
+        background-repeat: no-repeat;
+    }
+}
 input {
+    position: relative;
+    right: 1px;
     font-size: .8rem;
     font-family: $default-font;
-    background-color: var(--component-background);
     border: var(--border);
     border-radius: $border-radius;
+    border-bottom-left-radius: 4px; border-bottom-right-radius: 4px;
+    background-color: var(--component-background);
     padding: .5rem 1.1rem .5rem 1.1rem;
-    margin: 5px;
     color: var(--foreground);
+    transition: .3s;
+    width: auto;
 
     &:focus {
-        border-bottom-color: var(--color-darker);
-        border-width: 2px;
-        margin: 4px;
-        transition: all .1s;
         box-shadow: var(--box-shadow);
+        background: var(--component-background);
     }
 
     &::placeholder {
