@@ -24,9 +24,9 @@ class Lwd {
             this.setCookie("lwd-accentColor", "[obj]" + JSON.stringify(color));
             this.currentAccentColor = "custom";
             let keys = Object.keys(color);
-            for (let i = 0; i < keys.length; i++) {
-                console.log("--color-" + keys[i], color[keys[i]]);
-                this.cssVariables.setProperty("--color-" + keys[i], color[keys[i]]);
+            for (let key of keys) {
+                console.log("--color-" + key, color[key]);
+                this.cssVariables.setProperty("--color-" + key, color[key]);
             }
         } else {
             fetch(this.rootFolderPath + "/settings.json")
@@ -36,8 +36,8 @@ class Lwd {
                     this.setCookie("lwd-accentColor", "[str]" + color);
                     this.currentAccentColor = color;
                     let keys = Object.keys(out.colors[color]);
-                    for (let i = 0; i < keys.length; i++) {
-                        this.cssVariables.setProperty("--color-" + keys[i], out.colors[color][keys[i]]);
+                    for (let key of keys) {
+                        this.cssVariables.setProperty("--color-" + key, out.colors[color][key]);
                     }
                 } else {
                     console.error("LWD:  Accent-color '" + color + "' was not found.");
@@ -54,8 +54,8 @@ class Lwd {
           if (typeof(out.themes[theme]) != "undefined") {
               this.currentTheme = theme;
               let keys = Object.keys(out.themes[theme]);
-              for (let i = 0; i < keys.length; i++) {
-                  this.cssVariables.setProperty("--" + keys[i], out.themes[theme][keys[i]]);
+              for (let key of keys) {
+                  this.cssVariables.setProperty("--" + key, out.themes[theme][key]);
               }
           } else {
               console.error("LWD:  Theme '" + theme + "' was not found.");
@@ -80,7 +80,9 @@ class Lwd {
         
 
     }
+}
 
+class LwdFunctions {
     static setCookie(name, value, expiresDays, path) {
         let cookieStr = name + "=" + value + ";";
         if (expiresDays != undefined) {
@@ -99,8 +101,7 @@ class Lwd {
         let name = cname + "=";
         let decodedCookie = decodeURIComponent(document.cookie);
         let ca = decodedCookie.split(';');
-        for(let i = 0; i <ca.length; i++) {
-            let c = ca[i];
+        for(let c of ca) {
             while (c.charAt(0) == ' ') {
                 c = c.substring(1);
             }
@@ -117,24 +118,8 @@ class Lwd {
     }
 }
 
-
 window.addEventListener("load", () => {
     Lwd.init();
-
-    //wrap inputs into container
-    document.querySelectorAll("input").forEach(elem => {
-        if (elem.type != "radio" && elem.type != "range" && elem.type != "button" && elem.type != "color" && elem.type != "checkbox" && elem.type != "submit" && elem.type != "reset") {
-            let container = document.createElement("div");
-            container.classList.add("lwd-ip-container");
-            Lwd.wrapElement(elem, container);
-
-            elem.addEventListener("focus", () => {
-                console.log("focused");
-                container.style = "var(--ip-background-size);";
-                //Lwd.cssVariables.setProperty("--ip-background-size", "100% auto");
-            });
-        }
-    });
 });
 
 class LwdNav extends HTMLElement {
