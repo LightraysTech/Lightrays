@@ -31,15 +31,24 @@
 }
 
 :root {
+  --PI: 3.14159265358979;
+}
+
+:root {
   --foreground: black;
-  --background: hsl(0, 0%, 96%);
+  --background: hsl(240,30%, 96%);
   --background-hover: hsl(0, 3%, 85%);
   --background-active: hsl(0, 0%, 83%);
   --transparent-background: hsla(0, 0%, 99%, 0.95);
-  --component-background: white;
+  --component-background: hsla(0, 0%, 97%);
   --component-background-hover: hsl(0, 0%, 98%);
   --component-background-active: hsl(0, 0%, 81%);
-  --box-shadow: 0px 1.6px 7px rgb(0 0 0 / 9%);
+  --height:4;
+  --box-shadow: calc(50px * var(--height)) calc(10px * var(--height)) 10px rgba(16, 67, 100, 0.15),
+                  4px 4px 15px -5px rgba(0, 0, 0, calc(0.2 / var(--height))),
+                  inset 1px 1px 1.5px -1px hsl(0, 0%, 97%),
+                  inset 1px 1px 1px white,
+                  inset -1px -1px 2px -1px rgba(0, 0, 0, 0.116);
   --box-shadow-2: 0px 1.6px 8px rgba(0, 0, 0, 0.13), 0px 0px 2.9px rgba(0, 0, 0, 0.11);
   --box-shadow-active: 1px 1px 3px rgba(0, 0, 0, 0.25);
   --border: solid #ececec 1px;
@@ -582,8 +591,10 @@ input[type=range]::-webkit-range-progress {
 }
 
 div.lwd-box, .lwd-list > div {
+  --light-direction-x: 83px;
+  --light-direction-y: 55px;
+  box-shadow: calc(var(--light-direction-x) * var(--height)) calc(var(--light-direction-y) * var(--height)) 10px rgba(16, 67, 100, 0.15), 4px 4px 15px -5px rgba(0, 0, 0, calc(0.2 / var(--height))), inset 1px 1px 1.5px -1px #f7f7f7, inset 1px 1px 1px white, inset -1px -1px 2px -1px rgba(0, 0, 0, 0.116);
   background-color: var(--component-background);
-  box-shadow: 0px 1.6px 7px rgba(0, 0, 0, 0.09);
   border-radius: 3px;
   width: auto;
   height: auto;
