@@ -4,3 +4,12 @@
     flex-wrap: wrap;
     justify-content: center;
 }
+
+.lwd-box {
+    transition: all .3s;
+
+}
+.lwd-box:hover {
+    transform: scale(1.1);
+    z-index: 1;
+}

@@ -69,11 +69,14 @@
 }
 :root {
   --ip-background-size: 100% auto;
+  --sun-tint: 215;
+  --sun-tint-saturation: 50%;
 }
 
 body {
   font-family: "Segoe UI", "selawik", Tahoma, Geneva, Verdana, sans-serif;
-  background-color: var(--background);
+  background: linear-gradient(calc(var(--shadow-angle)*(-1)), hsla(var(--sun-tint), calc(var(--sun-tint-saturation)), 93%, 1), hsla(var(--sun-tint), calc(var(--sun-tint-saturation)), 98%, 1), #ffffff);
+  background-attachment: fixed;
   color: var(--foreground);
 }
 
@@ -129,7 +132,7 @@ h4 {
     margin-left: 80px;
   }
 }
-@media screen and (min-width: 850px) and (max-width: 1300px) {
+@media screen and (min-width: 650px) and (max-width: 1300px) {
   body[nav-type=side] {
     margin-left: 65px;
   }
@@ -218,7 +221,7 @@ h4 {
     display: none;
   }
 }
-@media screen and (min-width: 850px) and (max-width: 1300px) {
+@media screen and (min-width: 650px) and (max-width: 1300px) {
   lwd-nav[type=side], lwd-nav:not([type]) {
     width: 55px;
   }
@@ -567,7 +570,14 @@ input {
 input:focus {
   border-bottom: 2px solid transparent;
   padding-bottom: 9px;
-  box-shadow: var(--box-shadow);
+  --height: 0.3;
+  --shadow-size: calc((1px*var(--height)) - 8px);
+  --shadow-color: hsla(var(--sun-tint), calc(var(--sun-tint-saturation) - 10%), 30%, 0.1);
+  box-shadow: calc(var(--light-direction-x)*var(--height)) calc(var(--light-direction-y)*var(--height)) calc(25px*var(--height)) var(--shadow-size) var(--shadow-color), 4px 4px 10px -5px rgba(0, 0, 0, calc(0.1 / var(--height))), inset 1px 1px 1.5px -1px #f7f7f7, inset 1px 1px 1px white, inset -1px -1px 2px -1px rgba(0, 0, 0, 0.116);
+}
+input:focus:hover {
+  --height: 1;
+  transition: all 0.3s;
 }
 input::placeholder {
   color: #b3b3b3;
@@ -600,36 +610,6 @@ input[type=checkbox]:checked {
   background-size: 13px;
   background-position: center center;
 }
-input[type=range] {
-  /*
-  appearance: none;
-  -webkit-appearance: none;
-  padding: initial;
-  box-shadow: none;
-  border-radius: 5pt;
-  height: 4px;
-  background: var(--component-background);
-  outline: none;
-  &::-webkit-slider-thumb,
-  &::-moz-range-thumb {
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    border: none;
-    background: var(--color-main);
-    cursor: pointer;
-  }
-  &::-webkit-range-thumb:hover {
-    background: var(--color-lighter);
-  }
-  &::-webkit-range-thumb:active {
-    background: var(--color-darker);
-  }
-  &::-webkit-range-progress {
-    background-color: red;
-  }*/
-  /* The slider itself */
-}
 input[type=range][type=range] {
   -webkit-appearance: none;
   appearance: none;
@@ -639,7 +619,7 @@ input[type=range][type=range] {
   /* Remove outline */
   -webkit-transition: 0.1s;
   transition: all 0.1s;
-  margin: 0;
+  margin: 15px 5px;
   padding: 2px;
 }
 input[type=range][type=range]::-webkit-slider-thumb {
@@ -663,9 +643,10 @@ input[type=range][type=range]::-moz-range-thumb {
 }
 
 div.lwd-box, .lwd-list > div {
-  --light-direction-x: 83px;
-  --light-direction-y: 55px;
-  box-shadow: calc(var(--light-direction-x) * var(--height)) calc(var(--light-direction-y) * var(--height)) 10px rgba(16, 67, 100, 0.15), 4px 4px 15px -5px rgba(0, 0, 0, calc(0.2 / var(--height))), inset 1px 1px 1.5px -1px #f7f7f7, inset 1px 1px 1px white, inset -1px -1px 2px -1px rgba(0, 0, 0, 0.116);
+  --height: 0.3;
+  --shadow-size: calc((1px*var(--height)) - 8px);
+  --shadow-color: hsla(var(--sun-tint), calc(var(--sun-tint-saturation) - 10%), 30%, 0.1);
+  box-shadow: calc(var(--light-direction-x)*var(--height)) calc(var(--light-direction-y)*var(--height)) calc(25px*var(--height)) var(--shadow-size) var(--shadow-color), 4px 4px 10px -5px rgba(0, 0, 0, calc(0.1 / var(--height))), inset 1px 1px 1.5px -1px #f7f7f7, inset 1px 1px 1px white, inset -1px -1px 2px -1px rgba(0, 0, 0, 0.116);
   background-color: var(--component-background);
   border-radius: 3px;
   width: auto;
@@ -674,6 +655,10 @@ div.lwd-box, .lwd-list > div {
   width: fit-content;
   margin: 10px 0;
   align-self: center;
+}
+div.lwd-box:hover, .lwd-list > div:hover {
+  --height: 1;
+  transition: all 0.3s;
 }
 div.lwd-box.round-corners, .lwd-list > div.round-corners {
   border-radius: 7px;

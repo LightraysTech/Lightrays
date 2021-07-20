@@ -4,6 +4,7 @@ class Lwd {
 
     static currentAccentColor = "blue";
     static currentTheme = "light";
+    static currentShadowAngle = "70";
 
     static init() {
         let accentColor = LwdFunctions.getCookie("lwd-accentColor");
@@ -16,6 +17,7 @@ class Lwd {
                 this.setAccentColor(accentColor.split("[str]")[1]);
             }
         }
+        this.setShadowAngle(this.currentShadowAngle);
     }
 
     static setAccentColor(color) {
@@ -77,8 +79,15 @@ class Lwd {
                 }
             });
         });
-        
+    }
 
+    static setShadowAngle(angle) {
+        let lightX = Math.sin(angle * Math.PI/180).toFixed(2)*100;
+        let lightY = Math.cos(angle * Math.PI/180).toFixed(2)*100;
+        document.querySelector(":root").style.setProperty("--light-direction-x", lightX + "px");
+        document.querySelector(":root").style.setProperty("--light-direction-y", lightY + "px");
+        document.querySelector(":root").style.setProperty("--shadow-angle", angle + "deg");
+        this.currentShadowAngle = angle;
     }
 }
 

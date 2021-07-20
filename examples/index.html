@@ -45,8 +45,22 @@
         <h4>There is also a third header</h4>
         Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing.
         <br><br>
-        <input type="range", onchange="document.querySelector(':root').style.setProperty('--height', this.value)" min="1" max="3">
-        <div class="lwd-box" style="margin: 100px;width: 200px; height: 300px;"></div>
+        <input type="range", oninput="document.querySelectorAll('.lwd-box, .lwd-list div').forEach(e => e.style.setProperty('--height', this.value))" min="0" max="3" step="0.1" style="width: 200px;">
+        <input type="range" min="-180" max="180" oninput="Lwd.setShadowAngle(this.value)" style="width: 200px;" id="shadowAngle">
+        <input type="range", oninput="document.querySelector(':root').style.setProperty('--sun-tint', this.value)" min="0" max="255" step="0.1" style="width: 200px;">
+        <input type="range", oninput="document.querySelector(':root').style.setProperty('--sun-tint-saturation', this.value + '%')" min="0" max="100" style="width: 200px;">
+        
+        <div style="display: flex;">
+            <div class="lwd-box" style="margin: 20px;padding: 0px;width: 200px; height: 300px;">
+                <div class="lwd-box" style="margin: 0px;padding: 0px;width: 200px; height: 100px;"></div>
+            </div>
+            <div class="lwd-box" style="margin: 20px;padding: 0px;width: 200px; height: 300px;">
+                <div class="lwd-box" style="margin: 0px;padding: 0px;width: 200px; height: 100px;"></div>
+            </div>
+            <div class="lwd-box" style="margin: 20px;padding: 0px;width: 200px; height: 300px;">
+                <div class="lwd-box" style="margin: 0px;padding: 0px;width: 200px; height: 100px;"></div>
+            </div>
+        </div>
 
         <h3>Lwd-List</h3>
         <div class="lwd-list" style="max-width: 80em;">  
