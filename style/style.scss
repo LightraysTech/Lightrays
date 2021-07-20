@@ -60,6 +60,9 @@
 } @else if $theme == darkTheme {
     @include getTheme(dark);
 }
+:root {
+    --ip-background-size: 100% auto;
+}
 
 // Functions
 @mixin shadow($height) {
@@ -510,21 +513,38 @@ nav.top-icon-nav {
 
 
 // Inputs
+.lwd-ip-container {
+    position: relative;
+    display: grid;
+    grid-template-columns: calc(100% + 2px);
+    margin: 5px 0;
+     &::after {
+        content: "";
+        position: absolute; left: 0px; right: 0px; bottom: 0px;
+        height: 5%;
+        border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;
+        background-position: 0% 0%;
+        background: linear-gradient(to right, var(--color-lighter), var(--color-darker));
+        background-size: var(--ip-background-size);
+        background-repeat: no-repeat;
+    }
+}
 input {
-    font-size: .8rem;
-    font-family: $default-font;
+    background: 
+    linear-gradient(var(--component-background),var(--component-background)) padding-box,
+    linear-gradient(to right, var(--color-lighter), var(--color-main)) border-box;
+
     background-color: var(--component-background);
-    border: var(--border);
-    border-radius: $border-radius;
-    padding: .5rem 1.1rem .5rem 1.1rem;
-    margin: 5px;
+    border: var(--border); border-radius: $border-radius;
+    font-size: .8rem; font-family: $default-font;
+    padding: 10px; margin: 5px 0;
     color: var(--foreground);
+    transition: all .1s;
+    display:inline-block;
 
     &:focus {
-        border-bottom-color: var(--color-darker);
-        border-width: 2px;
-        margin: 4px;
-        transition: all .1s;
+        border-bottom: 2px solid transparent;
+        padding-bottom: 9px;
         box-shadow: var(--box-shadow);
     }
 
@@ -533,20 +553,22 @@ input {
     }
 
     &[type="reset"], &[type="button"] {
-        @extend button;
+        @extend button; 
+        border: none;
     }
     &[type="submit"] {
         @extend button, .important;
+        border: none;
     }
 
     &[type="color"] {
         padding: 0;
         border-radius: 0;
+        background: var(--component-background);
     }
 
     &[type="checkbox"] {
         appearance: none;
-        background-color: white;
         box-shadow: var(--box-shadow);
         -webkit-appearance: none;
         border: 2px solid rgb(236, 236, 236);
@@ -570,13 +592,12 @@ input {
         padding: initial;
         box-shadow: none;
         border-radius: 5pt;
-        width: 150pt;
         height: 4px;
-        background-color: var(--component-background);
+        background: var(--component-background);
         outline: none;
         &::-webkit-slider-thumb, &::-moz-range-thumb {
-            width: 15px;
-            height: 15px;
+            width: 25px;
+            height: 25px;
             border-radius: 50%;
             border: none;
             background: var(--color-main);
@@ -584,9 +605,7 @@ input {
         }
         &::-webkit-range-thumb:hover {background: var(--color-lighter);}
         &::-webkit-range-thumb:active {background: var(--color-darker);}
-        &::-webkit-range-progress {
-            background-color: red;
-        }
+        &::-webkit-range-progress {background-color: red;}
     }
 }
 ::-webkit-range-progress {

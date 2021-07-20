@@ -1,4 +1,4 @@
-class lwd {
+class Lwd {
     static cssVariables = document.querySelector(":root").style;
     static rootFolderPath = document.currentScript.src.substr(0, document.currentScript.src.lastIndexOf("/")) + "/..";
 
@@ -24,9 +24,9 @@ class lwd {
             this.setCookie("lwd-accentColor", "[obj]" + JSON.stringify(color));
             this.currentAccentColor = "custom";
             let keys = Object.keys(color);
-            for (let i = 0; i < keys.length; i++) {
-                console.log("--color-" + keys[i], color[keys[i]]);
-                this.cssVariables.setProperty("--color-" + keys[i], color[keys[i]]);
+            for (let key of keys) {
+                console.log("--color-" + key, color[key]);
+                this.cssVariables.setProperty("--color-" + key, color[key]);
             }
         } else {
             fetch(this.rootFolderPath + "/settings.json")
@@ -36,8 +36,8 @@ class lwd {
                     this.setCookie("lwd-accentColor", "[str]" + color);
                     this.currentAccentColor = color;
                     let keys = Object.keys(out.colors[color]);
-                    for (let i = 0; i < keys.length; i++) {
-                        this.cssVariables.setProperty("--color-" + keys[i], out.colors[color][keys[i]]);
+                    for (let key of keys) {
+                        this.cssVariables.setProperty("--color-" + key, out.colors[color][key]);
                     }
                 } else {
                     console.error("LWD:  Accent-color '" + color + "' was not found.");
@@ -54,8 +54,8 @@ class lwd {
           if (typeof(out.themes[theme]) != "undefined") {
               this.currentTheme = theme;
               let keys = Object.keys(out.themes[theme]);
-              for (let i = 0; i < keys.length; i++) {
-                  this.cssVariables.setProperty("--" + keys[i], out.themes[theme][keys[i]]);
+              for (let key of keys) {
+                  this.cssVariables.setProperty("--" + key, out.themes[theme][key]);
               }
           } else {
               console.error("LWD:  Theme '" + theme + "' was not found.");
@@ -80,7 +80,9 @@ class lwd {
         
 
     }
+}
 
+class LwdFunctions {
     static setCookie(name, value, expiresDays, path) {
         let cookieStr = name + "=" + value + ";";
         if (expiresDays != undefined) {
@@ -99,8 +101,7 @@ class lwd {
         let name = cname + "=";
         let decodedCookie = decodeURIComponent(document.cookie);
         let ca = decodedCookie.split(';');
-        for(let i = 0; i <ca.length; i++) {
-            let c = ca[i];
+        for(let c of ca) {
             while (c.charAt(0) == ' ') {
                 c = c.substring(1);
             }
@@ -110,11 +111,15 @@ class lwd {
         }
         return "";
     }
+
+    static wrapElement(elem, wrapper) {
+        elem.parentNode.insertBefore(wrapper, elem);
+        wrapper.appendChild(elem);
+    }
 }
 
-
 window.addEventListener("load", () => {
-    lwd.init();
+    Lwd.init();
 });
 
 class LwdNav extends HTMLElement {
@@ -173,7 +178,6 @@ class LwdNav extends HTMLElement {
         floatingSymbol: {
             initialize(navElem) {
                 let navItems = document.querySelectorAll("lwd-navitem");
-                console.log(navItems[0].children);
 
                 navItems.forEach((item) => {
                     if (!item.classList.contains("navButton") && !item.classList.contains("justTextNavItem")) {
