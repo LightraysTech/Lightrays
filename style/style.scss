@@ -1,24 +1,32 @@
 @import "fonts.scss";
 @import "settings.scss";
 
+:root {
+    --PI: 3.14159265358979;
+}
+
 // Themes
 @mixin getTheme($thm) {
     @if $thm == light {
         :root {
             --foreground: black;
-            --background: hsl(0, 0%, 96%);
+            --background: hsl(240,30%, 96%);
             --background-hover: hsl(0, 3%, 85%);
             --background-active: hsl(0, 0%, 83%);
             --transparent-background: hsla(0, 0%, 99%, 0.95);
 
-            --component-background: white;
-            --component-background-hover: hsl(0, 0%, 87%);
+            --component-background: hsla(0, 0%, 97%);
+            --component-background-hover: hsl(0, 0%, 98%);
             --component-background-active: hsl(0, 0%, 81%);
 
-            --box-shadow: 0px 1.6px 7px rgb(0 0 0 / 9%);
-            --box-shadow-2: 0px 1.6px 8px rgba(0, 0, 0, 0.13), 0px 0px 2.9px rgba(0, 0, 0, 0.11);
+            --height:4;
+            --box-shadow:   calc(50px * var(--height)) calc(10px * var(--height)) 10px rgba(16, 67, 100, 0.15), 
+                            4px 4px 15px -5px rgba(0, 0, 0, calc(0.2 / var(--height))), 
+                            inset 1px 1px 1.5px -1px hsl(0, 0%, 97%),
+                            inset 1px 1px 1px white,
+                            inset -1px -1px 2px -1px rgba(0, 0, 0, 0.116);
+                        --box-shadow-2: 0px 1.6px 8px rgba(0, 0, 0, 0.13), 0px 0px 2.9px rgba(0, 0, 0, 0.11);
             --box-shadow-active: 1px 1px 3px rgba(0, 0, 0, 0.25);
-            --linear-gradient: linear-gradient(white, rgb(233, 231, 231));
             --border: solid #ececec 1px;
         }
     } @else {
@@ -35,7 +43,6 @@
 
             --box-shadow: 1.2px 1.2px 6px rgba(0, 0, 0, 0.75);
             --box-shadow-active: 1px 1px 3px rgba(0, 0, 0, 0.75);
-            --linear-gradient: linear-gradient(rgb(78, 78, 78), rgb(27, 27, 27));
             --border: solid #2e2e2e 1px;
         }
     }
@@ -58,6 +65,19 @@
 }
 
 // Functions
+@mixin shadow($height) {
+    --light-direction-x: 83px;
+    --light-direction-y: 55px;
+    //--height: #{$height}; 
+    //--height: 2;
+    box-shadow:     calc(var(--light-direction-x) * var(--height)) calc(var(--light-direction-y) * var(--height)) 10px rgba(16, 67, 100, 0.15),
+                    4px 4px 15px -5px rgba(0, 0, 0, calc(0.2 / var(--height))),
+                    inset 1px 1px 1.5px -1px hsl(0, 0%, 97%),
+                    inset 1px 1px 1px white,
+                    inset -1px -1px 2px -1px rgba(0, 0, 0, 0.116);
+}
+
+
 @mixin fixed-center {
     position: fixed;
     left: -9999px;
@@ -72,8 +92,6 @@
     padding: 10px;
     margin: 5px;
     box-shadow: var(--box-shadow);
-    border: medium;
-    border-image: var(--linear-gradient);
 }
 
 @mixin mobile() {
@@ -400,7 +418,7 @@ button {
     color: var(--foreground);
     border-radius: $border-radius;
     box-shadow: var(--box-shadow);
-    transition: background-color .2s, color .2s, transform .1s ease-in;
+    transition: background-color .2s, color .2s, transform .05s ease-in;
     
 
     &:hover {
@@ -411,6 +429,10 @@ button {
         color: var(--color-text);
         transform: scale(.95);
         box-shadow: var(--box-shadow);
+    }
+    &:focus {
+        border: none;
+        margin: 7px;
     }
     &.important {
         background: var(--color-main);
@@ -590,8 +612,9 @@ input {
     background-color: red;
 }
 div.lwd-box {
+    @include shadow(1);
     background-color: var(--component-background);
-    box-shadow: 0px 1.6px 7px rgb(0 0 0 / 9%);
+    //box-shadow: var(--box-shadow);
     border-radius: 3px;
     width: auto;
     height: auto;
