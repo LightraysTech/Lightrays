@@ -6,7 +6,7 @@ class Lwd {
     static currentTheme = "light";
 
     static init() {
-        let accentColor = this.getCookie("lwd-accentColor");
+        let accentColor = LwdFunctions.getCookie("lwd-accentColor");
         if (accentColor != "") {
             if (accentColor.startsWith("[obj]")) {
                 console.log(accentColor.split("[obj]"));
@@ -21,7 +21,7 @@ class Lwd {
     static setAccentColor(color) {
         if (typeof(color) == "object") {
             console.log(color);
-            this.setCookie("lwd-accentColor", "[obj]" + JSON.stringify(color));
+            LwdFunctions.setCookie("lwd-accentColor", "[obj]" + JSON.stringify(color));
             this.currentAccentColor = "custom";
             let keys = Object.keys(color);
             for (let key of keys) {
@@ -33,7 +33,7 @@ class Lwd {
             .then(res => res.json())
             .then(out => {
                 if (typeof(out.colors[color]) != "undefined") {
-                    this.setCookie("lwd-accentColor", "[str]" + color);
+                    LwdFunctions.setCookie("lwd-accentColor", "[str]" + color);
                     this.currentAccentColor = color;
                     let keys = Object.keys(out.colors[color]);
                     for (let key of keys) {
@@ -239,7 +239,7 @@ class LwdNav extends HTMLElement {
         if (specifiedNavButton == null) {
             console.info("LWD: no navButton found, switched to default");
             navButton = document.createElement("img");
-            navButton.setAttribute("src", lwd.rootFolderPath + "/img/menu-btn.svg");
+            navButton.setAttribute("src", Lwd.rootFolderPath + "/img/menu-btn.svg");
             navButton.setAttribute("width", width);
         } else {
             console.info("LWD: navButton found");
