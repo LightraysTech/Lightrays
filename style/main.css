@@ -70,12 +70,15 @@
 :root {
   --ip-background-size: 100% auto;
   --sun-tint: 215;
-  --sun-tint-saturation: 50%;
+  --sun-saturation: 50%;
+  --shadow-length: 1;
+  --sky-brightness: 100%;
+  --sun-brightness: 95%;
 }
 
 body {
   font-family: "Segoe UI", "selawik", Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(calc(var(--shadow-angle)*(-1)), hsla(var(--sun-tint), calc(var(--sun-tint-saturation)), 93%, 1), hsla(var(--sun-tint), calc(var(--sun-tint-saturation)), 98%, 1), #ffffff);
+  background: linear-gradient(calc(var(--shadow-angle)*(-1)), hsl(var(--sun-tint), var(--sun-saturation), var(--sun-brightness)), hsl(0, 0%, var(--sky-brightness)));
   background-attachment: fixed;
   color: var(--foreground);
 }
@@ -572,8 +575,13 @@ input:focus {
   padding-bottom: 9px;
   --height: 0.3;
   --shadow-size: calc((1px*var(--height)) - 8px);
-  --shadow-color: hsla(var(--sun-tint), calc(var(--sun-tint-saturation) - 10%), 30%, 0.1);
-  box-shadow: calc(var(--light-direction-x)*var(--height)) calc(var(--light-direction-y)*var(--height)) calc(25px*var(--height)) var(--shadow-size) var(--shadow-color), 4px 4px 10px -5px rgba(0, 0, 0, calc(0.1 / var(--height))), inset 1px 1px 1.5px -1px #f7f7f7, inset 1px 1px 1px white, inset -1px -1px 2px -1px rgba(0, 0, 0, 0.116);
+  --shadow-color: hsla(var(--sun-tint), calc(var(--sun-saturation) - 10%), 30%, 0.1);
+  box-shadow: calc(var(--light-direction-x)*var(--height)*var(--shadow-length)) calc(var(--light-direction-y)*var(--height)) calc(25px*var(--height)) var(--shadow-size) var(--shadow-color), 4px 4px 10px -5px rgba(0, 0, 0, calc(0.1 / var(--height))), inset 1px 1px 1.5px -1px rgba(247, 247, 247, 0.1), inset 1px 1px 1px rgba(255, 255, 255, 0.1), inset -1px -1px 2px -1px rgba(0, 0, 0, 0.116);
+  /*box-shadow:     calc(var(--light-direction-x)*var(--height)*var(--shadow-length)) calc(var(--light-direction-y)*var(--height)) calc(25px*var(--height)) var(--shadow-size) var(--shadow-color),
+  4px 4px 10px -5px rgba(0, 0, 0, calc(0.1 / var(--height))),  //AO
+  inset 1px 1px 1.5px -1px hsl(0, 0%, 97%),  //Spec
+  inset 1px 1px 1px white,  //Spec Highlight
+  inset -1px -1px 2px -1px rgba(0, 0, 0, 0.116);*/
 }
 input:focus:hover {
   --height: 1;
@@ -645,9 +653,14 @@ input[type=range][type=range]::-moz-range-thumb {
 div.lwd-box, .lwd-list > div {
   --height: 0.3;
   --shadow-size: calc((1px*var(--height)) - 8px);
-  --shadow-color: hsla(var(--sun-tint), calc(var(--sun-tint-saturation) - 10%), 30%, 0.1);
-  box-shadow: calc(var(--light-direction-x)*var(--height)) calc(var(--light-direction-y)*var(--height)) calc(25px*var(--height)) var(--shadow-size) var(--shadow-color), 4px 4px 10px -5px rgba(0, 0, 0, calc(0.1 / var(--height))), inset 1px 1px 1.5px -1px #f7f7f7, inset 1px 1px 1px white, inset -1px -1px 2px -1px rgba(0, 0, 0, 0.116);
-  background-color: var(--component-background);
+  --shadow-color: hsla(var(--sun-tint), calc(var(--sun-saturation) - 10%), 30%, 0.1);
+  box-shadow: calc(var(--light-direction-x)*var(--height)*var(--shadow-length)) calc(var(--light-direction-y)*var(--height)) calc(25px*var(--height)) var(--shadow-size) var(--shadow-color), 4px 4px 10px -5px rgba(0, 0, 0, calc(0.1 / var(--height))), inset 1px 1px 1.5px -1px rgba(247, 247, 247, 0.1), inset 1px 1px 1px rgba(255, 255, 255, 0.1), inset -1px -1px 2px -1px rgba(0, 0, 0, 0.116);
+  /*box-shadow:     calc(var(--light-direction-x)*var(--height)*var(--shadow-length)) calc(var(--light-direction-y)*var(--height)) calc(25px*var(--height)) var(--shadow-size) var(--shadow-color),
+  4px 4px 10px -5px rgba(0, 0, 0, calc(0.1 / var(--height))),  //AO
+  inset 1px 1px 1.5px -1px hsl(0, 0%, 97%),  //Spec
+  inset 1px 1px 1px white,  //Spec Highlight
+  inset -1px -1px 2px -1px rgba(0, 0, 0, 0.116);*/
+  background-color: rgba(255, 255, 255, 0.1);
   border-radius: 3px;
   width: auto;
   height: auto;

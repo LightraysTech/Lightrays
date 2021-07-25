@@ -89,6 +89,70 @@ class Lwd {
         document.querySelector(":root").style.setProperty("--shadow-angle", angle + "deg");
         this.currentShadowAngle = angle;
     }
+
+    static setLightTime(time, sunrise, sunset) {
+        if (time >= 0 && time <=24) {
+            let angle = LwdFunctions.map_range(time, 0, 24, -180, 180);
+
+            if (sunset == undefined || sunset == null) {sunset = 18;}
+            if (sunrise == undefined || sunrise == null) {sunrise = 6;}
+
+            //SHADOWS---
+            let shadow_length = Math.sin(LwdFunctions.map_range(time, 0, 24, 0, Math.PI));
+            shadow_length = 1+(shadow_length*2);
+                
+            let lightX = -Math.sin(angle * Math.PI/180)*100;
+            let lightY = Math.cos(angle * Math.PI/180)*100;
+
+            //SKY-------
+            let sky_brightness = 100;
+            let sun_brightness = 95;
+            if (time >= sunrise-2 && time <= sunrise) {  //while sunrise
+                console.log("sunrise");
+                sky_brightness = LwdFunctions.map_range(time, sunrise-2, sunrise, 10, 100);
+            } else if(time >= sunset+2 && time <= sunset+4) { //while sunset
+                console.log("sunset");
+                sky_brightness = LwdFunctions.map_range(time, sunset+2, sunset+4, 100, 10);
+            } else if (time < sunrise-2 || time > sunset+4) {  //night time
+                console.log("night");
+                sky_brightness = 10;
+            }
+
+            //SUN COLOR----
+            let sun_tint = 215
+            let sun_saturation = 100;
+
+            if(time >= sunrise && time <= sunrise+2) {  //while sunrise
+                sun_saturation = LwdFunctions.map_range(time, sunrise, sunrise+2, 70, 100);
+                sun_tint = LwdFunctions.map_range(time, sunrise, sunrise+2, 11, 40);
+                sun_brightness = LwdFunctions.map_range(time, sunrise, sunrise+2, 80, 97);
+
+            } else if(time >= sunset && time <= sunset+2) { //while sunset
+                sun_saturation = LwdFunctions.map_range(time, sunset, sunset+2, 100, 70);
+                sun_tint = LwdFunctions.map_range(time, sunset, sunset+2, 40, 11);
+                sun_brightness = LwdFunctions.map_range(time, sunset, sunset+2, 97, 80);
+
+            } else if(time < sunrise || time > sunset+2) {  //night time
+                sun_saturation = 70;
+                sun_brightness = 20;
+            }
+
+            //Apply values to css
+            this.cssVariables.setProperty("--light-direction-x", lightX + "px");
+            this.cssVariables.setProperty("--light-direction-y", lightY + "px");
+            this.cssVariables.setProperty("--shadow-angle", angle + "deg");
+            this.cssVariables.setProperty("--shadow-length", shadow_length);
+            this.cssVariables.setProperty("--sky-brightness", sky_brightness + "%");
+            this.cssVariables.setProperty("--sun-tint", sun_tint);
+            this.cssVariables.setProperty("--sun-saturation", sun_saturation + "%");
+            this.cssVariables.setProperty("--sun-brightness", sun_brightness + "%");
+
+            console.log("Set time to " + time);  //DEBUG
+            return "Set time to " + time; 
+        } else {
+            return "Invalid time input, please enter a number between 0-24.";
+        }
+    }
 }
 
 class LwdFunctions {
@@ -124,6 +188,10 @@ class LwdFunctions {
     static wrapElement(elem, wrapper) {
         elem.parentNode.insertBefore(wrapper, elem);
         wrapper.appendChild(elem);
+    }
+
+    static map_range(value, low1, high1, low2, high2) {
+        return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
     }
 }
 

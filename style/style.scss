@@ -59,7 +59,10 @@
 :root {
   --ip-background-size: 100% auto;
   --sun-tint: 215;
-  --sun-tint-saturation: 50%;
+  --sun-saturation: 50%;
+  --shadow-length: 1;
+  --sky-brightness: 100%;
+  --sun-brightness: 95%;
 }
 
 // Functions
@@ -100,12 +103,20 @@
 @mixin shadow($height) {
     --height: 0.3;
     --shadow-size: calc((1px*var(--height)) - 8px);
-    --shadow-color: hsla(var(--sun-tint), calc(var(--sun-tint-saturation) - 10%), 30%, 0.1);
-    box-shadow:     calc(var(--light-direction-x)*var(--height)) calc(var(--light-direction-y)*var(--height)) calc(25px*var(--height)) var(--shadow-size) var(--shadow-color),
+    --shadow-color: hsla(var(--sun-tint), calc(var(--sun-saturation) - 10%), 30%, 0.1);
+
+    box-shadow:     calc(var(--light-direction-x)*var(--height)*var(--shadow-length)) calc(var(--light-direction-y)*var(--height)) calc(25px*var(--height)) var(--shadow-size) var(--shadow-color),
                     4px 4px 10px -5px rgba(0, 0, 0, calc(0.1 / var(--height))),  //AO
-                    inset 1px 1px 1.5px -1px hsl(0, 0%, 97%),  //Spec
-                    inset 1px 1px 1px white,  //Spec Highlight
+                    inset 1px 1px 1.5px -1px hsla(0, 0%, 97%, .1),  //Spec
+                    inset 1px 1px 1px hsla(0, 0%, 100%, .1),  //Spec Highlight
                     inset -1px -1px 2px -1px rgba(0, 0, 0, 0.116);
+
+    /*box-shadow:     calc(var(--light-direction-x)*var(--height)*var(--shadow-length)) calc(var(--light-direction-y)*var(--height)) calc(25px*var(--height)) var(--shadow-size) var(--shadow-color),
+    4px 4px 10px -5px rgba(0, 0, 0, calc(0.1 / var(--height))),  //AO
+    inset 1px 1px 1.5px -1px hsl(0, 0%, 97%),  //Spec
+    inset 1px 1px 1px white,  //Spec Highlight
+    inset -1px -1px 2px -1px rgba(0, 0, 0, 0.116);*/
+
     &:hover {
         --height: 1;
         transition: all .3s;
@@ -116,9 +127,9 @@
 body {
   font-family: $default-font;
   background: linear-gradient(calc(var(--shadow-angle)*(-1)), 
-    hsla(var(--sun-tint), calc(var(--sun-tint-saturation)), 93%, 1),
-    hsla(var(--sun-tint), calc(var(--sun-tint-saturation)), 98%, 1),
-    #ffffff);
+    hsl(var(--sun-tint), var(--sun-saturation), var(--sun-brightness)),
+    /*hsl(var(--sun-tint), 10%, calc(var(--sky-brightness) + 5%)),*/
+    hsl(0, 0%, var(--sky-brightness)));
   background-attachment: fixed;
   color: var(--foreground);
 }
@@ -735,7 +746,8 @@ input {
 
 div.lwd-box {
     @include shadow(1);
-    background-color: var(--component-background);
+    background-color: hsla(0, 0, 100%, .1);
+    //background-color: var(--component-background);
     //box-shadow: var(--box-shadow);
     border-radius: 3px;
     width: auto;
