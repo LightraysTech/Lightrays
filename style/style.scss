@@ -15,7 +15,7 @@
       --background-active: hsl(0, 0%, 83%);
       --transparent-background: hsla(0, 0%, 99%, 0.95);
 
-      --component-background: white;
+      --component-background: hsla(0, 0%, 98%, .6);
       --component-background-hover: hsl(0, 0%, 87%);
       --component-background-active: hsl(0, 0%, 81%);
 
@@ -24,7 +24,7 @@
         0px 0px 2.9px rgba(0, 0, 0, 0.11);
       --box-shadow-active: 1px 1px 3px rgba(0, 0, 0, 0.25);
       --linear-gradient: linear-gradient(white, rgb(233, 231, 231));
-      --border: solid #ececec 1px;
+      --border: solid hsl(0, 0%, 95%) 1px;
     }
   } @else {
     :root {
@@ -34,14 +34,14 @@
       --background-active: hsl(0, 0%, 15%);
       --transparent-background: hsla(0, 0%, 21%, 0.97);
 
-      --component-background: #3f3f3f;
+      --component-background: hsla(0, 0%, 10%, .4);
       --component-background-hover: hsl(0, 0%, 33%);
       --component-background-active: hsl(0, 0%, 29%);
 
       --box-shadow: 1.2px 1.2px 6px rgba(0, 0, 0, 0.75);
       --box-shadow-active: 1px 1px 3px rgba(0, 0, 0, 0.75);
       --linear-gradient: linear-gradient(rgb(78, 78, 78), rgb(27, 27, 27));
-      --border: solid #2e2e2e 1px;
+      --border: solid solid hsla(0, 0%, 10%, .2) 1px;
     }
   }
 }
@@ -56,6 +56,7 @@
 } @else if $theme == darkTheme {
   @include getTheme(dark);
 }
+
 :root {
   --ip-background-size: 100% auto;
   --sun-tint: 215;
@@ -101,26 +102,24 @@
 }
 
 @mixin shadow($height) {
-    --height: 0.3;
+    --height: 1;
+    --shadow-dir-x: calc(var(--light-direction-x)*var(--height)*var(--shadow-length));
+    --shadow-dir-y: calc(var(--light-direction-y)*var(--height));
+    --shadow-blur: calc(10px*var(--height));
     --shadow-size: calc((1px*var(--height)) - 8px);
-    --shadow-color: hsla(var(--sun-tint), calc(var(--sun-saturation) - 10%), 30%, 0.1);
+    --shadow-color: hsla(var(--sun-tint), calc(var(--sun-saturation) - 20%), 30%, 0.1);
 
-    box-shadow:     calc(var(--light-direction-x)*var(--height)*var(--shadow-length)) calc(var(--light-direction-y)*var(--height)) calc(25px*var(--height)) var(--shadow-size) var(--shadow-color),
-                    4px 4px 10px -5px rgba(0, 0, 0, calc(0.1 / var(--height))),  //AO
-                    inset 1px 1px 1.5px -1px hsla(0, 0%, 97%, .1),  //Spec
-                    inset 1px 1px 1px hsla(0, 0%, 100%, .1),  //Spec Highlight
-                    inset -1px -1px 2px -1px rgba(0, 0, 0, 0.116);
+    box-shadow:   var(--shadow-dir-x) var(--shadow-dir-y) var(--shadow-blur) var(--shadow-size) var(--shadow-color),
+                  4px 4px 10px -5px rgba(0, 0, 0, calc(0.2 / var(--height))),  //AO
+                  inset 1px 1px 1.5px -1px hsla(0, 0%, 97%, .1),  //Spec
+                  inset 1px 1px 1px hsla(0, 0%, 100%, .1),  //Spec Highlight
+                  inset -1px -1px 2px -1px rgba(0, 0, 0, 0.116);
 
     /*box-shadow:     calc(var(--light-direction-x)*var(--height)*var(--shadow-length)) calc(var(--light-direction-y)*var(--height)) calc(25px*var(--height)) var(--shadow-size) var(--shadow-color),
     4px 4px 10px -5px rgba(0, 0, 0, calc(0.1 / var(--height))),  //AO
     inset 1px 1px 1.5px -1px hsl(0, 0%, 97%),  //Spec
     inset 1px 1px 1px white,  //Spec Highlight
     inset -1px -1px 2px -1px rgba(0, 0, 0, 0.116);*/
-
-    &:hover {
-        --height: 1;
-        transition: all .3s;
-    }
 }
 
 // General
@@ -128,7 +127,6 @@ body {
   font-family: $default-font;
   background: linear-gradient(calc(var(--shadow-angle)*(-1)), 
     hsl(var(--sun-tint), var(--sun-saturation), var(--sun-brightness)),
-    /*hsl(var(--sun-tint), 10%, calc(var(--sky-brightness) + 5%)),*/
     hsl(0, 0%, var(--sky-brightness)));
   background-attachment: fixed;
   color: var(--foreground);
@@ -142,10 +140,6 @@ body {
 ::-webkit-scrollbar-thumb {
   background-color: darkgrey;
   border-radius: 8px;
-}
-
-.inline-box {
-  @include inline-box;
 }
 
 :focus {
@@ -175,13 +169,6 @@ h4 {
 }
 
 // Navigation --------------------------------------------------
-lwd-nav {
-  &:not([type]) {
-    // no type specified
-    @extend [type="side"]; // default
-  }
-}
-
 body {
   &[nav-type="side"] {
     @include desktop() {
@@ -204,11 +191,13 @@ body {
 }
 
 lwd-nav {
-  &[type="side"] {
-    &:not([mobile-type]) {
-      @extend [mobile-type="side"];
-    } // no mobile-type specified
+  z-index: 100;
 
+  // no type specified -> go to default type
+  &:not([mobile-type]) {@extend [mobile-type="side"];}
+  &:not([type]) {@extend [type="side"];}
+
+  &[type="side"] {
     @include desktop() {
       overflow-x: scroll;
       position: fixed;
@@ -218,6 +207,8 @@ lwd-nav {
       height: 100%;
       padding-top: 10px;
       white-space: nowrap;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       background-color: var(--component-background);
       box-shadow: var(--box-shadow-2);
       transition: width 0.2s ease-in-out;
@@ -269,8 +260,9 @@ lwd-nav {
 
       lwd-navgroup {
         display: block;
-        border-top: 1.5px solid var(--background);
-        border-bottom: 1.5px solid var(--background);
+        border-top: var(--border);
+        border-bottom: var(--border);
+        border-width: 1.5px;
         margin: 5px 0;
         padding: 5px 0;
         & ~ lwd-navgroup {
@@ -401,37 +393,42 @@ lwd-nav {
       z-index: 100;
 
       lwd-navitem {
-        @include inline-box;
         display: inline-flex;
         justify-content: center;
         align-items: center;
         min-width: 30px;
         height: 30px;
+        padding: 10px; margin: 5px;
         color: var(--foreground);
         text-decoration: none;
         border-radius: 30px;
         background: center center / auto 30px no-repeat;
         background-color: var(--component-background);
+        @include shadow(1);
+        backdrop-filter: blur(20px);
         cursor: pointer;
       }
 
       lwd-navgroup {
-        @include inline-box;
         display: inline-flex;
         gap: 5px;
         justify-content: center;
         align-items: center;
         height: 30px;
+        padding: 10px; margin: 5px;
         text-decoration: none;
         border-radius: 30px;
         color: var(--foreground);
         background-color: var(--component-background);
+        @include shadow(1);
+        backdrop-filter: blur(20px);
         cursor: pointer;
 
         lwd-navitem {
           display: inline-flex;
           background: none;
           box-shadow: none;
+          backdrop-filter: none;
           flex: 0 1 30px;
         }
       }
@@ -455,7 +452,6 @@ lwd-nav {
 
   &[mobile-type="floatingSymbol"] {
     @include mobile() {
-      @include inline-box;
       position: sticky;
       top: 20px;
       display: flex;
@@ -463,13 +459,14 @@ lwd-nav {
       align-items: center;
       height: 30px;
       width: calc(100% - 110px);
-      margin: 0 0 0 80px;
+      margin: 0 0 0 80px; padding: 10px;
       color: var(--foreground);
       text-decoration: none;
       border-radius: 17px;
       cursor: pointer;
       background: center center / auto 30px no-repeat;
       background-color: var(--component-background);
+      @include shadow(1);
 
       ion-icon {
         font-size: 20px;
@@ -746,9 +743,9 @@ input {
 
 div.lwd-box {
     @include shadow(1);
-    background-color: hsla(0, 0, 100%, .1);
-    //background-color: var(--component-background);
-    //box-shadow: var(--box-shadow);
+    background-color: var(--component-background);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border-radius: 3px;
     width: auto;
     height: auto;

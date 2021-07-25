@@ -7,9 +7,13 @@
 
 .lwd-box {
     transition: all .3s;
-
 }
+
 .lwd-box:hover {
     transform: scale(1.1);
     z-index: 1;
+    --height: 1.05;
+}
+.lwd-box:hover div {
+    --height: 1.05;
 }

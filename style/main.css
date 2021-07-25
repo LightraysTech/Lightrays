@@ -40,7 +40,7 @@
   --background-hover: hsl(0, 3%, 85%);
   --background-active: hsl(0, 0%, 83%);
   --transparent-background: hsla(0, 0%, 99%, 0.95);
-  --component-background: white;
+  --component-background: hsla(0, 0%, 98%, .6);
   --component-background-hover: hsl(0, 0%, 87%);
   --component-background-active: hsl(0, 0%, 81%);
   --box-shadow: 0px 1.6px 7px rgb(0 0 0 / 9%);
@@ -48,7 +48,7 @@
     0px 0px 2.9px rgba(0, 0, 0, 0.11);
   --box-shadow-active: 1px 1px 3px rgba(0, 0, 0, 0.25);
   --linear-gradient: linear-gradient(white, rgb(233, 231, 231));
-  --border: solid #ececec 1px;
+  --border: solid hsl(0, 0%, 95%) 1px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -58,13 +58,13 @@
     --background-hover: hsl(0, 0%, 18%);
     --background-active: hsl(0, 0%, 15%);
     --transparent-background: hsla(0, 0%, 21%, 0.97);
-    --component-background: #3f3f3f;
+    --component-background: hsla(0, 0%, 10%, .4);
     --component-background-hover: hsl(0, 0%, 33%);
     --component-background-active: hsl(0, 0%, 29%);
     --box-shadow: 1.2px 1.2px 6px rgba(0, 0, 0, 0.75);
     --box-shadow-active: 1px 1px 3px rgba(0, 0, 0, 0.75);
     --linear-gradient: linear-gradient(rgb(78, 78, 78), rgb(27, 27, 27));
-    --border: solid #2e2e2e 1px;
+    --border: solid solid hsla(0, 0%, 10%, .2) 1px;
   }
 }
 :root {
@@ -91,14 +91,6 @@ body {
 ::-webkit-scrollbar-thumb {
   background-color: darkgrey;
   border-radius: 8px;
-}
-
-.inline-box {
-  background-color: var(--component-background);
-  border-radius: 10px;
-  padding: 10px;
-  margin: 5px;
-  box-shadow: var(--box-shadow);
 }
 
 :focus {
@@ -149,6 +141,9 @@ h4 {
   }
 }
 
+lwd-nav {
+  z-index: 100;
+}
 @media screen and (min-width: 650px) {
   lwd-nav[type=side], lwd-nav:not([type]) {
     overflow-x: scroll;
@@ -159,6 +154,8 @@ h4 {
     height: 100%;
     padding-top: 10px;
     white-space: nowrap;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     background-color: var(--component-background);
     box-shadow: var(--box-shadow-2);
     transition: width 0.2s ease-in-out;
@@ -201,8 +198,9 @@ h4 {
   }
   lwd-nav[type=side] lwd-navgroup, lwd-nav:not([type]) lwd-navgroup {
     display: block;
-    border-top: 1.5px solid var(--background);
-    border-bottom: 1.5px solid var(--background);
+    border-top: var(--border);
+    border-bottom: var(--border);
+    border-width: 1.5px;
     margin: 5px 0;
     padding: 5px 0;
   }
@@ -258,7 +256,7 @@ h4 {
   }
 }
 @media screen and (max-width: 650px) {
-  lwd-nav[mobile-type=side], lwd-nav[type=side]:not([mobile-type]), lwd-nav:not([mobile-type]):not([type]) {
+  lwd-nav[mobile-type=side], lwd-nav:not([mobile-type]) {
     overflow-x: scroll;
     position: fixed;
     left: 0;
@@ -271,7 +269,7 @@ h4 {
     transition: width 0.2s ease-in-out;
     -webkit-transition: width 0.2s ease-in-out;
   }
-  lwd-nav[mobile-type=side] lwd-navitem, lwd-nav[type=side]:not([mobile-type]) lwd-navitem, lwd-nav:not([mobile-type]):not([type]) lwd-navitem {
+  lwd-nav[mobile-type=side] lwd-navitem, lwd-nav:not([mobile-type]) lwd-navitem {
     transition: margin 0.2s ease-in-out;
     -webkit-transition: margin 0.2s ease-in-out;
     display: none;
@@ -282,26 +280,26 @@ h4 {
     margin: 5px 12.5px;
     cursor: pointer;
   }
-  lwd-nav[mobile-type=side] lwd-navitem .navItemLabel, lwd-nav[type=side]:not([mobile-type]) lwd-navitem .navItemLabel, lwd-nav:not([mobile-type]):not([type]) lwd-navitem .navItemLabel {
+  lwd-nav[mobile-type=side] lwd-navitem .navItemLabel, lwd-nav:not([mobile-type]) lwd-navitem .navItemLabel {
     order: 2;
     margin: 0 20px;
   }
-  lwd-nav[mobile-type=side] lwd-navitem .navItemIcon, lwd-nav[type=side]:not([mobile-type]) lwd-navitem .navItemIcon, lwd-nav:not([mobile-type]):not([type]) lwd-navitem .navItemIcon {
+  lwd-nav[mobile-type=side] lwd-navitem .navItemIcon, lwd-nav:not([mobile-type]) lwd-navitem .navItemIcon {
     order: 1;
     width: 30px;
     padding: 10px;
     flex-shrink: 0;
   }
-  lwd-nav[mobile-type=side] lwd-navitem.header, lwd-nav[type=side]:not([mobile-type]) lwd-navitem.header, lwd-nav:not([mobile-type]):not([type]) lwd-navitem.header {
+  lwd-nav[mobile-type=side] lwd-navitem.header, lwd-nav:not([mobile-type]) lwd-navitem.header {
     display: flex;
     margin-top: 15px;
     margin-bottom: 20px;
   }
-  lwd-nav[mobile-type=side] lwd-navitem.header .navItemIcon, lwd-nav[type=side]:not([mobile-type]) lwd-navitem.header .navItemIcon, lwd-nav:not([mobile-type]):not([type]) lwd-navitem.header .navItemIcon {
+  lwd-nav[mobile-type=side] lwd-navitem.header .navItemIcon, lwd-nav:not([mobile-type]) lwd-navitem.header .navItemIcon {
     width: 18px;
     padding: 16px;
   }
-  lwd-nav[mobile-type=side] lwd-navitem[selected], lwd-nav[type=side]:not([mobile-type]) lwd-navitem[selected], lwd-nav:not([mobile-type]):not([type]) lwd-navitem[selected] {
+  lwd-nav[mobile-type=side] lwd-navitem[selected], lwd-nav:not([mobile-type]) lwd-navitem[selected] {
     background: linear-gradient(to right, var(--color-light), var(--color-main));
     border-radius: 8px;
     box-shadow: 0px 1.6px 3.6px rgba(0, 0, 0, 0.13), 0px 0px 2.9px rgba(0, 0, 0, 0.11);
@@ -317,44 +315,65 @@ h4 {
     z-index: 100;
   }
   lwd-nav[type=floatingSymbol] lwd-navitem {
-    background-color: var(--component-background);
-    border-radius: 10px;
-    padding: 10px;
-    margin: 5px;
-    box-shadow: var(--box-shadow);
     display: inline-flex;
     justify-content: center;
     align-items: center;
     min-width: 30px;
     height: 30px;
+    padding: 10px;
+    margin: 5px;
     color: var(--foreground);
     text-decoration: none;
     border-radius: 30px;
     background: center center/auto 30px no-repeat;
     background-color: var(--component-background);
+    --height: 1;
+    --shadow-dir-x: calc(var(--light-direction-x)*var(--height)*var(--shadow-length));
+    --shadow-dir-y: calc(var(--light-direction-y)*var(--height));
+    --shadow-blur: calc(10px*var(--height));
+    --shadow-size: calc((1px*var(--height)) - 8px);
+    --shadow-color: hsla(var(--sun-tint), calc(var(--sun-saturation) - 20%), 30%, 0.1);
+    box-shadow: var(--shadow-dir-x) var(--shadow-dir-y) var(--shadow-blur) var(--shadow-size) var(--shadow-color), 4px 4px 10px -5px rgba(0, 0, 0, calc(0.2 / var(--height))), inset 1px 1px 1.5px -1px rgba(247, 247, 247, 0.1), inset 1px 1px 1px rgba(255, 255, 255, 0.1), inset -1px -1px 2px -1px rgba(0, 0, 0, 0.116);
+    /*box-shadow:     calc(var(--light-direction-x)*var(--height)*var(--shadow-length)) calc(var(--light-direction-y)*var(--height)) calc(25px*var(--height)) var(--shadow-size) var(--shadow-color),
+    4px 4px 10px -5px rgba(0, 0, 0, calc(0.1 / var(--height))),  //AO
+    inset 1px 1px 1.5px -1px hsl(0, 0%, 97%),  //Spec
+    inset 1px 1px 1px white,  //Spec Highlight
+    inset -1px -1px 2px -1px rgba(0, 0, 0, 0.116);*/
+    backdrop-filter: blur(20px);
     cursor: pointer;
   }
   lwd-nav[type=floatingSymbol] lwd-navgroup {
-    background-color: var(--component-background);
-    border-radius: 10px;
-    padding: 10px;
-    margin: 5px;
-    box-shadow: var(--box-shadow);
     display: inline-flex;
     gap: 5px;
     justify-content: center;
     align-items: center;
     height: 30px;
+    padding: 10px;
+    margin: 5px;
     text-decoration: none;
     border-radius: 30px;
     color: var(--foreground);
     background-color: var(--component-background);
+    --height: 1;
+    --shadow-dir-x: calc(var(--light-direction-x)*var(--height)*var(--shadow-length));
+    --shadow-dir-y: calc(var(--light-direction-y)*var(--height));
+    --shadow-blur: calc(10px*var(--height));
+    --shadow-size: calc((1px*var(--height)) - 8px);
+    --shadow-color: hsla(var(--sun-tint), calc(var(--sun-saturation) - 20%), 30%, 0.1);
+    box-shadow: var(--shadow-dir-x) var(--shadow-dir-y) var(--shadow-blur) var(--shadow-size) var(--shadow-color), 4px 4px 10px -5px rgba(0, 0, 0, calc(0.2 / var(--height))), inset 1px 1px 1.5px -1px rgba(247, 247, 247, 0.1), inset 1px 1px 1px rgba(255, 255, 255, 0.1), inset -1px -1px 2px -1px rgba(0, 0, 0, 0.116);
+    /*box-shadow:     calc(var(--light-direction-x)*var(--height)*var(--shadow-length)) calc(var(--light-direction-y)*var(--height)) calc(25px*var(--height)) var(--shadow-size) var(--shadow-color),
+    4px 4px 10px -5px rgba(0, 0, 0, calc(0.1 / var(--height))),  //AO
+    inset 1px 1px 1.5px -1px hsl(0, 0%, 97%),  //Spec
+    inset 1px 1px 1px white,  //Spec Highlight
+    inset -1px -1px 2px -1px rgba(0, 0, 0, 0.116);*/
+    backdrop-filter: blur(20px);
     cursor: pointer;
   }
   lwd-nav[type=floatingSymbol] lwd-navgroup lwd-navitem {
     display: inline-flex;
     background: none;
     box-shadow: none;
+    backdrop-filter: none;
     flex: 0 1 30px;
   }
   lwd-nav[type=floatingSymbol] .navItemIcon {
@@ -375,11 +394,6 @@ h4 {
 }
 @media screen and (max-width: 650px) {
   lwd-nav[mobile-type=floatingSymbol], lwd-nav[type=floatingSymbol]:not([mobile-type]) {
-    background-color: var(--component-background);
-    border-radius: 10px;
-    padding: 10px;
-    margin: 5px;
-    box-shadow: var(--box-shadow);
     position: sticky;
     top: 20px;
     display: flex;
@@ -388,12 +402,25 @@ h4 {
     height: 30px;
     width: calc(100% - 110px);
     margin: 0 0 0 80px;
+    padding: 10px;
     color: var(--foreground);
     text-decoration: none;
     border-radius: 17px;
     cursor: pointer;
     background: center center/auto 30px no-repeat;
     background-color: var(--component-background);
+    --height: 1;
+    --shadow-dir-x: calc(var(--light-direction-x)*var(--height)*var(--shadow-length));
+    --shadow-dir-y: calc(var(--light-direction-y)*var(--height));
+    --shadow-blur: calc(10px*var(--height));
+    --shadow-size: calc((1px*var(--height)) - 8px);
+    --shadow-color: hsla(var(--sun-tint), calc(var(--sun-saturation) - 20%), 30%, 0.1);
+    box-shadow: var(--shadow-dir-x) var(--shadow-dir-y) var(--shadow-blur) var(--shadow-size) var(--shadow-color), 4px 4px 10px -5px rgba(0, 0, 0, calc(0.2 / var(--height))), inset 1px 1px 1.5px -1px rgba(247, 247, 247, 0.1), inset 1px 1px 1px rgba(255, 255, 255, 0.1), inset -1px -1px 2px -1px rgba(0, 0, 0, 0.116);
+    /*box-shadow:     calc(var(--light-direction-x)*var(--height)*var(--shadow-length)) calc(var(--light-direction-y)*var(--height)) calc(25px*var(--height)) var(--shadow-size) var(--shadow-color),
+    4px 4px 10px -5px rgba(0, 0, 0, calc(0.1 / var(--height))),  //AO
+    inset 1px 1px 1.5px -1px hsl(0, 0%, 97%),  //Spec
+    inset 1px 1px 1px white,  //Spec Highlight
+    inset -1px -1px 2px -1px rgba(0, 0, 0, 0.116);*/
   }
   lwd-nav[mobile-type=floatingSymbol] ion-icon, lwd-nav[type=floatingSymbol]:not([mobile-type]) ion-icon {
     font-size: 20px;
@@ -573,19 +600,18 @@ input {
 input:focus {
   border-bottom: 2px solid transparent;
   padding-bottom: 9px;
-  --height: 0.3;
+  --height: 1;
+  --shadow-dir-x: calc(var(--light-direction-x)*var(--height)*var(--shadow-length));
+  --shadow-dir-y: calc(var(--light-direction-y)*var(--height));
+  --shadow-blur: calc(10px*var(--height));
   --shadow-size: calc((1px*var(--height)) - 8px);
-  --shadow-color: hsla(var(--sun-tint), calc(var(--sun-saturation) - 10%), 30%, 0.1);
-  box-shadow: calc(var(--light-direction-x)*var(--height)*var(--shadow-length)) calc(var(--light-direction-y)*var(--height)) calc(25px*var(--height)) var(--shadow-size) var(--shadow-color), 4px 4px 10px -5px rgba(0, 0, 0, calc(0.1 / var(--height))), inset 1px 1px 1.5px -1px rgba(247, 247, 247, 0.1), inset 1px 1px 1px rgba(255, 255, 255, 0.1), inset -1px -1px 2px -1px rgba(0, 0, 0, 0.116);
+  --shadow-color: hsla(var(--sun-tint), calc(var(--sun-saturation) - 20%), 30%, 0.1);
+  box-shadow: var(--shadow-dir-x) var(--shadow-dir-y) var(--shadow-blur) var(--shadow-size) var(--shadow-color), 4px 4px 10px -5px rgba(0, 0, 0, calc(0.2 / var(--height))), inset 1px 1px 1.5px -1px rgba(247, 247, 247, 0.1), inset 1px 1px 1px rgba(255, 255, 255, 0.1), inset -1px -1px 2px -1px rgba(0, 0, 0, 0.116);
   /*box-shadow:     calc(var(--light-direction-x)*var(--height)*var(--shadow-length)) calc(var(--light-direction-y)*var(--height)) calc(25px*var(--height)) var(--shadow-size) var(--shadow-color),
   4px 4px 10px -5px rgba(0, 0, 0, calc(0.1 / var(--height))),  //AO
   inset 1px 1px 1.5px -1px hsl(0, 0%, 97%),  //Spec
   inset 1px 1px 1px white,  //Spec Highlight
   inset -1px -1px 2px -1px rgba(0, 0, 0, 0.116);*/
-}
-input:focus:hover {
-  --height: 1;
-  transition: all 0.3s;
 }
 input::placeholder {
   color: #b3b3b3;
@@ -651,16 +677,21 @@ input[type=range][type=range]::-moz-range-thumb {
 }
 
 div.lwd-box, .lwd-list > div {
-  --height: 0.3;
+  --height: 1;
+  --shadow-dir-x: calc(var(--light-direction-x)*var(--height)*var(--shadow-length));
+  --shadow-dir-y: calc(var(--light-direction-y)*var(--height));
+  --shadow-blur: calc(10px*var(--height));
   --shadow-size: calc((1px*var(--height)) - 8px);
-  --shadow-color: hsla(var(--sun-tint), calc(var(--sun-saturation) - 10%), 30%, 0.1);
-  box-shadow: calc(var(--light-direction-x)*var(--height)*var(--shadow-length)) calc(var(--light-direction-y)*var(--height)) calc(25px*var(--height)) var(--shadow-size) var(--shadow-color), 4px 4px 10px -5px rgba(0, 0, 0, calc(0.1 / var(--height))), inset 1px 1px 1.5px -1px rgba(247, 247, 247, 0.1), inset 1px 1px 1px rgba(255, 255, 255, 0.1), inset -1px -1px 2px -1px rgba(0, 0, 0, 0.116);
+  --shadow-color: hsla(var(--sun-tint), calc(var(--sun-saturation) - 20%), 30%, 0.1);
+  box-shadow: var(--shadow-dir-x) var(--shadow-dir-y) var(--shadow-blur) var(--shadow-size) var(--shadow-color), 4px 4px 10px -5px rgba(0, 0, 0, calc(0.2 / var(--height))), inset 1px 1px 1.5px -1px rgba(247, 247, 247, 0.1), inset 1px 1px 1px rgba(255, 255, 255, 0.1), inset -1px -1px 2px -1px rgba(0, 0, 0, 0.116);
   /*box-shadow:     calc(var(--light-direction-x)*var(--height)*var(--shadow-length)) calc(var(--light-direction-y)*var(--height)) calc(25px*var(--height)) var(--shadow-size) var(--shadow-color),
   4px 4px 10px -5px rgba(0, 0, 0, calc(0.1 / var(--height))),  //AO
   inset 1px 1px 1.5px -1px hsl(0, 0%, 97%),  //Spec
   inset 1px 1px 1px white,  //Spec Highlight
   inset -1px -1px 2px -1px rgba(0, 0, 0, 0.116);*/
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: var(--component-background);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border-radius: 3px;
   width: auto;
   height: auto;
@@ -668,10 +699,6 @@ div.lwd-box, .lwd-list > div {
   width: fit-content;
   margin: 10px 0;
   align-self: center;
-}
-div.lwd-box:hover, .lwd-list > div:hover {
-  --height: 1;
-  transition: all 0.3s;
 }
 div.lwd-box.round-corners, .lwd-list > div.round-corners {
   border-radius: 7px;
