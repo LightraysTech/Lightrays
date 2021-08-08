@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style/main.css">
     <link rel="stylesheet" href="content.css">
+    <link rel="prefetch" href="Color-palette-creator.html">
     <script src="../scripts/main.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule="" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.js"></script>
@@ -28,6 +29,20 @@
                 <ion-icon class="navItemIcon" name = "terminal-outline"></ion-icon>
                 <span class="navItemLabel">FloatingSymbol Navigation</span>
             </lwd-navitem>
+            <lwd-navitem id="foldout1">
+                <ion-icon class="navItemIcon" name = "albums-outline"></ion-icon>
+                <span class="navItemLabel">NavFoldout</span>
+            </lwd-navitem>
+            <lwd-navfoldout trigger="foldout1">
+                <lwd-navitem>
+                    <ion-icon class="navItemIcon" name="apps-outline"></ion-icon>
+                    <span class="navItemLabel">Item 1</span>
+                </lwd-navitem>
+                <lwd-navitem>
+                    <ion-icon class="navItemIcon" name="apps-outline"></ion-icon>
+                    <span class="navItemLabel">Item 2</span>
+                </lwd-navitem>
+            </lwd-navfoldout>
         </lwd-navgroup>
         <lwd-navgroup>
             <lwd-navitem>
@@ -39,16 +54,22 @@
 
     
     <main>
-        <h1>There is also a third header</h1>
-        <h2>There is also a third header</h2>
+        <h1>Lighted-Web-Design example page</h1>
+        <h2>There is also a second header</h2>
         <h3>There is also a third header</h3>
-        <h4>There is also a third header</h4>
+        <h4>There is also a fourth header</h4>
         Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing.
         <br><br>
         <input type="range", oninput="document.querySelectorAll('.lwd-box, .lwd-list div').forEach(e => e.style.setProperty('--height', this.value))" min="0" max="3" step="0.1" style="width: 200px;">
         <input type="range" min="0" max="24" step="0.1" oninput="Lwd.setLightTime(this.value)" style="width: 200px;" id="shadowAngle">
         <input type="range", oninput="document.querySelector(':root').style.setProperty('--sun-saturation', this.value + '%')" min="0" max="100" style="width: 200px;">
 
+        <h3>Lwd-Window</h3>
+        <button onclick="document.querySelector('lwd-window').openWindow()">Open Window</button>
+        <lwd-window class="round-corners" draggable closed width="400px" height="600px">
+            <h2>Lwd window</h2>
+            <div class="content">Content</div>
+        </lwd-window>
         <h3>Lwd-List</h3>
         <div class="lwd-list" style="max-width: 80em;">  
             <div>First Item</div>
@@ -87,11 +108,11 @@
             <label>Time:</label><input type="time" value="12:00">
             <label>Week:</label><input type="week" value="2021-W01">
             <label>Button:</label><input type="button" value="Button">
+            <label>Button (class: flat):</label><input type="button" class="flat" value="Button">
             <label>Button (class: important):</label><input type="button" class="important" value="Button">
-            <label>Reset:</label><input type="reset">
             <label>Submit:</label><input type="submit">            
         </form>
-        
+
     </main>
 </body>
 </html>

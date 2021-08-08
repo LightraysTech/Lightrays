@@ -15,16 +15,19 @@
       --background-active: hsl(0, 0%, 83%);
       --transparent-background: hsla(0, 0%, 99%, 0.95);
 
-      --component-background: hsla(0, 0%, 98%, .6);
-      --component-background-hover: hsl(0, 0%, 87%);
-      --component-background-active: hsl(0, 0%, 81%);
+      --component-background: hsla(0, 0%, 100%, .7);
+      --component-background-hover: hsla(0, 0%, 95%, .7);
+      --component-background-active: hsla(0, 0%, 90%, .7);
+      --component-background-transparent: hsla(0, 0%, 100%, .2);
 
       --box-shadow: 0px 1.6px 7px rgb(0 0 0 / 9%);
       --box-shadow-2: 0px 1.6px 8px rgba(0, 0, 0, 0.13),
         0px 0px 2.9px rgba(0, 0, 0, 0.11);
       --box-shadow-active: 1px 1px 3px rgba(0, 0, 0, 0.25);
       --linear-gradient: linear-gradient(white, rgb(233, 231, 231));
-      --border: solid hsl(0, 0%, 95%) 1px;
+      --border: solid hsla(0, 0%, 70%, .2) 1px;
+      --shadow-spec: 97%;
+      --shadow-brightness: 30%;
     }
   } @else {
     :root {
@@ -35,13 +38,16 @@
       --transparent-background: hsla(0, 0%, 21%, 0.97);
 
       --component-background: hsla(0, 0%, 10%, .4);
-      --component-background-hover: hsl(0, 0%, 33%);
-      --component-background-active: hsl(0, 0%, 29%);
+      --component-background-hover: hsla(0, 0%, 15%, .4);
+      --component-background-active: hsla(0, 0%, 20%, .4);
+      --component-background-transparent: hsla(0, 0%, 10%, .2);
 
       --box-shadow: 1.2px 1.2px 6px rgba(0, 0, 0, 0.75);
       --box-shadow-active: 1px 1px 3px rgba(0, 0, 0, 0.75);
       --linear-gradient: linear-gradient(rgb(78, 78, 78), rgb(27, 27, 27));
-      --border: solid solid hsla(0, 0%, 10%, .2) 1px;
+      --border: solid hsla(0, 0%, 10%, .2) 1px;
+      --shadow-spec: 20%;
+      --shadow-brightness: 0%;
     }
   }
 }
@@ -59,30 +65,15 @@
 
 :root {
   --ip-background-size: 100% auto;
-  --sun-tint: 215;
-  --sun-saturation: 50%;
   --shadow-length: 1;
-  --sky-brightness: 100%;
-  --sun-brightness: 95%;
+  --sun-tint: 215;
+  --sun-saturation: 0%;
+  --sun-brightness: 100%;
+  --sky-brightness: 92%;
+  --sky-saturation: 87%;
 }
 
 // Functions
-@mixin fixed-center {
-  position: fixed;
-  left: -9999px;
-  right: -9999px;
-  top: 0;
-  margin: auto;
-}
-
-@mixin inline-box {
-    background-color: var(--component-background);
-    border-radius: 10px;
-    padding: 10px;
-    margin: 5px;
-    box-shadow: var(--box-shadow);
-}
-
 @mixin mobile() {
   @media screen and (max-width: 650px) {
     @content;
@@ -105,15 +96,15 @@
     --height: 1;
     --shadow-dir-x: calc(var(--light-direction-x)*var(--height)*var(--shadow-length));
     --shadow-dir-y: calc(var(--light-direction-y)*var(--height));
-    --shadow-blur: calc(10px*var(--height));
+    --shadow-blur: calc(6px*var(--height));
     --shadow-size: calc((1px*var(--height)) - 8px);
-    --shadow-color: hsla(var(--sun-tint), calc(var(--sun-saturation) - 20%), 30%, 0.1);
+    --shadow-color: hsla(var(--sun-tint), calc(var(--sun-saturation) - 20%), var(--shadow-brightness), .1);
 
     box-shadow:   var(--shadow-dir-x) var(--shadow-dir-y) var(--shadow-blur) var(--shadow-size) var(--shadow-color),
                   4px 4px 10px -5px rgba(0, 0, 0, calc(0.2 / var(--height))),  //AO
-                  inset 1px 1px 1.5px -1px hsla(0, 0%, 97%, .1),  //Spec
-                  inset 1px 1px 1px hsla(0, 0%, 100%, .1),  //Spec Highlight
-                  inset -1px -1px 2px -1px rgba(0, 0, 0, 0.116);
+                  inset 1px 1px 1.5px -1px hsla(0, 0%, var(--shadow-spec), .2),  //Spec
+                  inset 1px 1px 1px hsla(0, 0%, calc(var(--shadow-spec) + 10%), .2),  //Spec Highlight
+                  inset -1px -1px 2px -1px rgba(170, 0, 0, 0.116);
 
     /*box-shadow:     calc(var(--light-direction-x)*var(--height)*var(--shadow-length)) calc(var(--light-direction-y)*var(--height)) calc(25px*var(--height)) var(--shadow-size) var(--shadow-color),
     4px 4px 10px -5px rgba(0, 0, 0, calc(0.1 / var(--height))),  //AO
@@ -126,8 +117,8 @@
 body {
   font-family: $default-font;
   background: linear-gradient(calc(var(--shadow-angle)*(-1)), 
-    hsl(var(--sun-tint), var(--sun-saturation), var(--sun-brightness)),
-    hsl(0, 0%, var(--sky-brightness)));
+  hsl(var(--sun-tint), var(--sun-saturation), var(--sun-brightness)),
+  hsl(195, var(--sky-saturation), var(--sky-brightness)));
   background-attachment: fixed;
   color: var(--foreground);
 }
@@ -161,6 +152,7 @@ h2 {
 h3 {
   font-family: $semibold-font;
   font-weight: normal;
+  margin: 5px auto 5px auto;
 }
 
 h4 {
@@ -196,6 +188,29 @@ lwd-nav {
   // no type specified -> go to default type
   &:not([mobile-type]) {@extend [mobile-type="side"];}
   &:not([type]) {@extend [type="side"];}
+
+  .navItemIcon {
+    transition: transform .1s;
+
+    &:hover {transform: scale(1.15);}
+
+    &:active {
+      transform: scale(0.9);
+      &.navButton, &.generatedNavButton,
+      &[name="menu-outline"], &[name="menu-filled"], &[name="menu"] {
+        transform: scaleY(1.5);
+      }
+      &[name="settings-outline"], &[name="settings-filled"], &[name="settings"], 
+      &[name="refresh-outline"], &[name="refresh"], &[name="refresh-filled"],
+      &[name="reload-outline"], &[name="reload"], &[name="reload-filled"],
+      &[name="refresh-circle-outline"], &[name="refresh-circle"], &[name="refresh-circle-filled"] { 
+        transform: rotate(-180deg);
+      }
+      &[name="ellipsis-horizontal-outline"], &[name="ellipsis-horizontal-filled"], &[name="ellipsis-horizontal"] {
+        transform: scaleX(1.5);
+      }
+    }
+  }
 
   &[type="side"] {
     @include desktop() {
@@ -234,6 +249,9 @@ lwd-nav {
           width: 30px;
           padding: 10px;
           flex-shrink: 0;
+        }
+        .navItemIcon:first-child {
+          fill: red;
         }
 
         &.header {
@@ -510,150 +528,46 @@ lwd-nav {
 
 // Button
 button {
+  @include shadow(1);
   cursor: pointer;
   font-family: $semibold-font;
   padding: 0.5rem 1rem 0.5rem 1rem;
-  margin: 7px;
+  margin: 5px 0;
   border: none;
   background-color: var(--component-background);
   color: var(--foreground);
   border-radius: $border-radius;
-  box-shadow: var(--box-shadow);
-  transition: background-color 0.2s, color 0.2s, transform 0.1s ease-in;
+  transition: background-color 0.1s, color 0.2s, transform 0.1s ease-in, box-shadow .3s;
 
-  &:hover {
-    background-color: var(--component-background-hover);
+  &:hover {    
+    --height: 1.5;
+    background: var(--component-background-hover);
   }
   &:active {
-    background-color: var(--color-main);
-    color: var(--color-text);
+    --height: 0.5;
+    background: var(--component-background-active);
     transform: scale(0.95);
-    box-shadow: var(--box-shadow);
-    transition: background-color .2s, color .2s, transform .05s ease-in;
-    
-
-    &:hover {
-      background: var(--color-lighter);
-    }
-    &:active {
-        background-color: var(--color-main);
-        color: var(--color-text);
-        transform: scale(.95);
-        box-shadow: var(--box-shadow);
-    }
-    &:focus {
-        border: none;
-        margin: 7px;
-    }
-    &.important {
-        background: var(--color-main);
-        color: var(--color-text);
-        transition: background-color .07s, box-shadow .1s;
-        &:hover {
-            background: var(--color-lighter);
-        }
-        &:active {
-            background: var(--color-darker);
-            box-shadow: var(--box-shadow-active);
-        }
-    }
+    transition: background-color .2s, color .2s, transform .1s ease-in;
+  }
+  &:focus {
+    border: none;
+    margin: 5px 0;
+  }
+  &.important {
+    background: var(--color-main);
+    color: var(--color-text);
+    &:hover {background-color: var(--color-darker);}
+    &:active {background-color: var(--color-dark);}
+  }
+  &.flat {
+    box-shadow: none;
+    border: var(--border);
+    &:hover {@include shadow(1)}
+    &:active {--height: 0.5}
   }
 }
 
-//Navigation
-
-@mixin top-icon-nav {
-  @include fixed-center();
-  display: flex;
-  justify-content: center;
-  height: 85px;
-  z-index: 99;
-
-  .wrap-container {
-    display: flex;
-    justify-content: center;
-    width: 650px;
-    height: 85px;
-    padding: 0 40px 0 40px;
-    background-color: var(--transparent-background);
-    border-radius: 0 0 15px 15px;
-    box-shadow: var(--box-shadow);
-
-    a {
-      background: center center / auto 32px no-repeat;
-      width: 100%;
-      padding: 0 20px 0 20px;
-
-      &:hover {
-        background-color: var(--background-hover);
-      }
-
-      &:active {
-        background-color: var(--background-active);
-      }
-    }
-  }
-}
-
-nav.top-icon-nav {
-  @include top-icon-nav();
-}
-
-.nav-logo {
-  @include fixed-center();
-  width: 90px;
-  height: 90px;
-  top: 15px;
-  background: var(--linear-gradient);
-  border-radius: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: var(--box-shadow);
-  z-index: 100;
-  div {
-    width: 84px;
-    height: 84px;
-    background: center center / auto 45px no-repeat;
-    background-color: var(--background);
-    border-radius: 100px;
-  }
-}
-
-// Inputs
-.lwd-ip-container {
-  position: relative;
-  display: grid;
-  grid-template-columns: calc(100% + 2px);
-  margin: 5px 0;
-  &::after {
-    content: "";
-    position: absolute;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
-    height: 5%;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    background-position: 0% 0%;
-    background: linear-gradient(
-      to right,
-      var(--color-lighter),
-      var(--color-darker)
-    );
-    background-size: var(--ip-background-size);
-    background-repeat: no-repeat;
-  }
-}
 input {
-  background: linear-gradient(
-        var(--component-background),
-        var(--component-background)
-      )
-      padding-box,
-    linear-gradient(to right, var(--color-lighter), var(--color-main))
-      border-box;
-
   background-color: var(--component-background);
   border: var(--border);
   border-radius: $border-radius;
@@ -667,8 +581,8 @@ input {
 
   &:focus {
     border-bottom: 2px solid transparent;
+    border-bottom-color: var(--color-main);
     padding-bottom: 9px;
-    //box-shadow: var(--box-shadow);
     @include shadow(1);
   }
 
@@ -787,11 +701,12 @@ div.lwd-box {
 
   a {
     background: center 30px / auto 80px no-repeat;
-    @include inline-box;
-    background-color: var(--background);
+    background-color: var(--component-background);
+    box-shadow: var(--box-shadow);
     width: 140px;
     height: 145px;
     margin: 0 20px 30px 20px;
+    padding: 10px;
     padding-bottom: 20px;
     border-radius: 15px;
     display: flex;
@@ -846,5 +761,106 @@ div.lwd-box {
     display: none;
     visibility: hidden;
     position: absolute;
+  }
+}
+
+
+//Animations -----------------------------------------
+.animation {
+  transition: transform .1s;
+  &:hover {
+    transform: scale(1.1);
+  }
+  &:active {
+    transform: scale(1);
+    &.rotate {transform: rotate(-170deg)}
+    &.stretch-horizontal {transform: scaleY(1.5);}
+    &.stretch-vertical {transform: scaleX(1.5);}
+  }
+  &.window-close {
+    animation: fade-down .4s;
+    transition: visibility .4s;
+  }
+  &.window-open {
+    animation: fade-up .2s;
+    transition: visibility .2s;
+  }
+  &.window-highlight {
+    animation: pop-up .3s;
+  }
+}
+
+@keyframes fade-down {
+  0% {transform: translate(-50%, -50%)}
+  20% {transform: translate(-50%, -50%) scale(0.8)}
+  100% {top: 150%}
+}
+
+@keyframes fade-up {
+  0% {transform: translate(-50%, -50%) scale(0.8);top: 150%}
+  70% {transform: translate(-50%, -50%) scale(0.8)}
+  100% {transform: translate(-50%, -50%) scale(1);top: 50%}
+}
+
+@keyframes pop-up {
+  50% {transform: translate(-50%, -50%) scale(1.02);--height: 1.2}
+  100% {transform: translate(-50%, -50%) scale(1);--height: 1}
+}
+
+
+
+//Lwd window ------------------------------------------
+lwd-window {
+  position: fixed; left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px; height: 400px;
+  @include shadow(1);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border-radius: 7px;
+  border: var(--border);
+  z-index: 101;
+  transition: box-shadow .1s, transform .1s;
+  overflow: hidden;
+  background-color: var(--component-background-transparent);
+
+
+  h2 {
+    position: relative;
+    display: flex; justify-content: center; align-items: center;
+    color: var(--foreground);
+    font-size: 1.7em;
+    width: 100%; height: 60px;
+    cursor: move;
+    margin: 0;
+    transition: all .1s;
+    &:hover {font-size:1.8em}
+  }
+  svg {
+    padding: 10px;
+    position: absolute;
+    right: 0px; top: 0px;
+    width: 16px; height: 16px;
+    path {fill: var(--foreground)}
+    cursor: default;
+    &:hover {transform: scale(1.1)}
+    &:active {transform: scale(0.9)}
+    transition: all .1s;
+    enable-background: new 0 0 512 512;
+  }
+
+  .content {
+    background-color: var(--component-background);
+    width: 100%;
+    height: 100%;
+    border-bottom-left-radius: 7px; border-bottom-right-radius: 7px;
+    padding: 10px;
+    overflow-y: scroll;
+  }
+
+  &.round-corners {
+    border-radius: 15px;
+    .content {
+      border-bottom-left-radius: 15px; border-bottom-right-radius: 15px;
+    }
   }
 }
