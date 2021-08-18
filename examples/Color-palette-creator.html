@@ -75,7 +75,7 @@
 
 
             function setColorPickers(color) {
-                lwd.getAccentColor(color).then(col => {
+                Lwd.getAccentColor(color).then(col => {
                     colorpicker_extra_light.value = col["extra-light"];
                     colorpicker_light.value = col["light"];
                     colorpicker_lighter.value = col["lighter"];
@@ -113,7 +113,7 @@
                     "text": colorpicker_text.value
                 }
 
-                lwd.setAccentColor(obj);
+                Lwd.setAccentColor(obj);
             }
 
 

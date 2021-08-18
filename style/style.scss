@@ -15,16 +15,18 @@
       --background-active: hsl(0, 0%, 83%);
       --transparent-background: hsla(0, 0%, 99%, 0.95);
 
-      --component-background: white;
-      --component-background-hover: hsl(0, 0%, 87%);
-      --component-background-active: hsl(0, 0%, 81%);
-
+      --component-background: hsla(0, 0%, 100%, .7);
+      --component-background-hover: hsla(0, 0%, 95%, .7);
+      --component-background-active: hsla(0, 0%, 90%, .7);
+      --component-background-transparent: hsla(0, 0%, 100%, .2);
       --box-shadow: 0px 1.6px 7px rgb(0 0 0 / 9%);
       --box-shadow-2: 0px 1.6px 8px rgba(0, 0, 0, 0.13),
         0px 0px 2.9px rgba(0, 0, 0, 0.11);
       --box-shadow-active: 1px 1px 3px rgba(0, 0, 0, 0.25);
       --linear-gradient: linear-gradient(white, rgb(233, 231, 231));
-      --border: solid #ececec 1px;
+      --border: solid hsla(0, 0%, 70%, .2) 1px;
+      --shadow-spec: 97%;
+      --shadow-brightness: 30%;
     }
   } @else {
     :root {
@@ -34,14 +36,17 @@
       --background-active: hsl(0, 0%, 15%);
       --transparent-background: hsla(0, 0%, 21%, 0.97);
 
-      --component-background: #3f3f3f;
-      --component-background-hover: hsl(0, 0%, 33%);
-      --component-background-active: hsl(0, 0%, 29%);
+      --component-background: hsla(0, 0%, 10%, .4);
+      --component-background-hover: hsla(0, 0%, 15%, .4);
+      --component-background-active: hsla(0, 0%, 20%, .4);
+      --component-background-transparent: hsla(0, 0%, 10%, .2);
 
       --box-shadow: 1.2px 1.2px 6px rgba(0, 0, 0, 0.75);
       --box-shadow-active: 1px 1px 3px rgba(0, 0, 0, 0.75);
       --linear-gradient: linear-gradient(rgb(78, 78, 78), rgb(27, 27, 27));
-      --border: solid #2e2e2e 1px;
+      --border: solid hsla(0, 0%, 10%, .2) 1px;
+      --shadow-spec: 20%;
+      --shadow-brightness: 0%;
     }
   }
 }
@@ -56,40 +61,18 @@
 } @else if $theme == darkTheme {
   @include getTheme(dark);
 }
+
 :root {
   --ip-background-size: 100% auto;
+  --shadow-length: 1;
+  --sun-tint: 215;
+  --sun-saturation: 0%;
+  --sun-brightness: 100%;
+  --sky-brightness: 92%;
+  --sky-saturation: 87%;
 }
 
 // Functions
-@mixin shadow($height) {
-    --light-direction-x: 83px;
-    --light-direction-y: 55px;
-    //--height: #{$height}; 
-    //--height: 2;
-    box-shadow:     calc(var(--light-direction-x) * var(--height)) calc(var(--light-direction-y) * var(--height)) 10px rgba(16, 67, 100, 0.15),
-                    4px 4px 15px -5px rgba(0, 0, 0, calc(0.2 / var(--height))),
-                    inset 1px 1px 1.5px -1px hsl(0, 0%, 97%),
-                    inset 1px 1px 1px white,
-                    inset -1px -1px 2px -1px rgba(0, 0, 0, 0.116);
-}
-
-
-@mixin fixed-center {
-  position: fixed;
-  left: -9999px;
-  right: -9999px;
-  top: 0;
-  margin: auto;
-}
-
-@mixin inline-box {
-    background-color: var(--component-background);
-    border-radius: 10px;
-    padding: 10px;
-    margin: 5px;
-    box-shadow: var(--box-shadow);
-}
-
 @mixin mobile() {
   @media screen and (max-width: 650px) {
     @content;
@@ -103,15 +86,43 @@
 }
 
 @mixin tablet() {
-  @media screen and (min-width: 850px) and (max-width: 1300px) {
+  @media screen and (min-width: 650px) and (max-width: 1300px) {
     @content;
   }
 }
 
+@mixin shadow($height) {
+    --height: 1;
+    --shadow-dir-x: calc(var(--light-direction-x)*var(--height)*var(--shadow-length));
+    --shadow-dir-y: calc(var(--light-direction-y)*var(--height));
+    --shadow-blur: calc(6px*var(--height));
+    --shadow-size: calc((1px*var(--height)) - 8px);
+    --shadow-color: hsla(var(--sun-tint), calc(var(--sun-saturation) - 20%), var(--shadow-brightness), .1);
+
+    box-shadow:   var(--shadow-dir-x) var(--shadow-dir-y) var(--shadow-blur) var(--shadow-size) var(--shadow-color),
+                  4px 4px 10px -5px rgba(0, 0, 0, calc(0.2 / var(--height))),  //AO
+                  inset 1px 1px 1.5px -1px hsla(0, 0%, var(--shadow-spec), .2),  //Spec
+                  inset 1px 1px 1px hsla(0, 0%, calc(var(--shadow-spec) + 10%), .2),  //Spec Highlight
+                  inset -1px -1px 2px -1px rgba(170, 0, 0, 0.116);
+}
+
+@mixin small-shadow($height) {
+  --height: 1;
+  box-shadow:  
+                4px 4px 10px -5px rgba(0, 0, 0, calc(0.2 / var(--height))),  //AO
+                inset 1px 1px 1.5px -1px hsla(0, 0%, var(--shadow-spec), .2),  //Spec
+                inset 1px 1px 1px hsla(0, 0%, calc(var(--shadow-spec) + 10%), .2),  //Spec Highlight
+                inset -1px -1px 2px -1px rgba(170, 0, 0, 0.116);
+}
+
 // General
 body {
+  -webkit-tap-highlight-color: transparent;
   font-family: $default-font;
-  background-color: var(--background);
+  background: linear-gradient(calc(var(--shadow-angle)*(-1)), 
+  hsl(var(--sun-tint), var(--sun-saturation), var(--sun-brightness)),
+  hsl(195, var(--sky-saturation), var(--sky-brightness)));
+  background-attachment: fixed;
   color: var(--foreground);
 }
 
@@ -123,10 +134,6 @@ body {
 ::-webkit-scrollbar-thumb {
   background-color: darkgrey;
   border-radius: 8px;
-}
-
-.inline-box {
-  @include inline-box;
 }
 
 :focus {
@@ -148,6 +155,7 @@ h2 {
 h3 {
   font-family: $semibold-font;
   font-weight: normal;
+  margin: 5px auto 5px auto;
 }
 
 h4 {
@@ -156,18 +164,12 @@ h4 {
 }
 
 // Navigation --------------------------------------------------
-lwd-nav {
-  &:not([type]) {
-    // no type specified
-    @extend [type="side"]; // default
-  }
-}
-
 body {
   &[nav-type="side"] {
     @include desktop() {
       transition: margin-left 0.2s ease-in-out;
       margin-left: 365px;
+      will-change: margin-left;
       &[nav-alt-state] {
         margin-left: 80px;
       }
@@ -185,80 +187,110 @@ body {
 }
 
 lwd-nav {
-  &[type="side"] {
-    &:not([mobile-type]) {
-      @extend [mobile-type="side"];
-    } // no mobile-type specified
+  z-index: 100;
 
+  // no type specified -> go to default type
+  //&:not([mobile-type]) {@extend [mobile-type="side"];}
+  &:not([type]) {@extend [type="side"];}
+
+  .navItemIcon {
+    transition: transform .1s;
+
+    &:hover {transform: scale(1.15);}
+
+    &:active {
+      transform: scale(0.9);
+      &.navButton, &.generatedNavButton,
+      &[name="menu-outline"], &[name="menu-filled"], &[name="menu"] {
+        transform: scaleY(1.5);
+      }
+      &[name="settings-outline"], &[name="settings-filled"], &[name="settings"], 
+      &[name="refresh-outline"], &[name="refresh"], &[name="refresh-filled"],
+      &[name="reload-outline"], &[name="reload"], &[name="reload-filled"],
+      &[name="refresh-circle-outline"], &[name="refresh-circle"], &[name="refresh-circle-filled"] { 
+        transform: rotate(-180deg);
+      }
+      &[name="ellipsis-horizontal-outline"], &[name="ellipsis-horizontal-filled"], &[name="ellipsis-horizontal"] {
+        transform: scaleX(1.5);
+      }
+    }
+  }
+  user-select: none;
+
+
+  &[type="side"] {
     @include desktop() {
       overflow-x: scroll;
-      position: fixed;
-      left: 0;
-      top: 0;
-      width: 340px;
-      height: 100%;
+      position: fixed; left: 0; top: 0;
+      width: 340px; height: 100%;
       padding-top: 10px;
       white-space: nowrap;
-      background-color: var(--component-background);
-      box-shadow: var(--box-shadow-2);
-      transition: width 0.2s ease-in-out;
-      -webkit-transition: width 0.2s ease-in-out;
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      background-color: var(--component-background); box-shadow: var(--box-shadow-2);
+      transition: width 0.2s ease-in-out; -webkit-transition: width 0.2s ease-in-out;
+      will-change: width;
 
       lwd-navitem {
-        transition: margin 0.2s ease-in-out;
-        -webkit-transition: margin 0.2s ease-in-out;
-        display: flex;
-        align-items: center;
-        vertical-align: middle;
-        width: calc(100% - 25px);
-        height: 35px;
+        transition: margin 0.2s ease-in-out; -webkit-transition: margin 0.2s ease-in-out;
+        display: flex; align-items: center; vertical-align: middle;
+        width: calc(100% - 25px); height: 35px;
         margin: 5px 12.5px;
         cursor: pointer;
 
         .navItemLabel {
           order: 2;
-          margin: 0 20px;
+          margin: 0 3px; font-size: 0.95em;
         }
         .navItemIcon {
           order: 1;
-          width: 30px;
-          padding: 10px;
+          width: 30px; padding: 10px;
           flex-shrink: 0;
+          &.toggle {
+            order: 3;
+            position: absolute; right: 0;
+            transition: transform .2s;
+          }
+        }
+        &[open] {
+          .navItemIcon.toggle {transform: rotate(180deg);}
+          .navItemIcon.toggle:hover {transform: rotate(180deg) scale(1.1);}
         }
 
         &.header {
           margin-top: 15px;
           margin-bottom: 20px;
-          .navItemIcon {
-            width: 18px;
-            padding: 16px;
-          }
+          .navItemIcon {width: 18px;padding: 16px;}
+          &:hover {box-shadow: none;}
         }
-
         &[selected] {
-          background: linear-gradient(
-            to right,
-            var(--color-light),
-            var(--color-main)
-          );
+          background: linear-gradient(to right,var(--color-light),var(--color-main));
           color: var(--color-text);
           border-radius: 8px;
-          box-shadow: 0px 1.6px 3.6px rgb(0 0 0 / 13%),
-            0px 0px 2.9px rgb(0 0 0 / 11%);
+          box-shadow: 0px 1.6px 3.6px rgb(0 0 0 / 13%), 0px 0px 2.9px rgb(0 0 0 / 11%);
+        }
+        &:hover {
+          &:not([selected]), &:not(.header) {
+            @include small-shadow(1);
+            border-radius: 8px;
+          }
         }
       }
 
       lwd-navgroup {
         display: block;
-        border-top: 1.5px solid var(--background);
-        border-bottom: 1.5px solid var(--background);
-        margin: 5px 0;
-        padding: 5px 0;
+        border-top: var(--border); border-bottom: var(--border); border-width: 1.5px;
+        margin: 5px 0;padding: 5px 0;
         & ~ lwd-navgroup {
           border-top-color: transparent;
-          margin-top: 0;
-          padding-top: 0;
+          margin-top: 0; padding-top: 0;
         }
+      }
+
+      lwd-navfoldout {
+        display: none;
+        &[open] {display: block}
+        transition: height .2s linear;
+        lwd-navitem {margin-left: 50px;width: calc(100% - 65px);}
       }
 
       &[alt-state] {
@@ -266,12 +298,9 @@ lwd-nav {
         lwd-navitem {
           justify-content: center;
           width: calc(55px - 10px);
-          margin-left: 5px;
-          margin-right: 5px;
+          margin-left: 5px; margin-right: 5px;
         }
-        .navItemLabel {
-          display: none;
-        }
+        .navItemLabel, .toggle {display: none;}
       }
     }
     @include tablet() {
@@ -279,12 +308,12 @@ lwd-nav {
       lwd-navitem {
         justify-content: center;
         width: calc(55px - 10px);
-        margin-left: 5px;
-        margin-right: 5px;
+        margin-left: 5px; margin-right: 5px;
       }
-      .navItemLabel {
-        display: none;
+      lwd-navfoldout {
+        lwd-navitem {margin-left: 5px;width: calc(100% - 10px);}
       }
+      .navItemLabel, .toggle {display: none;}
 
       &[alt-state] {
         width: 340px;
@@ -292,36 +321,30 @@ lwd-nav {
           justify-content: unset;
           width: calc(100% - 25px);
           margin: 5px 12.5px;
+          
 
           &.header {
-            margin-top: 15px;
-            margin-bottom: 20px;
-            .navItemIcon {
-              width: 18px;
-              padding: 16px;
-            }
+            margin-top: 15px; margin-bottom: 20px;
+            .navItemIcon {width: 18px; padding: 16px;}
           }
         }
-        .navItemLabel {
-          display: initial;
+        .navItemLabel, .toggle {display: initial}
+        lwd-navfoldout {
+          lwd-navitem {margin-left: 50px;width: calc(100% - 65px)}
         }
       }
     }
   }
 
+
   &[mobile-type="side"] {
     @include mobile() {
       overflow-x: scroll;
-      position: fixed;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100px;
+      position: fixed;left: 0;top: 0;
+      width: 100%;height: 100px;
       white-space: nowrap;
-      background-color: var(--component-background);
-      box-shadow: var(--box-shadow-2);
-      transition: width 0.2s ease-in-out;
-      -webkit-transition: width 0.2s ease-in-out;
+      background-color: var(--component-background); box-shadow: var(--box-shadow-2);
+      transition: width 0.2s ease-in-out; -webkit-transition: width 0.2s ease-in-out;
 
       lwd-navitem {
         transition: margin 0.2s ease-in-out;
@@ -355,11 +378,7 @@ lwd-nav {
         }
 
         &[selected] {
-          background: linear-gradient(
-            to right,
-            var(--color-light),
-            var(--color-main)
-          );
+          background: linear-gradient(to right, var(--color-light), var(--color-main));
           border-radius: 8px;
           box-shadow: 0px 1.6px 3.6px rgb(0 0 0 / 13%),
             0px 0px 2.9px rgb(0 0 0 / 11%);
@@ -368,276 +387,211 @@ lwd-nav {
     }
   }
 
-  &[type="floatingSymbol"] {
-    &:not([mobile-type]) {
-      @extend [mobile-type="floatingSymbol"];
-    } // no mobile-type specified
 
-    @include desktop() {
-      display: flex;
-      flex-wrap: nowrap;
-      width: 100%;
-      position: sticky;
-      top: 20px;
-      z-index: 100;
+  @mixin floatingSymbol() {
+    display: flex; flex-wrap: nowrap; justify-content: center;
+    width: calc(100% - 4px);
+    position: sticky; top: 20px;
+    z-index: 100;
+    margin: auto;
+
+    lwd-navitem {
+      display: inline-flex; justify-content: center; align-items: center;
+      min-width: 30px; height: 30px;
+      padding: 10px; margin: 5px;
+      color: var(--foreground); text-decoration: none; border-radius: 30px;
+      background: center center / auto 30px no-repeat; background-color: var(--component-background);
+      backdrop-filter: blur(20px);
+      @include shadow(1);
+      cursor: pointer;
+    }
+
+    .justTextNavItem {
+      background: none; box-shadow: none;
+      font-size: 1.2em; font-family: selawik_sb;
+    }
+
+    lwd-navgroup {
+      display: inline-flex;
+      gap: 5px;
+      justify-content: center; align-items: center;
+      height: 30px;
+      padding: 10px; margin: 5px;
+      text-decoration: none; border-radius: 30px;
+      color: var(--foreground); background-color: var(--component-background);
+      backdrop-filter: blur(20px);
+      @include shadow(1);
+      cursor: pointer;
 
       lwd-navitem {
-        @include inline-box;
         display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        min-width: 30px;
-        height: 30px;
-        color: var(--foreground);
-        text-decoration: none;
-        border-radius: 30px;
-        background: center center / auto 30px no-repeat;
-        background-color: var(--component-background);
-        cursor: pointer;
-      }
-
-      lwd-navgroup {
-        @include inline-box;
-        display: inline-flex;
-        gap: 5px;
-        justify-content: center;
-        align-items: center;
-        height: 30px;
-        text-decoration: none;
-        border-radius: 30px;
-        color: var(--foreground);
-        background-color: var(--component-background);
-        cursor: pointer;
-
-        lwd-navitem {
-          display: inline-flex;
-          background: none;
-          box-shadow: none;
-          flex: 0 1 30px;
-        }
-      }
-      .navItemIcon {
-        order: 1;
-        min-width: 30px;
-      }
-      .navItemLabel {
-        order: 2;
-        padding: 0 5px 2px 5px;
+        background: none; box-shadow: none; backdrop-filter: none;
+        flex: 0 1 30px;
+        min-width: fit-content;
       }
       .justTextNavItem {
-        background: none;
-        box-shadow: none;
-        font-size: 1.2em;
-        font-family: selawik_sb;
-        margin: auto 0;
+        font-size: 1em; font-family: selawik;
+        border-radius: 0;
       }
     }
+    .navItemIcon {order: 1; min-width: 30px;}
+    .navItemLabel {order: 2; padding: 10px;}
+    .reversed-alignment {margin-left: auto;}
+    .navTitle {display:none}
+
+    @content;
   }
 
-  &[mobile-type="floatingSymbol"] {
-    @include mobile() {
-      @include inline-box;
-      position: sticky;
-      top: 20px;
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
+
+  @mixin floatingSymbolMobile() {
+    position: sticky; top: 20px;
+    display: flex; justify-content: space-evenly; align-items: center;
+    width: 100%; height: 50px;
+    color: var(--foreground); text-decoration: none; border-radius: 17px;
+    background: center center / auto 30px no-repeat; background-color: var(--component-background);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    overflow: hidden; cursor: pointer;
+    @include shadow(1);
+
+    ion-icon {font-size: 20px;}
+
+    lwd-navitem {
+      overflow: hidden;
+      display: none;
+      &.generated-nav-element {display: flex; &.header {display: none}}
+      flex: 0 1 auto; justify-content: center; align-items: center;
+      width: 100%; max-width: 60px; height: 100%;
+      margin: 0 5px;
+
+      .navItemLabel {display: none;}
+      transition: font-size .2s;
+      
+      &[selected] {
+        background: linear-gradient(to right,var(--color-light),var(--color-main));
+        color: var(--color-text); border-radius: 8px;
+        box-shadow: 0px 1.6px 3.6px rgb(0 0 0 / 13%), 0px 0px 2.9px rgb(0 0 0 / 11%);
+      }
+
+      transition: border-radius .2s;
+      &:hover {
+        font-size: 1.05em; background-color: var(--component-background-hover);
+        &:not([selected]) {@include small-shadow(1)}
+        border-radius: 17px;
+      }
+      &:active {
+        font-size: 0.95em; background-color: var(--component-background-active);
+      }
+    }
+
+    .justTextNavItem {
+      overflow: hidden;
+      .navItemLabel {display: unset}
+      margin: 0; padding: 10px;
       height: 30px;
-      width: calc(100% - 110px);
-      margin: 0 0 0 80px;
-      color: var(--foreground);
-      text-decoration: none;
-      border-radius: 17px;
-      cursor: pointer;
-      background: center center / auto 30px no-repeat;
-      background-color: var(--component-background);
+      max-width: unset;
+      white-space: nowrap;
+    }
 
-      ion-icon {
-        font-size: 20px;
-      }
+    .mobile-nav-item {display: flex;}
+    .reversed-alignment {margin-left: 0px}
+    .header, .navTitle, .generatedNavButton, lwd-navgroup {display: none}
 
-      lwd-navitem {
-        display: none;
-        flex: 0 1 200px;
-        justify-content: center;
-      }
+    @content;
+  }
 
-      .header {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: fixed;
-        left: 0px;
-        top: 20px;
-        width: 50px;
-        height: 50px;
-        margin-left: 15px;
-        padding: 0;
-        ion-icon {
-          font-size: 1.5em;
-        }
-      }
 
-      .navItemLabel,
-      .justTextNavItem,
-      lwd-navgroup {
-        display: none;
-      }
-      .mobile-nav-item {
-        display: flex;
+  &[type="floatingSymbol"] {
+    &:not([mobile-type]) {@extend [mobile-type="floatingSymbol"];} // no mobile-type specified
+    @include desktop() {@include floatingSymbol()}
+  }
+  &[mobile-type="floatingSymbol"] {
+    @include mobile() {@include floatingSymbolMobile()}
+  }
+
+  &[type="floatingSymbolBackground"] {
+    &:not([mobile-type]) {@extend [mobile-type="floatingSymbolBackground"];} // no mobile-type specified
+    @include desktop() {
+      @include floatingSymbol();
+
+      background: linear-gradient(to right, var(--color-main), var(--color-lighter));
+      border-radius: 12px;
+      @include shadow(1);
+      padding: 5px 10px;
+      width: calc(100% - 20px);
+      lwd-navgroup, lwd-navitem { background-color: var(--background) }
+    }
+  }
+  &[mobile-type="floatingSymbolBackground"] {
+    @include mobile() {
+      @include floatingSymbolMobile() {
+        top: 15px;
+        margin-bottom: 60px; margin-top: 0;
+        overflow: visible;
+        background-color: var(--background);
       }
     }
   }
+}
+.header {
+  position: relative; top: 5px;
+  font-family: selawik_sb;
+  z-index: 99;
+  height: 45px; width: 100%;
+  margin: auto; text-align: center;
+}
+.lwd-nav-background {
+  position: fixed; top: -50px; left: 0;
+  z-index: 98;
+  width: 100%; height: 135px;
+  border-radius: 50% / 10px;
+  background: linear-gradient(to top, var(--color-main) 10%, var(--color-lighter) 30%, var(--color-light) 100%)
 }
 
 //LWD inputs -----------------------------------------------------------------
 
 // Button
 button {
+  @include shadow(1);
   cursor: pointer;
   font-family: $semibold-font;
   padding: 0.5rem 1rem 0.5rem 1rem;
-  margin: 7px;
+  margin: 5px 0;
   border: none;
   background-color: var(--component-background);
   color: var(--foreground);
   border-radius: $border-radius;
-  box-shadow: var(--box-shadow);
-  transition: background-color 0.2s, color 0.2s, transform 0.1s ease-in;
+  transition: background-color 0.1s, color 0.2s, transform 0.1s ease-in, box-shadow .3s;
+  user-select: none;
 
-  &:hover {
-    background-color: var(--component-background-hover);
+  &:hover {    
+    --height: 1.5;
+    background: var(--component-background-hover);
   }
   &:active {
-    background-color: var(--color-main);
-    color: var(--color-text);
+    --height: 0.5;
+    background: var(--component-background-active);
     transform: scale(0.95);
-    box-shadow: var(--box-shadow);
-    transition: background-color .2s, color .2s, transform .05s ease-in;
-    
-
-    &:hover {
-      background: var(--color-lighter);
-    }
-    &:active {
-        background-color: var(--color-main);
-        color: var(--color-text);
-        transform: scale(.95);
-        box-shadow: var(--box-shadow);
-    }
-    &:focus {
-        border: none;
-        margin: 7px;
-    }
-    &.important {
-        background: var(--color-main);
-        color: var(--color-text);
-        transition: background-color .07s, box-shadow .1s;
-        &:hover {
-            background: var(--color-lighter);
-        }
-        &:active {
-            background: var(--color-darker);
-            box-shadow: var(--box-shadow-active);
-        }
-    }
+    transition: background-color .2s, color .2s, transform .1s ease-in;
+  }
+  &:focus {
+    border: none;
+    margin: 5px 0;
+  }
+  &.important {
+    background: var(--color-main);
+    color: var(--color-text);
+    &:hover {background-color: var(--color-darker);}
+    &:active {background-color: var(--color-dark);}
+  }
+  &.flat {
+    box-shadow: none;
+    border: var(--border);
+    &:hover {@include shadow(1)}
+    &:active {--height: 0.5}
   }
 }
 
-//Navigation
-
-@mixin top-icon-nav {
-  @include fixed-center();
-  display: flex;
-  justify-content: center;
-  height: 85px;
-  z-index: 99;
-
-  .wrap-container {
-    display: flex;
-    justify-content: center;
-    width: 650px;
-    height: 85px;
-    padding: 0 40px 0 40px;
-    background-color: var(--transparent-background);
-    border-radius: 0 0 15px 15px;
-    box-shadow: var(--box-shadow);
-
-    a {
-      background: center center / auto 32px no-repeat;
-      width: 100%;
-      padding: 0 20px 0 20px;
-
-      &:hover {
-        background-color: var(--background-hover);
-      }
-
-      &:active {
-        background-color: var(--background-active);
-      }
-    }
-  }
-}
-
-nav.top-icon-nav {
-  @include top-icon-nav();
-}
-
-.nav-logo {
-  @include fixed-center();
-  width: 90px;
-  height: 90px;
-  top: 15px;
-  background: var(--linear-gradient);
-  border-radius: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: var(--box-shadow);
-  z-index: 100;
-  div {
-    width: 84px;
-    height: 84px;
-    background: center center / auto 45px no-repeat;
-    background-color: var(--background);
-    border-radius: 100px;
-  }
-}
-
-// Inputs
-.lwd-ip-container {
-  position: relative;
-  display: grid;
-  grid-template-columns: calc(100% + 2px);
-  margin: 5px 0;
-  &::after {
-    content: "";
-    position: absolute;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
-    height: 5%;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    background-position: 0% 0%;
-    background: linear-gradient(
-      to right,
-      var(--color-lighter),
-      var(--color-darker)
-    );
-    background-size: var(--ip-background-size);
-    background-repeat: no-repeat;
-  }
-}
 input {
-  background: linear-gradient(
-        var(--component-background),
-        var(--component-background)
-      )
-      padding-box,
-    linear-gradient(to right, var(--color-lighter), var(--color-main))
-      border-box;
-
   background-color: var(--component-background);
   border: var(--border);
   border-radius: $border-radius;
@@ -648,11 +602,13 @@ input {
   color: var(--foreground);
   transition: all 0.1s;
   display: inline-block;
+  user-select: none;
 
   &:focus {
     border-bottom: 2px solid transparent;
+    border-bottom-color: var(--color-main);
     padding-bottom: 9px;
-    box-shadow: var(--box-shadow);
+    @include shadow(1);
   }
 
   &::placeholder {
@@ -695,42 +651,13 @@ input {
   }
 
   &[type="range"] {
-      /*
-    appearance: none;
-    -webkit-appearance: none;
-    padding: initial;
-    box-shadow: none;
-    border-radius: 5pt;
-    height: 4px;
-    background: var(--component-background);
-    outline: none;
-    &::-webkit-slider-thumb,
-    &::-moz-range-thumb {
-      width: 25px;
-      height: 25px;
-      border-radius: 50%;
-      border: none;
-      background: var(--color-main);
-      cursor: pointer;
-    }
-    &::-webkit-range-thumb:hover {
-      background: var(--color-lighter);
-    }
-    &::-webkit-range-thumb:active {
-      background: var(--color-darker);
-    }
-    &::-webkit-range-progress {
-      background-color: red;
-    }*/
-
-    /* The slider itself */
     &[type="range"] {
       -webkit-appearance: none; appearance: none;
       height: 0px;
       background: var(--color-darker);
       outline: none; /* Remove outline */
       -webkit-transition: .1s; transition: all .1s;
-      margin: 0; padding: 2px;
+      margin: 15px 5px; padding: 2px;
     }
 
     &[type="range"]::-webkit-slider-thumb {
@@ -756,7 +683,8 @@ input {
 div.lwd-box {
     @include shadow(1);
     background-color: var(--component-background);
-    //box-shadow: var(--box-shadow);
+    //backdrop-filter: blur(20px);  WARNING: SLOWS DOWN THE BROWSER MASSIVELY!!!
+    //-webkit-backdrop-filter: blur(20px);
     border-radius: 3px;
     width: auto;
     height: auto;
@@ -798,11 +726,12 @@ div.lwd-box {
 
   a {
     background: center 30px / auto 80px no-repeat;
-    @include inline-box;
-    background-color: var(--background);
+    background-color: var(--component-background);
+    box-shadow: var(--box-shadow);
     width: 140px;
     height: 145px;
     margin: 0 20px 30px 20px;
+    padding: 10px;
     padding-bottom: 20px;
     border-radius: 15px;
     display: flex;
@@ -830,6 +759,115 @@ div.lwd-box {
     }
   }
 }
+
+//Animations -----------------------------------------
+.animation {
+  transition: transform .1s;
+  &:hover {
+    transform: scale(1.1);
+    &.window-close, &.window-open, &.windiw-highlight{transform: translate(-50%, -50%)}
+  }
+  &:active {
+    transform: scale(1);
+    &.rotate {transform: rotate(-170deg)}
+    &.stretch-horizontal {transform: scaleY(1.5);}
+    &.stretch-vertical {transform: scaleX(1.5);}
+  }
+  &.window-close {
+    animation: fade-down .6s;
+  }
+  &.window-open {
+    animation: fade-up .3s;
+    visibility: visible;
+  }
+  &.window-highlight {
+    animation: pop-up .3s;
+  }
+}
+
+@keyframes fade-down {
+  0% {transform: translate(-50%, -50%)}
+  20% {transform: translate(-50%, -50%) scale(0.8)}
+  100% {transform: translate(-50%, 100%) scale(0.8); visibility: hidden;}
+}
+
+@keyframes fade-up {
+  0% {transform: translate(-50%, 50%) scale(0.8);}
+  70% {transform: translate(-50%, -50%) scale(0.8)}
+  100% {transform: translate(-50%, -50%) scale(1);}
+}
+
+@keyframes pop-up {
+  50% {transform: translate(-50%, -50%) scale(1.02);--height: 1.2}
+  100% {transform: translate(-50%, -50%) scale(1);--height: 1}
+}
+
+
+
+//Lwd window ------------------------------------------
+lwd-window {
+  position: fixed; left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px; height: 400px; max-width: 95%; max-height: 97%;
+  @include shadow(1);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border-radius: 7px;
+  border: var(--border);
+  z-index: 101;
+  transition: box-shadow .1s, transform .1s;
+  overflow: hidden;
+  background-color: var(--component-background-transparent);
+  will-change: transform;
+  display: none;
+
+
+  h2 {
+    position: relative;
+    display: flex; justify-content: center; align-items: center;
+    color: var(--foreground);
+    font-size: 1.7em;
+    width: 100%; height: 60px;
+    cursor: move;
+    margin: 0;
+    transition: all .1s;
+    &:hover {font-size:1.8em}
+  }
+  svg {
+    padding: 10px;
+    position: absolute;
+    right: 0px; top: 0px;
+    width: 16px; height: 16px;
+    path {fill: var(--foreground)}
+    cursor: default;
+    &:hover {transform: scale(1.1)}
+    &:active {transform: scale(0.9)}
+    transition: all .1s;
+    enable-background: new 0 0 512 512;
+  }
+
+  .content {
+    background-color: var(--component-background);
+    width: 100%;
+    height: 100%;
+    border-bottom-left-radius: 7px; border-bottom-right-radius: 7px;
+    padding: 10px;
+    overflow-y: scroll;
+  }
+
+  &.round-corners {
+    border-radius: 15px;
+    .content {
+      border-bottom-left-radius: 15px; border-bottom-right-radius: 15px;
+    }
+  }
+  @include mobile() {
+    width: 95%;
+    height: 99%;
+  }
+}
+
+
+//css classes for user
 
 .circle {
   border-radius: 50%;
