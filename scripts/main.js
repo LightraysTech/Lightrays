@@ -289,12 +289,6 @@ class LwdFunctions {
 window.addEventListener("load", () => {
     document.querySelectorAll("lwd-nav").forEach(e => e.initialize());
     Lwd.init();
-    let navIcons = document.querySelectorAll(".navItemIcon")
-    navIcons.forEach((i) => {
-        i.addEventListener("click", () => {
-        console.log("pressed");
-        });
-    });
 });
 
 class LwdNav extends HTMLElement {
@@ -319,9 +313,7 @@ class LwdNav extends HTMLElement {
             }
         },
         floatingSymbol: {
-            initialize: function(navElem) {
-                document.querySelectorAll(".reversed-alignment")[0].style.setProperty("margin-left", "auto");
-                
+            initialize: function(navElem) {                
                 let navitems = document.querySelectorAll("lwd-navitem");
                 let justTextNavItems = [];
                 navitems.forEach(item => {
@@ -330,6 +322,22 @@ class LwdNav extends HTMLElement {
                     }
                 });
                 justTextNavItems.forEach(item => {item.classList.add("justTextNavItem")});
+
+                //add border if two justTextNavItems are next to each other
+                navitems.forEach(item => {
+                    if (item.classList.contains("justTextNavItem")) {
+                        if (item.nextElementSibling != null) {
+                            if (item.nextElementSibling.classList.contains("justTextNavItem")) {
+                                item.style.setProperty("border-right", "var(--border)");
+                            }
+                        }
+                    }
+                });
+            }
+        },
+        floatingSymbolBackground: {
+            initialize(navElem) {
+                navElem.navTypes.floatingSymbol.initialize(navElem);
             }
         }
     }
@@ -353,27 +361,45 @@ class LwdNav extends HTMLElement {
         floatingSymbol: {
             initialize(navElem) {
                 let navItems = document.querySelectorAll("lwd-navitem");
-
-                navItems.forEach((item) => {
-                    if (!item.classList.contains("navButton") && !item.classList.contains("justTextNavItem")) {
+                let clonedNavItems = [];
+                navItems.forEach(item => {
+                    if (!item.classList.contains("navButton") && !item.classList.contains(".generatedNavButton") && !item.classList.contains("generated-nav-element") && !item.classList.contains("navTitle")) {
                         let clonedNavItem = item.cloneNode();
-                        for(let child of item.children) {
-                            clonedNavItem.appendChild(child.cloneNode());
-                        }
-                        clonedNavItem.classList.add("hide-in-desktop", "mobile-nav-item");
+                        clonedNavItem.innerHTML = item.innerHTML;
+                        clonedNavItem.classList.add("generated-nav-element");
     
                         navElem.appendChild(clonedNavItem);
-                        console.log("inserted clonedItem");
+                        clonedNavItems.push(clonedNavItem);
+
+                        clonedNavItem.classList.add("hide-in-desktop");
                     }
                 });
-
 
                 let menuHead = document.createElement("lwd-navitem");
                 menuHead.classList.add("hide-in-desktop", "generated-nav-element", "header"); 
                 menuHead.appendChild(navElem.getNavButton(18));
 
                 navElem.insertBefore(menuHead, navElem.firstChild);
-                console.log("inserted menuHead");
+
+                if (navElem.hasAttribute("background")) {
+                    let navBackground = document.createElement("div");
+                    navBackground.classList.add("background", "generated-nav-element");
+                    navElem.appendChild(navBackground);
+                }
+            }
+        },
+        floatingSymbolBackground: {
+            initialize(navElem) {
+                navElem.mobileNavTypes.floatingSymbol.initialize(navElem);
+                    let menuHead = document.createElement("div");
+                    menuHead.classList.add("hide-in-desktop", "generated-nav-element", "header");
+                    menuHead.innerHTML = navElem.getNavTitle();
+
+                    let navBackground = document.createElement("div");
+                    navBackground.classList.add("lwd-nav-background", "generated-nav-element", "hide-in-desktop");
+                    navElem.parentNode.insertBefore(navBackground, navElem);
+                    navElem.parentNode.insertBefore(menuHead, navElem);
+                    console.log("generated nav element");
             }
         }
     }
@@ -382,12 +408,14 @@ class LwdNav extends HTMLElement {
         if (document.readyState == "complete") {
             this.removeGeneratedElements();
             this.getNavType()?.initialize(this);
-            this.getMobileNavType().initialize(this);  
+            this.getMobileNavType().initialize(this);
+            this.setFoldouts();  
         } else {
             window.addEventListener("load", () => {
                 this.removeGeneratedElements();
                 this.getNavType()?.initialize(this);
                 this.getMobileNavType().initialize(this);  
+                this.setFoldouts(); 
             });
         }
     }
@@ -396,7 +424,7 @@ class LwdNav extends HTMLElement {
     }
 
     removeGeneratedElements() {
-        this.querySelectorAll(".generated-nav-element").forEach(element => {
+        document.querySelectorAll(".generated-nav-element").forEach(element => {
             element.remove();
         });
     }
@@ -419,10 +447,9 @@ class LwdNav extends HTMLElement {
         let navButton;
         if (specifiedNavButton == null) {
             console.info("LWD: no navButton found, switched to default");
-            navButton = document.createElement("img");
-            navButton.setAttribute("src", Lwd.rootFolderPath + "/img/menu-btn.svg");
-            navButton.setAttribute("width", width);
-
+                navButton = document.createElement("div");
+                navButton.innerHTML="<svg viewBox='0 0 512 512' width='20'><path stroke='currentColor' stroke-linecap='round' stroke-miterlimit='10' stroke-width='32' d='M80 160h352M80 296h352M80 432h352'/></svg>"
+                navButton.setAttribute("width", width);
         } else {
             console.info("LWD: navButton found");
             navButton = specifiedNavButton.cloneNode();
@@ -477,6 +504,24 @@ class LwdNav extends HTMLElement {
         }
     }
 
+    toggleFoldout(e) {
+        let foldout = document.querySelector("#" + e.currentTarget.getAttribute("foldout"));
+        if (foldout.hasAttribute("open")) {
+            foldout.removeAttribute("open", "");
+            e.currentTarget.removeAttribute("open", "");
+        } else {
+            foldout.setAttribute("open", "");
+            e.currentTarget.setAttribute("open", "");
+        }
+    }
+    
+    setFoldouts() {
+        this.querySelectorAll("[foldout]").forEach(e => {
+            e.removeEventListener("click", this.toggleFoldout);
+            e.addEventListener("click", this.toggleFoldout, false);
+        });
+    }
+
     attributeChangedCallback(name, oldValue, newValue) {
         var body = document.querySelector("body");
         switch (name) {
@@ -519,29 +564,24 @@ class LwdWindow extends HTMLElement {
     static isOpen = true;
     closeWindow() {
         if (this.isOpen)  {
+            this.classList.remove("animation", "window-open");
             this.classList.add("animation", "window-close");
-            this.style.setProperty("visibility", "hidden");
-            setTimeout(() => {
-                this.style.setProperty("top", "150%");
-                this.classList.remove("animation", "window-close");
-            }, 400);
             this.isOpen = false;
+            setTimeout(() => {this.style.removeProperty("display");}, 400);
         }
     }
     openWindow() {
         document.querySelectorAll("lwd-window").forEach(w => w.style.setProperty("z-index", "101"));
         this.style.setProperty("z-index", "102");
+        this.style.setProperty("display", "unset");
 
         if (this.isOpen) {
             this.classList.add("animation", "window-highlight");
             setTimeout(() => {this.classList.remove("animation", "window-highlight")}, 300);
         } else {
+            this.style.removeProperty("visibility", "visible");
+            this.classList.remove("animation", "window-close");
             this.classList.add("animation", "window-open");
-            this.style.setProperty("visibility", "visible");
-            setTimeout(() => {
-                this.classList.remove("animation", "window-open");
-                this.style.removeProperty("top");
-            }, 200);
             this.isOpen = true;
         }
     }
@@ -564,10 +604,32 @@ class LwdWindow extends HTMLElement {
             LwdFunctions.dragElement(this, this.querySelector("h2"));
         }
         if (this.getAttribute("width") != undefined) {
-            this.style.setProperty("width", this.getAttribute("width"));
+            if (window.innerWidth <= 650) { //mobile
+                this.style.setProperty("width", "95%");
+            } else {
+                this.style.setProperty("width", this.getAttribute("width"));
+            }
+            window.addEventListener("resize", () => {
+                if (window.innerWidth <= 650) { //mobile
+                    this.style.setProperty("width", "95%");
+                } else {
+                    this.style.setProperty("width", this.getAttribute("width"));
+                }
+            });
         }
         if (this.getAttribute("height") != undefined) {
-            this.style.setProperty("height", this.getAttribute("height"));
+            if (window.innerWidth <= 650) {
+                this.style.setProperty("height", "95%");
+            } else {
+                this.style.setProperty("height", this.getAttribute("height"));
+            }
+            window.addEventListener("resize", () => {
+                if (window.innerWidth <= 650) {
+                    this.style.setProperty("height", "99%");
+                } else {
+                    this.style.setProperty("height", this.getAttribute("height"));
+                }
+            });
         }        
         if (this.getAttribute("closed") != undefined) {
             if (this.getAttribute("closed") == "false") {

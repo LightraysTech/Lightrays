@@ -19,7 +19,6 @@
       --component-background-hover: hsla(0, 0%, 95%, .7);
       --component-background-active: hsla(0, 0%, 90%, .7);
       --component-background-transparent: hsla(0, 0%, 100%, .2);
-
       --box-shadow: 0px 1.6px 7px rgb(0 0 0 / 9%);
       --box-shadow-2: 0px 1.6px 8px rgba(0, 0, 0, 0.13),
         0px 0px 2.9px rgba(0, 0, 0, 0.11);
@@ -105,16 +104,20 @@
                   inset 1px 1px 1.5px -1px hsla(0, 0%, var(--shadow-spec), .2),  //Spec
                   inset 1px 1px 1px hsla(0, 0%, calc(var(--shadow-spec) + 10%), .2),  //Spec Highlight
                   inset -1px -1px 2px -1px rgba(170, 0, 0, 0.116);
+}
 
-    /*box-shadow:     calc(var(--light-direction-x)*var(--height)*var(--shadow-length)) calc(var(--light-direction-y)*var(--height)) calc(25px*var(--height)) var(--shadow-size) var(--shadow-color),
-    4px 4px 10px -5px rgba(0, 0, 0, calc(0.1 / var(--height))),  //AO
-    inset 1px 1px 1.5px -1px hsl(0, 0%, 97%),  //Spec
-    inset 1px 1px 1px white,  //Spec Highlight
-    inset -1px -1px 2px -1px rgba(0, 0, 0, 0.116);*/
+@mixin small-shadow($height) {
+  --height: 1;
+  box-shadow:  
+                4px 4px 10px -5px rgba(0, 0, 0, calc(0.2 / var(--height))),  //AO
+                inset 1px 1px 1.5px -1px hsla(0, 0%, var(--shadow-spec), .2),  //Spec
+                inset 1px 1px 1px hsla(0, 0%, calc(var(--shadow-spec) + 10%), .2),  //Spec Highlight
+                inset -1px -1px 2px -1px rgba(170, 0, 0, 0.116);
 }
 
 // General
 body {
+  -webkit-tap-highlight-color: transparent;
   font-family: $default-font;
   background: linear-gradient(calc(var(--shadow-angle)*(-1)), 
   hsl(var(--sun-tint), var(--sun-saturation), var(--sun-brightness)),
@@ -166,6 +169,7 @@ body {
     @include desktop() {
       transition: margin-left 0.2s ease-in-out;
       margin-left: 365px;
+      will-change: margin-left;
       &[nav-alt-state] {
         margin-left: 80px;
       }
@@ -186,7 +190,7 @@ lwd-nav {
   z-index: 100;
 
   // no type specified -> go to default type
-  &:not([mobile-type]) {@extend [mobile-type="side"];}
+  //&:not([mobile-type]) {@extend [mobile-type="side"];}
   &:not([type]) {@extend [type="side"];}
 
   .navItemIcon {
@@ -211,83 +215,82 @@ lwd-nav {
       }
     }
   }
+  user-select: none;
+
 
   &[type="side"] {
     @include desktop() {
       overflow-x: scroll;
-      position: fixed;
-      left: 0;
-      top: 0;
-      width: 340px;
-      height: 100%;
+      position: fixed; left: 0; top: 0;
+      width: 340px; height: 100%;
       padding-top: 10px;
       white-space: nowrap;
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      background-color: var(--component-background);
-      box-shadow: var(--box-shadow-2);
-      transition: width 0.2s ease-in-out;
-      -webkit-transition: width 0.2s ease-in-out;
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      background-color: var(--component-background); box-shadow: var(--box-shadow-2);
+      transition: width 0.2s ease-in-out; -webkit-transition: width 0.2s ease-in-out;
+      will-change: width;
 
       lwd-navitem {
-        transition: margin 0.2s ease-in-out;
-        -webkit-transition: margin 0.2s ease-in-out;
-        display: flex;
-        align-items: center;
-        vertical-align: middle;
-        width: calc(100% - 25px);
-        height: 35px;
+        transition: margin 0.2s ease-in-out; -webkit-transition: margin 0.2s ease-in-out;
+        display: flex; align-items: center; vertical-align: middle;
+        width: calc(100% - 25px); height: 35px;
         margin: 5px 12.5px;
         cursor: pointer;
 
         .navItemLabel {
           order: 2;
-          margin: 0 20px;
+          margin: 0 3px; font-size: 0.95em;
         }
         .navItemIcon {
           order: 1;
-          width: 30px;
-          padding: 10px;
+          width: 30px; padding: 10px;
           flex-shrink: 0;
+          &.toggle {
+            order: 3;
+            position: absolute; right: 0;
+            transition: transform .2s;
+          }
         }
-        .navItemIcon:first-child {
-          fill: red;
+        &[open] {
+          .navItemIcon.toggle {transform: rotate(180deg);}
+          .navItemIcon.toggle:hover {transform: rotate(180deg) scale(1.1);}
         }
 
         &.header {
           margin-top: 15px;
           margin-bottom: 20px;
-          .navItemIcon {
-            width: 18px;
-            padding: 16px;
-          }
+          .navItemIcon {width: 18px;padding: 16px;}
+          &:hover {box-shadow: none;}
         }
-
         &[selected] {
-          background: linear-gradient(
-            to right,
-            var(--color-light),
-            var(--color-main)
-          );
+          background: linear-gradient(to right,var(--color-light),var(--color-main));
           color: var(--color-text);
           border-radius: 8px;
-          box-shadow: 0px 1.6px 3.6px rgb(0 0 0 / 13%),
-            0px 0px 2.9px rgb(0 0 0 / 11%);
+          box-shadow: 0px 1.6px 3.6px rgb(0 0 0 / 13%), 0px 0px 2.9px rgb(0 0 0 / 11%);
+        }
+        &:hover {
+          &:not([selected]), &:not(.header) {
+            @include small-shadow(1);
+            border-radius: 8px;
+          }
         }
       }
 
       lwd-navgroup {
         display: block;
-        border-top: var(--border);
-        border-bottom: var(--border);
-        border-width: 1.5px;
-        margin: 5px 0;
-        padding: 5px 0;
+        border-top: var(--border); border-bottom: var(--border); border-width: 1.5px;
+        margin: 5px 0;padding: 5px 0;
         & ~ lwd-navgroup {
           border-top-color: transparent;
-          margin-top: 0;
-          padding-top: 0;
+          margin-top: 0; padding-top: 0;
         }
+      }
+
+      lwd-navfoldout {
+        display: none;
+        &[open] {display: block}
+        transition: height .2s linear;
+        lwd-navitem {margin-left: 50px;width: calc(100% - 65px);}
       }
 
       &[alt-state] {
@@ -295,12 +298,9 @@ lwd-nav {
         lwd-navitem {
           justify-content: center;
           width: calc(55px - 10px);
-          margin-left: 5px;
-          margin-right: 5px;
+          margin-left: 5px; margin-right: 5px;
         }
-        .navItemLabel {
-          display: none;
-        }
+        .navItemLabel, .toggle {display: none;}
       }
     }
     @include tablet() {
@@ -308,12 +308,12 @@ lwd-nav {
       lwd-navitem {
         justify-content: center;
         width: calc(55px - 10px);
-        margin-left: 5px;
-        margin-right: 5px;
+        margin-left: 5px; margin-right: 5px;
       }
-      .navItemLabel {
-        display: none;
+      lwd-navfoldout {
+        lwd-navitem {margin-left: 5px;width: calc(100% - 10px);}
       }
+      .navItemLabel, .toggle {display: none;}
 
       &[alt-state] {
         width: 340px;
@@ -321,36 +321,30 @@ lwd-nav {
           justify-content: unset;
           width: calc(100% - 25px);
           margin: 5px 12.5px;
+          
 
           &.header {
-            margin-top: 15px;
-            margin-bottom: 20px;
-            .navItemIcon {
-              width: 18px;
-              padding: 16px;
-            }
+            margin-top: 15px; margin-bottom: 20px;
+            .navItemIcon {width: 18px; padding: 16px;}
           }
         }
-        .navItemLabel {
-          display: initial;
+        .navItemLabel, .toggle {display: initial}
+        lwd-navfoldout {
+          lwd-navitem {margin-left: 50px;width: calc(100% - 65px)}
         }
       }
     }
   }
 
+
   &[mobile-type="side"] {
     @include mobile() {
       overflow-x: scroll;
-      position: fixed;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100px;
+      position: fixed;left: 0;top: 0;
+      width: 100%;height: 100px;
       white-space: nowrap;
-      background-color: var(--component-background);
-      box-shadow: var(--box-shadow-2);
-      transition: width 0.2s ease-in-out;
-      -webkit-transition: width 0.2s ease-in-out;
+      background-color: var(--component-background); box-shadow: var(--box-shadow-2);
+      transition: width 0.2s ease-in-out; -webkit-transition: width 0.2s ease-in-out;
 
       lwd-navitem {
         transition: margin 0.2s ease-in-out;
@@ -384,11 +378,7 @@ lwd-nav {
         }
 
         &[selected] {
-          background: linear-gradient(
-            to right,
-            var(--color-light),
-            var(--color-main)
-          );
+          background: linear-gradient(to right, var(--color-light), var(--color-main));
           border-radius: 8px;
           box-shadow: 0px 1.6px 3.6px rgb(0 0 0 / 13%),
             0px 0px 2.9px rgb(0 0 0 / 11%);
@@ -397,131 +387,164 @@ lwd-nav {
     }
   }
 
-  &[type="floatingSymbol"] {
-    &:not([mobile-type]) {
-      @extend [mobile-type="floatingSymbol"];
-    } // no mobile-type specified
 
-    @include desktop() {
-      display: flex;
-      flex-wrap: nowrap;
-      width: 100%;
-      position: sticky;
-      top: 20px;
-      z-index: 100;
+  @mixin floatingSymbol() {
+    display: flex; flex-wrap: nowrap; justify-content: center;
+    width: calc(100% - 4px);
+    position: sticky; top: 20px;
+    z-index: 100;
+    margin: auto;
+
+    lwd-navitem {
+      display: inline-flex; justify-content: center; align-items: center;
+      min-width: 30px; height: 30px;
+      padding: 10px; margin: 5px;
+      color: var(--foreground); text-decoration: none; border-radius: 30px;
+      background: center center / auto 30px no-repeat; background-color: var(--component-background);
+      backdrop-filter: blur(20px);
+      @include shadow(1);
+      cursor: pointer;
+    }
+
+    .justTextNavItem {
+      background: none; box-shadow: none;
+      font-size: 1.2em; font-family: selawik_sb;
+    }
+
+    lwd-navgroup {
+      display: inline-flex;
+      gap: 5px;
+      justify-content: center; align-items: center;
+      height: 30px;
+      padding: 10px; margin: 5px;
+      text-decoration: none; border-radius: 30px;
+      color: var(--foreground); background-color: var(--component-background);
+      backdrop-filter: blur(20px);
+      @include shadow(1);
+      cursor: pointer;
 
       lwd-navitem {
         display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        min-width: 30px;
-        height: 30px;
-        padding: 10px; margin: 5px;
-        color: var(--foreground);
-        text-decoration: none;
-        border-radius: 30px;
-        background: center center / auto 30px no-repeat;
-        background-color: var(--component-background);
-        @include shadow(1);
-        backdrop-filter: blur(20px);
-        cursor: pointer;
-      }
-
-      lwd-navgroup {
-        display: inline-flex;
-        gap: 5px;
-        justify-content: center;
-        align-items: center;
-        height: 30px;
-        padding: 10px; margin: 5px;
-        text-decoration: none;
-        border-radius: 30px;
-        color: var(--foreground);
-        background-color: var(--component-background);
-        @include shadow(1);
-        backdrop-filter: blur(20px);
-        cursor: pointer;
-
-        lwd-navitem {
-          display: inline-flex;
-          background: none;
-          box-shadow: none;
-          backdrop-filter: none;
-          flex: 0 1 30px;
-        }
-      }
-      .navItemIcon {
-        order: 1;
-        min-width: 30px;
-      }
-      .navItemLabel {
-        order: 2;
-        padding: 0 5px 2px 5px;
+        background: none; box-shadow: none; backdrop-filter: none;
+        flex: 0 1 30px;
+        min-width: fit-content;
       }
       .justTextNavItem {
-        background: none;
-        box-shadow: none;
-        font-size: 1.2em;
-        font-family: selawik_sb;
-        margin: auto 0;
+        font-size: 1em; font-family: selawik;
+        border-radius: 0;
       }
     }
+    .navItemIcon {order: 1; min-width: 30px;}
+    .navItemLabel {order: 2; padding: 10px;}
+    .reversed-alignment {margin-left: auto;}
+    .navTitle {display:none}
+
+    @content;
   }
 
-  &[mobile-type="floatingSymbol"] {
-    @include mobile() {
-      position: sticky;
-      top: 20px;
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
+
+  @mixin floatingSymbolMobile() {
+    position: sticky; top: 20px;
+    display: flex; justify-content: space-evenly; align-items: center;
+    width: 100%; height: 50px;
+    color: var(--foreground); text-decoration: none; border-radius: 17px;
+    background: center center / auto 30px no-repeat; background-color: var(--component-background);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    overflow: hidden; cursor: pointer;
+    @include shadow(1);
+
+    ion-icon {font-size: 20px;}
+
+    lwd-navitem {
+      overflow: hidden;
+      display: none;
+      &.generated-nav-element {display: flex; &.header {display: none}}
+      flex: 0 1 auto; justify-content: center; align-items: center;
+      width: 100%; max-width: 60px; height: 100%;
+      margin: 0 5px;
+
+      .navItemLabel {display: none;}
+      transition: font-size .2s;
+      
+      &[selected] {
+        background: linear-gradient(to right,var(--color-light),var(--color-main));
+        color: var(--color-text); border-radius: 8px;
+        box-shadow: 0px 1.6px 3.6px rgb(0 0 0 / 13%), 0px 0px 2.9px rgb(0 0 0 / 11%);
+      }
+
+      transition: border-radius .2s;
+      &:hover {
+        font-size: 1.05em; background-color: var(--component-background-hover);
+        &:not([selected]) {@include small-shadow(1)}
+        border-radius: 17px;
+      }
+      &:active {
+        font-size: 0.95em; background-color: var(--component-background-active);
+      }
+    }
+
+    .justTextNavItem {
+      overflow: hidden;
+      .navItemLabel {display: unset}
+      margin: 0; padding: 10px;
       height: 30px;
-      width: calc(100% - 110px);
-      margin: 0 0 0 80px; padding: 10px;
-      color: var(--foreground);
-      text-decoration: none;
-      border-radius: 17px;
-      cursor: pointer;
-      background: center center / auto 30px no-repeat;
-      background-color: var(--component-background);
+      max-width: unset;
+      white-space: nowrap;
+    }
+
+    .mobile-nav-item {display: flex;}
+    .reversed-alignment {margin-left: 0px}
+    .header, .navTitle, .generatedNavButton, lwd-navgroup {display: none}
+
+    @content;
+  }
+
+
+  &[type="floatingSymbol"] {
+    &:not([mobile-type]) {@extend [mobile-type="floatingSymbol"];} // no mobile-type specified
+    @include desktop() {@include floatingSymbol()}
+  }
+  &[mobile-type="floatingSymbol"] {
+    @include mobile() {@include floatingSymbolMobile()}
+  }
+
+  &[type="floatingSymbolBackground"] {
+    &:not([mobile-type]) {@extend [mobile-type="floatingSymbolBackground"];} // no mobile-type specified
+    @include desktop() {
+      @include floatingSymbol();
+
+      background: linear-gradient(to right, var(--color-main), var(--color-lighter));
+      border-radius: 12px;
       @include shadow(1);
-
-      ion-icon {
-        font-size: 20px;
-      }
-
-      lwd-navitem {
-        display: none;
-        flex: 0 1 200px;
-        justify-content: center;
-      }
-
-      .header {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: fixed;
-        left: 0px;
-        top: 20px;
-        width: 50px;
-        height: 50px;
-        margin-left: 15px;
-        padding: 0;
-        ion-icon {
-          font-size: 1.5em;
-        }
-      }
-
-      .navItemLabel,
-      .justTextNavItem,
-      lwd-navgroup {
-        display: none;
-      }
-      .mobile-nav-item {
-        display: flex;
+      padding: 5px 10px;
+      width: calc(100% - 20px);
+      lwd-navgroup, lwd-navitem { background-color: var(--background) }
+    }
+  }
+  &[mobile-type="floatingSymbolBackground"] {
+    @include mobile() {
+      @include floatingSymbolMobile() {
+        top: 15px;
+        margin-bottom: 60px; margin-top: 0;
+        overflow: visible;
+        background-color: var(--background);
       }
     }
   }
+}
+.header {
+  position: relative; top: 5px;
+  font-family: selawik_sb;
+  z-index: 99;
+  height: 45px; width: 100%;
+  margin: auto; text-align: center;
+}
+.lwd-nav-background {
+  position: fixed; top: -50px; left: 0;
+  z-index: 98;
+  width: 100%; height: 135px;
+  border-radius: 50% / 10px;
+  background: linear-gradient(to top, var(--color-main) 10%, var(--color-lighter) 30%, var(--color-light) 100%)
 }
 
 //LWD inputs -----------------------------------------------------------------
@@ -538,6 +561,7 @@ button {
   color: var(--foreground);
   border-radius: $border-radius;
   transition: background-color 0.1s, color 0.2s, transform 0.1s ease-in, box-shadow .3s;
+  user-select: none;
 
   &:hover {    
     --height: 1.5;
@@ -578,6 +602,7 @@ input {
   color: var(--foreground);
   transition: all 0.1s;
   display: inline-block;
+  user-select: none;
 
   &:focus {
     border-bottom: 2px solid transparent;
@@ -658,8 +683,8 @@ input {
 div.lwd-box {
     @include shadow(1);
     background-color: var(--component-background);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    //backdrop-filter: blur(20px);  WARNING: SLOWS DOWN THE BROWSER MASSIVELY!!!
+    //-webkit-backdrop-filter: blur(20px);
     border-radius: 3px;
     width: auto;
     height: auto;
@@ -735,41 +760,12 @@ div.lwd-box {
   }
 }
 
-.circle {
-  border-radius: 50%;
-  padding: 20px;
-}
-
-.background-gradient {
-  background: linear-gradient(
-    to right bottom,
-    var(--color-light),
-    var(--color-main)
-  );
-}
-
-.hide-in-mobile {
-  @include mobile() {
-    display: none;
-    visibility: hidden;
-    position: absolute;
-  }
-}
-
-.hide-in-desktop {
-  @include desktop() {
-    display: none;
-    visibility: hidden;
-    position: absolute;
-  }
-}
-
-
 //Animations -----------------------------------------
 .animation {
   transition: transform .1s;
   &:hover {
     transform: scale(1.1);
+    &.window-close, &.window-open, &.windiw-highlight{transform: translate(-50%, -50%)}
   }
   &:active {
     transform: scale(1);
@@ -778,12 +774,11 @@ div.lwd-box {
     &.stretch-vertical {transform: scaleX(1.5);}
   }
   &.window-close {
-    animation: fade-down .4s;
-    transition: visibility .4s;
+    animation: fade-down .6s;
   }
   &.window-open {
-    animation: fade-up .2s;
-    transition: visibility .2s;
+    animation: fade-up .3s;
+    visibility: visible;
   }
   &.window-highlight {
     animation: pop-up .3s;
@@ -793,13 +788,13 @@ div.lwd-box {
 @keyframes fade-down {
   0% {transform: translate(-50%, -50%)}
   20% {transform: translate(-50%, -50%) scale(0.8)}
-  100% {top: 150%}
+  100% {transform: translate(-50%, 100%) scale(0.8); visibility: hidden;}
 }
 
 @keyframes fade-up {
-  0% {transform: translate(-50%, -50%) scale(0.8);top: 150%}
+  0% {transform: translate(-50%, 50%) scale(0.8);}
   70% {transform: translate(-50%, -50%) scale(0.8)}
-  100% {transform: translate(-50%, -50%) scale(1);top: 50%}
+  100% {transform: translate(-50%, -50%) scale(1);}
 }
 
 @keyframes pop-up {
@@ -813,7 +808,7 @@ div.lwd-box {
 lwd-window {
   position: fixed; left: 50%; top: 50%;
   transform: translate(-50%, -50%);
-  width: 600px; height: 400px;
+  width: 600px; height: 400px; max-width: 95%; max-height: 97%;
   @include shadow(1);
   backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
   border-radius: 7px;
@@ -822,6 +817,8 @@ lwd-window {
   transition: box-shadow .1s, transform .1s;
   overflow: hidden;
   background-color: var(--component-background-transparent);
+  will-change: transform;
+  display: none;
 
 
   h2 {
@@ -862,5 +859,41 @@ lwd-window {
     .content {
       border-bottom-left-radius: 15px; border-bottom-right-radius: 15px;
     }
+  }
+  @include mobile() {
+    width: 95%;
+    height: 99%;
+  }
+}
+
+
+//css classes for user
+
+.circle {
+  border-radius: 50%;
+  padding: 20px;
+}
+
+.background-gradient {
+  background: linear-gradient(
+    to right bottom,
+    var(--color-light),
+    var(--color-main)
+  );
+}
+
+.hide-in-mobile {
+  @include mobile() {
+    display: none;
+    visibility: hidden;
+    position: absolute;
+  }
+}
+
+.hide-in-desktop {
+  @include desktop() {
+    display: none;
+    visibility: hidden;
+    position: absolute;
   }
 }

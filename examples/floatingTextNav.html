@@ -4,43 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style/main.css">
-    <link rel="stylesheet" href="../examples/content.css">
+    <link rel="stylesheet" href="content.css">
+    <link rel="prefetch" href="Color-palette-creator.html">
     <script src="../scripts/main.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule="" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.js"></script>
     <title>Lighted Web Design - Example</title>
 </head>
 <body>
-    <lwd-nav type="floatingSymbol" class="nav-background">
-            <ion-icon class="navItemIcon navButton" name="menu-outline"></ion-icon>
+    <lwd-nav type="floatingSymbolBackground" mobile-type="floatingSymbolBackground">
+
+        <!--img class="navButton" src="img/Logos/LWD_light.png" width="18px"-->
+        <div class="navTitle">Lighted Web Design</div>
+
+        <lwd-navgroup>
             <lwd-navitem onclick="location.href = 'index.html'">
-                <ion-icon class="navItemIcon" name="easel-outline"></ion-icon>
+                <span class="navItemLabel">Overview</span>
             </lwd-navitem>
-            
-            <lwd-navgroup>
-                <lwd-navitem onclick="location.href = 'Color-palette-creator.html'">
-                    <ion-icon class="navItemIcon" name="eyedrop-outline"></ion-icon>
-                </lwd-navitem>
-                <lwd-navitem onclick="location.href = 'floatingSymbolNav.html'" selected>
-                    <ion-icon class="navItemIcon" name = "terminal-outline"></ion-icon>
-                </lwd-navitem>
-                <lwd-navitem onclick="location.href = 'floatingTextNav.html'">
-                    <ion-icon class="navItemIcon" name = "document-text-outline"></ion-icon>
-                </lwd-navitem>
-            </lwd-navgroup>
-
-            <lwd-navitem class="hide-in-mobile" onclick="location.href = 'Color-palette-creator.html'">
-                <ion-icon class="navItemIcon" name="eyedrop-outline"></ion-icon>
-                <span class="navItemLabel">CP Creator</span>
+            <lwd-navitem onclick="location.href = 'floatingSymbolNav.html'">
+                <span class="navItemLabel">floatingSymbol</span>
             </lwd-navitem>
-
-            <lwd-navitem class="reversed-alignment hide-in-mobile" onclick="location.href = 'floatingSymbolNav.html'">
-                <span class="navItemLabel">Only Text example</span>
-            </lwd-navitem>
-
             <lwd-navitem>
-                <ion-icon class="navItemIcon" name="settings-outline"></ion-icon>
+                <span class="navItemLabel">Settings</span>
             </lwd-navitem>
+        </lwd-navgroup>  
     </lwd-nav>
 
     
@@ -103,6 +90,7 @@
             <label>Button (class: important):</label><input type="button" class="important" value="Button">
             <label>Submit:</label><input type="submit">            
         </form>
+
     </main>
 </body>
 </html>
