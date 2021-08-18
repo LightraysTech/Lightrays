@@ -296,9 +296,9 @@ class LwdFunctions {
       }
 }
 
+Lwd.init();
 window.addEventListener("load", () => {
     document.querySelectorAll("lwd-nav").forEach(e => e.initialize());
-    Lwd.init();
 });
 window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
     if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
