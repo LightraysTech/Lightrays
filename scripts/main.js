@@ -10,7 +10,6 @@ class Lwd {
         let accentColor = LwdFunctions.getCookie("lwd-accentColor");
         if (accentColor != "") {
             if (accentColor.startsWith("[obj]")) {
-                console.log(accentColor.split("[obj]"));
 
                 this.setAccentColor(JSON.parse(accentColor.split("[obj]")[1]));
             } else if (accentColor.startsWith("[str]")) {
@@ -20,22 +19,18 @@ class Lwd {
 
         //Dark / Light theme
         if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            console.log("changed to dark mode");
             Lwd.setLightTime(2);
         } else {
-            console.log("changed to light mode");
             Lwd.setLightTime(10.5);
         }
     }
 
     static setAccentColor(color) {
         if (typeof(color) == "object") {
-            console.log(color);
             LwdFunctions.setCookie("lwd-accentColor", "[obj]" + JSON.stringify(color));
             this.currentAccentColor = "custom";
             let keys = Object.keys(color);
             for (let key of keys) {
-                console.log("--color-" + key, color[key]);
                 this.cssVariables.setProperty("--color-" + key, color[key]);
             }
         } else {
@@ -179,8 +174,7 @@ class Lwd {
             this.cssVariables.setProperty("--sun-saturation", sun_saturation + "%");
             this.cssVariables.setProperty("--sun-brightness", sun_brightness + "%");
 
-            console.log("Set time to " + time);  //DEBUG
-            return "Set time to " + time; 
+            return "Set time to " + time;
         } else {
             return "Invalid time input, please enter a number between 0-24.";
         }
@@ -246,15 +240,6 @@ class LwdFunctions {
         pointerOffsetX = e.offsetX;
         pointerOffsetY = e.offsetY;
 
-        // Get the bounding rectangle of target
-        let rect = e.target.getBoundingClientRect();
-
-        // Mouse position
-        x = e.clientX - rect.left;
-        y = e.clientY - rect.top;
-
-        console.log(pointerOffsetX, pointerOffsetY, x, y);
-
           document.onmouseup = closeDragElement;
           document.onmousemove = elementDrag;
         }
@@ -262,7 +247,6 @@ class LwdFunctions {
         function elementDrag(e) {
           e = e || window.event;
           e.preventDefault();
-          console.log("dragging");
       
           let positionPxLeft = e.clientX-pointerOffsetX+(elemWidth/2);
           let positionPxTop = e.clientY-pointerOffsetY+(elemHeight/2);
@@ -302,10 +286,8 @@ window.addEventListener("load", () => {
 });
 window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
     if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        console.log("changed to dark mode");
         Lwd.setLightTime(4);
     } else {
-        console.log("changed to light mode");
         Lwd.setLightTime(10.5);
     }
 });
@@ -419,7 +401,6 @@ class LwdNav extends HTMLElement {
                     navBackground.classList.add("lwd-nav-background", "generated-nav-element", "hide-in-desktop");
                     navElem.parentNode.insertBefore(navBackground, navElem);
                     navElem.parentNode.insertBefore(menuHead, navElem);
-                    console.log("generated nav element");
             }
         }
     }
@@ -665,13 +646,11 @@ class LwdWindow extends HTMLElement {
     }
     initialize() {
         if (document.readyState == "complete") {
-            console.log("elem initialized");
             this.generateElements();
             this.updateStyle();
             this.setAttribute();
         } else {
             window.addEventListener("load", () => {
-                console.log("elem initialized onload");
                 this.generateElements();
                 this.updateStyle();
                 this.setAttributes();
