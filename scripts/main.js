@@ -17,7 +17,15 @@ class Lwd {
                 this.setAccentColor(accentColor.split("[str]")[1]);
             }
         }
-        this.setLightTime(10.5);
+
+        //Dark / Light theme
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            console.log("changed to dark mode");
+            Lwd.setLightTime(2);
+        } else {
+            console.log("changed to light mode");
+            Lwd.setLightTime(10.5);
+        }
     }
 
     static setAccentColor(color) {
@@ -179,6 +187,8 @@ class Lwd {
     }
 }
 
+
+
 class LwdFunctions {
     static setCookie(name, value, expiresDays, path) {
         let cookieStr = name + "=" + value + ";";
@@ -290,6 +300,16 @@ window.addEventListener("load", () => {
     document.querySelectorAll("lwd-nav").forEach(e => e.initialize());
     Lwd.init();
 });
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        console.log("changed to dark mode");
+        Lwd.setLightTime(4);
+    } else {
+        console.log("changed to light mode");
+        Lwd.setLightTime(10.5);
+    }
+});
+
 
 class LwdNav extends HTMLElement {
     constructor() {
