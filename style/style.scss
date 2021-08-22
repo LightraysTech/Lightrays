@@ -249,11 +249,12 @@ lwd-nav {
             order: 3;
             position: absolute; right: 0;
             transition: transform .2s;
+            display: flex; justify-content: center; align-items: center;
           }
         }
         &[open] {
-          .navItemIcon.toggle {transform: rotate(180deg);}
-          .navItemIcon.toggle:hover {transform: rotate(180deg) scale(1.1);}
+          .navItemIcon.toggle {transform: rotate(180deg)}
+          .navItemIcon.toggle:hover {transform: rotate(180deg) scale(1.1)}
         }
 
         &.header {

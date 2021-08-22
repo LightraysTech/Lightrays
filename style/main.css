@@ -218,6 +218,9 @@ lwd-nav .navItemIcon:active[name=ellipsis-horizontal-outline], lwd-nav .navItemI
     position: absolute;
     right: 0;
     transition: transform 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   lwd-nav[type=side] lwd-navitem[open] .navItemIcon.toggle, lwd-nav:not([type]) lwd-navitem[open] .navItemIcon.toggle {
     transform: rotate(180deg);
