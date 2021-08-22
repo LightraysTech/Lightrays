@@ -301,7 +301,7 @@ lwd-nav {
           width: calc(55px - 10px);
           margin-left: 5px; margin-right: 5px;
         }
-        .navItemLabel, .toggle {display: none;}
+        .navItemLabel, .toggle, .toggle svg {display: none;}
       }
     }
     @include tablet() {
@@ -314,7 +314,7 @@ lwd-nav {
       lwd-navfoldout {
         lwd-navitem {margin-left: 5px;width: calc(100% - 10px);}
       }
-      .navItemLabel, .toggle {display: none;}
+      .navItemLabel, .toggle, .toggle svg {display: none;}
 
       &[alt-state] {
         width: 340px;
@@ -329,7 +329,7 @@ lwd-nav {
             .navItemIcon {width: 18px; padding: 16px;}
           }
         }
-        .navItemLabel, .toggle {display: initial}
+        .navItemLabel, .toggle, .toggle svg {display: initial}
         lwd-navfoldout {
           lwd-navitem {margin-left: 50px;width: calc(100% - 65px)}
         }
