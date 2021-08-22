@@ -518,6 +518,10 @@ class LwdNav extends HTMLElement {
     
     setFoldouts() {
         this.querySelectorAll("[foldout]").forEach(e => {
+            let toggle = document.createElement("div");
+            toggle.classList.add("generated-nav-element", "navItemIcon", "toggle");
+            toggle.innerHTML = "<svg viewBox='0 0 512 512' width='16'><path fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='48' d='M112 184l144 144 144-144'/></svg>";
+            e.appendChild(toggle);
             e.removeEventListener("click", this.toggleFoldout);
             e.addEventListener("click", this.toggleFoldout, false);
         });
