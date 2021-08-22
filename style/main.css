@@ -283,7 +283,7 @@ lwd-nav .navItemIcon:active[name=ellipsis-horizontal-outline], lwd-nav .navItemI
     margin-left: 5px;
     margin-right: 5px;
   }
-  lwd-nav[type=side][alt-state] .navItemLabel, lwd-nav[alt-state]:not([type]) .navItemLabel, lwd-nav[type=side][alt-state] .toggle, lwd-nav[alt-state]:not([type]) .toggle {
+  lwd-nav[type=side][alt-state] .navItemLabel, lwd-nav[alt-state]:not([type]) .navItemLabel, lwd-nav[type=side][alt-state] .toggle, lwd-nav[alt-state]:not([type]) .toggle, lwd-nav[type=side][alt-state] .toggle svg, lwd-nav[alt-state]:not([type]) .toggle svg {
     display: none;
   }
 }
@@ -301,7 +301,7 @@ lwd-nav .navItemIcon:active[name=ellipsis-horizontal-outline], lwd-nav .navItemI
     margin-left: 5px;
     width: calc(100% - 10px);
   }
-  lwd-nav[type=side] .navItemLabel, lwd-nav:not([type]) .navItemLabel, lwd-nav[type=side] .toggle, lwd-nav:not([type]) .toggle {
+  lwd-nav[type=side] .navItemLabel, lwd-nav:not([type]) .navItemLabel, lwd-nav[type=side] .toggle, lwd-nav:not([type]) .toggle, lwd-nav[type=side] .toggle svg, lwd-nav:not([type]) .toggle svg {
     display: none;
   }
   lwd-nav[type=side][alt-state], lwd-nav[alt-state]:not([type]) {
@@ -320,7 +320,7 @@ lwd-nav .navItemIcon:active[name=ellipsis-horizontal-outline], lwd-nav .navItemI
     width: 18px;
     padding: 16px;
   }
-  lwd-nav[type=side][alt-state] .navItemLabel, lwd-nav[alt-state]:not([type]) .navItemLabel, lwd-nav[type=side][alt-state] .toggle, lwd-nav[alt-state]:not([type]) .toggle {
+  lwd-nav[type=side][alt-state] .navItemLabel, lwd-nav[alt-state]:not([type]) .navItemLabel, lwd-nav[type=side][alt-state] .toggle, lwd-nav[alt-state]:not([type]) .toggle, lwd-nav[type=side][alt-state] .toggle svg, lwd-nav[alt-state]:not([type]) .toggle svg {
     display: initial;
   }
   lwd-nav[type=side][alt-state] lwd-navfoldout lwd-navitem, lwd-nav[alt-state]:not([type]) lwd-navfoldout lwd-navitem {
