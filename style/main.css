@@ -173,96 +173,96 @@ lwd-nav .navItemIcon:active[name=settings-outline], lwd-nav .navItemIcon:active[
 lwd-nav .navItemIcon:active[name=ellipsis-horizontal-outline], lwd-nav .navItemIcon:active[name=ellipsis-horizontal-filled], lwd-nav .navItemIcon:active[name=ellipsis-horizontal] {
   transform: scaleX(1.5);
 }
+lwd-nav[type=side], lwd-nav:not([type]) {
+  overflow-x: scroll;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 340px;
+  height: 100%;
+  padding-top: 10px;
+  white-space: nowrap;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  background-color: var(--component-background);
+  box-shadow: var(--box-shadow-2);
+  transition: width 0.2s ease-in-out;
+  -webkit-transition: width 0.2s ease-in-out;
+  will-change: width;
+}
+lwd-nav[type=side] lwd-navitem, lwd-nav:not([type]) lwd-navitem {
+  transition: margin 0.2s ease-in-out;
+  -webkit-transition: margin 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
+  width: calc(100% - 25px);
+  height: 35px;
+  margin: 5px 12.5px;
+  cursor: pointer;
+}
+lwd-nav[type=side] lwd-navitem .navItemLabel, lwd-nav:not([type]) lwd-navitem .navItemLabel {
+  order: 2;
+  margin: 0 3px;
+  font-size: 0.95em;
+}
+lwd-nav[type=side] lwd-navitem .navItemIcon, lwd-nav:not([type]) lwd-navitem .navItemIcon {
+  order: 1;
+  width: 30px;
+  padding: 10px;
+  flex-shrink: 0;
+}
+lwd-nav[type=side] lwd-navitem .navItemIcon.toggle, lwd-nav:not([type]) lwd-navitem .navItemIcon.toggle {
+  order: 3;
+  position: absolute;
+  right: 0;
+  transition: transform 0.2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+lwd-nav[type=side] lwd-navitem[open] .navItemIcon.toggle, lwd-nav:not([type]) lwd-navitem[open] .navItemIcon.toggle {
+  transform: rotate(180deg);
+}
+lwd-nav[type=side] lwd-navitem[open] .navItemIcon.toggle:hover, lwd-nav:not([type]) lwd-navitem[open] .navItemIcon.toggle:hover {
+  transform: rotate(180deg) scale(1.1);
+}
+lwd-nav[type=side] lwd-navitem.header, lwd-nav:not([type]) lwd-navitem.header {
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+lwd-nav[type=side] lwd-navitem.header .navItemIcon, lwd-nav:not([type]) lwd-navitem.header .navItemIcon {
+  width: 18px;
+  padding: 16px;
+}
+lwd-nav[type=side] lwd-navitem.header:hover, lwd-nav:not([type]) lwd-navitem.header:hover {
+  box-shadow: none;
+}
+lwd-nav[type=side] lwd-navitem[selected], lwd-nav:not([type]) lwd-navitem[selected] {
+  background: linear-gradient(to right, var(--color-light), var(--color-main));
+  color: var(--color-text);
+  border-radius: 8px;
+  box-shadow: 0px 1.6px 3.6px rgba(0, 0, 0, 0.13), 0px 0px 2.9px rgba(0, 0, 0, 0.11);
+}
+lwd-nav[type=side] lwd-navitem:hover:not([selected]), lwd-nav:not([type]) lwd-navitem:hover:not([selected]), lwd-nav[type=side] lwd-navitem:hover:not(.header), lwd-nav:not([type]) lwd-navitem:hover:not(.header) {
+  --height: 1;
+  box-shadow: 4px 4px 10px -5px rgba(0, 0, 0, calc(0.2 / var(--height))), inset 1px 1px 1.5px -1px hsla(0, 0%, var(--shadow-spec), 0.2), inset 1px 1px 1px hsla(0, 0%, calc(var(--shadow-spec) + 10%), 0.2), inset -1px -1px 2px -1px rgba(170, 0, 0, 0.116);
+  border-radius: 8px;
+}
+lwd-nav[type=side] lwd-navgroup, lwd-nav:not([type]) lwd-navgroup {
+  display: block;
+  border-top: var(--border);
+  border-bottom: var(--border);
+  border-width: 1.5px;
+  margin: 5px 0;
+  padding: 5px 0;
+}
+lwd-nav[type=side] lwd-navgroup ~ lwd-navgroup, lwd-nav:not([type]) lwd-navgroup ~ lwd-navgroup {
+  border-top-color: transparent;
+  margin-top: 0;
+  padding-top: 0;
+}
 @media screen and (min-width: 650px) {
-  lwd-nav[type=side], lwd-nav:not([type]) {
-    overflow-x: scroll;
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 340px;
-    height: 100%;
-    padding-top: 10px;
-    white-space: nowrap;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    background-color: var(--component-background);
-    box-shadow: var(--box-shadow-2);
-    transition: width 0.2s ease-in-out;
-    -webkit-transition: width 0.2s ease-in-out;
-    will-change: width;
-  }
-  lwd-nav[type=side] lwd-navitem, lwd-nav:not([type]) lwd-navitem {
-    transition: margin 0.2s ease-in-out;
-    -webkit-transition: margin 0.2s ease-in-out;
-    display: flex;
-    align-items: center;
-    vertical-align: middle;
-    width: calc(100% - 25px);
-    height: 35px;
-    margin: 5px 12.5px;
-    cursor: pointer;
-  }
-  lwd-nav[type=side] lwd-navitem .navItemLabel, lwd-nav:not([type]) lwd-navitem .navItemLabel {
-    order: 2;
-    margin: 0 3px;
-    font-size: 0.95em;
-  }
-  lwd-nav[type=side] lwd-navitem .navItemIcon, lwd-nav:not([type]) lwd-navitem .navItemIcon {
-    order: 1;
-    width: 30px;
-    padding: 10px;
-    flex-shrink: 0;
-  }
-  lwd-nav[type=side] lwd-navitem .navItemIcon.toggle, lwd-nav:not([type]) lwd-navitem .navItemIcon.toggle {
-    order: 3;
-    position: absolute;
-    right: 0;
-    transition: transform 0.2s;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  lwd-nav[type=side] lwd-navitem[open] .navItemIcon.toggle, lwd-nav:not([type]) lwd-navitem[open] .navItemIcon.toggle {
-    transform: rotate(180deg);
-  }
-  lwd-nav[type=side] lwd-navitem[open] .navItemIcon.toggle:hover, lwd-nav:not([type]) lwd-navitem[open] .navItemIcon.toggle:hover {
-    transform: rotate(180deg) scale(1.1);
-  }
-  lwd-nav[type=side] lwd-navitem.header, lwd-nav:not([type]) lwd-navitem.header {
-    margin-top: 15px;
-    margin-bottom: 20px;
-  }
-  lwd-nav[type=side] lwd-navitem.header .navItemIcon, lwd-nav:not([type]) lwd-navitem.header .navItemIcon {
-    width: 18px;
-    padding: 16px;
-  }
-  lwd-nav[type=side] lwd-navitem.header:hover, lwd-nav:not([type]) lwd-navitem.header:hover {
-    box-shadow: none;
-  }
-  lwd-nav[type=side] lwd-navitem[selected], lwd-nav:not([type]) lwd-navitem[selected] {
-    background: linear-gradient(to right, var(--color-light), var(--color-main));
-    color: var(--color-text);
-    border-radius: 8px;
-    box-shadow: 0px 1.6px 3.6px rgba(0, 0, 0, 0.13), 0px 0px 2.9px rgba(0, 0, 0, 0.11);
-  }
-  lwd-nav[type=side] lwd-navitem:hover:not([selected]), lwd-nav:not([type]) lwd-navitem:hover:not([selected]), lwd-nav[type=side] lwd-navitem:hover:not(.header), lwd-nav:not([type]) lwd-navitem:hover:not(.header) {
-    --height: 1;
-    box-shadow: 4px 4px 10px -5px rgba(0, 0, 0, calc(0.2 / var(--height))), inset 1px 1px 1.5px -1px hsla(0, 0%, var(--shadow-spec), 0.2), inset 1px 1px 1px hsla(0, 0%, calc(var(--shadow-spec) + 10%), 0.2), inset -1px -1px 2px -1px rgba(170, 0, 0, 0.116);
-    border-radius: 8px;
-  }
-  lwd-nav[type=side] lwd-navgroup, lwd-nav:not([type]) lwd-navgroup {
-    display: block;
-    border-top: var(--border);
-    border-bottom: var(--border);
-    border-width: 1.5px;
-    margin: 5px 0;
-    padding: 5px 0;
-  }
-  lwd-nav[type=side] lwd-navgroup ~ lwd-navgroup, lwd-nav:not([type]) lwd-navgroup ~ lwd-navgroup {
-    border-top-color: transparent;
-    margin-top: 0;
-    padding-top: 0;
-  }
   lwd-nav[type=side] lwd-navfoldout, lwd-nav:not([type]) lwd-navfoldout {
     display: none;
     transition: height 0.2s linear;
@@ -329,53 +329,26 @@ lwd-nav .navItemIcon:active[name=ellipsis-horizontal-outline], lwd-nav .navItemI
   }
 }
 @media screen and (max-width: 650px) {
-  lwd-nav[mobile-type=side] {
-    overflow-x: scroll;
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100px;
-    white-space: nowrap;
-    background-color: var(--component-background);
-    box-shadow: var(--box-shadow-2);
-    transition: width 0.2s ease-in-out;
-    -webkit-transition: width 0.2s ease-in-out;
+  lwd-nav[mobile-type=side], lwd-nav[type=side]:not([mobile-type]), lwd-nav:not([mobile-type]):not([type]) {
+    width: 0px;
   }
-  lwd-nav[mobile-type=side] lwd-navitem {
-    transition: margin 0.2s ease-in-out;
-    -webkit-transition: margin 0.2s ease-in-out;
+  lwd-nav[mobile-type=side] lwd-navfoldout, lwd-nav[type=side]:not([mobile-type]) lwd-navfoldout, lwd-nav:not([mobile-type]):not([type]) lwd-navfoldout {
     display: none;
-    align-items: center;
-    vertical-align: middle;
-    width: calc(100% - 25px);
-    height: 35px;
-    margin: 5px 12.5px;
-    cursor: pointer;
+    transition: height 0.2s linear;
   }
-  lwd-nav[mobile-type=side] lwd-navitem .navItemLabel {
-    order: 2;
-    margin: 0 20px;
+  lwd-nav[mobile-type=side] lwd-navfoldout[open], lwd-nav[type=side]:not([mobile-type]) lwd-navfoldout[open], lwd-nav:not([mobile-type]):not([type]) lwd-navfoldout[open] {
+    display: block;
   }
-  lwd-nav[mobile-type=side] lwd-navitem .navItemIcon {
-    order: 1;
-    width: 30px;
-    padding: 10px;
-    flex-shrink: 0;
+  lwd-nav[mobile-type=side] lwd-navfoldout lwd-navitem, lwd-nav[type=side]:not([mobile-type]) lwd-navfoldout lwd-navitem, lwd-nav:not([mobile-type]):not([type]) lwd-navfoldout lwd-navitem {
+    margin-left: 50px;
+    width: calc(100% - 65px);
   }
-  lwd-nav[mobile-type=side] lwd-navitem.header {
-    display: flex;
-    margin-top: 15px;
-    margin-bottom: 20px;
+  lwd-nav[mobile-type=side] .header, lwd-nav[type=side]:not([mobile-type]) .header, lwd-nav:not([mobile-type]):not([type]) .header {
+    margin-top: 0;
   }
-  lwd-nav[mobile-type=side] lwd-navitem.header .navItemIcon {
-    width: 18px;
-    padding: 16px;
-  }
-  lwd-nav[mobile-type=side] lwd-navitem[selected] {
-    background: linear-gradient(to right, var(--color-light), var(--color-main));
-    border-radius: 8px;
-    box-shadow: 0px 1.6px 3.6px rgba(0, 0, 0, 0.13), 0px 0px 2.9px rgba(0, 0, 0, 0.11);
+  lwd-nav[mobile-type=side][alt-state], lwd-nav[alt-state][type=side]:not([mobile-type]), lwd-nav[alt-state]:not([mobile-type]):not([type]) {
+    width: 340px;
+    max-width: 100%;
   }
 }
 @media screen and (min-width: 650px) {
@@ -780,6 +753,36 @@ lwd-nav .navItemIcon:active[name=ellipsis-horizontal-outline], lwd-nav .navItemI
   height: 135px;
   border-radius: 50%/10px;
   background: linear-gradient(to top, var(--color-main) 10%, var(--color-lighter) 30%, var(--color-light) 100%);
+}
+
+.mobile-header {
+  position: fixed;
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 60px;
+  background-color: var(--component-background);
+  backdrop-filter: blur(15px);
+  --height: 1;
+  --shadow-dir-x: calc(var(--light-direction-x)*var(--height)*var(--shadow-length));
+  --shadow-dir-y: calc(var(--light-direction-y)*var(--height));
+  --shadow-blur: calc(6px*var(--height));
+  --shadow-size: calc((1px*var(--height)) - 8px);
+  --shadow-color: hsla(var(--sun-tint), calc(var(--sun-saturation) - 20%), var(--shadow-brightness), .1);
+  box-shadow: var(--shadow-dir-x) var(--shadow-dir-y) var(--shadow-blur) var(--shadow-size) var(--shadow-color), 4px 4px 10px -5px rgba(0, 0, 0, calc(0.2 / var(--height))), inset 1px 1px 1.5px -1px hsla(0, 0%, var(--shadow-spec), 0.2), inset 1px 1px 1px hsla(0, 0%, calc(var(--shadow-spec) + 10%), 0.2), inset -1px -1px 2px -1px rgba(170, 0, 0, 0.116);
+  z-index: 99;
+}
+.mobile-header .navItemIcon {
+  order: 1;
+  padding: 22px 20px 20px 25px;
+}
+.mobile-header .navItemLabel {
+  order: 2;
+}
+.mobile-header lwd-navitem {
+  margin-top: 20px;
 }
 
 button, input[type=submit], input[type=reset], input[type=button] {
