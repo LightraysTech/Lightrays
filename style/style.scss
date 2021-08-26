@@ -219,73 +219,78 @@ lwd-nav {
 
 
   &[type="side"] {
-    @include desktop() {
-      overflow-x: scroll;
-      position: fixed; left: 0; top: 0;
-      width: 340px; height: 100%;
-      padding-top: 10px;
-      white-space: nowrap;
-      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-      background-color: var(--component-background); box-shadow: var(--box-shadow-2);
-      transition: width 0.2s ease-in-out; -webkit-transition: width 0.2s ease-in-out;
-      will-change: width;
+    &:not([mobile-type]) {@extend [mobile-type="side"];} // no mobile-type specified
 
-      lwd-navitem {
-        transition: margin 0.2s ease-in-out; -webkit-transition: margin 0.2s ease-in-out;
-        display: flex; align-items: center; vertical-align: middle;
-        width: calc(100% - 25px); height: 35px;
-        margin: 5px 12.5px;
-        cursor: pointer;
 
-        .navItemLabel {
-          order: 2;
-          margin: 0 3px; font-size: 0.95em;
-        }
-        .navItemIcon {
-          order: 1;
-          width: 30px; padding: 10px;
-          flex-shrink: 0;
-          &.toggle {
-            order: 3;
-            position: absolute; right: 0;
-            transition: transform .2s;
-            display: flex; justify-content: center; align-items: center;
-          }
-        }
-        &[open] {
-          .navItemIcon.toggle {transform: rotate(180deg)}
-          .navItemIcon.toggle:hover {transform: rotate(180deg) scale(1.1)}
-        }
+    overflow-x: scroll;
+    position: fixed; left: 0; top: 0;
+    width: 340px; height: 100%;
+    padding-top: 10px;
+    white-space: nowrap;
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    background-color: var(--component-background); box-shadow: var(--box-shadow-2);
+    transition: width 0.2s ease-in-out; -webkit-transition: width 0.2s ease-in-out;
+    will-change: width;
 
-        &.header {
-          margin-top: 15px;
-          margin-bottom: 20px;
-          .navItemIcon {width: 18px;padding: 16px;}
-          &:hover {box-shadow: none;}
+    lwd-navitem {
+      transition: margin 0.2s ease-in-out; -webkit-transition: margin 0.2s ease-in-out;
+      display: flex; align-items: center; vertical-align: middle;
+      width: calc(100% - 25px); height: 35px;
+      margin: 5px 12.5px;
+      cursor: pointer;
+
+      .navItemLabel {
+        order: 2;
+        margin: 0 3px; font-size: 0.95em;
+      }
+      .navItemIcon {
+        order: 1;
+        width: 30px; padding: 10px;
+        flex-shrink: 0;
+        &.toggle {
+          order: 3;
+          position: absolute; right: 0;
+          transition: transform .2s;
+          display: flex; justify-content: center; align-items: center;
         }
-        &[selected] {
-          background: linear-gradient(to right,var(--color-light),var(--color-main));
-          color: var(--color-text);
+      }
+
+      &[open] {
+        .navItemIcon.toggle {transform: rotate(180deg)}
+        .navItemIcon.toggle:hover {transform: rotate(180deg) scale(1.1)}
+      }
+
+      &.header {
+        margin-top: 15px;
+        margin-bottom: 20px;
+        .navItemIcon {width: 18px;padding: 16px;}
+        &:hover {box-shadow: none;}
+      }
+      &[selected] {
+        background: linear-gradient(to right,var(--color-light),var(--color-main));
+        color: var(--color-text);
+        border-radius: 8px;
+        box-shadow: 0px 1.6px 3.6px rgb(0 0 0 / 13%), 0px 0px 2.9px rgb(0 0 0 / 11%);
+      }
+      &:hover {
+        &:not([selected]), &:not(.header) {
+          @include small-shadow(1);
           border-radius: 8px;
-          box-shadow: 0px 1.6px 3.6px rgb(0 0 0 / 13%), 0px 0px 2.9px rgb(0 0 0 / 11%);
-        }
-        &:hover {
-          &:not([selected]), &:not(.header) {
-            @include small-shadow(1);
-            border-radius: 8px;
-          }
         }
       }
+    }
 
-      lwd-navgroup {
-        display: block;
-        border-top: var(--border); border-bottom: var(--border); border-width: 1.5px;
-        margin: 5px 0;padding: 5px 0;
-        & ~ lwd-navgroup {
-          border-top-color: transparent;
-          margin-top: 0; padding-top: 0;
-        }
+    lwd-navgroup {
+      display: block;
+      border-top: var(--border); border-bottom: var(--border); border-width: 1.5px;
+      margin: 5px 0;padding: 5px 0;
+      & ~ lwd-navgroup {
+        border-top-color: transparent;
+        margin-top: 0; padding-top: 0;
       }
+    }
+
+    @include desktop() {
 
       lwd-navfoldout {
         display: none;
@@ -337,53 +342,21 @@ lwd-nav {
     }
   }
 
-
   &[mobile-type="side"] {
     @include mobile() {
-      overflow-x: scroll;
-      position: fixed;left: 0;top: 0;
-      width: 100%;height: 100px;
-      white-space: nowrap;
-      background-color: var(--component-background); box-shadow: var(--box-shadow-2);
-      transition: width 0.2s ease-in-out; -webkit-transition: width 0.2s ease-in-out;
-
-      lwd-navitem {
-        transition: margin 0.2s ease-in-out;
-        -webkit-transition: margin 0.2s ease-in-out;
+      width: 0px;
+      lwd-navfoldout {
         display: none;
-        align-items: center;
-        vertical-align: middle;
-        width: calc(100% - 25px);
-        height: 35px;
-        margin: 5px 12.5px;
-        cursor: pointer;
-        .navItemLabel {
-          order: 2;
-          margin: 0 20px;
-        }
-        .navItemIcon {
-          order: 1;
-          width: 30px;
-          padding: 10px;
-          flex-shrink: 0;
-        }
-
-        &.header {
-          display: flex;
-          margin-top: 15px;
-          margin-bottom: 20px;
-          .navItemIcon {
-            width: 18px;
-            padding: 16px;
-          }
-        }
-
-        &[selected] {
-          background: linear-gradient(to right, var(--color-light), var(--color-main));
-          border-radius: 8px;
-          box-shadow: 0px 1.6px 3.6px rgb(0 0 0 / 13%),
-            0px 0px 2.9px rgb(0 0 0 / 11%);
-        }
+        &[open] {display: block}
+        transition: height .2s linear;
+        lwd-navitem {margin-left: 50px;width: calc(100% - 65px);}
+      }
+      .header {
+        margin-top: 0;
+      }
+      &[alt-state] {
+        width: 340px;
+        max-width: 100%;
       }
     }
   }
@@ -546,6 +519,20 @@ lwd-nav {
   width: 100%; height: 135px;
   border-radius: 50% / 10px;
   background: linear-gradient(to top, var(--color-main) 10%, var(--color-lighter) 30%, var(--color-light) 100%)
+}
+.mobile-header {
+  position: fixed; left: 0; top: 0;
+  display: flex; align-items: center;
+  .navItemIcon {order: 1; padding: 22px 20px 20px 25px;}
+  .navItemLabel {order: 2;}
+  lwd-navitem {
+    margin-top: 20px;
+  }
+  width: 100%; height: 60px;
+  background-color: var(--component-background);
+  backdrop-filter: blur(15px);
+  @include shadow(1);
+  z-index: 99;
 }
 
 //LWD inputs -----------------------------------------------------------------

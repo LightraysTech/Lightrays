@@ -302,7 +302,7 @@ class LwdNav extends HTMLElement {
         side:  {
             initialize: function(navElem) {
                 let menuHead = document.createElement("lwd-navitem");
-                menuHead.classList.add("hide-in-mobile", "generated-nav-element", "header");
+                menuHead.classList.add("generated-nav-element", "header");
 
                 let navLabel = document.createElement("h4");
                 navLabel.classList.add("navItemLabel");
@@ -347,17 +347,17 @@ class LwdNav extends HTMLElement {
     mobileNavTypes = {
         side: {
             initialize(navElem) {
-                let menuHead = document.createElement("lwd-navitem");
-                menuHead.classList.add("hide-in-desktop", "generated-nav-element", "header");
+                let menuBar = document.createElement("lwd-navitem");
+                menuBar.classList.add("generated-nav-element", "header", "hide-in-desktop", "mobile-header");
 
                 let navLabel = document.createElement("h4");
                 navLabel.classList.add("navItemLabel");
                 navLabel.innerHTML = navElem.getNavTitle();
 
-                menuHead.appendChild(navLabel);
-                menuHead.appendChild(navElem.getNavButton(18));
+                menuBar.appendChild(navLabel);
+                menuBar.appendChild(navElem.getNavButton(18));
 
-                navElem.insertBefore(menuHead, navElem.firstChild);
+                navElem.parentNode.appendChild(menuBar, navElem.firstChild);
             }
         },
         floatingSymbol: {
