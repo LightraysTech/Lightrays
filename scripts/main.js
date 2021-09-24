@@ -316,7 +316,7 @@ class LwdNav extends HTMLElement {
         },
         floatingSymbol: {
             initialize: function(navElem) {                
-                let navitems = document.querySelectorAll("lwd-navitem");
+                let navitems = navElem.querySelectorAll("lwd-navitem");
                 let justTextNavItems = [];
                 navitems.forEach(item => {
                     if (item.querySelectorAll(".navItemIcon").length == 0) {
@@ -357,12 +357,13 @@ class LwdNav extends HTMLElement {
                 menuBar.appendChild(navLabel);
                 menuBar.appendChild(navElem.getNavButton(18));
 
+                document.querySelectorAll(".mobile-header").forEach(e => e.remove());
                 navElem.parentNode.appendChild(menuBar, navElem.firstChild);
             }
         },
         floatingSymbol: {
             initialize(navElem) {
-                let navItems = document.querySelectorAll("lwd-navitem");
+                let navItems = navElem.querySelectorAll("lwd-navitem");
                 let clonedNavItems = [];
                 navItems.forEach(item => {
                     if (!item.classList.contains("navButton") && !item.classList.contains(".generatedNavButton") && !item.classList.contains("generated-nav-element") && !item.classList.contains("navTitle")) {
@@ -378,9 +379,10 @@ class LwdNav extends HTMLElement {
                 });
 
                 let menuHead = document.createElement("lwd-navitem");
-                menuHead.classList.add("hide-in-desktop", "generated-nav-element", "header"); 
+                menuHead.classList.add("hide-in-desktop", "generated-nav-element", "header", "floatingSymbolHeader"); 
                 menuHead.appendChild(navElem.getNavButton(18));
 
+                document.querySelectorAll(".floatingSymbolHeader").forEach(e => e.remove());
                 navElem.insertBefore(menuHead, navElem.firstChild);
 
                 if (navElem.hasAttribute("background")) {
@@ -394,12 +396,15 @@ class LwdNav extends HTMLElement {
             initialize(navElem) {
                 navElem.mobileNavTypes.floatingSymbol.initialize(navElem);
                     let menuHead = document.createElement("div");
-                    menuHead.classList.add("hide-in-desktop", "generated-nav-element", "header");
+                    menuHead.classList.add("hide-in-desktop", "generated-nav-element", "header", "floatingSymbolHeader");
                     menuHead.innerHTML = navElem.getNavTitle();
 
                     let navBackground = document.createElement("div");
                     navBackground.classList.add("lwd-nav-background", "generated-nav-element", "hide-in-desktop");
+
+                    document.querySelectorAll(".lwd-nav-background").forEach(e => e.remove());
                     navElem.parentNode.insertBefore(navBackground, navElem);
+                    document.querySelectorAll(".floatingSymbolHeader").forEach(e => e.remove());
                     navElem.parentNode.insertBefore(menuHead, navElem);
             }
         }
@@ -425,14 +430,14 @@ class LwdNav extends HTMLElement {
     }
 
     removeGeneratedElements() {
-        document.querySelectorAll(".generated-nav-element").forEach(element => {
+        this.querySelectorAll(".generated-nav-element").forEach(element => {
             element.remove();
         });
     }
 
     getNavTitle() {
         let pageTitle = document.querySelector("h1.pageTitle");
-        let customNavTitle = document.querySelector(".navTitle");
+        let customNavTitle = this.querySelector(".navTitle");
         if (customNavTitle != undefined) {
             customNavTitle.style.display = "none";
             return customNavTitle.innerHTML;

@@ -331,6 +331,8 @@ lwd-nav[type=side] lwd-navgroup ~ lwd-navgroup, lwd-nav:not([type]) lwd-navgroup
 @media screen and (max-width: 650px) {
   lwd-nav[mobile-type=side], lwd-nav[type=side]:not([mobile-type]), lwd-nav:not([mobile-type]):not([type]) {
     width: 0px;
+    backdrop-filter: none;
+    background-color: var(--background);
   }
   lwd-nav[mobile-type=side] lwd-navfoldout, lwd-nav[type=side]:not([mobile-type]) lwd-navfoldout, lwd-nav:not([mobile-type]):not([type]) lwd-navfoldout {
     display: none;
@@ -662,8 +664,6 @@ lwd-nav[type=side] lwd-navgroup ~ lwd-navgroup, lwd-nav:not([type]) lwd-navgroup
     --shadow-color: hsla(var(--sun-tint), calc(var(--sun-saturation) - 20%), var(--shadow-brightness), .1);
     box-shadow: var(--shadow-dir-x) var(--shadow-dir-y) var(--shadow-blur) var(--shadow-size) var(--shadow-color), 4px 4px 10px -5px rgba(0, 0, 0, calc(0.2 / var(--height))), inset 1px 1px 1.5px -1px hsla(0, 0%, var(--shadow-spec), 0.2), inset 1px 1px 1px hsla(0, 0%, calc(var(--shadow-spec) + 10%), 0.2), inset -1px -1px 2px -1px rgba(170, 0, 0, 0.116);
     top: 15px;
-    margin-bottom: 60px;
-    margin-top: 0;
     overflow: visible;
     background-color: var(--background);
   }
@@ -885,21 +885,22 @@ input[type=color] {
   background: var(--component-background);
 }
 input[type=checkbox] {
-  appearance: none;
+  background-color: red;
+  /*appearance: none;
   box-shadow: var(--box-shadow);
   -webkit-appearance: none;
-  border: 2px solid #ececec;
+  border: 2px solid rgb(236, 236, 236);
   border-radius: 5px;
-  width: 5px;
-  height: 5px;
   padding: 9px;
-  cursor: pointer;
-}
-input[type=checkbox]:checked {
-  background-image: url("src/checked.png");
-  background-repeat: no-repeat;
-  background-size: 13px;
-  background-position: center center;
+  cursor: pointer;*/
+  width: 20px;
+  height: 20px;
+  /*&:checked {
+    background-image: url("src/checked.png");
+    background-repeat: no-repeat;
+    background-size: 13px;
+    background-position: center center;
+  }*/
 }
 input[type=range][type=range] {
   -webkit-appearance: none;

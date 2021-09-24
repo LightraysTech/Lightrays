@@ -345,6 +345,9 @@ lwd-nav {
   &[mobile-type="side"] {
     @include mobile() {
       width: 0px;
+      backdrop-filter: none;
+      background-color: var(--background);
+
       lwd-navfoldout {
         display: none;
         &[open] {display: block}
@@ -499,7 +502,6 @@ lwd-nav {
     @include mobile() {
       @include floatingSymbolMobile() {
         top: 15px;
-        margin-bottom: 60px; margin-top: 0;
         overflow: visible;
         background-color: var(--background);
       }
@@ -620,22 +622,23 @@ input {
   }
 
   &[type="checkbox"] {
-    appearance: none;
+    background-color: red;
+    /*appearance: none;
     box-shadow: var(--box-shadow);
     -webkit-appearance: none;
     border: 2px solid rgb(236, 236, 236);
     border-radius: 5px;
-    width: 5px;
-    height: 5px;
     padding: 9px;
-    cursor: pointer;
+    cursor: pointer;*/
+    width: 20px;
+    height: 20px;
 
-    &:checked {
+    /*&:checked {
       background-image: url("src/checked.png");
       background-repeat: no-repeat;
       background-size: 13px;
       background-position: center center;
-    }
+    }*/
   }
 
   &[type="range"] {
