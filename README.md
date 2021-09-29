@@ -3,6 +3,12 @@
 **WARNING:**  &nbsp;&nbsp; This project is not finished yet! It wil be finished in the (very) near future.
 
 **PREVIEW:** &nbsp;&nbsp;&nbsp;&nbsp;  https://ncoder77.github.io/Lighted-Web-Design-2.0/examples    
+
+**IMPLEMENTATION**  
+`
+    <link href='https://ncoder77.github.io/Lighted-Web-Design-2.0/syle/main.css'>` <br> `
+    <script src='https://ncoder77.github.io/Lighted-Web-Design-2.0/scripts/main.css'>
+`
 <br>
 
 **Developers:**
