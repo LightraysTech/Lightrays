@@ -6,7 +6,7 @@
 
 **IMPLEMENTATION**  
 `
-    <link href='https://ncoder77.github.io/Lighted-Web-Design-2.0/syle/main.css'>` <br> `
+    <link rel='stylesheet' href='https://ncoder77.github.io/Lighted-Web-Design-2.0/style/main.css'>` <br> `
     <script src='https://ncoder77.github.io/Lighted-Web-Design-2.0/scripts/main.css'>
 `
 <br>
