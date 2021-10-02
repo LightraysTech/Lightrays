@@ -1,3 +1,32 @@
 h1 {
-    color: green;
+    text-align: center;
+    color: black;
+    padding: 10px;
+}
+
+.center {
+    width: 100%;
+    display: flex;
+    align-self: center;
+    align-items: center;
+    justify-content: center;
+}
+
+img {
+    backdrop-filter: blur(2px);
+}
+
+.glow {
+    background-repeat: no-repeat;
+    background-image: url("/experimental/sun2.png");
+    background-size: cover;
+}
+
+.noBackgroundNavigation {
+    display: flex;
+    justify-content: center; align-items: center;
+    img {padding: 10px;}
+    img:hover {
+    }
+    transition: width .2s;
 }
