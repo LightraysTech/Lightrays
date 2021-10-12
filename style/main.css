@@ -845,6 +845,20 @@ button.flat:active, input.flat[type=submit]:active, input.flat[type=reset]:activ
   --height: 0.5;
 }
 
+select {
+  background-color: var(--component-background);
+  border: var(--border);
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-family: "Segoe UI", "selawik", Tahoma, Geneva, Verdana, sans-serif;
+  padding: 10px;
+  margin: 5px 0;
+  color: var(--foreground);
+  transition: all 0.1s;
+  display: inline-block;
+  user-select: none;
+}
+
 input {
   background-color: var(--component-background);
   border: var(--border);
