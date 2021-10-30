@@ -663,9 +663,10 @@ lwd-nav[type=side] lwd-navgroup ~ lwd-navgroup, lwd-nav:not([type]) lwd-navgroup
     --shadow-size: calc((1px*var(--height)) - 8px);
     --shadow-color: hsla(var(--sun-tint), calc(var(--sun-saturation) - 20%), var(--shadow-brightness), .1);
     box-shadow: var(--shadow-dir-x) var(--shadow-dir-y) var(--shadow-blur) var(--shadow-size) var(--shadow-color), 4px 4px 10px -5px rgba(0, 0, 0, calc(0.2 / var(--height))), inset 1px 1px 1.5px -1px hsla(0, 0%, var(--shadow-spec), 0.2), inset 1px 1px 1px hsla(0, 0%, calc(var(--shadow-spec) + 10%), 0.2), inset -1px -1px 2px -1px rgba(170, 0, 0, 0.116);
-    top: 15px;
+    top: 45px;
     overflow: visible;
     background-color: var(--background);
+    margin-bottom: 50px;
   }
   lwd-nav[mobile-type=floatingSymbolBackground] ion-icon, lwd-nav[type=floatingSymbolBackground]:not([mobile-type]) ion-icon {
     font-size: 20px;
@@ -734,8 +735,8 @@ lwd-nav[type=side] lwd-navgroup ~ lwd-navgroup, lwd-nav:not([type]) lwd-navgroup
 }
 
 .header {
-  position: relative;
-  top: 5px;
+  position: fixed;
+  top: 10px;
   font-family: selawik_sb;
   z-index: 99;
   height: 45px;
@@ -753,6 +754,7 @@ lwd-nav[type=side] lwd-navgroup ~ lwd-navgroup, lwd-nav:not([type]) lwd-navgroup
   height: 135px;
   border-radius: 50%/10px;
   background: linear-gradient(to top, var(--color-main) 10%, var(--color-lighter) 30%, var(--color-light) 100%);
+  margin-bottom: 50px;
 }
 
 .mobile-header {
