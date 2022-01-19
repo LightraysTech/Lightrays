@@ -1,5 +1,7 @@
 # Lighted Web Design 2.0
 
+![Lighted-Web-Design 2 example image](/img/Logos/readmeHead.png "LWD example: responsive Web App")
+
 **WARNING:**  &nbsp;&nbsp; This project is not finished yet! It wil be finished in the (very) near future.
 
 **PREVIEW:** &nbsp;&nbsp;&nbsp;&nbsp;  https://ncoder77.github.io/Lighted-Web-Design-2.0/examples    
