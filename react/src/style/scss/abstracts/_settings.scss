@@ -1,0 +1,22 @@
+@use '../abstracts/variables';
+
+//Options: lightTheme, darkTheme, systemTheme
+$theme: systemTheme;
+
+$default-font: 'Segoe UI Variable Display', 'selawik', Tahoma, Geneva, Verdana, sans-serif;
+$semibold-font: 'Segoe UI Variable Display', 'selawik_sb', Tahoma, Geneva, Verdana, sans-serif;
+$bold-font: 'Segoe UI Variable Display', 'selawik_b', Tahoma, Geneva, Verdana, sans-serif;
+
+
+:root {
+    --color-extra-light: #a3f4ff;
+    --color-light: #8ae2ff;
+    --color-lighter: #37c2f1;
+    --color-main: #199be1;
+    --color-darker: #0079d6;
+    --color-dark: #0d61ab;
+    --color-extra-dark: #014989;
+    --color-text: #ffffff;
+
+    --mobile-at: 1020px;
+}

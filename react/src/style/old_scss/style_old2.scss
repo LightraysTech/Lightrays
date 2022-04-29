@@ -1,0 +1,878 @@
+@import "fonts.scss";
+@import "settings.scss";
+
+:root {
+    --PI: 3.14159265358979;
+}
+
+// Themes
+@mixin getTheme($thm) {
+
+  @if $thm == light {
+    :root {
+      --theme: 100%;
+
+      --foreground: black;
+      --background: white;
+      --component-background: white;
+      --background-tint: #d9e8f7;
+
+      --background-transparent: hsla(0, 0%, 100%, 0.5);
+      --background-hover: hsl(0, 3%, 95%);
+      --background-active: hsl(0, 0%, 93%);
+
+      --box-shadow: 0px 1.6px 7px rgb(0 0 0 / 9%);
+      --box-shadow-active: 1px 1px 3px rgba(0, 0, 0, 0.25);
+      --border: solid hsla(0, 0%, 70%, .2) 1px;
+      --shadow-spec: 97%;
+      --shadow-brightness: 30%;
+    }
+  } @else {
+    :root {
+      --theme: 0%;
+
+      --foreground: white;
+      --background: #2c2c2c;
+      --component-background: #2b2b2b;
+      --background-tint: #18436E;
+      --background-transparent: hsla(204, 8%, 0%, 0.2);
+      --background-hover: hsl(0, 0%, 18%);
+      --background-active: hsl(0, 0%, 15%);
+
+      --box-shadow: 1.2px 1.2px 6px rgba(0, 0, 0, 0.75);
+      --box-shadow-active: 1px 1px 3px rgba(0, 0, 0, 0.75);
+      --border: solid hsla(0, 0%, 10%, .2) 1px;
+      --shadow-spec: 20%;
+      --shadow-brightness: 0%;
+    }
+  }
+}
+
+@if $theme == systemTheme {
+  @include getTheme(light);
+  @media (prefers-color-scheme: dark) {
+    @include getTheme(dark);
+  }
+} @else if $theme == lightTheme {
+  @include getTheme(light);
+} @else if $theme == darkTheme {
+  @include getTheme(dark);
+}
+
+:root {
+  --ip-background-size: 100% auto;
+  --shadow-length: 1;
+  --sun-tint: 215;
+  --sun-saturation: 0%;
+  --sun-brightness: 100%;
+  --sky-brightness: 92%;
+  --sky-saturation: 87%;
+}
+
+// Functions
+@mixin mobile() {
+  @media screen and (max-width: 650px) {
+    @content;
+  }
+}
+
+@mixin desktop() {
+  @media screen and (min-width: 650px) {
+    @content;
+  }
+}
+
+@mixin tablet() {
+  @media screen and (min-width: 650px) and (max-width: 1300px) {
+    @content;
+  }
+}
+
+@mixin shadow($height) {
+    --height: 1;
+    --shadow-dir-x: calc(var(--light-direction-x)*var(--height)*var(--shadow-length));
+    --shadow-dir-y: calc(var(--light-direction-y)*var(--height));
+    --shadow-blur: calc(6px*var(--height));
+    --shadow-size: calc((1px*var(--height)) - 8px);
+    --shadow-color: hsla(var(--sun-tint), calc(var(--sun-saturation) - 20%), var(--shadow-brightness), .1);
+
+    box-shadow:   var(--shadow-dir-x) var(--shadow-dir-y) var(--shadow-blur) var(--shadow-size) var(--shadow-color),
+                  4px 4px 10px -5px rgba(0, 0, 0, calc(0.2 / var(--height))),  //AO
+                  inset 1px 1px 1.5px -1px hsla(0, 0%, var(--shadow-spec), .2),  //Spec
+                  inset 1px 1px 1px hsla(0, 0%, calc(var(--shadow-spec) + 10%), .2),  //Spec Highlight
+                  inset -1px -1px 2px -1px rgba(170, 0, 0, 0.116);
+}
+
+@mixin small-shadow($height) {
+  --height: 1;
+  box-shadow:  
+                4px 4px 10px -5px rgba(0, 0, 0, calc(0.2 / var(--height))),  //AO
+                inset 1px 1px 1.5px -1px hsla(0, 0%, var(--shadow-spec), .2),  //Spec
+                inset 1px 1px 1px hsla(0, 0%, calc(var(--shadow-spec) + 10%), .2),  //Spec Highlight
+                inset -1px -1px 2px -1px rgba(170, 0, 0, 0.116);
+}
+
+// General
+body {
+  -webkit-tap-highlight-color: transparent;
+  font-family: $default-font;
+  /*background: linear-gradient(calc(var(--shadow-angle)*(-1)), 
+  hsl(var(--sun-tint), var(--sun-saturation), var(--sun-brightness)),
+  hsl(195, var(--sky-saturation), var(--sky-brightness)));*/
+  background: linear-gradient(to bottom right, var(--background), var(--background-tint));
+  background-attachment: fixed;
+  color: var(--foreground);
+  margin: 0;
+}
+
+::-webkit-scrollbar {
+  width: 0.5em;
+  background: white;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  border-radius: 8px;
+}
+
+:focus {
+  outline: none;
+}
+
+.fluentIcon {
+  font-family: 'Segoe Fluent Icons', segoeFluentIcons;
+}
+
+// Headers ------------------------------------------------
+h1 {
+  font-family: $bold-font;
+  font-weight: normal;
+  color: var(--color-main);
+  margin: 10px 0;
+}
+
+h2 {
+  font-family: $bold-font;
+  font-weight: normal;
+}
+
+h3 {
+  font-family: $semibold-font;
+  font-weight: normal;
+  margin: 5px auto 5px auto;
+}
+
+h4 {
+  font-family: $semibold-font;
+  font-weight: normal;
+}
+
+// Navigation --------------------------------------------------
+.navRootElem {
+  width: 100%;
+  display: flex; position: fixed;
+  &.side {height: 100%}
+  //&.floatingSymbol {flex-wrap: wrap; width: 100%;}
+  &.bottom {position: relative; flex-direction: column;}
+  .content {width: 100%; margin: 10px;}
+}
+
+.lwd-nav {
+  z-index: 100;
+  user-select: none;
+
+  .navItemIcon {
+    font-family: "Segoe Fluent Icons", segoeFluentIcons;
+    transition: transform .1s;
+  }
+
+  &.side {
+    --nav-width: 340px;
+    --width-collapsed: 55px;
+    overflow-x: scroll;
+    position: relative; left: 0; top: 0px;
+    min-width: var(--nav-width); height: 110%;
+    white-space: nowrap;
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    background-color: var(--component-background); box-shadow: var(--box-shadow);
+    transition: min-width 0.2s ease-in-out; -webkit-transition: min-width 0.2s ease-in-out;
+    will-change: width;
+    &.flat {box-shadow: none; border: var(--border)}
+
+    .lwd-navItem {
+      //transition: margin 0.2s ease-in-out; -webkit-transition: margin 0.2s ease-in-out;
+      display: flex; align-items: center; vertical-align: middle;
+      width: calc(100% - 20px); height: 35px;
+      margin: 5px 12.5px;
+      cursor: pointer;
+
+      &:hover .navItemIcon { transform: scale(1.15); }
+      &:active .navItemIcon { transform: scale(0.9); }
+
+      .navItemLabel {
+        order: 2;
+        margin: 0 10px; font-size: 0.95em;
+      }
+      .navItemIcon {
+        order: 1;
+        width: 30px;
+        flex-shrink: 0;
+        justify-self: center; align-items: center; text-align: center;
+        &.toggle {
+          order: 3;
+          position: absolute; right: 15px;
+          transition: transform .2s;
+          justify-content: center; align-items: center;
+          font-family: "Segoe Fluent Icons" segoeFluentIcons;
+        }
+      }
+
+      &.open {
+        .navItemIcon.toggle {transform: rotate(180deg)}
+        .navItemIcon.toggle:hover {transform: rotate(180deg) scale(1.1)}
+      }
+
+      &[selected] {
+        background: linear-gradient(to right,var(--color-light),var(--color-main));
+        color: var(--color-text);
+        border-radius: 8px;
+        box-shadow: 0px 1.6px 3.6px rgb(0 0 0 / 13%), 0px 0px 2.9px rgb(0 0 0 / 11%);
+      }
+      &:hover {
+        &:not([selected]) {
+          @include small-shadow(1);
+          border-radius: 8px;
+        }
+      }
+    }
+
+    .lwd-navGroup {
+      &.header-navGroup {border-top: none;}
+      display: block;
+      border-top: var(--border); border-bottom: var(--border); border-width: 1.5px;
+      margin: 5px 0;padding: 5px 0;
+      & ~ .lwd-navGroup {
+        border-top-color: transparent;
+        margin-top: 0; padding-top: 0;
+      }
+    }
+
+    @include desktop() {
+      .lwd-navFoldout {
+        .foldoutItems {
+          margin-left: 40px;
+          &.open {display: block;}
+          display: none;
+        }
+        transition: height .2s linear;
+      }
+
+      &.alt-state {
+        .lwd-navFoldout .foldoutItems {margin-left: 0px}
+        min-width: var(--width-collapsed);
+        .lwd-navItem {
+          width: calc(var(--width-collapsed)  - 10px);
+          margin-left: 5px; margin-right: 5px;
+          .navItemIcon {width: 100%;}
+        }
+       .navItemLabel, .toggle, .toggle svg {visibility: hidden;}
+      }
+    }
+
+    @include tablet() {
+      min-width: var(--width-collapsed);
+      .lwd-navItem {
+        width: calc(var(--width-collapsed)  - 10px);
+        margin-left: 5px; margin-right: 5px;
+        .navItemIcon {width: 100%;}
+      }
+     .navItemLabel, .toggle, .toggle svg {visibility: hidden;}
+
+      .lwd-navFoldout {
+        &.open {display: block;}
+        .foldoutItems { margin-left: 0px; }
+      }
+      .toggle, .toggle svg {display: none;}
+
+      &.alt-state {
+        min-width: var(--nav-width);
+        .lwd-navItem {
+          width: calc(100% - 20px);
+          .navItemIcon {width: 30px;}
+        }
+        .navItemLabel, .toggle, .toggle svg {visibility: initial}
+        .foldoutItems {margin-left: 40px;}
+      }
+    }
+  }
+
+  &.mobile-side {
+    @include mobile() {
+      min-width: 0px;
+      .lwd-navFoldout {
+        margin-left: 0px;
+        &.open {display: block;}
+        display: none;
+        transition: height .2s linear;
+      }
+      .header {
+        margin-top: 0;
+      }
+      &.alt-state {
+        .lwd-navFoldout {
+          margin-left: 40px;
+        }
+        min-width: var(--nav-width);
+        max-width: 100%;
+      }
+    }
+  }
+
+  &.bottom {
+    background: linear-gradient(to right, var(--color-dark), var(--color-main));
+  }
+
+
+
+  /*@mixin floatingSymbol() {
+    display: flex; flex-wrap: nowrap; justify-content: center; align-items: top;
+    width: calc(100% - 4px);
+    position: sticky; top: 20px;
+    z-index: 100;
+    margin: auto;
+    height: 70px;
+
+    .toggle {display: none}
+
+    .lwd-navFoldout {
+      width: min-content; height: fit-content;
+      padding: 0; margin: 0;
+
+      .foldoutItems {
+        margin-top: 10px; width: fit-content;
+        background-color: white;
+        @media (prefers-color-scheme: dark) { background-color: hsl(0, 0%, 10%)}
+
+        display: none;
+        &.open {display: flex;}
+        flex-wrap: wrap;
+        border-radius: 10px;
+        justify-content: center;
+
+        transition: top .5s;
+      }
+    }
+
+    .lwd-navItem {
+      display: inline-flex; justify-content: center; align-items: center;
+      min-width: 30px; height: 30px; width: max-content;
+      padding: 10px; margin: 5px;
+      color: var(--foreground); text-decoration: none; border-radius: 30px;
+      background: center center / auto 30px no-repeat;
+      background-color: none;
+      // backdrop-filter: blur(20px);
+      @include shadow(1);
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .justTextNavItem {
+      background: none; box-shadow: none;
+      font-size: 1.2em; font-family: selawik_sb;
+    }
+
+    .lwd-navGroup {
+      display: inline-flex;
+      gap: 5px;
+      justify-content: center; align-items: top;
+      margin: 5px;
+      text-decoration: none; border-radius: 30px;
+      color: var(--foreground); background-color: var(--component-background);
+      backdrop-filter: blur(20px);
+      @include shadow(1);
+      cursor: pointer;
+
+      .lwd-navItem {
+        display: inline-flex;
+        background: none; box-shadow: none;
+        flex: 0 1 30px;
+        min-width: fit-content;
+      }
+    }
+    .navItemIcon {order: 1; min-width: 30px;}
+    .navItemLabel {order: 2; padding: 10px;}
+    .reversed-alignment {margin-left: auto;}
+    .navTitle {display:none}
+
+    @content;
+  }
+
+
+  @mixin floatingSymbolMobile() {
+    position: sticky; top: 20px;
+    display: flex; justify-content: space-evenly; align-items: center;
+    width: 100%; height: 50px;
+    color: var(--foreground); text-decoration: none; border-radius: 17px;
+    background: center center / auto 30px no-repeat; background-color: var(--component-background);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    overflow: hidden; cursor: pointer;
+    @include shadow(1);
+
+    ion-icon {font-size: 20px;}
+
+    .lwd-navItem {
+      overflow: hidden;
+      display: none;
+      &.generated-nav-element {display: flex; &.header {display: none}}
+      flex: 0 1 auto; justify-content: center; align-items: center;
+      width: 100%; max-width: 60px; height: 100%;
+      margin: 0 5px;
+
+      .navItemLabel {display: none;}
+      transition: font-size .2s;
+      
+      &[selected] {
+        background: linear-gradient(to right,var(--color-light),var(--color-main));
+        color: var(--color-text); border-radius: 8px;
+        box-shadow: 0px 1.6px 3.6px rgb(0 0 0 / 13%), 0px 0px 2.9px rgb(0 0 0 / 11%);
+      }
+
+      transition: border-radius .2s;
+      &:hover {
+        font-size: 1.05em; background-color: var(--background-hover);
+        &:not([selected]) {@include small-shadow(1)}
+        border-radius: 17px;
+      }
+      &:active {
+        font-size: 0.95em; background-color: var(--background-active);
+      }
+    }
+
+    .justTextNavItem {
+      overflow: hidden;
+      .navItemLabel {display: unset}
+      margin: 0; padding: 10px;
+      height: 30px;
+      max-width: unset;
+      white-space: nowrap;
+    }
+
+    .mobile-nav-item {display: flex;}
+    .reversed-alignment {margin-left: 0px}
+    .header, .navTitle, .generatedNavButton, .lwd-navGroup {display: none}
+
+    @content;
+  }
+
+
+  &.floatingSymbol {
+    @include desktop() {@include floatingSymbol()}
+  }
+  &.mobile-floatingSymbol {
+    @include mobile() {@include floatingSymbolMobile()}
+  }
+
+  &.floatingSymbolBackground {
+    @include desktop() {
+      @include floatingSymbol();
+
+      background: linear-gradient(to right, var(--color-main), var(--color-lighter));
+      border-radius: 12px;
+      @include shadow(1);
+      padding: 5px 10px;
+      width: calc(100% - 20px);
+      .lwd-navGroup, .lwd-navItem { background-color: var(--component-background) }
+    }
+  }
+
+  &.mobile-floatingSymbolBackground {
+    @include mobile() {
+      @include floatingSymbolMobile() {
+        top: 15px;
+        margin-bottom: 60px; margin-top: 0;
+        overflow: visible;
+        background-color: var(--component-background);
+      }
+    }
+  }*/
+}
+.header {
+  position: relative;
+  font-family: selawik_sb;
+  z-index: 99;
+  height: 45px; width: 100%;
+  text-align: center;
+}
+.lwd-nav-background {
+  position: fixed; top: -50px; left: 0;
+  z-index: 98;
+  width: 100%; height: 135px;
+  border-radius: 50% / 10px;
+  background: linear-gradient(to top, var(--color-main) 10%, var(--color-lighter) 30%, var(--color-light) 100%)
+}
+.mobile-header {
+  position: fixed; left: 0; top: 0;
+  display: flex; align-items: center;
+  .navItemIcon {order: 1; padding: 22px 20px 20px 25px;}
+  .navItemLabel {order: 2;}
+  .lwd-navItem {
+    margin-top: 20px;
+  }
+  width: 100%; height: 60px;
+  background-color: var(--component-background);
+  backdrop-filter: blur(15px);
+  @include shadow(1);
+  z-index: 99;
+}
+
+//LWD inputs -----------------------------------------------------------------
+
+// Button
+button {
+  @include shadow(1);
+  cursor: pointer;
+  font-family: $semibold-font;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  margin: 5px 0;
+  border: none;
+  background-color: var(--background);
+  color: var(--foreground);
+  border-radius: $border-radius;
+  transition: background-color 0.1s, color 0.2s, transform 0.1s ease-in, box-shadow .3s;
+  user-select: none;
+
+  &:hover {    
+    --height: 1.5;
+    background: var(--background-hover);
+  }
+  &:active {
+    --height: 0.5;
+    background: var(--background-active);
+    transform: scale(0.95);
+    transition: background-color .2s, color .2s, transform .1s ease-in;
+  }
+  &:focus {
+    border: none;
+    margin: 5px 0;
+  }
+  &.important {
+    background: var(--color-main);
+    color: var(--color-text);
+    &:hover {background-color: var(--color-darker);}
+    &:active {background-color: var(--color-dark);}
+  }
+  &.flat {
+    box-shadow: none;
+    border: var(--border);
+    &:hover {@include shadow(1)}
+    &:active {--height: 0.5}
+  }
+}
+
+input {
+  background-color: var(--component-background);
+  border: var(--border);
+  border-radius: $border-radius;
+  font-size: 0.8rem;
+  font-family: $default-font;
+  padding: 10px;
+  margin: 5px 0;
+  color: var(--foreground);
+  transition: all 0.1s;
+  display: inline-block;
+  user-select: none;
+
+  &:focus {
+    border-bottom: 2px solid transparent;
+    border-bottom-color: var(--color-main);
+    padding-bottom: 9px;
+    @include shadow(1);
+  }
+
+  &::placeholder {
+    color: hsl(0, 0%, 70%);
+  }
+
+  &[type="reset"],
+  &[type="button"] {
+    @extend button;
+    border: none;
+  }
+  &[type="submit"] {
+    @extend button, .important;
+    border: none;
+  }
+
+  &[type="color"] {
+    padding: 0;
+    border-radius: 0;
+    background: var(--component-background);
+  }
+
+  &[type="checkbox"] {
+    appearance: none;
+    box-shadow: var(--box-shadow);
+    -webkit-appearance: none;
+    border: 2px solid rgb(236, 236, 236);
+    border-radius: 5px;
+    width: 5px;
+    height: 5px;
+    padding: 9px;
+    cursor: pointer;
+
+    &:checked {
+      //background-image: url("../img/checked.png"); TODO
+      background-repeat: no-repeat;
+      background-size: 13px;
+      background-position: center center;
+    }
+  }
+
+  &[type="range"] {
+    &[type="range"] {
+      -webkit-appearance: none; appearance: none;
+      height: 0px;
+      background: var(--color-darker);
+      outline: none; /* Remove outline */
+      -webkit-transition: .1s; transition: all .1s;
+      margin: 15px 5px; padding: 2px;
+    }
+
+    &[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none; appearance: none;
+      width: 25px; height: 25px;
+      border-radius: 25px;
+      background: var(--color-darker);
+      box-shadow: var(--box-shadow-active);
+      cursor: pointer;
+    }
+
+    &[type="range"]::-moz-range-thumb {
+      width: 25px; height: 25px;
+      border-radius: 25px;
+      background: var(--color-darker);
+      box-shadow: var(--box-shadow-2);
+      border: none;
+      cursor: pointer;
+    }
+  }
+}
+
+div.lwd-box {
+    @include shadow(1);
+    background-color: var(--component-background);
+    //backdrop-filter: blur(20px);  WARNING: SLOWS DOWN THE BROWSER MASSIVELY!!!
+    //-webkit-backdrop-filter: blur(20px);
+    border-radius: 3px;
+    width: auto;
+    height: auto;
+    padding: 15px;
+    width: fit-content;
+    margin: 10px 0;
+    align-self: center;
+
+    &.round-corners {
+        border-radius: 7px;
+    }
+}
+
+.lwd-list {
+  font-size: 15px;
+  overflow-y: initial;
+  & > div {
+    @extend .lwd-box;
+    width: initial;
+  }
+  &.round-corners {
+    & > div {
+      border-radius: 7px;
+    }
+  }
+  &.flat {
+    div {
+      border: var(--border);
+      box-shadow: none;
+    }
+  }
+}
+
+.linkbox-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+
+  a {
+    background: center 30px / auto 80px no-repeat;
+    background-color: var(--component-background);
+    box-shadow: var(--box-shadow);
+    width: 140px;
+    height: 145px;
+    margin: 0 20px 30px 20px;
+    padding: 10px;
+    padding-bottom: 20px;
+    border-radius: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-end;
+    font-family: $semibold-font;
+    transition: transform 0.2s;
+
+    div {
+      width: 100%;
+      text-align: center;
+    }
+
+    &:hover {
+      background: linear-gradient(
+        to left top,
+        var(--color-lighter),
+        var(--color-extra-light)
+      );
+      color: white;
+      animation: pop-out 0.3s;
+      transform: scale(1.1);
+      box-shadow: 0px 0px 10pt 2px rgba(0, 0, 0, 0.2);
+    }
+  }
+}
+
+//Animations -----------------------------------------
+/*.animation {
+  transition: transform .1s;
+  &:hover {
+    transform: scale(1.1);
+    &.window-close, &.window-open, &.windiw-highlight{transform: translate(-50%, -50%)}
+  }
+  &:active {
+    transform: scale(1);
+    &.rotate {transform: rotate(-170deg)}
+    &.stretch-horizontal {transform: scaleY(1.5);}
+    &.stretch-vertical {transform: scaleX(1.5);}
+  }
+  &.window-close {
+    animation: fade-down .6s;
+  }
+  &.window-open {
+    animation: fade-up .3s;
+    visibility: visible;
+  }
+  &.window-highlight {
+    animation: pop-up .3s;
+  }
+}*/
+
+@keyframes fade-down {
+  0% {transform: translate(-50%, -50%)}
+  20% {transform: translate(-50%, -50%) scale(0.8)}
+  100% {transform: translate(-50%, 100%) scale(0.8); visibility: hidden;}
+}
+
+@keyframes fade-up {
+  0% {transform: translate(-50%, 50%) scale(0.8);}
+  70% {transform: translate(-50%, -50%) scale(0.8)}
+  100% {transform: translate(-50%, -50%) scale(1);}
+}
+
+@keyframes pop-up {
+  50% {transform: translate(-50%, -50%) scale(1.02);--height: 1.2}
+  100% {transform: translate(-50%, -50%) scale(1);--height: 1}
+}
+
+//Lwd window ------------------------------------------
+.lwd-window {
+  position: fixed; left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px; height: 400px; max-width: 95%; max-height: 97%;
+  @include shadow(1);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border-radius: 7px;
+  border: var(--border);
+  z-index: 101;
+  transition: box-shadow .1s, transform .1s;
+  overflow: hidden;
+  background-color: var(--background-transparent);
+  will-change: transform;
+
+  h2 {
+    position: relative;
+    display: flex; justify-content: center; align-items: center;
+    color: var(--foreground);
+    font-size: 1.7em;
+    width: 100%; height: 60px;
+    cursor: move;
+    margin: 0;
+    transition: all .1s;
+    &:hover {font-size:1.8em}
+  }
+  svg {
+    padding: 10px;
+    position: absolute;
+    right: 0px; top: 0px;
+    width: 16px; height: 16px;
+    path {fill: var(--foreground)}
+    cursor: default;
+    &:hover {transform: scale(1.1)}
+    &:active {transform: scale(0.9)}
+    transition: all .1s;
+    enable-background: new 0 0 512 512;
+    z-index: 103;
+  }
+
+  .content {
+    background-color: var(--background-transparent);
+    width: 100%;
+    height: 100%;
+    border-bottom-left-radius: 7px; border-bottom-right-radius: 7px;
+    padding: 10px;
+    overflow-y: scroll;
+  }
+
+  &.round-corners {
+    border-radius: 15px;
+    .content {
+      border-bottom-left-radius: 15px; border-bottom-right-radius: 15px;
+    }
+  }
+  @include mobile() {
+    width: 95%;
+    height: 99%;
+  }
+}
+
+
+//css classes for user
+
+.flat {
+  box-shadow: none;border: var(--border)
+}
+
+.circle {
+  border-radius: 50%;
+  padding: 20px;
+}
+
+.background-gradient {
+  background: linear-gradient(
+    to right bottom,
+    var(--color-light),
+    var(--color-main)
+  );
+}
+
+.hide-in-mobile {
+  @include mobile() {
+    display: none;
+    visibility: hidden;
+    position: absolute;
+  }
+}
+
+.hide-in-desktop {
+  @include desktop() {
+    display: none;
+    visibility: hidden;
+    position: absolute;
+  }
+}
