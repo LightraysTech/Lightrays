@@ -3,7 +3,7 @@ A modern and lightweight web design framework, with normal Website, ReactJS and 
 
 Demo Website: https://ncoder77.github.io/Lightrays/
 
-![Lightrays example image](/img/Logos/readmeHead.png "LR example: responsive Web App")
+![Lightrays example image](/non-react-example/img/Logos/readmeHead.png "LR example: responsive Web App")
 
  
 
