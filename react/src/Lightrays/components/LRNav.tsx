@@ -1,7 +1,7 @@
 import React, { MouseEventHandler, ReactChild, ReactChildren, ReactNode, useEffect, useRef, useState } from "react";
 import ReactDom from "react-dom";
 
-interface LWDNavProps {
+interface LRNavProps {
     children?: React.ReactNode,
     type?: NavTypes,
     mobileType?: NavTypes,
@@ -20,7 +20,7 @@ export enum NavTypes {
     top = "top",
 }
 
- export const LWDNav = ({ children, type, mobileType, content, navButton, title, className, style, width}: LWDNavProps) => {
+ export const LRNav = ({ children, type, mobileType, content, navButton, title, className, style, width}: LRNavProps) => {
 
     const [isOpen, setIsOpen] = useState<boolean>(true);
 
@@ -74,7 +74,7 @@ export enum NavTypes {
         })
 
         if (navButton) {
-            navButtonJSX?.length !== 0 && console.warn("LWDNav: 2 NavButtons were declared, please only declare one.")
+            navButtonJSX?.length !== 0 && console.warn("LRNav: 2 NavButtons were declared, please only declare one.")
             return <Icon onClick={toggleNavButton}>{navButton}</Icon>
         } else if (navButtonJSX?.length !== 0) {
             return <Icon onClick={toggleNavButton}>{navButtonJSX}</Icon>;
@@ -101,7 +101,7 @@ export enum NavTypes {
     
     return (
         <div className={"navRootElem " + cssClasses}>
-            <div className={cssClasses + " lwd-nav " + (className ? className : "")} style={style}>
+            <div className={cssClasses + " lr-nav " + (className ? className : "")} style={style}>
                 {header}
                 {navChildren}
             </div>
@@ -122,7 +122,7 @@ interface NavComponentProps {
 interface ItemProps extends NavComponentProps { open?: boolean }
 
 export const Item: any = ({ children, className, style, open }: ItemProps) => {
-    let classes = className ? `lwd-navItem ${className}` : "lwd-navItem";
+    let classes = className ? `lr-navItem ${className}` : "lr-navItem";
 
     let [foldoutOpen, setFoldoutOpen] = useState(open ? "open" : "");
 
@@ -144,7 +144,7 @@ export const Item: any = ({ children, className, style, open }: ItemProps) => {
         let toggleFoldout = () => (foldoutOpen === "open") ? setFoldoutOpen("") : setFoldoutOpen("open");
         
         return (
-            <div className={`lwd-navFoldout ${foldoutOpen}`}>
+            <div className={`lr-navFoldout ${foldoutOpen}`}>
                 <div className={classes + " " + foldoutOpen} style={style} onClick={toggleFoldout}>
                     {iconJSX[0]} {labelJSX[0]}
                     <Icon className="toggle"></Icon>
@@ -175,7 +175,7 @@ export const NavButton = ({ children, className, style, onClick }: NavComponentP
 }
 
 export const Group = ({ children, className, style }: NavComponentProps) => {
-    return <div className={className ? `lwd-navGroup ${className}` : "lwd-navGroup"} style={style}>{children}</div>
+    return <div className={className ? `lr-navGroup ${className}` : "lr-navGroup"} style={style}>{children}</div>
 }
 
 export const Content: any = ({ children, className, style }: NavComponentProps) => {

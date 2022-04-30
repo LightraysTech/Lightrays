@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState } from "react";
 import "../style/main.css";
-import {dragElement} from "../scripts/LWDFunctions";
+import {dragElement} from "../scripts/LRFunctions";
 
 interface LWDWindowProps {
     isOpen: boolean;

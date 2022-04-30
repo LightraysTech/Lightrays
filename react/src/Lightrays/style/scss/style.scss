@@ -79,7 +79,7 @@ margin: 5px auto 5px auto;
         flex: 1 1 auto;
     }
 
-    .content {display: flex; flex: 1 1 auto;}
+    .content {display: flex; flex-direction: column; flex: 1 1 auto;}
 
     &.bottom, &.top {flex-direction: column; }
 
@@ -88,7 +88,7 @@ margin: 5px auto 5px auto;
     }
 }
 
-.lwd-nav {
+.lr-nav {
     width: var(--width);
     height: var(--height);
     background-color: var(--component-background);
@@ -99,7 +99,7 @@ margin: 5px auto 5px auto;
     &.floating {margin: 10px;}
     &.colored {background: linear-gradient(to right, var(--color-light), var(--color-main), var(--color-dark));color: var(--color-text);}
 
-    .lwd-navItem {
+    .lr-navItem {
         display: flex; align-items: center;
         border-radius: 8px;
 
@@ -128,7 +128,7 @@ margin: 5px auto 5px auto;
         &.flat {border: none; border-right: var(--border); &.floating {border: var(--border)}}
         &.floating {border-radius: 20px 3px 3px 20px;}
 
-        .lwd-navItem {
+        .lr-navItem {
             flex-wrap: nowrap; flex-grow: 1;
             height: 35px;
             margin: 5px 10px; transition: margin .3s;
@@ -154,18 +154,18 @@ margin: 5px auto 5px auto;
             .navItemLabel { order: 2; flex-grow: 1; }
         }
 
-        .lwd-navGroup {
+        .lr-navGroup {
             &.header-navGroup {border-top: none;}
             display: block;
             border-top: var(--border); border-bottom: var(--border); border-width: 1.5px;
             margin: 5px 0;padding: 5px 0;
-            & ~ .lwd-navGroup {
+            & ~ .lr-navGroup {
                 border-top-color: transparent;
                 margin-top: 0; padding-top: 0;
             }
         }
 
-        .lwd-navFoldout {
+        .lr-navFoldout {
             .foldoutItems {
               margin-left: 40px;
               &.open {display: block}
@@ -176,8 +176,8 @@ margin: 5px auto 5px auto;
 
         &.alt-state {
             width: var(--collapsed-width);
-            .lwd-navItem {margin: 5px;}
-            .lwd-navGroup .foldoutItems {margin-left: 0;}
+            .lr-navItem {margin: 5px;}
+            .lr-navGroup .foldoutItems {margin-left: 0;}
         }
 
         @include mobile() {
@@ -196,15 +196,15 @@ margin: 5px auto 5px auto;
             &.alt-state {
                 width: 100%;
                 height: calc(100% - 20px);
-                .lwd-navItem {margin: 5px 10px;}
-                .lwd-navGroup .foldoutItems {margin-left: 40px;}
+                .lr-navItem {margin: 5px 10px;}
+                .lr-navGroup .foldoutItems {margin-left: 40px;}
             }
         }
 
         &.right {
             order: 1;
             &.floating {border-radius: 3px 20px 20px 3px;}
-            .lwd-navItem {
+            .lr-navItem {
                 .navItemIcon {order: 2;}
                 .navItemLabel {order: 0; margin-left: 5px;}
                 .navItemIcon.toggle {order: 1; position: unset;}
@@ -229,9 +229,9 @@ margin: 5px auto 5px auto;
         overflow-x: scroll;
         &::-webkit-scrollbar { display: none;} scrollbar-width: none; -ms-overflow-style: none; 
 
-        &.colored {.lwd-navItem {&.selected {background: none; box-shadow: none; font-weight: bold; font-size: 1.1em; }}}
+        &.colored {.lr-navItem {&.selected {background: none; box-shadow: none; font-weight: bold; font-size: 1.1em; }}}
         
-        .lwd-navItem {
+        .lr-navItem {
             flex: 0 1 100%;
             position: relative;
             top: 10%;
@@ -246,8 +246,8 @@ margin: 5px auto 5px auto;
             .navItemLabel {padding: 0 10px 0 10px;}
             .navItemIcon:hover {transform: none;}
         }
-        &.colored .lwd-navItem:hover {background-color: transparent; box-shadow: var(--box-shadow);}
-        &.colored .lwd-navItem:active {background-color: transparent; box-shadow: none; font-size: 0.9em; transition: all .1s;}
+        &.colored .lr-navItem:hover {background-color: transparent; box-shadow: var(--box-shadow);}
+        &.colored .lr-navItem:active {background-color: transparent; box-shadow: none; font-size: 0.9em; transition: all .1s;}
     }
 
     &.top {
@@ -256,4 +256,44 @@ margin: 5px auto 5px auto;
         &.colored, &.flat {border-radius: 0 0 15px 15px; }
         &.floating {border-radius: 15px;}
     }
+}
+
+
+//Box-------------------------
+div.lr-box {
+    box-shadow: var(--box-shadow);
+    background-color: var(--component-background);
+    border-radius: 3px;
+    width: auto;
+    height: auto;
+    padding: 15px;
+    width: fit-content;
+    margin: 10px 0;
+    align-self: center;
+
+    &.round-corners {
+        border-radius: 7px;
+    }
+}
+
+
+//List --------------------
+.lr-list {
+  font-size: 15px;
+  overflow-y: initial;
+  & > div {
+    @extend .lr-box;
+    width: initial;
+  }
+  &.round-corners {
+    & > div {
+      border-radius: 7px;
+    }
+  }
+  &.flat {
+    div {
+      border: var(--border);
+      box-shadow: none;
+    }
+  }
 }

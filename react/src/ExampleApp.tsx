@@ -5,15 +5,15 @@ the <App /> tag with <ExampleApp /> in the index.tsx file.
 
 import './Lightrays/style/css/style.css';
 
-import * as Nav from './Lightrays/components/LWDNav';
-import * as LWDFunctions from "./Lightrays/scripts/LWDFunctions";
+import * as Nav from './Lightrays/components/LRNav';
+import * as LRFunctions from "./Lightrays/scripts/LRFunctions";
 
 function ExampleApp() {
-  LWDFunctions.setBackgroundLight(LWDFunctions.LightTimes.day);
+  LRFunctions.setBackgroundLight(LRFunctions.LightTimes.day);
 
   return (
     <div className='App'>
-      <Nav.LWDNav type={Nav.NavTypes.side} mobileType={Nav.NavTypes.side} className={"floating right"}>
+      <Nav.LRNav type={Nav.NavTypes.side} mobileType={Nav.NavTypes.side} className={"floating"}>
         <Nav.Group>
           <Nav.Item className={"selected"}>
             <Nav.Label>Hallo</Nav.Label>
@@ -50,18 +50,19 @@ function ExampleApp() {
         </Nav.Group>
 
         <Nav.Content>
-          <Nav.LWDNav type={Nav.NavTypes.top} className={""} style={{"--width": "600px", "--height": "50px"}}>
+          <Nav.LRNav type={Nav.NavTypes.bottom} className={""} style={{"--width": "600px", "--height": "50px", "margin-bottom": "10px"}}>
             <Nav.Item className={"selected"}><Nav.Icon></Nav.Icon><Nav.Label>Alle</Nav.Label></Nav.Item>
             <Nav.Item><Nav.Icon></Nav.Icon><Nav.Label>Einzukaufen</Nav.Label></Nav.Item>
             <Nav.Item><Nav.Icon></Nav.Icon><Nav.Label>Suche</Nav.Label></Nav.Item>
 
             <Nav.Content>
-              <h1 style={{paddingTop: "20px", textAlign: "center", width: "100%" }}>React with Spring Boot Tutorial</h1>
+              <h1 style={{padding: "20px 0 0 0", width: "100%" }}>Lightrays example app</h1>
+              <div className='lr-box'>LR Box</div>
             </Nav.Content>
 
-          </Nav.LWDNav>
+          </Nav.LRNav>
         </Nav.Content>
-      </Nav.LWDNav>
+      </Nav.LRNav>
     </div>
   );
 }
