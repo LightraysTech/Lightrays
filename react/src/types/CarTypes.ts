@@ -1,1 +1,0 @@
-export type Car = {brand: string, model: string, color: string, year: number, price: number, _links?: any}

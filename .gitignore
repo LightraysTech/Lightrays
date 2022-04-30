@@ -1,11 +1,7 @@
 main.css.map
 
-/react/*
-
-/react/public
-
-/react/
-!/react/src
+/react/build
+/react/node_modules
 
 # misc
 .DS_Store
