@@ -22,9 +22,9 @@ If you want to use Lightrays in an existing website, include the following links
 ### React usage
 *Disclaimer: Lightrays uses Typescript. You can find a tutorial on how to set up typescript for React here.*
 <br>
-For a blank new React App, download the react folder, and build all npm files.
+For a blank new React App, download the [react](https://downgit.github.io/#/home?url=https://github.com/Ncoder77/Lightrays/tree/alpha/react) folder, and build all npm files.
 <br>
-If you want to use Lightrays in an existing React App, download the Lightrays folder, and copy it into the src folder of your React Application. Next, import the CSS in your App.tsx file: <br>
+If you want to use Lightrays in an existing React App, download the [Lightrays](https://downgit.github.io/#/home?url=https://github.com/Ncoder77/Lightrays/tree/alpha/react/src/Lightrays) folder, and copy it into the src folder of your React Application. Next, import the CSS in your App.tsx file: <br>
 
 ` import './Lightrays/css/style.css'; `
 
