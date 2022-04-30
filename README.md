@@ -9,7 +9,7 @@ Demo Website: https://ncoder77.github.io/Lightrays/
 
 ## Usage
 ### Normal website
-For a blank new website, download the [non-react folder](https://github.com/Ncoder77/Lightrays/alpha/non-react), and you’re ready to go! <br>
+For a blank new website, download the [non-react folder](https://downgit.github.io/#/home?url=https://github.com/Ncoder77/Lightrays/tree/alpha/non-react), and you’re ready to go! <br>
 If you want to use Lightrays in an existing website, include the following links:<br>
 
 `
