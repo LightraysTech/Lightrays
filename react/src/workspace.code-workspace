@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "..\\..\\spring-with-react"
+		},
+		{
+			"path": ".."
+		},
+		{
+			"path": "..\\..\\Lighted-Web-Design-2.0"
+		}
+	],
+	"settings": {
+		"java.configuration.updateBuildConfiguration": "automatic"
+	}
+}
