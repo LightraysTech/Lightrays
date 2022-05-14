@@ -79,11 +79,7 @@ margin: 5px auto 5px auto;
         flex: 1 1 auto;
     }
 
-    .content {
-        display: flex; flex-direction: column; 
-        flex: 1 1 auto;
-        &.scroll {overflow-y: scroll;}
-    }
+    .content {display: flex; flex-direction: column; flex: 1 1 auto;}
 
     &.bottom, &.top {flex-direction: column; }
 
@@ -272,7 +268,8 @@ div.lr-box {
     height: auto;
     padding: 15px;
     width: fit-content;
-    margin: 8px 0;
+    margin: 10px 0;
+    align-self: center;
 
     &.round-corners {
         border-radius: 7px;

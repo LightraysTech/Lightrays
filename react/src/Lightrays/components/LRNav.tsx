@@ -100,8 +100,8 @@ export enum NavTypes {
     });
     
     return (
-        <div className={"navRootElem " + cssClasses}>
-            <div className={cssClasses + " lr-nav " + (className ? className : "")} style={style}>
+        <div className={"lr-navRoot" + cssClasses}>
+            <div className={"nav" + cssClasses + " " + (className ? className : "")} style={style}>
                 {header}
                 {navChildren}
             </div>
@@ -178,6 +178,9 @@ export const Group = ({ children, className, style }: NavComponentProps) => {
     return <div className={className ? `lr-navGroup ${className}` : "lr-navGroup"} style={style}>{children}</div>
 }
 
-export const Content: any = ({ children, className, style }: NavComponentProps) => {
-    return <div className={className ? `content ${className}` : "content"} style={style}>{children}</div>
+interface ContentProps extends NavComponentProps {scroll: boolean}
+export const Content: any = ({ children, className, style, scroll }: ContentProps) => {
+    let classnames = className ? `content ${className}` : "content";
+    if (scroll) {classnames += " scroll"}
+    return <div className={classnames} style={style}>{children}</div>
 }
