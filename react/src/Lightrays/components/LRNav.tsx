@@ -1,17 +1,16 @@
-import React, { MouseEventHandler, ReactChild, ReactChildren, ReactNode, useEffect, useRef, useState } from "react";
-import ReactDom from "react-dom";
+import React, { MouseEventHandler, ReactNode, useEffect, useState } from "react";
+import * as LRFunctions from "../scripts/LRFunctions";
+import {NavLink, useMatch} from "react-router-dom";
 
 interface LRNavProps {
     children?: React.ReactNode,
-    type?: NavTypes,
-    mobileType?: NavTypes,
-    content?: ReactChild | ReactChildren,
-    navButton?: JSX.Element,
-    title?: string,
-
     className?: string,
     style?: Object,
-    width?: string
+
+    type?: NavTypes,
+    mobileType?: NavTypes,
+    tabletAt?: string,
+    mobileAt?: string,
 }
 
 export enum NavTypes {
@@ -20,12 +19,24 @@ export enum NavTypes {
     top = "top",
 }
 
- export const LRNav = ({ children, type, mobileType, content, navButton, title, className, style, width}: LRNavProps) => {
+ export const LRNav = ({ children, type, mobileType, tabletAt, mobileAt, className, style}: LRNavProps) => {
 
     const [isOpen, setIsOpen] = useState<boolean>(true);
+    let toggleNavButton = () => setIsOpen(!isOpen);
 
     const [cssClasses, setCSSclasses] = useState<string>();
     const [header, setHeader] = useState<JSX.Element>();
+
+    let headerChildren = LRFunctions.getChildrenOfType(Header, children);
+        
+    //Seperate Nav Elements from Content and Header element
+    let navChildren = React.Children.map(children, (child) => {
+        let childType = (child as React.ReactElement<any>).type;
+        if (childType !== Content && childType !== Header) {return child;}
+    });
+    
+    let contentChildren = LRFunctions.getChildrenOfType(Content, children);
+
 
     //When NavType or isOpen state changes, update CSS classes and generated elements
     useEffect(() => {
@@ -34,14 +45,15 @@ export enum NavTypes {
         switch (type) {
             case NavTypes.side:
                 console.log("generating side");
-                headerJSX = (
-                    <Group className="header-navGroup">
-                        <Item className="header">
-                            {generatedNavButton(18)}
-                            <Label><h4>Title</h4></Label>
-                        </Item>
-                    </Group>
-                );
+                if (headerChildren && headerChildren.length != 0) {
+                    headerJSX = (<>{headerChildren}</>);
+                } else {
+                    headerJSX = (
+                        <Header>
+                            <Icon className='fluentIcon'></Icon><Label>Navigation</Label>
+                        </Header>
+                    );
+                }
                 break;
             case NavTypes.bottom:
                 console.log("generating bottom Nav");
@@ -66,43 +78,25 @@ export enum NavTypes {
 
         setCSSclasses(classListString);
         setHeader(headerJSX);
+
+        window.addEventListener("resize", handleRezise);
+        //Remove when component is unmounted
+        return () => {window.removeEventListener('rezise', handleRezise);};
+
     }, [type, mobileType, isOpen]);
 
-    let generatedNavButton = (width: number) => {
-        let navButtonJSX = React.Children.map(children, (c) => {
-            if (React.isValidElement(c) && (c as React.ReactElement<any>).type === NavButton) { return c }
-        })
-
-        if (navButton) {
-            navButtonJSX?.length !== 0 && console.warn("LRNav: 2 NavButtons were declared, please only declare one.")
-            return <Icon onClick={toggleNavButton}>{navButton}</Icon>
-        } else if (navButtonJSX?.length !== 0) {
-            return <Icon onClick={toggleNavButton}>{navButtonJSX}</Icon>;
+    let handleRezise = () => {
+        if (window.innerWidth < 1000) {
+            setIsOpen(false);
         } else {
-            return (
-                <Icon onClick={toggleNavButton} className="fluentIcon"></Icon>
-            );
+            setIsOpen(true);
         }
     }
 
-    let toggleNavButton = () => setIsOpen(!isOpen);
-
-
-    //Seperate Nav Elements from Content
-    let navChildren = React.Children.map(children, (child) => {
-        let childType = (child as React.ReactElement<any>).type;
-        if (!(childType === NavButton || childType === Content)) {return child;}
-    });
-    let contentChildren = React.Children.map(children, (child) => {
-        if (React.isValidElement(child) && (child as React.ReactElement<any>).type === Content) {             
-            return child;
-        }
-    });
-    
     return (
         <div className={"lr-navRoot" + cssClasses}>
             <div className={"nav" + cssClasses + " " + (className ? className : "")} style={style}>
-                {header}
+                <span onClick={toggleNavButton}>{header}</span>
                 {navChildren}
             </div>
             {contentChildren}
@@ -119,21 +113,25 @@ interface NavComponentProps {
     onClick?: MouseEventHandler<HTMLElement>
 }
 
-interface ItemProps extends NavComponentProps { open?: boolean }
+interface ItemProps extends NavComponentProps {
+    open?: boolean,
+    to?: any,
+    activeOnlyWhenExact?: any,
+}
 
-export const Item: any = ({ children, className, style, open }: ItemProps) => {
+export const Item: any = ({ children, className, style, open, to, activeOnlyWhenExact }: ItemProps) => {
     let classes = className ? `lr-navItem ${className}` : "lr-navItem";
 
     let [foldoutOpen, setFoldoutOpen] = useState(open ? "open" : "");
 
     //Seperate child elements
-    let label = React.Children.map(children, child => {return (child as React.ReactElement<any>).type === Label ? child : undefined});
-    let icon = React.Children.map(children, child => { return (child as React.ReactElement<any>).type === Icon ? child : undefined});
+    //let label = React.Children.map(children, child => {return (child as React.ReactElement<any>).type === Label ? child : undefined});
+    //let icon = React.Children.map(children, child => { return (child as React.ReactElement<any>).type === Icon ? child : undefined});
     let foldoutItems = React.Children.map(children, (child) => {return (child as React.ReactElement<any>).type === Item ? child : undefined});
     
 
     //Foldout
-    if (foldoutItems?.length !== 0) {
+    if (foldoutItems && foldoutItems.length !== 0) {
         let iconJSX: Array<JSX.Element> = [];
         let labelJSX: Array<JSX.Element> = [];
         React.Children.map(children, (child) => {
@@ -143,18 +141,35 @@ export const Item: any = ({ children, className, style, open }: ItemProps) => {
 
         let toggleFoldout = () => (foldoutOpen === "open") ? setFoldoutOpen("") : setFoldoutOpen("open");
         
-        return (
-            <div className={`lr-navFoldout ${foldoutOpen}`}>
-                <div className={classes + " " + foldoutOpen} style={style} onClick={toggleFoldout}>
-                    {iconJSX[0]} {labelJSX[0]}
-                    <Icon className="toggle"></Icon>
+        if (to) {          
+            return (
+                <div className={`lr-navFoldout ${foldoutOpen}`}>
+                    <NavLink to={to} className={classes + " " + foldoutOpen} style={style} onClick={toggleFoldout}>
+                        {iconJSX[0]} {labelJSX[0]}
+                        <Icon className="toggle"></Icon>
+                    </NavLink>
+                    <div className={`foldoutItems ${foldoutOpen}`}>{foldoutItems}</div>
                 </div>
-                <div className={`foldoutItems ${foldoutOpen}`}>{foldoutItems}</div>
-            </div>
-        )
+            )
+        } else {
+            return (
+                <div className={`lr-navFoldout ${foldoutOpen}`}>
+                    <div className={classes + " " + foldoutOpen} style={style} onClick={toggleFoldout}>
+                        {iconJSX[0]} {labelJSX[0]}
+                        <Icon className="toggle"></Icon>
+                    </div>
+                    <div className={`foldoutItems ${foldoutOpen}`}>{foldoutItems}</div>
+                </div>
+            )
+        }
+
 
     } else { //No Foldout
-        return (<div className={classes} style={style}>{children}</div>);
+        if (to) {
+            return (<NavLink to={to} className={classes} style={style}>{children}</NavLink>);
+        } else {
+            return (<div className={classes} style={style}>{children}</div>);
+        }
     }
 }
 
@@ -183,4 +198,20 @@ export const Content: any = ({ children, className, style, scroll }: ContentProp
     let classnames = className ? `content ${className}` : "content";
     if (scroll) {classnames += " scroll"}
     return <div className={classnames} style={style}>{children}</div>
+}
+
+export const Header: any = ({ children, className, style }: NavComponentProps) => {
+    let classnames = className ? `header-navGroup ${className}` : "header-navGroup";
+
+    let icon = LRFunctions.getChildrenOfType(Icon, children);
+    let label = LRFunctions.getChildrenOfType(Label, children);
+
+    return ( 
+        <Group className={classnames} style={style}>
+            <Item>
+                {icon}
+                {label}
+            </Item>
+        </Group>
+    );
 }
