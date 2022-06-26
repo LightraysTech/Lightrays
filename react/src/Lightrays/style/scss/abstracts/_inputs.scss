@@ -7,7 +7,7 @@ button {
     padding: 0.5rem 1rem 0.5rem 1rem;
     margin: 5px 0;
     border: none;
-    background-color: var(--background);
+    background-color: var(--component-background);
     color: var(--foreground);
     border-radius: 5px;
     transition: background-color 0.1s, color 0.2s, transform 0.1s ease-in, box-shadow .3s;
@@ -42,7 +42,7 @@ button {
   }
   
   input {
-    background-color: var(--background);
+    background-color: var(--component-background);
     border: var(--border);
     border-radius: 5px;
     font-size: 0.8rem;

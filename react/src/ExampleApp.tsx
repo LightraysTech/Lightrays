@@ -17,7 +17,7 @@ import { BrowserRouter, Routes, Route, Link, Router } from "react-router-dom";
 import * as ReactDOMServer from 'react-dom/server';
 
 function ExampleApp() {
-  LRFunctions.setBackgroundLight(LRFunctions.LightTimes.night);
+  LRFunctions.setBackgroundColor(LRFunctions.BackgroundColors.night);
 
   //JSX
   return (
@@ -72,7 +72,7 @@ function ExampleApp() {
             <Nav.Content scroll>
               <div style={{ padding: "0 30px 0 20px" }}>
                 <Routes>
-                  <Route path='/' element={<WhatIsLighrays/>} />
+                  <Route path='' element={<WhatIsLighrays/>} />
                   <Route path='/components/navigation' element={<ComponentsNavigation />} />
                 </Routes>
               </div>
@@ -201,12 +201,12 @@ let ComponentsNavigation = () => {
 
           <div style={{ flex: "1 1 50%", marginRight: "10px", minWidth: "200px" }} >
             <h3>Code</h3>
-            <div className='lr-box transparent' style={{ height: "100%", overflowY: "scroll" }}><code>{ReactDOMServer.renderToString(currentComponent)}</code></div>
+            <div className='lr-box' style={{ height: "100%", overflowY: "scroll" }}><code>{ReactDOMServer.renderToString(currentComponent)}</code></div>
           </div>
 
           <div style={{ flex: "1 1 50%", marginLeft: "10px", minWidth: "200px" }}>
             <h3>Preview</h3>
-            <div className='lr-box transparent' style={{ height: "100%", overflowY: "scroll" }}>{currentComponent}</div>
+            <div className='lr-box' style={{ height: "100%", overflowY: "scroll" }}>{currentComponent}</div>
           </div>
 
         </div>

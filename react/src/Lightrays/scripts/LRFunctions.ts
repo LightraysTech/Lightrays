@@ -92,6 +92,8 @@ export const map_range = (value: number, low1: number, high1: number, low2: numb
     return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
 }
 
+
+//React specific
 export const useScript = (url: string) => {
     useEffect(() => {
         const script = document.createElement('script');
@@ -119,12 +121,12 @@ export const addAnimation = (component: HTMLElement, cssAnimation: string, durat
   // TODO 
 }
 
-export enum LightTimes { sunrise = "#F7F9E7", sunset = "#F7F9E7", day = "#d9e8f7", night = "#18436E", midnight = "black" }
-export const setBackgroundLight = (timeColor: string, darkTheme?: boolean) => {
+export enum BackgroundColors { sunrise = "#F7F9E7", sunset = "#F7F9E7", day = "#d9e8f7", night = "#18212a", midnight = "#141414" }
+export const setBackgroundColor = (timeColor: string, darkTheme?: boolean) => {
 
     let d = document.querySelector("body");
     if (d) {
-        setTheme((darkTheme || timeColor == LightTimes.night) ? "dark" : "light");
+        setTheme((darkTheme || timeColor == BackgroundColors.night || timeColor == BackgroundColors.midnight) ? "dark" : "light");
         d.style.setProperty("--background-tint", timeColor);
     }
 }
@@ -133,14 +135,14 @@ let currentTheme: string = "light";
 
 export const setTheme = (theme: string) => {
     currentTheme = theme;
-
+    
     //var, value light theme, value dark theme
     let cssvars = [
         ["theme", "100%", "0%"],
         ["foreground", "black", "white"],
-        ["background", "white", "#2c2c2c"],
-        ["component-background", "white", "#2b2b2b"],
-        ["background-tint", "#d9e8f7", "#18436E"],
+        ["background", "white", "#272727"],
+        ["component-background", "white", "#313335"],
+        ["background-tint", "#d9e8f7", "#0D1015"],
         ["background-transparent", "hsla(0, 0%, 100%, 0.5)", "hsla(204, 8%, 0%, 0.2)"],
         ["background-hover", "hsl(0, 0%, 93%)", "hsl(0, 0%, 18%)"],
         ["background-active", "hsl(0, 3%, 95%)", "hsl(0, 0%, 15%)"],
@@ -152,10 +154,6 @@ export const setTheme = (theme: string) => {
     ];
 
     let d = document.querySelector("body");
-
-    window.addEventListener("load", () => {
-        setThemeProperties();
-    });
 
     setThemeProperties();
 
