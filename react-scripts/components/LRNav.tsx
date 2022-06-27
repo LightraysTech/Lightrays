@@ -1,5 +1,5 @@
 import React, { MouseEventHandler, ReactNode, useEffect, useState } from "react";
-import * as LRFunctions from "../scripts/LRFunctions";
+import * as LRFunctions from "../LRFunctions";
 import {NavLink, useMatch} from "react-router-dom";
 
 interface LRNavProps {
