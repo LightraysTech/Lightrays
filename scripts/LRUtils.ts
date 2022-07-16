@@ -1,6 +1,39 @@
 import React, { useEffect } from "react";
 
-export const dragElement = (elem: HTMLElement, draggableElem?: HTMLElement | undefined) => {
+export function setCookie(name: string, value: string, expiresDays?:number, path?:string): void {
+    let cookieStr = name + "=" + value + ";";
+    if (expiresDays != undefined) {
+        const d = new Date();
+        d.setTime(d.getTime() + (expiresDays*24*60*60*1000));
+        let expires = "expires="+ d.toUTCString();
+        cookieStr += expires;
+    }
+    if (path) {
+        cookieStr += ";path=" + path;
+    }        
+    document.cookie = cookieStr;
+}
+
+export function getCookie(cname:string): string {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for(let c of ca) {
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+export function map_range(value: number, low1: number, high1: number, low2: number, high2: number): number {
+    return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
+}
+
+export const dragElement = (elem: HTMLElement, draggableElem?: HTMLElement | undefined): void => {
     var elemWidth = 0, elemHeight = 0, pointerOffsetX = 0, pointerOffsetY = 0;
 
     if (draggableElem !== undefined) {
@@ -37,8 +70,6 @@ export const dragElement = (elem: HTMLElement, draggableElem?: HTMLElement | und
         elemHeight = elem.offsetHeight;
         pointerOffsetX = e.touches[0].clientX - rect.left;
         pointerOffsetY = e.touches[0].clientY - rect.top;
-        console.log(elemWidth, elemHeight, pointerOffsetX, pointerOffsetY);
-
 
         document.ontouchend = closeDragElement;
     }
@@ -86,35 +117,6 @@ export const dragElement = (elem: HTMLElement, draggableElem?: HTMLElement | und
         document.onmouseup = null;
         document.onmousemove = null;
     }
-}
-
-export const map_range = (value: number, low1: number, high1: number, low2: number, high2: number) => {
-    return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
-}
-
-
-//React specific
-export const useScript = (url: string) => {
-    useEffect(() => {
-        const script = document.createElement('script');
-
-        script.src = url;
-        script.async = true;
-
-        document.body.appendChild(script);
-
-        return () => {
-            document.body.removeChild(script);
-        }
-    }, [url]);
-};
-
-export const getChildrenOfType = (childType: React.ReactNode, children: React.ReactNode) => {
-    return React.Children.map(children, (child) => {
-        if (React.isValidElement(child) && (child as React.ReactElement<any>).type === childType) {
-            return child;
-        }
-    });
 }
 
 export const addAnimation = (component: HTMLElement, cssAnimation: string, duration: number) => {

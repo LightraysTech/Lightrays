@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState } from "react";
 import "../style/main.css";
-import {dragElement} from "../LRFunctions"
+import {dragElement} from "../LRUtils"
 
 interface LRWindowProps {
     isOpen: boolean;
@@ -62,7 +62,7 @@ const LRWindow = ({isOpen, isOpenCallback, children, header, width, height, styl
     //general style
     useEffect(()=> setUserWindowStyle({...style}), [style]);
 
-    //resize
+    //window dragging
     const h2Element = useRef<HTMLHeadingElement>(null);
     const windowElement = useRef<HTMLDivElement>(null);
 

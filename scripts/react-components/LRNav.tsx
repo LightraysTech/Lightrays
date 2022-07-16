@@ -1,5 +1,6 @@
 import React, { MouseEventHandler, ReactNode, useEffect, useState } from "react";
-import * as LRFunctions from "../LRFunctions";
+import * as LRUtils from "../LRUtils";
+import * as LRReactUtils from "../LRReactUtils"
 import {NavLink, useMatch} from "react-router-dom";
 
 interface LRNavProps {
@@ -27,7 +28,7 @@ export enum NavTypes {
     const [cssClasses, setCSSclasses] = useState<string>();
     const [header, setHeader] = useState<JSX.Element>();
 
-    let headerChildren = LRFunctions.getChildrenOfType(Header, children);
+    let headerChildren = LRReactUtils.getChildrenOfType(Header, children);
         
     //Seperate Nav Elements from Content and Header element
     let navChildren = React.Children.map(children, (child) => {
@@ -35,7 +36,7 @@ export enum NavTypes {
         if (childType !== Content && childType !== Header) {return child;}
     });
     
-    let contentChildren = LRFunctions.getChildrenOfType(Content, children);
+    let contentChildren = LRReactUtils.getChildrenOfType(Content, children);
 
 
     //When NavType or isOpen state changes, update CSS classes and generated elements
@@ -203,8 +204,8 @@ export const Content: any = ({ children, className, style, scroll }: ContentProp
 export const Header: any = ({ children, className, style }: NavComponentProps) => {
     let classnames = className ? `header-navGroup ${className}` : "header-navGroup";
 
-    let icon = LRFunctions.getChildrenOfType(Icon, children);
-    let label = LRFunctions.getChildrenOfType(Label, children);
+    let icon = LRReactUtils.getChildrenOfType(Icon, children);
+    let label = LRReactUtils.getChildrenOfType(Label, children);
 
     return ( 
         <Group className={classnames} style={style}>

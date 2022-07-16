@@ -3,22 +3,12 @@
 @use 'abstracts/inputs';
 //@use 'abstracts/fonts';
 
-:root {
-    --ip-background-size: 100% auto;
-    --shadow-length: 1;
-    --sun-tint: 215;
-    --sun-saturation: 0%;
-    --sun-brightness: 100%;
-    --sky-brightness: 92%;
-    --sky-saturation: 87%;
-}
-
 body {
     -webkit-tap-highlight-color: transparent;
     font-family: $default-font;
     background: linear-gradient(to bottom right, var(--background), var(--background-tint));
     background-attachment: fixed;
-    color: var(--foreground);
+    color: var(--text-color);
     margin: 0;
 }
 
@@ -62,14 +52,14 @@ font-weight: normal;
 
 //Link
 a {
-    color: var(--foreground);
-    &:enabled {color: var(--foreground)}
-    &:active {color: var(--foreground)}
+    color: var(--text-color);
+    &:enabled {color: var(--text-color)}
+    &:active {color: var(--text-color)}
     &:hover {color: var(--color-main)}
 
     &.noStyle {
         text-decoration: none;
-        &:hover {color: var(--foreground);}
+        &:hover {color: var(--text-color);}
     }
 }
 
@@ -122,7 +112,7 @@ a {
 .lr-navRoot .nav {
     width: var(--width);
     height: var(--height);
-    background-color: var(--component-background);
+    background-color: var(--foreground);
     box-shadow: var(--box-shadow);
     display: flex;
     cursor: default;
@@ -310,7 +300,7 @@ a {
 // Boxes ------------------------
 div.lr-box {
     box-shadow: var(--box-shadow);
-    background-color: var(--component-background);
+    background-color: var(--foreground);
     border-radius: 3px;
     padding: 15px;
     margin: 8px 0;
@@ -325,7 +315,7 @@ div.lr-box {
 
 .lr-imageBox {
     box-shadow: var(--box-shadow);
-    background-color: var(--component-background);
+    background-color: var(--foreground);
     border-radius: 3px;
     margin: 8px 0;
     display: flex; flex-wrap: wrap;

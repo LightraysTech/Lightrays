@@ -11,36 +11,30 @@
 }
 
 :root {
-  --theme: 100%;
-  --foreground: black;
+  --text: black;
   --background: white;
-  --component-background: white;
   --background-tint: #d9e8f7;
-  --background-transparent: hsla(0, 0%, 100%, 0.5);
-  --background-hover: hsl(0, 3%, 95%);
-  --background-active: hsl(0, 0%, 93%);
+  --foreground: white;
   --box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.15);
   --box-shadow-active: 1px 1px 3px rgba(0, 0, 0, 0.25);
   --border: solid hsla(0, 0%, 70%, .2) 1px;
-  --shadow-spec: 97%;
-  --shadow-brightness: 30%;
+  --foreground-transparent: hsla(0, 0%, 100%, 0.5);
+  --foreground-hover: hsl(0, 3%, 95%);
+  --foreground-active: hsl(0, 0%, 93%);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --theme: 0%;
-    --foreground: white;
+    --text: white;
     --background: #2c2c2c;
-    --component-background: #2b2b2b;
+    --foreground: #2b2b2b;
     --background-tint: #18436E;
-    --background-transparent: hsla(204, 8%, 0%, 0.2);
-    --background-hover: hsl(0, 0%, 18%);
-    --background-active: hsl(0, 0%, 15%);
     --box-shadow: 1.2px 1.2px 6px rgba(0, 0, 0, 0.75);
     --box-shadow-active: 1px 1px 3px rgba(0, 0, 0, 0.75);
     --border: solid hsla(0, 0%, 10%, .2) 1px;
-    --shadow-spec: 20%;
-    --shadow-brightness: 0%;
+    --foreground-transparent: hsla(204, 8%, 0%, 0.2);
+    --foreground-hover: hsl(0, 0%, 18%);
+    --foreground-active: hsl(0, 0%, 15%);
   }
 }
 button, input[type=submit], input[type=reset], input[type=button] {
@@ -49,7 +43,7 @@ button, input[type=submit], input[type=reset], input[type=button] {
   padding: 0.5rem 1rem 0.5rem 1rem;
   margin: 5px 0;
   border: none;
-  background-color: var(--component-background);
+  background-color: var(--foreground);
   color: var(--foreground);
   border-radius: 5px;
   transition: background-color 0.1s, color 0.2s, transform 0.1s ease-in, box-shadow 0.3s;
@@ -57,11 +51,11 @@ button, input[type=submit], input[type=reset], input[type=button] {
 }
 button:hover, input[type=submit]:hover, input[type=reset]:hover, input[type=button]:hover {
   --height: 1.5;
-  background: var(--background-hover);
+  background: var(--foreground-hover);
 }
 button:active, input[type=submit]:active, input[type=reset]:active, input[type=button]:active {
   --height: 0.5;
-  background: var(--background-active);
+  background: var(--foreground-active);
   transform: scale(0.95);
   transition: background-color 0.2s, color 0.2s, transform 0.1s ease-in;
 }
@@ -91,7 +85,7 @@ button.flat:active, input.flat[type=submit]:active, input.flat[type=reset]:activ
 }
 
 input {
-  background-color: var(--component-background);
+  background-color: var(--foreground);
   border: var(--border);
   border-radius: 5px;
   font-size: 0.8rem;
@@ -168,22 +162,12 @@ input[type=range][type=range]::-moz-range-thumb {
   cursor: pointer;
 }
 
-:root {
-  --ip-background-size: 100% auto;
-  --shadow-length: 1;
-  --sun-tint: 215;
-  --sun-saturation: 0%;
-  --sun-brightness: 100%;
-  --sky-brightness: 92%;
-  --sky-saturation: 87%;
-}
-
 body {
   -webkit-tap-highlight-color: transparent;
   font-family: "Segoe UI Variable Display", "selawik", Tahoma, Geneva, Verdana, sans-serif;
   background: linear-gradient(to bottom right, var(--background), var(--background-tint));
   background-attachment: fixed;
-  color: var(--foreground);
+  color: var(--text-color);
   margin: 0;
 }
 
@@ -225,13 +209,13 @@ h3, h4 {
 }
 
 a {
-  color: var(--foreground);
+  color: var(--text-color);
 }
 a:enabled {
-  color: var(--foreground);
+  color: var(--text-color);
 }
 a:active {
-  color: var(--foreground);
+  color: var(--text-color);
 }
 a:hover {
   color: var(--color-main);
@@ -240,7 +224,7 @@ a.noStyle {
   text-decoration: none;
 }
 a.noStyle:hover {
-  color: var(--foreground);
+  color: var(--text-color);
 }
 
 .hidden {
@@ -282,7 +266,7 @@ a.noStyle:hover {
 .lr-navRoot .nav {
   width: var(--width);
   height: var(--height);
-  background-color: var(--component-background);
+  background-color: var(--foreground);
   box-shadow: var(--box-shadow);
   display: flex;
   cursor: default;
@@ -559,7 +543,7 @@ a.noStyle:hover {
 
 div.lr-box, .lr-list > div {
   box-shadow: var(--box-shadow);
-  background-color: var(--component-background);
+  background-color: var(--foreground);
   border-radius: 3px;
   padding: 15px;
   margin: 8px 0;
@@ -603,7 +587,7 @@ div.lr-box:nth-child(10), .lr-list > div:nth-child(10) {
 
 .lr-imageBox {
   box-shadow: var(--box-shadow);
-  background-color: var(--component-background);
+  background-color: var(--foreground);
   border-radius: 3px;
   margin: 8px 0;
   display: flex;
@@ -779,4 +763,4 @@ div.lr-box:nth-child(10), .lr-list > div:nth-child(10) {
   }
 }
 
-/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=Lightrays.css.map */

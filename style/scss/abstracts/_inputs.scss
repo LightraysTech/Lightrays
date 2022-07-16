@@ -7,7 +7,7 @@ button {
     padding: 0.5rem 1rem 0.5rem 1rem;
     margin: 5px 0;
     border: none;
-    background-color: var(--component-background);
+    background-color: var(--foreground);
     color: var(--foreground);
     border-radius: 5px;
     transition: background-color 0.1s, color 0.2s, transform 0.1s ease-in, box-shadow .3s;
@@ -15,11 +15,11 @@ button {
   
     &:hover {    
       --height: 1.5;
-      background: var(--background-hover);
+      background: var(--foreground-hover);
     }
     &:active {
       --height: 0.5;
-      background: var(--background-active);
+      background: var(--foreground-active);
       transform: scale(0.95);
       transition: background-color .2s, color .2s, transform .1s ease-in;
     }
@@ -42,7 +42,7 @@ button {
   }
   
   input {
-    background-color: var(--component-background);
+    background-color: var(--foreground);
     border: var(--border);
     border-radius: 5px;
     font-size: 0.8rem;
