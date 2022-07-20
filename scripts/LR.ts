@@ -1,67 +1,64 @@
-import React, { useEffect } from "react";
-
 import LRNav from "./components/LRNav";
 import * as LRUtils from "./LRUtils"
 
-export var saveSettingsToCookies: boolean = false;
-export var debugMode = true;
+export default class LR {
+        static saveSettingsToCookies: boolean = false;
+        static debugMode = true;
+        
+        private static accentColor: AccentColor | null = null;
+        private static theme: Theme | null = null;
 
-let accentColor: AccentColor | null = null;
-let theme: Theme | null = null;
-
-// AccentColor
-export function setAccentColor(color: AccentColor) {
-    accentColor = color;
+    static setAccentColor(color: AccentColor) {
+        this.accentColor = color;
+        
+        this.setCSSVariable("--color-main", color.main.toHex());
+        this.setCSSVariable("--color-light", color.light.toHex());
+        this.setCSSVariable("--color-dark", color.dark.toHex());
+        this.setCSSVariable("--color-text", color.text.toHex());
     
-    setCSSVariable("--color-main", color.main.toHex());
-    setCSSVariable("--color-light", color.light.toHex());
-    setCSSVariable("--color-dark", color.dark.toHex());
-    setCSSVariable("--color-text", color.text.toHex());
-
-    if (saveSettingsToCookies) {
-        LRUtils.setCookie("LWD_AccentColor", accentColor.toJsonString());
-    }
-}
-
-export function getAccentColor(): AccentColor | null {
-    return accentColor;
-}
-
-
-//Theme
-export function setTheme(thm: Theme) {
-    theme = thm;
-
-    setCSSVariable("--text-color", thm.text.toHex());
-    setCSSVariable("--background", thm.background.toHex());
-    setCSSVariable("--background-tint", thm.backgroundTint.toHex());
-    setCSSVariable("--foreground", thm.foreground.toHex());
-    setCSSVariable("--border", thm.border);
-    setCSSVariable("--box-shadow", thm.boxShadow);
-    setCSSVariable("--box-shadow-active", thm.boxShadowActive);
-    setCSSVariable("--foreground-transparent", thm.foregroundTransparent.toHex());
-    setCSSVariable("--foreground-hover", thm.foregroundHover.toHex());
-    setCSSVariable("--foreground-active", thm.foregroundActive.toHex());
-
-    if (saveSettingsToCookies) {
-        LRUtils.setCookie("LR_Theme", theme.toJsonString());
-    }
-}
-
-export function getTheme(): Theme | null {
-    return theme;
-}
-
-export function setCSSVariable(property: string, value:string) {
-    document.documentElement.style.setProperty(property, value);
-}
-
-export function loadFromCookies() {
-    if(LRUtils.getCookie("LWD_AccentColor") != "") {
-        setAccentColor(AccentColor.fromJsonString(LRUtils.getCookie("LWD_AccentColor")))
+        if (this.saveSettingsToCookies) {
+            LRUtils.setCookie("LWD_AccentColor", this.accentColor.toJsonString());
+        }
     }
 
-    saveSettingsToCookies = true;
+    static getAccentColor(): AccentColor | null {
+        return this.accentColor;
+    }
+
+    static setTheme(thm: Theme) {
+        this.theme = thm;
+    
+        this.setCSSVariable("--text-color", thm.text.toHex());
+        this.setCSSVariable("--background", thm.background.toHex());
+        this.setCSSVariable("--background-tint", thm.backgroundTint.toHex());
+        this.setCSSVariable("--foreground", thm.foreground.toHex());
+        this.setCSSVariable("--border", thm.border);
+        this.setCSSVariable("--box-shadow", thm.boxShadow);
+        this.setCSSVariable("--box-shadow-active", thm.boxShadowActive);
+        this.setCSSVariable("--foreground-transparent", thm.foregroundTransparent.toHex());
+        this.setCSSVariable("--foreground-hover", thm.foregroundHover.toHex());
+        this.setCSSVariable("--foreground-active", thm.foregroundActive.toHex());
+    
+        if (this.saveSettingsToCookies) {
+            LRUtils.setCookie("LR_Theme", this.theme.toJsonString());
+        }
+    }
+
+    static getTheme(): Theme | null {
+        return this.theme;
+    }
+
+    static setCSSVariable(property: string, value:string) {
+        document.documentElement.style.setProperty(property, value);
+    }
+
+    static loadFromCookies() {
+        if(LRUtils.getCookie("LWD_AccentColor") != "") {
+            this.setAccentColor(AccentColor.fromJsonString(LRUtils.getCookie("LWD_AccentColor")))
+        }
+    
+        this.saveSettingsToCookies = true;
+    }
 }
 
 
@@ -119,28 +116,40 @@ export class Color {
      * @returns Color
      */
     static fromHsl(hue: number, saturation: number, lightness: number, alpha?: number) {
-        var r, g, b;
+        saturation /= 100;
+        lightness /= 100;
+        let C = (1 - Math.abs(2 * lightness - 1)) * saturation;
+        hue / 60;
+        let X = C * (1 - Math.abs(hue % 2 - 1));
+        let r = 0; let g = 0; let b = 0;
 
-        if(saturation == 0){
-            r = g = b = lightness;
-        }else{
-           let hue2rgb = (p: number, q: number, t: number) => {
-                if(t < 0) t += 1;
-                if(t > 1) t -= 1;
-                if(t < 1/6) return p + (q - p) * 6 * t;
-                if(t < 1/2) return q;
-                if(t < 2/3) return p + (q - p) * (2/3 - t) * 6;
-                return p;
-            }
-
-            var q = lightness < 0.5 ? lightness * (1 + saturation) : lightness + saturation - lightness * saturation;
-            var p = 2 * lightness - q;
-            r = hue2rgb(p, q, hue + 1/3);
-            g = hue2rgb(p, q, hue);
-            b = hue2rgb(p, q, hue - 1/3);
+        if (hue >= 0 && hue < 1) {
+            r = C;
+            g = X;
+        } else if (hue >= 1 && hue < 2) {
+            r = X;
+            g = C;
+        } else if (hue >= 2 && hue < 3) {
+            g = C;
+            b = X;
+        } else if(hue >= 3 && hue < 4) {
+            g = X;
+            b = C;
+        } else if (hue >= 4 && hue < 5) {
+            r = X;
+            b = C;
+        } else {
+            r = C;
+            b = X;
         }
-
-        return Color.fromRGB(Math.round(r * 255), Math.round(g * 255), Math.round(b * 255), alpha);
+        let m = lightness - C / 2;
+        r += m;
+        g += m;
+        b += m;
+        r *= 255.0;
+        g *= 255.0;
+        b *= 255.0;
+        return Color.fromRGB(Math.round(r), Math.round(g), Math.round(b), alpha);
     }
 
     toHsl() {
@@ -323,6 +332,7 @@ export class Theme {
 
     static LIGHT = new Theme(Color.BLACK, Color.WHITE, new Color("d9e8f7"), Color.WHITE,"solid hsla(0, 0%, 70%, .2) 1px", "0px 1.6px 7px rgb(0 0 0 / 9%)","1px 1px 3px rgba(0, 0, 0, 0.25)" , Color.fromHsl(0, 0, 100, 0.5), Color.fromHsl(0, 0, 93), Color.fromHsl(0, 0, 95));
     static DARK = new Theme(Color.WHITE, new Color("272727"), new Color("0D1015"), new Color("313335"), "solid hsla(0, 0%, 10%, .2) 1px", "1.2px 1.2px 6px rgba(0, 0, 0, 0.2)", "1px 1px 3px rgba(0, 0, 0, 0.45)" , Color.fromHsl(204, 8, 0, 0.2), Color.fromHsl(0, 0, 18), Color.fromHsl(0, 0, 15));
+    static TESTDARK = new Theme(Color.WHITE, new Color("272727"), new Color("0D1015"), new Color("313335"), "solid hsla(0, 0%, 10%, .2) 1px", "1.2px 1.2px 6px rgba(0, 0, 0, 0.2)", "1px 1px 3px rgba(0, 0, 0, 0.45)");
 
     /**
      * @param json JSON object with parameters of type Theme
@@ -359,10 +369,10 @@ export class Theme {
 
 //Init
 export function init() {
-    if (debugMode) console.info("LWD: init");
-    if (!accentColor) {
-        if (debugMode) console.info("LWD: Setting AccentColor to default");
-        setAccentColor(AccentColor.BLUE);
+    if (LR.debugMode) console.info("LWD: init");
+    if (!LR.getAccentColor) {
+        if (LR.debugMode) console.info("LWD: Setting AccentColor to default");
+        LR.setAccentColor(AccentColor.BLUE);
     }
 }
 
