@@ -84,8 +84,8 @@ export default class LRUtils {
             let windowWidth = window.innerWidth;
             let windowHeight = window.innerHeight;
 
-            let finalPosTop = map_range(positionPxTop, 0, windowHeight, 0, 100);
-            let finalPosLeft = map_range(positionPxLeft, 0, windowWidth, 0, 100);
+            let finalPosTop = this.map_range(positionPxTop, 0, windowHeight, 0, 100);
+            let finalPosLeft = this.map_range(positionPxLeft, 0, windowWidth, 0, 100);
 
             finalPosTop = Math.round(finalPosTop * 100) / 100;
             finalPosLeft = Math.round(finalPosLeft * 100) / 100;

@@ -136,253 +136,186 @@ class LRNav extends HTMLElement {
     }
     //#endregion
 }
-
-default LRNav;
 //#endregion
 //#region "scripts/LRUtils.ts"
-function setCookie(name: string, value: string, expiresDays?:number, path?:string): void {
-    let cookieStr = name + "=" + value + ";";
-    if (expiresDays != undefined) {
-        const d = new Date();
-        d.setTime(d.getTime() + (expiresDays*24*60*60*1000));
-        let expires = "expires="+ d.toUTCString();
-        cookieStr += expires;
-    }
-    if (path) {
-        cookieStr += ";path=" + path;
-    }        
-    document.cookie = cookieStr;
-}
-
-function getCookie(cname:string): string {
-    let name = cname + "=";
-    let decodedCookie = decodeURIComponent(document.cookie);
-    let ca = decodedCookie.split(';');
-    for(let c of ca) {
-        while (c.charAt(0) == ' ') {
-            c = c.substring(1);
+class LRUtils {
+    static setCookie(name: string, value: string, expiresDays?: number, path?: string): void {
+        let cookieStr = name + "=" + value + ";";
+        if (expiresDays != undefined) {
+            const d = new Date();
+            d.setTime(d.getTime() + (expiresDays * 24 * 60 * 60 * 1000));
+            let expires = "expires=" + d.toUTCString();
+            cookieStr += expires;
         }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
+        if (path) {
+            cookieStr += ";path=" + path;
         }
+        document.cookie = cookieStr;
     }
-    return "";
-}
-
-function map_range(value: number, low1: number, high1: number, low2: number, high2: number): number {
-    return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
-}
-
-const dragElement = (elem: HTMLElement, draggableElem?: HTMLElement | undefined): void => {
-    var elemWidth = 0, elemHeight = 0, pointerOffsetX = 0, pointerOffsetY = 0;
-
-    if (draggableElem !== undefined) {
-        draggableElem.onmousedown = dragMouseDown;
-        draggableElem.addEventListener("touchstart", dragTouchDown);
-        draggableElem.addEventListener("touchmove", elementDrag);
-    } else {
-        elem.onmousedown = dragMouseDown;
-        elem.addEventListener("touchstart", dragTouchDown);
-        elem.addEventListener("touchmove", elementDrag);
-    }
-
-    function dragMouseDown(e: MouseEvent) {
-        elemWidth = elem.offsetWidth;
-        elemHeight = elem.offsetHeight;
-        pointerOffsetX = e.offsetX;
-        pointerOffsetY = e.offsetY;
-
-        document.onmouseup = closeDragElement;
-        document.ontouchend = closeDragElement;
-        document.onmousemove = elementDrag;
-    }
-
-    function dragTouchDown(e: TouchEvent) {
-        e.preventDefault();
-        console.log("touch event: ", e);
-
-        let rect = elem.getBoundingClientRect();
-        elemWidth = elem.offsetWidth;
-        elemHeight = elem.offsetHeight;
-        pointerOffsetX = e.touches[0].clientX - rect.left;
-        pointerOffsetY = e.touches[0].clientY - rect.top;
-
-        document.ontouchend = closeDragElement;
-    }
-
-    function elementDrag(e: TouchEvent | MouseEvent) {
-        let positionPxLeft = 0;
-        let positionPxTop = 0;
-
-        if (e instanceof TouchEvent) {
-            positionPxLeft = e.targetTouches[0].clientX - pointerOffsetX + (elemWidth / 2);
-            positionPxTop = e.targetTouches[0].clientY - pointerOffsetY + (elemHeight / 2);
-        } else if (e instanceof MouseEvent) {
-            positionPxLeft = e.clientX - pointerOffsetX + (elemWidth / 2);
-            positionPxTop = e.clientY - pointerOffsetY + (elemHeight / 2);
-        }
-
-
-
-        let windowWidth = window.innerWidth;
-        let windowHeight = window.innerHeight;
-
-        let finalPosTop = map_range(positionPxTop, 0, windowHeight, 0, 100);
-        let finalPosLeft = map_range(positionPxLeft, 0, windowWidth, 0, 100);
-
-        finalPosTop = Math.round(finalPosTop * 100) / 100;
-        finalPosLeft = Math.round(finalPosLeft * 100) / 100;
-
-        function limitPos(elempos: number) {
-            if (elempos <= 0) {
-                return 0;
-            } else if (elempos >= 100) {
-                return 100;
-            } else {
-                return elempos;
+    static getCookie(cname: string): string {
+        let name = cname + "=";
+        let decodedCookie = decodeURIComponent(document.cookie);
+        let ca = decodedCookie.split(';');
+        for (let c of ca) {
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
             }
         }
-        elem.style.setProperty("left", limitPos(finalPosLeft) + "%");
-        elem.style.setProperty("top", limitPos(finalPosTop) + "%");
+        return "";
     }
 
-    function closeDragElement() {
-        // stop moving when mouse button is released:
-        document.onmouseup = null;
-        document.onmousemove = null;
+    static map_range(value: number, low1: number, high1: number, low2: number, high2: number): number {
+        return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
     }
-}
+    static dragElement = (elem: HTMLElement, draggableElem?: HTMLElement | undefined): void => {
+        var elemWidth = 0, elemHeight = 0, pointerOffsetX = 0, pointerOffsetY = 0;
 
-const addAnimation = (component: HTMLElement, cssAnimation: string, duration: number) => {
-  // TODO 
-}
+        if (draggableElem !== undefined) {
+            draggableElem.onmousedown = dragMouseDown;
+            draggableElem.addEventListener("touchstart", dragTouchDown);
+            draggableElem.addEventListener("touchmove", elementDrag);
+        } else {
+            elem.onmousedown = dragMouseDown;
+            elem.addEventListener("touchstart", dragTouchDown);
+            elem.addEventListener("touchmove", elementDrag);
+        }
 
-enum BackgroundColors { sunrise = "#F7F9E7", sunset = "#F7F9E7", day = "#d9e8f7", night = "#18212a", midnight = "#141414" }
-const setBackgroundColor = (timeColor: string, darkTheme?: boolean) => {
+        function dragMouseDown(e: MouseEvent) {
+            elemWidth = elem.offsetWidth;
+            elemHeight = elem.offsetHeight;
+            pointerOffsetX = e.offsetX;
+            pointerOffsetY = e.offsetY;
 
-    let d = document.querySelector("body");
-    if (d) {
-        setTheme((darkTheme || timeColor == BackgroundColors.night || timeColor == BackgroundColors.midnight) ? "dark" : "light");
-        d.style.setProperty("--background-tint", timeColor);
-    }
-}
+            document.onmouseup = closeDragElement;
+            document.ontouchend = closeDragElement;
+            document.onmousemove = elementDrag;
+        }
 
-let currentTheme: string = "light";
+        function dragTouchDown(e: TouchEvent) {
+            e.preventDefault();
+            console.log("touch event: ", e);
 
-const setTheme = (theme: string) => {
-    currentTheme = theme;
-    
-    //var, value light theme, value dark theme
-    let cssvars = [
-        ["theme", "100%", "0%"],
-        ["foreground", "black", "white"],
-        ["background", "white", "#272727"],
-        ["component-background", "white", "#313335"],
-        ["background-tint", "#d9e8f7", "#0D1015"],
-        ["background-transparent", "hsla(0, 0%, 100%, 0.5)", "hsla(204, 8%, 0%, 0.2)"],
-        ["background-hover", "hsl(0, 0%, 93%)", "hsl(0, 0%, 18%)"],
-        ["background-active", "hsl(0, 3%, 95%)", "hsl(0, 0%, 15%)"],
-        ["box-shadow", "0px 1.6px 7px rgb(0 0 0 / 9%)", "1.2px 1.2px 6px rgba(0, 0, 0, 0.2)"],
-        ["box-shadow-active", "1px 1px 3px rgba(0, 0, 0, 0.25)", "1px 1px 3px rgba(0, 0, 0, 0.45)"],
-        ["border", "solid hsla(0, 0%, 70%, .2) 1px", "solid hsla(0, 0%, 10%, .2) 1px"],
-        ["shadow-spec", "97%", "20%"],
-        ["shadow-brightness", "30%", "0%"]
-    ];
+            let rect = elem.getBoundingClientRect();
+            elemWidth = elem.offsetWidth;
+            elemHeight = elem.offsetHeight;
+            pointerOffsetX = e.touches[0].clientX - rect.left;
+            pointerOffsetY = e.touches[0].clientY - rect.top;
 
-    let d = document.querySelector("body");
+            document.ontouchend = closeDragElement;
+        }
 
-    setThemeProperties();
+        function elementDrag(e: TouchEvent | MouseEvent) {
+            let positionPxLeft = 0;
+            let positionPxTop = 0;
 
-    function setThemeProperties() {
-        if (d !== null) {
-            cssvars.forEach(row => {
-                if (d !== null) {
-                    if (theme == "dark") {
-                        d.style.setProperty("--" + row[0], row[2]);
-                    } else if (theme == "light") {
-                        d.style.setProperty("--" + row[0], row[1]);
-                    } else {
-                        d.style.removeProperty("--" + row[0]);
-                    }
+            if (e instanceof TouchEvent) {
+                positionPxLeft = e.targetTouches[0].clientX - pointerOffsetX + (elemWidth / 2);
+                positionPxTop = e.targetTouches[0].clientY - pointerOffsetY + (elemHeight / 2);
+            } else if (e instanceof MouseEvent) {
+                positionPxLeft = e.clientX - pointerOffsetX + (elemWidth / 2);
+                positionPxTop = e.clientY - pointerOffsetY + (elemHeight / 2);
+            }
+
+
+
+            let windowWidth = window.innerWidth;
+            let windowHeight = window.innerHeight;
+
+            let finalPosTop = this.map_range(positionPxTop, 0, windowHeight, 0, 100);
+            let finalPosLeft = this.map_range(positionPxLeft, 0, windowWidth, 0, 100);
+
+            finalPosTop = Math.round(finalPosTop * 100) / 100;
+            finalPosLeft = Math.round(finalPosLeft * 100) / 100;
+
+            function limitPos(elempos: number) {
+                if (elempos <= 0) {
+                    return 0;
+                } else if (elempos >= 100) {
+                    return 100;
+                } else {
+                    return elempos;
                 }
-            });
+            }
+            elem.style.setProperty("left", limitPos(finalPosLeft) + "%");
+            elem.style.setProperty("top", limitPos(finalPosTop) + "%");
+        }
 
-            d.querySelectorAll(".lightModeVisible").forEach(e => {
-                theme == "dark" ? e.classList.add("hidden") : e.classList.remove("hidden");
-            });
-
-            d.querySelectorAll(".darkModeVisible").forEach(e => {
-                theme == "light" ? e.classList.add("hidden") : e.classList.remove("hidden");
-            });
+        function closeDragElement() {
+            // stop moving when mouse button is released:
+            document.onmouseup = null;
+            document.onmousemove = null;
         }
     }
-}
 
-const getTheme = () => {
-    return currentTheme;
+    static addAnimation = (component: HTMLElement, cssAnimation: string, duration: number) => {
+        // TODO 
+    }
 }
 //#endregion
 //#region "scripts/LR.ts"
 
-var saveSettingsToCookies: boolean = false;
-var debugMode = true;
 
-let accentColor: AccentColor | null = null;
-let theme: Theme | null = null;
+class LR {
+        static saveSettingsToCookies: boolean = false;
+        static debugMode = true;
+        
+        private static accentColor: AccentColor | null = null;
+        private static theme: Theme | null = null;
 
-// AccentColor
-function setAccentColor(color: AccentColor) {
-    accentColor = color;
+    static setAccentColor(color: AccentColor) {
+        this.accentColor = color;
+        
+        this.setCSSVariable("--color-main", color.main.toHex());
+        this.setCSSVariable("--color-light", color.light.toHex());
+        this.setCSSVariable("--color-dark", color.dark.toHex());
+        this.setCSSVariable("--color-text", color.text.toHex());
     
-    setCSSVariable("--color-main", color.main.toHex());
-    setCSSVariable("--color-light", color.light.toHex());
-    setCSSVariable("--color-dark", color.dark.toHex());
-    setCSSVariable("--color-text", color.text.toHex());
-
-    if (saveSettingsToCookies) {
-        LRUtils.setCookie("LWD_AccentColor", accentColor.toJsonString());
-    }
-}
-
-function getAccentColor(): AccentColor | null {
-    return accentColor;
-}
-
-
-//Theme
-function setTheme(thm: Theme) {
-    theme = thm;
-
-    setCSSVariable("--text-color", thm.text.toHex());
-    setCSSVariable("--background", thm.background.toHex());
-    setCSSVariable("--background-tint", thm.backgroundTint.toHex());
-    setCSSVariable("--foreground", thm.foreground.toHex());
-    setCSSVariable("--border", thm.border);
-    setCSSVariable("--box-shadow", thm.boxShadow);
-    setCSSVariable("--box-shadow-active", thm.boxShadowActive);
-    setCSSVariable("--foreground-transparent", thm.foregroundTransparent.toHex());
-    setCSSVariable("--foreground-hover", thm.foregroundHover.toHex());
-    setCSSVariable("--foreground-active", thm.foregroundActive.toHex());
-
-    if (saveSettingsToCookies) {
-        LRUtils.setCookie("LR_Theme", theme.toJsonString());
-    }
-}
-
-function getTheme(): Theme | null {
-    return theme;
-}
-
-function setCSSVariable(property: string, value:string) {
-    document.documentElement.style.setProperty(property, value);
-}
-
-function loadFromCookies() {
-    if(LRUtils.getCookie("LWD_AccentColor") != "") {
-        setAccentColor(AccentColor.fromJsonString(LRUtils.getCookie("LWD_AccentColor")))
+        if (this.saveSettingsToCookies) {
+            LRUtils.setCookie("LWD_AccentColor", this.accentColor.toJsonString());
+        }
     }
 
-    saveSettingsToCookies = true;
+    static getAccentColor(): AccentColor | null {
+        return this.accentColor;
+    }
+
+    static setTheme(thm: Theme) {
+        this.theme = thm;
+    
+        this.setCSSVariable("--text-color", thm.text.toHex());
+        this.setCSSVariable("--background", thm.background.toHex());
+        this.setCSSVariable("--background-tint", thm.backgroundTint.toHex());
+        this.setCSSVariable("--foreground", thm.foreground.toHex());
+        this.setCSSVariable("--border", thm.border);
+        this.setCSSVariable("--box-shadow", thm.boxShadow);
+        this.setCSSVariable("--box-shadow-active", thm.boxShadowActive);
+        this.setCSSVariable("--foreground-transparent", thm.foregroundTransparent.toHex());
+        this.setCSSVariable("--foreground-hover", thm.foregroundHover.toHex());
+        this.setCSSVariable("--foreground-active", thm.foregroundActive.toHex());
+    
+        if (this.saveSettingsToCookies) {
+            LRUtils.setCookie("LR_Theme", this.theme.toJsonString());
+        }
+    }
+
+    static getTheme(): Theme | null {
+        return this.theme;
+    }
+
+    static setCSSVariable(property: string, value:string) {
+        document.documentElement.style.setProperty(property, value);
+    }
+
+    static loadFromCookies() {
+        if(LRUtils.getCookie("LWD_AccentColor") != "") {
+            this.setAccentColor(AccentColor.fromJsonString(LRUtils.getCookie("LWD_AccentColor")))
+        }
+    
+        this.saveSettingsToCookies = true;
+    }
 }
 
 
@@ -440,28 +373,40 @@ class Color {
      * @returns Color
      */
     static fromHsl(hue: number, saturation: number, lightness: number, alpha?: number) {
-        var r, g, b;
+        saturation /= 100;
+        lightness /= 100;
+        let C = (1 - Math.abs(2 * lightness - 1)) * saturation;
+        hue / 60;
+        let X = C * (1 - Math.abs(hue % 2 - 1));
+        let r = 0; let g = 0; let b = 0;
 
-        if(saturation == 0){
-            r = g = b = lightness;
-        }else{
-           let hue2rgb = (p: number, q: number, t: number) => {
-                if(t < 0) t += 1;
-                if(t > 1) t -= 1;
-                if(t < 1/6) return p + (q - p) * 6 * t;
-                if(t < 1/2) return q;
-                if(t < 2/3) return p + (q - p) * (2/3 - t) * 6;
-                return p;
-            }
-
-            var q = lightness < 0.5 ? lightness * (1 + saturation) : lightness + saturation - lightness * saturation;
-            var p = 2 * lightness - q;
-            r = hue2rgb(p, q, hue + 1/3);
-            g = hue2rgb(p, q, hue);
-            b = hue2rgb(p, q, hue - 1/3);
+        if (hue >= 0 && hue < 1) {
+            r = C;
+            g = X;
+        } else if (hue >= 1 && hue < 2) {
+            r = X;
+            g = C;
+        } else if (hue >= 2 && hue < 3) {
+            g = C;
+            b = X;
+        } else if(hue >= 3 && hue < 4) {
+            g = X;
+            b = C;
+        } else if (hue >= 4 && hue < 5) {
+            r = X;
+            b = C;
+        } else {
+            r = C;
+            b = X;
         }
-
-        return Color.fromRGB(Math.round(r * 255), Math.round(g * 255), Math.round(b * 255), alpha);
+        let m = lightness - C / 2;
+        r += m;
+        g += m;
+        b += m;
+        r *= 255.0;
+        g *= 255.0;
+        b *= 255.0;
+        return Color.fromRGB(Math.round(r), Math.round(g), Math.round(b), alpha);
     }
 
     toHsl() {
@@ -644,6 +589,7 @@ class Theme {
 
     static LIGHT = new Theme(Color.BLACK, Color.WHITE, new Color("d9e8f7"), Color.WHITE,"solid hsla(0, 0%, 70%, .2) 1px", "0px 1.6px 7px rgb(0 0 0 / 9%)","1px 1px 3px rgba(0, 0, 0, 0.25)" , Color.fromHsl(0, 0, 100, 0.5), Color.fromHsl(0, 0, 93), Color.fromHsl(0, 0, 95));
     static DARK = new Theme(Color.WHITE, new Color("272727"), new Color("0D1015"), new Color("313335"), "solid hsla(0, 0%, 10%, .2) 1px", "1.2px 1.2px 6px rgba(0, 0, 0, 0.2)", "1px 1px 3px rgba(0, 0, 0, 0.45)" , Color.fromHsl(204, 8, 0, 0.2), Color.fromHsl(0, 0, 18), Color.fromHsl(0, 0, 15));
+    static TESTDARK = new Theme(Color.WHITE, new Color("272727"), new Color("0D1015"), new Color("313335"), "solid hsla(0, 0%, 10%, .2) 1px", "1.2px 1.2px 6px rgba(0, 0, 0, 0.2)", "1px 1px 3px rgba(0, 0, 0, 0.45)");
 
     /**
      * @param json JSON object with parameters of type Theme
@@ -680,10 +626,10 @@ class Theme {
 
 //Init
 function init() {
-    if (debugMode) console.info("LWD: init");
-    if (!accentColor) {
-        if (debugMode) console.info("LWD: Setting AccentColor to default");
-        setAccentColor(AccentColor.BLUE);
+    if (LR.debugMode) console.info("LWD: init");
+    if (!LR.getAccentColor) {
+        if (LR.debugMode) console.info("LWD: Setting AccentColor to default");
+        LR.setAccentColor(AccentColor.BLUE);
     }
 }
 

@@ -6,7 +6,7 @@ interface ILwdNavType {
 
 
 
-class LRNav extends HTMLElement {
+export default class LRNav extends HTMLElement {
     private static navTypes: Array<ILwdNavType> = [
         {
             name: "side",
@@ -135,5 +135,3 @@ class LRNav extends HTMLElement {
     }
     //#endregion
 }
-
-export default LRNav;

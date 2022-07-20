@@ -1,4 +1,3 @@
-from copyreg import constructor
 import os
 
 baseFile = 'scripts/LR.ts'
@@ -27,7 +26,7 @@ def getImports(file, recursive):
     return importFiles
 
 imports = getImports(baseFile, True)
-imports = list(dict.fromkeys(imports)) # remove dublicates
+imports = list(dict.fromkeys(imports)) # remove duplicates
 imports.append(baseFile)
 print(imports)
 
@@ -37,11 +36,12 @@ for file in imports:
     with open(file) as f:
         lines = f.readlines()
         for line in lines:
-            if(not(line.startswith("import")) and not(line.startswith("default"))):
+            if(not(line.startswith("import"))):
                 outputFileContent += line
     outputFileContent += "\n//#endregion\n"
 
 outputFileContent = outputFileContent.replace("export ", "")
+outputFileContent = outputFileContent.replace("default ", "")
 print(outputFileContent)
 
 f = open(outputPath, "w")
