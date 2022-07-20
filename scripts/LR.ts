@@ -1,7 +1,5 @@
-import React, { useEffect } from "react";
-
 import LRNav from "./components/LRNav";
-import * as LRUtils from "./LRUtils"
+import LRUtils from "./LRUtils";
 
 export var saveSettingsToCookies: boolean = false;
 export var debugMode = true;

@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "outDir": "./scripts/",
+    "noImplicitAny": true,
+    "module": "es6",
+    "target": "ESNext",
+    "jsx": "react",
+    "allowJs": true,
+    "moduleResolution": "node"
+  }
+}
