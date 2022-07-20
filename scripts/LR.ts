@@ -1,6 +1,7 @@
 import LRNav from "./components/LRNav";
 import * as LRUtils from "./LRUtils"
 
+
 export default class LR {
         static saveSettingsToCookies: boolean = false;
         static debugMode = true;
