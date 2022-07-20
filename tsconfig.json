@@ -2,10 +2,14 @@
   "compilerOptions": {
     "outDir": "./scripts/",
     "noImplicitAny": true,
-    "module": "es6",
+    "module": "AMD",
     "target": "ESNext",
     "jsx": "react",
     "allowJs": true,
-    "moduleResolution": "node"
-  }
+    "moduleResolution": "node",
+    "outFile": "./scripts/built/Lightrays.js"
+  },
+  "files": [
+    "./scripts/packaged.ts"
+  ]
 }

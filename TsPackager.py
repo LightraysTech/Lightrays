@@ -1,7 +1,7 @@
 import os
 
 baseFile = 'scripts/LR.ts'
-outputPath = 'scripts/package.ts'
+outputPath = 'scripts/packaged.ts'
 
 class JsImportData:
     def __init__(self, filePath, member, moduleName):
