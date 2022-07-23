@@ -11,30 +11,30 @@
 }
 
 :root {
-  --text: black;
-  --background: white;
+  --text-color: #000000;
+  --background: #ffffff;
   --background-tint: #d9e8f7;
-  --foreground: white;
-  --box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.15);
+  --foreground: #ffffff;
+  --border: solid hsla(0, 0%, 70%, 0.2) 1px;
+  --box-shadow: 0px 1.6px 7px rgb(0 0 0 / 9%);
   --box-shadow-active: 1px 1px 3px rgba(0, 0, 0, 0.25);
-  --border: solid hsla(0, 0%, 70%, .2) 1px;
-  --foreground-transparent: hsla(0, 0%, 100%, 0.5);
-  --foreground-hover: hsl(0, 3%, 95%);
-  --foreground-active: hsl(0, 0%, 93%);
+  --foreground-transparent: #ffffff;
+  --foreground-hover: #ededed;
+  --foreground-active: #f2f2f2;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --text: white;
-    --background: #2c2c2c;
-    --foreground: #2b2b2b;
-    --background-tint: #18436E;
-    --box-shadow: 1.2px 1.2px 6px rgba(0, 0, 0, 0.75);
-    --box-shadow-active: 1px 1px 3px rgba(0, 0, 0, 0.75);
-    --border: solid hsla(0, 0%, 10%, .2) 1px;
-    --foreground-transparent: hsla(204, 8%, 0%, 0.2);
-    --foreground-hover: hsl(0, 0%, 18%);
-    --foreground-active: hsl(0, 0%, 15%);
+    --text-color: #ffffff;
+    --background: #272727;
+    --background-tint: #0d1015;
+    --foreground: #313335;
+    --border: solid hsla(0, 0%, 10%, 0.2) 1px;
+    --box-shadow: 1.2px 1.2px 6px rgba(0, 0, 0, 0.2);
+    --box-shadow-active: 1px 1px 3px rgba(0, 0, 0, 0.45);
+    --foreground-transparent: #000000;
+    --foreground-hover: #2e2e2e;
+    --foreground-active: #262626;
   }
 }
 button, input[type=submit], input[type=reset], input[type=button] {
@@ -188,7 +188,7 @@ body {
   outline: none;
 }
 
-.fluentIcon, .lr-navRoot .nav.side .lr-navGroup.header-navGroup:hover .navItemIcon {
+.fluentIcon, .lr-navRoot .nav.side .lr-navGroup.header-navGroup:hover .navItemIcon, .lr-navRoot .nav.side lr-navGroup.header-navGroup:hover .navItemIcon, .lr-navRoot .nav[type=side] .lr-navGroup.header-navGroup:hover .navItemIcon, .lr-navRoot .nav[type=side] lr-navGroup.header-navGroup:hover .navItemIcon, .lr-navRoot lr-nav.side .lr-navGroup.header-navGroup:hover .navItemIcon, .lr-navRoot lr-nav.side lr-navGroup.header-navGroup:hover .navItemIcon, .lr-navRoot lr-nav[type=side] .lr-navGroup.header-navGroup:hover .navItemIcon, .lr-navRoot lr-nav[type=side] lr-navGroup.header-navGroup:hover .navItemIcon, lr-navView .nav.side .lr-navGroup.header-navGroup:hover .navItemIcon, lr-navView .nav.side lr-navGroup.header-navGroup:hover .navItemIcon, lr-navView .nav[type=side] .lr-navGroup.header-navGroup:hover .navItemIcon, lr-navView .nav[type=side] lr-navGroup.header-navGroup:hover .navItemIcon, lr-navView lr-nav.side .lr-navGroup.header-navGroup:hover .navItemIcon, lr-navView lr-nav.side lr-navGroup.header-navGroup:hover .navItemIcon, lr-navView lr-nav[type=side] .lr-navGroup.header-navGroup:hover .navItemIcon, lr-navView lr-nav[type=side] lr-navGroup.header-navGroup:hover .navItemIcon {
   font-family: "Segoe Fluent Icons", segoeFluentIcons;
 }
 
@@ -231,39 +231,38 @@ a.noStyle:hover {
   display: none;
 }
 
-.lr-navRoot {
+.lr-navRoot, lr-navView {
   position: fixed;
   width: 100%;
   height: 100%;
   display: flex;
   flex: 1 1 auto;
 }
-.lr-navRoot .lr-navRoot {
+.lr-navRoot .lr-navRoot, .lr-navRoot lr-navView, lr-navView .lr-navRoot, lr-navView lr-navView {
   position: relative;
   flex: 1 1 auto;
 }
-.lr-navRoot .content {
+.lr-navRoot .content, lr-navView .content {
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;
   justify-content: flex-start;
   overflow: hidden;
 }
-.lr-navRoot .content.scroll {
+.lr-navRoot .content.scroll, lr-navView .content.scroll {
   overflow: scroll;
   min-width: 0;
   min-height: 0;
 }
-.lr-navRoot.bottom, .lr-navRoot .lr-navRoot.nav.top, .lr-navRoot.top {
+.lr-navRoot.bottom, .lr-navRoot .lr-navRoot.nav.top, .lr-navRoot lr-nav.lr-navRoot.top, lr-navView .lr-navRoot.nav.top, lr-navView lr-nav.lr-navRoot.top, .lr-navRoot.top, lr-navView.bottom, .lr-navRoot lr-navView.nav.top, lr-navView lr-navView.nav.top, lr-navView.top {
   flex-direction: column;
 }
 @media screen and (max-width: 650px) {
-  .lr-navRoot.side {
+  .lr-navRoot.side, lr-navView.side {
     flex-wrap: wrap;
   }
 }
-
-.lr-navRoot .nav {
+.lr-navRoot .nav, .lr-navRoot lr-nav, lr-navView .nav, lr-navView lr-nav {
   width: var(--width);
   height: var(--height);
   background-color: var(--foreground);
@@ -271,64 +270,64 @@ a.noStyle:hover {
   display: flex;
   cursor: default;
 }
-.lr-navRoot .nav.flat {
+.lr-navRoot .nav.flat, .lr-navRoot lr-nav.flat, lr-navView .nav.flat, lr-navView lr-nav.flat {
   box-shadow: none;
   border: var(--border);
 }
-.lr-navRoot .nav.floating {
+.lr-navRoot .nav.floating, .lr-navRoot lr-nav.floating, lr-navView .nav.floating, lr-navView lr-nav.floating {
   margin: 10px;
 }
-.lr-navRoot .nav.colored {
+.lr-navRoot .nav.colored, .lr-navRoot lr-nav.colored, lr-navView .nav.colored, lr-navView lr-nav.colored {
   background: linear-gradient(to right, var(--color-light), var(--color-main), var(--color-dark));
   color: var(--color-text);
 }
-.lr-navRoot .nav .lr-navItem {
+.lr-navRoot .nav .lr-navItem, .lr-navRoot .nav lr-navItem, .lr-navRoot lr-nav .lr-navItem, .lr-navRoot lr-nav lr-navItem, lr-navView .nav .lr-navItem, lr-navView .nav lr-navItem, lr-navView lr-nav .lr-navItem, lr-navView lr-nav lr-navItem {
   display: flex;
   align-items: center;
   border-radius: 8px;
   text-decoration: none;
 }
-.lr-navRoot .nav .lr-navItem:visited {
+.lr-navRoot .nav .lr-navItem:visited, .lr-navRoot .nav lr-navItem:visited, .lr-navRoot lr-nav .lr-navItem:visited, .lr-navRoot lr-nav lr-navItem:visited, lr-navView .nav .lr-navItem:visited, lr-navView .nav lr-navItem:visited, lr-navView lr-nav .lr-navItem:visited, lr-navView lr-nav lr-navItem:visited {
   color: var(--color);
 }
-.lr-navRoot .nav .lr-navItem .navItemIcon {
+.lr-navRoot .nav .lr-navItem .navItemIcon, .lr-navRoot .nav lr-navItem .navItemIcon, .lr-navRoot lr-nav .lr-navItem .navItemIcon, .lr-navRoot lr-nav lr-navItem .navItemIcon, lr-navView .nav .lr-navItem .navItemIcon, lr-navView .nav lr-navItem .navItemIcon, lr-navView lr-nav .lr-navItem .navItemIcon, lr-navView lr-nav lr-navItem .navItemIcon {
   font-family: "Segoe Fluent Icons", segoeFluentIcons;
   text-align: center;
 }
-.lr-navRoot .nav .lr-navItem:hover {
+.lr-navRoot .nav .lr-navItem:hover, .lr-navRoot .nav lr-navItem:hover, .lr-navRoot lr-nav .lr-navItem:hover, .lr-navRoot lr-nav lr-navItem:hover, lr-navView .nav .lr-navItem:hover, lr-navView .nav lr-navItem:hover, lr-navView lr-nav .lr-navItem:hover, lr-navView lr-nav lr-navItem:hover {
   box-shadow: var(--box-shadow);
 }
-.lr-navRoot .nav .lr-navItem:hover .navItemIcon {
+.lr-navRoot .nav .lr-navItem:hover .navItemIcon, .lr-navRoot .nav lr-navItem:hover .navItemIcon, .lr-navRoot lr-nav .lr-navItem:hover .navItemIcon, .lr-navRoot lr-nav lr-navItem:hover .navItemIcon, lr-navView .nav .lr-navItem:hover .navItemIcon, lr-navView .nav lr-navItem:hover .navItemIcon, lr-navView lr-nav .lr-navItem:hover .navItemIcon, lr-navView lr-nav lr-navItem:hover .navItemIcon {
   transform: scale(1.15);
 }
-.lr-navRoot .nav .lr-navItem:active {
+.lr-navRoot .nav .lr-navItem:active, .lr-navRoot .nav lr-navItem:active, .lr-navRoot lr-nav .lr-navItem:active, .lr-navRoot lr-nav lr-navItem:active, lr-navView .nav .lr-navItem:active, lr-navView .nav lr-navItem:active, lr-navView lr-nav .lr-navItem:active, lr-navView lr-nav lr-navItem:active {
   box-shadow: var(--box-shadow-active);
 }
-.lr-navRoot .nav .lr-navItem:active .navItemIcon {
+.lr-navRoot .nav .lr-navItem:active .navItemIcon, .lr-navRoot .nav lr-navItem:active .navItemIcon, .lr-navRoot lr-nav .lr-navItem:active .navItemIcon, .lr-navRoot lr-nav lr-navItem:active .navItemIcon, lr-navView .nav .lr-navItem:active .navItemIcon, lr-navView .nav lr-navItem:active .navItemIcon, lr-navView lr-nav .lr-navItem:active .navItemIcon, lr-navView lr-nav lr-navItem:active .navItemIcon {
   transform: scale(0.9);
 }
-.lr-navRoot .nav .lr-navItem.active {
+.lr-navRoot .nav .lr-navItem.active, .lr-navRoot .nav lr-navItem.active, .lr-navRoot lr-nav .lr-navItem.active, .lr-navRoot lr-nav lr-navItem.active, lr-navView .nav .lr-navItem.active, lr-navView .nav lr-navItem.active, lr-navView lr-nav .lr-navItem.active, lr-navView lr-nav lr-navItem.active {
   background: linear-gradient(to right, var(--color-light), var(--color-main));
   color: var(--color-text);
 }
-.lr-navRoot .nav.side {
+.lr-navRoot .nav.side, .lr-navRoot .nav[type=side], .lr-navRoot lr-nav.side, .lr-navRoot lr-nav[type=side], lr-navView .nav.side, lr-navView .nav[type=side], lr-navView lr-nav.side, lr-navView lr-nav[type=side] {
   --width: 300px;
   --collapsed-width: 60px;
   transition: width 0.3s ease;
   flex-direction: column;
   flex-shrink: 0;
 }
-.lr-navRoot .nav.side.flat {
+.lr-navRoot .nav.side.flat, .lr-navRoot .nav[type=side].flat, .lr-navRoot lr-nav.side.flat, .lr-navRoot lr-nav[type=side].flat, lr-navView .nav.side.flat, lr-navView .nav[type=side].flat, lr-navView lr-nav.side.flat, lr-navView lr-nav[type=side].flat {
   border: none;
   border-right: var(--border);
 }
-.lr-navRoot .nav.side.flat.floating {
+.lr-navRoot .nav.side.flat.floating, .lr-navRoot .nav[type=side].flat.floating, .lr-navRoot lr-nav.side.flat.floating, .lr-navRoot lr-nav[type=side].flat.floating, lr-navView .nav.side.flat.floating, lr-navView .nav[type=side].flat.floating, lr-navView lr-nav.side.flat.floating, lr-navView lr-nav[type=side].flat.floating {
   border: var(--border);
 }
-.lr-navRoot .nav.side.floating {
+.lr-navRoot .nav.side.floating, .lr-navRoot .nav[type=side].floating, .lr-navRoot lr-nav.side.floating, .lr-navRoot lr-nav[type=side].floating, lr-navView .nav.side.floating, lr-navView .nav[type=side].floating, lr-navView lr-nav.side.floating, lr-navView lr-nav[type=side].floating {
   border-radius: 20px 3px 3px 20px;
 }
-.lr-navRoot .nav.side .lr-navItem {
+.lr-navRoot .nav.side .lr-navItem, .lr-navRoot .nav.side lr-navItem, .lr-navRoot .nav[type=side] .lr-navItem, .lr-navRoot .nav[type=side] lr-navItem, .lr-navRoot lr-nav.side .lr-navItem, .lr-navRoot lr-nav.side lr-navItem, .lr-navRoot lr-nav[type=side] .lr-navItem, .lr-navRoot lr-nav[type=side] lr-navItem, lr-navView .nav.side .lr-navItem, lr-navView .nav.side lr-navItem, lr-navView .nav[type=side] .lr-navItem, lr-navView .nav[type=side] lr-navItem, lr-navView lr-nav.side .lr-navItem, lr-navView lr-nav.side lr-navItem, lr-navView lr-nav[type=side] .lr-navItem, lr-navView lr-nav[type=side] lr-navItem {
   flex-wrap: nowrap;
   flex-grow: 1;
   height: 35px;
@@ -337,28 +336,28 @@ a.noStyle:hover {
   white-space: nowrap;
   overflow: hidden;
 }
-.lr-navRoot .nav.side .lr-navItem.open .navItemIcon.toggle {
+.lr-navRoot .nav.side .lr-navItem.open .navItemIcon.toggle, .lr-navRoot .nav.side lr-navItem.open .navItemIcon.toggle, .lr-navRoot .nav[type=side] .lr-navItem.open .navItemIcon.toggle, .lr-navRoot .nav[type=side] lr-navItem.open .navItemIcon.toggle, .lr-navRoot lr-nav.side .lr-navItem.open .navItemIcon.toggle, .lr-navRoot lr-nav.side lr-navItem.open .navItemIcon.toggle, .lr-navRoot lr-nav[type=side] .lr-navItem.open .navItemIcon.toggle, .lr-navRoot lr-nav[type=side] lr-navItem.open .navItemIcon.toggle, lr-navView .nav.side .lr-navItem.open .navItemIcon.toggle, lr-navView .nav.side lr-navItem.open .navItemIcon.toggle, lr-navView .nav[type=side] .lr-navItem.open .navItemIcon.toggle, lr-navView .nav[type=side] lr-navItem.open .navItemIcon.toggle, lr-navView lr-nav.side .lr-navItem.open .navItemIcon.toggle, lr-navView lr-nav.side lr-navItem.open .navItemIcon.toggle, lr-navView lr-nav[type=side] .lr-navItem.open .navItemIcon.toggle, lr-navView lr-nav[type=side] lr-navItem.open .navItemIcon.toggle {
   transform: rotate(180deg);
 }
-.lr-navRoot .nav.side .lr-navItem.open .navItemIcon.toggle:hover {
+.lr-navRoot .nav.side .lr-navItem.open .navItemIcon.toggle:hover, .lr-navRoot .nav.side lr-navItem.open .navItemIcon.toggle:hover, .lr-navRoot .nav[type=side] .lr-navItem.open .navItemIcon.toggle:hover, .lr-navRoot .nav[type=side] lr-navItem.open .navItemIcon.toggle:hover, .lr-navRoot lr-nav.side .lr-navItem.open .navItemIcon.toggle:hover, .lr-navRoot lr-nav.side lr-navItem.open .navItemIcon.toggle:hover, .lr-navRoot lr-nav[type=side] .lr-navItem.open .navItemIcon.toggle:hover, .lr-navRoot lr-nav[type=side] lr-navItem.open .navItemIcon.toggle:hover, lr-navView .nav.side .lr-navItem.open .navItemIcon.toggle:hover, lr-navView .nav.side lr-navItem.open .navItemIcon.toggle:hover, lr-navView .nav[type=side] .lr-navItem.open .navItemIcon.toggle:hover, lr-navView .nav[type=side] lr-navItem.open .navItemIcon.toggle:hover, lr-navView lr-nav.side .lr-navItem.open .navItemIcon.toggle:hover, lr-navView lr-nav.side lr-navItem.open .navItemIcon.toggle:hover, lr-navView lr-nav[type=side] .lr-navItem.open .navItemIcon.toggle:hover, lr-navView lr-nav[type=side] lr-navItem.open .navItemIcon.toggle:hover {
   transform: rotate(180deg) scale(1.1);
 }
-.lr-navRoot .nav.side .lr-navItem .navItemIcon {
+.lr-navRoot .nav.side .lr-navItem .navItemIcon, .lr-navRoot .nav.side lr-navItem .navItemIcon, .lr-navRoot .nav[type=side] .lr-navItem .navItemIcon, .lr-navRoot .nav[type=side] lr-navItem .navItemIcon, .lr-navRoot lr-nav.side .lr-navItem .navItemIcon, .lr-navRoot lr-nav.side lr-navItem .navItemIcon, .lr-navRoot lr-nav[type=side] .lr-navItem .navItemIcon, .lr-navRoot lr-nav[type=side] lr-navItem .navItemIcon, lr-navView .nav.side .lr-navItem .navItemIcon, lr-navView .nav.side lr-navItem .navItemIcon, lr-navView .nav[type=side] .lr-navItem .navItemIcon, lr-navView .nav[type=side] lr-navItem .navItemIcon, lr-navView lr-nav.side .lr-navItem .navItemIcon, lr-navView lr-nav.side lr-navItem .navItemIcon, lr-navView lr-nav[type=side] .lr-navItem .navItemIcon, lr-navView lr-nav[type=side] lr-navItem .navItemIcon {
   transition: transform 0.1s;
   min-width: calc(var(--collapsed-width) - 10px);
   text-align: center;
   order: 1;
 }
-.lr-navRoot .nav.side .lr-navItem .navItemIcon.toggle {
+.lr-navRoot .nav.side .lr-navItem .navItemIcon.toggle, .lr-navRoot .nav.side lr-navItem .navItemIcon.toggle, .lr-navRoot .nav[type=side] .lr-navItem .navItemIcon.toggle, .lr-navRoot .nav[type=side] lr-navItem .navItemIcon.toggle, .lr-navRoot lr-nav.side .lr-navItem .navItemIcon.toggle, .lr-navRoot lr-nav.side lr-navItem .navItemIcon.toggle, .lr-navRoot lr-nav[type=side] .lr-navItem .navItemIcon.toggle, .lr-navRoot lr-nav[type=side] lr-navItem .navItemIcon.toggle, lr-navView .nav.side .lr-navItem .navItemIcon.toggle, lr-navView .nav.side lr-navItem .navItemIcon.toggle, lr-navView .nav[type=side] .lr-navItem .navItemIcon.toggle, lr-navView .nav[type=side] lr-navItem .navItemIcon.toggle, lr-navView lr-nav.side .lr-navItem .navItemIcon.toggle, lr-navView lr-nav.side lr-navItem .navItemIcon.toggle, lr-navView lr-nav[type=side] .lr-navItem .navItemIcon.toggle, lr-navView lr-nav[type=side] lr-navItem .navItemIcon.toggle {
   order: 3;
   position: relative;
   right: 0;
 }
-.lr-navRoot .nav.side .lr-navItem .navItemLabel {
+.lr-navRoot .nav.side .lr-navItem .navItemLabel, .lr-navRoot .nav.side lr-navItem .navItemLabel, .lr-navRoot .nav[type=side] .lr-navItem .navItemLabel, .lr-navRoot .nav[type=side] lr-navItem .navItemLabel, .lr-navRoot lr-nav.side .lr-navItem .navItemLabel, .lr-navRoot lr-nav.side lr-navItem .navItemLabel, .lr-navRoot lr-nav[type=side] .lr-navItem .navItemLabel, .lr-navRoot lr-nav[type=side] lr-navItem .navItemLabel, lr-navView .nav.side .lr-navItem .navItemLabel, lr-navView .nav.side lr-navItem .navItemLabel, lr-navView .nav[type=side] .lr-navItem .navItemLabel, lr-navView .nav[type=side] lr-navItem .navItemLabel, lr-navView lr-nav.side .lr-navItem .navItemLabel, lr-navView lr-nav.side lr-navItem .navItemLabel, lr-navView lr-nav[type=side] .lr-navItem .navItemLabel, lr-navView lr-nav[type=side] lr-navItem .navItemLabel {
   order: 2;
   flex-grow: 1;
 }
-.lr-navRoot .nav.side .lr-navGroup {
+.lr-navRoot .nav.side .lr-navGroup, .lr-navRoot .nav.side lr-navGroup, .lr-navRoot .nav[type=side] .lr-navGroup, .lr-navRoot .nav[type=side] lr-navGroup, .lr-navRoot lr-nav.side .lr-navGroup, .lr-navRoot lr-nav.side lr-navGroup, .lr-navRoot lr-nav[type=side] .lr-navGroup, .lr-navRoot lr-nav[type=side] lr-navGroup, lr-navView .nav.side .lr-navGroup, lr-navView .nav.side lr-navGroup, lr-navView .nav[type=side] .lr-navGroup, lr-navView .nav[type=side] lr-navGroup, lr-navView lr-nav.side .lr-navGroup, lr-navView lr-nav.side lr-navGroup, lr-navView lr-nav[type=side] .lr-navGroup, lr-navView lr-nav[type=side] lr-navGroup {
   display: block;
   border-top: var(--border);
   border-bottom: var(--border);
@@ -366,102 +365,102 @@ a.noStyle:hover {
   margin: 5px 0;
   padding: 5px 0;
 }
-.lr-navRoot .nav.side .lr-navGroup.header-navGroup {
+.lr-navRoot .nav.side .lr-navGroup.header-navGroup, .lr-navRoot .nav.side lr-navGroup.header-navGroup, .lr-navRoot .nav[type=side] .lr-navGroup.header-navGroup, .lr-navRoot .nav[type=side] lr-navGroup.header-navGroup, .lr-navRoot lr-nav.side .lr-navGroup.header-navGroup, .lr-navRoot lr-nav.side lr-navGroup.header-navGroup, .lr-navRoot lr-nav[type=side] .lr-navGroup.header-navGroup, .lr-navRoot lr-nav[type=side] lr-navGroup.header-navGroup, lr-navView .nav.side .lr-navGroup.header-navGroup, lr-navView .nav.side lr-navGroup.header-navGroup, lr-navView .nav[type=side] .lr-navGroup.header-navGroup, lr-navView .nav[type=side] lr-navGroup.header-navGroup, lr-navView lr-nav.side .lr-navGroup.header-navGroup, lr-navView lr-nav.side lr-navGroup.header-navGroup, lr-navView lr-nav[type=side] .lr-navGroup.header-navGroup, lr-navView lr-nav[type=side] lr-navGroup.header-navGroup {
   border-top: none;
 }
-.lr-navRoot .nav.side .lr-navGroup.header-navGroup:hover .navItemIcon {
+.lr-navRoot .nav.side .lr-navGroup.header-navGroup:hover .navItemIcon, .lr-navRoot .nav.side lr-navGroup.header-navGroup:hover .navItemIcon, .lr-navRoot .nav[type=side] .lr-navGroup.header-navGroup:hover .navItemIcon, .lr-navRoot .nav[type=side] lr-navGroup.header-navGroup:hover .navItemIcon, .lr-navRoot lr-nav.side .lr-navGroup.header-navGroup:hover .navItemIcon, .lr-navRoot lr-nav.side lr-navGroup.header-navGroup:hover .navItemIcon, .lr-navRoot lr-nav[type=side] .lr-navGroup.header-navGroup:hover .navItemIcon, .lr-navRoot lr-nav[type=side] lr-navGroup.header-navGroup:hover .navItemIcon, lr-navView .nav.side .lr-navGroup.header-navGroup:hover .navItemIcon, lr-navView .nav.side lr-navGroup.header-navGroup:hover .navItemIcon, lr-navView .nav[type=side] .lr-navGroup.header-navGroup:hover .navItemIcon, lr-navView .nav[type=side] lr-navGroup.header-navGroup:hover .navItemIcon, lr-navView lr-nav.side .lr-navGroup.header-navGroup:hover .navItemIcon, lr-navView lr-nav.side lr-navGroup.header-navGroup:hover .navItemIcon, lr-navView lr-nav[type=side] .lr-navGroup.header-navGroup:hover .navItemIcon, lr-navView lr-nav[type=side] lr-navGroup.header-navGroup:hover .navItemIcon {
   visibility: hidden;
 }
-.lr-navRoot .nav.side .lr-navGroup.header-navGroup:hover .navItemIcon img {
+.lr-navRoot .nav.side .lr-navGroup.header-navGroup:hover .navItemIcon img, .lr-navRoot .nav.side lr-navGroup.header-navGroup:hover .navItemIcon img, .lr-navRoot .nav[type=side] .lr-navGroup.header-navGroup:hover .navItemIcon img, .lr-navRoot .nav[type=side] lr-navGroup.header-navGroup:hover .navItemIcon img, .lr-navRoot lr-nav.side .lr-navGroup.header-navGroup:hover .navItemIcon img, .lr-navRoot lr-nav.side lr-navGroup.header-navGroup:hover .navItemIcon img, .lr-navRoot lr-nav[type=side] .lr-navGroup.header-navGroup:hover .navItemIcon img, .lr-navRoot lr-nav[type=side] lr-navGroup.header-navGroup:hover .navItemIcon img, lr-navView .nav.side .lr-navGroup.header-navGroup:hover .navItemIcon img, lr-navView .nav.side lr-navGroup.header-navGroup:hover .navItemIcon img, lr-navView .nav[type=side] .lr-navGroup.header-navGroup:hover .navItemIcon img, lr-navView .nav[type=side] lr-navGroup.header-navGroup:hover .navItemIcon img, lr-navView lr-nav.side .lr-navGroup.header-navGroup:hover .navItemIcon img, lr-navView lr-nav.side lr-navGroup.header-navGroup:hover .navItemIcon img, lr-navView lr-nav[type=side] .lr-navGroup.header-navGroup:hover .navItemIcon img, lr-navView lr-nav[type=side] lr-navGroup.header-navGroup:hover .navItemIcon img {
   width: 0px;
   height: 0px;
 }
-.lr-navRoot .nav.side .lr-navGroup.header-navGroup:hover .navItemIcon::before {
+.lr-navRoot .nav.side .lr-navGroup.header-navGroup:hover .navItemIcon::before, .lr-navRoot .nav.side lr-navGroup.header-navGroup:hover .navItemIcon::before, .lr-navRoot .nav[type=side] .lr-navGroup.header-navGroup:hover .navItemIcon::before, .lr-navRoot .nav[type=side] lr-navGroup.header-navGroup:hover .navItemIcon::before, .lr-navRoot lr-nav.side .lr-navGroup.header-navGroup:hover .navItemIcon::before, .lr-navRoot lr-nav.side lr-navGroup.header-navGroup:hover .navItemIcon::before, .lr-navRoot lr-nav[type=side] .lr-navGroup.header-navGroup:hover .navItemIcon::before, .lr-navRoot lr-nav[type=side] lr-navGroup.header-navGroup:hover .navItemIcon::before, lr-navView .nav.side .lr-navGroup.header-navGroup:hover .navItemIcon::before, lr-navView .nav.side lr-navGroup.header-navGroup:hover .navItemIcon::before, lr-navView .nav[type=side] .lr-navGroup.header-navGroup:hover .navItemIcon::before, lr-navView .nav[type=side] lr-navGroup.header-navGroup:hover .navItemIcon::before, lr-navView lr-nav.side .lr-navGroup.header-navGroup:hover .navItemIcon::before, lr-navView lr-nav.side lr-navGroup.header-navGroup:hover .navItemIcon::before, lr-navView lr-nav[type=side] .lr-navGroup.header-navGroup:hover .navItemIcon::before, lr-navView lr-nav[type=side] lr-navGroup.header-navGroup:hover .navItemIcon::before {
   content: "\e700";
   visibility: initial;
 }
-.lr-navRoot .nav.side .lr-navGroup ~ .lr-navGroup {
+.lr-navRoot .nav.side .lr-navGroup ~ .lr-navGroup, .lr-navRoot .nav.side lr-navGroup ~ .lr-navGroup, .lr-navRoot .nav[type=side] .lr-navGroup ~ .lr-navGroup, .lr-navRoot .nav[type=side] lr-navGroup ~ .lr-navGroup, .lr-navRoot lr-nav.side .lr-navGroup ~ .lr-navGroup, .lr-navRoot lr-nav.side lr-navGroup ~ .lr-navGroup, .lr-navRoot lr-nav[type=side] .lr-navGroup ~ .lr-navGroup, .lr-navRoot lr-nav[type=side] lr-navGroup ~ .lr-navGroup, lr-navView .nav.side .lr-navGroup ~ .lr-navGroup, lr-navView .nav.side lr-navGroup ~ .lr-navGroup, lr-navView .nav[type=side] .lr-navGroup ~ .lr-navGroup, lr-navView .nav[type=side] lr-navGroup ~ .lr-navGroup, lr-navView lr-nav.side .lr-navGroup ~ .lr-navGroup, lr-navView lr-nav.side lr-navGroup ~ .lr-navGroup, lr-navView lr-nav[type=side] .lr-navGroup ~ .lr-navGroup, lr-navView lr-nav[type=side] lr-navGroup ~ .lr-navGroup {
   border-top-color: transparent;
   margin-top: 0;
   padding-top: 0;
 }
-.lr-navRoot .nav.side .lr-navFoldout {
+.lr-navRoot .nav.side .lr-navFoldout, .lr-navRoot .nav[type=side] .lr-navFoldout, .lr-navRoot lr-nav.side .lr-navFoldout, .lr-navRoot lr-nav[type=side] .lr-navFoldout, lr-navView .nav.side .lr-navFoldout, lr-navView .nav[type=side] .lr-navFoldout, lr-navView lr-nav.side .lr-navFoldout, lr-navView lr-nav[type=side] .lr-navFoldout {
   transition: height 0.2s linear;
 }
-.lr-navRoot .nav.side .lr-navFoldout .foldoutItems {
+.lr-navRoot .nav.side .lr-navFoldout .foldoutItems, .lr-navRoot .nav[type=side] .lr-navFoldout .foldoutItems, .lr-navRoot lr-nav.side .lr-navFoldout .foldoutItems, .lr-navRoot lr-nav[type=side] .lr-navFoldout .foldoutItems, lr-navView .nav.side .lr-navFoldout .foldoutItems, lr-navView .nav[type=side] .lr-navFoldout .foldoutItems, lr-navView lr-nav.side .lr-navFoldout .foldoutItems, lr-navView lr-nav[type=side] .lr-navFoldout .foldoutItems {
   margin-left: 40px;
   display: none;
 }
-.lr-navRoot .nav.side .lr-navFoldout .foldoutItems.open {
+.lr-navRoot .nav.side .lr-navFoldout .foldoutItems.open, .lr-navRoot .nav[type=side] .lr-navFoldout .foldoutItems.open, .lr-navRoot lr-nav.side .lr-navFoldout .foldoutItems.open, .lr-navRoot lr-nav[type=side] .lr-navFoldout .foldoutItems.open, lr-navView .nav.side .lr-navFoldout .foldoutItems.open, lr-navView .nav[type=side] .lr-navFoldout .foldoutItems.open, lr-navView lr-nav.side .lr-navFoldout .foldoutItems.open, lr-navView lr-nav[type=side] .lr-navFoldout .foldoutItems.open {
   display: block;
 }
-.lr-navRoot .nav.side.alt-state {
+.lr-navRoot .nav.side.alt-state, .lr-navRoot .nav[type=side].alt-state, .lr-navRoot lr-nav.side.alt-state, .lr-navRoot lr-nav[type=side].alt-state, lr-navView .nav.side.alt-state, lr-navView .nav[type=side].alt-state, lr-navView lr-nav.side.alt-state, lr-navView lr-nav[type=side].alt-state {
   width: var(--collapsed-width);
 }
-.lr-navRoot .nav.side.alt-state .lr-navItem {
+.lr-navRoot .nav.side.alt-state .lr-navItem, .lr-navRoot .nav[type=side].alt-state .lr-navItem, .lr-navRoot lr-nav.side.alt-state .lr-navItem, .lr-navRoot lr-nav[type=side].alt-state .lr-navItem, lr-navView .nav.side.alt-state .lr-navItem, lr-navView .nav[type=side].alt-state .lr-navItem, lr-navView lr-nav.side.alt-state .lr-navItem, lr-navView lr-nav[type=side].alt-state .lr-navItem {
   margin: 5px;
 }
-.lr-navRoot .nav.side.alt-state .lr-navGroup .foldoutItems {
+.lr-navRoot .nav.side.alt-state .lr-navGroup .foldoutItems, .lr-navRoot .nav[type=side].alt-state .lr-navGroup .foldoutItems, .lr-navRoot lr-nav.side.alt-state .lr-navGroup .foldoutItems, .lr-navRoot lr-nav[type=side].alt-state .lr-navGroup .foldoutItems, lr-navView .nav.side.alt-state .lr-navGroup .foldoutItems, lr-navView .nav[type=side].alt-state .lr-navGroup .foldoutItems, lr-navView lr-nav.side.alt-state .lr-navGroup .foldoutItems, lr-navView lr-nav[type=side].alt-state .lr-navGroup .foldoutItems {
   margin-left: 0;
 }
 @media screen and (max-width: 650px) {
-  .lr-navRoot .nav.side {
+  .lr-navRoot .nav.side, .lr-navRoot .nav[type=side], .lr-navRoot lr-nav.side, .lr-navRoot lr-nav[type=side], lr-navView .nav.side, lr-navView .nav[type=side], lr-navView lr-nav.side, lr-navView lr-nav[type=side] {
     transition: height 0.3s ease;
     flex: 1;
     height: calc(100% - 20px);
     overflow: hidden;
   }
-  .lr-navRoot .nav.side.flat {
+  .lr-navRoot .nav.side.flat, .lr-navRoot .nav[type=side].flat, .lr-navRoot lr-nav.side.flat, .lr-navRoot lr-nav[type=side].flat, lr-navView .nav.side.flat, lr-navView .nav[type=side].flat, lr-navView lr-nav.side.flat, lr-navView lr-nav[type=side].flat {
     border-bottom: var(--border);
   }
-  .lr-navRoot .nav.side.floating {
+  .lr-navRoot .nav.side.floating, .lr-navRoot .nav[type=side].floating, .lr-navRoot lr-nav.side.floating, .lr-navRoot lr-nav[type=side].floating, lr-navView .nav.side.floating, lr-navView .nav[type=side].floating, lr-navView lr-nav.side.floating, lr-navView lr-nav[type=side].floating {
     border-radius: 20px;
   }
-  .lr-navRoot .nav.side:not(.floating) {
+  .lr-navRoot .nav.side:not(.floating), .lr-navRoot .nav[type=side]:not(.floating), .lr-navRoot lr-nav.side:not(.floating), .lr-navRoot lr-nav[type=side]:not(.floating), lr-navView .nav.side:not(.floating), lr-navView .nav[type=side]:not(.floating), lr-navView lr-nav.side:not(.floating), lr-navView lr-nav[type=side]:not(.floating) {
     box-shadow: none;
   }
-  .lr-navRoot .nav.side .header-navGroup .lr-navItem:hover {
+  .lr-navRoot .nav.side .header-navGroup .lr-navItem:hover, .lr-navRoot .nav[type=side] .header-navGroup .lr-navItem:hover, .lr-navRoot lr-nav.side .header-navGroup .lr-navItem:hover, .lr-navRoot lr-nav[type=side] .header-navGroup .lr-navItem:hover, lr-navView .nav.side .header-navGroup .lr-navItem:hover, lr-navView .nav[type=side] .header-navGroup .lr-navItem:hover, lr-navView lr-nav.side .header-navGroup .lr-navItem:hover, lr-navView lr-nav[type=side] .header-navGroup .lr-navItem:hover {
     box-shadow: none;
   }
-  .lr-navRoot .nav.side .lr-navGroup .foldoutItems {
+  .lr-navRoot .nav.side .lr-navGroup .foldoutItems, .lr-navRoot .nav[type=side] .lr-navGroup .foldoutItems, .lr-navRoot lr-nav.side .lr-navGroup .foldoutItems, .lr-navRoot lr-nav[type=side] .lr-navGroup .foldoutItems, lr-navView .nav.side .lr-navGroup .foldoutItems, lr-navView .nav[type=side] .lr-navGroup .foldoutItems, lr-navView lr-nav.side .lr-navGroup .foldoutItems, lr-navView lr-nav[type=side] .lr-navGroup .foldoutItems {
     margin-left: 40px;
   }
-  .lr-navRoot .nav.side .lr-navItem {
+  .lr-navRoot .nav.side .lr-navItem, .lr-navRoot .nav[type=side] .lr-navItem, .lr-navRoot lr-nav.side .lr-navItem, .lr-navRoot lr-nav[type=side] .lr-navItem, lr-navView .nav.side .lr-navItem, lr-navView .nav[type=side] .lr-navItem, lr-navView lr-nav.side .lr-navItem, lr-navView lr-nav[type=side] .lr-navItem {
     margin: 5px 10px;
   }
-  .lr-navRoot .nav.side.alt-state {
+  .lr-navRoot .nav.side.alt-state, .lr-navRoot .nav[type=side].alt-state, .lr-navRoot lr-nav.side.alt-state, .lr-navRoot lr-nav[type=side].alt-state, lr-navView .nav.side.alt-state, lr-navView .nav[type=side].alt-state, lr-navView lr-nav.side.alt-state, lr-navView lr-nav[type=side].alt-state {
     height: 60px;
     flex: 1 0 auto;
     width: max-content;
   }
-  .lr-navRoot .nav.side.alt-state .lr-navItem {
+  .lr-navRoot .nav.side.alt-state .lr-navItem, .lr-navRoot .nav[type=side].alt-state .lr-navItem, .lr-navRoot lr-nav.side.alt-state .lr-navItem, .lr-navRoot lr-nav[type=side].alt-state .lr-navItem, lr-navView .nav.side.alt-state .lr-navItem, lr-navView .nav[type=side].alt-state .lr-navItem, lr-navView lr-nav.side.alt-state .lr-navItem, lr-navView lr-nav[type=side].alt-state .lr-navItem {
     margin: 5px 10px;
   }
 }
-.lr-navRoot .nav.side.right {
+.lr-navRoot .nav.side.right, .lr-navRoot .nav[type=side].right, .lr-navRoot lr-nav.side.right, .lr-navRoot lr-nav[type=side].right, lr-navView .nav.side.right, lr-navView .nav[type=side].right, lr-navView lr-nav.side.right, lr-navView lr-nav[type=side].right {
   order: 1;
 }
-.lr-navRoot .nav.side.right.floating {
+.lr-navRoot .nav.side.right.floating, .lr-navRoot .nav[type=side].right.floating, .lr-navRoot lr-nav.side.right.floating, .lr-navRoot lr-nav[type=side].right.floating, lr-navView .nav.side.right.floating, lr-navView .nav[type=side].right.floating, lr-navView lr-nav.side.right.floating, lr-navView lr-nav[type=side].right.floating {
   border-radius: 3px 20px 20px 3px;
 }
-.lr-navRoot .nav.side.right .lr-navItem .navItemIcon {
+.lr-navRoot .nav.side.right .lr-navItem .navItemIcon, .lr-navRoot .nav[type=side].right .lr-navItem .navItemIcon, .lr-navRoot lr-nav.side.right .lr-navItem .navItemIcon, .lr-navRoot lr-nav[type=side].right .lr-navItem .navItemIcon, lr-navView .nav.side.right .lr-navItem .navItemIcon, lr-navView .nav[type=side].right .lr-navItem .navItemIcon, lr-navView lr-nav.side.right .lr-navItem .navItemIcon, lr-navView lr-nav[type=side].right .lr-navItem .navItemIcon {
   order: 2;
 }
-.lr-navRoot .nav.side.right .lr-navItem .navItemLabel {
+.lr-navRoot .nav.side.right .lr-navItem .navItemLabel, .lr-navRoot .nav[type=side].right .lr-navItem .navItemLabel, .lr-navRoot lr-nav.side.right .lr-navItem .navItemLabel, .lr-navRoot lr-nav[type=side].right .lr-navItem .navItemLabel, lr-navView .nav.side.right .lr-navItem .navItemLabel, lr-navView .nav[type=side].right .lr-navItem .navItemLabel, lr-navView lr-nav.side.right .lr-navItem .navItemLabel, lr-navView lr-nav[type=side].right .lr-navItem .navItemLabel {
   order: 0;
   margin-left: 5px;
 }
-.lr-navRoot .nav.side.right .lr-navItem .navItemIcon.toggle {
+.lr-navRoot .nav.side.right .lr-navItem .navItemIcon.toggle, .lr-navRoot .nav[type=side].right .lr-navItem .navItemIcon.toggle, .lr-navRoot lr-nav.side.right .lr-navItem .navItemIcon.toggle, .lr-navRoot lr-nav[type=side].right .lr-navItem .navItemIcon.toggle, lr-navView .nav.side.right .lr-navItem .navItemIcon.toggle, lr-navView .nav[type=side].right .lr-navItem .navItemIcon.toggle, lr-navView lr-nav.side.right .lr-navItem .navItemIcon.toggle, lr-navView lr-nav[type=side].right .lr-navItem .navItemIcon.toggle {
   order: 1;
   position: unset;
 }
-.lr-navRoot .nav.side.right.alt-state .navItemIcon {
+.lr-navRoot .nav.side.right.alt-state .navItemIcon, .lr-navRoot .nav[type=side].right.alt-state .navItemIcon, .lr-navRoot lr-nav.side.right.alt-state .navItemIcon, .lr-navRoot lr-nav[type=side].right.alt-state .navItemIcon, lr-navView .nav.side.right.alt-state .navItemIcon, lr-navView .nav[type=side].right.alt-state .navItemIcon, lr-navView lr-nav.side.right.alt-state .navItemIcon, lr-navView lr-nav[type=side].right.alt-state .navItemIcon {
   margin: 5px 0;
 }
-.lr-navRoot .nav.side.right.alt-state .navItemLabel, .lr-navRoot .nav.side.right.alt-state .toggle {
+.lr-navRoot .nav.side.right.alt-state .navItemLabel, .lr-navRoot .nav.side.right.alt-state .toggle, .lr-navRoot .nav[type=side].right.alt-state .navItemLabel, .lr-navRoot .nav[type=side].right.alt-state .toggle, .lr-navRoot lr-nav.side.right.alt-state .navItemLabel, .lr-navRoot lr-nav.side.right.alt-state .toggle, .lr-navRoot lr-nav[type=side].right.alt-state .navItemLabel, .lr-navRoot lr-nav[type=side].right.alt-state .toggle, lr-navView .nav.side.right.alt-state .navItemLabel, lr-navView .nav.side.right.alt-state .toggle, lr-navView .nav[type=side].right.alt-state .navItemLabel, lr-navView .nav[type=side].right.alt-state .toggle, lr-navView lr-nav.side.right.alt-state .navItemLabel, lr-navView lr-nav.side.right.alt-state .toggle, lr-navView lr-nav[type=side].right.alt-state .navItemLabel, lr-navView lr-nav[type=side].right.alt-state .toggle {
   display: none;
 }
-.lr-navRoot .nav.bottom, .lr-navRoot .nav.top {
+.lr-navRoot .nav.bottom, .lr-navRoot .nav.top, .lr-navRoot lr-nav.nav.top, .lr-navRoot lr-navView .nav.top, lr-navView .lr-navRoot .nav.top, .lr-navRoot lr-navView lr-nav.nav.top, lr-navView .lr-navRoot lr-nav.nav.top, .lr-navRoot lr-nav.bottom, .lr-navRoot lr-nav.nav.top, .lr-navRoot lr-nav.top, .lr-navRoot lr-navView lr-nav.nav.top, lr-navView .lr-navRoot lr-nav.nav.top, .lr-navRoot lr-navView lr-nav.top, lr-navView .lr-navRoot lr-nav.top, lr-navView .nav.bottom, lr-navView .lr-navRoot .nav.top, .lr-navRoot lr-navView .nav.top, lr-navView .lr-navRoot lr-nav.nav.top, .lr-navRoot lr-navView lr-nav.nav.top, lr-navView .nav.top, lr-navView lr-nav.nav.top, lr-navView lr-nav.bottom, lr-navView .lr-navRoot lr-nav.nav.top, .lr-navRoot lr-navView lr-nav.nav.top, lr-navView .lr-navRoot lr-nav.top, .lr-navRoot lr-navView lr-nav.top, lr-navView lr-nav.nav.top, lr-navView lr-nav.top {
   --width: 100%;
   --height: 60px;
   min-height: var(--height);
@@ -473,27 +472,27 @@ a.noStyle:hover {
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
-.lr-navRoot .nav.bottom:not(.floating, .colored, .flat), .lr-navRoot .nav.top:not(.floating, .colored, .flat) {
+.lr-navRoot .nav.bottom:not(.floating, .colored, .flat), .lr-navRoot .nav.top:not(.floating, .colored, .flat), .lr-navRoot lr-nav.nav.top:not(.floating, .colored, .flat), .lr-navRoot lr-navView .nav.top:not(.floating, .colored, .flat), lr-navView .lr-navRoot .nav.top:not(.floating, .colored, .flat), .lr-navRoot lr-navView lr-nav.nav.top:not(.floating, .colored, .flat), lr-navView .lr-navRoot lr-nav.nav.top:not(.floating, .colored, .flat), .lr-navRoot lr-nav.bottom:not(.floating, .colored, .flat), .lr-navRoot lr-nav.nav.top:not(.floating, .colored, .flat), .lr-navRoot lr-nav.top:not(.floating, .colored, .flat), .lr-navRoot lr-navView lr-nav.nav.top:not(.floating, .colored, .flat), lr-navView .lr-navRoot lr-nav.nav.top:not(.floating, .colored, .flat), .lr-navRoot lr-navView lr-nav.top:not(.floating, .colored, .flat), lr-navView .lr-navRoot lr-nav.top:not(.floating, .colored, .flat), lr-navView .nav.bottom:not(.floating, .colored, .flat), lr-navView .lr-navRoot .nav.top:not(.floating, .colored, .flat), .lr-navRoot lr-navView .nav.top:not(.floating, .colored, .flat), lr-navView .lr-navRoot lr-nav.nav.top:not(.floating, .colored, .flat), .lr-navRoot lr-navView lr-nav.nav.top:not(.floating, .colored, .flat), lr-navView .nav.top:not(.floating, .colored, .flat), lr-navView lr-nav.nav.top:not(.floating, .colored, .flat), lr-navView lr-nav.bottom:not(.floating, .colored, .flat), lr-navView .lr-navRoot lr-nav.nav.top:not(.floating, .colored, .flat), .lr-navRoot lr-navView lr-nav.nav.top:not(.floating, .colored, .flat), lr-navView .lr-navRoot lr-nav.top:not(.floating, .colored, .flat), .lr-navRoot lr-navView lr-nav.top:not(.floating, .colored, .flat), lr-navView lr-nav.nav.top:not(.floating, .colored, .flat), lr-navView lr-nav.top:not(.floating, .colored, .flat) {
   background-color: transparent;
   border: none;
   box-shadow: none;
 }
-.lr-navRoot .nav.bottom.colored, .lr-navRoot .nav.colored.top, .lr-navRoot .nav.bottom.flat, .lr-navRoot .nav.flat.top {
+.lr-navRoot .nav.bottom.colored, .lr-navRoot .nav.colored.top, .lr-navRoot lr-nav.nav.colored.top, .lr-navRoot lr-navView .nav.colored.top, lr-navView .lr-navRoot .nav.colored.top, .lr-navRoot lr-navView lr-nav.nav.colored.top, lr-navView .lr-navRoot lr-nav.nav.colored.top, .lr-navRoot .nav.bottom.flat, .lr-navRoot .nav.flat.top, .lr-navRoot lr-nav.nav.flat.top, .lr-navRoot lr-navView .nav.flat.top, lr-navView .lr-navRoot .nav.flat.top, .lr-navRoot lr-navView lr-nav.nav.flat.top, lr-navView .lr-navRoot lr-nav.nav.flat.top, .lr-navRoot lr-nav.bottom.colored, .lr-navRoot lr-nav.colored.nav.top, .lr-navRoot lr-nav.colored.top, .lr-navRoot lr-navView lr-nav.colored.nav.top, lr-navView .lr-navRoot lr-nav.colored.nav.top, .lr-navRoot lr-navView lr-nav.colored.top, lr-navView .lr-navRoot lr-nav.colored.top, .lr-navRoot lr-nav.bottom.flat, .lr-navRoot lr-nav.flat.nav.top, .lr-navRoot lr-nav.flat.top, .lr-navRoot lr-navView lr-nav.flat.nav.top, lr-navView .lr-navRoot lr-nav.flat.nav.top, .lr-navRoot lr-navView lr-nav.flat.top, lr-navView .lr-navRoot lr-nav.flat.top, lr-navView .nav.bottom.colored, lr-navView .lr-navRoot .nav.colored.top, .lr-navRoot lr-navView .nav.colored.top, lr-navView .lr-navRoot lr-nav.nav.colored.top, .lr-navRoot lr-navView lr-nav.nav.colored.top, lr-navView .nav.colored.top, lr-navView lr-nav.nav.colored.top, lr-navView .nav.bottom.flat, lr-navView .lr-navRoot .nav.flat.top, .lr-navRoot lr-navView .nav.flat.top, lr-navView .lr-navRoot lr-nav.nav.flat.top, .lr-navRoot lr-navView lr-nav.nav.flat.top, lr-navView .nav.flat.top, lr-navView lr-nav.nav.flat.top, lr-navView lr-nav.bottom.colored, lr-navView .lr-navRoot lr-nav.colored.nav.top, .lr-navRoot lr-navView lr-nav.colored.nav.top, lr-navView .lr-navRoot lr-nav.colored.top, .lr-navRoot lr-navView lr-nav.colored.top, lr-navView lr-nav.colored.nav.top, lr-navView lr-nav.colored.top, lr-navView lr-nav.bottom.flat, lr-navView .lr-navRoot lr-nav.flat.nav.top, .lr-navRoot lr-navView lr-nav.flat.nav.top, lr-navView .lr-navRoot lr-nav.flat.top, .lr-navRoot lr-navView lr-nav.flat.top, lr-navView lr-nav.flat.nav.top, lr-navView lr-nav.flat.top {
   border-radius: 15px 15px 0 0;
 }
-.lr-navRoot .nav.bottom.floating, .lr-navRoot .nav.floating.top {
+.lr-navRoot .nav.bottom.floating, .lr-navRoot .nav.floating.top, .lr-navRoot lr-nav.nav.floating.top, .lr-navRoot lr-navView .nav.floating.top, lr-navView .lr-navRoot .nav.floating.top, .lr-navRoot lr-navView lr-nav.nav.floating.top, lr-navView .lr-navRoot lr-nav.nav.floating.top, .lr-navRoot lr-nav.bottom.floating, .lr-navRoot lr-nav.floating.nav.top, .lr-navRoot lr-nav.floating.top, .lr-navRoot lr-navView lr-nav.floating.nav.top, lr-navView .lr-navRoot lr-nav.floating.nav.top, .lr-navRoot lr-navView lr-nav.floating.top, lr-navView .lr-navRoot lr-nav.floating.top, lr-navView .nav.bottom.floating, lr-navView .lr-navRoot .nav.floating.top, .lr-navRoot lr-navView .nav.floating.top, lr-navView .lr-navRoot lr-nav.nav.floating.top, .lr-navRoot lr-navView lr-nav.nav.floating.top, lr-navView .nav.floating.top, lr-navView lr-nav.nav.floating.top, lr-navView lr-nav.bottom.floating, lr-navView .lr-navRoot lr-nav.floating.nav.top, .lr-navRoot lr-navView lr-nav.floating.nav.top, lr-navView .lr-navRoot lr-nav.floating.top, .lr-navRoot lr-navView lr-nav.floating.top, lr-navView lr-nav.floating.nav.top, lr-navView lr-nav.floating.top {
   border-radius: 15px;
 }
-.lr-navRoot .nav.bottom::-webkit-scrollbar, .lr-navRoot .nav.top::-webkit-scrollbar {
+.lr-navRoot .nav.bottom::-webkit-scrollbar, .lr-navRoot .nav.top::-webkit-scrollbar, .lr-navRoot lr-nav.nav.top::-webkit-scrollbar, .lr-navRoot lr-navView .nav.top::-webkit-scrollbar, lr-navView .lr-navRoot .nav.top::-webkit-scrollbar, .lr-navRoot lr-navView lr-nav.nav.top::-webkit-scrollbar, lr-navView .lr-navRoot lr-nav.nav.top::-webkit-scrollbar, .lr-navRoot lr-nav.bottom::-webkit-scrollbar, .lr-navRoot lr-nav.nav.top::-webkit-scrollbar, .lr-navRoot lr-nav.top::-webkit-scrollbar, .lr-navRoot lr-navView lr-nav.nav.top::-webkit-scrollbar, lr-navView .lr-navRoot lr-nav.nav.top::-webkit-scrollbar, .lr-navRoot lr-navView lr-nav.top::-webkit-scrollbar, lr-navView .lr-navRoot lr-nav.top::-webkit-scrollbar, lr-navView .nav.bottom::-webkit-scrollbar, lr-navView .lr-navRoot .nav.top::-webkit-scrollbar, .lr-navRoot lr-navView .nav.top::-webkit-scrollbar, lr-navView .lr-navRoot lr-nav.nav.top::-webkit-scrollbar, .lr-navRoot lr-navView lr-nav.nav.top::-webkit-scrollbar, lr-navView .nav.top::-webkit-scrollbar, lr-navView lr-nav.nav.top::-webkit-scrollbar, lr-navView lr-nav.bottom::-webkit-scrollbar, lr-navView .lr-navRoot lr-nav.nav.top::-webkit-scrollbar, .lr-navRoot lr-navView lr-nav.nav.top::-webkit-scrollbar, lr-navView .lr-navRoot lr-nav.top::-webkit-scrollbar, .lr-navRoot lr-navView lr-nav.top::-webkit-scrollbar, lr-navView lr-nav.nav.top::-webkit-scrollbar, lr-navView lr-nav.top::-webkit-scrollbar {
   display: none;
 }
-.lr-navRoot .nav.bottom.colored .lr-navItem.active, .lr-navRoot .nav.colored.top .lr-navItem.active {
+.lr-navRoot .nav.bottom.colored .lr-navItem.active, .lr-navRoot .nav.colored.top .lr-navItem.active, .lr-navRoot lr-nav.nav.colored.top .lr-navItem.active, .lr-navRoot lr-navView .nav.colored.top .lr-navItem.active, lr-navView .lr-navRoot .nav.colored.top .lr-navItem.active, .lr-navRoot lr-navView lr-nav.nav.colored.top .lr-navItem.active, lr-navView .lr-navRoot lr-nav.nav.colored.top .lr-navItem.active, .lr-navRoot lr-nav.bottom.colored .lr-navItem.active, .lr-navRoot lr-nav.colored.nav.top .lr-navItem.active, .lr-navRoot lr-nav.colored.top .lr-navItem.active, .lr-navRoot lr-navView lr-nav.colored.nav.top .lr-navItem.active, lr-navView .lr-navRoot lr-nav.colored.nav.top .lr-navItem.active, .lr-navRoot lr-navView lr-nav.colored.top .lr-navItem.active, lr-navView .lr-navRoot lr-nav.colored.top .lr-navItem.active, lr-navView .nav.bottom.colored .lr-navItem.active, lr-navView .lr-navRoot .nav.colored.top .lr-navItem.active, .lr-navRoot lr-navView .nav.colored.top .lr-navItem.active, lr-navView .lr-navRoot lr-nav.nav.colored.top .lr-navItem.active, .lr-navRoot lr-navView lr-nav.nav.colored.top .lr-navItem.active, lr-navView .nav.colored.top .lr-navItem.active, lr-navView lr-nav.nav.colored.top .lr-navItem.active, lr-navView lr-nav.bottom.colored .lr-navItem.active, lr-navView .lr-navRoot lr-nav.colored.nav.top .lr-navItem.active, .lr-navRoot lr-navView lr-nav.colored.nav.top .lr-navItem.active, lr-navView .lr-navRoot lr-nav.colored.top .lr-navItem.active, .lr-navRoot lr-navView lr-nav.colored.top .lr-navItem.active, lr-navView lr-nav.colored.nav.top .lr-navItem.active, lr-navView lr-nav.colored.top .lr-navItem.active {
   background: none;
   box-shadow: none;
   font-weight: bold;
   font-size: 1.1em;
 }
-.lr-navRoot .nav.bottom .lr-navItem, .lr-navRoot .nav.top .lr-navItem {
+.lr-navRoot .nav.bottom .lr-navItem, .lr-navRoot .nav.top .lr-navItem, .lr-navRoot lr-nav.nav.top .lr-navItem, .lr-navRoot lr-navView .nav.top .lr-navItem, lr-navView .lr-navRoot .nav.top .lr-navItem, .lr-navRoot lr-navView lr-nav.nav.top .lr-navItem, lr-navView .lr-navRoot lr-nav.nav.top .lr-navItem, .lr-navRoot lr-nav.bottom .lr-navItem, .lr-navRoot lr-nav.nav.top .lr-navItem, .lr-navRoot lr-nav.top .lr-navItem, .lr-navRoot lr-navView lr-nav.nav.top .lr-navItem, lr-navView .lr-navRoot lr-nav.nav.top .lr-navItem, .lr-navRoot lr-navView lr-nav.top .lr-navItem, lr-navView .lr-navRoot lr-nav.top .lr-navItem, lr-navView .nav.bottom .lr-navItem, lr-navView .lr-navRoot .nav.top .lr-navItem, .lr-navRoot lr-navView .nav.top .lr-navItem, lr-navView .lr-navRoot lr-nav.nav.top .lr-navItem, .lr-navRoot lr-navView lr-nav.nav.top .lr-navItem, lr-navView .nav.top .lr-navItem, lr-navView lr-nav.nav.top .lr-navItem, lr-navView lr-nav.bottom .lr-navItem, lr-navView .lr-navRoot lr-nav.nav.top .lr-navItem, .lr-navRoot lr-navView lr-nav.nav.top .lr-navItem, lr-navView .lr-navRoot lr-nav.top .lr-navItem, .lr-navRoot lr-navView lr-nav.top .lr-navItem, lr-navView lr-nav.nav.top .lr-navItem, lr-navView lr-nav.top .lr-navItem {
   flex: 0 1 100%;
   position: relative;
   top: 10%;
@@ -502,42 +501,42 @@ a.noStyle:hover {
   justify-content: center;
   transition: all 0.2s;
 }
-.lr-navRoot .nav.bottom .lr-navItem:first-child, .lr-navRoot .nav.top .lr-navItem:first-child {
+.lr-navRoot .nav.bottom .lr-navItem:first-child, .lr-navRoot .nav.top .lr-navItem:first-child, .lr-navRoot lr-nav.nav.top .lr-navItem:first-child, .lr-navRoot lr-navView .nav.top .lr-navItem:first-child, lr-navView .lr-navRoot .nav.top .lr-navItem:first-child, .lr-navRoot lr-navView lr-nav.nav.top .lr-navItem:first-child, lr-navView .lr-navRoot lr-nav.nav.top .lr-navItem:first-child, .lr-navRoot lr-nav.bottom .lr-navItem:first-child, .lr-navRoot lr-nav.nav.top .lr-navItem:first-child, .lr-navRoot lr-nav.top .lr-navItem:first-child, .lr-navRoot lr-navView lr-nav.nav.top .lr-navItem:first-child, lr-navView .lr-navRoot lr-nav.nav.top .lr-navItem:first-child, .lr-navRoot lr-navView lr-nav.top .lr-navItem:first-child, lr-navView .lr-navRoot lr-nav.top .lr-navItem:first-child, lr-navView .nav.bottom .lr-navItem:first-child, lr-navView .lr-navRoot .nav.top .lr-navItem:first-child, .lr-navRoot lr-navView .nav.top .lr-navItem:first-child, lr-navView .lr-navRoot lr-nav.nav.top .lr-navItem:first-child, .lr-navRoot lr-navView lr-nav.nav.top .lr-navItem:first-child, lr-navView .nav.top .lr-navItem:first-child, lr-navView lr-nav.nav.top .lr-navItem:first-child, lr-navView lr-nav.bottom .lr-navItem:first-child, lr-navView .lr-navRoot lr-nav.nav.top .lr-navItem:first-child, .lr-navRoot lr-navView lr-nav.nav.top .lr-navItem:first-child, lr-navView .lr-navRoot lr-nav.top .lr-navItem:first-child, .lr-navRoot lr-navView lr-nav.top .lr-navItem:first-child, lr-navView lr-nav.nav.top .lr-navItem:first-child, lr-navView lr-nav.top .lr-navItem:first-child {
   margin-left: 1%;
 }
-.lr-navRoot .nav.bottom .lr-navItem:hover, .lr-navRoot .nav.top .lr-navItem:hover {
+.lr-navRoot .nav.bottom .lr-navItem:hover, .lr-navRoot .nav.top .lr-navItem:hover, .lr-navRoot lr-nav.nav.top .lr-navItem:hover, .lr-navRoot lr-navView .nav.top .lr-navItem:hover, lr-navView .lr-navRoot .nav.top .lr-navItem:hover, .lr-navRoot lr-navView lr-nav.nav.top .lr-navItem:hover, lr-navView .lr-navRoot lr-nav.nav.top .lr-navItem:hover, .lr-navRoot lr-nav.bottom .lr-navItem:hover, .lr-navRoot lr-nav.nav.top .lr-navItem:hover, .lr-navRoot lr-nav.top .lr-navItem:hover, .lr-navRoot lr-navView lr-nav.nav.top .lr-navItem:hover, lr-navView .lr-navRoot lr-nav.nav.top .lr-navItem:hover, .lr-navRoot lr-navView lr-nav.top .lr-navItem:hover, lr-navView .lr-navRoot lr-nav.top .lr-navItem:hover, lr-navView .nav.bottom .lr-navItem:hover, lr-navView .lr-navRoot .nav.top .lr-navItem:hover, .lr-navRoot lr-navView .nav.top .lr-navItem:hover, lr-navView .lr-navRoot lr-nav.nav.top .lr-navItem:hover, .lr-navRoot lr-navView lr-nav.nav.top .lr-navItem:hover, lr-navView .nav.top .lr-navItem:hover, lr-navView lr-nav.nav.top .lr-navItem:hover, lr-navView lr-nav.bottom .lr-navItem:hover, lr-navView .lr-navRoot lr-nav.nav.top .lr-navItem:hover, .lr-navRoot lr-navView lr-nav.nav.top .lr-navItem:hover, lr-navView .lr-navRoot lr-nav.top .lr-navItem:hover, .lr-navRoot lr-navView lr-nav.top .lr-navItem:hover, lr-navView lr-nav.nav.top .lr-navItem:hover, lr-navView lr-nav.top .lr-navItem:hover {
   box-shadow: none;
   background-color: var(--background-hover);
   font-size: 1.1em;
 }
-.lr-navRoot .nav.bottom .lr-navItem:active, .lr-navRoot .nav.top .lr-navItem:active {
+.lr-navRoot .nav.bottom .lr-navItem:active, .lr-navRoot .nav.top .lr-navItem:active, .lr-navRoot lr-nav.nav.top .lr-navItem:active, .lr-navRoot lr-navView .nav.top .lr-navItem:active, lr-navView .lr-navRoot .nav.top .lr-navItem:active, .lr-navRoot lr-navView lr-nav.nav.top .lr-navItem:active, lr-navView .lr-navRoot lr-nav.nav.top .lr-navItem:active, .lr-navRoot lr-nav.bottom .lr-navItem:active, .lr-navRoot lr-nav.nav.top .lr-navItem:active, .lr-navRoot lr-nav.top .lr-navItem:active, .lr-navRoot lr-navView lr-nav.nav.top .lr-navItem:active, lr-navView .lr-navRoot lr-nav.nav.top .lr-navItem:active, .lr-navRoot lr-navView lr-nav.top .lr-navItem:active, lr-navView .lr-navRoot lr-nav.top .lr-navItem:active, lr-navView .nav.bottom .lr-navItem:active, lr-navView .lr-navRoot .nav.top .lr-navItem:active, .lr-navRoot lr-navView .nav.top .lr-navItem:active, lr-navView .lr-navRoot lr-nav.nav.top .lr-navItem:active, .lr-navRoot lr-navView lr-nav.nav.top .lr-navItem:active, lr-navView .nav.top .lr-navItem:active, lr-navView lr-nav.nav.top .lr-navItem:active, lr-navView lr-nav.bottom .lr-navItem:active, lr-navView .lr-navRoot lr-nav.nav.top .lr-navItem:active, .lr-navRoot lr-navView lr-nav.nav.top .lr-navItem:active, lr-navView .lr-navRoot lr-nav.top .lr-navItem:active, .lr-navRoot lr-navView lr-nav.top .lr-navItem:active, lr-navView lr-nav.nav.top .lr-navItem:active, lr-navView lr-nav.top .lr-navItem:active {
   background-color: var(--background-active);
   font-size: 0.9em;
   transition: all 0.1s;
 }
-.lr-navRoot .nav.bottom .lr-navItem .navItemLabel, .lr-navRoot .nav.top .lr-navItem .navItemLabel {
+.lr-navRoot .nav.bottom .lr-navItem .navItemLabel, .lr-navRoot .nav.top .lr-navItem .navItemLabel, .lr-navRoot lr-nav.nav.top .lr-navItem .navItemLabel, .lr-navRoot lr-navView .nav.top .lr-navItem .navItemLabel, lr-navView .lr-navRoot .nav.top .lr-navItem .navItemLabel, .lr-navRoot lr-navView lr-nav.nav.top .lr-navItem .navItemLabel, lr-navView .lr-navRoot lr-nav.nav.top .lr-navItem .navItemLabel, .lr-navRoot lr-nav.bottom .lr-navItem .navItemLabel, .lr-navRoot lr-nav.nav.top .lr-navItem .navItemLabel, .lr-navRoot lr-nav.top .lr-navItem .navItemLabel, .lr-navRoot lr-navView lr-nav.nav.top .lr-navItem .navItemLabel, lr-navView .lr-navRoot lr-nav.nav.top .lr-navItem .navItemLabel, .lr-navRoot lr-navView lr-nav.top .lr-navItem .navItemLabel, lr-navView .lr-navRoot lr-nav.top .lr-navItem .navItemLabel, lr-navView .nav.bottom .lr-navItem .navItemLabel, lr-navView .lr-navRoot .nav.top .lr-navItem .navItemLabel, .lr-navRoot lr-navView .nav.top .lr-navItem .navItemLabel, lr-navView .lr-navRoot lr-nav.nav.top .lr-navItem .navItemLabel, .lr-navRoot lr-navView lr-nav.nav.top .lr-navItem .navItemLabel, lr-navView .nav.top .lr-navItem .navItemLabel, lr-navView lr-nav.nav.top .lr-navItem .navItemLabel, lr-navView lr-nav.bottom .lr-navItem .navItemLabel, lr-navView .lr-navRoot lr-nav.nav.top .lr-navItem .navItemLabel, .lr-navRoot lr-navView lr-nav.nav.top .lr-navItem .navItemLabel, lr-navView .lr-navRoot lr-nav.top .lr-navItem .navItemLabel, .lr-navRoot lr-navView lr-nav.top .lr-navItem .navItemLabel, lr-navView lr-nav.nav.top .lr-navItem .navItemLabel, lr-navView lr-nav.top .lr-navItem .navItemLabel {
   padding: 0 10px 0 10px;
 }
-.lr-navRoot .nav.bottom .lr-navItem .navItemIcon:hover, .lr-navRoot .nav.top .lr-navItem .navItemIcon:hover {
+.lr-navRoot .nav.bottom .lr-navItem .navItemIcon:hover, .lr-navRoot .nav.top .lr-navItem .navItemIcon:hover, .lr-navRoot lr-nav.nav.top .lr-navItem .navItemIcon:hover, .lr-navRoot lr-navView .nav.top .lr-navItem .navItemIcon:hover, lr-navView .lr-navRoot .nav.top .lr-navItem .navItemIcon:hover, .lr-navRoot lr-navView lr-nav.nav.top .lr-navItem .navItemIcon:hover, lr-navView .lr-navRoot lr-nav.nav.top .lr-navItem .navItemIcon:hover, .lr-navRoot lr-nav.bottom .lr-navItem .navItemIcon:hover, .lr-navRoot lr-nav.nav.top .lr-navItem .navItemIcon:hover, .lr-navRoot lr-nav.top .lr-navItem .navItemIcon:hover, .lr-navRoot lr-navView lr-nav.nav.top .lr-navItem .navItemIcon:hover, lr-navView .lr-navRoot lr-nav.nav.top .lr-navItem .navItemIcon:hover, .lr-navRoot lr-navView lr-nav.top .lr-navItem .navItemIcon:hover, lr-navView .lr-navRoot lr-nav.top .lr-navItem .navItemIcon:hover, lr-navView .nav.bottom .lr-navItem .navItemIcon:hover, lr-navView .lr-navRoot .nav.top .lr-navItem .navItemIcon:hover, .lr-navRoot lr-navView .nav.top .lr-navItem .navItemIcon:hover, lr-navView .lr-navRoot lr-nav.nav.top .lr-navItem .navItemIcon:hover, .lr-navRoot lr-navView lr-nav.nav.top .lr-navItem .navItemIcon:hover, lr-navView .nav.top .lr-navItem .navItemIcon:hover, lr-navView lr-nav.nav.top .lr-navItem .navItemIcon:hover, lr-navView lr-nav.bottom .lr-navItem .navItemIcon:hover, lr-navView .lr-navRoot lr-nav.nav.top .lr-navItem .navItemIcon:hover, .lr-navRoot lr-navView lr-nav.nav.top .lr-navItem .navItemIcon:hover, lr-navView .lr-navRoot lr-nav.top .lr-navItem .navItemIcon:hover, .lr-navRoot lr-navView lr-nav.top .lr-navItem .navItemIcon:hover, lr-navView lr-nav.nav.top .lr-navItem .navItemIcon:hover, lr-navView lr-nav.top .lr-navItem .navItemIcon:hover {
   transform: none;
 }
-.lr-navRoot .nav.bottom.colored .lr-navItem:hover, .lr-navRoot .nav.colored.top .lr-navItem:hover {
+.lr-navRoot .nav.bottom.colored .lr-navItem:hover, .lr-navRoot .nav.colored.top .lr-navItem:hover, .lr-navRoot lr-nav.nav.colored.top .lr-navItem:hover, .lr-navRoot lr-navView .nav.colored.top .lr-navItem:hover, lr-navView .lr-navRoot .nav.colored.top .lr-navItem:hover, .lr-navRoot lr-navView lr-nav.nav.colored.top .lr-navItem:hover, lr-navView .lr-navRoot lr-nav.nav.colored.top .lr-navItem:hover, .lr-navRoot lr-nav.bottom.colored .lr-navItem:hover, .lr-navRoot lr-nav.colored.nav.top .lr-navItem:hover, .lr-navRoot lr-nav.colored.top .lr-navItem:hover, .lr-navRoot lr-navView lr-nav.colored.nav.top .lr-navItem:hover, lr-navView .lr-navRoot lr-nav.colored.nav.top .lr-navItem:hover, .lr-navRoot lr-navView lr-nav.colored.top .lr-navItem:hover, lr-navView .lr-navRoot lr-nav.colored.top .lr-navItem:hover, lr-navView .nav.bottom.colored .lr-navItem:hover, lr-navView .lr-navRoot .nav.colored.top .lr-navItem:hover, .lr-navRoot lr-navView .nav.colored.top .lr-navItem:hover, lr-navView .lr-navRoot lr-nav.nav.colored.top .lr-navItem:hover, .lr-navRoot lr-navView lr-nav.nav.colored.top .lr-navItem:hover, lr-navView .nav.colored.top .lr-navItem:hover, lr-navView lr-nav.nav.colored.top .lr-navItem:hover, lr-navView lr-nav.bottom.colored .lr-navItem:hover, lr-navView .lr-navRoot lr-nav.colored.nav.top .lr-navItem:hover, .lr-navRoot lr-navView lr-nav.colored.nav.top .lr-navItem:hover, lr-navView .lr-navRoot lr-nav.colored.top .lr-navItem:hover, .lr-navRoot lr-navView lr-nav.colored.top .lr-navItem:hover, lr-navView lr-nav.colored.nav.top .lr-navItem:hover, lr-navView lr-nav.colored.top .lr-navItem:hover {
   background-color: transparent;
   box-shadow: var(--box-shadow);
 }
-.lr-navRoot .nav.bottom.colored .lr-navItem:active, .lr-navRoot .nav.colored.top .lr-navItem:active {
+.lr-navRoot .nav.bottom.colored .lr-navItem:active, .lr-navRoot .nav.colored.top .lr-navItem:active, .lr-navRoot lr-nav.nav.colored.top .lr-navItem:active, .lr-navRoot lr-navView .nav.colored.top .lr-navItem:active, lr-navView .lr-navRoot .nav.colored.top .lr-navItem:active, .lr-navRoot lr-navView lr-nav.nav.colored.top .lr-navItem:active, lr-navView .lr-navRoot lr-nav.nav.colored.top .lr-navItem:active, .lr-navRoot lr-nav.bottom.colored .lr-navItem:active, .lr-navRoot lr-nav.colored.nav.top .lr-navItem:active, .lr-navRoot lr-nav.colored.top .lr-navItem:active, .lr-navRoot lr-navView lr-nav.colored.nav.top .lr-navItem:active, lr-navView .lr-navRoot lr-nav.colored.nav.top .lr-navItem:active, .lr-navRoot lr-navView lr-nav.colored.top .lr-navItem:active, lr-navView .lr-navRoot lr-nav.colored.top .lr-navItem:active, lr-navView .nav.bottom.colored .lr-navItem:active, lr-navView .lr-navRoot .nav.colored.top .lr-navItem:active, .lr-navRoot lr-navView .nav.colored.top .lr-navItem:active, lr-navView .lr-navRoot lr-nav.nav.colored.top .lr-navItem:active, .lr-navRoot lr-navView lr-nav.nav.colored.top .lr-navItem:active, lr-navView .nav.colored.top .lr-navItem:active, lr-navView lr-nav.nav.colored.top .lr-navItem:active, lr-navView lr-nav.bottom.colored .lr-navItem:active, lr-navView .lr-navRoot lr-nav.colored.nav.top .lr-navItem:active, .lr-navRoot lr-navView lr-nav.colored.nav.top .lr-navItem:active, lr-navView .lr-navRoot lr-nav.colored.top .lr-navItem:active, .lr-navRoot lr-navView lr-nav.colored.top .lr-navItem:active, lr-navView lr-nav.colored.nav.top .lr-navItem:active, lr-navView lr-nav.colored.top .lr-navItem:active {
   background-color: transparent;
   box-shadow: none;
   font-size: 0.9em;
   transition: all 0.1s;
 }
-.lr-navRoot .nav.top {
+.lr-navRoot .nav.top, .lr-navRoot lr-nav.top, lr-navView .nav.top, lr-navView lr-nav.top {
   order: 0;
 }
-.lr-navRoot .nav.top.colored, .lr-navRoot .nav.top.flat {
+.lr-navRoot .nav.top.colored, .lr-navRoot .nav.top.flat, .lr-navRoot lr-nav.top.colored, .lr-navRoot lr-nav.top.flat, lr-navView .nav.top.colored, lr-navView .nav.top.flat, lr-navView lr-nav.top.colored, lr-navView lr-nav.top.flat {
   border-radius: 0 0 15px 15px;
 }
-.lr-navRoot .nav.top.floating {
+.lr-navRoot .nav.top.floating, .lr-navRoot lr-nav.top.floating, lr-navView .nav.top.floating, lr-navView lr-nav.top.floating {
   border-radius: 15px;
 }
 

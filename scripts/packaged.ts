@@ -1,44 +1,45 @@
-//#region "scripts/components/LRNav.ts"
-interface ILwdNavType {
+//#region "C:\Users\JaHof\Development\Lightrays-examples\demo\Lightrays\scripts\components\LRNav.ts"
+
+interface ILrNavType {
     name: string;
-    init(lwdNavElement: LRNav): void;
-    mobileInit(lwdNavElement: LRNav): void;
+    init(lrNav: LRNav): void;
+    mobileInit(lrNav: LRNav): void;
 }
 
 
 
 class LRNav extends HTMLElement {
-    private static navTypes: Array<ILwdNavType> = [
+    private static navTypes: Array<ILrNavType> = [
         {
             name: "side",
-            init(lwdNav: LRNav) {
-                //if (LWD.debugMode) console.info("generating SIDE"); TODO
-
-                let menuHead = document.createElement("lwd-navitem");
+            init(lrNav: LRNav) {
+                if (LR.debugMode) console.log("LR: Generating navigation \"side\"");
+                
+                let menuHead = document.createElement("lr-navitem");
                 menuHead.classList.add("generated-nav-element", "header");
 
                 let navLabel = document.createElement("h4");
                 navLabel.classList.add("navItemLabel");
-                navLabel.innerHTML = lwdNav.getAttribute("title") ? lwdNav.getAttribute("title") as string : document.title;
+                navLabel.innerHTML = lrNav.getAttribute("title") ? lrNav.getAttribute("title") as string : document.title;
 
                 menuHead.appendChild(navLabel);
-                // TODO: menuHead.appendChild(lwdNav.getNavButton(18));
+                // TODO: menuHead.appendChild(lrNav.getNavButton(18));
                 
 
-                lwdNav.insertBefore(menuHead, lwdNav.firstChild);
+                lrNav.insertBefore(menuHead, lrNav.firstChild);
             },
-            mobileInit(lwdNavElement: LRNav) {
-                //if (LWD.debugMode) console.info("generating SIDE mobile"); TODO
+            mobileInit(lrNav: LRNav) {
+                if (LR.debugMode) console.log("LR: Generating mobile navigation \"side\"");
                 
             }
         },
         {
             name: "test",
-            init(lwdNavElement: LRNav) {
+            init(lrNav: LRNav) {
                 console.log("init 2");
                 
             },
-            mobileInit(lwdNavElement: LRNav) {
+            mobileInit(lrNav: LRNav) {
                 console.log("mobileInit 2");
                 
             }
@@ -49,16 +50,16 @@ class LRNav extends HTMLElement {
         let type = this.navTypes.find(x => {
             return x.name == name;
         });
-        return type? type: this.navTypes[0]; // return type or first navType as default
+        return type? type: null; // return type or null
     }
 
-    static registerNavType(navType: ILwdNavType) {
+    static registerNavType(navType: ILrNavType) {
         this.navTypes.push(navType);
     }
 
     
-    currentNavType: ILwdNavType | null = null;
-    currentMobileNavType: ILwdNavType | null = null;
+    currentNavType: ILrNavType | null = null;
+    currentMobileNavType: ILrNavType | null = null;
     
     constructor() {
         super();
@@ -68,9 +69,22 @@ class LRNav extends HTMLElement {
         this.onNavTypeChange();
     }
 
-    private onNavTypeChange() {
+    private onNavTypeChange() {        
         let newNavType = LRNav.getNavTypeByName(this.getAttribute("type") as string);
         let newMobileNavType = LRNav.getNavTypeByName(this.getAttribute("mobile-type") as string);
+        if (newNavType == null) {
+            this.setAttribute("type", LRNav.navTypes[0].name);
+            newNavType = LRNav.navTypes[0];
+        }
+        if (newMobileNavType == null) {
+            this.setAttribute("mobile-type", LRNav.navTypes[0].name);
+            newMobileNavType = LRNav.navTypes[0];
+        }
+        console.log(newNavType);
+        console.log(newMobileNavType);
+        newNavType = newNavType == null?LRNav.navTypes[0]:newNavType;
+        newMobileNavType = newMobileNavType == null?LRNav.navTypes[0]:newMobileNavType;
+        
         if (this.getAttribute("mobile-type") == null) {
             newMobileNavType = newNavType;
         }
@@ -137,7 +151,7 @@ class LRNav extends HTMLElement {
     //#endregion
 }
 //#endregion
-//#region "scripts/LRUtils.ts"
+//#region "C:\Users\JaHof\Development\Lightrays-examples\demo\Lightrays\scripts\LRUtils.ts"
 class LRUtils {
     static setCookie(name: string, value: string, expiresDays?: number, path?: string): void {
         let cookieStr = name + "=" + value + ";";
@@ -255,7 +269,7 @@ class LRUtils {
     }
 }
 //#endregion
-//#region "scripts/LR.ts"
+//#region "C:\Users\JaHof\Development\Lightrays-examples\demo\Lightrays\scripts\LR.ts"
 
 
 class LR {
@@ -274,7 +288,7 @@ class LR {
         this.setCSSVariable("--color-text", color.text.toHex());
     
         if (this.saveSettingsToCookies) {
-            LRUtils.setCookie("LWD_AccentColor", this.accentColor.toJsonString());
+            LRUtils.setCookie("LR_AccentColor", this.accentColor.toJsonString());
         }
     }
 
@@ -310,8 +324,8 @@ class LR {
     }
 
     static loadFromCookies() {
-        if(LRUtils.getCookie("LWD_AccentColor") != "") {
-            this.setAccentColor(AccentColor.fromJsonString(LRUtils.getCookie("LWD_AccentColor")))
+        if(LRUtils.getCookie("LR_AccentColor") != "") {
+            this.setAccentColor(AccentColor.fromJsonString(LRUtils.getCookie("LR_AccentColor")))
         }
     
         this.saveSettingsToCookies = true;
@@ -626,9 +640,9 @@ class Theme {
 
 //Init
 function init() {
-    if (LR.debugMode) console.info("LWD: init");
+    if (LR.debugMode) console.info("LR: init");
     if (!LR.getAccentColor) {
-        if (LR.debugMode) console.info("LWD: Setting AccentColor to default");
+        if (LR.debugMode) console.info("LR: Setting AccentColor to default");
         LR.setAccentColor(AccentColor.BLUE);
     }
 }
@@ -644,5 +658,5 @@ if (document.readyState != 'complete') {
 
 
 // Define the new elements
-window.customElements.define('lwd-nav', LRNav);
+window.customElements.define('lr-nav', LRNav);
 //#endregion

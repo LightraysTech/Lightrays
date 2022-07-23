@@ -18,7 +18,7 @@ export default class LR {
         this.setCSSVariable("--color-text", color.text.toHex());
     
         if (this.saveSettingsToCookies) {
-            LRUtils.setCookie("LWD_AccentColor", this.accentColor.toJsonString());
+            LRUtils.setCookie("LR_AccentColor", this.accentColor.toJsonString());
         }
     }
 
@@ -54,8 +54,8 @@ export default class LR {
     }
 
     static loadFromCookies() {
-        if(LRUtils.getCookie("LWD_AccentColor") != "") {
-            this.setAccentColor(AccentColor.fromJsonString(LRUtils.getCookie("LWD_AccentColor")))
+        if(LRUtils.getCookie("LR_AccentColor") != "") {
+            this.setAccentColor(AccentColor.fromJsonString(LRUtils.getCookie("LR_AccentColor")))
         }
     
         this.saveSettingsToCookies = true;
@@ -370,9 +370,9 @@ export class Theme {
 
 //Init
 export function init() {
-    if (LR.debugMode) console.info("LWD: init");
+    if (LR.debugMode) console.info("LR: init");
     if (!LR.getAccentColor) {
-        if (LR.debugMode) console.info("LWD: Setting AccentColor to default");
+        if (LR.debugMode) console.info("LR: Setting AccentColor to default");
         LR.setAccentColor(AccentColor.BLUE);
     }
 }
@@ -388,4 +388,4 @@ if (document.readyState != 'complete') {
 
 
 // Define the new elements
-window.customElements.define('lwd-nav', LRNav);
+window.customElements.define('lr-nav', LRNav);
