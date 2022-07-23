@@ -1,7 +1,7 @@
 import React, { MouseEventHandler, ReactNode, useEffect, useState } from "react";
-import * as LRUtils from "../LRUtils";
-import * as LRReactUtils from "../LRReactUtils"
-import {NavLink, useMatch} from "react-router-dom";
+import "../LRUtils";
+import {NavLink} from "react-router-dom";
+import LRReactUtils from "../LRReactUtils";
 
 interface LRNavProps {
     children?: React.ReactNode,
@@ -20,7 +20,7 @@ export enum NavTypes {
     top = "top",
 }
 
- export const LRNav = ({ children, type, mobileType, tabletAt, mobileAt, className, style}: LRNavProps) => {
+export const LRNav = ({ children, type, mobileType, tabletAt, mobileAt, className, style}: LRNavProps) => {
 
     const [isOpen, setIsOpen] = useState<boolean>(true);
     let toggleNavButton = () => setIsOpen(!isOpen);
@@ -51,7 +51,8 @@ export enum NavTypes {
                 } else {
                     headerJSX = (
                         <Header>
-                            <Icon className='fluentIcon'></Icon><Label>Navigation</Label>
+                            <Icon className='fluentIcon'></Icon>
+                            <Label>Navigation</Label>
                         </Header>
                     );
                 }
@@ -95,9 +96,9 @@ export enum NavTypes {
     }
 
     return (
-        <div className={"lr-navRoot" + cssClasses}>
-            <div className={"nav" + cssClasses + " " + (className ? className : "")} style={style}>
-                <span onClick={toggleNavButton}>{header}</span>
+        <div className={"lr-navView" + cssClasses}>
+            <div className={"lr-nav" + cssClasses + " " + (className ? className : "")} style={style}>
+                <Group className="header-navGroup" onClick={toggleNavButton}>{header}</Group>
                 {navChildren}
             </div>
             {contentChildren}
@@ -145,21 +146,21 @@ export const Item: any = ({ children, className, style, open, to, activeOnlyWhen
         if (to) {          
             return (
                 <div className={`lr-navFoldout ${foldoutOpen}`}>
-                    <NavLink to={to} className={classes + " " + foldoutOpen} style={style} onClick={toggleFoldout}>
+                    <NavLink to={to} className={classes} style={style} onClick={toggleFoldout}>
                         {iconJSX[0]} {labelJSX[0]}
                         <Icon className="toggle"></Icon>
                     </NavLink>
-                    <div className={`foldoutItems ${foldoutOpen}`}>{foldoutItems}</div>
+                    <div className={'foldoutItems'}>{foldoutItems}</div>
                 </div>
             )
         } else {
             return (
                 <div className={`lr-navFoldout ${foldoutOpen}`}>
-                    <div className={classes + " " + foldoutOpen} style={style} onClick={toggleFoldout}>
+                    <div className={classes} style={style} onClick={toggleFoldout}>
                         {iconJSX[0]} {labelJSX[0]}
                         <Icon className="toggle"></Icon>
                     </div>
-                    <div className={`foldoutItems ${foldoutOpen}`}>{foldoutItems}</div>
+                    <div className={'foldoutItems'}>{foldoutItems}</div>
                 </div>
             )
         }
@@ -190,8 +191,8 @@ export const NavButton = ({ children, className, style, onClick }: NavComponentP
     return (<div onClick={onClick} className={`${className}`} style={style}>{children}</div>);
 }
 
-export const Group = ({ children, className, style }: NavComponentProps) => {
-    return <div className={className ? `lr-navGroup ${className}` : "lr-navGroup"} style={style}>{children}</div>
+export const Group = ({ children, className, style, onClick }: NavComponentProps) => {
+    return <div className={className ? `lr-navGroup ${className}` : "lr-navGroup"} style={style} onClick={onClick}>{children}</div>
 }
 
 interface ContentProps extends NavComponentProps {scroll: boolean}
@@ -201,18 +202,15 @@ export const Content: any = ({ children, className, style, scroll }: ContentProp
     return <div className={classnames} style={style}>{children}</div>
 }
 
-export const Header: any = ({ children, className, style }: NavComponentProps) => {
-    let classnames = className ? `header-navGroup ${className}` : "header-navGroup";
+export const Header: any = ({ children, className, style, onClick }: NavComponentProps) => {
 
     let icon = LRReactUtils.getChildrenOfType(Icon, children);
     let label = LRReactUtils.getChildrenOfType(Label, children);
 
     return ( 
-        <Group className={classnames} style={style}>
-            <Item>
-                {icon}
-                {label}
-            </Item>
-        </Group>
+        <Item className={className} style={style} onClick={onClick}>
+            {icon}
+            {label}
+        </Item>
     );
 }

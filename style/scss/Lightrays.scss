@@ -80,12 +80,12 @@ a {
 .hidden {display: none;}
 
 // Navigation --------------------------------------------
-.lr-navRoot {
+.lr-navView {
     position: fixed;
     width: 100%; height: 100%;
     display: flex; flex: 1 1 auto;
 
-    .lr-navRoot {
+    .lr-navView {
         position: relative;
         //width: unset; height: unset;
         flex: 1 1 auto;
@@ -109,7 +109,7 @@ a {
     }
 }
 
-.lr-navRoot .nav {
+.lr-nav {
     width: var(--width);
     height: var(--height);
     background-color: var(--foreground);
@@ -154,16 +154,11 @@ a {
         flex-shrink: 0;
 
         .lr-navItem {
-            flex-wrap: nowrap; flex-grow: 1;
+            flex-wrap: nowrap;
             height: 35px;
             margin: 5px 10px; transition: margin .3s;
             white-space: nowrap;
             overflow: hidden;
-
-            &.open .navItemIcon.toggle {
-                transform: rotate(180deg);
-                &:hover {transform: rotate(180deg) scale(1.1)}
-            }
 
             .navItemIcon {
                 transition: transform .1s;
@@ -204,10 +199,17 @@ a {
         .lr-navFoldout {
             .foldoutItems {
               margin-left: 40px;
-              &.open {display: block}
               display: none;
             }
             transition: height .2s linear;
+
+            &.open {
+                .navItemIcon.toggle {
+                    transform: rotate(180deg);
+                    &:hover {transform: rotate(180deg) scale(1.1)}
+                }
+                .foldoutItems {display: block}
+            }
         }
 
         &.alt-state {

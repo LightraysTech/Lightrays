@@ -5,7 +5,6 @@ interface ILwdNavType {
 }
 
 
-
 export default class LRNav extends HTMLElement {
     private static navTypes: Array<ILwdNavType> = [
         {
