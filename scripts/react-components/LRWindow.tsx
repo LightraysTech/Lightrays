@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState } from "react";
 import "../style/main.css";
-import {dragElement} from "../LRUtils"
+import LRUtils from "../LRUtils";
 
 interface LRWindowProps {
     isOpen: boolean;
@@ -70,7 +70,7 @@ const LRWindow = ({isOpen, isOpenCallback, children, header, width, height, styl
     useEffect(() => {         
         setWindowVisibility({display: "none"});
         if(windowElement.current && h2Element.current) {
-            dragElement(windowElement.current, h2Element.current);
+            LRUtils.dragElement(windowElement.current, h2Element.current);
             windowElement.current.addEventListener("click", () => setWindowVisibility({zIndex: "102"}) );
         }
     }, [])

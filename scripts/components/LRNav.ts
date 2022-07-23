@@ -7,7 +7,6 @@ interface ILrNavType {
 }
 
 
-
 export default class LRNav extends HTMLElement {
     private static navTypes: Array<ILrNavType> = [
         {
