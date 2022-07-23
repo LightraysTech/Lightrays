@@ -1,8 +1,278 @@
-import LRNav from "./components/LRNav";
-import LRUtils from "./LRUtils";
+//#region "C:\Users\JaHof\Development\Lightrays-examples\demo\Lightrays\scripts\components\LRNav.ts"
+
+interface ILrNavType {
+    name: string;
+    init(lrNav: LRNav): void;
+    mobileInit(lrNav: LRNav): void;
+}
 
 
-export default class LR {
+
+class LRNav extends HTMLElement {
+    private static navTypes: Array<ILrNavType> = [
+        {
+            name: "side",
+            init(lrNav: LRNav) {
+                if (LR.debugMode) console.log("LR: Generating navigation \"side\"");
+                
+                let menuHead = document.createElement("lr-navitem");
+                menuHead.classList.add("generated-nav-element", "header");
+
+                let navLabel = document.createElement("h4");
+                navLabel.classList.add("navItemLabel");
+                navLabel.innerHTML = lrNav.getAttribute("title") ? lrNav.getAttribute("title") as string : document.title;
+
+                menuHead.appendChild(navLabel);
+                // TODO: menuHead.appendChild(lrNav.getNavButton(18));
+                
+
+                lrNav.insertBefore(menuHead, lrNav.firstChild);
+            },
+            mobileInit(lrNav: LRNav) {
+                if (LR.debugMode) console.log("LR: Generating mobile navigation \"side\"");
+                
+            }
+        },
+        {
+            name: "test",
+            init(lrNav: LRNav) {
+                console.log("init 2");
+                
+            },
+            mobileInit(lrNav: LRNav) {
+                console.log("mobileInit 2");
+                
+            }
+        }
+    ];
+
+    static getNavTypeByName(name: string) {
+        let type = this.navTypes.find(x => {
+            return x.name == name;
+        });
+        return type? type: null; // return type or null
+    }
+
+    static registerNavType(navType: ILrNavType) {
+        this.navTypes.push(navType);
+    }
+
+    
+    currentNavType: ILrNavType | null = null;
+    currentMobileNavType: ILrNavType | null = null;
+    
+    constructor() {
+        super();
+    }
+
+    connectedCallback() {
+        this.onNavTypeChange();
+    }
+
+    private onNavTypeChange() {        
+        let newNavType = LRNav.getNavTypeByName(this.getAttribute("type") as string);
+        let newMobileNavType = LRNav.getNavTypeByName(this.getAttribute("mobile-type") as string);
+        if (newNavType == null) {
+            this.setAttribute("type", LRNav.navTypes[0].name);
+            newNavType = LRNav.navTypes[0];
+        }
+        if (newMobileNavType == null) {
+            this.setAttribute("mobile-type", LRNav.navTypes[0].name);
+            newMobileNavType = LRNav.navTypes[0];
+        }
+        console.log(newNavType);
+        console.log(newMobileNavType);
+        newNavType = newNavType == null?LRNav.navTypes[0]:newNavType;
+        newMobileNavType = newMobileNavType == null?LRNav.navTypes[0]:newMobileNavType;
+        
+        if (this.getAttribute("mobile-type") == null) {
+            newMobileNavType = newNavType;
+        }
+        
+        if (newNavType != this.currentNavType || newMobileNavType != this.currentMobileNavType) {
+            document.body.setAttribute("nav-type", newNavType.name);
+            document.body.setAttribute("mobile-nav-type", newMobileNavType.name);
+            
+            this.removeGeneratedElements();
+            
+            this.currentNavType = newNavType;
+            if (this.currentNavType) this.currentNavType.init(this);
+
+            this.currentMobileNavType = newMobileNavType;
+            if (this.currentMobileNavType) this.currentMobileNavType.mobileInit(this);
+        }
+    }
+    regenerateNav() {
+        this.removeGeneratedElements();
+            
+        if (this.currentNavType) this.currentNavType.init(this);
+        if (this.currentMobileNavType) this.currentMobileNavType.mobileInit(this);
+    }
+
+    removeGeneratedElements() {
+        document.querySelectorAll(".generated-nav-element").forEach(element => {
+            element.remove();
+        });
+    }
+
+    attributeChangedCallback(name: string, oldValue: string, newValue: string) {
+        let body = document.body;
+        switch (name) {
+            case "type":
+                this.onNavTypeChange();
+                break;
+            case "mobile-type":
+                this.onNavTypeChange();
+                break;
+            case "alt-state":
+                if (newValue == null) {
+                    body.removeAttribute("nav-alt-state");
+                } else {
+                    body.setAttribute("nav-alt-state", "");
+                }
+                break;
+            case "title":
+                this.regenerateNav();
+                break;
+        }
+    }
+    static get observedAttributes() { return ['type', 'mobile-type', 'alt-state', 'title']; }
+
+    //#region setters
+    set type(type: string) {
+        this.setAttribute("type", type);
+    }
+    set mobileType(type: string) {
+        this.setAttribute("mobile-type", type);
+    }
+    set title(title: string) {
+        this.setAttribute("title", title);
+    }
+    //#endregion
+}
+//#endregion
+//#region "C:\Users\JaHof\Development\Lightrays-examples\demo\Lightrays\scripts\LRUtils.ts"
+class LRUtils {
+    static setCookie(name: string, value: string, expiresDays?: number, path?: string): void {
+        let cookieStr = name + "=" + value + ";";
+        if (expiresDays != undefined) {
+            const d = new Date();
+            d.setTime(d.getTime() + (expiresDays * 24 * 60 * 60 * 1000));
+            let expires = "expires=" + d.toUTCString();
+            cookieStr += expires;
+        }
+        if (path) {
+            cookieStr += ";path=" + path;
+        }
+        document.cookie = cookieStr;
+    }
+    static getCookie(cname: string): string {
+        let name = cname + "=";
+        let decodedCookie = decodeURIComponent(document.cookie);
+        let ca = decodedCookie.split(';');
+        for (let c of ca) {
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+
+    static map_range(value: number, low1: number, high1: number, low2: number, high2: number): number {
+        return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
+    }
+    static dragElement = (elem: HTMLElement, draggableElem?: HTMLElement | undefined): void => {
+        var elemWidth = 0, elemHeight = 0, pointerOffsetX = 0, pointerOffsetY = 0;
+
+        if (draggableElem !== undefined) {
+            draggableElem.onmousedown = dragMouseDown;
+            draggableElem.addEventListener("touchstart", dragTouchDown);
+            draggableElem.addEventListener("touchmove", elementDrag);
+        } else {
+            elem.onmousedown = dragMouseDown;
+            elem.addEventListener("touchstart", dragTouchDown);
+            elem.addEventListener("touchmove", elementDrag);
+        }
+
+        function dragMouseDown(e: MouseEvent) {
+            elemWidth = elem.offsetWidth;
+            elemHeight = elem.offsetHeight;
+            pointerOffsetX = e.offsetX;
+            pointerOffsetY = e.offsetY;
+
+            document.onmouseup = closeDragElement;
+            document.ontouchend = closeDragElement;
+            document.onmousemove = elementDrag;
+        }
+
+        function dragTouchDown(e: TouchEvent) {
+            e.preventDefault();
+            console.log("touch event: ", e);
+
+            let rect = elem.getBoundingClientRect();
+            elemWidth = elem.offsetWidth;
+            elemHeight = elem.offsetHeight;
+            pointerOffsetX = e.touches[0].clientX - rect.left;
+            pointerOffsetY = e.touches[0].clientY - rect.top;
+
+            document.ontouchend = closeDragElement;
+        }
+
+        function elementDrag(e: TouchEvent | MouseEvent) {
+            let positionPxLeft = 0;
+            let positionPxTop = 0;
+
+            if (e instanceof TouchEvent) {
+                positionPxLeft = e.targetTouches[0].clientX - pointerOffsetX + (elemWidth / 2);
+                positionPxTop = e.targetTouches[0].clientY - pointerOffsetY + (elemHeight / 2);
+            } else if (e instanceof MouseEvent) {
+                positionPxLeft = e.clientX - pointerOffsetX + (elemWidth / 2);
+                positionPxTop = e.clientY - pointerOffsetY + (elemHeight / 2);
+            }
+
+
+
+            let windowWidth = window.innerWidth;
+            let windowHeight = window.innerHeight;
+
+            let finalPosTop = LRUtils.map_range(positionPxTop, 0, windowHeight, 0, 100);
+            let finalPosLeft = LRUtils.map_range(positionPxLeft, 0, windowWidth, 0, 100);
+
+            finalPosTop = Math.round(finalPosTop * 100) / 100;
+            finalPosLeft = Math.round(finalPosLeft * 100) / 100;
+
+            function limitPos(elempos: number) {
+                if (elempos <= 0) {
+                    return 0;
+                } else if (elempos >= 100) {
+                    return 100;
+                } else {
+                    return elempos;
+                }
+            }
+            elem.style.setProperty("left", limitPos(finalPosLeft) + "%");
+            elem.style.setProperty("top", limitPos(finalPosTop) + "%");
+        }
+
+        function closeDragElement() {
+            // stop moving when mouse button is released:
+            document.onmouseup = null;
+            document.onmousemove = null;
+        }
+    }
+
+    static addAnimation = (component: HTMLElement, cssAnimation: string, duration: number) => {
+        // TODO 
+    }
+}
+//#endregion
+//#region "C:\Users\JaHof\Development\Lightrays-examples\demo\Lightrays\scripts\LR.ts"
+
+
+class LR {
         static saveSettingsToCookies: boolean = false;
         static debugMode = true;
         
@@ -64,7 +334,7 @@ export default class LR {
 
 
 //Basic types
-export class Color {
+class Color {
     r: number;
     g: number;
     b: number;
@@ -198,7 +468,7 @@ export class Color {
 
 //TODO: shadow class
 /*
-export class Shadow {
+class Shadow {
     hOffset: number;
     vOffset: number;
     blur: number;
@@ -236,7 +506,7 @@ export class Shadow {
 */
 
 //Lightrays specific
-export class AccentColor {
+class AccentColor {
     light: Color;
     main: Color;
     dark: Color;
@@ -270,7 +540,7 @@ export class AccentColor {
     }
 }
 
-export class Theme {
+class Theme {
     text: Color;
     background: Color;
     backgroundTint: Color;
@@ -369,7 +639,7 @@ export class Theme {
 
 
 //Init
-export function init() {
+function init() {
     if (LR.debugMode) console.info("LR: init");
     if (!LR.getAccentColor) {
         if (LR.debugMode) console.info("LR: Setting AccentColor to default");
@@ -389,3 +659,4 @@ if (document.readyState != 'complete') {
 
 // Define the new elements
 window.customElements.define('lr-nav', LRNav);
+//#endregion

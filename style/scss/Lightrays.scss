@@ -80,12 +80,12 @@ a {
 .hidden {display: none;}
 
 // Navigation --------------------------------------------
-.lr-navView {
+.lr-navView, lr-navView {
     position: fixed;
     width: 100%; height: 100%;
     display: flex; flex: 1 1 auto;
 
-    .lr-navView {
+    .lr-navView, lr-navView {
         position: relative;
         //width: unset; height: unset;
         flex: 1 1 auto;
@@ -109,7 +109,7 @@ a {
     }
 }
 
-.lr-nav {
+.lr-nav, lr-nav {
     width: var(--width);
     height: var(--height);
     background-color: var(--foreground);
@@ -120,7 +120,7 @@ a {
     &.floating {margin: 10px;}
     &.colored {background: linear-gradient(to right, var(--color-light), var(--color-main), var(--color-dark));color: var(--color-text);}
 
-    .lr-navItem {
+    .lr-navItem, lr-navItem {
         display: flex; align-items: center;
         border-radius: 8px;
         text-decoration: none;
@@ -144,7 +144,7 @@ a {
 
     }
 
-    &.side {
+    &.side, &[type="side"] {
         --width: 300px;
         --collapsed-width: 60px;
         transition: width .3s ease;
@@ -153,7 +153,7 @@ a {
         &.floating {border-radius: 20px 3px 3px 20px;}
         flex-shrink: 0;
 
-        .lr-navItem {
+        .lr-navItem, lr-navItem {
             flex-wrap: nowrap;
             height: 35px;
             margin: 5px 10px; transition: margin .3s;
@@ -174,7 +174,7 @@ a {
             .navItemLabel { order: 2; flex-grow: 1; }
         }
 
-        .lr-navGroup {
+        .lr-navGroup, lr-navGroup {
             &.header-navGroup {
                 border-top: none;
 
