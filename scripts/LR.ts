@@ -55,7 +55,10 @@ export default class LR {
 
     static loadFromCookies() {
         if(LRUtils.getCookie("LR_AccentColor") != "") {
-            this.setAccentColor(AccentColor.fromJsonString(LRUtils.getCookie("LR_AccentColor")))
+            this.setAccentColor(AccentColor.fromJsonString(LRUtils.getCookie("LR_AccentColor")));
+        }
+        if(LRUtils.getCookie("LR_Theme") != "") {
+            this.setTheme(Theme.fromJsonString(LRUtils.getCookie("LR_Theme")));
         }
     
         this.saveSettingsToCookies = true;

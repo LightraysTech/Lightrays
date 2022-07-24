@@ -124,6 +124,7 @@ a {
         display: flex; align-items: center;
         border-radius: 8px;
         text-decoration: none;
+        cursor: pointer;
         &:visited{color: var(--color);}
 
         .navItemIcon { font-family: "Segoe Fluent Icons", segoeFluentIcons; text-align: center; }

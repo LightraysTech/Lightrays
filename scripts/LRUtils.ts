@@ -10,7 +10,7 @@ export default class LRUtils {
         if (path) {
             cookieStr += ";path=" + path;
         }
-        document.cookie = cookieStr;
+        document.cookie = cookieStr.replaceAll("%", "%25");
     }
     static getCookie(cname: string): string {
         let name = cname + "=";

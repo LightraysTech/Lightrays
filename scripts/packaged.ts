@@ -18,7 +18,7 @@ class LRNav extends HTMLElement {
                     if (header.firstElementChild?.nodeName != "LR-NAVITEM") {
                         let headerItem = document.createElement("lr-navItem");
                         headerItem.addEventListener("click", () => {
-                            lrNav.toggleAttribute("alt-state");
+                            lrNav.toggleAltState();
                         });
                         if (header.getAttribute("onclick") != null) {
                             headerItem.setAttribute("onclick", header.getAttribute("onclick") + "");
@@ -31,7 +31,7 @@ class LRNav extends HTMLElement {
                     let header = document.createElement("lr-navHeader");
                     let headerItem = document.createElement("lr-navItem");
                     headerItem.addEventListener("click", () => {
-                        lrNav.toggleAttribute("alt-state");
+                        lrNav.toggleAltState();
                         console.log("sfgfs");
                     });
 
@@ -93,7 +93,7 @@ class LRNav extends HTMLElement {
         let newMobileNavType = LRNav.getNavTypeByName(this.getAttribute("mobile-type") as string);
 
         newNavType = newNavType == null?LRNav.navTypes[0]:newNavType;
-        newMobileNavType = newMobileNavType == null?LRNav.navTypes[0]:newMobileNavType;
+        newMobileNavType = newMobileNavType == null?newNavType:newMobileNavType;
 
         if (this.getAttribute("type") != newNavType.name) {
             this.setAttribute("type", newNavType.name);
@@ -149,6 +149,10 @@ class LRNav extends HTMLElement {
     }
     static get observedAttributes() { return ['type', 'mobile-type', 'alt-state', 'title']; }
 
+    toggleAltState() {
+        this.toggleAttribute("alt-state");
+    }
+
     //#region setters
     set type(type: string) {
         this.setAttribute("type", type);
@@ -175,7 +179,7 @@ class LRUtils {
         if (path) {
             cookieStr += ";path=" + path;
         }
-        document.cookie = cookieStr;
+        document.cookie = cookieStr.replaceAll("%", "%25");
     }
     static getCookie(cname: string): string {
         let name = cname + "=";
@@ -336,7 +340,10 @@ class LR {
 
     static loadFromCookies() {
         if(LRUtils.getCookie("LR_AccentColor") != "") {
-            this.setAccentColor(AccentColor.fromJsonString(LRUtils.getCookie("LR_AccentColor")))
+            this.setAccentColor(AccentColor.fromJsonString(LRUtils.getCookie("LR_AccentColor")));
+        }
+        if(LRUtils.getCookie("LR_Theme") != "") {
+            this.setTheme(Theme.fromJsonString(LRUtils.getCookie("LR_Theme")));
         }
     
         this.saveSettingsToCookies = true;

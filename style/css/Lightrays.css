@@ -68,7 +68,7 @@ button.important, input[type=submit], input.important[type=reset], input.importa
   color: var(--color-text);
 }
 button.important:hover, input[type=submit]:hover, input.important[type=reset]:hover, input.important[type=button]:hover {
-  background-color: var(--color-darker);
+  background-color: var(--color-dark);
 }
 button.important:active, input[type=submit]:active, input.important[type=reset]:active, input.important[type=button]:active {
   background-color: var(--color-dark);
@@ -136,7 +136,7 @@ input[type=range][type=range] {
   -webkit-appearance: none;
   appearance: none;
   height: 0px;
-  background: var(--color-darker);
+  background: var(--color-main);
   outline: none;
   /* Remove outline */
   -webkit-transition: 0.1s;
@@ -150,14 +150,14 @@ input[type=range][type=range]::-webkit-slider-thumb {
   width: 25px;
   height: 25px;
   border-radius: 25px;
-  background: var(--color-darker);
+  background: var(--color-main);
   cursor: pointer;
 }
 input[type=range][type=range]::-moz-range-thumb {
   width: 25px;
   height: 25px;
   border-radius: 25px;
-  background: var(--color-darker);
+  background: var(--color-main);
   border: none;
   cursor: pointer;
 }
@@ -287,6 +287,7 @@ a.noStyle:hover {
   align-items: center;
   border-radius: 8px;
   text-decoration: none;
+  cursor: pointer;
 }
 .lr-nav .lr-navItem:visited, .lr-nav lr-navItem:visited, lr-nav .lr-navItem:visited, lr-nav lr-navItem:visited {
   color: var(--color);

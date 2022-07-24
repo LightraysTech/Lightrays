@@ -35,7 +35,7 @@ button {
     color: var(--color-text);
 
     &:hover {
-      background-color: var(--color-darker);
+      background-color: var(--color-dark);
     }
 
     &:active {
@@ -121,7 +121,7 @@ input {
       -webkit-appearance: none;
       appearance: none;
       height: 0px;
-      background: var(--color-darker);
+      background: var(--color-main);
       outline: none;
       /* Remove outline */
       -webkit-transition: .1s;
@@ -136,7 +136,7 @@ input {
       width: 25px;
       height: 25px;
       border-radius: 25px;
-      background: var(--color-darker);
+      background: var(--color-main);
       //box-shadow: var(--box-shadow-active);
       cursor: pointer;
     }
@@ -145,7 +145,7 @@ input {
       width: 25px;
       height: 25px;
       border-radius: 25px;
-      background: var(--color-darker);
+      background: var(--color-main);
       //box-shadow: var(--box-shadow-2);
       border: none;
       cursor: pointer;
