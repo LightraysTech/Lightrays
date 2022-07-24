@@ -94,9 +94,14 @@ class LRNav extends HTMLElement {
 
         newNavType = newNavType == null?LRNav.navTypes[0]:newNavType;
         newMobileNavType = newMobileNavType == null?LRNav.navTypes[0]:newMobileNavType;
-                
-        document.body.setAttribute("nav-type", newNavType.name);
-        document.body.setAttribute("mobile-nav-type", newMobileNavType.name);
+
+        if (this.getAttribute("type") != newNavType.name) {
+            this.setAttribute("type", newNavType.name);
+            
+        }
+        if (this.getAttribute("mobile-type") != newNavType.name) {
+            this.setAttribute("mobile-type", newNavType.name);          
+        }
 
         if (newNavType != this.currentNavType || newMobileNavType != this.currentMobileNavType) {            
             this.removeGeneratedElements();
@@ -131,11 +136,11 @@ class LRNav extends HTMLElement {
                 this.onNavTypeChange();
                 break;
             case "alt-state":
-                if (newValue == null) {
+                /*if (newValue == null) {
                     body.removeAttribute("nav-alt-state");
                 } else {
                     body.setAttribute("nav-alt-state", "");
-                }
+                }*/
                 break;
             case "title":
                 this.regenerateNav();

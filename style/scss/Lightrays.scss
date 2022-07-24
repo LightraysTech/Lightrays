@@ -148,6 +148,7 @@ a {
         --width: 300px;
         --collapsed-width: 60px;
         transition: width .3s ease;
+        overflow: auto;
         flex-direction: column;
         &.flat {border: none; border-right: var(--border); &.floating {border: var(--border)}}
         &.floating {border-radius: 20px 3px 3px 20px;}

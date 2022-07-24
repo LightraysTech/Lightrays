@@ -44,7 +44,7 @@ button, input[type=submit], input[type=reset], input[type=button] {
   margin: 5px 0;
   border: none;
   background-color: var(--foreground);
-  color: var(--foreground);
+  color: var(--text-color);
   border-radius: 5px;
   transition: background-color 0.1s, color 0.2s, transform 0.1s ease-in, box-shadow 0.3s;
   user-select: none;
@@ -81,7 +81,7 @@ button.flat:hover, input.flat[type=submit]:hover, input.flat[type=reset]:hover, 
   box-shadow: var(--box-shadow);
 }
 button.flat:active, input.flat[type=submit]:active, input.flat[type=reset]:active, input.flat[type=button]:active {
-  --height: 0.5;
+  --height: 0.5 ;
 }
 
 input {
@@ -91,7 +91,7 @@ input {
   font-size: 0.8rem;
   padding: 10px;
   margin: 5px 0;
-  color: var(--foreground);
+  color: var(--color-text);
   transition: all 0.1s;
   display: inline-block;
   user-select: none;
@@ -315,6 +315,7 @@ a.noStyle:hover {
   --width: 300px;
   --collapsed-width: 60px;
   transition: width 0.3s ease;
+  overflow: auto;
   flex-direction: column;
   flex-shrink: 0;
 }
