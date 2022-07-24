@@ -162,7 +162,7 @@ a {
 
             .navItemIcon {
                 transition: transform .1s;
-                min-width: calc(var(--collapsed-width) - 10px);
+                min-width: calc(var(--collapsed-width) - 20px);
                 text-align: center;
                 order: 1;
                 &.toggle {
@@ -181,22 +181,27 @@ a {
                 &:hover {
                     .navItemIcon {
                         visibility: hidden;
+                        font-size: 0;
                         img {width: 0px; height: 0px;}
                         @extend .fluentIcon;
-                        &::before {content: ""; visibility: initial;}
+                        &::before {content: ""; visibility: initial; font-size: initial;}
                     }
                 }
             }
             display: block;
             border-top: var(--border); border-bottom: var(--border); border-width: 1.5px;
             margin: 5px 0;padding: 5px 0;
-            & ~ .lr-navGroup {
+            & ~ .lr-navGroup, & ~ lr-navGroup {
                 border-top-color: transparent;
                 margin-top: 0; padding-top: 0;
             }
         }
 
-        .lr-navFoldout {
+        lr-navHeader {
+            @extend lr-navGroup, .header-navGroup;
+        }
+
+        .lr-navFoldout, lr-navFoldout {
             .foldoutItems {
               margin-left: 40px;
               display: none;
@@ -212,7 +217,7 @@ a {
             }
         }
 
-        &.alt-state {
+        &.alt-state, &[alt-state] {
             width: var(--collapsed-width);
             .lr-navItem {margin: 5px;}
             .lr-navGroup .foldoutItems {margin-left: 0;}
@@ -232,7 +237,7 @@ a {
             .lr-navGroup .foldoutItems {margin-left: 40px;}
             .lr-navItem {margin: 5px 10px;}
 
-            &.alt-state {
+            &.alt-state, &[alt-state] {
                 height: 60px;
                 flex: 1 0 auto;
                 width: max-content;
@@ -249,7 +254,7 @@ a {
                 .navItemIcon.toggle {order: 1; position: unset;}
             }
 
-            &.alt-state {
+            &.alt-state, &[alt-state] {
                 .navItemIcon {margin: 5px 0; }
                 .navItemLabel, .toggle {display: none;}
             }

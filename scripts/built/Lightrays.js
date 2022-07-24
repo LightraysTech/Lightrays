@@ -6,14 +6,41 @@ class LRNav extends HTMLElement {
             init(lrNav) {
                 if (LR.debugMode)
                     console.log("LR: Generating navigation \"side\"");
-                let menuHead = document.createElement("lr-navitem");
-                menuHead.classList.add("generated-nav-element", "header");
-                let navLabel = document.createElement("h4");
-                navLabel.classList.add("navItemLabel");
-                navLabel.innerHTML = lrNav.getAttribute("title") ? lrNav.getAttribute("title") : document.title;
-                menuHead.appendChild(navLabel);
-                // TODO: menuHead.appendChild(lrNav.getNavButton(18));
-                lrNav.insertBefore(menuHead, lrNav.firstChild);
+                let header = lrNav.querySelector("lr-navHeader, .header-navGroup");
+                if (header != null && header.childElementCount != 0) {
+                    if (header.firstElementChild?.nodeName != "LR-NAVITEM") {
+                        let headerItem = document.createElement("lr-navItem");
+                        headerItem.addEventListener("click", () => {
+                            lrNav.toggleAttribute("alt-state");
+                        });
+                        if (header.getAttribute("onclick") != null) {
+                            headerItem.setAttribute("onclick", header.getAttribute("onclick") + "");
+                            header.removeAttribute("onclick");
+                        }
+                        headerItem.append(...header.childNodes);
+                        header.append(headerItem);
+                    }
+                }
+                else {
+                    let header = document.createElement("lr-navHeader");
+                    let headerItem = document.createElement("lr-navItem");
+                    headerItem.addEventListener("click", () => {
+                        lrNav.toggleAttribute("alt-state");
+                        console.log("sfgfs");
+                    });
+                    headerItem.innerHTML = `
+                        <div class="navItemIcon fluentIcon"></div>
+                        <span class="navItemLabel">` + (lrNav.hasAttribute("title") ? lrNav.getAttribute("title") : document.title) + `</span>
+                    `;
+                    header.append(headerItem);
+                    if (lrNav.firstElementChild != null) {
+                        lrNav.insertBefore(header, lrNav.firstElementChild);
+                    }
+                    else {
+                        lrNav.append(header);
+                    }
+                }
+                //lrNav.insertBefore(menuHead, lrNav.firstChild);
             },
             mobileInit(lrNav) {
                 if (LR.debugMode)
@@ -45,7 +72,7 @@ class LRNav extends HTMLElement {
         super();
     }
     connectedCallback() {
-        this.onNavTypeChange();
+        setTimeout(() => { this.onNavTypeChange(); }, 0);
     }
     onNavTypeChange() {
         let newNavType = LRNav.getNavTypeByName(this.getAttribute("type"));
@@ -58,8 +85,6 @@ class LRNav extends HTMLElement {
             this.setAttribute("mobile-type", LRNav.navTypes[0].name);
             newMobileNavType = LRNav.navTypes[0];
         }
-        console.log(newNavType);
-        console.log(newMobileNavType);
         newNavType = newNavType == null ? LRNav.navTypes[0] : newNavType;
         newMobileNavType = newMobileNavType == null ? LRNav.navTypes[0] : newMobileNavType;
         if (this.getAttribute("mobile-type") == null) {
