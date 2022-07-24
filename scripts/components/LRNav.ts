@@ -6,7 +6,6 @@ interface ILrNavType {
     mobileInit(lrNav: LRNav): void;
 }
 
-
 export default class LRNav extends HTMLElement {
     private static navTypes: Array<ILrNavType> = [
         {
@@ -47,8 +46,6 @@ export default class LRNav extends HTMLElement {
                         lrNav.append(header);
                     }
                 }
-                
-                //lrNav.insertBefore(menuHead, lrNav.firstChild);
             },
             mobileInit(lrNav: LRNav) {
                 if (LR.debugMode) console.log("LR: Generating mobile navigation \"side\"");
@@ -91,38 +88,26 @@ export default class LRNav extends HTMLElement {
         setTimeout(() => {this.onNavTypeChange()}, 0);
     }
 
-    private onNavTypeChange() { // TODO: Rewrite        
+    private onNavTypeChange() {
         let newNavType = LRNav.getNavTypeByName(this.getAttribute("type") as string);
         let newMobileNavType = LRNav.getNavTypeByName(this.getAttribute("mobile-type") as string);
-        if (newNavType == null) {
-            this.setAttribute("type", LRNav.navTypes[0].name);
-            newNavType = LRNav.navTypes[0];
-        }
-        if (newMobileNavType == null) {
-            this.setAttribute("mobile-type", LRNav.navTypes[0].name);
-            newMobileNavType = LRNav.navTypes[0];
-        }
 
         newNavType = newNavType == null?LRNav.navTypes[0]:newNavType;
         newMobileNavType = newMobileNavType == null?LRNav.navTypes[0]:newMobileNavType;
-        
-        if (this.getAttribute("mobile-type") == null) {
-            newMobileNavType = newNavType;
-        }
-        
-        if (newNavType != this.currentNavType || newMobileNavType != this.currentMobileNavType) {
-            document.body.setAttribute("nav-type", newNavType.name);
-            document.body.setAttribute("mobile-nav-type", newMobileNavType.name);
-            
+                
+        document.body.setAttribute("nav-type", newNavType.name);
+        document.body.setAttribute("mobile-nav-type", newMobileNavType.name);
+
+        if (newNavType != this.currentNavType || newMobileNavType != this.currentMobileNavType) {            
             this.removeGeneratedElements();
             
             this.currentNavType = newNavType;
-            if (this.currentNavType) this.currentNavType.init(this);
-
             this.currentMobileNavType = newMobileNavType;
-            if (this.currentMobileNavType) this.currentMobileNavType.mobileInit(this);
+
+            this.regenerateNav()
         }
     }
+
     regenerateNav() {
         this.removeGeneratedElements();
             

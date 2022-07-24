@@ -40,7 +40,6 @@ class LRNav extends HTMLElement {
                         lrNav.append(header);
                     }
                 }
-                //lrNav.insertBefore(menuHead, lrNav.firstChild);
             },
             mobileInit(lrNav) {
                 if (LR.debugMode)
@@ -77,29 +76,15 @@ class LRNav extends HTMLElement {
     onNavTypeChange() {
         let newNavType = LRNav.getNavTypeByName(this.getAttribute("type"));
         let newMobileNavType = LRNav.getNavTypeByName(this.getAttribute("mobile-type"));
-        if (newNavType == null) {
-            this.setAttribute("type", LRNav.navTypes[0].name);
-            newNavType = LRNav.navTypes[0];
-        }
-        if (newMobileNavType == null) {
-            this.setAttribute("mobile-type", LRNav.navTypes[0].name);
-            newMobileNavType = LRNav.navTypes[0];
-        }
         newNavType = newNavType == null ? LRNav.navTypes[0] : newNavType;
         newMobileNavType = newMobileNavType == null ? LRNav.navTypes[0] : newMobileNavType;
-        if (this.getAttribute("mobile-type") == null) {
-            newMobileNavType = newNavType;
-        }
+        document.body.setAttribute("nav-type", newNavType.name);
+        document.body.setAttribute("mobile-nav-type", newMobileNavType.name);
         if (newNavType != this.currentNavType || newMobileNavType != this.currentMobileNavType) {
-            document.body.setAttribute("nav-type", newNavType.name);
-            document.body.setAttribute("mobile-nav-type", newMobileNavType.name);
             this.removeGeneratedElements();
             this.currentNavType = newNavType;
-            if (this.currentNavType)
-                this.currentNavType.init(this);
             this.currentMobileNavType = newMobileNavType;
-            if (this.currentMobileNavType)
-                this.currentMobileNavType.mobileInit(this);
+            this.regenerateNav();
         }
     }
     regenerateNav() {
