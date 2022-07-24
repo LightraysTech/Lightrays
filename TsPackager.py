@@ -1,7 +1,11 @@
 import os
+import time
 
 baseFile = 'scripts/LR.ts'
 outputPath = 'scripts/packaged.ts'
+watchInterval = .5   # in seconds
+
+
 
 baseFile = os.path.abspath(baseFile)
 
@@ -31,25 +35,36 @@ def getImports(file, recursive):
 
     return importFiles
 
-imports = getImports(baseFile, True)
-imports = list(dict.fromkeys(imports)) # remove duplicates
-imports.append(baseFile)
-print(imports)
+timestamps = {}
 
-outputFileContent = ""
-for file in imports:
-    outputFileContent += "//#region \"" + file + "\"\n"
-    with open(file) as f:
-        lines = f.readlines()
-        for line in lines:
-            if(not(line.startswith("import"))):
-                outputFileContent += line
-    outputFileContent += "\n//#endregion\n"
+while True:
+    imports = getImports(baseFile, True)
+    imports = list(dict.fromkeys(imports)) # remove duplicates
+    imports.append(baseFile)
+    newTimestamps = dict.fromkeys(imports)
+    for i in range(len(newTimestamps)):
+        key = list(newTimestamps.keys())[i]
+        newTimestamps[key] = os.stat(key).st_mtime
 
-outputFileContent = outputFileContent.replace("export ", "")
-outputFileContent = outputFileContent.replace("default ", "")
-#print(outputFileContent)
+    if newTimestamps != timestamps:
+        outputFileContent = ""
+        for file in imports:
+            outputFileContent += "//#region \"" + file + "\"\n"
+            with open(file) as f:
+                lines = f.readlines()
+                for line in lines:
+                    if(not(line.startswith("import"))):
+                        outputFileContent += line
+            outputFileContent += "\n//#endregion\n"
 
-f = open(outputPath, "w")
-f.write(outputFileContent)
-f.close()
+        outputFileContent = outputFileContent.replace("export ", "")
+        outputFileContent = outputFileContent.replace("default ", "")
+
+        f = open(outputPath, "w")
+        f.write(outputFileContent)
+        f.close() 
+        
+        print("["+time.strftime('%H:%M:%S', time.localtime())+"] Compiled " + baseFile)
+        timestamps = newTimestamps
+    time.sleep(watchInterval)
+
