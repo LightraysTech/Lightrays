@@ -46,7 +46,7 @@ button, input[type=submit], input[type=reset], input[type=button] {
   background-color: var(--foreground);
   color: var(--text-color);
   border-radius: 5px;
-  transition: background-color 0.1s, color 0.2s, transform 0.1s ease-in, box-shadow 0.3s;
+  transition: transform 0.1s ease-in, box-shadow 0.3s;
   user-select: none;
 }
 button:hover, input[type=submit]:hover, input[type=reset]:hover, input[type=button]:hover {
@@ -57,7 +57,7 @@ button:active, input[type=submit]:active, input[type=reset]:active, input[type=b
   --height: 0.5;
   background: var(--foreground-active);
   transform: scale(0.95);
-  transition: background-color 0.2s, color 0.2s, transform 0.1s ease-in;
+  transition: transform 0.1s ease-in;
 }
 button:focus, input[type=submit]:focus, input[type=reset]:focus, input[type=button]:focus {
   border: none;
@@ -160,6 +160,19 @@ input[type=range][type=range]::-moz-range-thumb {
   background: var(--color-main);
   border: none;
   cursor: pointer;
+}
+
+select {
+  box-shadow: var(--box-shadow);
+  cursor: pointer;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  margin: 5px 0;
+  border: none;
+  background-color: var(--foreground);
+  color: var(--text-color);
+  border-radius: 5px;
+  transition: transform 0.1s ease-in, box-shadow 0.3s;
+  user-select: none;
 }
 
 body {

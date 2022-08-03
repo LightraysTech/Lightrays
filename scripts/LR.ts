@@ -257,6 +257,7 @@ export class AccentColor {
     static GREEN = new AccentColor(new Color("33C481"), new Color("238655"), new Color("185C37"), Color.WHITE);
     static ORANGE = new AccentColor(new Color("FFD800"), new Color("F2980C"), new Color("E45618"), Color.BLACK);
     static GRAY = new AccentColor(new Color("959595"), new Color("6C6C6C"), new Color("202020"), Color.WHITE);
+    static RED = new AccentColor(new Color("959595"), new Color("6C6C6C"), new Color("202020"), Color.WHITE);
 
     toJsonString(): string {
         let obj = {
