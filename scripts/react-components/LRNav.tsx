@@ -179,19 +179,19 @@ export const Foldout: any = ({ children, className, style, open }: ItemProps) =>
     return (<Item className={className} style={style} open={open}>{children}</Item>);
 }
 
-export const Label = ({ children, className, style }: NavComponentProps) => {
+export const Label: any = ({ children, className, style }: NavComponentProps) => {
     return <div className={className ? `navItemLabel ${className}` : "navItemLabel"} style={style}>{children}</div>
 }
 
-export const Icon = ({ children, className, style, onClick }: NavComponentProps) => {
+export const Icon: any = ({ children, className, style, onClick }: NavComponentProps) => {
     return <div onClick={onClick} className={className ? `navItemIcon ${className}` : "navItemIcon"} style={style}>{children}</div>
 }
 
-export const NavButton = ({ children, className, style, onClick }: NavComponentProps) => {
+export const NavButton: any = ({ children, className, style, onClick }: NavComponentProps) => {
     return (<div onClick={onClick} className={`${className}`} style={style}>{children}</div>);
 }
 
-export const Group = ({ children, className, style, onClick }: NavComponentProps) => {
+export const Group: any = ({ children, className, style, onClick }: NavComponentProps) => {
     return <div className={className ? `lr-navGroup ${className}` : "lr-navGroup"} style={style} onClick={onClick}>{children}</div>
 }
 
