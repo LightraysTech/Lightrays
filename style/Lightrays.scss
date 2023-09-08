@@ -1,0 +1,173 @@
+@use 'abstracts/fonts';
+@use "abstracts/themes";
+@use "abstracts/inputs";
+
+body {
+  -webkit-tap-highlight-color: transparent;
+  font-family: "Satoshi Variable", SatoshiVariable, inter, "Segoe UI Variable", Tahoma, Verdana, sans-serif;
+  background-color: var(--site-background);
+  background-attachment: fixed;
+
+  color: var(--text-color);
+  line-height: 1.4;
+  margin: 0;
+}
+
+.content {
+  margin: 8px;
+}
+
+::-webkit-scrollbar {
+  width: 16px;
+  background: rgba(0, 0, 0, 0);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-clip: padding-box;
+  border: 4px solid rgba(0, 0, 0, 0);
+  background-color: rgba(124, 124, 124, 0.459);
+  border-radius: 8px;
+}
+:focus {outline: none}
+
+.fluentIcon {
+  font-family: "Segoe Fluent Icons", segoeFluentIcons;
+}
+
+// Headers ------------------------------------------------
+h1 {
+  font-size: 3rem;
+  font-weight: 900;
+  line-height: 1;
+  margin: 16px 0;
+}
+
+h2 {
+  font-size: 2.5rem;
+  font-weight: 900;
+  line-height: 1;
+  margin: 8px 0;
+}
+
+h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+  margin: 8px 0;
+}
+
+h4,
+.subtitle {
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.1;
+  margin: 4px 0;
+}
+
+//Link
+a {
+  color: var(--text-color);
+  font-weight: 600;
+  font-family: inter;
+  &:enabled {color: var(--text-color);}
+  &:active {color: var(--text-color);}
+  &:hover {color: var(--color-main);}
+
+  &.noStyle {
+    text-decoration: none;
+    &:hover {color: var(--text-color);}
+  }
+}
+
+// Functions ----------------------------------------------
+@mixin mobile() {
+  @media screen and (max-width: 650px) {@content;}
+}
+@mixin desktop() {
+  @media screen and (min-width: 650px) {@content;}
+}
+@mixin tablet() {
+  @media screen and (min-width: 650px) and (max-width: 1300px) {@content;}
+}
+
+// Light / Dark mode --------------------------------------
+
+.hidden {
+  display: none;
+}
+
+// Boxes ------------------------
+.lr-box {
+  background-color: var(--component-background);
+  box-shadow: var(--shadow-1);
+  border-radius: 4px;
+  padding: 16px;
+  margin: 8px 0;
+
+  &.very-round-corners {
+    border-radius: 15px;
+  }
+
+  @for $i from 1 through 10 {
+    &:nth-child(#{$i}) {
+      animation-delay: calc(0.03s * #{$i});
+    }
+  }
+
+  &.flat, .lr-box {
+    box-shadow: none;
+    border: var(--component-stroke);
+  }
+
+  &.shadow {
+    box-shadow: var(--shadow-1);
+    border: none;
+  }
+}
+
+// List ------------------------------
+.lr-list {
+  overflow-y: initial;
+
+  &:not(.shadow) {
+    & > div {
+      box-shadow: none;
+      border: var(--component-stroke);
+    }
+  }
+
+  & > div {
+    @extend .lr-box;
+    width: initial;
+    opacity: 0%;
+    animation: box-load-in 0.2s ease-out;
+    animation-fill-mode: both;
+
+    @for $i from 1 through 20 {
+      &:nth-child(#{$i}) {
+        animation-delay: calc(0.03s * #{$i});
+      }
+    }
+  }
+
+  &.round-corners {
+    & > div { @extend .round-corners }
+  }
+}
+
+.round-corners {
+  border-radius: 8px;
+}
+
+// Animations ----------------------------
+@keyframes box-load-in {
+  0% {
+    transform: scale(70%);
+    opacity: 0%;
+  }
+  100% {
+    transform: scale(100%);
+    opacity: 100%;
+  }
+}
