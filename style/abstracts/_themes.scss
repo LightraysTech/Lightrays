@@ -23,11 +23,13 @@
   --component-important: #ebebeb;
   --site-background: #f5f5f5;
   --site-stroke: #dadada;
-  
+  --scrollbar-color: #cacaca;
+
   --component-stroke: solid 1px #ebebeb;
-  --shadow-0: 0px 0px 2px 0px rgba(0, 0, 0, 0.15);
-  --shadow-1: 0px 1px 2px 0px rgba(0, 0, 0, 0.15);
-  --shadow-2: 0px 2px 5px 0px rgba(0, 0, 0, 0.17);
+  --shadow-0: 0px 1px 3px -1px rgba(0, 0, 0, 0.35);
+  --shadow-1: 0px 1px 3px 0px rgba(0, 0, 0, 0.2);
+  --shadow-2: 0px 1px 3px 0px rgba(0, 0, 0, 0.17);
+  --shadow-3: 0px 2px 5px 0px rgba(0, 0, 0, 0.2);
 
   @media (prefers-color-scheme: dark) {
     --text-color: #f2f2f2;
@@ -37,10 +39,12 @@
     --component-important: #1a1a1a;
     --site-background: #1f1f1f;
     --site-stroke: #2e2e2e;
+    --scrollbar-color: #3d3d3d;
     
     --component-stroke: solid 1px #1a1a1a;
-    --shadow-0: 0px 0px 1px 0px rgba(0, 0, 0, 0.25);
-    --shadow-1: 0px 2px 4px 0px rgba(0, 0, 0, 0.85);
-    --shadow-2: 0px 3px 7px 0px rgba(0, 0, 0, 0.85);
+    --shadow-0: 0px 1px 3px 0px rgba(0, 0, 0, .2);
+    --shadow-1: 0px 1px 3px 0px rgba(0, 0, 0, 0.7);
+    --shadow-2: 0px 2px 4px 0px rgba(0, 0, 0, 0.80);
+    --shadow-3: 0px 3px 7px 0px rgba(0, 0, 0, 0.80);
   }
 }
