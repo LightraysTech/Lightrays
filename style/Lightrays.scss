@@ -29,8 +29,8 @@ body {
   width: var(--width); height: var(--height);
   background: var(--site-background);
   border-radius: 50%;
-  box-shadow: calc(var(--posX) + var(--width)/2 - var(--gap)/2) calc(var(--posY) + var(--height)/2) var(--blur) var(--skye-blue-lightest), 
-  calc(var(--posX) + var(--width)/2 + var(--gap)/2) calc(var(--posY) + var(--height)/2) var(--blur) var(--skye-blue-dark);
+  box-shadow: calc(var(--posX) + var(--width)/2 - var(--gap)/2) calc(var(--posY) + var(--height)/2) var(--blur) var(--lightest), 
+  calc(var(--posX) + var(--width)/2 + var(--gap)/2) calc(var(--posY) + var(--height)/2) var(--blur) var(--dark);
   transition: all 0s ease-out;
 }
 

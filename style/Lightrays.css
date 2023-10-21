@@ -20,13 +20,19 @@
   --sea-blue-light: #2fe5f5;
   --sea-blue-lightest: #6dfff8;
   --sea-blue-primary: #1ab5e5;
-  --skye-blue-skye-blue-alert: #c61025;
+  --skye-blue-alert: #c61025;
   --skye-blue-dark: #005cb0;
   --skye-blue-darkest: #00438f;
   --skye-blue-light: #29a1e7;
   --skye-blue-lightest: #5ad7ff;
   --skye-blue-primary: #0078d4;
-  --transparency: .8;
+  --alert: var(--skye-blue-alert);
+  --dark: var(--skye-blue-dark);
+  --darkest: var(--skye-blue-darkest);
+  --light: var(--skye-blue-light);
+  --lightest: var(--skye-blue-lightest);
+  --primary: var(--skye-blue-primary);
+  --transparency: 1;
   --text-color: #2C2C2C;
   --component-active: rgb(240, 240, 240);
   --component-background: rgba(255, 255, 255, var(--transparency));
@@ -101,14 +107,14 @@ button.flat:active, select.flat:active, input.flat[type=submit]:active, input.fl
 }
 button.important, select.important, input[type=submit], input.important[type=reset], input.important[type=button] {
   border: none;
-  background-color: var(--skye-blue-primary);
+  background-color: var(--primary);
 }
 button.important:hover, select.important:hover, input[type=submit]:hover, input.important[type=reset]:hover, input.important[type=button]:hover {
-  background-color: var(--skye-blue-light);
+  background-color: var(--light);
   box-shadow: var(--shadow-2);
 }
 button.important:active, select.important:active, input[type=submit]:active, input.important[type=reset]:active, input.important[type=button]:active {
-  background-color: var(--skye-blue-darkest);
+  background-color: var(--dark);
   box-shadow: var(--shadow-0);
 }
 
@@ -135,7 +141,7 @@ input.flat {
   border-bottom: 2px solid var(--component-important);
 }
 input:focus {
-  border-bottom-color: var(--skye-blue-primary);
+  border-bottom-color: var(--primary);
   box-shadow: var(--shadow-2);
 }
 input:focus.flat {
@@ -173,8 +179,8 @@ input[type=checkbox] {
 input[type=checkbox]:checked {
   background: url("/img/checkbox.png") no-repeat center center;
   background-size: 13px;
-  background-color: var(--skye-blue-light);
-  border-color: var(--skye-blue-light);
+  background-color: var(--light);
+  border-color: var(--light);
 }
 input[type=range][type=range] {
   -webkit-appearance: none;
@@ -238,7 +244,7 @@ body {
   height: var(--height);
   background: var(--site-background);
   border-radius: 50%;
-  box-shadow: calc(var(--posX) + var(--width) / 2 - var(--gap) / 2) calc(var(--posY) + var(--height) / 2) var(--blur) var(--skye-blue-lightest), calc(var(--posX) + var(--width) / 2 + var(--gap) / 2) calc(var(--posY) + var(--height) / 2) var(--blur) var(--skye-blue-dark);
+  box-shadow: calc(var(--posX) + var(--width) / 2 - var(--gap) / 2) calc(var(--posY) + var(--height) / 2) var(--blur) var(--lightest), calc(var(--posX) + var(--width) / 2 + var(--gap) / 2) calc(var(--posY) + var(--height) / 2) var(--blur) var(--dark);
   transition: all 0s ease-out;
 }
 

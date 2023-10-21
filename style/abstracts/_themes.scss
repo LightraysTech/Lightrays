@@ -7,7 +7,7 @@
   --sea-blue-lightest: #6dfff8;
   --sea-blue-primary: #1ab5e5;
 
-  --skye-blue-skye-blue-alert: #c61025;
+  --skye-blue-alert: #c61025;
   --skye-blue-dark: #005cb0;
   --skye-blue-darkest: #00438f;
   --skye-blue-light: #29a1e7;
@@ -16,7 +16,15 @@
 
 
   //Theme
-  --transparency: .8;
+  --alert: var(--skye-blue-alert);
+  --dark: var(--skye-blue-dark);
+  --darkest: var(--skye-blue-darkest);
+  --light: var(--skye-blue-light);
+  --lightest: var(--skye-blue-lightest);
+  --primary: var(--skye-blue-primary);
+
+
+  --transparency: 1;
   
   --text-color: #2C2C2C;
   --component-active: rgb(240, 240, 240);
