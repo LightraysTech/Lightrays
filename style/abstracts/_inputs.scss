@@ -150,6 +150,10 @@ input {
     }
   }
 }
+textarea {
+  @extend input;
+  padding: 8px;
+}
 
 select {
   @extend button;

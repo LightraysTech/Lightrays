@@ -65,7 +65,7 @@
   }
 }
 
-button, select, input[type=submit], input[type=reset], input[type=button] {
+button, select, input[type=submit], textarea[type=submit], input[type=reset], textarea[type=reset], input[type=button], textarea[type=button] {
   font-family: InterVariable;
   font-size: 1em;
   height: 40px;
@@ -80,45 +80,43 @@ button, select, input[type=submit], input[type=reset], input[type=button] {
   background-color: var(--component-background);
   border-radius: 4px;
   transition: background-color 0.1s, color 0.2s, box-shadow 0.2s;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
+  user-select: none;
   transition: background-color 0.2s, color 0.2s, border 0.2s;
 }
-button:hover, select:hover, input[type=submit]:hover, input[type=reset]:hover, input[type=button]:hover {
+button:hover, select:hover, input[type=submit]:hover, textarea[type=submit]:hover, input[type=reset]:hover, textarea[type=reset]:hover, input[type=button]:hover, textarea[type=button]:hover {
   box-shadow: var(--shadow-2);
   background: var(--component-hover);
 }
-button:active, select:active, input[type=submit]:active, input[type=reset]:active, input[type=button]:active {
+button:active, select:active, input[type=submit]:active, textarea[type=submit]:active, input[type=reset]:active, textarea[type=reset]:active, input[type=button]:active, textarea[type=button]:active {
   box-shadow: var(--shadow-0);
   background: var(--component-active);
 }
-button.flat, select.flat, input.flat[type=submit], input.flat[type=reset], input.flat[type=button] {
+button.flat, select.flat, input.flat[type=submit], textarea.flat[type=submit], input.flat[type=reset], textarea.flat[type=reset], input.flat[type=button], textarea.flat[type=button] {
   box-shadow: none;
   border: var(--component-stroke);
 }
-button.flat:hover, select.flat:hover, input.flat[type=submit]:hover, input.flat[type=reset]:hover, input.flat[type=button]:hover {
+button.flat:hover, select.flat:hover, input.flat[type=submit]:hover, textarea.flat[type=submit]:hover, input.flat[type=reset]:hover, textarea.flat[type=reset]:hover, input.flat[type=button]:hover, textarea.flat[type=button]:hover {
   box-shadow: var(--shadow-1);
   border-color: var(--component-hover);
 }
-button.flat:active, select.flat:active, input.flat[type=submit]:active, input.flat[type=reset]:active, input.flat[type=button]:active {
+button.flat:active, select.flat:active, input.flat[type=submit]:active, textarea.flat[type=submit]:active, input.flat[type=reset]:active, textarea.flat[type=reset]:active, input.flat[type=button]:active, textarea.flat[type=button]:active {
   box-shadow: var(--shadow-0);
   border-color: var(--component-active);
 }
-button.important, select.important, input[type=submit], input.important[type=reset], input.important[type=button] {
+button.important, select.important, input[type=submit], textarea[type=submit], input.important[type=reset], textarea.important[type=reset], input.important[type=button], textarea.important[type=button] {
   border: none;
   background-color: var(--primary);
 }
-button.important:hover, select.important:hover, input[type=submit]:hover, input.important[type=reset]:hover, input.important[type=button]:hover {
+button.important:hover, select.important:hover, input[type=submit]:hover, textarea[type=submit]:hover, input.important[type=reset]:hover, textarea.important[type=reset]:hover, input.important[type=button]:hover, textarea.important[type=button]:hover {
   background-color: var(--light);
   box-shadow: var(--shadow-2);
 }
-button.important:active, select.important:active, input[type=submit]:active, input.important[type=reset]:active, input.important[type=button]:active {
+button.important:active, select.important:active, input[type=submit]:active, textarea[type=submit]:active, input.important[type=reset]:active, textarea.important[type=reset]:active, input.important[type=button]:active, textarea.important[type=button]:active {
   background-color: var(--dark);
   box-shadow: var(--shadow-0);
 }
 
-input {
+input, textarea {
   font-family: InterVariable;
   font-size: 0.9em;
   height: 40px;
@@ -135,38 +133,37 @@ input {
   border-bottom: 2px solid transparent;
   border-top: 2px solid transparent;
 }
-input.flat {
+input.flat, textarea.flat {
   box-shadow: none;
   border: var(--component-stroke);
   border-bottom: 2px solid var(--component-important);
 }
-input:focus {
+input:focus, textarea:focus {
   border-bottom-color: var(--primary);
   box-shadow: var(--shadow-2);
 }
-input:focus.flat {
+input:focus.flat, textarea:focus.flat {
   box-shadow: var(--shadow-1);
 }
-input[type=color] {
+input[type=color], textarea[type=color] {
   padding: 0;
   border-radius: 0;
   background: var(--component-background);
 }
-input[type=search] {
+input[type=search], textarea[type=search] {
   background: url("/img/search.png") no-repeat center center;
   background-size: 15px;
   padding-left: 36px;
   background-position-x: 12px;
 }
-input[type=search]:focus {
+input[type=search]:focus, textarea[type=search]:focus {
   background-size: 18px;
   background-position-x: 11px;
   transition: background 0.2s;
 }
-input[type=checkbox] {
+input[type=checkbox], textarea[type=checkbox] {
   align-self: center;
-  -moz-appearance: none;
-       appearance: none;
+  appearance: none;
   -webkit-appearance: none;
   box-shadow: none;
   border: var(--component-stroke);
@@ -176,24 +173,25 @@ input[type=checkbox] {
   padding: 11px;
   cursor: pointer;
 }
-input[type=checkbox]:checked {
+input[type=checkbox]:checked, textarea[type=checkbox]:checked {
   background: url("/img/checkbox.png") no-repeat center center;
   background-size: 13px;
   background-color: var(--light);
   border-color: var(--light);
 }
-input[type=range][type=range] {
+input[type=range][type=range], textarea[type=range][type=range] {
   -webkit-appearance: none;
-  -moz-appearance: none;
-       appearance: none;
+  appearance: none;
   height: 0px;
   background: var(--color-darker);
-  outline: none; /* Remove outline */
+  outline: none;
+  /* Remove outline */
+  -webkit-transition: 0.1s;
   transition: all 0.1s;
   margin: 15px 5px;
   padding: 2px;
 }
-input[type=range][type=range]::-webkit-slider-thumb {
+input[type=range][type=range]::-webkit-slider-thumb, textarea[type=range][type=range]::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   width: 25px;
@@ -202,13 +200,17 @@ input[type=range][type=range]::-webkit-slider-thumb {
   background: var(--color-darker);
   cursor: pointer;
 }
-input[type=range][type=range]::-moz-range-thumb {
+input[type=range][type=range]::-moz-range-thumb, textarea[type=range][type=range]::-moz-range-thumb {
   width: 25px;
   height: 25px;
   border-radius: 25px;
   background: var(--color-darker);
   border: none;
   cursor: pointer;
+}
+
+textarea {
+  padding: 8px;
 }
 
 select {
@@ -473,4 +475,6 @@ input .lr-box:not(.flat), input .lr-list > div:not(.flat) {
     transform: scale(100%);
     opacity: 100%;
   }
-}/*# sourceMappingURL=Lightrays.css.map */
+}
+
+/*# sourceMappingURL=Lightrays.css.map */
