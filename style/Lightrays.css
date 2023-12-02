@@ -73,7 +73,6 @@ button, select, input[type=submit], textarea[type=submit], input[type=reset], te
   display: inline-block;
   box-shadow: var(--shadow-1);
   color: var(--color-text);
-  cursor: pointer;
   padding: 0 16px;
   margin: 4px 0;
   border: none;
@@ -83,35 +82,41 @@ button, select, input[type=submit], textarea[type=submit], input[type=reset], te
   user-select: none;
   transition: background-color 0.2s, color 0.2s, border 0.2s;
 }
-button:hover, select:hover, input[type=submit]:hover, textarea[type=submit]:hover, input[type=reset]:hover, textarea[type=reset]:hover, input[type=button]:hover, textarea[type=button]:hover {
+button:not(:disabled), select:not(:disabled), input[type=submit]:not(:disabled), textarea[type=submit]:not(:disabled), input[type=reset]:not(:disabled), textarea[type=reset]:not(:disabled), input[type=button]:not(:disabled), textarea[type=button]:not(:disabled) {
+  cursor: pointer;
+}
+button:not(:disabled):hover, select:not(:disabled):hover, input[type=submit]:not(:disabled):hover, textarea[type=submit]:not(:disabled):hover, input[type=reset]:not(:disabled):hover, textarea[type=reset]:not(:disabled):hover, input[type=button]:not(:disabled):hover, textarea[type=button]:not(:disabled):hover {
   box-shadow: var(--shadow-2);
   background: var(--component-hover);
 }
-button:active, select:active, input[type=submit]:active, textarea[type=submit]:active, input[type=reset]:active, textarea[type=reset]:active, input[type=button]:active, textarea[type=button]:active {
+button:not(:disabled):active, select:not(:disabled):active, input[type=submit]:not(:disabled):active, textarea[type=submit]:not(:disabled):active, input[type=reset]:not(:disabled):active, textarea[type=reset]:not(:disabled):active, input[type=button]:not(:disabled):active, textarea[type=button]:not(:disabled):active {
   box-shadow: var(--shadow-0);
   background: var(--component-active);
 }
-button.flat, select.flat, input.flat[type=submit], textarea.flat[type=submit], input.flat[type=reset], textarea.flat[type=reset], input.flat[type=button], textarea.flat[type=button] {
+button.flat, select.flat, input.flat[type=submit], textarea.flat[type=submit], input.flat[type=reset], textarea.flat[type=reset], input.flat[type=button], textarea.flat[type=button], button:disabled, select:disabled, input[type=submit]:disabled, textarea[type=submit]:disabled, input[type=reset]:disabled, textarea[type=reset]:disabled, input[type=button]:disabled, textarea[type=button]:disabled {
   box-shadow: none;
   border: var(--component-stroke);
 }
-button.flat:hover, select.flat:hover, input.flat[type=submit]:hover, textarea.flat[type=submit]:hover, input.flat[type=reset]:hover, textarea.flat[type=reset]:hover, input.flat[type=button]:hover, textarea.flat[type=button]:hover {
+button.flat:not(:disabled):hover, select.flat:not(:disabled):hover, input.flat[type=submit]:not(:disabled):hover, textarea.flat[type=submit]:not(:disabled):hover, input.flat[type=reset]:not(:disabled):hover, textarea.flat[type=reset]:not(:disabled):hover, input.flat[type=button]:not(:disabled):hover, textarea.flat[type=button]:not(:disabled):hover, button:not(:disabled):hover:disabled, select:not(:disabled):hover:disabled, input[type=submit]:not(:disabled):hover:disabled, textarea[type=submit]:not(:disabled):hover:disabled, input[type=reset]:not(:disabled):hover:disabled, textarea[type=reset]:not(:disabled):hover:disabled, input[type=button]:not(:disabled):hover:disabled, textarea[type=button]:not(:disabled):hover:disabled {
   box-shadow: var(--shadow-1);
   border-color: var(--component-hover);
 }
-button.flat:active, select.flat:active, input.flat[type=submit]:active, textarea.flat[type=submit]:active, input.flat[type=reset]:active, textarea.flat[type=reset]:active, input.flat[type=button]:active, textarea.flat[type=button]:active {
+button.flat:not(:disabled):active, select.flat:not(:disabled):active, input.flat[type=submit]:not(:disabled):active, textarea.flat[type=submit]:not(:disabled):active, input.flat[type=reset]:not(:disabled):active, textarea.flat[type=reset]:not(:disabled):active, input.flat[type=button]:not(:disabled):active, textarea.flat[type=button]:not(:disabled):active, button:not(:disabled):active:disabled, select:not(:disabled):active:disabled, input[type=submit]:not(:disabled):active:disabled, textarea[type=submit]:not(:disabled):active:disabled, input[type=reset]:not(:disabled):active:disabled, textarea[type=reset]:not(:disabled):active:disabled, input[type=button]:not(:disabled):active:disabled, textarea[type=button]:not(:disabled):active:disabled {
   box-shadow: var(--shadow-0);
   border-color: var(--component-active);
+}
+button:disabled, select:disabled, input[type=submit]:disabled, textarea[type=submit]:disabled, input[type=reset]:disabled, textarea[type=reset]:disabled, input[type=button]:disabled, textarea[type=button]:disabled {
+  color: gray;
 }
 button.important, select.important, input[type=submit], textarea[type=submit], input.important[type=reset], textarea.important[type=reset], input.important[type=button], textarea.important[type=button] {
   border: none;
   background-color: var(--primary);
 }
-button.important:hover, select.important:hover, input[type=submit]:hover, textarea[type=submit]:hover, input.important[type=reset]:hover, textarea.important[type=reset]:hover, input.important[type=button]:hover, textarea.important[type=button]:hover {
+button.important:not(:disabled):hover, select.important:not(:disabled):hover, input[type=submit]:not(:disabled):hover, textarea[type=submit]:not(:disabled):hover, input.important[type=reset]:not(:disabled):hover, textarea.important[type=reset]:not(:disabled):hover, input.important[type=button]:not(:disabled):hover, textarea.important[type=button]:not(:disabled):hover {
   background-color: var(--light);
   box-shadow: var(--shadow-2);
 }
-button.important:active, select.important:active, input[type=submit]:active, textarea[type=submit]:active, input.important[type=reset]:active, textarea.important[type=reset]:active, input.important[type=button]:active, textarea.important[type=button]:active {
+button.important:not(:disabled):active, select.important:not(:disabled):active, input[type=submit]:not(:disabled):active, textarea[type=submit]:not(:disabled):active, input.important[type=reset]:not(:disabled):active, textarea.important[type=reset]:not(:disabled):active, input.important[type=button]:not(:disabled):active, textarea.important[type=button]:not(:disabled):active {
   background-color: var(--dark);
   box-shadow: var(--shadow-0);
 }

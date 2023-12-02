@@ -9,7 +9,6 @@ button {
   text-align: center; display: inline-block;
   box-shadow: var(--shadow-1);
   color: var(--color-text);
-  cursor: pointer;
   padding: 0 16px;
   margin: 4px 0;
   border: none;
@@ -18,28 +17,41 @@ button {
   transition: background-color 0.1s, color 0.2s, box-shadow .2s;
   user-select: none;
   transition: background-color .2s, color .2s, border .2s;
+  
+  &:not(:disabled) {
+    cursor: pointer;
 
-  &:hover {
-    box-shadow: var(--shadow-2);
-    background: var(--component-hover);
-  }
-  &:active {
-    box-shadow: var(--shadow-0);
-    background: var(--component-active);
+    &:hover {
+      box-shadow: var(--shadow-2);
+      background: var(--component-hover);
+    }
+    &:active {
+      box-shadow: var(--shadow-0);
+      background: var(--component-active);
+    }
   }
 
   &.flat {
     box-shadow: none;
     border: var(--component-stroke);
-    &:hover {box-shadow: var(--shadow-1); border-color: var(--component-hover);}
-    &:active {box-shadow: var(--shadow-0); border-color: var(--component-active);}
+    &:not(:disabled) {
+      &:hover {box-shadow: var(--shadow-1); border-color: var(--component-hover);}
+      &:active {box-shadow: var(--shadow-0); border-color: var(--component-active);}
+    }
+  }
+
+  &:disabled {
+    @extend .flat;
+    color: gray;
   }
 
   &.important {
     border: none;
     background-color: var(--primary);
-    &:hover {background-color: var(--light); box-shadow: var(--shadow-2);}
-    &:active {background-color: var(--dark); box-shadow: var(--shadow-0);}
+    &:not(:disabled) {
+      &:hover {background-color: var(--light); box-shadow: var(--shadow-2);}
+      &:active {background-color: var(--dark); box-shadow: var(--shadow-0);}
+    }
   }
 }
   
