@@ -17,7 +17,18 @@ For a Demo Website, download the "demo" folder of Lightray-examples repo: https:
 <br>
 
 ## Todos
+
 - [ ] ```<dialog>```
+- [ ] ```<hr>```
+
+## Structure
+
+- Lightrays
+    - Themes (variables)
+    - Fonts
+    - Inputs
+    - Layout
+    - Components
 
 **Developers:**
 * [JAcoder7](https://github.com/JAcoder7 "go to his github-accont")

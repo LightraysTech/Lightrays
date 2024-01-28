@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inputs - Lightrays</title>
+    <link rel="stylesheet" href="../style/Lightrays.css">
+</head>
+<style>
+    code {
+        margin-left: 32px;
+    }
+</style>
+<body class="content">
+    <h1>Inputs</h1>
+    <div class="lr-box">
+        <h3>Normal</h3>
+        
+        <h5>Button:</h5>
+        <div>
+            <button>Button</button>
+            <code>&lt;button&gt;Button&lt;/button&gt;</code>
+        </div>
+        <div>
+            <button class="important">Button</button>
+            <code>&lt;button class="important"&gt;Button&lt;/button&gt;</code>
+        </div>
+        <div>
+            <button disabled>Button</button>
+            <code>&lt;button disabled&gt;Button&lt;/button&gt;</code>
+        </div>
+
+        <br>
+        <h5>Input:</h5>
+        <div>
+            <input type="checkbox" id="checkbox">
+            <label for="checkbox">Checkbox</label>
+            <code>&lt;input type="checkbox"&gt;</code>
+        </div>
+        <div>
+            <input type="text" placeholder="Text input">
+            <code>&lt;input type="text"&gt;</code>
+        </div>
+        <div>
+            <input type="search" placeholder="Type here to search...">
+            <code>&lt;input type="search"&gt;</code>
+        </div>
+        <div>
+            <input type="number" placeholder="Number" value="42">
+            <code>&lt;input type="number"&gt;</code>
+        </div>
+        <div>
+            <input type="email" placeholder="Email" value="email@address.com">
+            <code>&lt;input type="email"&gt;</code>
+        </div>
+        <div>
+            <input type="tel" placeholder="Tel">
+            <code>&lt;input type="tel"&gt;</code>
+        </div>
+        <div>
+            <input type="url" placeholder="Url">
+            <code>&lt;input type="url"&gt;</code>
+        </div>
+        <div>
+            <input type="password" placeholder="Password" value="abcdefgh">
+            <code>&lt;input type="password"&gt;</code>
+        </div>
+
+        <div>
+            <input type="time">
+            <code>&lt;input type="time"&gt;</code>
+        </div>
+        <div>
+            <input type="week">
+            <code>&lt;input type="week"&gt;</code>
+        </div>
+        <div>
+            <input type="month">
+            <code>&lt;input type="month"&gt;</code>
+        </div>
+        <div>
+            <input type="date">
+            <code>&lt;input type="date"&gt;</code>
+        </div>
+        <div>
+            <input type="datetime">
+            <code>&lt;input type="datetime"&gt;</code>
+        </div>
+
+        <div>
+            <input type="range">
+            <code>&lt;input type="range"&gt;</code>
+        </div>
+        <div>
+            <input type="color">
+            <code>&lt;input type="color"&gt;</code>
+        </div>
+        <div>
+            <label for="file" class="button">Upload</label>
+            <input id="file" type="file" class="hidden">
+            <code>&lt;input type="file"&gt;</code>
+        </div>
+        <div>
+            <input type="image">
+            <code>&lt;input type="image"&gt;</code>
+        </div>
+
+        <div>
+            <input type="reset">
+            <code>&lt;input type="reset"&gt;</code>
+        </div>
+        <div>
+            <input type="submit">
+            <code>&lt;input type="submit"&gt;</code>
+        </div>
+        <div>
+            <input type="button" value="Button">
+            <code>&lt;input type="button" value="Button"&gt;</code>
+        </div>
+
+        <select>
+            <option value="">option1</option>
+            <option value="">option2</option>
+        </select>
+        <textarea style="width: 400px; height: 140px;"></textarea>
+    </div>
+    <div class="lr-box flat-inputs">
+        <h4>Flat</h4>
+
+        <div class="flex-wrap" style="column-gap: 16px;">
+            <button class=" important">Absenden</button>
+            <button class="">Absenden</button>
+            <button disabled>Disabled</button>
+            <button class="" disabled>Disabled</button>
+            <input type="button" value="Absenden">
+        </div>
+        <div class="flex-wrap" style="column-gap: 16px;">
+            <input type="text" placeholder="Eingabe">
+            <input class="flat" type="text" id="" placeholder="Eingabe">
+            <input type="search" placeholder="Type here to search...">
+            <input type="checkbox" name="" id="">
+            <select>
+                <option value="">option</option>
+            </select>
+        </div>
+        <textarea style="width: 400px; height: 140px;"></textarea>
+    </div>
+    <div class="lr-box small-inputs">
+        <h4>Small</h4>
+
+        <div class="flex-wrap" style="column-gap: 16px;">
+            <button class="flat important">Absenden</button>
+            <button class="flat">Absenden</button>
+            <button disabled>Disabled</button>
+            <button class="flat" disabled>Disabled</button>
+            <input type="button" value="Absenden">
+        </div>
+        <div class="flex-wrap" style="column-gap: 16px;">
+            <input type="text" placeholder="Eingabe">
+            <input class="flat" type="text" id="" placeholder="Eingabe">
+            <input type="search" placeholder="Type here to search...">
+            <input type="checkbox" name="" id="">
+            <select>
+                <option value="">option</option>
+            </select>
+        </div>
+        <textarea style="width: 400px; height: 140px;"></textarea>
+    </div>
+</body>
+
+</html>

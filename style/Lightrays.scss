@@ -4,7 +4,7 @@
 
 body {
   -webkit-tap-highlight-color: transparent;
-  font-family: "Satoshi Variable", SatoshiVariable, inter, "Segoe UI Variable", Tahoma, Verdana, sans-serif;
+  font-family: "Satoshi Variable", SatoshiVariable, InterVariable, "Segoe UI Variable", Tahoma, Verdana, sans-serif;
   background-color: var(--site-background);
   background-attachment: fixed;
 
@@ -35,7 +35,7 @@ body {
 }
 
 .content {
-  margin: 8px;
+  margin: 8px; //??????????????????????????
 }
 
 ::-webkit-scrollbar {
@@ -62,7 +62,7 @@ h1 {
   font-size: 3rem;
   font-weight: 900;
   line-height: 1;
-  margin: 16px 0;
+  margin: 16px 0; // replace margin with line-height????
 }
 
 h2 {
@@ -87,11 +87,25 @@ h4,
   margin: 4px 0;
 }
 
+h5 {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 4px 0;
+}
+
+h6 {
+  font-size: .8rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin: 4px 0;
+}
+
 //Link
 a {
   color: var(--text-color);
   font-weight: 600;
-  font-family: inter;
+  font-family: InterVariable;
   &:enabled {color: var(--text-color);}
   &:active {color: var(--text-color);}
   &:hover {color: var(--color-main);}
@@ -187,6 +201,8 @@ a {
 }
 
 .flex { display: flex }
+.flex-center { display: flex; justify-content: center; align-items: center; }
+.flex-wrap { display: flex; flex-wrap: wrap; }
 .grid {display: grid;}
 
 // Animations ----------------------------
