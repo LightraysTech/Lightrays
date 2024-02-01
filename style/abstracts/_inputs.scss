@@ -199,6 +199,10 @@ select {
   @extend button;
   padding-left: 4px; padding-right: 4px;
   display: block;
+
+  option:disabled {
+    color: gray;
+  }
 }
 
 label {
