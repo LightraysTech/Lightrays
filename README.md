@@ -16,6 +16,11 @@ Include the following lines in your HTML <head>:
 For a Demo Website, download the "demo" folder of Lightray-examples repo: https://ncoder77.github.io/Lightrays-examples/
 <br>
 
+### Sass command
+```
+npx sass .\style\Lightrays.scss:.\style\Lightrays.css -w
+```
+
 ## Todos
 
 - [ ] ```<dialog>```

@@ -68,7 +68,7 @@ button,.button {
 input {
   font-family: InterVariable;
   font-size: 1em;
-  line-height: 16px;
+  line-height:24px;
   display: inline-block;
   box-shadow: var(--shadow-1);
   color: var(--color-text);
@@ -177,8 +177,11 @@ input {
   }
 }
 
-.small-inputs input {
+.small-inputs input,.small-inputs button {
   padding: 4px 8px;
+  &.fluentIcon {
+    padding: 8px 12px
+  }
 }
 .small-inputs label {
 }

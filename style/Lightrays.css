@@ -128,7 +128,7 @@ button.fluentIcon, select.fluentIcon, input.fluentIcon[type=submit], textarea.fl
 input, textarea {
   font-family: InterVariable;
   font-size: 1em;
-  line-height: 16px;
+  line-height: 24px;
   display: inline-block;
   box-shadow: var(--shadow-1);
   color: var(--color-text);
@@ -221,8 +221,11 @@ input[type=range][type=range]::-moz-range-thumb, textarea[type=range][type=range
   cursor: pointer;
 }
 
-.small-inputs input, .small-inputs textarea {
+.small-inputs input, .small-inputs textarea, .small-inputs button, .small-inputs select {
   padding: 4px 8px;
+}
+.small-inputs input.fluentIcon, .small-inputs textarea.fluentIcon, .small-inputs button.fluentIcon, .small-inputs select.fluentIcon {
+  padding: 8px 12px;
 }
 
 textarea {
@@ -364,55 +367,55 @@ a.noStyle:hover {
   display: none;
 }
 
-.lr-box, .lr-list > div {
+.lr-box, dialog, .lr-list > div {
   background-color: var(--component-background);
   box-shadow: var(--shadow-2);
   border-radius: 4px;
   padding: 16px;
   margin: 8px 0;
 }
-.lr-box.very-round-corners, .lr-list > div.very-round-corners {
+.lr-box.very-round-corners, dialog.very-round-corners, .lr-list > div.very-round-corners {
   border-radius: 15px;
 }
-.lr-box:nth-child(1), .lr-list > div:nth-child(1) {
+.lr-box:nth-child(1), dialog:nth-child(1), .lr-list > div:nth-child(1) {
   animation-delay: calc(0.03s * 1);
 }
-.lr-box:nth-child(2), .lr-list > div:nth-child(2) {
+.lr-box:nth-child(2), dialog:nth-child(2), .lr-list > div:nth-child(2) {
   animation-delay: calc(0.03s * 2);
 }
-.lr-box:nth-child(3), .lr-list > div:nth-child(3) {
+.lr-box:nth-child(3), dialog:nth-child(3), .lr-list > div:nth-child(3) {
   animation-delay: calc(0.03s * 3);
 }
-.lr-box:nth-child(4), .lr-list > div:nth-child(4) {
+.lr-box:nth-child(4), dialog:nth-child(4), .lr-list > div:nth-child(4) {
   animation-delay: calc(0.03s * 4);
 }
-.lr-box:nth-child(5), .lr-list > div:nth-child(5) {
+.lr-box:nth-child(5), dialog:nth-child(5), .lr-list > div:nth-child(5) {
   animation-delay: calc(0.03s * 5);
 }
-.lr-box:nth-child(6), .lr-list > div:nth-child(6) {
+.lr-box:nth-child(6), dialog:nth-child(6), .lr-list > div:nth-child(6) {
   animation-delay: calc(0.03s * 6);
 }
-.lr-box:nth-child(7), .lr-list > div:nth-child(7) {
+.lr-box:nth-child(7), dialog:nth-child(7), .lr-list > div:nth-child(7) {
   animation-delay: calc(0.03s * 7);
 }
-.lr-box:nth-child(8), .lr-list > div:nth-child(8) {
+.lr-box:nth-child(8), dialog:nth-child(8), .lr-list > div:nth-child(8) {
   animation-delay: calc(0.03s * 8);
 }
-.lr-box:nth-child(9), .lr-list > div:nth-child(9) {
+.lr-box:nth-child(9), dialog:nth-child(9), .lr-list > div:nth-child(9) {
   animation-delay: calc(0.03s * 9);
 }
-.lr-box:nth-child(10), .lr-list > div:nth-child(10) {
+.lr-box:nth-child(10), dialog:nth-child(10), .lr-list > div:nth-child(10) {
   animation-delay: calc(0.03s * 10);
 }
-.lr-box.flat, .lr-list > div.flat, .lr-box .lr-box, .lr-list > div .lr-box, .lr-box .lr-list > div, .lr-list > div .lr-list > div {
+.lr-box.flat, dialog.flat, .lr-list > div.flat, .lr-box .lr-box, dialog .lr-box, .lr-box dialog, dialog dialog, .lr-list > div .lr-box, .lr-list > div dialog, .lr-box .lr-list > div, dialog .lr-list > div, .lr-list > div .lr-list > div {
   box-shadow: none;
   border: var(--component-stroke);
 }
-.lr-box.shadow, .lr-list > div.shadow {
+.lr-box.shadow, dialog.shadow, .lr-list > div.shadow {
   box-shadow: var(--shadow-1);
   border: none;
 }
-input .lr-box:not(.flat), input .lr-list > div:not(.flat) {
+input .lr-box:not(.flat), input dialog:not(.flat), input .lr-list > div:not(.flat) {
   box-shadow: var(--shadow-1);
 }
 
@@ -510,6 +513,81 @@ input .lr-box:not(.flat), input .lr-list > div:not(.flat) {
 
 .grid {
   display: grid;
+}
+
+dialog {
+  background-color: var(--site-background);
+  color: var(--text-color);
+  border: none;
+  margin: auto;
+  border-radius: 8px;
+  padding: 1.5em;
+  max-width: calc(100% - 5em);
+  opacity: 0;
+  transform: scale(0.9);
+  transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out allow-discrete;
+}
+dialog[open] {
+  opacity: 1;
+  transform: scale(1);
+}
+@starting-style {
+  dialog[open] {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+}
+@starting-style {
+  dialog[open]::backdrop {
+    background-color: rgba(0, 0, 0, 0);
+    backdrop-filter: blur(0px);
+  }
+}
+dialog[open]::backdrop {
+  backdrop-filter: blur(8px);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+@media (prefers-color-scheme: dark) {
+  dialog[open]::backdrop {
+    background-color: rgba(99, 99, 99, 0.199);
+  }
+}
+dialog::backdrop {
+  transition: all 0.3s;
+  transition: all 0.3s allow-discrete;
+  background-color: rgba(0, 0, 0, 0);
+  backdrop-filter: blur(0px);
+}
+dialog .dialog-title {
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+}
+dialog .dialog-title > :first-child {
+  flex-grow: 1;
+}
+dialog .dialog-title.center > :first-child {
+  text-align: center;
+}
+dialog .dialog-title button {
+  box-shadow: none;
+  border: 0;
+  background: none;
+}
+dialog form {
+  display: flex;
+  flex-direction: column;
+}
+dialog form label {
+  margin-top: 1em;
+}
+dialog footer {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
 }
 
 @keyframes box-load-in {

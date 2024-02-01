@@ -205,6 +205,97 @@ a {
 .flex-wrap { display: flex; flex-wrap: wrap; }
 .grid {display: grid;}
 
+
+// Dialog
+dialog {
+  @extend .lr-box;
+  background-color: var(--site-background);
+  color: var(--text-color);
+  border: none;
+  margin: auto;
+    border-radius: 8px;
+    padding: 1.5em;
+    max-width: calc(100% - 5em);
+  
+    opacity: 0;
+    transform: scale(0.9);
+    transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out allow-discrete;
+  
+  
+    &[open] {
+      opacity: 1;
+      transform: scale(1);
+  
+      @starting-style {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+  
+      @starting-style {
+        &::backdrop {
+          background-color: rgba(0, 0, 0, 0);
+          backdrop-filter: blur(0px);
+        }
+      }
+  
+      &::backdrop {
+        backdrop-filter: blur(8px);
+        background-color: hsla(0, 0%, 0%, 0.4);
+  
+        @media (prefers-color-scheme: dark) {
+          background-color: hsla(0, 0%, 39%, 0.199);
+  
+        }
+      }
+    }
+  
+    &::backdrop {
+      transition: all 0.3s;
+      transition: all 0.3s allow-discrete;
+      background-color: rgba(0, 0, 0, 0);
+      backdrop-filter: blur(0px);
+    }
+  
+    .dialog-title {
+      margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+
+    & > :first-child {
+      flex-grow: 1;
+    }
+
+    &.center > :first-child {
+      text-align: center;
+    }
+
+    button {
+      box-shadow: none;
+      border: 0;
+      background: none;
+    }
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    label {
+      margin-top: 1em;
+    }
+  }
+
+  footer {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+  }
+
+
+}
+
 // Animations ----------------------------
 @keyframes box-load-in {
   0% {
