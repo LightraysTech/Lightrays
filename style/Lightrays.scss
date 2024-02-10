@@ -24,13 +24,15 @@ body {
   opacity: .2;
 
   position: fixed;
-  left: calc(var(--width) * -1); top: calc(var(--height) * -1);
+  left: calc(var(--width) * -1);
+  top: calc(var(--height) * -1);
   z-index: -9999;
-  width: var(--width); height: var(--height);
+  width: var(--width);
+  height: var(--height);
   background: var(--site-background);
   border-radius: 50%;
-  box-shadow: calc(var(--posX) + var(--width)/2 - var(--gap)/2) calc(var(--posY) + var(--height)/2) var(--blur) var(--lightest), 
-  calc(var(--posX) + var(--width)/2 + var(--gap)/2) calc(var(--posY) + var(--height)/2) var(--blur) var(--dark);
+  box-shadow: calc(var(--posX) + var(--width)/2 - var(--gap)/2) calc(var(--posY) + var(--height)/2) var(--blur) var(--lightest),
+    calc(var(--posX) + var(--width)/2 + var(--gap)/2) calc(var(--posY) + var(--height)/2) var(--blur) var(--dark);
   transition: all 0s ease-out;
 }
 
@@ -51,7 +53,9 @@ body {
   border-radius: 20px;
 }
 
-:focus {outline: none}
+:focus {
+  outline: none
+}
 
 .fluentIcon {
   font-family: "Segoe Fluent Icons", segoeFluentIcons;
@@ -82,20 +86,20 @@ h3 {
 h4,
 .subtitle {
   font-size: 1.5rem;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1.1;
   margin: 4px 0;
 }
 
 h5 {
-  font-size: 1rem;
-  font-weight: 700;
+  font-size: 1.25rem;
+  font-weight: 600;
   line-height: 1.2;
   margin: 4px 0;
 }
 
 h6 {
-  font-size: .8rem;
+  font-size: .75rem;
   font-weight: 800;
   line-height: 1.2;
   margin: 4px 0;
@@ -106,25 +110,45 @@ a {
   color: var(--text-color);
   font-weight: 600;
   font-family: InterVariable;
-  &:enabled {color: var(--text-color);}
-  &:active {color: var(--text-color);}
-  &:hover {color: var(--color-main);}
+
+  &:enabled {
+    color: var(--text-color);
+  }
+
+  &:active {
+    color: var(--text-color);
+  }
+
+  &:hover {
+    color: var(--color-main);
+  }
 
   &.noStyle {
     text-decoration: none;
-    &:hover {color: var(--text-color);}
+
+    &:hover {
+      color: var(--text-color);
+    }
   }
 }
 
 // Functions ----------------------------------------------
 @mixin mobile() {
-  @media screen and (max-width: 650px) {@content;}
+  @media screen and (max-width: 650px) {
+    @content;
+  }
 }
+
 @mixin desktop() {
-  @media screen and (min-width: 650px) {@content;}
+  @media screen and (min-width: 650px) {
+    @content;
+  }
 }
+
 @mixin tablet() {
-  @media screen and (min-width: 650px) and (max-width: 1300px) {@content;}
+  @media screen and (min-width: 650px) and (max-width: 1300px) {
+    @content;
+  }
 }
 
 // Light / Dark mode --------------------------------------
@@ -151,7 +175,8 @@ a {
     }
   }
 
-  &.flat, .lr-box {
+  &.flat,
+  .lr-box {
     box-shadow: none;
     border: var(--component-stroke);
   }
@@ -192,7 +217,9 @@ a {
   }
 
   &.round-corners {
-    & > div { @extend .round-corners }
+    & > div {
+      @extend .round-corners
+    }
   }
 }
 
@@ -200,10 +227,24 @@ a {
   border-radius: 8px;
 }
 
-.flex { display: flex }
-.flex-center { display: flex; justify-content: center; align-items: center; }
-.flex-wrap { display: flex; flex-wrap: wrap; }
-.grid {display: grid;}
+.flex {
+  display: flex
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.grid {
+  display: grid;
+}
 
 
 // Dialog
@@ -213,52 +254,51 @@ dialog {
   color: var(--text-color);
   border: none;
   margin: auto;
-    border-radius: 8px;
-    padding: 1.5em;
-    max-width: calc(100% - 5em);
-  
-    opacity: 0;
-    transform: scale(0.9);
-    transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out allow-discrete;
-  
-  
-    &[open] {
-      opacity: 1;
-      transform: scale(1);
-  
-      @starting-style {
-        opacity: 0;
-        transform: scale(0.9);
-      }
-  
-      @starting-style {
-        &::backdrop {
-          background-color: rgba(0, 0, 0, 0);
-          backdrop-filter: blur(0px);
-        }
-      }
-  
+  border-radius: 8px;
+  padding: 1.5em;
+  max-width: calc(100% - 5em);
+
+  opacity: 0;
+  transform: scale(0.9);
+  transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out allow-discrete;
+
+
+  &[open] {
+    opacity: 1;
+    transform: scale(1);
+
+    @starting-style {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+
+    @starting-style {
       &::backdrop {
-        backdrop-filter: blur(8px);
-        background-color: hsla(0, 0%, 0%, 0.4);
-  
-        @media (prefers-color-scheme: dark) {
-          background-color: hsla(0, 0%, 39%, 0.199);
-  
-        }
+        background-color: rgba(0, 0, 0, 0);
+        backdrop-filter: blur(0px);
       }
     }
-  
+
     &::backdrop {
-      transition: all 0.3s;
-      transition: all 0.3s allow-discrete;
-      background-color: rgba(0, 0, 0, 0);
-      backdrop-filter: blur(0px);
+      backdrop-filter: blur(8px);
+      background-color: hsla(0, 0%, 0%, 0.4);
+
+      @media (prefers-color-scheme: dark) {
+        background-color: hsla(0, 0%, 31%, 0.46);
+      }
     }
-  
-    .dialog-title {
-      margin-bottom: 16px;
+  }
+
+  &::backdrop {
+    transition: all 0.3s;
+    transition: all 0.3s allow-discrete;
+    background-color: rgba(0, 0, 0, 0);
+    backdrop-filter: blur(0px);
+  }
+
+  .dialog-title {
+    margin-bottom: 16px;
     display: flex;
     align-items: center;
 
@@ -274,12 +314,17 @@ dialog {
       box-shadow: none;
       border: 0;
       background: none;
+
+      &:focus {
+        outline: none;
+      }
     }
   }
 
   form {
     display: flex;
     flex-direction: column;
+
     label {
       margin-top: 1em;
     }
@@ -302,6 +347,7 @@ dialog {
     transform: scale(70%);
     opacity: 0%;
   }
+
   100% {
     transform: scale(100%);
     opacity: 100%;

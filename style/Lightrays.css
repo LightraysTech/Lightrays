@@ -85,6 +85,14 @@ button, select, input[type=submit], textarea[type=submit], input[type=reset], te
   transition: background-color 0.1s, color 0.2s, box-shadow 0.2s;
   transition: background-color 0.2s, color 0.2s, border 0.2s;
 }
+button.flat, select.flat, .flat-inputs button, .flat-inputs select, input.flat[type=submit], textarea.flat[type=submit], .flat-inputs input[type=submit], .flat-inputs textarea[type=submit], input.flat[type=reset], textarea.flat[type=reset], .flat-inputs input[type=reset], .flat-inputs textarea[type=reset], input.flat[type=button], textarea.flat[type=button], .flat-inputs input[type=button], .flat-inputs textarea[type=button], button:disabled, select:disabled, input[type=submit]:disabled, textarea[type=submit]:disabled, input[type=reset]:disabled, textarea[type=reset]:disabled, input[type=button]:disabled, textarea[type=button]:disabled, .button.flat, .flat-inputs input.button, .flat-inputs textarea.button, .flat-inputs button.button, .flat-inputs select.button, .button:disabled {
+  box-shadow: none;
+  border: var(--component-stroke);
+  border-bottom: 2px solid var(--component-important);
+}
+button.small, select.small, input.small[type=submit], textarea.small[type=submit], input.small[type=reset], textarea.small[type=reset], input.small[type=button], textarea.small[type=button], .button.small {
+  padding: 4px 8px;
+}
 button:not(:disabled), select:not(:disabled), input[type=submit]:not(:disabled), textarea[type=submit]:not(:disabled), input[type=reset]:not(:disabled), textarea[type=reset]:not(:disabled), input[type=button]:not(:disabled), textarea[type=button]:not(:disabled), .button:not(:disabled) {
   cursor: pointer;
 }
@@ -242,6 +250,9 @@ select {
 select option:disabled {
   color: gray;
 }
+select:required:invalid {
+  color: color-mix(in srgb, var(--text-color) 50%, var(--site-background));
+}
 
 label {
   font-weight: 600;
@@ -328,20 +339,20 @@ h3 {
 h4,
 .subtitle {
   font-size: 1.5rem;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1.1;
   margin: 4px 0;
 }
 
 h5 {
-  font-size: 1rem;
-  font-weight: 700;
+  font-size: 1.25rem;
+  font-weight: 600;
   line-height: 1.2;
   margin: 4px 0;
 }
 
 h6 {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 800;
   line-height: 1.2;
   margin: 4px 0;
@@ -412,7 +423,16 @@ a.noStyle:hover {
 .lr-box:nth-child(10), dialog:nth-child(10), .lr-list > div:nth-child(10) {
   animation-delay: calc(0.03s * 10);
 }
-.lr-box.flat, dialog.flat, .lr-list > div.flat, .lr-box .lr-box, dialog .lr-box, .lr-box dialog, dialog dialog, .lr-list > div .lr-box, .lr-list > div dialog, .lr-box .lr-list > div, dialog .lr-list > div, .lr-list > div .lr-list > div {
+.lr-box.flat, dialog.flat, .lr-list > div.flat,
+.lr-box .lr-box,
+dialog .lr-box,
+.lr-box dialog,
+dialog dialog,
+.lr-list > div .lr-box,
+.lr-list > div dialog,
+.lr-box .lr-list > div,
+dialog .lr-list > div,
+.lr-list > div .lr-list > div {
   box-shadow: none;
   border: var(--component-stroke);
 }
@@ -555,7 +575,7 @@ dialog[open]::backdrop {
 }
 @media (prefers-color-scheme: dark) {
   dialog[open]::backdrop {
-    background-color: rgba(99, 99, 99, 0.199);
+    background-color: rgba(79, 79, 79, 0.46);
   }
 }
 dialog::backdrop {
@@ -579,6 +599,9 @@ dialog .dialog-title button {
   box-shadow: none;
   border: 0;
   background: none;
+}
+dialog .dialog-title button:focus {
+  outline: none;
 }
 dialog form {
   display: flex;

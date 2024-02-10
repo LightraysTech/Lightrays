@@ -23,6 +23,16 @@ button,.button {
 
   transition: background-color 0.1s, color 0.2s, box-shadow .2s;
   transition: background-color .2s, color .2s, border .2s;
+
+  &.flat {
+    box-shadow: none;
+    border: var(--component-stroke);
+    border-bottom: 2px solid var(--component-important);
+  }
+
+  &.small {
+    padding: 4px 8px;
+  }
   
   &:not(:disabled) {
     cursor: pointer;
@@ -202,6 +212,10 @@ select {
 
   option:disabled {
     color: gray;
+  }
+
+  &:required:invalid {
+    color: color-mix(in srgb, var(--text-color) 50%, var(--site-background));
   }
 }
 
