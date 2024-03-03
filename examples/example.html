@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lightrays App</title>
+    <link rel="stylesheet" href="../style/Lightrays.css">
+    <style>
+
+    </style>
+</head>
+<body class="flex">
+    <!-- <div class="background-highlight"></div> -->
+    <nav>
+        <div class="active">Home</div>
+        <div>Home</div>
+    </nav>
+    <main>
+        <h1>Lightrays</h1>
+        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+        <button onclick="document.querySelector('#dialog').showModal()">Open Dialog</button>
+        <dialog id="dialog">
+            <form method="dialog" class=" flat-inputs">
+                <div class="dialog-title">
+                    <h4>Dialog title</h4>
+                    <button formnovalidate class="fluentIcon"></button>
+                </div>
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. 
+                <label for="">Email:</label>
+                <input name="email" type="email" required>
+                <label for="">Password:</label>
+                <input name="password" type="password" required>
+                <footer>
+                    <button formnovalidate>Cancel</button>
+                    <input type="submit" value="Submit">
+                </footer>
+            </form>
+        </dialog>
+        <br>
+        <br>
+        <div class="lr-box" style="margin-top:25px; box-shadow: var(--shadow-0);">Shadow 0</div>
+        <div class="lr-box" style="margin-top:25px; box-shadow: var(--shadow-1);">Shadow 1</div>
+        <div class="lr-box" style="margin-top:25px; box-shadow: var(--shadow-2);">Shadow 2</div>
+        <div class="lr-box" style="margin-top:25px; box-shadow: var(--shadow-3);">Shadow 3</div>
+        <div class="lr-box" style="margin-top:25px; box-shadow: var(--shadow-4);">Shadow 4</div>
+        <br>
+        <div class="lr-list">
+            <div>Box in Box</div>
+            <div>Box in Box</div>
+            <div>Box in Box</div>
+        </div>
+        <div class="lr-box">
+            <h4>Subheader</h4>
+
+            <div class="lr-list">
+                <div>Box in Box</div>
+                <div>Box in Box</div>
+                <div>Box in Box</div>
+            </div>
+        </div>
+        <div class="lr-box">
+            <h4>Subheader</h4>
+
+            <div class="flex" style="column-gap: 16px; flex-wrap: wrap;">
+                <button class="flat important">Absenden</button>
+                <button class="flat">Absenden</button>
+                <button disabled>Disabled</button>
+                <button class="flat" disabled>Disabled</button>
+                <input type="button" value="Absenden">
+            </div>
+            <div class="flex" style="column-gap: 16px; flex-wrap: wrap;">
+                <input type="text" placeholder="Eingabe">
+                <input class="flat" type="text" id="" placeholder="Eingabe">
+                <input type="search" placeholder="Type here to search...">
+                <input type="checkbox" name="" id="">
+                <select>
+                    <option value="">option</option>
+                </select>
+            </div>
+            <textarea style="width: 400px; height: 140px;"></textarea>
+            <button class="fluentIcon"></button>
+        </div>
+    </main>
+</body>
+<script src="/scripts/LR.js"></script>
+</html>

@@ -1,7 +1,16 @@
 {
-  "devDependencies": {
-    "ts-loader": "^9.3.1",
-    "typescript": "^4.7.4",
-    "webpack-cli": "^4.10.0"
-  }
+  "name": "lightrays",
+  "version": "1.0.0",
+  "description": "A modern and lightweight web design framework, with Sass support.",
+  "files": [
+    "style/*",
+    "scripts/*",
+    "img/*"
+  ],
+  "scripts": {
+    "start": "npx sass .\\style\\Lightrays.scss:.\\style\\Lightrays.css -w",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
 }

@@ -1,0 +1,62 @@
+:root {
+  //Accent colors
+  --sea-blue-alert: #b82548;
+  --sea-blue-dark: #0d86c2;
+  --sea-blue-darkest: #095c98;
+  --sea-blue-light: #2fe5f5;
+  --sea-blue-lightest: #6dfff8;
+  --sea-blue-primary: #1ab5e5;
+
+  --skye-blue-alert: #c61025;
+  --skye-blue-dark: #005cb0;
+  --skye-blue-darkest: #00438f; // replace with dark and darker??? (like css (bold, bolder...))
+  --skye-blue-light: #29a1e7;
+  --skye-blue-lightest: #5ad7ff;
+  --skye-blue-primary: #0078d4;
+
+
+  //Theme
+  --alert: var(--skye-blue-alert);
+  --dark: var(--skye-blue-dark);
+  --darkest: var(--skye-blue-darkest);
+  --light: var(--skye-blue-light);
+  --lightest: var(--skye-blue-lightest);
+  --primary: var(--skye-blue-primary);
+
+
+  --transparency: 1; // ????????????????????????????????????????????????
+  
+  --text-color: #2C2C2C;
+  --component-active: rgb(240, 240, 240);
+  --component-background: rgba(255, 255, 255, var(--transparency));
+  --component-hover: rgba(249, 249, 249, var(--transparency));
+  --component-important: rgba(235, 235, 235, var(--transparency));
+  --site-background: #f5f5f5;
+  --site-stroke: #dadada;
+  --scrollbar-color: #cacaca;
+
+  --component-stroke: solid 1px #ebebeb;
+  --shadow-0: 0px 1px 3px -1px rgba(0, 0, 0, 0.35);
+  --shadow-1: 0px 1px 3px 0px rgba(0, 0, 0, 0.2);
+  --shadow-2: 0px 1px 3px 0px rgba(0, 0, 0, 0.17);
+  --shadow-3: 0px 2px 5px 0px rgba(0, 0, 0, 0.2);
+  --shadow-4: 0px 2px 13px 0px rgba(0, 0, 0, 0.28);
+
+  @media (prefers-color-scheme: dark) {
+    --text-color: #f2f2f2;
+    --component-active: #424242;
+    --component-background: rgba(41, 41, 41, var(--transparency));
+    --component-hover: rgba(56, 56, 56, var(--transparency));
+    --component-important: rgba(26, 26, 26, var(--transparency));
+    --site-background: #1f1f1f;
+    --site-stroke: #2e2e2e;
+    --scrollbar-color: #3d3d3d;
+    
+    --component-stroke: solid 1px rgb(26, 26, 26, var(--transparency));
+    --shadow-0: 0px 1px 3px 0px rgba(0, 0, 0, .2);
+    --shadow-1: 0px 1px 3px 0px rgba(0, 0, 0, 0.7);
+    --shadow-2: 0px 2px 4px 0px rgba(0, 0, 0, 0.80);
+    --shadow-3: 0px 3px 7px 0px rgba(0, 0, 0, 0.60);
+    --shadow-4: 0px 2px 13px 0px rgba(0, 0, 0, 0.7);
+  }
+}
