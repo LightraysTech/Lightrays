@@ -1,0 +1,13 @@
+{
+  "name": "lightrays",
+  "version": "1.0.0",
+  "description": "A modern and lightweight web design framework, with normal Website, ReactJS and Sass support.",
+  "files": [
+    "style/*"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
