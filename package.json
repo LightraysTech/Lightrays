@@ -1,11 +1,14 @@
 {
   "name": "lightrays",
   "version": "1.0.0",
-  "description": "A modern and lightweight web design framework, with normal Website, ReactJS and Sass support.",
+  "description": "A modern and lightweight web design framework, with Sass support.",
   "files": [
-    "style/*"
+    "style/*",
+    "scripts/*",
+    "img/*"
   ],
   "scripts": {
+    "start": "npx sass .\\style\\Lightrays.scss:.\\style\\Lightrays.css -w",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

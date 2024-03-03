@@ -14,6 +14,11 @@
   font-display: swap;
 }
 :root {
+  --text-font: "Satoshi Variable", SatoshiVariable, InterVariable, "Segoe UI Variable", Tahoma, Verdana, sans-serif;
+  --component-font: "InterVariable", sans-serif;
+}
+
+:root {
   --sea-blue-alert: #b82548;
   --sea-blue-dark: #0d86c2;
   --sea-blue-darkest: #095c98;
@@ -290,7 +295,7 @@ body {
   transition: all 0s ease-out;
 }
 
-.content {
+main {
   margin: 8px;
 }
 
@@ -616,6 +621,28 @@ dialog footer {
   flex-wrap: wrap;
   gap: 8px;
   margin-top: 8px;
+}
+
+@media screen and (min-width: 650px) {
+  nav {
+    background-color: var(--component-background);
+    box-shadow: var(--shadow-2);
+    height: 100dvh;
+    width: 600px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+  }
+  nav > div {
+    padding: 8px;
+    margin: 8px;
+    box-shadow: none;
+    text-align: left;
+  }
+  nav > div.active {
+    font-weight: 600;
+    border-left: 2px solid var(--primary);
+  }
 }
 
 @keyframes box-load-in {

@@ -1,5 +1,5 @@
 # Lightrays
-A modern and lightweight web design framework, with normal Website, ReactJS and Sass support.
+A modern and lightweight web design framework, with and Sass support.
 
 Demo Website: https://ncoder77.github.io/Lightrays-examples/
 
@@ -10,20 +10,14 @@ Demo Website: https://ncoder77.github.io/Lightrays-examples/
 ## Usage
 Include the following lines in your HTML <head>:
 `
-    <link rel='stylesheet' href='https://ncoder77.github.io/Lightrays/style/css/Lightrays.css'>
+    <link rel='stylesheet' href='https://raw.githubusercontent.com/Ncoder77/Lightrays/master/style/Lightrays.css'>
     <script src='https://ncoder77.github.io/Lightrays/scripts/Lightrays.js'>
 `
 For a Demo Website, download the "demo" folder of Lightray-examples repo: https://ncoder77.github.io/Lightrays-examples/
-<br>
-
-### Sass command
-```
-npx sass .\style\Lightrays.scss:.\style\Lightrays.css -w
-```
 
 ## Todos
 
-- [ ] ```<dialog>```
+- [x] ```<dialog>```
 - [ ] ```<hr>```
 
 ## Structure
