@@ -3,22 +3,33 @@ A modern and lightweight web design framework, with and Sass support.
 
 Demo Website: https://ncoder77.github.io/Lightrays-examples/
 
-![Lightrays example image](/img/Logos/readmeHead.png "LR example: responsive Web App")
+![Lightrays example image](/img/example.png "LR example: responsive Web App")
 
  
 
 ## Usage
+### npm:
+```
+$ npm install github:Ncoder77/Lightrays
+```
+
+#### Vite example:
+
+```
+main.js:
+
+import 'lightrays/style/Lightrays.css';  
+...
+```
+
+### html:
 Include the following lines in your HTML <head>:
-`
-    <link rel='stylesheet' href='https://raw.githubusercontent.com/Ncoder77/Lightrays/master/style/Lightrays.css'>
-    <script src='https://ncoder77.github.io/Lightrays/scripts/Lightrays.js'>
-`
+```
+<link rel='stylesheet' href='https://raw.githubusercontent.com/Ncoder77/Lightrays/master/style/Lightrays.css'>
+```
+
+
 For a Demo Website, download the "demo" folder of Lightray-examples repo: https://ncoder77.github.io/Lightrays-examples/
-
-## Todos
-
-- [x] ```<dialog>```
-- [ ] ```<hr>```
 
 ## Structure
 

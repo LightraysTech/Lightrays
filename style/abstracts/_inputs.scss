@@ -147,6 +147,7 @@ input {
     width: 5px;
     height: 5px;
     padding: 11px;
+    margin: 0;
     cursor: pointer;
 
     &:checked {
@@ -194,6 +195,7 @@ input {
   }
 }
 .small-inputs label {
+  // TODO
 }
 
 .flat-inputs input,.flat-inputs button {
@@ -226,6 +228,6 @@ label {
 
 
   .small {
-
+ // TODO
   }
 }

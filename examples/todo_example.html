@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo</title>
+    <link rel="stylesheet" href="../style/Lightrays.css">
+    <style>
+        header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 8px 16px;
+            border-bottom: 1.5px solid rgba(98, 98, 98, 0.5);
+        }
+        footer {
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            border-top: 1.5px solid rgba(98, 98, 98, 0.5);
+        }
+        footer input {
+            width: 100%;
+            border-radius: 0;
+            padding: 16px;
+            margin: 0;
+            box-shadow: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <button class="fluentIcon flat"></button>
+        <h4>Todos</h4>
+    </header>
+    <main>
+        <div class="lr-list">
+            <div class="flex" style="align-items: center; gap: 16px;">
+                <input type="checkbox" name="" id="" checked>
+                <label for="">Task 1</label>
+            </div>
+            <div class="flex" style="align-items: center; gap: 16px;">
+                <input type="checkbox" name="" id="" checked>
+                <label for="">Task 2</label>
+            </div>
+            <div class="flex" style="align-items: center; gap: 16px;">
+                <input type="checkbox" name="" id="">
+                <label for="">Task 3</label>
+            </div>
+            <div class="flex" style="align-items: center; gap: 16px;">
+                <input type="checkbox" name="" id="" checked>
+                <label for="">Task 3</label>
+            </div>
+            <div class="flex" style="align-items: center; gap: 16px;">
+                <input type="checkbox" name="" id="">
+                <label for="">Task 3</label>
+            </div>
+        </div>
+    </main>
+    <footer>
+
+        <input type="text" placeholder="Add a task">
+    </footer>
+</body>
+</html>

@@ -198,6 +198,7 @@ input[type=checkbox], textarea[type=checkbox] {
   width: 5px;
   height: 5px;
   padding: 11px;
+  margin: 0;
   cursor: pointer;
 }
 input[type=checkbox]:checked, textarea[type=checkbox]:checked {
@@ -296,7 +297,7 @@ body {
 }
 
 main {
-  margin: 8px;
+  margin: 16px;
 }
 
 ::-webkit-scrollbar {
@@ -623,28 +624,35 @@ dialog footer {
   margin-top: 8px;
 }
 
-@media screen and (min-width: 650px) {
-  nav {
+/*
+// #region Navigation
+nav {
+  @include desktop() {
     background-color: var(--component-background);
     box-shadow: var(--shadow-2);
     height: 100dvh;
     width: 600px;
     padding: 16px;
+
     display: flex;
     flex-direction: column;
-  }
-  nav > div {
-    padding: 8px;
-    margin: 8px;
-    box-shadow: none;
-    text-align: left;
-  }
-  nav > div.active {
-    font-weight: 600;
-    border-left: 2px solid var(--primary);
+
+    & > div {
+      padding: 8px;
+      margin: 8px;
+
+      box-shadow: none;
+      text-align: left;
+
+      &.active {
+        font-weight: 600;
+        border-left: 2px solid var(--primary);
+      }
+    }
   }
 }
-
+// #endregion
+*/
 @keyframes box-load-in {
   0% {
     transform: scale(70%);
