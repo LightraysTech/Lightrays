@@ -74,7 +74,7 @@
 
 button, select, input[type=submit], textarea[type=submit], input[type=reset], textarea[type=reset], input[type=button], textarea[type=button], .button {
   display: inline-block;
-  font-family: InterVariable;
+  font-family: var(--component-font);
   font-size: 1em;
   font-weight: normal;
   line-height: 24px;
@@ -141,7 +141,7 @@ button.fluentIcon, select.fluentIcon, input.fluentIcon[type=submit], textarea.fl
 }
 
 input, textarea {
-  font-family: InterVariable;
+  font-family: var(--component-font);
   font-size: 1em;
   line-height: 24px;
   display: inline-block;
@@ -267,7 +267,7 @@ label {
 }
 body {
   -webkit-tap-highlight-color: transparent;
-  font-family: "Satoshi Variable", SatoshiVariable, InterVariable, "Segoe UI Variable", Tahoma, Verdana, sans-serif;
+  font-family: var(--text-font);
   background-color: var(--site-background);
   background-attachment: fixed;
   color: var(--text-color);
@@ -302,6 +302,7 @@ main {
 
 ::-webkit-scrollbar {
   width: 8px;
+  height: 8px;
   border-radius: 10px;
   background-color: var(--site-background);
 }
@@ -367,7 +368,7 @@ h6 {
 a {
   color: var(--text-color);
   font-weight: 600;
-  font-family: InterVariable;
+  font-family: var(--component-font);
 }
 a:enabled {
   color: var(--text-color);

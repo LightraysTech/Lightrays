@@ -4,7 +4,7 @@
 button,.button {
   display: inline-block;
 
-  font-family: InterVariable;
+  font-family: var(--component-font);
   font-size: 1em;
   font-weight: normal;
   line-height: 24px;
@@ -76,7 +76,7 @@ button,.button {
 }
   
 input {
-  font-family: InterVariable;
+  font-family: var(--component-font);
   font-size: 1em;
   line-height:24px;
   display: inline-block;

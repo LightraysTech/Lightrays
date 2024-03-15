@@ -4,7 +4,7 @@
 
 body {
   -webkit-tap-highlight-color: transparent;
-  font-family: "Satoshi Variable", SatoshiVariable, InterVariable, "Segoe UI Variable", Tahoma, Verdana, sans-serif;
+  font-family: var(--text-font);
   background-color: var(--site-background);
   background-attachment: fixed;
 
@@ -42,6 +42,7 @@ main {
 
 ::-webkit-scrollbar {
   width: 8px;
+  height: 8px;
   border-radius: 10px;
   background-color: var(--site-background);
 }
@@ -110,7 +111,7 @@ h6 {
 a {
   color: var(--text-color);
   font-weight: 600;
-  font-family: InterVariable;
+  font-family: var(--component-font);
 
   &:enabled {
     color: var(--text-color);
