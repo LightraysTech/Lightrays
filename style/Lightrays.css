@@ -136,7 +136,7 @@ button.important:not(:disabled):active, select.important:not(:disabled):active, 
   background-color: var(--dark);
   box-shadow: var(--shadow-0);
 }
-button.fluentIcon, select.fluentIcon, input.fluentIcon[type=submit], textarea.fluentIcon[type=submit], input.fluentIcon[type=reset], textarea.fluentIcon[type=reset], input.fluentIcon[type=button], textarea.fluentIcon[type=button], .button.fluentIcon {
+button.fluentIcon:not(.small), select.fluentIcon:not(.small), input.fluentIcon[type=submit]:not(.small), textarea.fluentIcon[type=submit]:not(.small), input.fluentIcon[type=reset]:not(.small), textarea.fluentIcon[type=reset]:not(.small), input.fluentIcon[type=button]:not(.small), textarea.fluentIcon[type=button]:not(.small), .button.fluentIcon:not(.small) {
   padding: 8px 12px;
 }
 
@@ -240,8 +240,9 @@ input[type=range][type=range]::-moz-range-thumb, textarea[type=range][type=range
 .small-inputs input, .small-inputs textarea, .small-inputs button, .small-inputs select {
   padding: 4px 8px;
 }
-.small-inputs input.fluentIcon, .small-inputs textarea.fluentIcon, .small-inputs button.fluentIcon, .small-inputs select.fluentIcon {
-  padding: 8px 12px;
+
+.small-inputs button.fluentIcon, .small-inputs select.fluentIcon, .small-inputs input.fluentIcon[type=reset], .small-inputs textarea.fluentIcon[type=reset], .small-inputs input.fluentIcon[type=button], .small-inputs textarea.fluentIcon[type=button], .small-inputs input.fluentIcon[type=submit], .small-inputs textarea.fluentIcon[type=submit] {
+  padding: 4px 8px;
 }
 
 textarea {
