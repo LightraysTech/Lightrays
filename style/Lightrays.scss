@@ -233,6 +233,14 @@ a {
   display: flex
 }
 
+.flex-vertical {
+  display: flex
+}
+
+.gap {
+  gap: 16px;
+}
+
 .flex-center {
   display: flex;
   justify-content: center;

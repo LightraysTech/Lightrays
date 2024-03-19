@@ -541,6 +541,14 @@ input .lr-box:not(.flat), input dialog:not(.flat), input .lr-list > div:not(.fla
   display: flex;
 }
 
+.flex-vertical {
+  display: flex;
+}
+
+.gap {
+  gap: 16px;
+}
+
 .flex-center {
   display: flex;
   justify-content: center;
