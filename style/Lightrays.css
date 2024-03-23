@@ -103,7 +103,7 @@ button.flat, select.flat, .flat-inputs button, .flat-inputs select, input.flat[t
   border: var(--component-stroke);
   border-bottom: 2px solid var(--component-important);
 }
-button.small, select.small, input.small[type=submit], textarea.small[type=submit], input.small[type=reset], textarea.small[type=reset], input.small[type=button], textarea.small[type=button], .button.small {
+button.small, select.small, input.small[type=submit], textarea.small[type=submit], input.small[type=reset], textarea.small[type=reset], input.small[type=button], textarea.small[type=button], .small-inputs button, .small-inputs select, .small-inputs input[type=submit], .small-inputs textarea[type=submit], .small-inputs input[type=reset], .small-inputs textarea[type=reset], .small-inputs input[type=button], .small-inputs textarea[type=button], .button.small, .small-inputs .button {
   padding: 4px 8px;
 }
 button:not(:disabled), select:not(:disabled), input[type=submit]:not(:disabled), textarea[type=submit]:not(:disabled), input[type=reset]:not(:disabled), textarea[type=reset]:not(:disabled), input[type=button]:not(:disabled), textarea[type=button]:not(:disabled), .button:not(:disabled) {
@@ -147,6 +147,11 @@ button.important:not(:disabled):active, select.important:not(:disabled):active, 
 button.fluentIcon:not(.small), select.fluentIcon:not(.small), input.fluentIcon[type=submit]:not(.small), textarea.fluentIcon[type=submit]:not(.small), input.fluentIcon[type=reset]:not(.small), textarea.fluentIcon[type=reset]:not(.small), input.fluentIcon[type=button]:not(.small), textarea.fluentIcon[type=button]:not(.small), .button.fluentIcon:not(.small) {
   padding: 8px 12px;
 }
+button > .fluentIcon, select > .fluentIcon, input[type=submit] > .fluentIcon, textarea[type=submit] > .fluentIcon, input[type=reset] > .fluentIcon, textarea[type=reset] > .fluentIcon, input[type=button] > .fluentIcon, textarea[type=button] > .fluentIcon, .button > .fluentIcon {
+  margin-right: 16px;
+  position: relative;
+  top: 1.5px;
+}
 
 input, textarea {
   font-family: var(--component-font);
@@ -170,7 +175,7 @@ input.flat, textarea.flat, .flat-inputs input, .flat-inputs textarea, input.butt
   border: var(--component-stroke);
   border-bottom: 2px solid var(--component-important);
 }
-input.small, textarea.small {
+input.small, textarea.small, .small-inputs input, .small-inputs textarea {
   padding: 4px 8px;
 }
 input:focus, textarea:focus {
@@ -179,6 +184,9 @@ input:focus, textarea:focus {
 }
 input:focus.flat, textarea:focus.flat, .flat-inputs input:focus, .flat-inputs textarea:focus, input.button:focus:disabled, textarea.button:focus:disabled {
   box-shadow: var(--shadow-1);
+}
+input:invalid, textarea:invalid {
+  border-bottom-color: var(--alert);
 }
 input[type=color], textarea[type=color] {
   padding: 0;
@@ -250,10 +258,6 @@ input[type=range][type=range]:focus, textarea[type=range][type=range]:focus {
   box-shadow: none;
 }
 
-.small-inputs input, .small-inputs textarea, .small-inputs button, .small-inputs select {
-  padding: 4px 8px;
-}
-
 .small-inputs button.fluentIcon, .small-inputs select.fluentIcon, .small-inputs input.fluentIcon[type=reset], .small-inputs textarea.fluentIcon[type=reset], .small-inputs input.fluentIcon[type=button], .small-inputs textarea.fluentIcon[type=button], .small-inputs input.fluentIcon[type=submit], .small-inputs textarea.fluentIcon[type=submit] {
   padding: 4px 8px;
 }
@@ -279,6 +283,39 @@ label {
   margin-right: 8px;
   font-size: 1em;
 }
+menu {
+  display: inline-flex;
+  flex-direction: column;
+  background-color: var(--component-background);
+  box-shadow: var(--shadow-3);
+  border-radius: 4px;
+  margin: 8px 0;
+  padding: 4px;
+  gap: 4px;
+}
+menu.horizontal {
+  flex-direction: row;
+}
+menu > button {
+  box-shadow: none;
+  margin: 0;
+  text-align: left;
+}
+menu > button:hover {
+  box-shadow: none !important;
+}
+menu.small-inputs > button {
+  font-size: 14px;
+}
+button menu {
+  position: absolute;
+  bottom: -12px;
+}
+
+button:has(menu) {
+  position: relative;
+}
+
 body {
   -webkit-tap-highlight-color: transparent;
   font-family: var(--text-font);

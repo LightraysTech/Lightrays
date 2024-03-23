@@ -1,6 +1,7 @@
 @use 'abstracts/fonts';
 @use "abstracts/themes";
 @use "abstracts/inputs";
+@use "abstracts/layout";
 
 body {
   -webkit-tap-highlight-color: transparent;

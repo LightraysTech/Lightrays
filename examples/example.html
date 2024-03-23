@@ -17,6 +17,17 @@
         <div class="active">Home</div>
         <div>Home</div>
     </nav> -->
+    <nav hidden style="min-width: 700px;">
+        <menu>
+            <li>aaa</li>
+            <li>bbb</li>
+            <li>ccc</li>
+            <details>
+                <summary>def</summary>
+                <li>dddd</li>
+            </details>
+        </menu>
+    </nav>
     <main>
         <h1>Lightrays</h1>
         <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
@@ -39,6 +50,15 @@
             </form>
         </dialog>
         <br>
+        <menu class="small-inputsa">
+            <button id="save"><span class="fluentIcon"></span>Save for later</button>
+            <button id="share"><span class="fluentIcon"></span>Share this news</button>
+        </menu>
+        <menu class="horizontal">
+            <button id="save" class="fluentIcon"></button>
+            <button id="share" class="fluentIcon"></button>
+        </menu>
+
         <br>
         <div class="lr-box" style="margin-top:25px; box-shadow: var(--shadow-0);">Shadow 0</div>
         <div class="lr-box" style="margin-top:25px; box-shadow: var(--shadow-1);">Shadow 1</div>
@@ -85,7 +105,7 @@
         <div class="lr-box ">
             <input type="range" value="212" onmousemove="document.documentElement.style.setProperty('--hue', event.target.value)" min="0" max="255">
             <div class="flex gap">
-                    <div class="lr-box flat" style="padding: 42px;background: var(--darkest);"> </div>
+                <div class="lr-box flat" style="padding: 42px;background: var(--darkest);"> </div>
                 <div class="lr-box flat" style="padding: 42px;background: var(--dark);"> </div>
                 <div class="lr-box flat" style="padding: 42px;background: var(--primary);"> </div>
                 <div class="lr-box flat" style="padding: 42px;background: var(--light);"> </div>

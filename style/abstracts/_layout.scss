@@ -1,0 +1,38 @@
+menu {
+    display: inline-flex;
+    flex-direction: column;
+
+    background-color: var(--component-background);
+    box-shadow: var(--shadow-3);
+    border-radius: 4px;
+    margin: 8px 0;
+    padding: 4px;
+    gap: 4px;
+
+    &.horizontal {
+        flex-direction: row;
+    }
+
+    & > button {
+        box-shadow: none;
+        margin: 0;
+        text-align: left;
+
+        &:hover {
+            box-shadow: none !important;
+        }
+    }
+
+    &.small-inputs > button {
+        font-size: 14px;
+    }
+
+    button & {
+        position: absolute;
+        bottom: -12px;
+    }
+}
+
+button:has(menu) {
+    position: relative;
+}
