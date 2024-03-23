@@ -231,10 +231,11 @@ select {
     color: gray;
   }
 
-  &:required:invalid {
+  &:has(option:disabled:checked) {
     color: color-mix(in srgb, var(--text-color) 50%, var(--site-background));
   }
 }
+
 
 label {
   font-weight: 600;

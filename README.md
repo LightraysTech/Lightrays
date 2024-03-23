@@ -10,7 +10,7 @@ Demo Website: https://ncoder77.github.io/Lightrays-examples/
 ### npm
 
 ``` bash
-$ npm install github:Ncoder77/Lightrays
+$ npm install github:LightraysTech/Lightrays
 ```
 
 #### Vite/Vue example

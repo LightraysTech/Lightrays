@@ -274,7 +274,7 @@ select {
 select option:disabled {
   color: gray;
 }
-select:required:invalid {
+select:has(option:disabled:checked) {
   color: color-mix(in srgb, var(--text-color) 50%, var(--site-background));
 }
 
