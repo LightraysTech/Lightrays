@@ -106,6 +106,7 @@ h6 {
   line-height: 1.2;
   margin: 4px 0;
 }
+
 // #endregion
 
 //Link
@@ -198,7 +199,9 @@ a {
 .lr-list {
   overflow-y: initial;
 
-  &:not(.shadow) { // TODO: default to shadow, optional .flat (like .lr-box)
+  &:not(.shadow) {
+
+    // TODO: default to shadow, optional .flat (like .lr-box)
     & > div {
       box-shadow: none;
       border: var(--component-stroke);
@@ -268,18 +271,18 @@ dialog {
   border-radius: 8px;
   padding: 1.5em;
   box-sizing: border-box;
-  max-width: calc(100% - 2em);
-  max-height: calc(100% - 2em);
+  max-width: calc(100dvw - 2em);
+  max-height: calc(100dvh - 2em);
 
   opacity: 0;
   scale: 0.7;
-  transition: all 0.3s cubic-bezier(0.4, -0.5, 1, 1) ;
+  transition: all 0.3s cubic-bezier(0.4, -0.5, 1, 1);
   transition: all 0.3s cubic-bezier(0.4, -0.5, 1, 1) allow-discrete;
 
   &[open] {
     transition: all 0.3s cubic-bezier(0, 0, 0.4, 1.6);
     transition: all 0.3s cubic-bezier(0, 0, 0.4, 1.6) allow-discrete;
-  
+
     opacity: 1;
     scale: 1;
 
@@ -309,58 +312,53 @@ dialog {
     transition: all 0.3s;
     transition: all 0.3s allow-discrete;
     background-color: rgba(0, 0, 0, 0);
-    backdrop-filter: blur(0px);
+    backdrop-filter: blur(20px);
   }
 
-  .dialog-title {
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
+  &:has(form) {
+    padding: 0;
+    overflow: hidden;
+  }
 
-    & > :first-child {
-      flex-grow: 1;
-    }
+  & > form {
+    height: 100%;
+    max-height: calc(100dvh - 2em);
+    display: grid;
+    grid-template-rows: auto 1fr auto;
 
-    &.center > :first-child {
-      text-align: center;
-    }
+    & > header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5em;
 
-    button {
-      box-shadow: none;
-      border: 0;
-      background: none;
-
-      &:focus {
-        outline: none;
+      button {
+        box-shadow: none;
+        border: none;
+        background: none;
+  
+        &:focus {
+          outline: none;
+        }
       }
     }
-  }
 
-  form {
-    display: flex;
-    flex-direction: column;
+    & > article {
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      padding: 0 1.5em;
+    }
 
-    label {
-      margin-top: 1em;
+    & > footer {
+      display: flex;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      padding: 1em 1.5em;
     }
   }
-
-  .dialog-body {
-    display: flex;
-    flex-direction: column;
-
-    overflow: auto;
-  }
-
-  footer {
-    display: flex;
-    justify-content: flex-end;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 8px;
-  }
-
-
 }
 
 /*

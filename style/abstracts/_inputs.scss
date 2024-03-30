@@ -114,10 +114,11 @@ input {
     &.flat {
       box-shadow: var(--shadow-1);
     }
+    &:invalid {
+      border-bottom-color: var(--alert)
+    }
   }
-  &:invalid {
-    border-bottom-color: var(--alert)
-  }
+
 
   &[type="reset"],
   &[type="button"] {
