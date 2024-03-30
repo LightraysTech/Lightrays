@@ -615,13 +615,15 @@ dialog {
   padding: 1.5em;
   max-width: calc(100% - 5em);
   opacity: 0;
-  transform: scale(0.9);
-  transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out allow-discrete;
+  scale: 0.7;
+  transition: all 0.25s cubic-bezier(0.4, -0.5, 1, 1);
+  transition: all 0.25s cubic-bezier(0.4, -0.5, 1, 1) allow-discrete;
 }
 dialog[open] {
+  transition: all 0.3s cubic-bezier(0, 0, 0.4, 1.8);
+  transition: all 0.3s cubic-bezier(0, 0, 0.4, 1.8) allow-discrete;
   opacity: 1;
-  transform: scale(1);
+  scale: 1;
 }
 @starting-style {
   dialog[open] {
