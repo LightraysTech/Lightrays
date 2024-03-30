@@ -114,11 +114,10 @@ input {
     &.flat {
       box-shadow: var(--shadow-1);
     }
-    &:invalid {
-      border-bottom-color: var(--alert)
-    }
   }
-
+  &:user-invalid {
+    border-bottom-color: var(--alert)
+  }
 
   &[type="reset"],
   &[type="button"] {
@@ -135,7 +134,7 @@ input {
   }
 
   &[type="search"] {
-    background: url("/img/search.png") no-repeat center center;
+    background: url("../../img/search.png") no-repeat center center;
     background-size: 15px;
     padding-left: 36px;
     background-position-x: 12px;
@@ -161,7 +160,7 @@ input {
     cursor: pointer;
 
     &:checked {
-      background: url("/img/checkbox.png") no-repeat center center;
+      background: url("../../img/checkbox.png") no-repeat center center;
       background-size: 13px;
       background-color: var(--light);
       border-color: var(--light);

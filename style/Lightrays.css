@@ -185,7 +185,7 @@ input:focus, textarea:focus {
 input:focus.flat, textarea:focus.flat, .flat-inputs input:focus, .flat-inputs textarea:focus, input.button:focus:disabled, textarea.button:focus:disabled {
   box-shadow: var(--shadow-1);
 }
-input:focus:invalid, textarea:focus:invalid {
+input:user-invalid, textarea:user-invalid {
   border-bottom-color: var(--alert);
 }
 input[type=color], textarea[type=color] {
@@ -194,7 +194,7 @@ input[type=color], textarea[type=color] {
   background: var(--component-background);
 }
 input[type=search], textarea[type=search] {
-  background: url("/img/search.png") no-repeat center center;
+  background: url("../../img/search.png") no-repeat center center;
   background-size: 15px;
   padding-left: 36px;
   background-position-x: 12px;
@@ -218,7 +218,7 @@ input[type=checkbox], textarea[type=checkbox] {
   cursor: pointer;
 }
 input[type=checkbox]:checked, textarea[type=checkbox]:checked {
-  background: url("/img/checkbox.png") no-repeat center center;
+  background: url("../../img/checkbox.png") no-repeat center center;
   background-size: 13px;
   background-color: var(--light);
   border-color: var(--light);
@@ -581,6 +581,13 @@ input .lr-box:not(.flat), input dialog:not(.flat), input .lr-list > div:not(.fla
 
 .flex {
   display: flex;
+}
+
+.flex-grow {
+  display: flex;
+}
+.flex-grow > * {
+  flex-grow: 1;
 }
 
 .flex-vertical {

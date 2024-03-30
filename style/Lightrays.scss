@@ -237,6 +237,13 @@ a {
   display: flex
 }
 
+.flex-grow {
+  display: flex;
+  & > * {
+    flex-grow: 1;
+  }
+}
+
 .flex-vertical {
   display: flex;
   flex-direction: column;
