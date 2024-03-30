@@ -238,7 +238,8 @@ a {
 }
 
 .flex-vertical {
-  display: flex
+  display: flex;
+  flex-direction: column;
 }
 
 .gap {

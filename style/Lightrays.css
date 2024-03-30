@@ -585,6 +585,7 @@ input .lr-box:not(.flat), input dialog:not(.flat), input .lr-list > div:not(.fla
 
 .flex-vertical {
   display: flex;
+  flex-direction: column;
 }
 
 .gap {
