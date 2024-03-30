@@ -267,7 +267,9 @@ dialog {
   margin: auto;
   border-radius: 8px;
   padding: 1.5em;
-  max-width: calc(100% - 5em);
+  box-sizing: border-box;
+  max-width: calc(100% - 2em);
+  max-height: calc(100% - 2em);
 
   opacity: 0;
   scale: 0.7;
@@ -341,6 +343,13 @@ dialog {
     label {
       margin-top: 1em;
     }
+  }
+
+  .dialog-body {
+    display: flex;
+    flex-direction: column;
+
+    overflow: auto;
   }
 
   footer {

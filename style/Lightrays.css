@@ -613,7 +613,9 @@ dialog {
   margin: auto;
   border-radius: 8px;
   padding: 1.5em;
-  max-width: calc(100% - 5em);
+  box-sizing: border-box;
+  max-width: calc(100% - 2em);
+  max-height: calc(100% - 2em);
   opacity: 0;
   scale: 0.7;
   transition: all 0.3s cubic-bezier(0.4, -0.5, 1, 1);
@@ -677,6 +679,11 @@ dialog form {
 }
 dialog form label {
   margin-top: 1em;
+}
+dialog .dialog-body {
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
 }
 dialog footer {
   display: flex;
