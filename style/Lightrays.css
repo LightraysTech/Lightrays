@@ -321,12 +321,14 @@ body:has(> main) {
   width: 100dvw;
   display: grid;
   grid-template-rows: auto 1fr auto;
-  grid-template-columns: auto auto;
   overflow: hidden;
 }
 body:has(> main) > main {
   overflow: auto;
   grid-row: 2;
+}
+body:has(> main):has(> nav) {
+  grid-template-columns: auto auto;
 }
 body:has(> main) > nav {
   grid-row: 1/4;
