@@ -239,6 +239,7 @@ a {
 
 .flex-grow {
   display: flex;
+
   & > * {
     flex-grow: 1;
   }
@@ -344,7 +345,7 @@ dialog {
         box-shadow: none;
         border: none;
         background: none;
-  
+
         &:focus {
           outline: none;
         }
