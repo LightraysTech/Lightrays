@@ -292,7 +292,7 @@ menu {
   margin: 8px 0;
   padding: 4px;
   gap: 4px;
-  transition: scale 0.2s ease-out;
+  transition: scale 0.15s ease-out;
   transform-origin: 50% 0;
 }
 menu.horizontal {
@@ -309,8 +309,8 @@ menu > button:hover {
 menu.small-inputs > button {
   font-size: 14px;
 }
-menu[closed], .dropdown:not(:focus-within) menu {
-  transition: scale 0.2s ease-in;
+menu[closed]:not(menu[closed=false]), .dropdown:not(:focus-within) menu:not(menu[closed=false]) {
+  transition: scale 0.15s ease-in;
   scale: 0 0;
 }
 
