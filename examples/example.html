@@ -109,12 +109,13 @@
         </div>
         <div class="lr-box ">
             <input type="range" value="212" onmousemove="document.documentElement.style.setProperty('--hue', event.target.value)" min="0" max="355">
-            <div class="flex gap">
-                <div class="lr-box flat" style="padding: 42px;background: var(--darkest);"> </div>
-                <div class="lr-box flat" style="padding: 42px;background: var(--dark);"> </div>
-                <div class="lr-box flat" style="padding: 42px;background: var(--primary);"> </div>
-                <div class="lr-box flat" style="padding: 42px;background: var(--light);"> </div>
-                <div class="lr-box flat" style="padding: 42px;background: var(--lightest);"> </div>
+            <br><br>
+            <div style="display: inline-flex; border-radius: 8px; overflow: hidden; box-shadow: var(--shadow-4);">
+                <div style="width: 70px; height: 120px; background: var(--darkest);"> </div>
+                <div style="width: 70px; height: 120px; background: var(--dark);"> </div>
+                <div style="width: 70px; height: 120px; background: var(--primary);"> </div>
+                <div style="width: 70px; height: 120px; background: var(--light);"> </div>
+                <div style="width: 70px; height: 120px; background: var(--lightest);"> </div>
             </div>
         </div>
     </main>

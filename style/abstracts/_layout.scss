@@ -36,3 +36,28 @@ menu {
 button:has(menu) {
     position: relative;
 }
+
+body:has(> main) {
+    height: 100dvh;
+    width: 100dvw;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: auto auto;
+    overflow: hidden;
+
+    & > main {
+        overflow: auto;
+        grid-row: 2;
+    }
+    & > nav {
+        grid-row: 1 / 4;
+        grid-column: 1;
+    }
+
+    & > footer {
+        grid-row: 3;
+    }
+    & > header {
+        grid-row: 1;
+    }
+}
