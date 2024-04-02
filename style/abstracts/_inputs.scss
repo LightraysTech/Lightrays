@@ -74,10 +74,8 @@ button,.button {
     padding: 8px 12px;
   }
 
-  & > .fluentIcon {
+  & > .fluentIcon:not(:only-child) {
     margin-right: 16px;
-    position: relative;
-    top: 1.5px;
   }
 }
   

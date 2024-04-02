@@ -1,4 +1,5 @@
 @use 'abstracts/fonts';
+@use 'abstracts/fluentIcons';
 @use "abstracts/themes";
 @use "abstracts/inputs";
 @use "abstracts/layout";
@@ -57,10 +58,6 @@ main {
 
 :focus {
   outline: none
-}
-
-.fluentIcon {
-  font-family: "Segoe Fluent Icons", segoeFluentIcons;
 }
 
 // #region Headers

@@ -10,12 +10,6 @@ font-family: "SatoshiVariable";
   font-display: swap;
 }
 
-@font-face {
-  font-family: "segoeFluentIcons";
-  src: url("./fonts/SegoeFluentIcons.ttf");
-  font-display: swap;
-}
-
 :root {
   --text-font: "Satoshi Variable", SatoshiVariable, InterVariable, "Segoe UI Variable", Tahoma, Verdana, sans-serif;
   --component-font: "InterVariable", sans-serif;
