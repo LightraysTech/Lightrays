@@ -19946,7 +19946,7 @@ button, select, input[type=submit], textarea[type=submit], input[type=reset], te
   font-family: var(--component-font);
   font-size: 1em;
   font-weight: normal;
-  line-height: 24px;
+  line-height: inherit;
   text-align: center;
   color: var(--color-text);
   padding: 8px 16px;
@@ -20005,8 +20005,8 @@ button.important:not(:disabled):active, select.important:not(:disabled):active, 
   background-color: var(--dark);
   box-shadow: var(--shadow-0);
 }
-button.fluentIcon:not(.small), select.fluentIcon:not(.small), input.fluentIcon[type=submit]:not(.small), textarea.fluentIcon[type=submit]:not(.small), input.fluentIcon[type=reset]:not(.small), textarea.fluentIcon[type=reset]:not(.small), input.fluentIcon[type=button]:not(.small), textarea.fluentIcon[type=button]:not(.small), .button.fluentIcon:not(.small) {
-  padding: 8px 12px;
+button:not(.small):has(.fluentIcon:only-child), select:not(.small):has(.fluentIcon:only-child), input[type=submit]:not(.small):has(.fluentIcon:only-child), textarea[type=submit]:not(.small):has(.fluentIcon:only-child), input[type=reset]:not(.small):has(.fluentIcon:only-child), textarea[type=reset]:not(.small):has(.fluentIcon:only-child), input[type=button]:not(.small):has(.fluentIcon:only-child), textarea[type=button]:not(.small):has(.fluentIcon:only-child), .button:not(.small):has(.fluentIcon:only-child) {
+  padding: 8px 9.2px;
 }
 button > .fluentIcon:not(:only-child), select > .fluentIcon:not(:only-child), input[type=submit] > .fluentIcon:not(:only-child), textarea[type=submit] > .fluentIcon:not(:only-child), input[type=reset] > .fluentIcon:not(:only-child), textarea[type=reset] > .fluentIcon:not(:only-child), input[type=button] > .fluentIcon:not(:only-child), textarea[type=button] > .fluentIcon:not(:only-child), .button > .fluentIcon:not(:only-child) {
   margin-right: 16px;
@@ -20117,8 +20117,8 @@ input[type=range][type=range]:focus, textarea[type=range][type=range]:focus {
   box-shadow: none;
 }
 
-.small-inputs button.fluentIcon, .small-inputs select.fluentIcon, .small-inputs input.fluentIcon[type=reset], .small-inputs textarea.fluentIcon[type=reset], .small-inputs input.fluentIcon[type=button], .small-inputs textarea.fluentIcon[type=button], .small-inputs input.fluentIcon[type=submit], .small-inputs textarea.fluentIcon[type=submit] {
-  padding: 4px 8px;
+.small-inputs button:not(.small):has(.fluentIcon:only-child), .small-inputs select:not(.small):has(.fluentIcon:only-child), .small-inputs input[type=reset]:not(.small):has(.fluentIcon:only-child), .small-inputs textarea[type=reset]:not(.small):has(.fluentIcon:only-child), .small-inputs input[type=button]:not(.small):has(.fluentIcon:only-child), .small-inputs textarea[type=button]:not(.small):has(.fluentIcon:only-child), .small-inputs input[type=submit]:not(.small):has(.fluentIcon:only-child), .small-inputs textarea[type=submit]:not(.small):has(.fluentIcon:only-child) {
+  padding: 4px 5.2px;
 }
 
 textarea {
