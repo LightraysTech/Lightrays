@@ -20031,6 +20031,9 @@ button:not(.small):has(.fluentIcon:only-child), select:not(.small):has(.fluentIc
   padding: 8px 8px;
   line-height: 1;
 }
+button:not(.small):has(.fluentIcon:only-child) .fluentIcon, select:not(.small):has(.fluentIcon:only-child) .fluentIcon, input[type=submit]:not(.small):has(.fluentIcon:only-child) .fluentIcon, textarea[type=submit]:not(.small):has(.fluentIcon:only-child) .fluentIcon, input[type=reset]:not(.small):has(.fluentIcon:only-child) .fluentIcon, textarea[type=reset]:not(.small):has(.fluentIcon:only-child) .fluentIcon, input[type=button]:not(.small):has(.fluentIcon:only-child) .fluentIcon, textarea[type=button]:not(.small):has(.fluentIcon:only-child) .fluentIcon, .button:not(.small):has(.fluentIcon:only-child) .fluentIcon {
+  display: inline-block;
+}
 button > .fluentIcon:not(:only-child), select > .fluentIcon:not(:only-child), input[type=submit] > .fluentIcon:not(:only-child), textarea[type=submit] > .fluentIcon:not(:only-child), input[type=reset] > .fluentIcon:not(:only-child), textarea[type=reset] > .fluentIcon:not(:only-child), input[type=button] > .fluentIcon:not(:only-child), textarea[type=button] > .fluentIcon:not(:only-child), .button > .fluentIcon:not(:only-child) {
   margin-right: 16px;
 }

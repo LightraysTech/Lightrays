@@ -73,6 +73,9 @@ button,.button {
   &:not(.small):has(.fluentIcon:only-child) {
     padding: 8px 8px;
     line-height: 1;
+    .fluentIcon {
+      display: inline-block;
+    }
   }
 
   & > .fluentIcon:not(:only-child) {
