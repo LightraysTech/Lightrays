@@ -19984,6 +19984,9 @@ button, select, input[type=submit], textarea[type=submit], input[type=reset], te
 button.small, select.small, input.small[type=submit], textarea.small[type=submit], input.small[type=reset], textarea.small[type=reset], input.small[type=button], textarea.small[type=button], .small-inputs button, .small-inputs select, .small-inputs input[type=submit], .small-inputs textarea[type=submit], .small-inputs input[type=reset], .small-inputs textarea[type=reset], .small-inputs input[type=button], .small-inputs textarea[type=button], .button.small, .small-inputs .button {
   padding: 4px 8px;
 }
+button.small:has(.fluentIcon:only-child), select.small:has(.fluentIcon:only-child), input.small[type=submit]:has(.fluentIcon:only-child), textarea.small[type=submit]:has(.fluentIcon:only-child), input.small[type=reset]:has(.fluentIcon:only-child), textarea.small[type=reset]:has(.fluentIcon:only-child), input.small[type=button]:has(.fluentIcon:only-child), textarea.small[type=button]:has(.fluentIcon:only-child), .small-inputs button:has(.fluentIcon:only-child), .small-inputs select:has(.fluentIcon:only-child), .small-inputs input[type=submit]:has(.fluentIcon:only-child), .small-inputs textarea[type=submit]:has(.fluentIcon:only-child), .small-inputs input[type=reset]:has(.fluentIcon:only-child), .small-inputs textarea[type=reset]:has(.fluentIcon:only-child), .small-inputs input[type=button]:has(.fluentIcon:only-child), .small-inputs textarea[type=button]:has(.fluentIcon:only-child), .button.small:has(.fluentIcon:only-child), .small-inputs .button:has(.fluentIcon:only-child) {
+  padding: 4px 4px;
+}
 button:not(:disabled), select:not(:disabled), input[type=submit]:not(:disabled), textarea[type=submit]:not(:disabled), input[type=reset]:not(:disabled), textarea[type=reset]:not(:disabled), input[type=button]:not(:disabled), textarea[type=button]:not(:disabled), .button:not(:disabled) {
   cursor: pointer;
 }
@@ -20147,10 +20150,6 @@ input[type=range][type=range], textarea[type=range][type=range] {
 }
 input[type=range][type=range]:focus, textarea[type=range][type=range]:focus {
   box-shadow: none;
-}
-
-.small-inputs button:has(.fluentIcon:only-child), .small-inputs select:has(.fluentIcon:only-child), .small-inputs input[type=reset]:has(.fluentIcon:only-child), .small-inputs textarea[type=reset]:has(.fluentIcon:only-child), .small-inputs input[type=button]:has(.fluentIcon:only-child), .small-inputs textarea[type=button]:has(.fluentIcon:only-child), .small-inputs input[type=submit]:has(.fluentIcon:only-child), .small-inputs textarea[type=submit]:has(.fluentIcon:only-child) {
-  padding: 4px 4px;
 }
 
 textarea {

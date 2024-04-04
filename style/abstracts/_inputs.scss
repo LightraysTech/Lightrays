@@ -26,6 +26,9 @@ button,.button {
 
   &.small, .small-inputs & {
     padding: 4px 8px;
+    &:has(.fluentIcon:only-child) {
+      padding: 4px 4px;
+    }
   }
   
   &:not(:disabled) {
@@ -215,9 +218,6 @@ input {
   }
 }
 
-.small-inputs button:has(.fluentIcon:only-child) {
-  padding: 4px 4px;
-}
 
 .small-inputs label {
   // TODO
