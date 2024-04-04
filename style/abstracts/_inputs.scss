@@ -24,6 +24,14 @@ button,.button {
   transition: background-color 0.1s, color 0.2s, box-shadow .2s;
   transition: background-color .2s, color .2s, border .2s;
 
+  &:has(.fluentIcon:only-child) {
+    padding: 8px 8px;
+    line-height: 1;
+    .fluentIcon {
+      display: inline-block;
+    }
+  }
+  
   &.small, .small-inputs & {
     padding: 4px 8px;
     &:has(.fluentIcon:only-child) {
@@ -75,13 +83,6 @@ button,.button {
     }
   }
 
-  &:not(.small):has(.fluentIcon:only-child) {
-    padding: 8px 8px;
-    line-height: 1;
-    .fluentIcon {
-      display: inline-block;
-    }
-  }
 
   & > .fluentIcon:not(:only-child) {
     margin-right: 16px;

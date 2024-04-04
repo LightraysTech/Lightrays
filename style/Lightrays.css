@@ -19981,6 +19981,13 @@ button, select, input[type=submit], textarea[type=submit], input[type=reset], te
   transition: background-color 0.1s, color 0.2s, box-shadow 0.2s;
   transition: background-color 0.2s, color 0.2s, border 0.2s;
 }
+button:has(.fluentIcon:only-child), select:has(.fluentIcon:only-child), input[type=submit]:has(.fluentIcon:only-child), textarea[type=submit]:has(.fluentIcon:only-child), input[type=reset]:has(.fluentIcon:only-child), textarea[type=reset]:has(.fluentIcon:only-child), input[type=button]:has(.fluentIcon:only-child), textarea[type=button]:has(.fluentIcon:only-child), .button:has(.fluentIcon:only-child) {
+  padding: 8px 8px;
+  line-height: 1;
+}
+button:has(.fluentIcon:only-child) .fluentIcon, select:has(.fluentIcon:only-child) .fluentIcon, input[type=submit]:has(.fluentIcon:only-child) .fluentIcon, textarea[type=submit]:has(.fluentIcon:only-child) .fluentIcon, input[type=reset]:has(.fluentIcon:only-child) .fluentIcon, textarea[type=reset]:has(.fluentIcon:only-child) .fluentIcon, input[type=button]:has(.fluentIcon:only-child) .fluentIcon, textarea[type=button]:has(.fluentIcon:only-child) .fluentIcon, .button:has(.fluentIcon:only-child) .fluentIcon {
+  display: inline-block;
+}
 button.small, select.small, input.small[type=submit], textarea.small[type=submit], input.small[type=reset], textarea.small[type=reset], input.small[type=button], textarea.small[type=button], .small-inputs button, .small-inputs select, .small-inputs input[type=submit], .small-inputs textarea[type=submit], .small-inputs input[type=reset], .small-inputs textarea[type=reset], .small-inputs input[type=button], .small-inputs textarea[type=button], .button.small, .small-inputs .button {
   padding: 4px 8px;
 }
@@ -20030,13 +20037,6 @@ button.important:not(:disabled):hover, select.important:not(:disabled):hover, in
 button.important:not(:disabled):active, select.important:not(:disabled):active, input[type=submit]:not(:disabled):active, textarea[type=submit]:not(:disabled):active, input.important[type=reset]:not(:disabled):active, textarea.important[type=reset]:not(:disabled):active, input.important[type=button]:not(:disabled):active, textarea.important[type=button]:not(:disabled):active, .button.important:not(:disabled):active {
   background-color: var(--dark);
   box-shadow: var(--shadow-0);
-}
-button:not(.small):has(.fluentIcon:only-child), select:not(.small):has(.fluentIcon:only-child), input[type=submit]:not(.small):has(.fluentIcon:only-child), textarea[type=submit]:not(.small):has(.fluentIcon:only-child), input[type=reset]:not(.small):has(.fluentIcon:only-child), textarea[type=reset]:not(.small):has(.fluentIcon:only-child), input[type=button]:not(.small):has(.fluentIcon:only-child), textarea[type=button]:not(.small):has(.fluentIcon:only-child), .button:not(.small):has(.fluentIcon:only-child) {
-  padding: 8px 8px;
-  line-height: 1;
-}
-button:not(.small):has(.fluentIcon:only-child) .fluentIcon, select:not(.small):has(.fluentIcon:only-child) .fluentIcon, input[type=submit]:not(.small):has(.fluentIcon:only-child) .fluentIcon, textarea[type=submit]:not(.small):has(.fluentIcon:only-child) .fluentIcon, input[type=reset]:not(.small):has(.fluentIcon:only-child) .fluentIcon, textarea[type=reset]:not(.small):has(.fluentIcon:only-child) .fluentIcon, input[type=button]:not(.small):has(.fluentIcon:only-child) .fluentIcon, textarea[type=button]:not(.small):has(.fluentIcon:only-child) .fluentIcon, .button:not(.small):has(.fluentIcon:only-child) .fluentIcon {
-  display: inline-block;
 }
 button > .fluentIcon:not(:only-child), select > .fluentIcon:not(:only-child), input[type=submit] > .fluentIcon:not(:only-child), textarea[type=submit] > .fluentIcon:not(:only-child), input[type=reset] > .fluentIcon:not(:only-child), textarea[type=reset] > .fluentIcon:not(:only-child), input[type=button] > .fluentIcon:not(:only-child), textarea[type=button] > .fluentIcon:not(:only-child), .button > .fluentIcon:not(:only-child) {
   margin-right: 16px;
