@@ -19981,11 +19981,6 @@ button, select, input[type=submit], textarea[type=submit], input[type=reset], te
   transition: background-color 0.1s, color 0.2s, box-shadow 0.2s;
   transition: background-color 0.2s, color 0.2s, border 0.2s;
 }
-button.flat, select.flat, .flat-inputs button, .flat-inputs select, input.flat[type=submit], textarea.flat[type=submit], .flat-inputs input[type=submit], .flat-inputs textarea[type=submit], input.flat[type=reset], textarea.flat[type=reset], .flat-inputs input[type=reset], .flat-inputs textarea[type=reset], input.flat[type=button], textarea.flat[type=button], .flat-inputs input[type=button], .flat-inputs textarea[type=button], button:disabled, select:disabled, input[type=submit]:disabled, textarea[type=submit]:disabled, input[type=reset]:disabled, textarea[type=reset]:disabled, input[type=button]:disabled, textarea[type=button]:disabled, .button.flat, .flat-inputs input.button, .flat-inputs textarea.button, .flat-inputs button.button, .flat-inputs select.button, .button:disabled {
-  box-shadow: none;
-  border: var(--component-stroke);
-  border-bottom: 2px solid var(--component-important);
-}
 button.small, select.small, input.small[type=submit], textarea.small[type=submit], input.small[type=reset], textarea.small[type=reset], input.small[type=button], textarea.small[type=button], .small-inputs button, .small-inputs select, .small-inputs input[type=submit], .small-inputs textarea[type=submit], .small-inputs input[type=reset], .small-inputs textarea[type=reset], .small-inputs input[type=button], .small-inputs textarea[type=button], .button.small, .small-inputs .button {
   padding: 4px 8px;
 }
@@ -20000,17 +19995,23 @@ button:not(:disabled):active, select:not(:disabled):active, input[type=submit]:n
   box-shadow: var(--shadow-0);
   background: var(--component-active);
 }
-button.flat, select.flat, .flat-inputs button, .flat-inputs select, input.flat[type=submit], textarea.flat[type=submit], .flat-inputs input[type=submit], .flat-inputs textarea[type=submit], input.flat[type=reset], textarea.flat[type=reset], .flat-inputs input[type=reset], .flat-inputs textarea[type=reset], input.flat[type=button], textarea.flat[type=button], .flat-inputs input[type=button], .flat-inputs textarea[type=button], button:disabled, select:disabled, input[type=submit]:disabled, textarea[type=submit]:disabled, input[type=reset]:disabled, textarea[type=reset]:disabled, input[type=button]:disabled, textarea[type=button]:disabled, .button.flat, .flat-inputs input.button, .flat-inputs textarea.button, .flat-inputs button.button, .flat-inputs select.button, .button:disabled {
+button.flat, select.flat, input.flat[type=submit], textarea.flat[type=submit], input.flat[type=reset], textarea.flat[type=reset], input.flat[type=button], textarea.flat[type=button], button:disabled, select:disabled, input[type=submit]:disabled, textarea[type=submit]:disabled, input[type=reset]:disabled, textarea[type=reset]:disabled, input[type=button]:disabled, textarea[type=button]:disabled, .flat-inputs button, .flat-inputs select, .flat-inputs input[type=submit], .flat-inputs textarea[type=submit], .flat-inputs input[type=reset], .flat-inputs textarea[type=reset], .flat-inputs input[type=button], .flat-inputs textarea[type=button], .button.flat, .button:disabled, .flat-inputs .button {
   box-shadow: none;
   border: var(--component-stroke);
+  border-bottom: 2px solid var(--component-important);
 }
-button.flat:not(:disabled):hover, select.flat:not(:disabled):hover, .flat-inputs button:not(:disabled):hover, .flat-inputs select:not(:disabled):hover, input.flat[type=submit]:not(:disabled):hover, textarea.flat[type=submit]:not(:disabled):hover, .flat-inputs input[type=submit]:not(:disabled):hover, .flat-inputs textarea[type=submit]:not(:disabled):hover, input.flat[type=reset]:not(:disabled):hover, textarea.flat[type=reset]:not(:disabled):hover, .flat-inputs input[type=reset]:not(:disabled):hover, .flat-inputs textarea[type=reset]:not(:disabled):hover, input.flat[type=button]:not(:disabled):hover, textarea.flat[type=button]:not(:disabled):hover, .flat-inputs input[type=button]:not(:disabled):hover, .flat-inputs textarea[type=button]:not(:disabled):hover, button:not(:disabled):hover:disabled, select:not(:disabled):hover:disabled, input[type=submit]:not(:disabled):hover:disabled, textarea[type=submit]:not(:disabled):hover:disabled, input[type=reset]:not(:disabled):hover:disabled, textarea[type=reset]:not(:disabled):hover:disabled, input[type=button]:not(:disabled):hover:disabled, textarea[type=button]:not(:disabled):hover:disabled, .button.flat:not(:disabled):hover, .flat-inputs input.button:not(:disabled):hover, .flat-inputs textarea.button:not(:disabled):hover, .button:not(:disabled):hover:disabled {
+button.flat:not(:disabled):hover, select.flat:not(:disabled):hover, input.flat[type=submit]:not(:disabled):hover, textarea.flat[type=submit]:not(:disabled):hover, input.flat[type=reset]:not(:disabled):hover, textarea.flat[type=reset]:not(:disabled):hover, input.flat[type=button]:not(:disabled):hover, textarea.flat[type=button]:not(:disabled):hover, button:not(:disabled):hover:disabled, select:not(:disabled):hover:disabled, input[type=submit]:not(:disabled):hover:disabled, textarea[type=submit]:not(:disabled):hover:disabled, input[type=reset]:not(:disabled):hover:disabled, textarea[type=reset]:not(:disabled):hover:disabled, input[type=button]:not(:disabled):hover:disabled, textarea[type=button]:not(:disabled):hover:disabled, .flat-inputs button:not(:disabled):hover, .flat-inputs select:not(:disabled):hover, .flat-inputs input[type=submit]:not(:disabled):hover, .flat-inputs textarea[type=submit]:not(:disabled):hover, .flat-inputs input[type=reset]:not(:disabled):hover, .flat-inputs textarea[type=reset]:not(:disabled):hover, .flat-inputs input[type=button]:not(:disabled):hover, .flat-inputs textarea[type=button]:not(:disabled):hover, .button.flat:not(:disabled):hover, .button:not(:disabled):hover:disabled, .flat-inputs .button:not(:disabled):hover {
   box-shadow: var(--shadow-1);
   border-color: var(--component-hover);
 }
-button.flat:not(:disabled):active, select.flat:not(:disabled):active, .flat-inputs button:not(:disabled):active, .flat-inputs select:not(:disabled):active, input.flat[type=submit]:not(:disabled):active, textarea.flat[type=submit]:not(:disabled):active, .flat-inputs input[type=submit]:not(:disabled):active, .flat-inputs textarea[type=submit]:not(:disabled):active, input.flat[type=reset]:not(:disabled):active, textarea.flat[type=reset]:not(:disabled):active, .flat-inputs input[type=reset]:not(:disabled):active, .flat-inputs textarea[type=reset]:not(:disabled):active, input.flat[type=button]:not(:disabled):active, textarea.flat[type=button]:not(:disabled):active, .flat-inputs input[type=button]:not(:disabled):active, .flat-inputs textarea[type=button]:not(:disabled):active, button:not(:disabled):active:disabled, select:not(:disabled):active:disabled, input[type=submit]:not(:disabled):active:disabled, textarea[type=submit]:not(:disabled):active:disabled, input[type=reset]:not(:disabled):active:disabled, textarea[type=reset]:not(:disabled):active:disabled, input[type=button]:not(:disabled):active:disabled, textarea[type=button]:not(:disabled):active:disabled, .button.flat:not(:disabled):active, .flat-inputs input.button:not(:disabled):active, .flat-inputs textarea.button:not(:disabled):active, .button:not(:disabled):active:disabled {
+button.flat:not(:disabled):active, select.flat:not(:disabled):active, input.flat[type=submit]:not(:disabled):active, textarea.flat[type=submit]:not(:disabled):active, input.flat[type=reset]:not(:disabled):active, textarea.flat[type=reset]:not(:disabled):active, input.flat[type=button]:not(:disabled):active, textarea.flat[type=button]:not(:disabled):active, button:not(:disabled):active:disabled, select:not(:disabled):active:disabled, input[type=submit]:not(:disabled):active:disabled, textarea[type=submit]:not(:disabled):active:disabled, input[type=reset]:not(:disabled):active:disabled, textarea[type=reset]:not(:disabled):active:disabled, input[type=button]:not(:disabled):active:disabled, textarea[type=button]:not(:disabled):active:disabled, .flat-inputs button:not(:disabled):active, .flat-inputs select:not(:disabled):active, .flat-inputs input[type=submit]:not(:disabled):active, .flat-inputs textarea[type=submit]:not(:disabled):active, .flat-inputs input[type=reset]:not(:disabled):active, .flat-inputs textarea[type=reset]:not(:disabled):active, .flat-inputs input[type=button]:not(:disabled):active, .flat-inputs textarea[type=button]:not(:disabled):active, .button.flat:not(:disabled):active, .button:not(:disabled):active:disabled, .flat-inputs .button:not(:disabled):active {
   box-shadow: var(--shadow-0);
   border-color: var(--component-active);
+}
+button.transparent, select.transparent, input.transparent[type=submit], textarea.transparent[type=submit], input.transparent[type=reset], textarea.transparent[type=reset], input.transparent[type=button], textarea.transparent[type=button], button.transparent:hover, button.transparent:active, .button.transparent, .button.transparent:hover, .button.transparent:active {
+  background: none;
+  border: none;
+  box-shadow: none;
 }
 button:disabled, select:disabled, input[type=submit]:disabled, textarea[type=submit]:disabled, input[type=reset]:disabled, textarea[type=reset]:disabled, input[type=button]:disabled, textarea[type=button]:disabled, .button:disabled {
   color: gray;
@@ -20055,7 +20056,7 @@ input, textarea {
   border-bottom: 2px solid transparent;
   border-top: 2px solid transparent;
 }
-input.flat, textarea.flat, .flat-inputs input, .flat-inputs textarea, input.button:disabled, textarea.button:disabled {
+input.flat, textarea.flat, input.button:disabled, textarea.button:disabled, .flat-inputs input, .flat-inputs textarea {
   box-shadow: none;
   border: var(--component-stroke);
   border-bottom: 2px solid var(--component-important);
@@ -20063,11 +20064,16 @@ input.flat, textarea.flat, .flat-inputs input, .flat-inputs textarea, input.butt
 input.small, textarea.small, .small-inputs input, .small-inputs textarea {
   padding: 4px 8px;
 }
+input.transparent, textarea.transparent, input.transparent:hover, input.transparent:active {
+  background: none;
+  border: none;
+  box-shadow: none;
+}
 input:focus, textarea:focus {
   border-bottom-color: var(--primary);
   box-shadow: var(--shadow-2);
 }
-input:focus.flat, textarea:focus.flat, .flat-inputs input:focus, .flat-inputs textarea:focus, input.button:focus:disabled, textarea.button:focus:disabled {
+input:focus.flat, textarea:focus.flat, input.button:focus:disabled, textarea.button:focus:disabled {
   box-shadow: var(--shadow-1);
 }
 input:user-invalid, textarea:user-invalid {

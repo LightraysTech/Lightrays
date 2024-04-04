@@ -24,12 +24,6 @@ button,.button {
   transition: background-color 0.1s, color 0.2s, box-shadow .2s;
   transition: background-color .2s, color .2s, border .2s;
 
-  &.flat {
-    box-shadow: none;
-    border: var(--component-stroke);
-    border-bottom: 2px solid var(--component-important);
-  }
-
   &.small, .small-inputs & {
     padding: 4px 8px;
   }
@@ -47,13 +41,21 @@ button,.button {
     }
   }
 
-  &.flat {
+  &.flat, .flat-inputs & {
     box-shadow: none;
     border: var(--component-stroke);
+    border-bottom: 2px solid var(--component-important);
+
     &:not(:disabled) {
       &:hover {box-shadow: var(--shadow-1); border-color: var(--component-hover);}
       &:active {box-shadow: var(--shadow-0); border-color: var(--component-active);}
     }
+  }
+
+  &.transparent, &.transparent:hover, &.transparent:active {
+    background: none;
+    border: none;
+    box-shadow: none;
   }
 
   &:disabled {
@@ -100,7 +102,7 @@ input {
   border-bottom: 2px solid transparent;
   border-top: 2px solid transparent;
 
-  &.flat {
+  &.flat, .flat-inputs & {
     box-shadow: none;
     border: var(--component-stroke);
     border-bottom: 2px solid var(--component-important);
@@ -108,6 +110,12 @@ input {
 
   &.small, .small-inputs & {
     padding: 4px 8px;
+  }
+
+  &.transparent, &.transparent:hover, &.transparent:active {
+    background: none;
+    border: none;
+    box-shadow: none;
   }
 
   &:focus {
@@ -213,10 +221,6 @@ input {
 
 .small-inputs label {
   // TODO
-}
-
-.flat-inputs input,.flat-inputs button {
-  @extend .flat
 }
 
 textarea {
