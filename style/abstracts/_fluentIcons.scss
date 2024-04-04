@@ -6,22 +6,30 @@
 }
 
 .fluentIcon {
-    display: inline-flex;
-    align-items: center;
-    vertical-align: top;
-    height: 1lh;
+    //display: inline-flex;
+    //align-items: center;
+    //vertical-align: top;
+    //height: 1lh;
+    position: relative;
+    --size: 20px;
 
-    &[size="14"]::before {
-        font-size: 14px;
+    &[size="14"] {
+        --size: 14px;
     }
-    &[size="16"]::before {
-        font-size: 16px;
+    &[size="12"] {
+        --size: 12px;
     }
-    &[size="20"]::before {
-        font-size: 20px;
+    &[size="16"] {
+        --size: 16px;
     }
-    &[size="24"]::before {
-        font-size: 24px;
+    &[size="18"] {
+        --size: 18px;
+    }
+    &[size="20"] {
+        --size: 20px;
+    }
+    &[size="24"] {
+        --size: 24px;
     }
 }
 
@@ -34,6 +42,23 @@
     line-height: 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    translate: 0 -50%;
+    font-size: var(--size);
+}
+.fluentIcon:after {
+    font-family: FluentSystemIcons-Resizable !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    vertical-align: text-bottom;
+    visibility: hidden;
+    content: "\e000";
+    font-size: var(--size);
 }
 
 .fluentIcon.access_time_filled:before {

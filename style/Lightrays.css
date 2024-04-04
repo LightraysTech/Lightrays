@@ -18,22 +18,26 @@
   src: url("./fonts/FluentSystemIcons/FluentSystemIcons-Resizable.woff2?69477e0f920ed270c91aff591753c076") format("woff2"), url("./fonts/FluentSystemIcons/FluentSystemIcons-Resizable.woff?69477e0f920ed270c91aff591753c076") format("woff"), url("./fonts/FluentSystemIcons/FluentSystemIcons-Resizable.ttf?69477e0f920ed270c91aff591753c076") format("truetype");
 }
 .fluentIcon {
-  display: inline-flex;
-  align-items: center;
-  vertical-align: top;
-  height: 1lh;
+  position: relative;
+  --size: 20px;
 }
-.fluentIcon[size="14"]::before {
-  font-size: 14px;
+.fluentIcon[size="14"] {
+  --size: 14px;
 }
-.fluentIcon[size="16"]::before {
-  font-size: 16px;
+.fluentIcon[size="12"] {
+  --size: 12px;
 }
-.fluentIcon[size="20"]::before {
-  font-size: 20px;
+.fluentIcon[size="16"] {
+  --size: 16px;
 }
-.fluentIcon[size="24"]::before {
-  font-size: 24px;
+.fluentIcon[size="18"] {
+  --size: 18px;
+}
+.fluentIcon[size="20"] {
+  --size: 20px;
+}
+.fluentIcon[size="24"] {
+  --size: 24px;
 }
 
 .fluentIcon:before {
@@ -45,6 +49,24 @@
   line-height: 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  translate: 0 -50%;
+  font-size: var(--size);
+}
+
+.fluentIcon:after {
+  font-family: FluentSystemIcons-Resizable !important;
+  font-style: normal;
+  font-weight: normal !important;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  vertical-align: text-bottom;
+  visibility: hidden;
+  content: "\e000";
+  font-size: var(--size);
 }
 
 .fluentIcon.access_time_filled:before {
@@ -20006,7 +20028,8 @@ button.important:not(:disabled):active, select.important:not(:disabled):active, 
   box-shadow: var(--shadow-0);
 }
 button:not(.small):has(.fluentIcon:only-child), select:not(.small):has(.fluentIcon:only-child), input[type=submit]:not(.small):has(.fluentIcon:only-child), textarea[type=submit]:not(.small):has(.fluentIcon:only-child), input[type=reset]:not(.small):has(.fluentIcon:only-child), textarea[type=reset]:not(.small):has(.fluentIcon:only-child), input[type=button]:not(.small):has(.fluentIcon:only-child), textarea[type=button]:not(.small):has(.fluentIcon:only-child), .button:not(.small):has(.fluentIcon:only-child) {
-  padding: 8px 9.2px;
+  padding: 8px 8px;
+  line-height: 1;
 }
 button > .fluentIcon:not(:only-child), select > .fluentIcon:not(:only-child), input[type=submit] > .fluentIcon:not(:only-child), textarea[type=submit] > .fluentIcon:not(:only-child), input[type=reset] > .fluentIcon:not(:only-child), textarea[type=reset] > .fluentIcon:not(:only-child), input[type=button] > .fluentIcon:not(:only-child), textarea[type=button] > .fluentIcon:not(:only-child), .button > .fluentIcon:not(:only-child) {
   margin-right: 16px;
@@ -20015,7 +20038,7 @@ button > .fluentIcon:not(:only-child), select > .fluentIcon:not(:only-child), in
 input, textarea {
   font-family: var(--component-font);
   font-size: 1em;
-  line-height: 24px;
+  line-height: inherit;
   display: inline-block;
   box-shadow: var(--shadow-1);
   color: var(--color-text);
@@ -20117,8 +20140,8 @@ input[type=range][type=range]:focus, textarea[type=range][type=range]:focus {
   box-shadow: none;
 }
 
-.small-inputs button:not(.small):has(.fluentIcon:only-child), .small-inputs select:not(.small):has(.fluentIcon:only-child), .small-inputs input[type=reset]:not(.small):has(.fluentIcon:only-child), .small-inputs textarea[type=reset]:not(.small):has(.fluentIcon:only-child), .small-inputs input[type=button]:not(.small):has(.fluentIcon:only-child), .small-inputs textarea[type=button]:not(.small):has(.fluentIcon:only-child), .small-inputs input[type=submit]:not(.small):has(.fluentIcon:only-child), .small-inputs textarea[type=submit]:not(.small):has(.fluentIcon:only-child) {
-  padding: 4px 5.2px;
+.small-inputs button:has(.fluentIcon:only-child), .small-inputs select:has(.fluentIcon:only-child), .small-inputs input[type=reset]:has(.fluentIcon:only-child), .small-inputs textarea[type=reset]:has(.fluentIcon:only-child), .small-inputs input[type=button]:has(.fluentIcon:only-child), .small-inputs textarea[type=button]:has(.fluentIcon:only-child), .small-inputs input[type=submit]:has(.fluentIcon:only-child), .small-inputs textarea[type=submit]:has(.fluentIcon:only-child) {
+  padding: 4px 4px;
 }
 
 textarea {

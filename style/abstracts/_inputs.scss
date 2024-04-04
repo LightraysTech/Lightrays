@@ -71,7 +71,8 @@ button,.button {
   }
 
   &:not(.small):has(.fluentIcon:only-child) {
-    padding: 8px 9.2px;
+    padding: 8px 8px;
+    line-height: 1;
   }
 
   & > .fluentIcon:not(:only-child) {
@@ -82,7 +83,7 @@ button,.button {
 input {
   font-family: var(--component-font);
   font-size: 1em;
-  line-height:24px;
+  line-height: inherit;
   display: inline-block;
   box-shadow: var(--shadow-1);
   color: var(--color-text);
@@ -203,8 +204,8 @@ input {
   }
 }
 
-.small-inputs button:not(.small):has(.fluentIcon:only-child) {
-  padding: 4px 5.2px;
+.small-inputs button:has(.fluentIcon:only-child) {
+  padding: 4px 4px;
 }
 
 .small-inputs label {
