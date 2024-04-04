@@ -15,7 +15,7 @@
 
 @font-face {
   font-family: "FluentSystemIcons-Resizable";
-  src: url("./fonts/FluentSystemIcons/FluentSystemIcons-Resizable.woff2?69477e0f920ed270c91aff591753c076") format("woff2"), url("./fonts/FluentSystemIcons/FluentSystemIcons-Resizable.woff?69477e0f920ed270c91aff591753c076") format("woff"), url("./fonts/FluentSystemIcons/FluentSystemIcons-Resizable.ttf?69477e0f920ed270c91aff591753c076") format("truetype");
+  src: url("./fonts/FluentSystemIcons/FluentSystemIcons-Resizable.woff2") format("woff2"), url("./fonts/FluentSystemIcons/FluentSystemIcons-Resizable.woff") format("woff"), url("./fonts/FluentSystemIcons/FluentSystemIcons-Resizable.ttf") format("truetype");
 }
 .fluentIcon {
   position: relative;
