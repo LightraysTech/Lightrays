@@ -19902,34 +19902,17 @@
 }
 
 :root {
-  --sea-blue-alert: #b82548;
-  --sea-blue-darkest: hsl(205, 89%, 32%);
-  --sea-blue-dark: hsl(200, 87%, 41%);
-  --sea-blue-primary: hsl(194, 80%, 50%);
-  --sea-blue-light: hsl(185, 91%, 57%);
-  --sea-blue-lightest:hsl(177, 100%, 71%);
-  --skye-blue-alert: #c61025;
-  --skye-blue-darkest: hsl(212, 100%, 28%);
-  --skye-blue-dark: hsl(209, 100%, 35%);
-  --skye-blue-primary: hsl(206, 100%, 42%);
-  --skye-blue-light: hsl(202, 80%, 53%);
-  --skye-blue-lightest:hsl(199, 100%, 68%);
   color-scheme: light dark;
-  --alert: var(--skye-blue-alert);
-  --dark: var(--skye-blue-dark);
-  --darkest: var(--skye-blue-darkest);
-  --light: var(--skye-blue-light);
-  --lightest: var(--skye-blue-lightest);
-  --primary: var(--skye-blue-primary);
-  --hue: 212;
-  --hue-range: -12;
-  --darkest: hsl(var(--hue), 100%, 28%);
-  --dark: hsl(calc(var(--hue) + ((var(--hue-range)) * 0.25)), 100%, 35%);
-  --primary: hsl(calc(var(--hue) + ((var(--hue-range)) * 0.5)), 100%, 42%);
-  --light: hsl(calc(var(--hue) + ((var(--hue-range)) * 0.75)), 80%, 53%);
-  --lightest: hsl(calc(var(--hue) + ((var(--hue-range)) * 1)), 100%, 68%);
+  --hue: 250;
   --secondary: rgb(0, 187, 115);
-  --transparency: 1;
+  --alert: #c61025;
+  --darkest: oklch(35% .12 calc(var(--hue) - 6));
+  --dark: color-mix(in oklch, var(--lightest) 25%, var(--darkest));
+  --primary: color-mix(in oklch, var(--lightest) 50%, var(--darkest));
+  --light: color-mix(in oklch, var(--lightest) 75%, var(--darkest));
+  --lightest: oklch(75% .18 calc(var(--hue) + 6));
+  --gradient: linear-gradient(in oklch to right, var(--darkest), var(--lightest));
+  accent-color: var(--primary);
   --text-color: light-dark(#2C2C2C, #f2f2f2);
   --component-background: light-dark(#ffffff, #292929);
   --component-active: light-dark(#f0f0f0, #424242);
@@ -19941,20 +19924,17 @@
   --site-stroke: solid 1px var(--site-stroke-color);
   --component-stroke-color: light-dark(#ebebeb, #1a1a1a);
   --component-stroke: solid 1px var(--component-stroke-color);
-  --shadow-0: 0px 1px 3px -1px rgba(0, 0, 0, 0.35);
-  --shadow-1: 0px 1px 3px 0px rgba(0, 0, 0, 0.2);
-  --shadow-2: 0px 1px 3px 0px rgba(0, 0, 0, 0.169);
-  --shadow-3: 0px 2px 5px 0px rgba(0, 0, 0, 0.2);
-  --shadow-4: 0px 2px 13px 0px rgba(0, 0, 0, 0.28);
+  --shadow-0: 0px 1px 3px -1px light-dark(rgb(0 0 0 / 0.2), rgb(0 0 0 / .35));
+  --shadow-1: 0px 1px 3px 0px light-dark(rgb(0 0 0 / 0.15), rgb(0 0 0 / .35));
+  --shadow-2: 0px 1px 4px 0px light-dark(rgb(0 0 0 / 0.25), rgb(0 0 0 / .4));
+  --shadow-3: 0px 2px 7px 0px light-dark(rgb(0 0 0 / 0.25), rgb(0 0 0 / .45));
+  --shadow-4: 0px 2px 13px 0px light-dark(rgb(0 0 0 / 0.28), rgb(0 0 0 / .6));
 }
-@media (prefers-color-scheme: dark) {
-  :root {
-    --shadow-0: 0px 1px 3px 0px rgba(0, 0, 0, .2);
-    --shadow-1: 0px 1px 3px 0px rgba(0, 0, 0, 0.7);
-    --shadow-2: 0px 2px 4px 0px rgba(0, 0, 0, 0.6);
-    --shadow-3: 0px 3px 7px 0px rgba(0, 0, 0, 0.55);
-    --shadow-4: 0px 2px 13px 0px rgba(0, 0, 0, 0.6);
-  }
+:root:has([theme=light]) {
+  color-scheme: light;
+}
+:root:has([theme=dark]) {
+  color-scheme: dark;
 }
 
 button, select, input[type=submit], textarea[type=submit], input[type=reset], textarea[type=reset], input[type=button], textarea[type=button], .button {
@@ -20140,7 +20120,6 @@ input[type=range][type=range], textarea[type=range][type=range] {
   padding-right: 0;
   border: none;
   box-shadow: none;
-  accent-color: var(--primary);
 }
 input[type=range][type=range]:focus, textarea[type=range][type=range]:focus {
   box-shadow: none;
@@ -20263,7 +20242,7 @@ body {
 }
 
 main {
-  margin: 16px;
+  padding: 16px;
 }
 
 ::-webkit-scrollbar {

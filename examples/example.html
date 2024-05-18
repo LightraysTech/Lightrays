@@ -32,6 +32,10 @@
         <h1>Lightrays</h1>
         <br>
         <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+        <div class="flex gap">
+            <button onclick="document.body.setAttribute('theme', 'light')">Light</button>
+            <button onclick="document.body.setAttribute('theme', 'dark')">Dark</button>
+        </div>
         <button onclick="document.querySelector('#dialog').showModal()">Open Dialog</button>
         <dialog id="dialog">
             <form method="dialog" class="flat-inputs">
@@ -71,6 +75,8 @@
         </menu>
 
         <br>
+        <div class="lr-box" style="margin-top:25px; box-shadow: none; border: var(--component-stroke);">Flat</div>
+        <div class="lr-box" style="margin-top:25px; box-shadow: none;">No Shadow</div>
         <div class="lr-box" style="margin-top:25px; box-shadow: var(--shadow-0);">Shadow 0</div>
         <div class="lr-box" style="margin-top:25px; box-shadow: var(--shadow-1);">Shadow 1</div>
         <div class="lr-box" style="margin-top:25px; box-shadow: var(--shadow-2);">Shadow 2</div>
@@ -114,7 +120,7 @@
             <button class="fluentIcon"></button>
         </div>
         <div class="lr-box ">
-            <input type="range" value="212" onmousemove="document.documentElement.style.setProperty('--hue', event.target.value)" min="0" max="355">
+            <input type="range" value="250" onpointermove="document.documentElement.style.setProperty('--hue', event.target.value)" min="0" max="355">
             <br><br>
             <div style="display: inline-flex; border-radius: 8px; overflow: hidden; box-shadow: var(--shadow-4);">
                 <div style="width: 70px; height: 120px; background: var(--darkest);"> </div>
@@ -123,6 +129,10 @@
                 <div style="width: 70px; height: 120px; background: var(--light);"> </div>
                 <div style="width: 70px; height: 120px; background: var(--lightest);"> </div>
             </div>
+            <div style="display: inline-flex; border-radius: 8px; overflow: hidden; box-shadow: var(--shadow-4);">
+                <div style="width: 350px; height: 120px; background: var(--gradient);"> </div>
+            </div>
+
         </div>
     </main>
 </body>
