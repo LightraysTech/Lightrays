@@ -31,7 +31,7 @@ button,.button {
       display: inline-block;
     }
   }
-  
+
   &.small, .small-inputs & {
     padding: 4px 8px;
     &:has(.fluentIcon:only-child) {
@@ -63,7 +63,7 @@ button,.button {
     }
   }
 
-  &.transparent, &.transparent:hover, &.transparent:active {
+  &.transparent, &.transparent:hover, &.transparent:active, &.transparent:focus {
     background: none;
     border: none;
     box-shadow: none;

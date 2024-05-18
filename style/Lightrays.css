@@ -20018,7 +20018,7 @@ button.flat:not(:disabled):active, select.flat:not(:disabled):active, input.flat
   box-shadow: var(--shadow-0);
   border-color: var(--component-active);
 }
-button.transparent, select.transparent, input.transparent[type=submit], textarea.transparent[type=submit], input.transparent[type=reset], textarea.transparent[type=reset], input.transparent[type=button], textarea.transparent[type=button], button.transparent:hover, button.transparent:active, .button.transparent, .button.transparent:hover, .button.transparent:active {
+button.transparent, select.transparent, input.transparent[type=submit], textarea.transparent[type=submit], input.transparent[type=reset], textarea.transparent[type=reset], input.transparent[type=button], textarea.transparent[type=button], button.transparent:hover, button.transparent:active, button.transparent:focus, .button.transparent, .button.transparent:hover, .button.transparent:active, .button.transparent:focus {
   background: none;
   border: none;
   box-shadow: none;
