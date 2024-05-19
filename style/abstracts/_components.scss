@@ -50,40 +50,38 @@
     &.transparent:hover,
     &.transparent:active,
     &.transparent:focus {
-        background: none;
-        border: none;
-        box-shadow: none;
+        background: none !important;
+        border: none !important;
+        box-shadow: none !important;
     }
 
     &.interactive,
     .interactive-components > & {
         cursor: pointer;
 
-        &:not(.transparent) {
+        &:hover {
+            box-shadow: var(--shadow-2);
+            background: var(--component-hover);
+        }
+
+        &:active {
+            box-shadow: var(--shadow-0);
+            background: var(--component-active);
+        }
+
+        &.flat {
             &:hover {
-                box-shadow: var(--shadow-2);
-                background: var(--component-hover);
+                box-shadow: var(--shadow-1);
             }
-    
+        }
+
+        &.important {
+            &:hover {
+                background-color: var(--light);
+            }
+
             &:active {
-                box-shadow: var(--shadow-0);
-                background: var(--component-active);
-            }
-    
-            &.flat {
-                &:hover {
-                    box-shadow: var(--shadow-1);
-                }
-            }
-    
-            &.important {
-                &:hover {
-                    background-color: var(--light);
-                }
-    
-                &:active {
-                    background-color: var(--dark);
-                }
+                background-color: var(--dark);
             }
         }
     }
@@ -170,7 +168,7 @@ select {
 input {
     box-sizing: border-box;
 
-    &:not([type=reset]):not([type=button]):not([type=submit]) {
+    &:not(.transparent)&:not([type=reset]):not([type=button]):not([type=submit]) {
         border-bottom-width: 2px;
         border-color: transparent;
 
@@ -192,8 +190,6 @@ input {
             box-shadow: var(--shadow-2);
         }
     }
-
-
 
 
     &:user-invalid {
