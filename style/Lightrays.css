@@ -13,6 +13,324 @@
   --component-font: "InterVariable", sans-serif;
 }
 
+.lr-box, dialog, button, input[type=submit], input[type=reset], input[type=button],
+input, .lr-list > div {
+  background-color: var(--component-background);
+  box-shadow: var(--shadow-1);
+  border-radius: 4px;
+  padding: 16px;
+}
+.lr-box.very-round-corners, dialog.very-round-corners, button.very-round-corners,
+input.very-round-corners, .lr-list > div.very-round-corners {
+  border-radius: 15px;
+}
+.lr-box:nth-child(1), dialog:nth-child(1), button:nth-child(1),
+input:nth-child(1), .lr-list > div:nth-child(1) {
+  animation-delay: calc(0.03s * 1);
+}
+.lr-box:nth-child(2), dialog:nth-child(2), button:nth-child(2),
+input:nth-child(2), .lr-list > div:nth-child(2) {
+  animation-delay: calc(0.03s * 2);
+}
+.lr-box:nth-child(3), dialog:nth-child(3), button:nth-child(3),
+input:nth-child(3), .lr-list > div:nth-child(3) {
+  animation-delay: calc(0.03s * 3);
+}
+.lr-box:nth-child(4), dialog:nth-child(4), button:nth-child(4),
+input:nth-child(4), .lr-list > div:nth-child(4) {
+  animation-delay: calc(0.03s * 4);
+}
+.lr-box:nth-child(5), dialog:nth-child(5), button:nth-child(5),
+input:nth-child(5), .lr-list > div:nth-child(5) {
+  animation-delay: calc(0.03s * 5);
+}
+.lr-box:nth-child(6), dialog:nth-child(6), button:nth-child(6),
+input:nth-child(6), .lr-list > div:nth-child(6) {
+  animation-delay: calc(0.03s * 6);
+}
+.lr-box:nth-child(7), dialog:nth-child(7), button:nth-child(7),
+input:nth-child(7), .lr-list > div:nth-child(7) {
+  animation-delay: calc(0.03s * 7);
+}
+.lr-box:nth-child(8), dialog:nth-child(8), button:nth-child(8),
+input:nth-child(8), .lr-list > div:nth-child(8) {
+  animation-delay: calc(0.03s * 8);
+}
+.lr-box:nth-child(9), dialog:nth-child(9), button:nth-child(9),
+input:nth-child(9), .lr-list > div:nth-child(9) {
+  animation-delay: calc(0.03s * 9);
+}
+.lr-box:nth-child(10), dialog:nth-child(10), button:nth-child(10),
+input:nth-child(10), .lr-list > div:nth-child(10) {
+  animation-delay: calc(0.03s * 10);
+}
+.lr-box:nth-child(11), dialog:nth-child(11), button:nth-child(11),
+input:nth-child(11), .lr-list > div:nth-child(11) {
+  animation-delay: calc(0.03s * 11);
+}
+.lr-box:nth-child(12), dialog:nth-child(12), button:nth-child(12),
+input:nth-child(12), .lr-list > div:nth-child(12) {
+  animation-delay: calc(0.03s * 12);
+}
+.lr-box:nth-child(13), dialog:nth-child(13), button:nth-child(13),
+input:nth-child(13), .lr-list > div:nth-child(13) {
+  animation-delay: calc(0.03s * 13);
+}
+.lr-box:nth-child(14), dialog:nth-child(14), button:nth-child(14),
+input:nth-child(14), .lr-list > div:nth-child(14) {
+  animation-delay: calc(0.03s * 14);
+}
+.lr-box:nth-child(15), dialog:nth-child(15), button:nth-child(15),
+input:nth-child(15), .lr-list > div:nth-child(15) {
+  animation-delay: calc(0.03s * 15);
+}
+.lr-box.inline, dialog.inline, button.lr-box, input.lr-box[type=submit], input.lr-box[type=reset], input.lr-box[type=button],
+input.lr-box, button, input[type=submit], input[type=reset], input[type=button],
+input, .lr-list > div.inline, .inline-components > .lr-box, .inline-components > dialog, .lr-list.inline-components > div {
+  display: inline-block;
+  padding: 8px 16px;
+}
+.lr-box.flat:not(.shadow), dialog.flat:not(.shadow), button.flat:not(.shadow), button:not(.shadow):disabled, input[type=submit]:not(.shadow):disabled, input[type=reset]:not(.shadow):disabled, input[type=button]:not(.shadow):disabled,
+input.flat:not(.shadow), .lr-list > div.flat:not(.shadow), button.lr-list:disabled > div:not(.shadow), input.lr-list[type=submit]:disabled > div:not(.shadow), input.lr-list[type=reset]:disabled > div:not(.shadow), input.lr-list[type=button]:disabled > div:not(.shadow), .lr-list.flat > div:not(.shadow), .lr-box .lr-list > div.lr-list > div:not(.shadow), dialog .lr-list > div.lr-list > div:not(.shadow), button .lr-list > div.lr-list > div:not(.shadow),
+input .lr-list > div.lr-list > div:not(.shadow), .lr-list > div .lr-list > div.lr-list > div:not(.shadow), .lr-box .lr-box:not(.shadow), dialog .lr-box:not(.shadow), .lr-box dialog:not(.shadow), dialog dialog:not(.shadow), button .lr-box:not(.shadow), button dialog:not(.shadow),
+input .lr-box:not(.shadow),
+input dialog:not(.shadow), .lr-box button:not(.shadow), dialog button:not(.shadow), button button:not(.shadow),
+input button:not(.shadow),
+.lr-box input:not(.shadow),
+dialog input:not(.shadow),
+button input:not(.shadow),
+input input:not(.shadow), .lr-list > div .lr-box:not(.shadow), .lr-list > div dialog:not(.shadow), .lr-list > div button:not(.shadow),
+.lr-list > div input:not(.shadow), .lr-box .lr-list > div:not(.shadow), dialog .lr-list > div:not(.shadow), button .lr-list > div:not(.shadow),
+input .lr-list > div:not(.shadow), .lr-list > div .lr-list > div:not(.shadow), .flat-components:not(.shadow-components) > .lr-box:not(.shadow), .flat-components:not(.shadow-components) > dialog:not(.shadow), .flat-components:not(.shadow-components) > button:not(.shadow),
+.flat-components:not(.shadow-components) > input:not(.shadow), .lr-list.flat-components:not(.shadow-components) > div:not(.shadow) {
+  box-shadow: none;
+  border: var(--component-stroke);
+}
+.lr-box.important, dialog.important, input.lr-box[type=submit], button.important,
+input.important,
+input[type=submit], .lr-list > div.important, input.lr-list[type=submit] > div, .lr-list.important > div, input.lr-list[type=submit] > div.lr-list > div, .important-components > .lr-box, .important-components > dialog, .important-components > button,
+.important-components > input, .lr-list.important-components > div {
+  background-color: var(--primary);
+}
+.lr-box.small, dialog.small, button.small,
+input.small, .lr-list > div.small, .lr-list.small > div, .small-components > .lr-box, .small-components > dialog, .small-components > button,
+.small-components > input, .lr-list.small-components > div {
+  padding: 8px;
+}
+.lr-box.small.inline, dialog.small.inline, button.lr-box.small,
+input.lr-box.small, button.small,
+input.small, .lr-list > div.small.inline, .lr-list.small > div.inline, .small-components > .lr-box.inline, .small-components > dialog.inline, .small-components > button.lr-box,
+.small-components > input.lr-box, .small-components > button,
+.small-components > input, .lr-list.small-components > div.inline {
+  padding: 4px 8px;
+}
+.lr-box.transparent, dialog.transparent, button.transparent,
+input.transparent, .lr-list > div.transparent, .lr-list.transparent > div, .lr-box.transparent:hover, .lr-box.transparent:active, .lr-box.transparent:focus {
+  background: none;
+  border: none;
+  box-shadow: none;
+}
+.lr-box.interactive:not(.transparent), dialog.interactive:not(.transparent), button.interactive:not(.transparent), button:not(.transparent):not(:disabled), input[type=submit]:not(.transparent):not(:disabled), input[type=reset]:not(.transparent):not(:disabled), input[type=button]:not(.transparent):not(:disabled),
+input.interactive:not(.transparent), .lr-list > div.interactive:not(.transparent), .interactive-components > .lr-box:not(.transparent), .interactive-components > dialog:not(.transparent), .interactive-components > button:not(.transparent),
+.interactive-components > input:not(.transparent), .lr-list.interactive-components > div:not(.transparent) {
+  cursor: pointer;
+}
+.lr-box.interactive:not(.transparent):hover, dialog.interactive:not(.transparent):hover, button.interactive:not(.transparent):hover, button:not(.transparent):hover:not(:disabled), input[type=submit]:not(.transparent):hover:not(:disabled), input[type=reset]:not(.transparent):hover:not(:disabled), input[type=button]:not(.transparent):hover:not(:disabled),
+input.interactive:not(.transparent):hover, .lr-list > div.interactive:not(.transparent):hover, .interactive-components > .lr-box:not(.transparent):hover, .interactive-components > dialog:not(.transparent):hover, .interactive-components > button:not(.transparent):hover,
+.interactive-components > input:not(.transparent):hover, .lr-list.interactive-components > div:not(.transparent):hover {
+  box-shadow: var(--shadow-2);
+  background: var(--component-hover);
+}
+.lr-box.interactive:not(.transparent):active, dialog.interactive:not(.transparent):active, button.interactive:not(.transparent):active, button:not(.transparent):active:not(:disabled), input[type=submit]:not(.transparent):active:not(:disabled), input[type=reset]:not(.transparent):active:not(:disabled), input[type=button]:not(.transparent):active:not(:disabled),
+input.interactive:not(.transparent):active, .lr-list > div.interactive:not(.transparent):active, .interactive-components > .lr-box:not(.transparent):active, .interactive-components > dialog:not(.transparent):active, .interactive-components > button:not(.transparent):active,
+.interactive-components > input:not(.transparent):active, .lr-list.interactive-components > div:not(.transparent):active {
+  box-shadow: var(--shadow-0);
+  background: var(--component-active);
+}
+.lr-box.interactive:not(.transparent).flat:hover, dialog.interactive:not(.transparent).flat:hover, button.interactive:not(.transparent).flat:hover, input.interactive[type=submit]:not(.transparent).flat:hover, input.interactive[type=reset]:not(.transparent).flat:hover, input.interactive[type=button]:not(.transparent).flat:hover, button.interactive:not(.transparent):hover:disabled, input.interactive[type=submit]:not(.transparent):hover:disabled, input.interactive[type=reset]:not(.transparent):hover:disabled, input.interactive[type=button]:not(.transparent):hover:disabled, button:not(.transparent).flat:hover:not(:disabled), input[type=submit]:not(.transparent).flat:hover:not(:disabled), input[type=reset]:not(.transparent).flat:hover:not(:disabled), input[type=button]:not(.transparent).flat:hover:not(:disabled), button:not(.transparent):hover:not(:disabled):disabled, input[type=submit]:not(.transparent):hover:not(:disabled):disabled, input[type=reset]:not(.transparent):hover:not(:disabled):disabled, input[type=button]:not(.transparent):hover:not(:disabled):disabled,
+input.interactive:not(.transparent).flat:hover, .lr-list > div.interactive:not(.transparent).flat:hover, button.lr-list:disabled > div.interactive:not(.transparent):hover, input.lr-list[type=submit]:disabled > div.interactive:not(.transparent):hover, input.lr-list[type=reset]:disabled > div.interactive:not(.transparent):hover, input.lr-list[type=button]:disabled > div.interactive:not(.transparent):hover, .lr-list.flat > div.interactive:not(.transparent):hover, .lr-box .lr-list > div.lr-list > div.interactive:not(.transparent):hover, dialog .lr-list > div.lr-list > div.interactive:not(.transparent):hover, button .lr-list > div.lr-list > div.interactive:not(.transparent):hover, input[type=submit] .lr-list > div.lr-list > div.interactive:not(.transparent):hover, input[type=reset] .lr-list > div.lr-list > div.interactive:not(.transparent):hover, input[type=button] .lr-list > div.lr-list > div.interactive:not(.transparent):hover,
+input .lr-list > div.lr-list > div.interactive:not(.transparent):hover, .lr-list > div .lr-list > div.lr-list > div.interactive:not(.transparent):hover, .lr-box .lr-box.interactive:not(.transparent):hover, dialog .lr-box.interactive:not(.transparent):hover, .lr-box dialog.interactive:not(.transparent):hover, dialog dialog.interactive:not(.transparent):hover, button .lr-box.interactive:not(.transparent):hover, button dialog.interactive:not(.transparent):hover, input[type=submit] .lr-box.interactive:not(.transparent):hover, input[type=submit] dialog.interactive:not(.transparent):hover, input[type=reset] .lr-box.interactive:not(.transparent):hover, input[type=reset] dialog.interactive:not(.transparent):hover, input[type=button] .lr-box.interactive:not(.transparent):hover, input[type=button] dialog.interactive:not(.transparent):hover,
+input .lr-box.interactive:not(.transparent):hover,
+input dialog.interactive:not(.transparent):hover, .lr-box button.interactive:not(.transparent):hover, dialog button.interactive:not(.transparent):hover, .lr-box input.interactive[type=submit]:not(.transparent):hover, dialog input.interactive[type=submit]:not(.transparent):hover, .lr-box input.interactive[type=reset]:not(.transparent):hover, dialog input.interactive[type=reset]:not(.transparent):hover, .lr-box input.interactive[type=button]:not(.transparent):hover, dialog input.interactive[type=button]:not(.transparent):hover, .lr-box button:not(.transparent):hover:not(:disabled), dialog button:not(.transparent):hover:not(:disabled), .lr-box input[type=submit]:not(.transparent):hover:not(:disabled), dialog input[type=submit]:not(.transparent):hover:not(:disabled), .lr-box input[type=reset]:not(.transparent):hover:not(:disabled), dialog input[type=reset]:not(.transparent):hover:not(:disabled), .lr-box input[type=button]:not(.transparent):hover:not(:disabled), dialog input[type=button]:not(.transparent):hover:not(:disabled), button button.interactive:not(.transparent):hover, input[type=submit] button.interactive:not(.transparent):hover, button input.interactive[type=submit]:not(.transparent):hover, input[type=submit] input.interactive[type=submit]:not(.transparent):hover, input[type=reset] button.interactive:not(.transparent):hover, input[type=reset] input.interactive[type=submit]:not(.transparent):hover, input[type=button] button.interactive:not(.transparent):hover, input[type=button] input.interactive[type=submit]:not(.transparent):hover, button input.interactive[type=reset]:not(.transparent):hover, input[type=submit] input.interactive[type=reset]:not(.transparent):hover, input[type=reset] input.interactive[type=reset]:not(.transparent):hover, input[type=button] input.interactive[type=reset]:not(.transparent):hover, button input.interactive[type=button]:not(.transparent):hover, input[type=submit] input.interactive[type=button]:not(.transparent):hover, input[type=reset] input.interactive[type=button]:not(.transparent):hover, input[type=button] input.interactive[type=button]:not(.transparent):hover, button button:not(.transparent):hover:not(:disabled), input[type=submit] button:not(.transparent):hover:not(:disabled), button input[type=submit]:not(.transparent):hover:not(:disabled), input[type=submit] input[type=submit]:not(.transparent):hover:not(:disabled), input[type=reset] button:not(.transparent):hover:not(:disabled), input[type=reset] input[type=submit]:not(.transparent):hover:not(:disabled), input[type=button] button:not(.transparent):hover:not(:disabled), input[type=button] input[type=submit]:not(.transparent):hover:not(:disabled), button input[type=reset]:not(.transparent):hover:not(:disabled), input[type=submit] input[type=reset]:not(.transparent):hover:not(:disabled), input[type=reset] input[type=reset]:not(.transparent):hover:not(:disabled), input[type=button] input[type=reset]:not(.transparent):hover:not(:disabled), button input[type=button]:not(.transparent):hover:not(:disabled), input[type=submit] input[type=button]:not(.transparent):hover:not(:disabled), input[type=reset] input[type=button]:not(.transparent):hover:not(:disabled), input[type=button] input[type=button]:not(.transparent):hover:not(:disabled),
+input button.interactive:not(.transparent):hover,
+input input.interactive[type=submit]:not(.transparent):hover,
+input input.interactive[type=reset]:not(.transparent):hover,
+input input.interactive[type=button]:not(.transparent):hover,
+input button:not(.transparent):hover:not(:disabled),
+input input[type=submit]:not(.transparent):hover:not(:disabled),
+input input[type=reset]:not(.transparent):hover:not(:disabled),
+input input[type=button]:not(.transparent):hover:not(:disabled),
+.lr-box input.interactive:not(.transparent):hover,
+dialog input.interactive:not(.transparent):hover,
+button input.interactive:not(.transparent):hover,
+input[type=submit] input.interactive:not(.transparent):hover,
+input[type=reset] input.interactive:not(.transparent):hover,
+input[type=button] input.interactive:not(.transparent):hover,
+input input.interactive:not(.transparent):hover, .lr-list > div .lr-box.interactive:not(.transparent):hover, .lr-list > div dialog.interactive:not(.transparent):hover, .lr-list > div button.interactive:not(.transparent):hover, .lr-list > div input.interactive[type=submit]:not(.transparent):hover, .lr-list > div input.interactive[type=reset]:not(.transparent):hover, .lr-list > div input.interactive[type=button]:not(.transparent):hover, .lr-list > div button:not(.transparent):hover:not(:disabled), .lr-list > div input[type=submit]:not(.transparent):hover:not(:disabled), .lr-list > div input[type=reset]:not(.transparent):hover:not(:disabled), .lr-list > div input[type=button]:not(.transparent):hover:not(:disabled),
+.lr-list > div input.interactive:not(.transparent):hover, .lr-box .lr-list > div.interactive:not(.transparent):hover, dialog .lr-list > div.interactive:not(.transparent):hover, button .lr-list > div.interactive:not(.transparent):hover, input[type=submit] .lr-list > div.interactive:not(.transparent):hover, input[type=reset] .lr-list > div.interactive:not(.transparent):hover, input[type=button] .lr-list > div.interactive:not(.transparent):hover,
+input .lr-list > div.interactive:not(.transparent):hover, .lr-list > div .lr-list > div.interactive:not(.transparent):hover, .interactive-components > .lr-box:not(.transparent).flat:hover, .interactive-components > dialog:not(.transparent).flat:hover, .interactive-components > button:not(.transparent).flat:hover, .interactive-components > input[type=submit]:not(.transparent).flat:hover, .interactive-components > input[type=reset]:not(.transparent).flat:hover, .interactive-components > input[type=button]:not(.transparent).flat:hover, .interactive-components > button:not(.transparent):hover:disabled, .interactive-components > input[type=submit]:not(.transparent):hover:disabled, .interactive-components > input[type=reset]:not(.transparent):hover:disabled, .interactive-components > input[type=button]:not(.transparent):hover:disabled,
+.interactive-components > input:not(.transparent).flat:hover, .lr-list.interactive-components > div:not(.transparent).flat:hover, button.lr-list.interactive-components:disabled > div:not(.transparent):hover, input.lr-list.interactive-components[type=submit]:disabled > div:not(.transparent):hover, input.lr-list.interactive-components[type=reset]:disabled > div:not(.transparent):hover, input.lr-list.interactive-components[type=button]:disabled > div:not(.transparent):hover, .lr-list.flat.interactive-components > div:not(.transparent):hover, .lr-box .lr-list > div.lr-list.interactive-components > div:not(.transparent):hover, dialog .lr-list > div.lr-list.interactive-components > div:not(.transparent):hover, button .lr-list > div.lr-list.interactive-components > div:not(.transparent):hover, input[type=submit] .lr-list > div.lr-list.interactive-components > div:not(.transparent):hover, input[type=reset] .lr-list > div.lr-list.interactive-components > div:not(.transparent):hover, input[type=button] .lr-list > div.lr-list.interactive-components > div:not(.transparent):hover,
+input .lr-list > div.lr-list.interactive-components > div:not(.transparent):hover, .lr-list > div .lr-list > div.lr-list.interactive-components > div:not(.transparent):hover, .lr-box .interactive-components > .lr-box:not(.transparent):hover, dialog .interactive-components > .lr-box:not(.transparent):hover, .lr-box .interactive-components > dialog:not(.transparent):hover, dialog .interactive-components > dialog:not(.transparent):hover, button .interactive-components > .lr-box:not(.transparent):hover, button .interactive-components > dialog:not(.transparent):hover, input[type=submit] .interactive-components > .lr-box:not(.transparent):hover, input[type=submit] .interactive-components > dialog:not(.transparent):hover, input[type=reset] .interactive-components > .lr-box:not(.transparent):hover, input[type=reset] .interactive-components > dialog:not(.transparent):hover, input[type=button] .interactive-components > .lr-box:not(.transparent):hover, input[type=button] .interactive-components > dialog:not(.transparent):hover,
+input .interactive-components > .lr-box:not(.transparent):hover,
+input .interactive-components > dialog:not(.transparent):hover, .lr-box .interactive-components > button:not(.transparent):hover, dialog .interactive-components > button:not(.transparent):hover, .lr-box .interactive-components > input[type=submit]:not(.transparent):hover, dialog .interactive-components > input[type=submit]:not(.transparent):hover, .lr-box .interactive-components > input[type=reset]:not(.transparent):hover, dialog .interactive-components > input[type=reset]:not(.transparent):hover, .lr-box .interactive-components > input[type=button]:not(.transparent):hover, dialog .interactive-components > input[type=button]:not(.transparent):hover, button .interactive-components > button:not(.transparent):hover, input[type=submit] .interactive-components > button:not(.transparent):hover, button .interactive-components > input[type=submit]:not(.transparent):hover, input[type=submit] .interactive-components > input[type=submit]:not(.transparent):hover, input[type=reset] .interactive-components > button:not(.transparent):hover, input[type=reset] .interactive-components > input[type=submit]:not(.transparent):hover, input[type=button] .interactive-components > button:not(.transparent):hover, input[type=button] .interactive-components > input[type=submit]:not(.transparent):hover, button .interactive-components > input[type=reset]:not(.transparent):hover, input[type=submit] .interactive-components > input[type=reset]:not(.transparent):hover, input[type=reset] .interactive-components > input[type=reset]:not(.transparent):hover, input[type=button] .interactive-components > input[type=reset]:not(.transparent):hover, button .interactive-components > input[type=button]:not(.transparent):hover, input[type=submit] .interactive-components > input[type=button]:not(.transparent):hover, input[type=reset] .interactive-components > input[type=button]:not(.transparent):hover, input[type=button] .interactive-components > input[type=button]:not(.transparent):hover,
+input .interactive-components > button:not(.transparent):hover,
+input .interactive-components > input[type=submit]:not(.transparent):hover,
+input .interactive-components > input[type=reset]:not(.transparent):hover,
+input .interactive-components > input[type=button]:not(.transparent):hover,
+.lr-box .interactive-components > input:not(.transparent):hover,
+dialog .interactive-components > input:not(.transparent):hover,
+button .interactive-components > input:not(.transparent):hover,
+input[type=submit] .interactive-components > input:not(.transparent):hover,
+input[type=reset] .interactive-components > input:not(.transparent):hover,
+input[type=button] .interactive-components > input:not(.transparent):hover,
+input .interactive-components > input:not(.transparent):hover, .lr-list > div .interactive-components > .lr-box:not(.transparent):hover, .lr-list > div .interactive-components > dialog:not(.transparent):hover, .lr-list > div .interactive-components > button:not(.transparent):hover, .lr-list > div .interactive-components > input[type=submit]:not(.transparent):hover, .lr-list > div .interactive-components > input[type=reset]:not(.transparent):hover, .lr-list > div .interactive-components > input[type=button]:not(.transparent):hover,
+.lr-list > div .interactive-components > input:not(.transparent):hover, .lr-box .lr-list.interactive-components > div:not(.transparent):hover, dialog .lr-list.interactive-components > div:not(.transparent):hover, button .lr-list.interactive-components > div:not(.transparent):hover, input[type=submit] .lr-list.interactive-components > div:not(.transparent):hover, input[type=reset] .lr-list.interactive-components > div:not(.transparent):hover, input[type=button] .lr-list.interactive-components > div:not(.transparent):hover,
+input .lr-list.interactive-components > div:not(.transparent):hover, .lr-list > div .lr-list.interactive-components > div:not(.transparent):hover {
+  box-shadow: var(--shadow-1);
+}
+.lr-box.interactive:not(.transparent).important:hover, dialog.interactive:not(.transparent).important:hover, button.interactive:not(.transparent).important:hover, button:not(.transparent).important:hover:not(:disabled), input[type=submit]:not(.transparent):hover:not(:disabled), input[type=reset]:not(.transparent).important:hover:not(:disabled), input[type=button]:not(.transparent).important:hover:not(:disabled),
+input.interactive:not(.transparent).important:hover,
+input.interactive[type=submit]:not(.transparent):hover, .lr-list > div.interactive:not(.transparent).important:hover, input.lr-list[type=submit] > div.interactive:not(.transparent):hover, .lr-list.important > div.interactive:not(.transparent):hover, input.lr-list[type=submit] > div.lr-list > div.interactive:not(.transparent):hover, .interactive-components > .lr-box:not(.transparent).important:hover, .interactive-components > dialog:not(.transparent).important:hover, .interactive-components > button:not(.transparent).important:hover,
+.interactive-components > input:not(.transparent).important:hover,
+.interactive-components > input[type=submit]:not(.transparent):hover, .lr-list.interactive-components > div:not(.transparent).important:hover, input.lr-list[type=submit].interactive-components > div:not(.transparent):hover, .lr-list.important.interactive-components > div:not(.transparent):hover, input.lr-list[type=submit] > div.lr-list.interactive-components > div:not(.transparent):hover {
+  background-color: var(--light);
+}
+.lr-box.interactive:not(.transparent).important:active, dialog.interactive:not(.transparent).important:active, button.interactive:not(.transparent).important:active, button:not(.transparent).important:active:not(:disabled), input[type=submit]:not(.transparent):active:not(:disabled), input[type=reset]:not(.transparent).important:active:not(:disabled), input[type=button]:not(.transparent).important:active:not(:disabled),
+input.interactive:not(.transparent).important:active,
+input.interactive[type=submit]:not(.transparent):active, .lr-list > div.interactive:not(.transparent).important:active, input.lr-list[type=submit] > div.interactive:not(.transparent):active, .lr-list.important > div.interactive:not(.transparent):active, input.lr-list[type=submit] > div.lr-list > div.interactive:not(.transparent):active, .interactive-components > .lr-box:not(.transparent).important:active, .interactive-components > dialog:not(.transparent).important:active, .interactive-components > button:not(.transparent).important:active,
+.interactive-components > input:not(.transparent).important:active,
+.interactive-components > input[type=submit]:not(.transparent):active, .lr-list.interactive-components > div:not(.transparent).important:active, input.lr-list[type=submit].interactive-components > div:not(.transparent):active, .lr-list.important.interactive-components > div:not(.transparent):active, input.lr-list[type=submit] > div.lr-list.interactive-components > div:not(.transparent):active {
+  background-color: var(--dark);
+}
+
+.lr-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.lr-list > div {
+  width: initial;
+  opacity: 0%;
+  animation: box-load-in 0.2s ease-out both;
+}
+button, input[type=submit], input[type=reset], input[type=button],
+input {
+  font-family: var(--component-font);
+  font-size: 1em;
+  font-weight: normal;
+  line-height: inherit;
+  color: var(--color-text);
+  border: none;
+  margin: 4px 0;
+  transition: background-color 0.2s, color 0.2s, box-shadow 0.2s, border 0.2s;
+}
+
+button, input[type=submit], input[type=reset], input[type=button] {
+  text-align: center;
+}
+button:disabled, input[type=submit]:disabled, input[type=reset]:disabled, input[type=button]:disabled {
+  color: gray;
+}
+button:has(.fluentIcon:only-child), input[type=submit]:has(.fluentIcon:only-child), input[type=reset]:has(.fluentIcon:only-child), input[type=button]:has(.fluentIcon:only-child) {
+  padding: 8px 8px;
+}
+button:has(.fluentIcon:only-child) .fluentIcon, input[type=submit]:has(.fluentIcon:only-child) .fluentIcon, input[type=reset]:has(.fluentIcon:only-child) .fluentIcon, input[type=button]:has(.fluentIcon:only-child) .fluentIcon {
+  display: block;
+  position: initial;
+}
+button.small:has(.fluentIcon:only-child), input.small[type=submit]:has(.fluentIcon:only-child), input.small[type=reset]:has(.fluentIcon:only-child), input.small[type=button]:has(.fluentIcon:only-child), .small-components > button:has(.fluentIcon:only-child), .small-components > input[type=submit]:has(.fluentIcon:only-child), .small-components > input[type=reset]:has(.fluentIcon:only-child), .small-components > input[type=button]:has(.fluentIcon:only-child) {
+  padding: 4px 4px;
+}
+button > .fluentIcon:not(:only-child), input[type=submit] > .fluentIcon:not(:only-child), input[type=reset] > .fluentIcon:not(:only-child), input[type=button] > .fluentIcon:not(:only-child) {
+  margin-right: 16px;
+}
+
+input {
+  box-sizing: border-box;
+}
+input:not([type=reset]):not([type=button]):not([type=submit]) {
+  border-bottom-width: 2px;
+  border-color: transparent;
+}
+input:not([type=reset]):not([type=button]):not([type=submit]).flat:not(.shadow),
+button input:not([type=reset]):not([type=button]):not([type=submit]):not(.shadow),
+input input:not([type=reset]):not([type=button]):not([type=submit]):not(.shadow),
+.lr-list > div input:not([type=reset]):not([type=button]):not([type=submit]):not(.shadow), .flat-components > input:not([type=reset]):not([type=button]):not([type=submit]):not(.shadow), .lr-box input:not([type=reset]):not([type=button]):not([type=submit]):not(.shadow), dialog input:not([type=reset]):not([type=button]):not([type=submit]):not(.shadow) {
+  border-bottom-width: 2px;
+  border-color: transparent;
+  border-color: transparent;
+  outline: var(--component-stroke);
+}
+input:not([type=reset]):not([type=button]):not([type=submit]).flat:not(.shadow):focus,
+button input:not([type=reset]):not([type=button]):not([type=submit]):not(.shadow):focus,
+input input:not([type=reset]):not([type=button]):not([type=submit]):not(.shadow):focus,
+.lr-list > div input:not([type=reset]):not([type=button]):not([type=submit]):not(.shadow):focus, .flat-components > input:not([type=reset]):not([type=button]):not([type=submit]):not(.shadow):focus, .lr-box input:not([type=reset]):not([type=button]):not([type=submit]):not(.shadow):focus, dialog input:not([type=reset]):not([type=button]):not([type=submit]):not(.shadow):focus {
+  box-shadow: var(--shadow-1);
+}
+input:not([type=reset]):not([type=button]):not([type=submit]):focus {
+  border-bottom-color: var(--primary) !important;
+  box-shadow: var(--shadow-2);
+}
+input:user-invalid {
+  border-bottom-color: var(--alert);
+}
+input[type=color] {
+  padding: 0;
+  border-radius: 0;
+  background: var(--component-background);
+}
+input[type=search] {
+  background: url("./img/search.png") no-repeat center center;
+  background-size: 15px;
+  padding-left: 36px;
+  background-position-x: 12px;
+}
+input[type=search]:focus {
+  background-size: 18px;
+  background-position-x: 11px;
+  transition: background 0.2s;
+}
+input[type=checkbox] {
+  align-self: center;
+  appearance: none;
+  -webkit-appearance: none;
+  box-shadow: none;
+  border: none !important;
+  border-radius: 8px;
+  width: 5px;
+  height: 5px;
+  padding: 12px;
+  margin: 0;
+  cursor: pointer;
+}
+input[type=checkbox]:checked {
+  background: url("./img/checkbox.png") no-repeat center center;
+  background-size: 13px;
+  background-color: var(--light);
+  outline-color: var(--light);
+}
+input[type=checkbox].small {
+  padding: 0.5em;
+  border-radius: 4px;
+  vertical-align: text-top;
+  background-size: 9px;
+}
+input[type=range] {
+  height: 0px;
+  background: var(--color-darker);
+  outline: none;
+  -webkit-transition: 0.1s;
+  transition: all 0.1s;
+  padding-left: 0;
+  padding-right: 0;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none;
+}
+input[type=range]:focus {
+  box-shadow: none;
+}
+
 @font-face {
   font-family: "FluentSystemIcons-Resizable";
   src: url("./fonts/FluentSystemIcons/FluentSystemIcons-Resizable.woff2") format("woff2"), url("./fonts/FluentSystemIcons/FluentSystemIcons-Resizable.woff") format("woff"), url("./fonts/FluentSystemIcons/FluentSystemIcons-Resizable.ttf") format("truetype");
@@ -20,6 +338,12 @@
 .fluentIcon {
   position: relative;
   --size: 20px;
+  display: inline-block;
+  height: var(--size);
+  width: var(--size);
+  vertical-align: baseline;
+  position: relative;
+  bottom: calc(var(--size) * -0.5 + 0.5cap);
 }
 .fluentIcon[size="14"] {
   --size: 14px;
@@ -39,6 +363,10 @@
 .fluentIcon[size="24"] {
   --size: 24px;
 }
+.fluentIcon.block {
+  display: block;
+  position: initial;
+}
 
 .fluentIcon:before {
   font-family: FluentSystemIcons-Resizable !important;
@@ -49,24 +377,8 @@
   line-height: 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  position: absolute;
-  left: 0;
-  top: 50%;
-  translate: 0 -50%;
   font-size: var(--size);
-}
-
-.fluentIcon:after {
-  font-family: FluentSystemIcons-Resizable !important;
-  font-style: normal;
-  font-weight: normal !important;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  vertical-align: text-bottom;
-  visibility: hidden;
-  content: "\e000";
-  font-size: var(--size);
+  display: block;
 }
 
 .fluentIcon.access_time_filled:before {
@@ -19937,215 +20249,6 @@
   color-scheme: dark;
 }
 
-button, select, input[type=submit], textarea[type=submit], input[type=reset], textarea[type=reset], input[type=button], textarea[type=button], .button {
-  display: inline-block;
-  font-family: var(--component-font);
-  font-size: 1em;
-  font-weight: normal;
-  line-height: inherit;
-  text-align: center;
-  color: var(--color-text);
-  padding: 8px 16px;
-  margin: 4px 0;
-  border-radius: 4px;
-  box-shadow: var(--shadow-1);
-  border: none;
-  background-color: var(--component-background);
-  user-select: none;
-  transition: background-color 0.1s, color 0.2s, box-shadow 0.2s;
-  transition: background-color 0.2s, color 0.2s, border 0.2s;
-}
-button:has(.fluentIcon:only-child), select:has(.fluentIcon:only-child), input[type=submit]:has(.fluentIcon:only-child), textarea[type=submit]:has(.fluentIcon:only-child), input[type=reset]:has(.fluentIcon:only-child), textarea[type=reset]:has(.fluentIcon:only-child), input[type=button]:has(.fluentIcon:only-child), textarea[type=button]:has(.fluentIcon:only-child), .button:has(.fluentIcon:only-child) {
-  padding: 8px 8px;
-  line-height: 1;
-}
-button:has(.fluentIcon:only-child) .fluentIcon, select:has(.fluentIcon:only-child) .fluentIcon, input[type=submit]:has(.fluentIcon:only-child) .fluentIcon, textarea[type=submit]:has(.fluentIcon:only-child) .fluentIcon, input[type=reset]:has(.fluentIcon:only-child) .fluentIcon, textarea[type=reset]:has(.fluentIcon:only-child) .fluentIcon, input[type=button]:has(.fluentIcon:only-child) .fluentIcon, textarea[type=button]:has(.fluentIcon:only-child) .fluentIcon, .button:has(.fluentIcon:only-child) .fluentIcon {
-  display: inline-block;
-}
-button.small, select.small, input.small[type=submit], textarea.small[type=submit], input.small[type=reset], textarea.small[type=reset], input.small[type=button], textarea.small[type=button], .small-inputs button, .small-inputs select, .small-inputs input[type=submit], .small-inputs textarea[type=submit], .small-inputs input[type=reset], .small-inputs textarea[type=reset], .small-inputs input[type=button], .small-inputs textarea[type=button], .button.small, .small-inputs .button {
-  padding: 4px 8px;
-}
-button.small:has(.fluentIcon:only-child), select.small:has(.fluentIcon:only-child), input.small[type=submit]:has(.fluentIcon:only-child), textarea.small[type=submit]:has(.fluentIcon:only-child), input.small[type=reset]:has(.fluentIcon:only-child), textarea.small[type=reset]:has(.fluentIcon:only-child), input.small[type=button]:has(.fluentIcon:only-child), textarea.small[type=button]:has(.fluentIcon:only-child), .small-inputs button:has(.fluentIcon:only-child), .small-inputs select:has(.fluentIcon:only-child), .small-inputs input[type=submit]:has(.fluentIcon:only-child), .small-inputs textarea[type=submit]:has(.fluentIcon:only-child), .small-inputs input[type=reset]:has(.fluentIcon:only-child), .small-inputs textarea[type=reset]:has(.fluentIcon:only-child), .small-inputs input[type=button]:has(.fluentIcon:only-child), .small-inputs textarea[type=button]:has(.fluentIcon:only-child), .button.small:has(.fluentIcon:only-child), .small-inputs .button:has(.fluentIcon:only-child) {
-  padding: 4px 4px;
-}
-button:not(:disabled), select:not(:disabled), input[type=submit]:not(:disabled), textarea[type=submit]:not(:disabled), input[type=reset]:not(:disabled), textarea[type=reset]:not(:disabled), input[type=button]:not(:disabled), textarea[type=button]:not(:disabled), .button:not(:disabled) {
-  cursor: pointer;
-}
-button:not(:disabled):hover, select:not(:disabled):hover, input[type=submit]:not(:disabled):hover, textarea[type=submit]:not(:disabled):hover, input[type=reset]:not(:disabled):hover, textarea[type=reset]:not(:disabled):hover, input[type=button]:not(:disabled):hover, textarea[type=button]:not(:disabled):hover, .button:not(:disabled):hover {
-  box-shadow: var(--shadow-2);
-  background: var(--component-hover);
-}
-button:not(:disabled):active, select:not(:disabled):active, input[type=submit]:not(:disabled):active, textarea[type=submit]:not(:disabled):active, input[type=reset]:not(:disabled):active, textarea[type=reset]:not(:disabled):active, input[type=button]:not(:disabled):active, textarea[type=button]:not(:disabled):active, .button:not(:disabled):active {
-  box-shadow: var(--shadow-0);
-  background: var(--component-active);
-}
-button.flat, select.flat, input.flat[type=submit], textarea.flat[type=submit], input.flat[type=reset], textarea.flat[type=reset], input.flat[type=button], textarea.flat[type=button], button:disabled, select:disabled, input[type=submit]:disabled, textarea[type=submit]:disabled, input[type=reset]:disabled, textarea[type=reset]:disabled, input[type=button]:disabled, textarea[type=button]:disabled, .flat-inputs button, .flat-inputs select, .flat-inputs input[type=submit], .flat-inputs textarea[type=submit], .flat-inputs input[type=reset], .flat-inputs textarea[type=reset], .flat-inputs input[type=button], .flat-inputs textarea[type=button], .button.flat, .button:disabled, .flat-inputs .button {
-  box-shadow: none;
-  border: var(--component-stroke);
-  border-bottom: 2px solid var(--component-important);
-}
-button.flat:not(:disabled):hover, select.flat:not(:disabled):hover, input.flat[type=submit]:not(:disabled):hover, textarea.flat[type=submit]:not(:disabled):hover, input.flat[type=reset]:not(:disabled):hover, textarea.flat[type=reset]:not(:disabled):hover, input.flat[type=button]:not(:disabled):hover, textarea.flat[type=button]:not(:disabled):hover, button:not(:disabled):hover:disabled, select:not(:disabled):hover:disabled, input[type=submit]:not(:disabled):hover:disabled, textarea[type=submit]:not(:disabled):hover:disabled, input[type=reset]:not(:disabled):hover:disabled, textarea[type=reset]:not(:disabled):hover:disabled, input[type=button]:not(:disabled):hover:disabled, textarea[type=button]:not(:disabled):hover:disabled, .flat-inputs button:not(:disabled):hover, .flat-inputs select:not(:disabled):hover, .flat-inputs input[type=submit]:not(:disabled):hover, .flat-inputs textarea[type=submit]:not(:disabled):hover, .flat-inputs input[type=reset]:not(:disabled):hover, .flat-inputs textarea[type=reset]:not(:disabled):hover, .flat-inputs input[type=button]:not(:disabled):hover, .flat-inputs textarea[type=button]:not(:disabled):hover, .button.flat:not(:disabled):hover, .button:not(:disabled):hover:disabled, .flat-inputs .button:not(:disabled):hover {
-  box-shadow: var(--shadow-1);
-  border-color: var(--component-hover);
-}
-button.flat:not(:disabled):active, select.flat:not(:disabled):active, input.flat[type=submit]:not(:disabled):active, textarea.flat[type=submit]:not(:disabled):active, input.flat[type=reset]:not(:disabled):active, textarea.flat[type=reset]:not(:disabled):active, input.flat[type=button]:not(:disabled):active, textarea.flat[type=button]:not(:disabled):active, button:not(:disabled):active:disabled, select:not(:disabled):active:disabled, input[type=submit]:not(:disabled):active:disabled, textarea[type=submit]:not(:disabled):active:disabled, input[type=reset]:not(:disabled):active:disabled, textarea[type=reset]:not(:disabled):active:disabled, input[type=button]:not(:disabled):active:disabled, textarea[type=button]:not(:disabled):active:disabled, .flat-inputs button:not(:disabled):active, .flat-inputs select:not(:disabled):active, .flat-inputs input[type=submit]:not(:disabled):active, .flat-inputs textarea[type=submit]:not(:disabled):active, .flat-inputs input[type=reset]:not(:disabled):active, .flat-inputs textarea[type=reset]:not(:disabled):active, .flat-inputs input[type=button]:not(:disabled):active, .flat-inputs textarea[type=button]:not(:disabled):active, .button.flat:not(:disabled):active, .button:not(:disabled):active:disabled, .flat-inputs .button:not(:disabled):active {
-  box-shadow: var(--shadow-0);
-  border-color: var(--component-active);
-}
-button.transparent, select.transparent, input.transparent[type=submit], textarea.transparent[type=submit], input.transparent[type=reset], textarea.transparent[type=reset], input.transparent[type=button], textarea.transparent[type=button], button.transparent:hover, button.transparent:active, button.transparent:focus, .button.transparent, .button.transparent:hover, .button.transparent:active, .button.transparent:focus {
-  background: none;
-  border: none;
-  box-shadow: none;
-}
-button:disabled, select:disabled, input[type=submit]:disabled, textarea[type=submit]:disabled, input[type=reset]:disabled, textarea[type=reset]:disabled, input[type=button]:disabled, textarea[type=button]:disabled, .button:disabled {
-  color: gray;
-}
-button.important, select.important, input[type=submit], textarea[type=submit], input.important[type=reset], textarea.important[type=reset], input.important[type=button], textarea.important[type=button], .button.important, input.button[type=submit], textarea.button[type=submit] {
-  border: none;
-  background-color: var(--primary);
-}
-button.important:not(:disabled):hover, select.important:not(:disabled):hover, input[type=submit]:not(:disabled):hover, textarea[type=submit]:not(:disabled):hover, input.important[type=reset]:not(:disabled):hover, textarea.important[type=reset]:not(:disabled):hover, input.important[type=button]:not(:disabled):hover, textarea.important[type=button]:not(:disabled):hover, .button.important:not(:disabled):hover {
-  background-color: var(--light);
-  box-shadow: var(--shadow-2);
-}
-button.important:not(:disabled):active, select.important:not(:disabled):active, input[type=submit]:not(:disabled):active, textarea[type=submit]:not(:disabled):active, input.important[type=reset]:not(:disabled):active, textarea.important[type=reset]:not(:disabled):active, input.important[type=button]:not(:disabled):active, textarea.important[type=button]:not(:disabled):active, .button.important:not(:disabled):active {
-  background-color: var(--dark);
-  box-shadow: var(--shadow-0);
-}
-button > .fluentIcon:not(:only-child), select > .fluentIcon:not(:only-child), input[type=submit] > .fluentIcon:not(:only-child), textarea[type=submit] > .fluentIcon:not(:only-child), input[type=reset] > .fluentIcon:not(:only-child), textarea[type=reset] > .fluentIcon:not(:only-child), input[type=button] > .fluentIcon:not(:only-child), textarea[type=button] > .fluentIcon:not(:only-child), .button > .fluentIcon:not(:only-child) {
-  margin-right: 16px;
-}
-
-input, textarea {
-  font-family: var(--component-font);
-  font-size: 1em;
-  line-height: inherit;
-  display: inline-block;
-  box-shadow: var(--shadow-1);
-  color: var(--color-text);
-  padding: 8px 16px;
-  margin: 4px 0;
-  border: none;
-  background-color: var(--component-background);
-  border-radius: 4px;
-  transition: background-color 0.1s, color 0.2s, box-shadow 0.2s, border-bottom-color 0.1s;
-  box-sizing: border-box;
-  border-bottom: 2px solid transparent;
-  border-top: 2px solid transparent;
-}
-input.flat, textarea.flat, input.button:disabled, textarea.button:disabled, .flat-inputs input, .flat-inputs textarea {
-  box-shadow: none;
-  border: var(--component-stroke);
-  border-bottom: 2px solid var(--component-important);
-}
-input.small, textarea.small, .small-inputs input, .small-inputs textarea {
-  padding: 4px 8px;
-}
-input.transparent, textarea.transparent, input.transparent:hover, input.transparent:active {
-  background: none;
-  border: none;
-  box-shadow: none;
-}
-input:focus, textarea:focus {
-  border-bottom-color: var(--primary);
-  box-shadow: var(--shadow-2);
-}
-input:focus.flat, textarea:focus.flat, input.button:focus:disabled, textarea.button:focus:disabled {
-  box-shadow: var(--shadow-1);
-}
-input:user-invalid, textarea:user-invalid {
-  border-bottom-color: var(--alert);
-}
-input[type=color], textarea[type=color] {
-  padding: 0;
-  border-radius: 0;
-  background: var(--component-background);
-}
-input[type=search], textarea[type=search] {
-  background: url("./img/search.png") no-repeat center center;
-  background-size: 15px;
-  padding-left: 36px;
-  background-position-x: 12px;
-}
-input[type=search]:focus, textarea[type=search]:focus {
-  background-size: 18px;
-  background-position-x: 11px;
-  transition: background 0.2s;
-}
-input[type=checkbox], textarea[type=checkbox] {
-  align-self: center;
-  appearance: none;
-  -webkit-appearance: none;
-  box-shadow: none;
-  border: var(--component-stroke);
-  border-radius: 8px;
-  width: 5px;
-  height: 5px;
-  padding: 11px;
-  margin: 0;
-  cursor: pointer;
-}
-input[type=checkbox]:checked, textarea[type=checkbox]:checked {
-  background: url("./img/checkbox.png") no-repeat center center;
-  background-size: 13px;
-  background-color: var(--light);
-  border-color: var(--light);
-}
-input[type=range], textarea[type=range] {
-  /*&[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none; appearance: none;
-    width: 25px; height: 25px;
-    border-radius: 25px;
-    background: var(--color-darker);
-    //box-shadow: var(--box-shadow-active);
-    cursor: pointer;
-  }
-
-  &[type="range"]::-moz-range-thumb {
-    width: 25px; height: 25px;
-    border-radius: 25px;
-    background: var(--color-darker);
-    //box-shadow: var(--box-shadow-2);
-    border: none;
-    cursor: pointer;
-  }*/
-}
-input[type=range][type=range], textarea[type=range][type=range] {
-  height: 0px;
-  background: var(--color-darker);
-  outline: none;
-  -webkit-transition: 0.1s;
-  transition: all 0.1s;
-  padding-left: 0;
-  padding-right: 0;
-  border: none;
-  box-shadow: none;
-}
-input[type=range][type=range]:focus, textarea[type=range][type=range]:focus {
-  box-shadow: none;
-}
-
-textarea {
-  padding: 8px;
-}
-
-select {
-  padding-left: 4px;
-  padding-right: 4px;
-  display: block;
-}
-select option:disabled {
-  color: gray;
-}
-select:has(option:disabled:checked) {
-  color: color-mix(in srgb, var(--text-color) 50%, var(--site-background));
-}
-
-label {
-  font-weight: 600;
-  margin-right: 8px;
-  font-size: 1em;
-}
 menu {
   display: inline-flex;
   flex-direction: column;
@@ -20331,141 +20434,7 @@ a.noStyle:hover {
   display: none;
 }
 
-.lr-box, dialog, .lr-list > div {
-  background-color: var(--component-background);
-  box-shadow: var(--shadow-2);
-  border-radius: 4px;
-  padding: 16px;
-  margin: 8px 0;
-}
-.lr-box.very-round-corners, dialog.very-round-corners, .lr-list > div.very-round-corners {
-  border-radius: 15px;
-}
-.lr-box:nth-child(1), dialog:nth-child(1), .lr-list > div:nth-child(1) {
-  animation-delay: calc(0.03s * 1);
-}
-.lr-box:nth-child(2), dialog:nth-child(2), .lr-list > div:nth-child(2) {
-  animation-delay: calc(0.03s * 2);
-}
-.lr-box:nth-child(3), dialog:nth-child(3), .lr-list > div:nth-child(3) {
-  animation-delay: calc(0.03s * 3);
-}
-.lr-box:nth-child(4), dialog:nth-child(4), .lr-list > div:nth-child(4) {
-  animation-delay: calc(0.03s * 4);
-}
-.lr-box:nth-child(5), dialog:nth-child(5), .lr-list > div:nth-child(5) {
-  animation-delay: calc(0.03s * 5);
-}
-.lr-box:nth-child(6), dialog:nth-child(6), .lr-list > div:nth-child(6) {
-  animation-delay: calc(0.03s * 6);
-}
-.lr-box:nth-child(7), dialog:nth-child(7), .lr-list > div:nth-child(7) {
-  animation-delay: calc(0.03s * 7);
-}
-.lr-box:nth-child(8), dialog:nth-child(8), .lr-list > div:nth-child(8) {
-  animation-delay: calc(0.03s * 8);
-}
-.lr-box:nth-child(9), dialog:nth-child(9), .lr-list > div:nth-child(9) {
-  animation-delay: calc(0.03s * 9);
-}
-.lr-box:nth-child(10), dialog:nth-child(10), .lr-list > div:nth-child(10) {
-  animation-delay: calc(0.03s * 10);
-}
-.lr-box.flat, dialog.flat, .lr-list > div.flat,
-.lr-box .lr-box,
-dialog .lr-box,
-.lr-box dialog,
-dialog dialog,
-.lr-list > div .lr-box,
-.lr-list > div dialog,
-.lr-box .lr-list > div,
-dialog .lr-list > div,
-.lr-list > div .lr-list > div {
-  box-shadow: none;
-  border: var(--component-stroke);
-}
-.lr-box.shadow, dialog.shadow, .lr-list > div.shadow {
-  box-shadow: var(--shadow-1);
-  border: none;
-}
-input .lr-box:not(.flat), input dialog:not(.flat), input .lr-list > div:not(.flat) {
-  box-shadow: var(--shadow-1);
-}
-
-.lr-list {
-  overflow-y: initial;
-}
-.lr-list:not(.shadow) > div {
-  box-shadow: none;
-  border: var(--component-stroke);
-}
-.lr-list > div {
-  width: initial;
-  opacity: 0%;
-  animation: box-load-in 0.2s ease-out;
-  animation-fill-mode: both;
-}
-.lr-list > div:nth-child(1) {
-  animation-delay: calc(0.03s * 1);
-}
-.lr-list > div:nth-child(2) {
-  animation-delay: calc(0.03s * 2);
-}
-.lr-list > div:nth-child(3) {
-  animation-delay: calc(0.03s * 3);
-}
-.lr-list > div:nth-child(4) {
-  animation-delay: calc(0.03s * 4);
-}
-.lr-list > div:nth-child(5) {
-  animation-delay: calc(0.03s * 5);
-}
-.lr-list > div:nth-child(6) {
-  animation-delay: calc(0.03s * 6);
-}
-.lr-list > div:nth-child(7) {
-  animation-delay: calc(0.03s * 7);
-}
-.lr-list > div:nth-child(8) {
-  animation-delay: calc(0.03s * 8);
-}
-.lr-list > div:nth-child(9) {
-  animation-delay: calc(0.03s * 9);
-}
-.lr-list > div:nth-child(10) {
-  animation-delay: calc(0.03s * 10);
-}
-.lr-list > div:nth-child(11) {
-  animation-delay: calc(0.03s * 11);
-}
-.lr-list > div:nth-child(12) {
-  animation-delay: calc(0.03s * 12);
-}
-.lr-list > div:nth-child(13) {
-  animation-delay: calc(0.03s * 13);
-}
-.lr-list > div:nth-child(14) {
-  animation-delay: calc(0.03s * 14);
-}
-.lr-list > div:nth-child(15) {
-  animation-delay: calc(0.03s * 15);
-}
-.lr-list > div:nth-child(16) {
-  animation-delay: calc(0.03s * 16);
-}
-.lr-list > div:nth-child(17) {
-  animation-delay: calc(0.03s * 17);
-}
-.lr-list > div:nth-child(18) {
-  animation-delay: calc(0.03s * 18);
-}
-.lr-list > div:nth-child(19) {
-  animation-delay: calc(0.03s * 19);
-}
-.lr-list > div:nth-child(20) {
-  animation-delay: calc(0.03s * 20);
-}
-.round-corners, .lr-list.round-corners > div {
+.round-corners {
   border-radius: 8px;
 }
 
@@ -20486,6 +20455,10 @@ input .lr-box:not(.flat), input dialog:not(.flat), input .lr-list > div:not(.fla
 }
 
 .gap {
+  gap: 16px;
+}
+
+.small-gap {
   gap: 16px;
 }
 

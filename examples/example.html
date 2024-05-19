@@ -7,7 +7,10 @@
     <title>Lightrays App</title>
     <link rel="stylesheet" href="../style/Lightrays.css">
     <style>
+        :root{
+            --hue:100;
 
+        }
     </style>
 </head>
 
@@ -36,6 +39,7 @@
             <button onclick="document.body.setAttribute('theme', 'light')">Light</button>
             <button onclick="document.body.setAttribute('theme', 'dark')">Dark</button>
         </div>
+        
         <button onclick="document.querySelector('#dialog').showModal()">Open Dialog</button>
         <dialog id="dialog">
             <form method="dialog" class="flat-inputs">
@@ -67,7 +71,7 @@
             </menu>
         </div>
         <p>
-            <i class="fluentIcon save_regular"></i><i class="fluentIcon access_time_regular"></i><i class="fluentIcon serial_port_regular"></i><span>Textgp</span>
+            <i class="fluentIcon save_regular" size="14"></i><i class="fluentIcon access_time_regular" size="24"></i><i class="fluentIcon serial_port_regular"></i><span>Textgp</span>
         </p>
         <menu class="horizontal">
             <button id="save"><i class="fluentIcon save_regular" size="20"></i></button>
@@ -75,14 +79,53 @@
         </menu>
 
         <br>
-        <div class="lr-box" style="margin-top:25px; box-shadow: none; border: var(--component-stroke);">Flat</div>
-        <div class="lr-box" style="margin-top:25px; box-shadow: none;">No Shadow</div>
-        <div class="lr-box" style="margin-top:25px; box-shadow: var(--shadow-0);">Shadow 0</div>
-        <div class="lr-box" style="margin-top:25px; box-shadow: var(--shadow-1);">Shadow 1</div>
-        <div class="lr-box" style="margin-top:25px; box-shadow: var(--shadow-2);">Shadow 2</div>
-        <div class="lr-box" style="margin-top:25px; box-shadow: var(--shadow-3);">Shadow 3</div>
-        <div class="lr-box" style="margin-top:25px; box-shadow: var(--shadow-4);">Shadow 4</div>
+        <div class="flex-grow" style="width: 100%;">
+            <div class="lr-list lr-box" style="background: none; box-shadow: none;">
+                <div class="flat">Flat</div>
+                <div style="box-shadow: none;">No Shadow</div>
+                <div style="box-shadow: var(--shadow-0);">Shadow 0</div>
+                <div style="box-shadow: var(--shadow-1);">Shadow 1</div>
+                <div style="box-shadow: var(--shadow-2);">Shadow 2</div>
+                <div style="box-shadow: var(--shadow-3);">Shadow 3</div>
+                <div style="box-shadow: var(--shadow-4);">Shadow 4</div>        
+            </div>
+            <div class="lr-list lr-box">
+                <div class="flat">Flat</div>
+                <div style="box-shadow: none;">No Shadow</div>
+                <div style="box-shadow: var(--shadow-0);">Shadow 0</div>
+                <div style="box-shadow: var(--shadow-1);">Shadow 1</div>
+                <div style="box-shadow: var(--shadow-2);">Shadow 2</div>
+                <div style="box-shadow: var(--shadow-3);">Shadow 3</div>
+                <div style="box-shadow: var(--shadow-4);">Shadow 4</div>        
+            </div>
+        </div>
         <br>
+        <h4>Component types</h4>
+        <div class="flex-grow gap">
+            <div class="flex-vertical gap">
+                <h5>Box:</h5>
+                <div class="lr-box">Normal</div>
+                <div class="lr-box flat">Flat</div>
+                <div class="lr-box important">Important</div>
+                <div class="lr-box transparent">Transparent</div>
+                <div class="lr-box small">Small</div>
+                <div class="lr-box inline">Inline</div>
+                <div class="lr-box small inline">Small Inline</div>
+            </div>
+            <div class="flex-vertical gap">
+                <h5>Interactive:</h5>
+                <div class="interactive lr-box">Normal</div>
+                <div class="interactive lr-box flat">Flat</div>
+                <div class="interactive lr-box important">Important</div>
+                <div class="interactive lr-box transparent">Transparent</div>
+                <div class="interactive lr-box small">Small</div>
+                <div class="interactive lr-box inline">Inline</div>
+                <div class="interactive lr-box small inline">Small Inline</div>
+            </div>
+        </div>
+        <br>
+
+        <h5>Lr-list</h5>
         <div class="lr-list">
             <div>Box in Box</div>
             <div>Box in Box</div>

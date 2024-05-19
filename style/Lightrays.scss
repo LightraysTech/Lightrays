@@ -1,7 +1,8 @@
 @use 'abstracts/fonts';
+@use 'abstracts/components';
 @use 'abstracts/fluentIcons';
 @use "abstracts/themes";
-@use "abstracts/inputs";
+//@use "abstracts/inputs";
 @use "abstracts/layout";
 
 body {
@@ -159,72 +160,8 @@ a {
 }
 
 // Boxes ------------------------
-.lr-box {
-  background-color: var(--component-background);
-  box-shadow: var(--shadow-2);
-  border-radius: 4px;
-  padding: 16px;
-  margin: 8px 0;
-
-  &.very-round-corners {
-    border-radius: 15px;
-  }
-
-  @for $i from 1 through 10 {
-    &:nth-child(#{$i}) {
-      animation-delay: calc(0.03s * #{$i});
-    }
-  }
-
-  &.flat,
-  .lr-box {
-    box-shadow: none;
-    border: var(--component-stroke);
-  }
-
-  &.shadow {
-    box-shadow: var(--shadow-1);
-    border: none;
-  }
-
-  input &:not(.flat) {
-    box-shadow: var(--shadow-1);
-  }
-}
 
 // List ------------------------------
-.lr-list {
-  overflow-y: initial;
-
-  &:not(.shadow) {
-
-    // TODO: default to shadow, optional .flat (like .lr-box)
-    & > div {
-      box-shadow: none;
-      border: var(--component-stroke);
-    }
-  }
-
-  & > div {
-    @extend .lr-box;
-    width: initial;
-    opacity: 0%;
-    animation: box-load-in 0.2s ease-out;
-    animation-fill-mode: both;
-
-    @for $i from 1 through 20 {
-      &:nth-child(#{$i}) {
-        animation-delay: calc(0.03s * #{$i});
-      }
-    }
-  }
-
-  &.round-corners {
-    & > div {
-      @extend .round-corners
-    }
-  }
-}
 
 .round-corners {
   border-radius: 8px;
@@ -248,6 +185,9 @@ a {
 }
 
 .gap {
+  gap: 16px;
+}
+.small-gap {
   gap: 16px;
 }
 
