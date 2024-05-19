@@ -117,7 +117,9 @@
 }
 
 button,
-input {
+input,
+select,
+textarea {
     @extend .lr-box, .inline;
 
     font-family: var(--component-font);
@@ -132,7 +134,8 @@ input {
     transition: background-color 0.2s, color 0.2s, box-shadow .2s, border 0.2s;
 }
 
-button {
+button,
+select {
     text-align: center;
 
     &:not(:disabled) {
@@ -160,9 +163,10 @@ button {
             padding: 4px 4px;
         }
     }
+
     & > .fluentIcon:not(:only-child) {
         margin-right: 16px;
-      }
+    }
 }
 
 input {
@@ -173,7 +177,7 @@ input {
         border-color: transparent;
 
         &.flat:not(.shadow),
-    .flat-components > &:not(.shadow),
+        .flat-components > &:not(.shadow),
         .lr-box &:not(.shadow) {
             border-bottom-width: 2px;
             border-color: transparent;
@@ -270,5 +274,16 @@ input {
         &:focus {
             box-shadow: none;
         }
+    }
+}
+
+label {
+    font-weight: 600;
+    margin-right: 8px;
+    font-size: 1em;
+
+
+    .small {
+        // TODO
     }
 }
