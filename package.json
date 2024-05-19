@@ -1,15 +1,25 @@
 {
   "name": "lightrays",
-  "version": "1.0.1-alpha.5",
+  "version": "1.1.0-alpha",
   "description": "A modern and lightweight web design framework, with Sass support.",
   "files": [
-    "style/*",
-    "scripts/*",
-    "img/*"
+    "style/*"
   ],
+  "type": "module",
   "scripts": {
     "start": "npx sass .\\style\\Lightrays.scss:.\\style\\Lightrays.css -w",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "vue": "^3.4.21",
+    "vue-router": "^4.3.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.4",
+    "sass": "^1.77.2",
+    "vite": "^5.2.8"
   },
   "author": "",
   "license": "ISC"
