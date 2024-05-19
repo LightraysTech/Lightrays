@@ -218,14 +218,15 @@ textarea.transparent, .lr-list > div.transparent, .lr-list.transparent > div, .l
   border: none;
   box-shadow: none;
 }
-.lr-box.interactive:not(.transparent), dialog.interactive:not(.transparent), button.interactive:not(.transparent), button:not(.transparent):not(:disabled), input[type=submit]:not(.transparent):not(:disabled), input[type=reset]:not(.transparent):not(:disabled), input[type=button]:not(.transparent):not(:disabled),
-input.interactive:not(.transparent),
-select.interactive:not(.transparent),
-select:not(.transparent):not(:disabled),
-textarea.interactive:not(.transparent), .lr-list > div.interactive:not(.transparent), .interactive-components > .lr-box:not(.transparent), .interactive-components > dialog:not(.transparent), .interactive-components > button:not(.transparent),
-.interactive-components > input:not(.transparent),
-.interactive-components > select:not(.transparent),
-.interactive-components > textarea:not(.transparent), .lr-list.interactive-components > div:not(.transparent) {
+.lr-box.interactive, dialog.interactive, button.lr-box:not(:disabled),
+select.lr-box:not(:disabled), button.interactive, button:not(:disabled), input[type=submit]:not(:disabled), input[type=reset]:not(:disabled), input[type=button]:not(:disabled),
+input.interactive,
+select.interactive,
+select:not(:disabled),
+textarea.interactive, .lr-list > div.interactive, .interactive-components > .lr-box, .interactive-components > dialog, .interactive-components > button,
+.interactive-components > input,
+.interactive-components > select,
+.interactive-components > textarea, .lr-list.interactive-components > div {
   cursor: pointer;
 }
 .lr-box.interactive:not(.transparent):hover, dialog.interactive:not(.transparent):hover, button.interactive:not(.transparent):hover, button:not(.transparent):hover:not(:disabled), input[type=submit]:not(.transparent):hover:not(:disabled), input[type=reset]:not(.transparent):hover:not(:disabled), input[type=button]:not(.transparent):hover:not(:disabled),

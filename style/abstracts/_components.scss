@@ -55,33 +55,35 @@
         box-shadow: none;
     }
 
-    &.interactive:not(.transparent),
-    .interactive-components > &:not(.transparent) {
+    &.interactive,
+    .interactive-components > & {
         cursor: pointer;
 
-        &:hover {
-            box-shadow: var(--shadow-2);
-            background: var(--component-hover);
-        }
-
-        &:active {
-            box-shadow: var(--shadow-0);
-            background: var(--component-active);
-        }
-
-        &.flat {
+        &:not(.transparent) {
             &:hover {
-                box-shadow: var(--shadow-1);
+                box-shadow: var(--shadow-2);
+                background: var(--component-hover);
             }
-        }
-
-        &.important {
-            &:hover {
-                background-color: var(--light);
-            }
-
+    
             &:active {
-                background-color: var(--dark);
+                box-shadow: var(--shadow-0);
+                background: var(--component-active);
+            }
+    
+            &.flat {
+                &:hover {
+                    box-shadow: var(--shadow-1);
+                }
+            }
+    
+            &.important {
+                &:hover {
+                    background-color: var(--light);
+                }
+    
+                &:active {
+                    background-color: var(--dark);
+                }
             }
         }
     }
