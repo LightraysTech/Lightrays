@@ -457,6 +457,7 @@ textarea.interactive:not(.transparent).important:active, .lr-list > div.interact
   display: flex;
   flex-direction: column;
   gap: 8px;
+  margin: 8px 0;
 }
 .lr-list > div {
   width: initial;
