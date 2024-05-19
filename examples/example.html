@@ -7,10 +7,7 @@
     <title>Lightrays App</title>
     <link rel="stylesheet" href="../style/Lightrays.css">
     <style>
-        :root{
-            --hue:100;
 
-        }
     </style>
 </head>
 
@@ -162,10 +159,29 @@
             <textarea style="width: 400px; height: 140px;"></textarea>
             <button class="fluentIcon"></button>
         </div>
+        <br>
         <div class="lr-box ">
             <input type="range" value="250" onpointermove="document.documentElement.style.setProperty('--hue', event.target.value)" min="0" max="355">
-            <br><br>
+            <input type="range" value="6" onpointermove="document.documentElement.style.setProperty('--hue-range', event.target.value)" min="0" max="20">
+            <br>
+            <button class="important">button</button><br>
+            <br>
             <div style="display: inline-flex; border-radius: 8px; overflow: hidden; box-shadow: var(--shadow-4);">
+                <div style="width: 70px; height: 120px; background: var(--darkest);"> </div>
+                <div style="width: 70px; height: 120px; background: var(--dark);"> </div>
+                <div style="width: 70px; height: 120px; background: var(--primary);"> </div>
+                <div style="width: 70px; height: 120px; background: var(--light);"> </div>
+                <div style="width: 70px; height: 120px; background: var(--lightest);"> </div>
+            </div>
+            <div style="display: inline-flex; border-radius: 8px; overflow: hidden; box-shadow: var(--shadow-4);">
+                <div style="width: 350px; height: 120px; background: var(--gradient);"> </div>
+            </div>
+
+        </div>
+        <div class="lr-box " style="color-scheme: light;">
+            <br>
+            <button class="important">button</button><br>
+             <div style="display: inline-flex; border-radius: 8px; overflow: hidden; box-shadow: var(--shadow-4);">
                 <div style="width: 70px; height: 120px; background: var(--darkest);"> </div>
                 <div style="width: 70px; height: 120px; background: var(--dark);"> </div>
                 <div style="width: 70px; height: 120px; background: var(--primary);"> </div>

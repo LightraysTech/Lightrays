@@ -2,17 +2,21 @@
   color-scheme: light dark;
 
   --hue: 250;
+  --hue-range: 6;
   --secondary: rgb(0, 187, 115);
 
   --alert: #c61025;
 
-  --darkest: oklch(35% .12 calc(var(--hue) - 6));
-  --dark: color-mix(in oklch, var(--lightest) 25%, var(--darkest));
-  --primary: color-mix(in oklch, var(--lightest) 50%, var(--darkest));
-  --light: color-mix(in oklch, var(--lightest) 75%, var(--darkest));
-  --lightest: oklch(75% .18 calc(var(--hue) + 6));
+  --accent-from: light-dark(oklch(45% .13 calc(var(--hue) - var(--hue-range))), oklch(35% .12 calc(var(--hue) - var(--hue-range))));
+  --accent-to: light-dark(oklch(85% .18 calc(var(--hue) + var(--hue-range))), oklch(75% .18 calc(var(--hue) + var(--hue-range))));
 
-  --gradient: linear-gradient(in oklch to right, var(--darkest), var(--lightest));
+  --darkest: color-mix(in oklch, var(--accent-to) 0%, var(--accent-from));
+  --dark: color-mix(in oklch, var(--accent-to) 25%, var(--accent-from));
+  --primary: color-mix(in oklch, var(--accent-to) 50%, var(--accent-from));
+  --light: color-mix(in oklch, var(--accent-to) 75%, var(--accent-from));
+  --lightest: color-mix(in oklch, var(--accent-to) 100%, var(--accent-from));
+
+  --gradient: linear-gradient(in oklch to right, var(--accent-from), var(--accent-to));
 
   accent-color: var(--primary);
 
