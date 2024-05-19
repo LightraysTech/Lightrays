@@ -26,10 +26,12 @@
         padding: 8px 16px;
     }
 
-    &.flat:not(.shadow),
-    .flat-components:not(.shadow-components) > &:not(.shadow) {
-        box-shadow: none;
-        border: var(--component-stroke);
+    &.flat,
+    .flat-components:not(.shadow-components) > & {
+        &:not(.transparent):not(.shadow) {
+            box-shadow: none;
+            border: var(--component-stroke);
+        }
     }
 
     &.important,
@@ -50,38 +52,41 @@
     &.transparent:hover,
     &.transparent:active,
     &.transparent:focus {
-        background: none !important;
-        border: none !important;
-        box-shadow: none !important;
+        background: none;
+        border: none;
+        box-shadow: none;
     }
 
     &.interactive,
     .interactive-components > & {
         cursor: pointer;
 
-        &:hover {
-            box-shadow: var(--shadow-2);
-            background: var(--component-hover);
-        }
-
-        &:active {
-            box-shadow: var(--shadow-0);
-            background: var(--component-active);
-        }
-
-        &.flat {
+        &:not(.transparent) {
             &:hover {
-                box-shadow: var(--shadow-1);
-            }
-        }
-
-        &.important {
-            &:hover {
-                background-color: var(--light);
+                box-shadow: var(--shadow-2);
+                background: var(--component-hover);
             }
 
             &:active {
-                background-color: var(--dark);
+                box-shadow: var(--shadow-0);
+                background: var(--component-active);
+            }
+
+            &.flat {
+                &:hover {
+                    box-shadow: var(--shadow-1);
+                }
+            }
+
+
+            &.important {
+                &:hover {
+                    background-color: var(--light);
+                }
+
+                &:active {
+                    background-color: var(--dark);
+                }
             }
         }
     }
