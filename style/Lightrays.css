@@ -488,11 +488,6 @@ button:has(.fluentIcon:only-child), input[type=submit]:has(.fluentIcon:only-chil
 select:has(.fluentIcon:only-child) {
   padding: 8px 8px;
 }
-button:has(.fluentIcon:only-child) .fluentIcon, input[type=submit]:has(.fluentIcon:only-child) .fluentIcon, input[type=reset]:has(.fluentIcon:only-child) .fluentIcon, input[type=button]:has(.fluentIcon:only-child) .fluentIcon,
-select:has(.fluentIcon:only-child) .fluentIcon {
-  display: block;
-  position: initial;
-}
 button.small:has(.fluentIcon:only-child), input.small[type=submit]:has(.fluentIcon:only-child), input.small[type=reset]:has(.fluentIcon:only-child), input.small[type=button]:has(.fluentIcon:only-child), .small-components > button:has(.fluentIcon:only-child), .small-components > input[type=submit]:has(.fluentIcon:only-child), .small-components > input[type=reset]:has(.fluentIcon:only-child), .small-components > input[type=button]:has(.fluentIcon:only-child),
 select.small:has(.fluentIcon:only-child),
 .small-components > select:has(.fluentIcon:only-child) {
@@ -605,12 +600,9 @@ label {
 .fluentIcon {
   position: relative;
   --size: 20px;
-  display: inline-block;
   height: var(--size);
   width: var(--size);
-  vertical-align: baseline;
-  position: relative;
-  bottom: calc(var(--size) * -0.5 + 0.5cap);
+  display: block;
 }
 .fluentIcon[size="14"] {
   --size: 14px;
@@ -630,9 +622,11 @@ label {
 .fluentIcon[size="24"] {
   --size: 24px;
 }
-.fluentIcon.block {
-  display: block;
-  position: initial;
+.fluentIcon.inline {
+  display: inline-block;
+  vertical-align: baseline;
+  position: relative;
+  bottom: calc(var(--size) * -0.5 + 0.5cap);
 }
 
 .fluentIcon:before {

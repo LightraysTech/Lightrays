@@ -150,11 +150,6 @@ select {
 
     &:has(.fluentIcon:only-child) {
         padding: 8px 8px;
-
-        .fluentIcon {
-            display: block;
-            position: initial;
-        }
     }
 
     &.small,

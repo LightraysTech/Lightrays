@@ -37,17 +37,17 @@
         --size: 24px;
     }
 
-    display: inline-block;
     height: var(--size);
     width: var(--size);
 
-    vertical-align: baseline;
-    position: relative;
-    bottom: calc(var(--size) * -.5 + .5cap);
 
-    &.block {
-        display: block;
-        position: initial;
+    display: block;
+
+    &.inline {
+        display: inline-block;
+        vertical-align: baseline;
+        position: relative;
+        bottom: calc(var(--size) * -.5 + .5cap);
     }
 }
 
