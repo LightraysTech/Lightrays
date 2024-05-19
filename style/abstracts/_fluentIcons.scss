@@ -41,14 +41,12 @@
     width: var(--size);
 
 
-    display: block;
-
-    &.inline {
-        display: inline-block;
-        vertical-align: baseline;
-        position: relative;
-        bottom: calc(var(--size) * -.5 + .5cap);
-    }
+    display: inline-block;
+    vertical-align: baseline;
+    position: relative;
+    bottom: calc(var(--size) * -.5 + .5cap);
+    margin-top: calc(var(--size) * -.5 + .5cap);
+    margin-bottom: calc(var(--size) * .5 - .5cap);
 }
 
 .fluentIcon:before {

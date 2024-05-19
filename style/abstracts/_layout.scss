@@ -17,36 +17,16 @@ menu {
     }
 
     & > button {
-        box-shadow: none;
         margin: 0;
         text-align: left;
 
-        &:hover {
-            box-shadow: none !important;
-        }
+        box-shadow: none !important;
     }
 
-    &.small-inputs > button {
+    &.small-components > button {
         font-size: 14px;
     }
-    &[closed]:not(&[closed=false]) {
-        transition: scale .15s ease-in;
-        scale: 0 0;
-    }
-}
 
-.dropdown {
-    position: relative;
-    menu {
-        position: absolute;
-        left: 0;
-        top: 40px;
-    }
-    &:not(:focus-within) {
-        menu {
-            @extend [closed]
-        }
-    }
 }
 
 body:has(> main) {
