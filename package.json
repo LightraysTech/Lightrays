@@ -1,6 +1,6 @@
 {
   "name": "lightrays",
-  "version": "1.1.0-alpha",
+  "version": "1.1.0",
   "description": "A modern and lightweight web design framework, with Sass support.",
   "files": [
     "style/*"

@@ -1,7 +1,7 @@
 # Lightrays
-A modern and lightweight web design framework, with and Sass support.
+A modern CSS Web Design including themes, accent colors and animations.
 
-Demo Website: https://ncoder77.github.io/Lightrays-examples/
+Demo Website: https://lightraystech.github.io/Lightrays/
 
 ![Lightrays example image](/img/example.png "LR example: responsive Web App")
 
