@@ -5,7 +5,7 @@ import router from './router';
 
 const theme = ref(window.matchMedia("(prefers-color-scheme: dark)").matches ? "auto-dark" : "auto-light");
 
-const navOpen = ref(true);
+const navOpen = ref(false);
 </script>
 
 <template>
@@ -26,6 +26,10 @@ const navOpen = ref(true);
     <a>
       <i class="fluentIcon text_field_filled"></i>
       Input
+    </a>
+    <a>
+      <i class="fluentIcon beaker_filled"></i>
+      Experiments
     </a>
     <details>
       <summary>Submenu</summary>

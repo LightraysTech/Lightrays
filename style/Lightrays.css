@@ -20550,7 +20550,8 @@ nav {
   border-right: var(--component-stroke);
 }
 nav a,
-nav summary {
+nav summary,
+nav .nav-item {
   font-family: var(--component-font);
   font-weight: normal;
   text-decoration: none;
@@ -20564,11 +20565,13 @@ nav summary {
   margin: 4px 0;
 }
 nav a:hover,
-nav summary:hover {
+nav summary:hover,
+nav .nav-item:hover {
   background-color: var(--component-hover);
 }
 nav a:active,
-nav summary:active {
+nav summary:active,
+nav .nav-item:active {
   background-color: var(--component-active);
 }
 nav details {
@@ -20576,7 +20579,8 @@ nav details {
   margin-top: 8px;
 }
 nav details summary,
-nav details a {
+nav details a,
+nav details .nav-item {
   margin-left: -30px;
   padding-left: 40px;
 }

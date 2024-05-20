@@ -40,7 +40,8 @@ nav {
     border-right: var(--component-stroke);
 
     a,
-    summary {
+    summary,
+    .nav-item {
         font-family: var(--component-font);
         font-weight: normal;
         text-decoration: none;
@@ -68,7 +69,8 @@ nav {
         margin-top: 8px;
 
         summary,
-        a {
+        a,
+        .nav-item {
             margin-left: -30px;
             padding-left: 40px;
         }
