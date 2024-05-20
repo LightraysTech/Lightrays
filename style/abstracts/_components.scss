@@ -221,10 +221,12 @@ input {
     }
 
     &[type="search"] {
-        background: url("./img/search.png") no-repeat center center;
+        background-image: url("./img/search.png");
         background-size: 15px;
         padding-left: 36px;
         background-position-x: 12px;
+        background-position-y: center;
+        background-repeat: no-repeat;
 
         &:focus {
             background-size: 18px;
