@@ -371,10 +371,7 @@ select.lr-list.interactive-components:disabled > div.lr-box:not(.transparent):ho
 .interactive-components > textarea:not(.transparent).flat:hover, .lr-list.interactive-components > div:not(.transparent).flat:hover, button.lr-list.interactive-components:disabled > div:not(.transparent):hover, input.lr-list.interactive-components[type=submit]:disabled > div:not(.transparent):hover, input.lr-list.interactive-components[type=reset]:disabled > div:not(.transparent):hover, input.lr-list.interactive-components[type=button]:disabled > div:not(.transparent):hover,
 select.lr-list.interactive-components:disabled > div:not(.transparent):hover, .lr-list.flat.interactive-components > div:not(.transparent):hover, button.lr-list.interactive-components:disabled > div:not(.transparent):hover, input.lr-list.interactive-components[type=submit]:disabled > div:not(.transparent):hover, input.lr-list.interactive-components[type=reset]:disabled > div:not(.transparent):hover, input.lr-list.interactive-components[type=button]:disabled > div:not(.transparent):hover,
 select.lr-list.interactive-components:disabled > div:not(.transparent):hover, button.lr-list:disabled > div.lr-list.interactive-components > div:not(.transparent):hover, input.lr-list[type=submit]:disabled > div.lr-list.interactive-components > div:not(.transparent):hover, input.lr-list[type=reset]:disabled > div.lr-list.interactive-components > div:not(.transparent):hover, input.lr-list[type=button]:disabled > div.lr-list.interactive-components > div:not(.transparent):hover,
-select.lr-list:disabled > div.lr-list.interactive-components > div:not(.transparent):hover, .lr-box .lr-list > div.lr-list.interactive-components > div:not(.transparent):hover, dialog .lr-list > div.lr-list.interactive-components > div:not(.transparent):hover, button .lr-list > div.lr-list.interactive-components > div:not(.transparent):hover, input[type=submit] .lr-list > div.lr-list.interactive-components > div:not(.transparent):hover, input[type=reset] .lr-list > div.lr-list.interactive-components > div:not(.transparent):hover, input[type=button] .lr-list > div.lr-list.interactive-components > div:not(.transparent):hover,
-input .lr-list > div.lr-list.interactive-components > div:not(.transparent):hover,
-select .lr-list > div.lr-list.interactive-components > div:not(.transparent):hover,
-textarea .lr-list > div.lr-list.interactive-components > div:not(.transparent):hover, .lr-list > div .lr-list > div.lr-list.interactive-components > div:not(.transparent):hover, .lr-box .interactive-components > .lr-box:not(.transparent):hover, dialog .interactive-components > .lr-box:not(.transparent):hover, .lr-box .interactive-components > dialog:not(.transparent):hover, dialog .interactive-components > dialog:not(.transparent):hover, button .interactive-components > .lr-box:not(.transparent):hover, button .interactive-components > dialog:not(.transparent):hover, input[type=submit] .interactive-components > .lr-box:not(.transparent):hover, input[type=submit] .interactive-components > dialog:not(.transparent):hover, input[type=reset] .interactive-components > .lr-box:not(.transparent):hover, input[type=reset] .interactive-components > dialog:not(.transparent):hover, input[type=button] .interactive-components > .lr-box:not(.transparent):hover, input[type=button] .interactive-components > dialog:not(.transparent):hover,
+select.lr-list:disabled > div.lr-list.interactive-components > div:not(.transparent):hover, .lr-box .interactive-components > .lr-box:not(.transparent):hover, dialog .interactive-components > .lr-box:not(.transparent):hover, .lr-box .interactive-components > dialog:not(.transparent):hover, dialog .interactive-components > dialog:not(.transparent):hover, button .interactive-components > .lr-box:not(.transparent):hover, button .interactive-components > dialog:not(.transparent):hover, input[type=submit] .interactive-components > .lr-box:not(.transparent):hover, input[type=submit] .interactive-components > dialog:not(.transparent):hover, input[type=reset] .interactive-components > .lr-box:not(.transparent):hover, input[type=reset] .interactive-components > dialog:not(.transparent):hover, input[type=button] .interactive-components > .lr-box:not(.transparent):hover, input[type=button] .interactive-components > dialog:not(.transparent):hover,
 input .interactive-components > .lr-box:not(.transparent):hover,
 input .interactive-components > dialog:not(.transparent):hover,
 select .interactive-components > .lr-box:not(.transparent):hover,
@@ -490,6 +487,10 @@ button:has(.fluentIcon:only-child), input[type=submit]:has(.fluentIcon:only-chil
 select:has(.fluentIcon:only-child) {
   padding: 8px 8px;
 }
+button:has(.fluentIcon:only-child) .fluentIcon, input[type=submit]:has(.fluentIcon:only-child) .fluentIcon, input[type=reset]:has(.fluentIcon:only-child) .fluentIcon, input[type=button]:has(.fluentIcon:only-child) .fluentIcon,
+select:has(.fluentIcon:only-child) .fluentIcon {
+  display: block;
+}
 button.small:has(.fluentIcon:only-child), input.small[type=submit]:has(.fluentIcon:only-child), input.small[type=reset]:has(.fluentIcon:only-child), input.small[type=button]:has(.fluentIcon:only-child), .small-components > button:has(.fluentIcon:only-child), .small-components > input[type=submit]:has(.fluentIcon:only-child), .small-components > input[type=reset]:has(.fluentIcon:only-child), .small-components > input[type=button]:has(.fluentIcon:only-child),
 select.small:has(.fluentIcon:only-child),
 .small-components > select:has(.fluentIcon:only-child) {
@@ -604,7 +605,12 @@ label {
   --size: 20px;
   height: var(--size);
   width: var(--size);
-  display: block;
+  display: inline-block;
+  vertical-align: baseline;
+  position: relative;
+  bottom: calc(var(--size) * -0.5 + 0.5cap);
+  margin-top: calc(var(--size) * -0.5 + 0.5cap);
+  margin-bottom: calc(var(--size) * 0.5 - 0.5cap);
 }
 .fluentIcon[size="14"] {
   --size: 14px;
@@ -623,12 +629,6 @@ label {
 }
 .fluentIcon[size="24"] {
   --size: 24px;
-}
-.fluentIcon.inline {
-  display: inline-block;
-  vertical-align: baseline;
-  position: relative;
-  bottom: calc(var(--size) * -0.5 + 0.5cap);
 }
 
 .fluentIcon:before {
@@ -20531,29 +20531,93 @@ menu.horizontal {
   flex-direction: row;
 }
 menu > button {
-  box-shadow: none;
   margin: 0;
   text-align: left;
-}
-menu > button:hover {
   box-shadow: none !important;
 }
-menu.small-inputs > button {
+menu.small-components > button {
   font-size: 14px;
 }
-menu[closed]:not(menu[closed=false]), .dropdown:not(:focus-within) menu:not(menu[closed=false]) {
-  transition: scale 0.15s ease-in;
-  scale: 0 0;
+
+nav {
+  display: flex;
+  flex-direction: column;
+  width: min(300px, 90dvw);
+  padding: 16px 8px;
+  overflow: auto;
+  background-color: var(--component-background);
+  border: none;
+  border-right: var(--component-stroke);
+}
+nav a,
+nav summary {
+  font-family: var(--component-font);
+  font-weight: normal;
+  text-decoration: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 4px;
+  transition: background-color 0.1s;
+  margin: 4px 0;
+}
+nav a:hover,
+nav summary:hover {
+  background-color: var(--component-hover);
+}
+nav a:active,
+nav summary:active {
+  background-color: var(--component-active);
+}
+nav details {
+  padding-left: 30px;
+  margin-top: 8px;
+}
+nav details summary,
+nav details a {
+  margin-left: -30px;
+  padding-left: 40px;
+}
+nav details summary {
+  font-weight: bolder;
+  padding-left: 10px;
+}
+nav details summary::before {
+  content: "\e40d";
+  transition: rotate 0.1s;
+  font-family: FluentSystemIcons-Resizable !important;
+  font-style: normal;
+  font-weight: normal !important;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 20px;
+}
+nav details[open] > summary::before {
+  rotate: 90deg;
+}
+@media (width < 1000px) {
+  nav {
+    z-index: 1000;
+    position: fixed;
+    height: 100dvh;
+    box-sizing: border-box;
+    transform: translateX(-100%);
+    transition: transform 0.2s ease-out;
+    backdrop-filter: blur(10px);
+    background-color: light-dark(rgba(255, 255, 255, 0.5764705882), rgba(41, 41, 41, 0.9058823529));
+    border: none;
+    box-shadow: var(--shadow-4);
+  }
+  nav[open]:not([open=false]) {
+    transform: translateX(0);
+  }
 }
 
-.dropdown {
-  position: relative;
-}
-.dropdown menu {
-  position: absolute;
-  left: 0;
-  top: 40px;
-}
 body:has(> main) {
   height: 100dvh;
   width: 100dvw;
@@ -20565,8 +20629,10 @@ body:has(> main) > main {
   overflow: auto;
   grid-row: 2;
 }
-body:has(> main):has(> nav) {
-  grid-template-columns: auto auto;
+@media (width > 1000px) {
+  body:has(> main):has(> nav:not([popover])) {
+    grid-template-columns: min-content auto;
+  }
 }
 body:has(> main) > nav {
   grid-row: 1/4;
@@ -20778,11 +20844,11 @@ dialog[open] {
 }
 dialog[open]::backdrop {
   backdrop-filter: blur(8px);
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: hsla(0, 0%, 0%, 0.4);
 }
 @media (prefers-color-scheme: dark) {
   dialog[open]::backdrop {
-    background-color: rgba(79, 79, 79, 0.46);
+    background-color: hsla(0, 0%, 31%, 0.46);
   }
 }
 dialog::backdrop {
