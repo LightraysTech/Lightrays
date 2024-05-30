@@ -222,12 +222,12 @@ dialog {
 
   opacity: 0;
   scale: 0.7;
-  transition: all 0.3s cubic-bezier(0.4, -0.5, 1, 1);
-  transition: all 0.3s cubic-bezier(0.4, -0.5, 1, 1) allow-discrete;
+  transition: opacity, scale 0.3s cubic-bezier(0.4, -0.5, 1, 1);
+  transition: opacity, scale 0.3s cubic-bezier(0.4, -0.5, 1, 1) allow-discrete;
 
   &[open] {
-    transition: all 0.3s cubic-bezier(0, 0, 0.4, 1.6);
-    transition: all 0.3s cubic-bezier(0, 0, 0.4, 1.6) allow-discrete;
+    transition: opacity, scale 0.3s cubic-bezier(0, 0, 0.4, 1.6);
+    transition: opacity, scale 0.3s cubic-bezier(0, 0, 0.4, 1.6) allow-discrete;
 
     opacity: 1;
     scale: 1;
