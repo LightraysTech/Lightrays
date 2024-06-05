@@ -51,7 +51,7 @@ nav {
         align-items: center;
         gap: 10px;
         padding: 8px 10px;
-        border-radius: 4px;
+        border-radius: 6px;
         transition: background-color .1s;
         margin: 4px 0;
 
@@ -76,7 +76,7 @@ nav {
         }
 
         summary {
-            font-weight: bolder;
+            font-weight: 500;
             padding-left: 10px;
 
             &::before {

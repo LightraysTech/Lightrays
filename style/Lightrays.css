@@ -20547,7 +20547,7 @@ nav {
   width: min(300px, 90dvw);
   padding: 16px 8px;
   overflow: auto;
-  background-color: var(--component-background);
+  background-color: var(--component-important);
   border: none;
   border-right: var(--component-stroke);
 }
@@ -20562,7 +20562,7 @@ nav .nav-item {
   align-items: center;
   gap: 10px;
   padding: 8px 10px;
-  border-radius: 4px;
+  border-radius: 6px;
   transition: background-color 0.1s;
   margin: 4px 0;
 }
@@ -20587,7 +20587,7 @@ nav details .nav-item {
   padding-left: 40px;
 }
 nav details summary {
-  font-weight: bolder;
+  font-weight: 500;
   padding-left: 10px;
 }
 nav details summary::before {
@@ -20615,7 +20615,7 @@ nav details[open] > summary::before {
     transform: translateX(-100%);
     transition: transform 0.2s ease-out;
     backdrop-filter: blur(30px);
-    background-color: light-dark(rgba(255, 255, 255, 0.5764705882), rgba(41, 41, 41, 0.9058823529));
+    background-color: light-dark(rgba(235, 235, 235, 0.5764705882), rgba(26, 26, 26, 0.8470588235));
     border: none;
     box-shadow: var(--shadow-4);
   }
@@ -20827,12 +20827,12 @@ dialog {
   max-height: calc(100dvh - 2em);
   opacity: 0;
   scale: 0.7;
-  transition: all 0.3s cubic-bezier(0.4, -0.5, 1, 1);
-  transition: all 0.3s cubic-bezier(0.4, -0.5, 1, 1) allow-discrete;
+  transition: opacity, scale 0.3s cubic-bezier(0.4, -0.5, 1, 1);
+  transition: opacity, scale 0.3s cubic-bezier(0.4, -0.5, 1, 1) allow-discrete;
 }
 dialog[open] {
-  transition: all 0.3s cubic-bezier(0, 0, 0.4, 1.6);
-  transition: all 0.3s cubic-bezier(0, 0, 0.4, 1.6) allow-discrete;
+  transition: opacity, scale 0.3s cubic-bezier(0, 0, 0.4, 1.6);
+  transition: opacity, scale 0.3s cubic-bezier(0, 0, 0.4, 1.6) allow-discrete;
   opacity: 1;
   scale: 1;
 }

@@ -16,19 +16,19 @@ const navOpen = ref(false);
     </a>
     <br>
     <a>
-      <i class="fluentIcon home_filled"></i>
+      <i class="fluentIcon home_regular"></i>
       <span>Home</span>
     </a>
     <a>
-      <i class="fluentIcon layout_column_two_split_right_filled"></i>
+      <i class="fluentIcon layout_column_two_split_right_regular"></i>
       Layout
     </a>
     <a>
-      <i class="fluentIcon text_field_filled"></i>
+      <i class="fluentIcon text_field_regular"></i>
       Input
     </a>
     <a>
-      <i class="fluentIcon beaker_filled"></i>
+      <i class="fluentIcon beaker_regular"></i>
       Experiments
     </a>
     <details>
@@ -42,7 +42,7 @@ const navOpen = ref(false);
     </details>
     <div style="flex-grow: 1;"></div>
     <a href="">
-      <i class="fluentIcon settings_filled"></i>
+      <i class="fluentIcon settings_regular"></i>
       Settings
     </a>
   </nav>
