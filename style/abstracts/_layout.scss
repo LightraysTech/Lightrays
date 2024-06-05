@@ -107,10 +107,10 @@ nav {
         position: fixed;
         height: 100dvh;
         box-sizing: border-box;
-        transform: translateX(-100%);
+        transform: translateX(-110%);
         transition: transform .2s ease-out;
         backdrop-filter: blur(30px);
-        background-color: light-dark(#ebebeb93, #1a1a1ad8);
+        background-color: light-dark(#ebebebae, #1a1a1ad8);
         border: none;
         box-shadow: var(--shadow-4);
 

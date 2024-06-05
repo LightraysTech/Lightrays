@@ -20612,10 +20612,10 @@ nav details[open] > summary::before {
     position: fixed;
     height: 100dvh;
     box-sizing: border-box;
-    transform: translateX(-100%);
+    transform: translateX(-110%);
     transition: transform 0.2s ease-out;
     backdrop-filter: blur(30px);
-    background-color: light-dark(rgba(235, 235, 235, 0.5764705882), rgba(26, 26, 26, 0.8470588235));
+    background-color: light-dark(rgba(235, 235, 235, 0.6823529412), rgba(26, 26, 26, 0.8470588235));
     border: none;
     box-shadow: var(--shadow-4);
   }
