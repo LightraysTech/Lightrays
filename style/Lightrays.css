@@ -20657,7 +20657,7 @@ body {
   background-color: var(--site-background);
   background-attachment: fixed;
   color: var(--text-color);
-  line-height: 1.4;
+  line-height: 1.5;
   margin: 0;
   scroll-behavior: smooth;
 }
