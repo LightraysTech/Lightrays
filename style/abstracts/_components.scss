@@ -178,6 +178,7 @@ input {
 
     &:not(.transparent):not([type=reset]):not([type=button]):not([type=submit]) {
         border-bottom-width: 2px;
+        border-style: solid;
         border-color: transparent;
 
         &.flat:not(.shadow),
