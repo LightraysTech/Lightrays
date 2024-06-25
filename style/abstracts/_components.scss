@@ -14,12 +14,6 @@
         @extend .flat;
     }
 
-    @for $i from 1 through 15 {
-        &:nth-child(#{$i}) {
-            animation-delay: calc(0.03s * #{$i});
-        }
-    }
-
     &.inline,
     .inline-components > & {
         display: inline-block;
@@ -103,6 +97,11 @@
         width: initial;
         opacity: 0%;
         animation: box-load-in 0.2s ease-out both;
+        @for $i from 1 through 15 {
+            &:nth-child(#{$i}) {
+                animation-delay: calc(0.03s * #{$i});
+            }
+        }
     }
 
     &.flat > div {

@@ -15,10 +15,10 @@ const navOpen = ref(false);
       <b>Lightrays</b>
     </a>
     <br>
-    <a>
+    <RouterLink to="/">
       <i class="fluentIcon home_regular"></i>
       <span>Home</span>
-    </a>
+    </RouterLink>
     <RouterLink to="/typography">
       <i class="fluentIcon text_font_size_regular"></i>
       Typography

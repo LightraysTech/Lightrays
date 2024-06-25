@@ -41,8 +41,8 @@
         <td><input type="range" value="250" onpointermove="document.documentElement.style.setProperty('--hue', event.target.value)" min="0" max="355"></td>
       </tr>
       <tr>
-    <td><label>Hue-range</label></td>
-    <input type="range" value="6" onpointermove="document.documentElement.style.setProperty('--hue-range', event.target.value)" min="0" max="20">
+        <td><label>Hue-range</label></td>
+        <input type="range" value="6" onpointermove="document.documentElement.style.setProperty('--hue-range', event.target.value)" min="0" max="20">
       </tr>
     </table>
     <br>
@@ -70,4 +70,28 @@
     <div style="box-shadow: var(--shadow-3);">Shadow 3</div>
     <div style="box-shadow: var(--shadow-4);">Shadow 4</div>
   </div>
+  <br>
+  <button onclick="document.querySelector('#dialog').showModal()">Open Dialog</button>
+  <dialog id="dialog">
+    <form method="dialog" class="flat-inputs">
+      <header>
+        <h4>Dialog title</h4>
+        <button formnovalidate><i class="fluentIcon dismiss_regular"></i></button>
+      </header>
+      <article style="max-width: 600px;">
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+        <br><br>
+        <label for="">Email:</label>
+        <input name="email" type="email" required>
+        <br>
+        <label for="">Password:</label>
+        <input name="password" type="password" required>
+      </article>
+      <footer>
+        <button formnovalidate>Cancel</button>
+        <input type="submit" value="Submit">
+      </footer>
+    </form>
+  </dialog>
+
 </template>

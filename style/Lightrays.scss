@@ -209,8 +209,8 @@ a {
 
 // Dialog
 dialog {
-  @extend .lr-box;
   background-color: var(--site-background);
+  box-shadow: var(--shadow-1);
   color: var(--text-color);
   border: none;
   margin: auto;
@@ -221,28 +221,25 @@ dialog {
   max-height: calc(100dvh - 2em);
 
   opacity: 0;
-  scale: 0.7;
-  transition: opacity, scale 0.3s cubic-bezier(0.4, -0.5, 1, 1);
-  transition: opacity, scale 0.3s cubic-bezier(0.4, -0.5, 1, 1) allow-discrete;
+  scale: 0.75;
+  transition: overlay, display, opacity, scale cubic-bezier(0.4, -0.5, 1, 1);
+  transition-duration: .25s;
+  transition-behavior: allow-discrete;
+
+  &::backdrop {
+    transition: all 0.25s ease-in-out;
+    transition-behavior: allow-discrete;
+    background-color: rgba(0, 0, 0, 0);
+    backdrop-filter: blur(0px);
+  }
 
   &[open] {
-    transition: opacity, scale 0.3s cubic-bezier(0, 0, 0.4, 1.6);
-    transition: opacity, scale 0.3s cubic-bezier(0, 0, 0.4, 1.6) allow-discrete;
+    transition: overlay, display, opacity, scale cubic-bezier(0, 0, 0.4, 1.6);
+    transition-duration: .25s;
+    transition-behavior: allow-discrete;
 
     opacity: 1;
     scale: 1;
-
-    @starting-style {
-      opacity: 0;
-      transform: scale(0.9);
-    }
-
-    @starting-style {
-      &::backdrop {
-        background-color: rgba(0, 0, 0, 0);
-        backdrop-filter: blur(0px);
-      }
-    }
 
     &::backdrop {
       backdrop-filter: blur(8px);
@@ -252,13 +249,18 @@ dialog {
         background-color: hsla(0, 0%, 31%, 0.46);
       }
     }
-  }
 
-  &::backdrop {
-    transition: all 0.3s;
-    transition: all 0.3s allow-discrete;
-    background-color: rgba(0, 0, 0, 0);
-    backdrop-filter: blur(20px);
+    @starting-style {
+      opacity: 0;
+      scale: 0.75;
+    }
+  
+    @starting-style {
+      &::backdrop {
+        background-color: rgba(0, 0, 0, 0);
+        backdrop-filter: blur(0px);
+      }
+    }
   }
 
   &:has(form) {
@@ -307,35 +309,6 @@ dialog {
   }
 }
 
-/*
-// #region Navigation
-nav {
-  @include desktop() {
-    background-color: var(--component-background);
-    box-shadow: var(--shadow-2);
-    height: 100dvh;
-    width: 600px;
-    padding: 16px;
-    
-    display: flex;
-    flex-direction: column;
-
-    & > div {
-      padding: 8px;
-      margin: 8px;
-
-      box-shadow: none;
-      text-align: left;
-      
-      &.active {
-        font-weight: 600;
-        border-left: 2px solid var(--primary);
-      }
-    }
-  }
-}
-// #endregion
-*/
 
 // Animations ----------------------------
 @keyframes box-load-in {
