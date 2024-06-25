@@ -19,6 +19,10 @@ const navOpen = ref(false);
       <i class="fluentIcon home_regular"></i>
       <span>Home</span>
     </a>
+    <RouterLink to="/typography">
+      <i class="fluentIcon text_font_size_regular"></i>
+      Typography
+    </RouterLink>
     <a>
       <i class="fluentIcon layout_column_two_split_right_regular"></i>
       Layout
