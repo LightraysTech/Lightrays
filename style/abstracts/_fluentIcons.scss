@@ -62,6 +62,17 @@
     display: block;
 }
 
+details {
+    .fluentIcon.details_open:before {
+        content: "\e373";
+        transition: rotate .1s
+    }
+
+    &[open] .fluentIcon.details_open:before {
+        rotate: 90deg
+    }
+}
+
 .fluentIcon.access_time_filled:before {
     content: "\e000";
 }
