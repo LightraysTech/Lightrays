@@ -582,6 +582,14 @@ label {
   display: block;
 }
 
+details .fluentIcon.details_open:before {
+  content: "\e373";
+  transition: rotate 0.1s;
+}
+details[open] .fluentIcon.details_open:before {
+  rotate: 90deg;
+}
+
 .fluentIcon.access_time_filled:before {
   content: "\e000";
 }
@@ -20543,7 +20551,7 @@ nav details[open] > summary::before {
   rotate: 90deg;
 }
 @media (width < 1000px) {
-  nav {
+  nav:not(.show-always) {
     z-index: 1000;
     position: fixed;
     height: 100dvh;
@@ -20555,7 +20563,7 @@ nav details[open] > summary::before {
     border: none;
     box-shadow: var(--shadow-4);
   }
-  nav[open]:not([open=false]) {
+  nav:not(.show-always)[open]:not([open=false]) {
     transform: translateX(0);
   }
 }
@@ -20572,7 +20580,7 @@ body:has(> main) > main {
   grid-row: 2;
 }
 @media (width > 1000px) {
-  body:has(> main):has(> nav:not([popover])) {
+  body:has(> main):has(> nav:not([popover])):has(> nav:not(.show-always)) {
     grid-template-columns: min-content auto;
   }
 }

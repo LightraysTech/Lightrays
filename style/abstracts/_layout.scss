@@ -103,19 +103,21 @@ nav {
     }
 
     @media (width < 1000px) {
-        z-index: 1000;
-        position: fixed;
-        height: 100dvh;
-        box-sizing: border-box;
-        transform: translateX(-110%);
-        transition: transform .2s ease-out;
-        backdrop-filter: blur(30px);
-        background-color: light-dark(#ebebebae, #1a1a1ad8);
-        border: none;
-        box-shadow: var(--shadow-4);
+        &:not(.show-always) {
+            z-index: 1000;
+            position: fixed;
+            height: 100dvh;
+            box-sizing: border-box;
+            transform: translateX(-110%);
+            transition: transform .2s ease-out;
+            backdrop-filter: blur(30px);
+            background-color: light-dark(#ebebebae, #1a1a1ad8);
+            border: none;
+            box-shadow: var(--shadow-4);
 
-        &[open]:not([open=false]) {
-            transform: translateX(0);
+            &[open]:not([open=false]) {
+                transform: translateX(0);
+            }
         }
     }
 }
@@ -133,7 +135,7 @@ body:has(> main) {
     }
 
     @media (width > 1000px) {
-        &:has(>nav:not([popover])) {
+        &:has(>nav:not([popover])):has(>nav:not(.show-always)) {
             grid-template-columns: min-content auto;
         }
     }
