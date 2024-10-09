@@ -31,10 +31,11 @@ const navOpen = ref(false);
       <i class="fluentIcon text_field_regular"></i>
       Input
     </a>
-    <a>
+    <RouterLink to="/experiments">
       <i class="fluentIcon beaker_regular"></i>
       Experiments
-    </a>
+    </RouterLink>
+
     <details>
       <summary>Submenu</summary>
       <a>Page</a>

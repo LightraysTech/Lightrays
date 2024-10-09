@@ -313,7 +313,7 @@ textarea .interactive-components > textarea:not(.transparent):hover, .lr-list > 
 input .lr-list.interactive-components > div:not(.transparent):hover,
 select .lr-list.interactive-components > div:not(.transparent):hover,
 textarea .lr-list.interactive-components > div:not(.transparent):hover, .lr-list > div .lr-list.interactive-components > div:not(.transparent):hover {
-  box-shadow: var(--shadow-1);
+  box-shadow: var(--shadow-0);
 }
 .lr-box.interactive:not(.transparent).important:hover, button.interactive:not(.transparent).important:hover, button:not(.transparent).important:hover:not(:disabled), input[type=submit]:not(.transparent):hover:not(:disabled), input[type=reset]:not(.transparent).important:hover:not(:disabled), input[type=button]:not(.transparent).important:hover:not(:disabled),
 input.interactive:not(.transparent).important:hover,
@@ -406,7 +406,6 @@ textarea {
   line-height: inherit;
   color: var(--color-text);
   border: none;
-  margin: 4px 0;
   transition: background-color 0.2s, color 0.2s, box-shadow 0.2s, border 0.2s;
 }
 
@@ -494,10 +493,11 @@ input[type=checkbox] {
   -webkit-appearance: none;
   box-shadow: none;
   border: none !important;
-  border-radius: 8px;
-  width: 5px;
-  height: 5px;
-  padding: 12px;
+  border-radius: 6px;
+  width: 24px;
+  height: 24px;
+  vertical-align: bottom;
+  padding: 0;
   margin: 0;
   cursor: pointer;
 }
@@ -508,9 +508,10 @@ input[type=checkbox]:checked {
   outline-color: var(--light);
 }
 input[type=checkbox].small {
-  padding: 0.5em;
+  height: 18px;
+  width: 18px;
   border-radius: 4px;
-  vertical-align: text-top;
+  vertical-align: text-bottom;
   background-size: 9px;
 }
 input[type=range] {
@@ -587,6 +588,19 @@ details .fluentIcon.details_open:before {
   transition: rotate 0.1s;
 }
 details[open] .fluentIcon.details_open:before {
+  rotate: 90deg;
+}
+details ::marker {
+  font-family: FluentSystemIcons-Resizable !important;
+  font-style: normal;
+  font-weight: normal !important;
+  font-variant: normal;
+  text-transform: none;
+  vertical-align: baseline;
+  transition: rotate 0.1s;
+  content: "\e373";
+}
+details[open] ::marker {
   rotate: 90deg;
 }
 

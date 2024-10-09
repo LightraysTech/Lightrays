@@ -71,6 +71,21 @@ details {
     &[open] .fluentIcon.details_open:before {
         rotate: 90deg
     }
+
+    ::marker {
+        font-family: FluentSystemIcons-Resizable !important;
+        font-style: normal;
+        font-weight: normal !important;
+        font-variant: normal;
+        text-transform: none;
+        vertical-align: baseline;
+        transition: rotate .1s;
+        content: "\e373";
+    }
+
+    &[open] ::marker {
+        rotate: 90deg
+    }
 }
 
 .fluentIcon.access_time_filled:before {
