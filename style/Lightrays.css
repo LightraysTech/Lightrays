@@ -20484,8 +20484,14 @@ menu {
   margin: 8px 0;
   padding: 4px;
   gap: 4px;
-  transition: scale 0.15s ease-out;
+  transition: all 0.35s cubic-bezier(0, 0, 0.2, 1) allow-discrete;
   transform-origin: 50% 0;
+}
+@starting-style {
+  menu {
+    scale: 1 0.2;
+    opacity: 0.4;
+  }
 }
 menu.horizontal {
   flex-direction: row;
