@@ -9,12 +9,12 @@ menu {
     padding: 4px;
     gap: 4px;
 
-    transition: all .35s cubic-bezier(0, 0, 0.2, 1) allow-discrete;
+    transition: all .25s cubic-bezier(0, 0, 0.2, 1) allow-discrete;
     transform-origin: 50% 0;
 
     @starting-style {
         scale: 1 .2;
-        opacity: 0.4;
+        opacity: 0.2;
     }
 
     &.horizontal {
