@@ -73,11 +73,11 @@ details {
     }
 
     .fluentIcon.details_caret_right_regular:before {
-        content: "\e371";
+        content: "\e372";
         transition: rotate .1s
     }
     .fluentIcon.details_caret_right_filled:before {
-        content: "\e372";
+        content: "\e371";
         transition: rotate .1s
     }
 
@@ -3638,7 +3638,7 @@ details {
 }
 
 .fluentIcon.caret_left_regular:before {
-    content: "\1";
+    content: "\e372";
 }
 
 .fluentIcon.caret_right_filled:before {

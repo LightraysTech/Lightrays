@@ -592,11 +592,11 @@ details .fluentIcon.details_caret_left_filled:before {
   transition: rotate 0.1s;
 }
 details .fluentIcon.details_caret_right_regular:before {
-  content: "\e371";
+  content: "\e372";
   transition: rotate 0.1s;
 }
 details .fluentIcon.details_caret_right_filled:before {
-  content: "\e372";
+  content: "\e371";
   transition: rotate 0.1s;
 }
 details[open] .fluentIcon.details_caret_left_regular:before,
@@ -4150,7 +4150,7 @@ details[open] ::marker {
 }
 
 .fluentIcon.caret_left_regular:before {
-  content: "\1";
+  content: "\e372";
 }
 
 .fluentIcon.caret_right_filled:before {
