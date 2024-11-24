@@ -68,7 +68,15 @@ details {
         transition: rotate .1s
     }
 
+    .fluentIcon.details_open_right:before {
+        content: "\e372";
+        transition: rotate .1s
+    }
+
     &[open] .fluentIcon.details_open:before {
+        rotate: 90deg
+    }
+    &[open] .fluentIcon.details_open_right:before {
         rotate: 90deg
     }
 

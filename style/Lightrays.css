@@ -587,7 +587,14 @@ details .fluentIcon.details_open:before {
   content: "\e373";
   transition: rotate 0.1s;
 }
+details .fluentIcon.details_open_right:before {
+  content: "\e372";
+  transition: rotate 0.1s;
+}
 details[open] .fluentIcon.details_open:before {
+  rotate: 90deg;
+}
+details[open] .fluentIcon.details_open_right:before {
   rotate: 90deg;
 }
 details ::marker {
