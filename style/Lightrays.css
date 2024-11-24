@@ -583,19 +583,29 @@ label {
   display: block;
 }
 
-details .fluentIcon.details_open:before {
+details .fluentIcon.details_caret_left_regular:before {
+  content: "\e374";
+  transition: rotate 0.1s;
+}
+details .fluentIcon.details_caret_left_filled:before {
   content: "\e373";
   transition: rotate 0.1s;
 }
-details .fluentIcon.details_open_right:before {
+details .fluentIcon.details_caret_right_regular:before {
+  content: "\e371";
+  transition: rotate 0.1s;
+}
+details .fluentIcon.details_caret_right_filled:before {
   content: "\e372";
   transition: rotate 0.1s;
 }
-details[open] .fluentIcon.details_open:before {
+details[open] .fluentIcon.details_caret_left_regular:before,
+details[open] .fluentIcon.details_caret_left_filled:before {
   rotate: 90deg;
 }
-details[open] .fluentIcon.details_open_right:before {
-  rotate: 90deg;
+details[open] .fluentIcon.details_caret_right_regular:before,
+details[open] .fluentIcon.details_caret_right_filled:before {
+  rotate: -90deg;
 }
 details ::marker {
   font-family: FluentSystemIcons-Resizable !important;
@@ -4140,7 +4150,7 @@ details[open] ::marker {
 }
 
 .fluentIcon.caret_left_regular:before {
-  content: "\e372";
+  content: "\1";
 }
 
 .fluentIcon.caret_right_filled:before {

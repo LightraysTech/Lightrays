@@ -63,21 +63,34 @@
 }
 
 details {
-    .fluentIcon.details_open:before {
+    .fluentIcon.details_caret_left_regular:before {
+        content: "\e374";
+        transition: rotate .1s
+    }
+    .fluentIcon.details_caret_left_filled:before {
         content: "\e373";
         transition: rotate .1s
     }
 
-    .fluentIcon.details_open_right:before {
+    .fluentIcon.details_caret_right_regular:before {
+        content: "\e371";
+        transition: rotate .1s
+    }
+    .fluentIcon.details_caret_right_filled:before {
         content: "\e372";
         transition: rotate .1s
     }
 
-    &[open] .fluentIcon.details_open:before {
-        rotate: 90deg
-    }
-    &[open] .fluentIcon.details_open_right:before {
-        rotate: 90deg
+    &[open] {
+        .fluentIcon.details_caret_left_regular:before,
+        .fluentIcon.details_caret_left_filled:before {
+            rotate: 90deg
+        }
+
+        .fluentIcon.details_caret_right_regular:before,
+        .fluentIcon.details_caret_right_filled:before {
+            rotate: -90deg
+        }
     }
 
     ::marker {
@@ -3625,7 +3638,7 @@ details {
 }
 
 .fluentIcon.caret_left_regular:before {
-    content: "\e372";
+    content: "\1";
 }
 
 .fluentIcon.caret_right_filled:before {
