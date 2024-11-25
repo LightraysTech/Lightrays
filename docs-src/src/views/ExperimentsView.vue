@@ -59,6 +59,12 @@
     <label for="a">Label:</label><br>
     <input type="text" name="" id="">
   </div>
+
+  <pre><code lang="javascript">alert("Hello world");</code></pre>
+  <p>
+    The <code>push()</code> method adds one or more elements to the end of an array and returns the new length of the
+    array.
+  </p>
 </template>
 
 <style scoped lang='scss'></style>

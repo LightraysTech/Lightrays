@@ -20843,6 +20843,27 @@ a.noStyle:hover {
   display: grid;
 }
 
+pre:has(code) {
+  border: var(--site-stroke);
+  padding: 8px;
+  border-radius: 6px;
+  background-color: var(--component-important);
+}
+pre:has(code) code[lang]::before {
+  content: attr(lang);
+  display: block;
+  margin-left: auto;
+  opacity: 0.5;
+  margin-bottom: 4px;
+}
+
+:not(pre) > code {
+  border: var(--site-stroke);
+  padding: 2px 4px;
+  border-radius: 4px;
+  background-color: var(--component-important);
+}
+
 dialog {
   background-color: var(--site-background);
   box-shadow: var(--shadow-1);
