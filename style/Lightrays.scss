@@ -2,7 +2,6 @@
 @use 'abstracts/components';
 @use 'abstracts/fluentIcons';
 @use "abstracts/themes";
-//@use "abstracts/inputs";
 @use "abstracts/layout";
 
 body {
@@ -17,28 +16,6 @@ body {
   scroll-behavior: smooth;
 }
 
-.background-highlight {
-  --width: 200px;
-  --height: 200px;
-  --posX: 0px;
-  --posY: 0px;
-  --gap: 80px;
-  --blur: 100px;
-  opacity: .2;
-
-  position: fixed;
-  left: calc(var(--width) * -1);
-  top: calc(var(--height) * -1);
-  z-index: -9999;
-  width: var(--width);
-  height: var(--height);
-  background: var(--site-background);
-  border-radius: 50%;
-  box-shadow: calc(var(--posX) + var(--width)/2 - var(--gap)/2) calc(var(--posY) + var(--height)/2) var(--blur) var(--lightest),
-    calc(var(--posX) + var(--width)/2 + var(--gap)/2) calc(var(--posY) + var(--height)/2) var(--blur) var(--dark);
-  transition: all 0s ease-out;
-}
-
 main {
   padding: 16px;
 }
@@ -46,7 +23,7 @@ main {
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
-  border-radius: 10px;
+  border-radius: 4px;
   background-color: var(--site-background);
 }
 
@@ -54,7 +31,7 @@ main {
   background-clip: padding-box;
   border-right: 2px solid var(--site-background);
   background-color: var(--scrollbar-color);
-  border-radius: 20px;
+  border-radius: 4px;
 }
 
 :focus {
@@ -113,10 +90,6 @@ a {
   font-weight: 600;
   font-family: var(--component-font);
 
-  &:enabled {
-    color: var(--text-color);
-  }
-
   &:active {
     color: var(--text-color);
   }
@@ -135,6 +108,7 @@ a {
 }
 
 // Functions ----------------------------------------------
+// TODO: correct @media screen widths
 @mixin mobile() {
   @media screen and (max-width: 650px) {
     @content;
@@ -153,18 +127,18 @@ a {
   }
 }
 
-// Light / Dark mode --------------------------------------
+// --------------------------------------
 
 .hidden {
   display: none;
 }
 
-// Boxes ------------------------
-
-// List ------------------------------
-
 .round-corners {
   border-radius: 8px;
+}
+
+.very-round-corners {
+  border-radius: 16px;
 }
 
 .flex {
@@ -184,16 +158,6 @@ a {
   flex-direction: column;
 }
 
-.gap {
-  gap: 16px;
-}
-.small-gap {
-  gap: 8px;
-}
-.tiny-gap {
-  gap: 4px;
-}
-
 .flex-center {
   display: flex;
   justify-content: center;
@@ -203,6 +167,16 @@ a {
 .flex-wrap {
   display: flex;
   flex-wrap: wrap;
+}
+
+.gap {
+  gap: 16px;
+}
+.small-gap {
+  gap: 8px;
+}
+.tiny-gap {
+  gap: 4px;
 }
 
 .grid {

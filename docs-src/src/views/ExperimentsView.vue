@@ -13,7 +13,7 @@
     Rerum harum expedita natus laudantium quos repudiandae sunt architecto consequatur est aspernatur inventore totam vero, libero sint corrupti voluptatibus et quasi ipsam voluptates perspiciatis quod magni, explicabo iste voluptatum! Ab!
   </details>
   <details>
-  <summary class="caret_right gap" style="align-items: center;"><button>abc</button></summary>
+    <summary class="caret_right gap" style="align-items: center;"><button>abc</button></summary>
     Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore tempore nulla tempora, dolorum adipisci aperiam vel itaque omnis sint inventore at veritatis libero, ipsa repudiandae iste ipsam voluptatem, molestias quam!
     Rerum harum expedita natus laudantium quos repudiandae sunt architecto consequatur est aspernatur inventore totam vero, libero sint corrupti voluptatibus et quasi ipsam voluptates perspiciatis quod magni, explicabo iste voluptatum! Ab!
   </details>
@@ -52,6 +52,12 @@
       <option>Option 2</option>
       <option>Option 3</option>
     </select>
+  </div>
+
+  <br>
+  <div class="small-components">
+    <label for="a">Label:</label><br>
+    <input type="text" name="" id="">
   </div>
 </template>
 

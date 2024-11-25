@@ -4,13 +4,7 @@
     border-radius: 4px;
     padding: 16px;
 
-
-    &.very-round-corners {
-        border-radius: 15px;
-    }
-
-    .lr-box &,
-    & & {
+    &:not(.shadow-components) & {
         @extend .flat;
     }
 
@@ -21,7 +15,7 @@
     }
 
     &.flat,
-    .flat-components:not(.shadow-components) > & {
+    .flat-components > & {
         &:not(.transparent):not(.shadow) {
             box-shadow: none;
             border: var(--component-stroke);
@@ -94,8 +88,6 @@
 
     & > div {
         @extend .lr-box;
-        width: initial;
-        opacity: 0%;
         animation: box-load-in 0.2s ease-out both;
         @for $i from 1 through 15 {
             &:nth-child(#{$i}) {
@@ -133,8 +125,6 @@ textarea {
     line-height: inherit;
     color: var(--color-text);
     border: none;
-
-    //margin: 4px 0;
 
     transition: background-color 0.2s, color 0.2s, box-shadow .2s, border 0.2s;
 }
@@ -290,7 +280,8 @@ label {
     font-size: 1em;
 
 
-    .small {
-        // TODO
+    .small,
+    .small-components > & {
+        // TODO label.small
     }
 }
