@@ -28,70 +28,51 @@ select.lr-box,
 textarea.lr-box, button, input[type=submit], input[type=reset], input[type=button],
 input,
 select,
-textarea, .lr-list > div.inline, .inline-components > .lr-box, .lr-list.inline-components > div {
+textarea, .lr-list > div.inline, .inline-components > .lr-box, .inline-components.lr-list > div {
   display: inline-block;
   padding: 8px 16px;
 }
-.lr-box.flat:not(.transparent):not(.shadow), button.flat:not(.transparent):not(.shadow), input.flat[type=submit]:not(.transparent):not(.shadow), input.flat[type=reset]:not(.transparent):not(.shadow), input.flat[type=button]:not(.transparent):not(.shadow), button:not(.transparent):not(.shadow):disabled, input[type=submit]:not(.transparent):not(.shadow):disabled, input[type=reset]:not(.transparent):not(.shadow):disabled, input[type=button]:not(.transparent):not(.shadow):disabled,
+.lr-box.flat:not(.transparent):not(.shadow), button.flat:not(.transparent):not(.shadow), button:not(.transparent):not(.shadow):disabled, input[type=submit]:not(.transparent):not(.shadow):disabled, input[type=reset]:not(.transparent):not(.shadow):disabled, input[type=button]:not(.transparent):not(.shadow):disabled,
 input.flat:not(.transparent):not(.shadow),
 select.flat:not(.transparent):not(.shadow),
 select:not(.transparent):not(.shadow):disabled,
 textarea.flat:not(.transparent):not(.shadow), .lr-list > div.flat:not(.transparent):not(.shadow), button.lr-list:disabled > div:not(.transparent):not(.shadow), input.lr-list[type=submit]:disabled > div:not(.transparent):not(.shadow), input.lr-list[type=reset]:disabled > div:not(.transparent):not(.shadow), input.lr-list[type=button]:disabled > div:not(.transparent):not(.shadow),
 select.lr-list:disabled > div:not(.transparent):not(.shadow), .lr-list.flat > div:not(.transparent):not(.shadow), button.lr-list:disabled > div.lr-list > div:not(.transparent):not(.shadow), input.lr-list[type=submit]:disabled > div.lr-list > div:not(.transparent):not(.shadow), input.lr-list[type=reset]:disabled > div.lr-list > div:not(.transparent):not(.shadow), input.lr-list[type=button]:disabled > div.lr-list > div:not(.transparent):not(.shadow),
-select.lr-list:disabled > div.lr-list > div:not(.transparent):not(.shadow), .lr-box:not(.shadow-components) .lr-list > div.lr-list > div:not(.transparent):not(.shadow), button:not(.shadow-components) .lr-list > div.lr-list > div:not(.transparent):not(.shadow), input[type=submit]:not(.shadow-components) .lr-list > div.lr-list > div:not(.transparent):not(.shadow), input[type=reset]:not(.shadow-components) .lr-list > div.lr-list > div:not(.transparent):not(.shadow), input[type=button]:not(.shadow-components) .lr-list > div.lr-list > div:not(.transparent):not(.shadow),
+select.lr-list:disabled > div.lr-list > div:not(.transparent):not(.shadow), .lr-box:not(.shadow-components) .lr-list > div.lr-list > div:not(.transparent):not(.shadow), button:not(.shadow-components) .lr-list > div.lr-list > div:not(.transparent):not(.shadow),
 input:not(.shadow-components) .lr-list > div.lr-list > div:not(.transparent):not(.shadow),
 select:not(.shadow-components) .lr-list > div.lr-list > div:not(.transparent):not(.shadow),
-textarea:not(.shadow-components) .lr-list > div.lr-list > div:not(.transparent):not(.shadow), .lr-list > div:not(.shadow-components) .lr-list > div.lr-list > div:not(.transparent):not(.shadow), .lr-box:not(.shadow-components) .lr-box:not(.transparent):not(.shadow), button:not(.shadow-components) .lr-box:not(.transparent):not(.shadow), input[type=submit]:not(.shadow-components) .lr-box:not(.transparent):not(.shadow), input[type=reset]:not(.shadow-components) .lr-box:not(.transparent):not(.shadow), input[type=button]:not(.shadow-components) .lr-box:not(.transparent):not(.shadow),
+textarea:not(.shadow-components) .lr-list > div.lr-list > div:not(.transparent):not(.shadow), .lr-list > div:not(.shadow-components) .lr-list > div.lr-list > div:not(.transparent):not(.shadow), .lr-box:not(.shadow-components) .lr-box:not(.transparent):not(.shadow), button:not(.shadow-components) .lr-box:not(.transparent):not(.shadow),
 input:not(.shadow-components) .lr-box:not(.transparent):not(.shadow),
 select:not(.shadow-components) .lr-box:not(.transparent):not(.shadow),
-textarea:not(.shadow-components) .lr-box:not(.transparent):not(.shadow), .lr-box:not(.shadow-components) button:not(.transparent):not(.shadow), .lr-box:not(.shadow-components) input[type=submit]:not(.transparent):not(.shadow), .lr-box:not(.shadow-components) input[type=reset]:not(.transparent):not(.shadow), .lr-box:not(.shadow-components) input[type=button]:not(.transparent):not(.shadow), button:not(.shadow-components) button:not(.transparent):not(.shadow), input[type=submit]:not(.shadow-components) button:not(.transparent):not(.shadow), button:not(.shadow-components) input[type=submit]:not(.transparent):not(.shadow), input[type=submit]:not(.shadow-components) input[type=submit]:not(.transparent):not(.shadow), input[type=reset]:not(.shadow-components) button:not(.transparent):not(.shadow), input[type=reset]:not(.shadow-components) input[type=submit]:not(.transparent):not(.shadow), input[type=button]:not(.shadow-components) button:not(.transparent):not(.shadow), input[type=button]:not(.shadow-components) input[type=submit]:not(.transparent):not(.shadow), button:not(.shadow-components) input[type=reset]:not(.transparent):not(.shadow), input[type=submit]:not(.shadow-components) input[type=reset]:not(.transparent):not(.shadow), input[type=reset]:not(.shadow-components) input[type=reset]:not(.transparent):not(.shadow), input[type=button]:not(.shadow-components) input[type=reset]:not(.transparent):not(.shadow), button:not(.shadow-components) input[type=button]:not(.transparent):not(.shadow), input[type=submit]:not(.shadow-components) input[type=button]:not(.transparent):not(.shadow), input[type=reset]:not(.shadow-components) input[type=button]:not(.transparent):not(.shadow), input[type=button]:not(.shadow-components) input[type=button]:not(.transparent):not(.shadow),
+textarea:not(.shadow-components) .lr-box:not(.transparent):not(.shadow), .lr-box:not(.shadow-components) button:not(.transparent):not(.shadow), button:not(.shadow-components) button:not(.transparent):not(.shadow),
 input:not(.shadow-components) button:not(.transparent):not(.shadow),
-input:not(.shadow-components) input[type=submit]:not(.transparent):not(.shadow),
-input:not(.shadow-components) input[type=reset]:not(.transparent):not(.shadow),
-input:not(.shadow-components) input[type=button]:not(.transparent):not(.shadow),
 select:not(.shadow-components) button:not(.transparent):not(.shadow),
-select:not(.shadow-components) input[type=submit]:not(.transparent):not(.shadow),
-select:not(.shadow-components) input[type=reset]:not(.transparent):not(.shadow),
-select:not(.shadow-components) input[type=button]:not(.transparent):not(.shadow),
 textarea:not(.shadow-components) button:not(.transparent):not(.shadow),
-textarea:not(.shadow-components) input[type=submit]:not(.transparent):not(.shadow),
-textarea:not(.shadow-components) input[type=reset]:not(.transparent):not(.shadow),
-textarea:not(.shadow-components) input[type=button]:not(.transparent):not(.shadow),
 .lr-box:not(.shadow-components) input:not(.transparent):not(.shadow),
 button:not(.shadow-components) input:not(.transparent):not(.shadow),
-input[type=submit]:not(.shadow-components) input:not(.transparent):not(.shadow),
-input[type=reset]:not(.shadow-components) input:not(.transparent):not(.shadow),
-input[type=button]:not(.shadow-components) input:not(.transparent):not(.shadow),
 input:not(.shadow-components) input:not(.transparent):not(.shadow),
 select:not(.shadow-components) input:not(.transparent):not(.shadow),
 textarea:not(.shadow-components) input:not(.transparent):not(.shadow),
 .lr-box:not(.shadow-components) select:not(.transparent):not(.shadow),
 button:not(.shadow-components) select:not(.transparent):not(.shadow),
-input[type=submit]:not(.shadow-components) select:not(.transparent):not(.shadow),
-input[type=reset]:not(.shadow-components) select:not(.transparent):not(.shadow),
-input[type=button]:not(.shadow-components) select:not(.transparent):not(.shadow),
 input:not(.shadow-components) select:not(.transparent):not(.shadow),
 select:not(.shadow-components) select:not(.transparent):not(.shadow),
 textarea:not(.shadow-components) select:not(.transparent):not(.shadow),
 .lr-box:not(.shadow-components) textarea:not(.transparent):not(.shadow),
 button:not(.shadow-components) textarea:not(.transparent):not(.shadow),
-input[type=submit]:not(.shadow-components) textarea:not(.transparent):not(.shadow),
-input[type=reset]:not(.shadow-components) textarea:not(.transparent):not(.shadow),
-input[type=button]:not(.shadow-components) textarea:not(.transparent):not(.shadow),
 input:not(.shadow-components) textarea:not(.transparent):not(.shadow),
 select:not(.shadow-components) textarea:not(.transparent):not(.shadow),
-textarea:not(.shadow-components) textarea:not(.transparent):not(.shadow), .lr-list > div:not(.shadow-components) .lr-box:not(.transparent):not(.shadow), .lr-list > div:not(.shadow-components) button:not(.transparent):not(.shadow), .lr-list > div:not(.shadow-components) input[type=submit]:not(.transparent):not(.shadow), .lr-list > div:not(.shadow-components) input[type=reset]:not(.transparent):not(.shadow), .lr-list > div:not(.shadow-components) input[type=button]:not(.transparent):not(.shadow),
+textarea:not(.shadow-components) textarea:not(.transparent):not(.shadow), .lr-list > div:not(.shadow-components) .lr-box:not(.transparent):not(.shadow), .lr-list > div:not(.shadow-components) button:not(.transparent):not(.shadow),
 .lr-list > div:not(.shadow-components) input:not(.transparent):not(.shadow),
 .lr-list > div:not(.shadow-components) select:not(.transparent):not(.shadow),
-.lr-list > div:not(.shadow-components) textarea:not(.transparent):not(.shadow), .lr-box:not(.shadow-components) .lr-list > div:not(.transparent):not(.shadow), button:not(.shadow-components) .lr-list > div:not(.transparent):not(.shadow), input[type=submit]:not(.shadow-components) .lr-list > div:not(.transparent):not(.shadow), input[type=reset]:not(.shadow-components) .lr-list > div:not(.transparent):not(.shadow), input[type=button]:not(.shadow-components) .lr-list > div:not(.transparent):not(.shadow),
+.lr-list > div:not(.shadow-components) textarea:not(.transparent):not(.shadow), .lr-box:not(.shadow-components) .lr-list > div:not(.transparent):not(.shadow), button:not(.shadow-components) .lr-list > div:not(.transparent):not(.shadow),
 input:not(.shadow-components) .lr-list > div:not(.transparent):not(.shadow),
 select:not(.shadow-components) .lr-list > div:not(.transparent):not(.shadow),
-textarea:not(.shadow-components) .lr-list > div:not(.transparent):not(.shadow), .lr-list > div:not(.shadow-components) .lr-list > div:not(.transparent):not(.shadow), .flat-components > .lr-box:not(.transparent):not(.shadow), .flat-components > button:not(.transparent):not(.shadow), .flat-components > input[type=submit]:not(.transparent):not(.shadow), .flat-components > input[type=reset]:not(.transparent):not(.shadow), .flat-components > input[type=button]:not(.transparent):not(.shadow),
+textarea:not(.shadow-components) .lr-list > div:not(.transparent):not(.shadow), .lr-list > div:not(.shadow-components) .lr-list > div:not(.transparent):not(.shadow), .flat-components > .lr-box:not(.transparent):not(.shadow), .flat-components > button:not(.transparent):not(.shadow),
 .flat-components > input:not(.transparent):not(.shadow),
 .flat-components > select:not(.transparent):not(.shadow),
-.flat-components > textarea:not(.transparent):not(.shadow), .lr-list.flat-components > div:not(.transparent):not(.shadow) {
-  box-shadow: none;
-  border: var(--component-stroke);
+.flat-components > textarea:not(.transparent):not(.shadow), .flat-components.lr-list > div:not(.transparent):not(.shadow) {
+  box-shadow: 0 0 0 1px var(--component-stroke-color);
 }
 .lr-box.important, input.lr-box[type=submit], input.lr-list[type=submit] > div.lr-box, button.important,
 input.important,
@@ -100,7 +81,7 @@ select.important,
 textarea.important, .lr-list.important > div.lr-box, .lr-list > div.important, input.lr-list[type=submit] > div, .lr-list.important > div, input.lr-list[type=submit] > div.lr-list > div, .important-components > .lr-box, .important-components > button,
 .important-components > input,
 .important-components > select,
-.important-components > textarea, .lr-list.important-components > div {
+.important-components > textarea, .important-components.lr-list > div {
   background-color: var(--primary);
 }
 .lr-box.small, button.small,
@@ -109,7 +90,7 @@ select.small,
 textarea.small, .lr-list.small > div.lr-box, .lr-list > div.small, .lr-list.small > div, .small-components > .lr-box, .small-components > button,
 .small-components > input,
 .small-components > select,
-.small-components > textarea, .lr-list.small-components > div {
+.small-components > textarea, .small-components.lr-list > div {
   padding: 8px;
 }
 .lr-box.small.inline, button.lr-box.small, input.lr-box.small[type=submit], input.lr-box.small[type=reset], input.lr-box.small[type=button],
@@ -124,7 +105,7 @@ textarea.small, .lr-list > div.small.inline, .lr-list.small > div.inline, .small
 .small-components > textarea.lr-box, .small-components > button,
 .small-components > input,
 .small-components > select,
-.small-components > textarea, .lr-list.small-components > div.inline {
+.small-components > textarea, .small-components.lr-list > div.inline {
   padding: 4px 8px;
 }
 .lr-box.transparent, button.transparent,
@@ -143,7 +124,7 @@ select:not(:disabled),
 textarea.interactive, .lr-list > div.interactive, .interactive-components > .lr-box, .interactive-components > button,
 .interactive-components > input,
 .interactive-components > select,
-.interactive-components > textarea, .lr-list.interactive-components > div {
+.interactive-components > textarea, .interactive-components.lr-list > div {
   cursor: pointer;
 }
 .lr-box.interactive:not(.transparent):hover, button.interactive:not(.transparent):hover, button:not(.transparent):hover:not(:disabled), input[type=submit]:not(.transparent):hover:not(:disabled), input[type=reset]:not(.transparent):hover:not(:disabled), input[type=button]:not(.transparent):hover:not(:disabled),
@@ -153,7 +134,7 @@ select:not(.transparent):hover:not(:disabled),
 textarea.interactive:not(.transparent):hover, .lr-list > div.interactive:not(.transparent):hover, .interactive-components > .lr-box:not(.transparent):hover, .interactive-components > button:not(.transparent):hover,
 .interactive-components > input:not(.transparent):hover,
 .interactive-components > select:not(.transparent):hover,
-.interactive-components > textarea:not(.transparent):hover, .lr-list.interactive-components > div:not(.transparent):hover {
+.interactive-components > textarea:not(.transparent):hover, .interactive-components.lr-list > div:not(.transparent):hover {
   box-shadow: var(--shadow-2);
   background: var(--component-hover);
 }
@@ -164,92 +145,49 @@ select:not(.transparent):active:not(:disabled),
 textarea.interactive:not(.transparent):active, .lr-list > div.interactive:not(.transparent):active, .interactive-components > .lr-box:not(.transparent):active, .interactive-components > button:not(.transparent):active,
 .interactive-components > input:not(.transparent):active,
 .interactive-components > select:not(.transparent):active,
-.interactive-components > textarea:not(.transparent):active, .lr-list.interactive-components > div:not(.transparent):active {
+.interactive-components > textarea:not(.transparent):active, .interactive-components.lr-list > div:not(.transparent):active {
   box-shadow: var(--shadow-0);
   background: var(--component-active);
 }
-.lr-box.interactive:not(.transparent).flat:hover, button.lr-box.interactive:not(.transparent):hover:disabled, input.lr-box.interactive[type=submit]:not(.transparent):hover:disabled, input.lr-box.interactive[type=reset]:not(.transparent):hover:disabled, input.lr-box.interactive[type=button]:not(.transparent):hover:disabled,
-select.lr-box.interactive:not(.transparent):hover:disabled, button.lr-list:disabled > div.lr-box.interactive:not(.transparent):hover, input.lr-list[type=submit]:disabled > div.lr-box.interactive:not(.transparent):hover, input.lr-list[type=reset]:disabled > div.lr-box.interactive:not(.transparent):hover, input.lr-list[type=button]:disabled > div.lr-box.interactive:not(.transparent):hover,
-select.lr-list:disabled > div.lr-box.interactive:not(.transparent):hover, button.lr-box:not(.transparent).flat:hover:not(:disabled), input.lr-box[type=submit]:not(.transparent).flat:hover:not(:disabled), input.lr-box[type=reset]:not(.transparent).flat:hover:not(:disabled), input.lr-box[type=button]:not(.transparent).flat:hover:not(:disabled), button.lr-box:not(.transparent):hover:not(:disabled):disabled, input.lr-box[type=submit]:not(.transparent):hover:not(:disabled):disabled, input.lr-box[type=reset]:not(.transparent):hover:not(:disabled):disabled, input.lr-box[type=button]:not(.transparent):hover:not(:disabled):disabled,
-select.lr-box:not(.transparent).flat:hover:not(:disabled),
-select.lr-box:not(.transparent):hover:not(:disabled):disabled, button.interactive:not(.transparent).flat:hover, input.interactive[type=submit]:not(.transparent).flat:hover, input.interactive[type=reset]:not(.transparent).flat:hover, input.interactive[type=button]:not(.transparent).flat:hover, button.interactive:not(.transparent):hover:disabled, input.interactive[type=submit]:not(.transparent):hover:disabled, input.interactive[type=reset]:not(.transparent):hover:disabled, input.interactive[type=button]:not(.transparent):hover:disabled, button:not(.transparent).flat:hover:not(:disabled), input[type=submit]:not(.transparent).flat:hover:not(:disabled), input[type=reset]:not(.transparent).flat:hover:not(:disabled), input[type=button]:not(.transparent).flat:hover:not(:disabled), button:not(.transparent):hover:not(:disabled):disabled, input[type=submit]:not(.transparent):hover:not(:disabled):disabled, input[type=reset]:not(.transparent):hover:not(:disabled):disabled, input[type=button]:not(.transparent):hover:not(:disabled):disabled,
+.lr-box.interactive:not(.transparent).flat:hover, button.interactive:not(.transparent).flat:hover, button.interactive:not(.transparent):hover:disabled, input.interactive[type=submit]:not(.transparent):hover:disabled, input.interactive[type=reset]:not(.transparent):hover:disabled, input.interactive[type=button]:not(.transparent):hover:disabled, button:not(.transparent).flat:hover:not(:disabled), input[type=submit]:not(.transparent).flat:hover:not(:disabled), input[type=reset]:not(.transparent).flat:hover:not(:disabled), input[type=button]:not(.transparent).flat:hover:not(:disabled), button:not(.transparent):hover:not(:disabled):disabled, input[type=submit]:not(.transparent):hover:not(:disabled):disabled, input[type=reset]:not(.transparent):hover:not(:disabled):disabled, input[type=button]:not(.transparent):hover:not(:disabled):disabled,
 input.interactive:not(.transparent).flat:hover,
 select.interactive:not(.transparent).flat:hover,
 select.interactive:not(.transparent):hover:disabled,
 select:not(.transparent).flat:hover:not(:disabled),
 select:not(.transparent):hover:not(:disabled):disabled,
 textarea.interactive:not(.transparent).flat:hover, .lr-list > div.interactive:not(.transparent).flat:hover, button.lr-list:disabled > div.interactive:not(.transparent):hover, input.lr-list[type=submit]:disabled > div.interactive:not(.transparent):hover, input.lr-list[type=reset]:disabled > div.interactive:not(.transparent):hover, input.lr-list[type=button]:disabled > div.interactive:not(.transparent):hover,
-select.lr-list:disabled > div.interactive:not(.transparent):hover, .lr-list.flat > div.interactive:not(.transparent):hover, button.lr-list:disabled > div.interactive:not(.transparent):hover, input.lr-list[type=submit]:disabled > div.interactive:not(.transparent):hover, input.lr-list[type=reset]:disabled > div.interactive:not(.transparent):hover, input.lr-list[type=button]:disabled > div.interactive:not(.transparent):hover,
-select.lr-list:disabled > div.interactive:not(.transparent):hover, button.lr-list:disabled > div.lr-list > div.interactive:not(.transparent):hover, input.lr-list[type=submit]:disabled > div.lr-list > div.interactive:not(.transparent):hover, input.lr-list[type=reset]:disabled > div.lr-list > div.interactive:not(.transparent):hover, input.lr-list[type=button]:disabled > div.lr-list > div.interactive:not(.transparent):hover,
-select.lr-list:disabled > div.lr-list > div.interactive:not(.transparent):hover, .lr-box:not(.shadow-components) .lr-list > div.lr-list > div.interactive:not(.transparent):hover, button:not(.shadow-components) .lr-list > div.lr-list > div.interactive:not(.transparent):hover, input[type=submit]:not(.shadow-components) .lr-list > div.lr-list > div.interactive:not(.transparent):hover, input[type=reset]:not(.shadow-components) .lr-list > div.lr-list > div.interactive:not(.transparent):hover, input[type=button]:not(.shadow-components) .lr-list > div.lr-list > div.interactive:not(.transparent):hover,
+select.lr-list:disabled > div.interactive:not(.transparent):hover, .lr-list.flat > div.interactive:not(.transparent):hover, button.lr-list:disabled > div.lr-list > div.interactive:not(.transparent):hover, input.lr-list[type=submit]:disabled > div.lr-list > div.interactive:not(.transparent):hover, input.lr-list[type=reset]:disabled > div.lr-list > div.interactive:not(.transparent):hover, input.lr-list[type=button]:disabled > div.lr-list > div.interactive:not(.transparent):hover,
+select.lr-list:disabled > div.lr-list > div.interactive:not(.transparent):hover, .lr-box:not(.shadow-components) .lr-list > div.lr-list > div.interactive:not(.transparent):hover, button:not(.shadow-components) .lr-list > div.lr-list > div.interactive:not(.transparent):hover,
 input:not(.shadow-components) .lr-list > div.lr-list > div.interactive:not(.transparent):hover,
 select:not(.shadow-components) .lr-list > div.lr-list > div.interactive:not(.transparent):hover,
-textarea:not(.shadow-components) .lr-list > div.lr-list > div.interactive:not(.transparent):hover, .lr-list > div:not(.shadow-components) .lr-list > div.lr-list > div.interactive:not(.transparent):hover, .lr-box:not(.shadow-components) .lr-box.interactive:not(.transparent):hover, .lr-box:not(.shadow-components) button.lr-box:not(.transparent):hover:not(:disabled), .lr-box:not(.shadow-components) input.lr-box[type=submit]:not(.transparent):hover:not(:disabled), .lr-box:not(.shadow-components) input.lr-box[type=reset]:not(.transparent):hover:not(:disabled), .lr-box:not(.shadow-components) input.lr-box[type=button]:not(.transparent):hover:not(:disabled),
-.lr-box:not(.shadow-components) select.lr-box:not(.transparent):hover:not(:disabled), button:not(.shadow-components) .lr-box.interactive:not(.transparent):hover, input[type=submit]:not(.shadow-components) .lr-box.interactive:not(.transparent):hover, input[type=reset]:not(.shadow-components) .lr-box.interactive:not(.transparent):hover, input[type=button]:not(.shadow-components) .lr-box.interactive:not(.transparent):hover, button:not(.shadow-components) button.lr-box:not(.transparent):hover:not(:disabled), input[type=submit]:not(.shadow-components) button.lr-box:not(.transparent):hover:not(:disabled), button:not(.shadow-components) input.lr-box[type=submit]:not(.transparent):hover:not(:disabled), input[type=submit]:not(.shadow-components) input.lr-box[type=submit]:not(.transparent):hover:not(:disabled), input[type=reset]:not(.shadow-components) button.lr-box:not(.transparent):hover:not(:disabled), input[type=reset]:not(.shadow-components) input.lr-box[type=submit]:not(.transparent):hover:not(:disabled), input[type=button]:not(.shadow-components) button.lr-box:not(.transparent):hover:not(:disabled), input[type=button]:not(.shadow-components) input.lr-box[type=submit]:not(.transparent):hover:not(:disabled), button:not(.shadow-components) input.lr-box[type=reset]:not(.transparent):hover:not(:disabled), input[type=submit]:not(.shadow-components) input.lr-box[type=reset]:not(.transparent):hover:not(:disabled), input[type=reset]:not(.shadow-components) input.lr-box[type=reset]:not(.transparent):hover:not(:disabled), input[type=button]:not(.shadow-components) input.lr-box[type=reset]:not(.transparent):hover:not(:disabled), button:not(.shadow-components) input.lr-box[type=button]:not(.transparent):hover:not(:disabled), input[type=submit]:not(.shadow-components) input.lr-box[type=button]:not(.transparent):hover:not(:disabled), input[type=reset]:not(.shadow-components) input.lr-box[type=button]:not(.transparent):hover:not(:disabled), input[type=button]:not(.shadow-components) input.lr-box[type=button]:not(.transparent):hover:not(:disabled),
-button:not(.shadow-components) select.lr-box:not(.transparent):hover:not(:disabled),
-input[type=submit]:not(.shadow-components) select.lr-box:not(.transparent):hover:not(:disabled),
-input[type=reset]:not(.shadow-components) select.lr-box:not(.transparent):hover:not(:disabled),
-input[type=button]:not(.shadow-components) select.lr-box:not(.transparent):hover:not(:disabled),
+textarea:not(.shadow-components) .lr-list > div.lr-list > div.interactive:not(.transparent):hover, .lr-list > div:not(.shadow-components) .lr-list > div.lr-list > div.interactive:not(.transparent):hover, .lr-box:not(.shadow-components) .lr-box.interactive:not(.transparent):hover, button:not(.shadow-components) .lr-box.interactive:not(.transparent):hover,
 input:not(.shadow-components) .lr-box.interactive:not(.transparent):hover,
-input:not(.shadow-components) button.lr-box:not(.transparent):hover:not(:disabled),
-input:not(.shadow-components) input.lr-box[type=submit]:not(.transparent):hover:not(:disabled),
-input:not(.shadow-components) input.lr-box[type=reset]:not(.transparent):hover:not(:disabled),
-input:not(.shadow-components) input.lr-box[type=button]:not(.transparent):hover:not(:disabled),
-input:not(.shadow-components) select.lr-box:not(.transparent):hover:not(:disabled),
 select:not(.shadow-components) .lr-box.interactive:not(.transparent):hover,
-select:not(.shadow-components) button.lr-box:not(.transparent):hover:not(:disabled),
-select:not(.shadow-components) input.lr-box[type=submit]:not(.transparent):hover:not(:disabled),
-select:not(.shadow-components) input.lr-box[type=reset]:not(.transparent):hover:not(:disabled),
-select:not(.shadow-components) input.lr-box[type=button]:not(.transparent):hover:not(:disabled),
-select:not(.shadow-components) select.lr-box:not(.transparent):hover:not(:disabled),
-textarea:not(.shadow-components) .lr-box.interactive:not(.transparent):hover,
-textarea:not(.shadow-components) button.lr-box:not(.transparent):hover:not(:disabled),
-textarea:not(.shadow-components) input.lr-box[type=submit]:not(.transparent):hover:not(:disabled),
-textarea:not(.shadow-components) input.lr-box[type=reset]:not(.transparent):hover:not(:disabled),
-textarea:not(.shadow-components) input.lr-box[type=button]:not(.transparent):hover:not(:disabled),
-textarea:not(.shadow-components) select.lr-box:not(.transparent):hover:not(:disabled), .lr-box:not(.shadow-components) button.interactive:not(.transparent):hover, .lr-box:not(.shadow-components) input.interactive[type=submit]:not(.transparent):hover, .lr-box:not(.shadow-components) input.interactive[type=reset]:not(.transparent):hover, .lr-box:not(.shadow-components) input.interactive[type=button]:not(.transparent):hover, .lr-box:not(.shadow-components) button:not(.transparent):hover:not(:disabled), .lr-box:not(.shadow-components) input[type=submit]:not(.transparent):hover:not(:disabled), .lr-box:not(.shadow-components) input[type=reset]:not(.transparent):hover:not(:disabled), .lr-box:not(.shadow-components) input[type=button]:not(.transparent):hover:not(:disabled), button:not(.shadow-components) button.interactive:not(.transparent):hover, input[type=submit]:not(.shadow-components) button.interactive:not(.transparent):hover, button:not(.shadow-components) input.interactive[type=submit]:not(.transparent):hover, input[type=submit]:not(.shadow-components) input.interactive[type=submit]:not(.transparent):hover, input[type=reset]:not(.shadow-components) button.interactive:not(.transparent):hover, input[type=reset]:not(.shadow-components) input.interactive[type=submit]:not(.transparent):hover, input[type=button]:not(.shadow-components) button.interactive:not(.transparent):hover, input[type=button]:not(.shadow-components) input.interactive[type=submit]:not(.transparent):hover, button:not(.shadow-components) input.interactive[type=reset]:not(.transparent):hover, input[type=submit]:not(.shadow-components) input.interactive[type=reset]:not(.transparent):hover, input[type=reset]:not(.shadow-components) input.interactive[type=reset]:not(.transparent):hover, input[type=button]:not(.shadow-components) input.interactive[type=reset]:not(.transparent):hover, button:not(.shadow-components) input.interactive[type=button]:not(.transparent):hover, input[type=submit]:not(.shadow-components) input.interactive[type=button]:not(.transparent):hover, input[type=reset]:not(.shadow-components) input.interactive[type=button]:not(.transparent):hover, input[type=button]:not(.shadow-components) input.interactive[type=button]:not(.transparent):hover, button:not(.shadow-components) button:not(.transparent):hover:not(:disabled), input[type=submit]:not(.shadow-components) button:not(.transparent):hover:not(:disabled), button:not(.shadow-components) input[type=submit]:not(.transparent):hover:not(:disabled), input[type=submit]:not(.shadow-components) input[type=submit]:not(.transparent):hover:not(:disabled), input[type=reset]:not(.shadow-components) button:not(.transparent):hover:not(:disabled), input[type=reset]:not(.shadow-components) input[type=submit]:not(.transparent):hover:not(:disabled), input[type=button]:not(.shadow-components) button:not(.transparent):hover:not(:disabled), input[type=button]:not(.shadow-components) input[type=submit]:not(.transparent):hover:not(:disabled), button:not(.shadow-components) input[type=reset]:not(.transparent):hover:not(:disabled), input[type=submit]:not(.shadow-components) input[type=reset]:not(.transparent):hover:not(:disabled), input[type=reset]:not(.shadow-components) input[type=reset]:not(.transparent):hover:not(:disabled), input[type=button]:not(.shadow-components) input[type=reset]:not(.transparent):hover:not(:disabled), button:not(.shadow-components) input[type=button]:not(.transparent):hover:not(:disabled), input[type=submit]:not(.shadow-components) input[type=button]:not(.transparent):hover:not(:disabled), input[type=reset]:not(.shadow-components) input[type=button]:not(.transparent):hover:not(:disabled), input[type=button]:not(.shadow-components) input[type=button]:not(.transparent):hover:not(:disabled),
+textarea:not(.shadow-components) .lr-box.interactive:not(.transparent):hover, .lr-box:not(.shadow-components) button.interactive:not(.transparent):hover, .lr-box:not(.shadow-components) button:not(.transparent):hover:not(:disabled), .lr-box:not(.shadow-components) input[type=submit]:not(.transparent):hover:not(:disabled), .lr-box:not(.shadow-components) input[type=reset]:not(.transparent):hover:not(:disabled), .lr-box:not(.shadow-components) input[type=button]:not(.transparent):hover:not(:disabled), button:not(.shadow-components) button.interactive:not(.transparent):hover, button:not(.shadow-components) button:not(.transparent):hover:not(:disabled), button:not(.shadow-components) input[type=submit]:not(.transparent):hover:not(:disabled), button:not(.shadow-components) input[type=reset]:not(.transparent):hover:not(:disabled), button:not(.shadow-components) input[type=button]:not(.transparent):hover:not(:disabled),
 input:not(.shadow-components) button.interactive:not(.transparent):hover,
-input:not(.shadow-components) input.interactive[type=submit]:not(.transparent):hover,
-input:not(.shadow-components) input.interactive[type=reset]:not(.transparent):hover,
-input:not(.shadow-components) input.interactive[type=button]:not(.transparent):hover,
 input:not(.shadow-components) button:not(.transparent):hover:not(:disabled),
 input:not(.shadow-components) input[type=submit]:not(.transparent):hover:not(:disabled),
 input:not(.shadow-components) input[type=reset]:not(.transparent):hover:not(:disabled),
 input:not(.shadow-components) input[type=button]:not(.transparent):hover:not(:disabled),
 select:not(.shadow-components) button.interactive:not(.transparent):hover,
-select:not(.shadow-components) input.interactive[type=submit]:not(.transparent):hover,
-select:not(.shadow-components) input.interactive[type=reset]:not(.transparent):hover,
-select:not(.shadow-components) input.interactive[type=button]:not(.transparent):hover,
 select:not(.shadow-components) button:not(.transparent):hover:not(:disabled),
 select:not(.shadow-components) input[type=submit]:not(.transparent):hover:not(:disabled),
 select:not(.shadow-components) input[type=reset]:not(.transparent):hover:not(:disabled),
 select:not(.shadow-components) input[type=button]:not(.transparent):hover:not(:disabled),
 textarea:not(.shadow-components) button.interactive:not(.transparent):hover,
-textarea:not(.shadow-components) input.interactive[type=submit]:not(.transparent):hover,
-textarea:not(.shadow-components) input.interactive[type=reset]:not(.transparent):hover,
-textarea:not(.shadow-components) input.interactive[type=button]:not(.transparent):hover,
 textarea:not(.shadow-components) button:not(.transparent):hover:not(:disabled),
 textarea:not(.shadow-components) input[type=submit]:not(.transparent):hover:not(:disabled),
 textarea:not(.shadow-components) input[type=reset]:not(.transparent):hover:not(:disabled),
 textarea:not(.shadow-components) input[type=button]:not(.transparent):hover:not(:disabled),
 .lr-box:not(.shadow-components) input.interactive:not(.transparent):hover,
 button:not(.shadow-components) input.interactive:not(.transparent):hover,
-input[type=submit]:not(.shadow-components) input.interactive:not(.transparent):hover,
-input[type=reset]:not(.shadow-components) input.interactive:not(.transparent):hover,
-input[type=button]:not(.shadow-components) input.interactive:not(.transparent):hover,
 input:not(.shadow-components) input.interactive:not(.transparent):hover,
 select:not(.shadow-components) input.interactive:not(.transparent):hover,
 textarea:not(.shadow-components) input.interactive:not(.transparent):hover,
 .lr-box:not(.shadow-components) select.interactive:not(.transparent):hover,
 .lr-box:not(.shadow-components) select:not(.transparent):hover:not(:disabled),
 button:not(.shadow-components) select.interactive:not(.transparent):hover,
-input[type=submit]:not(.shadow-components) select.interactive:not(.transparent):hover,
-input[type=reset]:not(.shadow-components) select.interactive:not(.transparent):hover,
-input[type=button]:not(.shadow-components) select.interactive:not(.transparent):hover,
 button:not(.shadow-components) select:not(.transparent):hover:not(:disabled),
-input[type=submit]:not(.shadow-components) select:not(.transparent):hover:not(:disabled),
-input[type=reset]:not(.shadow-components) select:not(.transparent):hover:not(:disabled),
-input[type=button]:not(.shadow-components) select:not(.transparent):hover:not(:disabled),
 input:not(.shadow-components) select.interactive:not(.transparent):hover,
 input:not(.shadow-components) select:not(.transparent):hover:not(:disabled),
 select:not(.shadow-components) select.interactive:not(.transparent):hover,
@@ -258,74 +196,49 @@ textarea:not(.shadow-components) select.interactive:not(.transparent):hover,
 textarea:not(.shadow-components) select:not(.transparent):hover:not(:disabled),
 .lr-box:not(.shadow-components) textarea.interactive:not(.transparent):hover,
 button:not(.shadow-components) textarea.interactive:not(.transparent):hover,
-input[type=submit]:not(.shadow-components) textarea.interactive:not(.transparent):hover,
-input[type=reset]:not(.shadow-components) textarea.interactive:not(.transparent):hover,
-input[type=button]:not(.shadow-components) textarea.interactive:not(.transparent):hover,
 input:not(.shadow-components) textarea.interactive:not(.transparent):hover,
 select:not(.shadow-components) textarea.interactive:not(.transparent):hover,
-textarea:not(.shadow-components) textarea.interactive:not(.transparent):hover, .lr-list > div:not(.shadow-components) .lr-box.interactive:not(.transparent):hover, .lr-list > div:not(.shadow-components) button.lr-box:not(.transparent):hover:not(:disabled), .lr-list > div:not(.shadow-components) input.lr-box[type=submit]:not(.transparent):hover:not(:disabled), .lr-list > div:not(.shadow-components) input.lr-box[type=reset]:not(.transparent):hover:not(:disabled), .lr-list > div:not(.shadow-components) input.lr-box[type=button]:not(.transparent):hover:not(:disabled),
-.lr-list > div:not(.shadow-components) select.lr-box:not(.transparent):hover:not(:disabled), .lr-list > div:not(.shadow-components) button.interactive:not(.transparent):hover, .lr-list > div:not(.shadow-components) input.interactive[type=submit]:not(.transparent):hover, .lr-list > div:not(.shadow-components) input.interactive[type=reset]:not(.transparent):hover, .lr-list > div:not(.shadow-components) input.interactive[type=button]:not(.transparent):hover, .lr-list > div:not(.shadow-components) button:not(.transparent):hover:not(:disabled), .lr-list > div:not(.shadow-components) input[type=submit]:not(.transparent):hover:not(:disabled), .lr-list > div:not(.shadow-components) input[type=reset]:not(.transparent):hover:not(:disabled), .lr-list > div:not(.shadow-components) input[type=button]:not(.transparent):hover:not(:disabled),
+textarea:not(.shadow-components) textarea.interactive:not(.transparent):hover, .lr-list > div:not(.shadow-components) .lr-box.interactive:not(.transparent):hover, .lr-list > div:not(.shadow-components) button.interactive:not(.transparent):hover, .lr-list > div:not(.shadow-components) button:not(.transparent):hover:not(:disabled), .lr-list > div:not(.shadow-components) input[type=submit]:not(.transparent):hover:not(:disabled), .lr-list > div:not(.shadow-components) input[type=reset]:not(.transparent):hover:not(:disabled), .lr-list > div:not(.shadow-components) input[type=button]:not(.transparent):hover:not(:disabled),
 .lr-list > div:not(.shadow-components) input.interactive:not(.transparent):hover,
 .lr-list > div:not(.shadow-components) select.interactive:not(.transparent):hover,
 .lr-list > div:not(.shadow-components) select:not(.transparent):hover:not(:disabled),
-.lr-list > div:not(.shadow-components) textarea.interactive:not(.transparent):hover, .lr-box:not(.shadow-components) .lr-list > div.interactive:not(.transparent):hover, button:not(.shadow-components) .lr-list > div.interactive:not(.transparent):hover, input[type=submit]:not(.shadow-components) .lr-list > div.interactive:not(.transparent):hover, input[type=reset]:not(.shadow-components) .lr-list > div.interactive:not(.transparent):hover, input[type=button]:not(.shadow-components) .lr-list > div.interactive:not(.transparent):hover,
+.lr-list > div:not(.shadow-components) textarea.interactive:not(.transparent):hover, .lr-box:not(.shadow-components) .lr-list > div.interactive:not(.transparent):hover, button:not(.shadow-components) .lr-list > div.interactive:not(.transparent):hover,
 input:not(.shadow-components) .lr-list > div.interactive:not(.transparent):hover,
 select:not(.shadow-components) .lr-list > div.interactive:not(.transparent):hover,
-textarea:not(.shadow-components) .lr-list > div.interactive:not(.transparent):hover, .lr-list > div:not(.shadow-components) .lr-list > div.interactive:not(.transparent):hover, .interactive-components > .lr-box:not(.transparent).flat:hover, .interactive-components > button.lr-box:not(.transparent):hover:disabled, .interactive-components > input.lr-box[type=submit]:not(.transparent):hover:disabled, .interactive-components > input.lr-box[type=reset]:not(.transparent):hover:disabled, .interactive-components > input.lr-box[type=button]:not(.transparent):hover:disabled,
-.interactive-components > select.lr-box:not(.transparent):hover:disabled, button.lr-list.interactive-components:disabled > div.lr-box:not(.transparent):hover, input.lr-list.interactive-components[type=submit]:disabled > div.lr-box:not(.transparent):hover, input.lr-list.interactive-components[type=reset]:disabled > div.lr-box:not(.transparent):hover, input.lr-list.interactive-components[type=button]:disabled > div.lr-box:not(.transparent):hover,
-select.lr-list.interactive-components:disabled > div.lr-box:not(.transparent):hover, .interactive-components > button:not(.transparent).flat:hover, .interactive-components > input[type=submit]:not(.transparent).flat:hover, .interactive-components > input[type=reset]:not(.transparent).flat:hover, .interactive-components > input[type=button]:not(.transparent).flat:hover, .interactive-components > button:not(.transparent):hover:disabled, .interactive-components > input[type=submit]:not(.transparent):hover:disabled, .interactive-components > input[type=reset]:not(.transparent):hover:disabled, .interactive-components > input[type=button]:not(.transparent):hover:disabled,
+textarea:not(.shadow-components) .lr-list > div.interactive:not(.transparent):hover, .lr-list > div:not(.shadow-components) .lr-list > div.interactive:not(.transparent):hover, .interactive-components > .lr-box:not(.transparent).flat:hover, .interactive-components > button:not(.transparent).flat:hover, .interactive-components > button:not(.transparent):hover:disabled, .interactive-components > input[type=submit]:not(.transparent):hover:disabled, .interactive-components > input[type=reset]:not(.transparent):hover:disabled, .interactive-components > input[type=button]:not(.transparent):hover:disabled,
 .interactive-components > input:not(.transparent).flat:hover,
 .interactive-components > select:not(.transparent).flat:hover,
 .interactive-components > select:not(.transparent):hover:disabled,
-.interactive-components > textarea:not(.transparent).flat:hover, .lr-list.interactive-components > div:not(.transparent).flat:hover, button.lr-list.interactive-components:disabled > div:not(.transparent):hover, input.lr-list.interactive-components[type=submit]:disabled > div:not(.transparent):hover, input.lr-list.interactive-components[type=reset]:disabled > div:not(.transparent):hover, input.lr-list.interactive-components[type=button]:disabled > div:not(.transparent):hover,
-select.lr-list.interactive-components:disabled > div:not(.transparent):hover, .lr-list.flat.interactive-components > div:not(.transparent):hover, button.lr-list.interactive-components:disabled > div:not(.transparent):hover, input.lr-list.interactive-components[type=submit]:disabled > div:not(.transparent):hover, input.lr-list.interactive-components[type=reset]:disabled > div:not(.transparent):hover, input.lr-list.interactive-components[type=button]:disabled > div:not(.transparent):hover,
-select.lr-list.interactive-components:disabled > div:not(.transparent):hover, button.lr-list:disabled > div.lr-list.interactive-components > div:not(.transparent):hover, input.lr-list[type=submit]:disabled > div.lr-list.interactive-components > div:not(.transparent):hover, input.lr-list[type=reset]:disabled > div.lr-list.interactive-components > div:not(.transparent):hover, input.lr-list[type=button]:disabled > div.lr-list.interactive-components > div:not(.transparent):hover,
-select.lr-list:disabled > div.lr-list.interactive-components > div:not(.transparent):hover, .lr-box:not(.shadow-components) .interactive-components > .lr-box:not(.transparent):hover, button:not(.shadow-components) .interactive-components > .lr-box:not(.transparent):hover, input[type=submit]:not(.shadow-components) .interactive-components > .lr-box:not(.transparent):hover, input[type=reset]:not(.shadow-components) .interactive-components > .lr-box:not(.transparent):hover, input[type=button]:not(.shadow-components) .interactive-components > .lr-box:not(.transparent):hover,
+.interactive-components > textarea:not(.transparent).flat:hover, .interactive-components.lr-list > div:not(.transparent).flat:hover, button.interactive-components.lr-list:disabled > div:not(.transparent):hover, input.interactive-components.lr-list[type=submit]:disabled > div:not(.transparent):hover, input.interactive-components.lr-list[type=reset]:disabled > div:not(.transparent):hover, input.interactive-components.lr-list[type=button]:disabled > div:not(.transparent):hover,
+select.interactive-components.lr-list:disabled > div:not(.transparent):hover, .interactive-components.lr-list.flat > div:not(.transparent):hover, button.lr-list:disabled > div.interactive-components.lr-list > div:not(.transparent):hover, input.lr-list[type=submit]:disabled > div.interactive-components.lr-list > div:not(.transparent):hover, input.lr-list[type=reset]:disabled > div.interactive-components.lr-list > div:not(.transparent):hover, input.lr-list[type=button]:disabled > div.interactive-components.lr-list > div:not(.transparent):hover,
+select.lr-list:disabled > div.interactive-components.lr-list > div:not(.transparent):hover, .lr-box:not(.shadow-components) .interactive-components > .lr-box:not(.transparent):hover, button:not(.shadow-components) .interactive-components > .lr-box:not(.transparent):hover,
 input:not(.shadow-components) .interactive-components > .lr-box:not(.transparent):hover,
 select:not(.shadow-components) .interactive-components > .lr-box:not(.transparent):hover,
-textarea:not(.shadow-components) .interactive-components > .lr-box:not(.transparent):hover, .lr-box:not(.shadow-components) .interactive-components > button:not(.transparent):hover, .lr-box:not(.shadow-components) .interactive-components > input[type=submit]:not(.transparent):hover, .lr-box:not(.shadow-components) .interactive-components > input[type=reset]:not(.transparent):hover, .lr-box:not(.shadow-components) .interactive-components > input[type=button]:not(.transparent):hover, button:not(.shadow-components) .interactive-components > button:not(.transparent):hover, input[type=submit]:not(.shadow-components) .interactive-components > button:not(.transparent):hover, button:not(.shadow-components) .interactive-components > input[type=submit]:not(.transparent):hover, input[type=submit]:not(.shadow-components) .interactive-components > input[type=submit]:not(.transparent):hover, input[type=reset]:not(.shadow-components) .interactive-components > button:not(.transparent):hover, input[type=reset]:not(.shadow-components) .interactive-components > input[type=submit]:not(.transparent):hover, input[type=button]:not(.shadow-components) .interactive-components > button:not(.transparent):hover, input[type=button]:not(.shadow-components) .interactive-components > input[type=submit]:not(.transparent):hover, button:not(.shadow-components) .interactive-components > input[type=reset]:not(.transparent):hover, input[type=submit]:not(.shadow-components) .interactive-components > input[type=reset]:not(.transparent):hover, input[type=reset]:not(.shadow-components) .interactive-components > input[type=reset]:not(.transparent):hover, input[type=button]:not(.shadow-components) .interactive-components > input[type=reset]:not(.transparent):hover, button:not(.shadow-components) .interactive-components > input[type=button]:not(.transparent):hover, input[type=submit]:not(.shadow-components) .interactive-components > input[type=button]:not(.transparent):hover, input[type=reset]:not(.shadow-components) .interactive-components > input[type=button]:not(.transparent):hover, input[type=button]:not(.shadow-components) .interactive-components > input[type=button]:not(.transparent):hover,
+textarea:not(.shadow-components) .interactive-components > .lr-box:not(.transparent):hover, .lr-box:not(.shadow-components) .interactive-components > button:not(.transparent):hover, button:not(.shadow-components) .interactive-components > button:not(.transparent):hover,
 input:not(.shadow-components) .interactive-components > button:not(.transparent):hover,
-input:not(.shadow-components) .interactive-components > input[type=submit]:not(.transparent):hover,
-input:not(.shadow-components) .interactive-components > input[type=reset]:not(.transparent):hover,
-input:not(.shadow-components) .interactive-components > input[type=button]:not(.transparent):hover,
 select:not(.shadow-components) .interactive-components > button:not(.transparent):hover,
-select:not(.shadow-components) .interactive-components > input[type=submit]:not(.transparent):hover,
-select:not(.shadow-components) .interactive-components > input[type=reset]:not(.transparent):hover,
-select:not(.shadow-components) .interactive-components > input[type=button]:not(.transparent):hover,
 textarea:not(.shadow-components) .interactive-components > button:not(.transparent):hover,
-textarea:not(.shadow-components) .interactive-components > input[type=submit]:not(.transparent):hover,
-textarea:not(.shadow-components) .interactive-components > input[type=reset]:not(.transparent):hover,
-textarea:not(.shadow-components) .interactive-components > input[type=button]:not(.transparent):hover,
 .lr-box:not(.shadow-components) .interactive-components > input:not(.transparent):hover,
 button:not(.shadow-components) .interactive-components > input:not(.transparent):hover,
-input[type=submit]:not(.shadow-components) .interactive-components > input:not(.transparent):hover,
-input[type=reset]:not(.shadow-components) .interactive-components > input:not(.transparent):hover,
-input[type=button]:not(.shadow-components) .interactive-components > input:not(.transparent):hover,
 input:not(.shadow-components) .interactive-components > input:not(.transparent):hover,
 select:not(.shadow-components) .interactive-components > input:not(.transparent):hover,
 textarea:not(.shadow-components) .interactive-components > input:not(.transparent):hover,
 .lr-box:not(.shadow-components) .interactive-components > select:not(.transparent):hover,
 button:not(.shadow-components) .interactive-components > select:not(.transparent):hover,
-input[type=submit]:not(.shadow-components) .interactive-components > select:not(.transparent):hover,
-input[type=reset]:not(.shadow-components) .interactive-components > select:not(.transparent):hover,
-input[type=button]:not(.shadow-components) .interactive-components > select:not(.transparent):hover,
 input:not(.shadow-components) .interactive-components > select:not(.transparent):hover,
 select:not(.shadow-components) .interactive-components > select:not(.transparent):hover,
 textarea:not(.shadow-components) .interactive-components > select:not(.transparent):hover,
 .lr-box:not(.shadow-components) .interactive-components > textarea:not(.transparent):hover,
 button:not(.shadow-components) .interactive-components > textarea:not(.transparent):hover,
-input[type=submit]:not(.shadow-components) .interactive-components > textarea:not(.transparent):hover,
-input[type=reset]:not(.shadow-components) .interactive-components > textarea:not(.transparent):hover,
-input[type=button]:not(.shadow-components) .interactive-components > textarea:not(.transparent):hover,
 input:not(.shadow-components) .interactive-components > textarea:not(.transparent):hover,
 select:not(.shadow-components) .interactive-components > textarea:not(.transparent):hover,
-textarea:not(.shadow-components) .interactive-components > textarea:not(.transparent):hover, .lr-list > div:not(.shadow-components) .interactive-components > .lr-box:not(.transparent):hover, .lr-list > div:not(.shadow-components) .interactive-components > button:not(.transparent):hover, .lr-list > div:not(.shadow-components) .interactive-components > input[type=submit]:not(.transparent):hover, .lr-list > div:not(.shadow-components) .interactive-components > input[type=reset]:not(.transparent):hover, .lr-list > div:not(.shadow-components) .interactive-components > input[type=button]:not(.transparent):hover,
+textarea:not(.shadow-components) .interactive-components > textarea:not(.transparent):hover, .lr-list > div:not(.shadow-components) .interactive-components > .lr-box:not(.transparent):hover, .lr-list > div:not(.shadow-components) .interactive-components > button:not(.transparent):hover,
 .lr-list > div:not(.shadow-components) .interactive-components > input:not(.transparent):hover,
 .lr-list > div:not(.shadow-components) .interactive-components > select:not(.transparent):hover,
-.lr-list > div:not(.shadow-components) .interactive-components > textarea:not(.transparent):hover, .lr-box:not(.shadow-components) .lr-list.interactive-components > div:not(.transparent):hover, button:not(.shadow-components) .lr-list.interactive-components > div:not(.transparent):hover, input[type=submit]:not(.shadow-components) .lr-list.interactive-components > div:not(.transparent):hover, input[type=reset]:not(.shadow-components) .lr-list.interactive-components > div:not(.transparent):hover, input[type=button]:not(.shadow-components) .lr-list.interactive-components > div:not(.transparent):hover,
-input:not(.shadow-components) .lr-list.interactive-components > div:not(.transparent):hover,
-select:not(.shadow-components) .lr-list.interactive-components > div:not(.transparent):hover,
-textarea:not(.shadow-components) .lr-list.interactive-components > div:not(.transparent):hover, .lr-list > div:not(.shadow-components) .lr-list.interactive-components > div:not(.transparent):hover {
+.lr-list > div:not(.shadow-components) .interactive-components > textarea:not(.transparent):hover, .lr-box:not(.shadow-components) .interactive-components.lr-list > div:not(.transparent):hover, button:not(.shadow-components) .interactive-components.lr-list > div:not(.transparent):hover,
+input:not(.shadow-components) .interactive-components.lr-list > div:not(.transparent):hover,
+select:not(.shadow-components) .interactive-components.lr-list > div:not(.transparent):hover,
+textarea:not(.shadow-components) .interactive-components.lr-list > div:not(.transparent):hover, .lr-list > div:not(.shadow-components) .interactive-components.lr-list > div:not(.transparent):hover {
   box-shadow: var(--shadow-0);
 }
 .lr-box.interactive:not(.transparent).important:hover, button.interactive:not(.transparent).important:hover, button:not(.transparent).important:hover:not(:disabled), input[type=submit]:not(.transparent):hover:not(:disabled), input[type=reset]:not(.transparent).important:hover:not(:disabled), input[type=button]:not(.transparent).important:hover:not(:disabled),
@@ -337,7 +250,7 @@ textarea.interactive:not(.transparent).important:hover, .lr-list > div.interacti
 .interactive-components > input:not(.transparent).important:hover,
 .interactive-components > input[type=submit]:not(.transparent):hover,
 .interactive-components > select:not(.transparent).important:hover,
-.interactive-components > textarea:not(.transparent).important:hover, .lr-list.interactive-components > div:not(.transparent).important:hover, input.lr-list[type=submit].interactive-components > div:not(.transparent):hover, .lr-list.important.interactive-components > div:not(.transparent):hover, input.lr-list[type=submit] > div.lr-list.interactive-components > div:not(.transparent):hover {
+.interactive-components > textarea:not(.transparent).important:hover, .interactive-components.lr-list > div:not(.transparent).important:hover, input.interactive-components.lr-list[type=submit] > div:not(.transparent):hover, .interactive-components.lr-list.important > div:not(.transparent):hover, input.lr-list[type=submit] > div.interactive-components.lr-list > div:not(.transparent):hover {
   background-color: var(--light);
 }
 .lr-box.interactive:not(.transparent).important:active, button.interactive:not(.transparent).important:active, button:not(.transparent).important:active:not(:disabled), input[type=submit]:not(.transparent):active:not(:disabled), input[type=reset]:not(.transparent).important:active:not(:disabled), input[type=button]:not(.transparent).important:active:not(:disabled),
@@ -349,7 +262,7 @@ textarea.interactive:not(.transparent).important:active, .lr-list > div.interact
 .interactive-components > input:not(.transparent).important:active,
 .interactive-components > input[type=submit]:not(.transparent):active,
 .interactive-components > select:not(.transparent).important:active,
-.interactive-components > textarea:not(.transparent).important:active, .lr-list.interactive-components > div:not(.transparent).important:active, input.lr-list[type=submit].interactive-components > div:not(.transparent):active, .lr-list.important.interactive-components > div:not(.transparent):active, input.lr-list[type=submit] > div.lr-list.interactive-components > div:not(.transparent):active {
+.interactive-components > textarea:not(.transparent).important:active, .interactive-components.lr-list > div:not(.transparent).important:active, input.interactive-components.lr-list[type=submit] > div:not(.transparent):active, .interactive-components.lr-list.important > div:not(.transparent):active, input.lr-list[type=submit] > div.interactive-components.lr-list > div:not(.transparent):active {
   background-color: var(--dark);
 }
 
@@ -461,7 +374,7 @@ textarea input:not(.transparent):not([type=reset]):not([type=button]):not([type=
   border-bottom-width: 2px;
   border-color: transparent;
   border-color: transparent;
-  outline: var(--component-stroke);
+  box-shadow: 0 0 0 1px var(--component-stroke-color);
 }
 input:not(.transparent):not([type=reset]):not([type=button]):not([type=submit]).flat:not(.shadow):focus, .flat-components > input:not(.transparent):not([type=reset]):not([type=button]):not([type=submit]):not(.shadow):focus, .lr-box input:not(.transparent):not([type=reset]):not([type=button]):not([type=submit]):not(.shadow):focus, .lr-list > div input:not(.transparent):not([type=reset]):not([type=button]):not([type=submit]):not(.shadow):focus, button input:not(.transparent):not([type=reset]):not([type=button]):not([type=submit]):not(.shadow):focus,
 input input:not(.transparent):not([type=reset]):not([type=button]):not([type=submit]):not(.shadow):focus,
@@ -20474,18 +20387,17 @@ details[open] ::marker {
 @property --accent-from {
   syntax: "<color>";
   inherits: true;
-  initial-value: oklch(45% 0.13 244);
+  initial-value: oklch(45% 0.13 244deg);
 }
 @property --accent-to {
   syntax: "<color>";
   inherits: true;
-  initial-value: oklch(85% 0.18 256);
+  initial-value: oklch(85% 0.18 256deg);
 }
 :root {
   color-scheme: light dark;
   --hue: 250;
   --hue-range: 6;
-  --secondary: rgb(0, 187, 115);
   --alert: #c61025;
   --accent-from: light-dark(oklch(45% .13 calc(var(--hue) - var(--hue-range))), oklch(35% .12 calc(var(--hue) - var(--hue-range))));
   --accent-to: light-dark(oklch(85% .18 calc(var(--hue) + var(--hue-range))), oklch(75% .18 calc(var(--hue) + var(--hue-range))));
@@ -20507,11 +20419,11 @@ details[open] ::marker {
   --site-stroke: solid 1px var(--site-stroke-color);
   --component-stroke-color: light-dark(#ebebeb, #1a1a1a);
   --component-stroke: solid 1px var(--component-stroke-color);
-  --shadow-0: 0px 1px 3px -1px light-dark(rgb(0 0 0 / 0.2), rgb(0 0 0 / .35));
-  --shadow-1: 0px 1px 3px 0px light-dark(rgb(0 0 0 / 0.15), rgb(0 0 0 / .35));
-  --shadow-2: 0px 1px 4px 0px light-dark(rgb(0 0 0 / 0.25), rgb(0 0 0 / .4));
-  --shadow-3: 0px 2px 7px 0px light-dark(rgb(0 0 0 / 0.25), rgb(0 0 0 / .45));
-  --shadow-4: 0px 2px 13px 0px light-dark(rgb(0 0 0 / 0.28), rgb(0 0 0 / .6));
+  --shadow-0: 0px 1px 2px -1px light-dark(rgb(0 0 0 / 0.25), rgb(0 0 0 / .4));
+  --shadow-1: 0px 2px 3px 0px light-dark(rgb(0 0 0 / 0.1), rgb(0 0 0 / .25));
+  --shadow-2: 0px 2.5px 4px 0px light-dark(rgb(0 0 0 / 0.15), rgb(0 0 0 / .3));
+  --shadow-3: 0px 4px 12px 0px light-dark(rgb(0 0 0 / 0.2), rgb(0 0 0 / .3)), 0px 0px 4px 0px light-dark(rgb(0 0 0 / .1), rgb(0 0 0 / .15));
+  --shadow-4: 0px 6px 28px 0px light-dark(rgb(0 0 0 / 0.25), rgb(0 0 0 / .35)), 0px 0px 6px 0px light-dark(rgb(0 0 0 / .1), rgb(0 0 0 / .25));
 }
 :root:has([theme=light]) {
   color-scheme: light;
@@ -20866,7 +20778,7 @@ pre:has(code) code[lang]::before {
 
 dialog {
   background-color: var(--site-background);
-  box-shadow: var(--shadow-1);
+  box-shadow: var(--shadow-4);
   color: var(--text-color);
   border: none;
   margin: auto;

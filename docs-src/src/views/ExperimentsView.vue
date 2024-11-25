@@ -5,7 +5,7 @@
   <h1>Experiments</h1>
   <br>
   <br>
-  <h4>details</h4>
+  <h4>Details</h4>
   <br>
   <details>
     <summary class="caret_left">Summary</summary>
@@ -18,8 +18,9 @@
     Rerum harum expedita natus laudantium quos repudiandae sunt architecto consequatur est aspernatur inventore totam vero, libero sint corrupti voluptatibus et quasi ipsam voluptates perspiciatis quod magni, explicabo iste voluptatum! Ab!
   </details>
   <br>
-  <div>
-    <input type="checkbox">
+
+  <h4>Components</h4>
+  <div class="flex gap ">
     <input type="text">
     <button><i class="fluentIcon save_regular"></i></button>
     <button>Button</button>
@@ -29,9 +30,8 @@
       <option>Option 3</option>
     </select>
   </div>
-  <br><br>
-  <div class="small-components">
-    <input type="checkbox">
+  <br>
+  <div class="flex gap small-components">
     <input type="text">
     <button><i class="fluentIcon save_regular"></i></button>
     <button>Button</button>
@@ -43,7 +43,6 @@
   </div>
   <br>
   <div class="flat-components">
-    <input type="checkbox">
     <input type="text">
     <button><i class="fluentIcon save_regular"></i></button>
     <button>Button</button>
@@ -53,7 +52,7 @@
       <option>Option 3</option>
     </select>
   </div>
-
+<br><br>
   <br>
   <div class="small-components">
     <label for="a">Label:</label><br>

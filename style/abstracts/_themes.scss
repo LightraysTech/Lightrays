@@ -3,16 +3,19 @@
   inherits: true;
   initial-value: 250;
 }
+
 @property --hue-range {
   syntax: "<number>";
   inherits: true;
   initial-value: 6;
 }
+
 @property --accent-from {
   syntax: "<color>";
   inherits: true;
   initial-value: oklch(45% .13 244);
 }
+
 @property --accent-to {
   syntax: "<color>";
   inherits: true;
@@ -24,7 +27,6 @@
 
   --hue: 250;
   --hue-range: 6;
-  --secondary: rgb(0, 187, 115);
 
   --alert: #c61025;
 
@@ -55,11 +57,11 @@
   --component-stroke-color: light-dark(#ebebeb, #1a1a1a);
   --component-stroke: solid 1px var(--component-stroke-color);
 
-  --shadow-0: 0px 1px 3px -1px light-dark(rgb(0 0 0 / 0.2), rgb(0 0 0 / .35));
-  --shadow-1: 0px 1px 3px 0px light-dark(rgb(0 0 0 / 0.15), rgb(0 0 0 / .35));
-  --shadow-2: 0px 1px 4px 0px light-dark(rgb(0 0 0 / 0.25), rgb(0 0 0 / .4));
-  --shadow-3: 0px 2px 7px 0px light-dark(rgb(0 0 0 / 0.25), rgb(0 0 0 / .45));
-  --shadow-4: 0px 2px 13px 0px light-dark(rgb(0 0 0 / 0.28), rgb(0 0 0 / .6));
+  --shadow-0: 0px 1px 2px -1px light-dark(rgb(0 0 0 / 0.25), rgb(0 0 0 / .4));
+  --shadow-1: 0px 2px 3px 0px light-dark(rgb(0 0 0 / 0.1), rgb(0 0 0 / .25));
+  --shadow-2: 0px 2.5px 4px 0px light-dark(rgb(0 0 0 / 0.15), rgb(0 0 0 / .3));
+  --shadow-3: 0px 4px 12px 0px light-dark(rgb(0 0 0 / 0.2), rgb(0 0 0 / .3)), 0px 0px 4px 0px light-dark(rgb(0 0 0 / .1), rgb(0 0 0 / .15));
+  --shadow-4: 0px 6px 28px 0px light-dark(rgb(0 0 0 / 0.25), rgb(0 0 0 / .35)), 0px 0px 6px 0px light-dark(rgb(0 0 0 / .1), rgb(0 0 0 / .25));
 
   &:has([theme=light]) {
     color-scheme: light;

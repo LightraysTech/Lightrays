@@ -71,6 +71,16 @@
     <div style="box-shadow: var(--shadow-4);">Shadow 4</div>
   </div>
   <br>
+  <br>
+  <div class="flex" style="justify-content: space-evenly;">
+    <div class="lr-box" style="box-shadow: var(--shadow-0); width: 100px; height: 100px;"></div>
+    <div class="lr-box" style="box-shadow: var(--shadow-1); width: 100px; height: 100px;"></div>
+    <div class="lr-box" style="box-shadow: var(--shadow-2); width: 100px; height: 100px;"></div>
+    <div class="lr-box" style="box-shadow: var(--shadow-3); width: 100px; height: 100px;"></div>
+    <div class="lr-box" style="box-shadow: var(--shadow-4); width: 100px; height: 100px;"></div>
+  </div>
+  <br><br>
+  <br>
   <button onclick="document.querySelector('#dialog').showModal()">Open Dialog</button>
   <dialog id="dialog">
     <form method="dialog" class="flat-inputs">

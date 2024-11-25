@@ -17,8 +17,7 @@
     &.flat,
     .flat-components > & {
         &:not(.transparent):not(.shadow) {
-            box-shadow: none;
-            border: var(--component-stroke);
+            box-shadow: 0 0 0 1px var(--component-stroke-color);
         }
     }
 
@@ -89,6 +88,7 @@
     & > div {
         @extend .lr-box;
         animation: box-load-in 0.2s ease-out both;
+
         @for $i from 1 through 15 {
             &:nth-child(#{$i}) {
                 animation-delay: calc(0.03s * #{$i});
@@ -177,7 +177,7 @@ input {
             border-bottom-width: 2px;
             border-color: transparent;
             border-color: transparent;
-            outline: var(--component-stroke);
+            box-shadow: 0 0 0 1px var(--component-stroke-color);
 
             &:focus {
                 box-shadow: var(--shadow-1);
