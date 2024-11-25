@@ -419,7 +419,7 @@ select:disabled {
 }
 button:has(.fluentIcon:only-child), input[type=submit]:has(.fluentIcon:only-child), input[type=reset]:has(.fluentIcon:only-child), input[type=button]:has(.fluentIcon:only-child),
 select:has(.fluentIcon:only-child) {
-  padding: 8px 8px;
+  padding: 10px 10px;
 }
 button:has(.fluentIcon:only-child) .fluentIcon, input[type=submit]:has(.fluentIcon:only-child) .fluentIcon, input[type=reset]:has(.fluentIcon:only-child) .fluentIcon, input[type=button]:has(.fluentIcon:only-child) .fluentIcon,
 select:has(.fluentIcon:only-child) .fluentIcon {
@@ -428,7 +428,7 @@ select:has(.fluentIcon:only-child) .fluentIcon {
 button.small:has(.fluentIcon:only-child), input.small[type=submit]:has(.fluentIcon:only-child), input.small[type=reset]:has(.fluentIcon:only-child), input.small[type=button]:has(.fluentIcon:only-child), .small-components > button:has(.fluentIcon:only-child), .small-components > input[type=submit]:has(.fluentIcon:only-child), .small-components > input[type=reset]:has(.fluentIcon:only-child), .small-components > input[type=button]:has(.fluentIcon:only-child),
 select.small:has(.fluentIcon:only-child),
 .small-components > select:has(.fluentIcon:only-child) {
-  padding: 4px 4px;
+  padding: 6px 6px;
 }
 button > .fluentIcon:not(:only-child), input[type=submit] > .fluentIcon:not(:only-child), input[type=reset] > .fluentIcon:not(:only-child), input[type=button] > .fluentIcon:not(:only-child),
 select > .fluentIcon:not(:only-child) {
@@ -440,7 +440,7 @@ input {
 }
 input:not(.transparent):not([type=reset]):not([type=button]):not([type=submit]) {
   border-bottom-width: 2px;
-  border-style: solid;
+  border-bottom-style: solid;
   border-color: transparent;
 }
 input:not(.transparent):not([type=reset]):not([type=button]):not([type=submit]).flat:not(.shadow),
