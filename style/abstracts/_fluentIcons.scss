@@ -3,13 +3,10 @@
     src: url("./fonts/FluentSystemIcons/FluentSystemIcons-Resizable.woff2") format("woff2"),
         url("./fonts/FluentSystemIcons/FluentSystemIcons-Resizable.woff") format("woff"),
         url("./fonts/FluentSystemIcons/FluentSystemIcons-Resizable.ttf") format("truetype");
+    font-display: block;
 }
 
 .fluentIcon {
-    //display: inline-flex;
-    //align-items: center;
-    //vertical-align: top;
-    //height: 1lh;
     position: relative;
     --size: 20px;
 

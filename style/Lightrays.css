@@ -538,6 +538,7 @@ label {
 @font-face {
   font-family: "FluentSystemIcons-Resizable";
   src: url("./fonts/FluentSystemIcons/FluentSystemIcons-Resizable.woff2") format("woff2"), url("./fonts/FluentSystemIcons/FluentSystemIcons-Resizable.woff") format("woff"), url("./fonts/FluentSystemIcons/FluentSystemIcons-Resizable.ttf") format("truetype");
+  font-display: block;
 }
 .fluentIcon {
   position: relative;
@@ -20453,6 +20454,26 @@ details[open] ::marker {
   content: "\f35d";
 }
 
+@property --hue {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 250;
+}
+@property --hue-range {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 6;
+}
+@property --accent-from {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: oklch(45% 0.13 244);
+}
+@property --accent-to {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: oklch(85% 0.18 256);
+}
 :root {
   color-scheme: light dark;
   --hue: 250;
