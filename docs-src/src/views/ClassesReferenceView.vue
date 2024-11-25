@@ -3,8 +3,6 @@
 
 <template>
   <h1>CSS Classes</h1>
-  <br>
-  <br>
   <h2>Components</h2>
   <p>
     Components styles can be applied to <code>&lt;button&gt;</code>, <code>&lt;input&gt;</code> and elements with <code>class="lr-box"</code>:

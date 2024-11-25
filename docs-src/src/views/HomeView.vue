@@ -3,13 +3,12 @@
 
 <template>
   <h1>Lightrays</h1>
-  <br>
   <p>
     A modern CSS Web Design including themes, accent colors and animations.
   </p>
-  <br><br>
-  <h3>Examples</h3>
-  <br><br>
+  <br>
+  <h2>Examples</h2>
+  <br>
   <h4>Component types</h4>
   <br>
   <div class="flex-grow gap">
@@ -72,7 +71,7 @@
   </div>
   <br>
   <br>
-  <div class="flex" style="justify-content: space-evenly;">
+  <div class="flex-wrap gap" style="justify-content: space-evenly;">
     <div class="lr-box" style="box-shadow: var(--shadow-0); width: 100px; height: 100px;"></div>
     <div class="lr-box" style="box-shadow: var(--shadow-1); width: 100px; height: 100px;"></div>
     <div class="lr-box" style="box-shadow: var(--shadow-2); width: 100px; height: 100px;"></div>
