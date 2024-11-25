@@ -618,7 +618,7 @@ details ::marker {
   content: "\e373";
 }
 details[open] ::marker {
-  rotate: 90deg;
+  content: "\e36d";
 }
 
 .fluentIcon.access_time_filled:before {
@@ -20630,6 +20630,40 @@ body:has(> main) > footer {
 }
 body:has(> main) > header {
   grid-row: 1;
+}
+
+details > summary.caret_left:first-of-type, details > summary.caret_right:first-of-type {
+  display: flex;
+  list-style-type: none;
+  cursor: pointer;
+}
+details > summary.caret_left:first-of-type.caret_right::after, details > summary.caret_right:first-of-type.caret_right::after {
+  font-family: FluentSystemIcons-Resizable !important;
+  font-style: normal;
+  font-weight: normal !important;
+  font-variant: normal;
+  text-transform: none;
+  vertical-align: baseline;
+  transition: rotate 0.1s;
+  display: inline-block;
+  content: "\e371";
+}
+details > summary.caret_left:first-of-type.caret_left::before, details > summary.caret_right:first-of-type.caret_left::before {
+  font-family: FluentSystemIcons-Resizable !important;
+  font-style: normal;
+  font-weight: normal !important;
+  font-variant: normal;
+  text-transform: none;
+  vertical-align: baseline;
+  transition: rotate 0.1s;
+  display: inline-block;
+  content: "\e373";
+}
+details[open] > summary:first-of-type::before {
+  rotate: 90deg;
+}
+details[open] > summary:first-of-type::after {
+  rotate: -90deg;
 }
 
 body {

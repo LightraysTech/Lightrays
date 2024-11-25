@@ -158,3 +158,51 @@ body:has(> main) {
         grid-row: 1;
     }
 }
+
+details {
+
+    & > summary.caret_left:first-of-type,
+    & > summary.caret_right:first-of-type {
+        display: flex;
+        list-style-type: none;
+        cursor: pointer;
+
+        &.caret_right::after {
+            font-family: FluentSystemIcons-Resizable !important;
+            font-style: normal;
+            font-weight: normal !important;
+            font-variant: normal;
+            text-transform: none;
+            vertical-align: baseline;
+            transition: rotate .1s;
+            display: inline-block;
+            content: "\e371";
+        }
+
+        &.caret_left::before {
+            font-family: FluentSystemIcons-Resizable !important;
+            font-style: normal;
+            font-weight: normal !important;
+            font-variant: normal;
+            text-transform: none;
+            vertical-align: baseline;
+            transition: rotate .1s;
+            display: inline-block;
+            content: "\e373";
+        }
+
+    }
+
+
+    &[open] > summary:first-of-type {
+
+        &::before {
+            rotate: 90deg
+        }
+
+        &::after {
+            rotate: -90deg
+        }
+    }
+
+}

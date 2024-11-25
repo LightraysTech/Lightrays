@@ -67,6 +67,7 @@ details {
         content: "\e374";
         transition: rotate .1s
     }
+
     .fluentIcon.details_caret_left_filled:before {
         content: "\e373";
         transition: rotate .1s
@@ -76,12 +77,14 @@ details {
         content: "\e372";
         transition: rotate .1s
     }
+
     .fluentIcon.details_caret_right_filled:before {
         content: "\e371";
         transition: rotate .1s
     }
 
     &[open] {
+
         .fluentIcon.details_caret_left_regular:before,
         .fluentIcon.details_caret_left_filled:before {
             rotate: 90deg
@@ -105,7 +108,7 @@ details {
     }
 
     &[open] ::marker {
-        rotate: 90deg
+        content: "\e36d";
     }
 }
 
