@@ -1,20 +1,23 @@
-menu { // TODO: rework menu
+menu {
     display: inline-flex;
     flex-direction: column;
 
     background-color: var(--component-background);
     box-shadow: var(--shadow-3);
+    border: none;
     border-radius: 4px;
     margin: 8px 0;
     padding: 4px;
     gap: 4px;
+    overflow: hidden;
+    position-area: bottom span-right;
+    position-try: bottom span-right, top span-right, bottom span-left, top span-left;
 
-    transition: all .25s cubic-bezier(0, 0, 0.2, 1) allow-discrete;
-    transform-origin: 50% 0;
+    transition: all .2s cubic-bezier(0, 0, 0.2, 1) allow-discrete;
 
     @starting-style {
-        scale: 1 .2;
-        opacity: 0.2;
+        opacity: 0;
+        margin: 0;
     }
 
     &.horizontal {
@@ -22,16 +25,18 @@ menu { // TODO: rework menu
     }
 
     & > button {
-        margin: 0;
         text-align: left;
 
         box-shadow: none !important;
     }
 
-    &.small-components > button {
-        font-size: 14px;
+    &[popover] {
+        &:not(:popover-open) {
+            margin: 0;
+            opacity: 0;
+            display: none !important;
+        }
     }
-
 }
 
 nav {

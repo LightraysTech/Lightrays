@@ -20512,29 +20512,33 @@ menu {
   flex-direction: column;
   background-color: var(--component-background);
   box-shadow: var(--shadow-3);
+  border: none;
   border-radius: 4px;
   margin: 8px 0;
   padding: 4px;
   gap: 4px;
-  transition: all 0.25s cubic-bezier(0, 0, 0.2, 1) allow-discrete;
-  transform-origin: 50% 0;
+  overflow: hidden;
+  position-area: bottom span-right;
+  position-try: bottom span-right, top span-right, bottom span-left, top span-left;
+  transition: all 0.2s cubic-bezier(0, 0, 0.2, 1) allow-discrete;
 }
 @starting-style {
   menu {
-    scale: 1 0.2;
-    opacity: 0.2;
+    opacity: 0;
+    margin: 0;
   }
 }
 menu.horizontal {
   flex-direction: row;
 }
 menu > button {
-  margin: 0;
   text-align: left;
   box-shadow: none !important;
 }
-menu.small-components > button {
-  font-size: 14px;
+menu[popover]:not(:popover-open) {
+  margin: 0;
+  opacity: 0;
+  display: none !important;
 }
 
 nav {
