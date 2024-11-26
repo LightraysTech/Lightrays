@@ -20839,7 +20839,7 @@ a.noStyle:hover {
 }
 
 .subtle-text {
-  color: var(--subtle-text);
+  color: var(--subtle-text-color);
 }
 
 .hidden {
