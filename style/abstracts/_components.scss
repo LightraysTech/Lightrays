@@ -126,7 +126,9 @@ textarea {
     color: var(--color-text);
     border: none;
 
-    transition: background-color 0.2s, color 0.2s, box-shadow .2s, border 0.2s;
+    transition: background-color, color, box-shadow, border;
+    transition-duration: 0.2s;
+    transition-timing-function: var(--curve-ease);
 }
 
 button,
@@ -137,10 +139,10 @@ select {
         @extend .interactive;
     }
 
-    &:disabled {
+    &:disabled:not(.transparent) {
         @extend .flat;
         color: var(--gray-text-color);
-        background-color: var(--component-hover);
+        background-color: var(--component-disabled);
     }
 
 
@@ -157,10 +159,13 @@ select {
         &:has(.fluentIcon:only-child) {
             padding: 6px 6px;
         }
+        & > .fluentIcon:not(:only-child) {
+            margin-right: 4px;
+        }
     }
 
     & > .fluentIcon:not(:only-child) {
-        margin-right: 16px;
+        margin-right: 8px;
     }
 }
 
@@ -191,10 +196,10 @@ input {
         }
 
 
-        &:disabled {
+        &:disabled:not(.transparent) {
             @extend .flat;
             color: var(--gray-text-color);
-            background-color: var(--component-hover);
+            background-color: var(--component-disabled);
         }
     }
 
@@ -229,7 +234,7 @@ input {
         &:focus {
             background-size: 18px;
             background-position-x: 11px;
-            transition: background .2s;
+            transition: background .2s var(--curve-ease);
         }
     }
 

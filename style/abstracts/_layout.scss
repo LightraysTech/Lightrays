@@ -13,7 +13,7 @@ menu {
     position-area: bottom span-right;
     position-try: bottom span-right, top span-right, bottom span-left, top span-left;
 
-    transition: all .2s cubic-bezier(0, 0, 0.2, 1) allow-discrete;
+    transition: all 0.25s var(--curve-ease) allow-discrete;
 
     @starting-style {
         opacity: 0;
@@ -24,10 +24,16 @@ menu {
         flex-direction: row;
     }
 
-    & > button {
+    & > button,
+    &.small-components > button {
         text-align: left;
 
         box-shadow: none !important;
+
+        & > .fluentIcon:not(:only-child),
+        &.small > .fluentIcon:not(:only-child) {
+            margin-right: 16px;
+        }
     }
 
     &[popover] {
@@ -62,8 +68,8 @@ nav {
         gap: 10px;
         padding: 8px 10px;
         border-radius: 6px;
-        transition: background-color .1s;
-        margin: 4px 0;
+        transition: background-color var(--curve-ease) .2s;
+        margin: 2px 0;
 
         &:hover {
             background-color: var(--component-hover);
@@ -91,7 +97,7 @@ nav {
 
             &::before {
                 content: "\e40d";
-                transition: rotate .1s;
+                transition: rotate .2s var(--curve-ease);
 
                 font-family: FluentSystemIcons-Resizable !important;
                 font-style: normal;
@@ -119,7 +125,7 @@ nav {
             height: 100dvh;
             box-sizing: border-box;
             transform: translateX(-110%);
-            transition: transform .2s ease-out;
+            transition: transform 0.5s var(--curve-ease-in-out);
             backdrop-filter: blur(30px);
             background-color: light-dark(#ebebebae, #1a1a1ad8);
             border: none;
@@ -179,7 +185,7 @@ details {
             font-variant: normal;
             text-transform: none;
             vertical-align: baseline;
-            transition: rotate .1s;
+            transition: rotate .25s var(--curve-ease);
             display: inline-block;
             content: "\e371";
         }
@@ -191,7 +197,7 @@ details {
             font-variant: normal;
             text-transform: none;
             vertical-align: baseline;
-            transition: rotate .1s;
+            transition: rotate .25s var(--curve-ease);
             display: inline-block;
             content: "\e373";
         }
@@ -208,6 +214,17 @@ details {
         &::after {
             rotate: -90deg
         }
+    }
+
+    &::details-content {
+        interpolate-size: allow-keywords;
+        transition: height .25s var(--curve-ease), content-visibility .25s allow-discrete;
+        height: 0;
+        overflow: hidden;
+    }
+
+    &[open]::details-content {
+        height: auto;
     }
 
 }

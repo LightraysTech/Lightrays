@@ -204,6 +204,7 @@ pre:has(code) {
   padding: 2px 4px;
   border-radius: 4px;
   background-color: var(--component-important);
+  text-wrap: nowrap;
 }
 
 // Dialog
@@ -226,7 +227,7 @@ dialog {
   transition-behavior: allow-discrete;
 
   &::backdrop {
-    transition: all 0.25s ease-in-out;
+    transition: all 0.25s var(--curve-ease);
     transition-behavior: allow-discrete;
     background-color: rgba(0, 0, 0, 0);
     backdrop-filter: blur(0px);
