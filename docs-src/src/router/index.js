@@ -26,7 +26,12 @@ const router = createRouter({
       path: '/classes',
       name: 'Classes',
       component: () => import('../views/ClassesReferenceView.vue')
-    }
+    },
+    {
+      path: '/inputs',
+      name: 'Inputs',
+      component: () => import('../views/InputsView.vue')
+    },
   ]
 })
 

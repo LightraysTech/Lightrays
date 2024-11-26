@@ -139,7 +139,8 @@ select {
 
     &:disabled {
         @extend .flat;
-        color: gray;
+        color: var(--gray-text-color);
+        background-color: var(--component-hover);
     }
 
 
@@ -188,6 +189,13 @@ input {
             border-bottom-color: var(--primary) !important;
             box-shadow: var(--shadow-2);
         }
+
+
+        &:disabled {
+            @extend .flat;
+            color: var(--gray-text-color);
+            background-color: var(--component-hover);
+        }
     }
 
 
@@ -227,8 +235,8 @@ input {
 
     &[type=checkbox] {
         align-self: center;
-        appearance: none;
         -webkit-appearance: none;
+        appearance: none;
         box-shadow: none;
         border: none !important;
         border-radius: 6px;
@@ -275,10 +283,28 @@ input {
 }
 
 label {
-    font-weight: 600;
-    margin-right: 8px;
+    display: inline-block;
+    margin: 2px 0;
     font-size: 1em;
 
+    &.left {
+        margin: 0;
+        margin-right: 8px;
+    }
+
+    &.right {
+        margin: 0;
+        margin-left: 8px;
+    }
+
+    
+    &.disabled {
+        color: var(--gray-text-color);
+    }
+
+    &[for] {
+        cursor: pointer
+    }
 
     .small,
     .small-components > & {

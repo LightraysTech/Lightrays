@@ -31,10 +31,10 @@ const navOpen = ref(false);
       <i class="fluentIcon layout_column_two_split_right_regular"></i>
       Layout
     </a>
-    <a>
+    <RouterLink to="/inputs">
       <i class="fluentIcon text_field_regular"></i>
       Input
-    </a>
+    </RouterLink>
     <RouterLink to="/experiments">
       <i class="fluentIcon beaker_regular"></i>
       Experiments
@@ -58,7 +58,7 @@ const navOpen = ref(false);
 
   <header>
     <img class="mobile-header" @click="navOpen = true" src="/logo.png" height="24" style="filter: hue-rotate(calc(var(--hue) * 1deg - 230deg))">
-    <b class="mobile-header">{{ router.currentRoute.value.name }}</b>
+    <h6 class="mobile-header">{{ router.currentRoute.value.name }}</h6>
 
     <div style="flex-grow: 1;"></div>
     <button v-if="theme == 'light' || theme == 'auto-light'" @click="theme = 'dark'"><i class="fluentIcon weather_moon_regular"></i></button>
@@ -77,7 +77,7 @@ header {
   gap: 16px;
   padding: 8px 16px;
   border-radius: 0;
-  border-bottom: var(--site-stroke);
+  box-shadow: var(--shadow-0);
 }
 
 @media (width > 1000px) {
