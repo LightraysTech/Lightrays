@@ -17,7 +17,8 @@
     &.flat,
     .flat-components > & {
         &:not(.transparent):not(.shadow) {
-            box-shadow: 0 0 0 1px var(--component-stroke-color);
+            box-shadow: none;
+            border: var(--component-stroke);
         }
     }
 
@@ -141,7 +142,7 @@ select {
 
     &:disabled:not(.transparent) {
         @extend .flat;
-        color: var(--gray-text-color);
+        color: var(--muted-text-color);
         background-color: var(--component-disabled);
     }
 
@@ -183,7 +184,7 @@ input {
             border-bottom-width: 2px;
             border-color: transparent;
             border-color: transparent;
-            box-shadow: 0 0 0 1px var(--component-stroke-color);
+            outline: var(--component-stroke);
 
             &:focus {
                 box-shadow: var(--shadow-1);
@@ -198,7 +199,7 @@ input {
 
         &:disabled:not(.transparent) {
             @extend .flat;
-            color: var(--gray-text-color);
+            color: var(--muted-text-color);
             background-color: var(--component-disabled);
         }
     }
@@ -291,6 +292,7 @@ label {
     display: inline-block;
     margin: 2px 0;
     font-size: 1em;
+    font-weight: 600;
 
     &.left {
         margin: 0;
@@ -304,7 +306,7 @@ label {
 
     
     &.disabled {
-        color: var(--gray-text-color);
+        color: var(--muted-text-color);
     }
 
     &[for] {

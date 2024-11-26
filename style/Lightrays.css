@@ -91,7 +91,8 @@ textarea:not(.shadow-components) .lr-list > div:not(.transparent):not(.shadow), 
 .flat-components > input:not(.transparent):not(.shadow),
 .flat-components > select:not(.transparent):not(.shadow),
 .flat-components > textarea:not(.transparent):not(.shadow), .flat-components.lr-list > div:not(.transparent):not(.shadow) {
-  box-shadow: 0 0 0 1px var(--component-stroke-color);
+  box-shadow: none;
+  border: var(--component-stroke);
 }
 .lr-box.important, input.lr-box[type=submit], input.lr-list[type=submit] > div.lr-box, button.important, input.important[type=submit], input[type=submit], input.important[type=reset], input.important[type=button],
 input.important,
@@ -396,7 +397,7 @@ select {
 }
 button:disabled:not(.transparent), input[type=submit]:disabled:not(.transparent), input[type=reset]:disabled:not(.transparent), input[type=button]:disabled:not(.transparent),
 select:disabled:not(.transparent) {
-  color: var(--gray-text-color);
+  color: var(--muted-text-color);
   background-color: var(--component-disabled);
 }
 button:has(.fluentIcon:only-child), input[type=submit]:has(.fluentIcon:only-child), input[type=reset]:has(.fluentIcon:only-child), input[type=button]:has(.fluentIcon:only-child),
@@ -437,7 +438,7 @@ textarea input:not(.transparent):not([type=reset]):not([type=button]):not([type=
   border-bottom-width: 2px;
   border-color: transparent;
   border-color: transparent;
-  box-shadow: 0 0 0 1px var(--component-stroke-color);
+  outline: var(--component-stroke);
 }
 input:not(.transparent):not([type=reset]):not([type=button]):not([type=submit]).flat:not(.shadow):focus, input:not(.transparent):not([type=reset]):not([type=button]):not([type=submit]):not(.shadow):focus:disabled, .flat-components > input:not(.transparent):not([type=reset]):not([type=button]):not([type=submit]):not(.shadow):focus, .lr-box input:not(.transparent):not([type=reset]):not([type=button]):not([type=submit]):not(.shadow):focus, .lr-list > div input:not(.transparent):not([type=reset]):not([type=button]):not([type=submit]):not(.shadow):focus, button input:not(.transparent):not([type=reset]):not([type=button]):not([type=submit]):not(.shadow):focus,
 input input:not(.transparent):not([type=reset]):not([type=button]):not([type=submit]):not(.shadow):focus,
@@ -450,7 +451,7 @@ input:not(.transparent):not([type=reset]):not([type=button]):not([type=submit]):
   box-shadow: var(--shadow-2);
 }
 input:not(.transparent):not([type=reset]):not([type=button]):not([type=submit]):disabled:not(.transparent) {
-  color: var(--gray-text-color);
+  color: var(--muted-text-color);
   background-color: var(--component-disabled);
 }
 input:user-invalid {
@@ -521,6 +522,7 @@ label {
   display: inline-block;
   margin: 2px 0;
   font-size: 1em;
+  font-weight: 600;
 }
 label.left {
   margin: 0;
@@ -531,7 +533,7 @@ label.right {
   margin-left: 8px;
 }
 label.disabled {
-  color: var(--gray-text-color);
+  color: var(--muted-text-color);
 }
 label[for] {
   cursor: pointer;
@@ -20490,7 +20492,7 @@ details[open] ::marker {
   --gradient: linear-gradient(in oklch to right, var(--accent-from), var(--accent-to));
   accent-color: var(--primary);
   --text-color: light-dark(hsl(0, 0%, 17%), hsl(0, 0%, 95%));
-  --gray-text-color: light-dark(hsl(0, 0%, 60%), hsl(0, 0%, 50%));
+  --muted-text-color: light-dark(hsl(0, 0%, 60%), hsl(0, 0%, 50%));
   --component-background: light-dark(#ffffff, #292929);
   --component-active: light-dark(#f0f0f0, #424242);
   --component-hover: light-dark(#f9f9f9, #383838);
@@ -20803,6 +20805,10 @@ a.noStyle {
 }
 a.noStyle:hover {
   color: var(--text-color);
+}
+
+.muted-text {
+  color: var(--muted-text);
 }
 
 .hidden {
