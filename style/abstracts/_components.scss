@@ -66,6 +66,18 @@
                 }
             }
 
+            &.subtle {
+                background: none;
+                box-shadow: none;
+                &:hover {
+                    background: var(--component-hover);
+                }
+    
+                &:active {
+                    background: var(--component-active);
+                }
+            }
+
 
             &.important {
                 &:hover {
@@ -142,7 +154,7 @@ select {
 
     &:disabled:not(.transparent) {
         @extend .flat;
-        color: var(--muted-text-color);
+        color: var(--subtle-text-color);
         background-color: var(--component-disabled);
     }
 
@@ -199,7 +211,7 @@ input {
 
         &:disabled:not(.transparent) {
             @extend .flat;
-            color: var(--muted-text-color);
+            color: var(--subtle-text-color);
             background-color: var(--component-disabled);
         }
     }
@@ -306,7 +318,7 @@ label {
 
     
     &.disabled {
-        color: var(--muted-text-color);
+        color: var(--subtle-text-color);
     }
 
     &[for] {

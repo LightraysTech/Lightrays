@@ -301,6 +301,37 @@ select:not(.shadow-components) .interactive-components.lr-list > div:not(.transp
 textarea:not(.shadow-components) .interactive-components.lr-list > div:not(.transparent):hover, .lr-list > div:not(.shadow-components) .interactive-components.lr-list > div:not(.transparent):hover {
   box-shadow: var(--shadow-0);
 }
+.lr-box.interactive:not(.transparent).subtle, button.interactive:not(.transparent).subtle, input.interactive[type=submit]:not(.transparent).subtle, input.interactive[type=reset]:not(.transparent).subtle, input.interactive[type=button]:not(.transparent).subtle, button:not(.transparent).subtle:not(:disabled), input[type=submit]:not(.transparent).subtle:not(:disabled), input[type=reset]:not(.transparent).subtle:not(:disabled), input[type=button]:not(.transparent).subtle:not(:disabled),
+input.interactive:not(.transparent).subtle,
+select.interactive:not(.transparent).subtle,
+select:not(.transparent).subtle:not(:disabled),
+textarea.interactive:not(.transparent).subtle, .lr-list > div.interactive:not(.transparent).subtle, .interactive-components > .lr-box:not(.transparent).subtle, .interactive-components > button:not(.transparent).subtle, .interactive-components > input[type=submit]:not(.transparent).subtle, .interactive-components > input[type=reset]:not(.transparent).subtle, .interactive-components > input[type=button]:not(.transparent).subtle,
+.interactive-components > input:not(.transparent).subtle,
+.interactive-components > select:not(.transparent).subtle,
+.interactive-components > textarea:not(.transparent).subtle, .interactive-components.lr-list > div:not(.transparent).subtle {
+  background: none;
+  box-shadow: none;
+}
+.lr-box.interactive:not(.transparent).subtle:hover, button.interactive:not(.transparent).subtle:hover, input.interactive[type=submit]:not(.transparent).subtle:hover, input.interactive[type=reset]:not(.transparent).subtle:hover, input.interactive[type=button]:not(.transparent).subtle:hover, button:not(.transparent).subtle:hover:not(:disabled), input[type=submit]:not(.transparent).subtle:hover:not(:disabled), input[type=reset]:not(.transparent).subtle:hover:not(:disabled), input[type=button]:not(.transparent).subtle:hover:not(:disabled),
+input.interactive:not(.transparent).subtle:hover,
+select.interactive:not(.transparent).subtle:hover,
+select:not(.transparent).subtle:hover:not(:disabled),
+textarea.interactive:not(.transparent).subtle:hover, .lr-list > div.interactive:not(.transparent).subtle:hover, .interactive-components > .lr-box:not(.transparent).subtle:hover, .interactive-components > button:not(.transparent).subtle:hover, .interactive-components > input[type=submit]:not(.transparent).subtle:hover, .interactive-components > input[type=reset]:not(.transparent).subtle:hover, .interactive-components > input[type=button]:not(.transparent).subtle:hover,
+.interactive-components > input:not(.transparent).subtle:hover,
+.interactive-components > select:not(.transparent).subtle:hover,
+.interactive-components > textarea:not(.transparent).subtle:hover, .interactive-components.lr-list > div:not(.transparent).subtle:hover {
+  background: var(--component-hover);
+}
+.lr-box.interactive:not(.transparent).subtle:active, button.interactive:not(.transparent).subtle:active, input.interactive[type=submit]:not(.transparent).subtle:active, input.interactive[type=reset]:not(.transparent).subtle:active, input.interactive[type=button]:not(.transparent).subtle:active, button:not(.transparent).subtle:active:not(:disabled), input[type=submit]:not(.transparent).subtle:active:not(:disabled), input[type=reset]:not(.transparent).subtle:active:not(:disabled), input[type=button]:not(.transparent).subtle:active:not(:disabled),
+input.interactive:not(.transparent).subtle:active,
+select.interactive:not(.transparent).subtle:active,
+select:not(.transparent).subtle:active:not(:disabled),
+textarea.interactive:not(.transparent).subtle:active, .lr-list > div.interactive:not(.transparent).subtle:active, .interactive-components > .lr-box:not(.transparent).subtle:active, .interactive-components > button:not(.transparent).subtle:active, .interactive-components > input[type=submit]:not(.transparent).subtle:active, .interactive-components > input[type=reset]:not(.transparent).subtle:active, .interactive-components > input[type=button]:not(.transparent).subtle:active,
+.interactive-components > input:not(.transparent).subtle:active,
+.interactive-components > select:not(.transparent).subtle:active,
+.interactive-components > textarea:not(.transparent).subtle:active, .interactive-components.lr-list > div:not(.transparent).subtle:active {
+  background: var(--component-active);
+}
 .lr-box.interactive:not(.transparent).important:hover, input.lr-box.interactive[type=submit]:not(.transparent):hover, input.lr-list[type=submit] > div.lr-box.interactive:not(.transparent):hover, button.interactive:not(.transparent).important:hover, input.interactive[type=submit]:not(.transparent).important:hover, input.interactive[type=submit]:not(.transparent):hover, input.interactive[type=reset]:not(.transparent).important:hover, input.interactive[type=button]:not(.transparent).important:hover, button:not(.transparent).important:hover:not(:disabled), input[type=submit]:not(.transparent).important:hover:not(:disabled), input[type=submit]:not(.transparent):hover:not(:disabled), input[type=reset]:not(.transparent).important:hover:not(:disabled), input[type=button]:not(.transparent).important:hover:not(:disabled),
 input.interactive:not(.transparent).important:hover,
 select.interactive:not(.transparent).important:hover,
@@ -397,7 +428,7 @@ select {
 }
 button:disabled:not(.transparent), input[type=submit]:disabled:not(.transparent), input[type=reset]:disabled:not(.transparent), input[type=button]:disabled:not(.transparent),
 select:disabled:not(.transparent) {
-  color: var(--muted-text-color);
+  color: var(--subtle-text-color);
   background-color: var(--component-disabled);
 }
 button:has(.fluentIcon:only-child), input[type=submit]:has(.fluentIcon:only-child), input[type=reset]:has(.fluentIcon:only-child), input[type=button]:has(.fluentIcon:only-child),
@@ -451,7 +482,7 @@ input:not(.transparent):not([type=reset]):not([type=button]):not([type=submit]):
   box-shadow: var(--shadow-2);
 }
 input:not(.transparent):not([type=reset]):not([type=button]):not([type=submit]):disabled:not(.transparent) {
-  color: var(--muted-text-color);
+  color: var(--subtle-text-color);
   background-color: var(--component-disabled);
 }
 input:user-invalid {
@@ -533,7 +564,7 @@ label.right {
   margin-left: 8px;
 }
 label.disabled {
-  color: var(--muted-text-color);
+  color: var(--subtle-text-color);
 }
 label[for] {
   cursor: pointer;
@@ -20492,7 +20523,7 @@ details[open] ::marker {
   --gradient: linear-gradient(in oklch to right, var(--accent-from), var(--accent-to));
   accent-color: var(--primary);
   --text-color: light-dark(hsl(0, 0%, 17%), hsl(0, 0%, 95%));
-  --muted-text-color: light-dark(hsl(0, 0%, 60%), hsl(0, 0%, 50%));
+  --subtle-text-color: light-dark(hsl(0, 0%, 60%), hsl(0, 0%, 50%));
   --component-background: light-dark(#ffffff, #292929);
   --component-active: light-dark(#f0f0f0, #424242);
   --component-hover: light-dark(#f9f9f9, #383838);
@@ -20807,8 +20838,8 @@ a.noStyle:hover {
   color: var(--text-color);
 }
 
-.muted-text {
-  color: var(--muted-text);
+.subtle-text {
+  color: var(--subtle-text);
 }
 
 .hidden {

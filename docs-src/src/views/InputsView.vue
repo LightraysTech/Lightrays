@@ -38,6 +38,7 @@
     <button><i class="fluentIcon calendar_regular"></i><span>Default</span></button>
     <button class="important"><i class="fluentIcon calendar_regular"></i><span>Important</span></button>
     <button class="flat"><i class="fluentIcon calendar_regular"></i><span>Flat</span></button>
+    <button class="subtle"><i class="fluentIcon calendar_regular"></i><span>Subtle</span></button>
   </div>
   <br>
   <div class="flex-wrap gap">
