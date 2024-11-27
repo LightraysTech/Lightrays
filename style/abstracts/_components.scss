@@ -48,6 +48,9 @@
     &.interactive,
     .interactive-components > & {
         cursor: pointer;
+        transition: background-color, color, box-shadow, border;
+        transition-duration: 0.2s;
+        transition-timing-function: var(--curve-ease);
 
         &:not(.transparent) {
             &:hover {
@@ -69,10 +72,11 @@
             &.subtle {
                 background: none;
                 box-shadow: none;
+
                 &:hover {
                     background: var(--component-hover);
                 }
-    
+
                 &:active {
                     background: var(--component-active);
                 }
@@ -138,10 +142,6 @@ textarea {
     line-height: inherit;
     color: var(--color-text);
     border: none;
-
-    transition: background-color, color, box-shadow, border;
-    transition-duration: 0.2s;
-    transition-timing-function: var(--curve-ease);
 }
 
 button,
@@ -172,6 +172,7 @@ select {
         &:has(.fluentIcon:only-child) {
             padding: 6px 6px;
         }
+
         & > .fluentIcon:not(:only-child) {
             margin-right: 4px;
         }
@@ -302,7 +303,7 @@ input {
 
 label {
     display: inline-block;
-    margin: 2px 0;
+    margin: 4px 0;
     font-size: 1em;
     font-weight: 600;
 

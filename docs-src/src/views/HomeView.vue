@@ -71,6 +71,9 @@
   </div>
   <br>
   <br>
+  <br>
+  <br>
+  <br>
   <div class="flex-wrap gap" style="justify-content: space-evenly;">
     <div class="lr-box" style="box-shadow: var(--shadow-0); width: 100px; height: 100px;"></div>
     <div class="lr-box" style="box-shadow: var(--shadow-1); width: 100px; height: 100px;"></div>
@@ -78,6 +81,7 @@
     <div class="lr-box" style="box-shadow: var(--shadow-3); width: 100px; height: 100px;"></div>
     <div class="lr-box" style="box-shadow: var(--shadow-4); width: 100px; height: 100px;"></div>
   </div>
+  <br><br>
   <br><br>
   <br>
   <button onclick="document.querySelector('#dialog').showModal()">Open Dialog</button>

@@ -53,7 +53,7 @@ nav {
     overflow: auto;
     background-color: var(--component-important);
     border: none;
-    border-right: var(--component-stroke);
+    border-right: var(--site-stroke);
 
     a,
     summary,
@@ -78,6 +78,15 @@ nav {
         &:active {
             background-color: var(--component-active);
         }
+    }
+
+    label, .nav-label {
+        font-family: var(--component-font);
+        font-weight: 600;
+        font-size: 0.875rem;
+        color: var(--subtle-text-color);
+        margin-top: 16px;
+        padding-left: 8px;
     }
 
     details {

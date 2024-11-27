@@ -60,29 +60,36 @@
     <button>Button 3</button>
     <button>Button 4</button>
   </menu>
-<br><br>
-<button popovertarget="menu2" style="anchor-name: --menu2">Menu</button>
+  <br><br>
+  <button popovertarget="menu2" style="anchor-name: --menu2">Menu</button>
   <menu class="small-components" id="menu2" popover style="position-anchor: --menu2;">
     <button>Button 1</button>
     <button>Button 2</button>
     <button>Button 3</button>
     <button>Button 4</button>
   </menu>
-<br><br>
-<button popovertarget="menu3" style="anchor-name: --menu3">Menu</button>
+  <br><br>
+  <button popovertarget="menu3" style="anchor-name: --menu3">Menu</button>
   <menu id="menu3" popover style="position-anchor: --menu3;">
     <button><i class="fluentIcon add_regular"></i><span>Button 1</span></button>
     <button><i class="fluentIcon save_regular"></i><span>Button 2</span></button>
     <button><i class="fluentIcon delete_regular"></i><span>Button 3</span></button>
   </menu>
-<br><br>
-<button popovertarget="menu4" style="anchor-name: --menu4">Menu</button>
+  <br><br>
+  <button popovertarget="menu4" style="anchor-name: --menu4">Menu</button>
   <menu class="small-components" id="menu4" popover style="position-anchor: --menu4;">
     <button><i class="fluentIcon add_regular"></i><span>Button 1</span></button>
     <button><i class="fluentIcon save_regular"></i><span>Button 2</span></button>
     <button><i class="fluentIcon delete_regular"></i><span>Button 3</span></button>
   </menu>
-<br><br>
+  <br><br>
+  <div class="lr-box">
+    <span class="subtle-text">Subtle Text</span>
+  </div>
+  <div class="lr-box transparent">
+    <span class="subtle-text">Subtle Text</span>
+  </div>
+  <br><br>
   <pre><code lang="javascript">alert("Hello world");</code></pre>
   <p>
     The <code>push()</code> method adds one or more elements to the end of an array and returns the new length of the

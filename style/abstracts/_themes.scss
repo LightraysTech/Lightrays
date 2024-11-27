@@ -45,30 +45,32 @@
   accent-color: var(--primary);
 
   --text-color: light-dark(hsl(0, 0%, 17%), hsl(0, 0%, 95%));
-  --subtle-text-color: light-dark(hsl(0, 0%, 60%), hsl(0, 0%, 50%));
+  --subtle-text-color: light-dark(hsl(0, 0%, 45%), hsl(0, 0%, 65%));
 
   // Theme
-  --component-background: light-dark(#ffffff, #292929);
-  --component-active: light-dark(#f0f0f0, #424242);
-  --component-hover: light-dark(#f9f9f9, #383838);
-  --component-important: light-dark(#ebebeb, #1a1a1a);
-  --component-disabled: light-dark(#f9f9f9, #222222);
-  --site-background: light-dark(#f5f5f5, #1c1c1c);
+  --site-background:      light-dark(hsl(0, 0%, 96%),  hsl(0, 0%, 11%));
+  --component-background: light-dark(hsl(0, 0%, 100%), hsl(0, 0%, 16%));
+  --component-hover:      light-dark(hsl(0, 0%, 98%),  hsl(0, 0%, 22%));
+  --component-active:     light-dark(hsl(0, 0%, 94%),  hsl(0, 0%, 26%));
+  --component-important:  light-dark(hsl(0, 0%, 92%),  hsl(0, 0%, 10%));
+  --component-disabled:   light-dark(hsl(0, 0%, 98%),  hsl(0, 0%, 13%));
 
-  --scrollbar-color: light-dark(#cacaca, #3d3d3d);
 
-  --site-stroke-color: light-dark(#dadada, #2e2e2e);
-  --site-stroke: solid 1px var(--site-stroke-color);
+  --scrollbar-color: light-dark(hsl(0, 0%, 79%), hsl(0, 0%, 24%));
+
 
   --component-stroke-color: light-dark(#ebebeb, #1a1a1a);
   --component-stroke: solid 1px var(--component-stroke-color);
+  
+  --site-stroke-color: light-dark(#dadada, #2e2e2e);
+  --site-stroke: solid 1px var(--site-stroke-color);
 
   // Shadow
-  --shadow-0: 0px 1px 2px -1px light-dark(rgb(0 0 0 / 0.25), rgb(0 0 0 / .4));
-  --shadow-1: 0px 2px 3px 0px light-dark(rgb(0 0 0 / 0.1), rgb(0 0 0 / .25));
-  --shadow-2: 0px 2.5px 4px 0px light-dark(rgb(0 0 0 / 0.15), rgb(0 0 0 / .3));
-  --shadow-3: 0px 4px 12px 0px light-dark(rgb(0 0 0 / 0.2), rgb(0 0 0 / .3)), 0px 0px 4px 0px light-dark(rgb(0 0 0 / .1), rgb(0 0 0 / .15));
-  --shadow-4: 0px 6px 28px 0px light-dark(rgb(0 0 0 / 0.25), rgb(0 0 0 / .35)), 0px 0px 6px 0px light-dark(rgb(0 0 0 / .1), rgb(0 0 0 / .25));
+  --shadow-0: 0px 1px 2px -1px  light-dark(rgb(0 0 0 / 0.25), rgb(0 0 0 / 0.5));
+  --shadow-1: 0px 1.5px 3px 0px   light-dark(rgb(0 0 0 / 0.1),  rgb(0 0 0 / 0.25));
+  --shadow-2: 0px 2.5px 4px 0px light-dark(rgb(0 0 0 / 0.15), rgb(0 0 0 / 0.3));
+  --shadow-3: 0px 4px 12px 0px  light-dark(rgb(0 0 0 / 0.2),  rgb(0 0 0 / 0.3)), 0px 0px 4px 0px light-dark(rgb(0 0 0 / .1), rgb(0 0 0 / .15));
+  --shadow-4: 0px 8px 28px 0px  light-dark(rgb(0 0 0 / 0.25), rgb(0 0 0 / 0.35)), 0px 0px 6px 0px light-dark(rgb(0 0 0 / .1), rgb(0 0 0 / .25));
 
   // Motion
   --curve-ease-in: cubic-bezier(0.14, 0.73, 0, 1);
