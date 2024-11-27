@@ -1,8 +1,8 @@
 @use 'abstracts/fonts';
 @use 'abstracts/components';
+@use 'abstracts/fluentIcons';
 @use "abstracts/themes";
 @use "abstracts/layout";
-@use 'abstracts/fluentIcons';
 
 body {
   -webkit-tap-highlight-color: transparent;
