@@ -184,29 +184,28 @@ select {
 }
 
 input {
+    --underline-color: var(--primary);
     box-sizing: border-box;
 
     &:not(.transparent):not([type=reset]):not([type=button]):not([type=submit]) {
-        border-bottom-width: 2px;
-        border-bottom-style: solid;
-        border-color: transparent;
 
         &.flat:not(.shadow),
         .flat-components > &:not(.shadow),
         .lr-box &:not(.shadow) {
-            border-bottom-width: 2px;
-            border-color: transparent;
-            border-color: transparent;
-            outline: var(--component-stroke);
+
+            box-shadow: 0 1px 0 0 transparent;
 
             &:focus {
-                box-shadow: var(--shadow-1);
+                border-bottom-color: var(--underline-color);
+                box-shadow: 0 1px 0 0 var(--underline-color), var(--shadow-1);
             }
         }
 
+        box-shadow: 0 2px 0 0 transparent,
+        var(--shadow-1);
+
         &:focus {
-            border-bottom-color: var(--primary) !important;
-            box-shadow: var(--shadow-2);
+            box-shadow: 0 2px 0 0 var(--underline-color), var(--shadow-2);
         }
 
 
@@ -219,7 +218,7 @@ input {
 
 
     &:user-invalid {
-        border-bottom-color: var(--alert);
+        --underline-color: var(--alert);
     }
 
     &[type="reset"],
@@ -317,7 +316,7 @@ label {
         margin-left: 8px;
     }
 
-    
+
     &.disabled {
         color: var(--subtle-text-color);
     }
