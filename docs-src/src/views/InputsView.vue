@@ -32,6 +32,10 @@
   <br><br>
   <input type="checkbox" class="small" id="cbs">
   <label for="cbs" class="right">Small Checkbox</label>
+  <div class="lr-box">
+    <input type="checkbox" id="cbf">
+  <label for="cbf" class="right">Flat Checkbox</label>
+  </div>
   <br><br>
   <div class="flex-wrap gap">
     <button>Default</button>

@@ -187,7 +187,7 @@ input {
     --underline-color: var(--primary);
     box-sizing: border-box;
 
-    &:not(.transparent):not([type=reset]):not([type=button]):not([type=submit]) {
+    &:not(.transparent):not([type=reset]):not([type=button]):not([type=submit]):not([type=checkbox]) {
 
         &.flat:not(.shadow),
         .flat-components > &:not(.shadow),
@@ -256,7 +256,7 @@ input {
         -webkit-appearance: none;
         appearance: none;
         box-shadow: none;
-        border: none !important;
+        border: none;
         border-radius: 6px;
         width: 24px;
         height: 24px;
