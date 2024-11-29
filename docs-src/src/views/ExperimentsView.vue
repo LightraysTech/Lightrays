@@ -89,6 +89,69 @@
   <div class="lr-box transparent">
     <span class="subtle-text">Subtle Text</span>
   </div>
+
+  <div class="lr-box flex-center gap" style="width: 360px;">
+    <img style="border-radius: 4px;" height="44px" src="https://raw.githubusercontent.com/microsoft/fluentui/master/packages/react-components/react-card/stories/src/assets/app_logo.svg" alt="App Name Document">
+    <div class="flex-vertical">
+      <b>App Name</b>
+      <small class="subtle-text">Developer</small>
+    </div>
+    <button class="shadow subtle" style="margin-left: auto;">
+      <i class="fluentIcon more_horizontal_regular"></i>
+    </button>
+  </div>
+
+  <div class="grid grid-cols-1 gap-2">
+    0,977
+    0,951
+    0,901
+    0,828
+    0,746
+    0,685
+    0,588
+    0,5
+    0,443
+    0,391
+    0,293
+
+    0,013
+    0,026
+    0,058
+    0,111
+    0,16
+    0,169
+    0,158
+    0,134
+    0,11
+    0,09
+    0,066
+
+    236,62
+    236,824
+    230,902
+    230,318
+    232,661
+    237,323
+    241,966
+    242,749
+    240,79
+    240,876
+    243,157
+  </div>
+
+  <div class="grid grid-cols-1 gap-2">
+0,971 0,013 17,38
+0,936 0,032 17,717
+0,885 0,062 18,334
+0,808 0,114 19,571
+0,704 0,191 22,216
+0,637 0,237 25,331
+0,577 0,245 27,325
+0,505 0,213 27,518
+0,444 0,177 26,899
+0,396 0,141 25,723
+0,258 0,092 26,042
+  </div>
   <br><br>
   <pre><code lang="javascript">alert("Hello world");</code></pre>
   <p>

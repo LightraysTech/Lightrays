@@ -553,7 +553,7 @@ input[type=checkbox] {
   -webkit-appearance: none;
   appearance: none;
   box-shadow: none;
-  border: none;
+  border: none !important;
   border-radius: 6px;
   width: 24px;
   height: 24px;
@@ -20591,6 +20591,26 @@ details[open] ::marker {
 }
 :root:has([theme=dark]) {
   color-scheme: dark;
+}
+
+.shadow-0 {
+  box-shadow: var(--shadow-0);
+}
+
+.shadow-1 {
+  box-shadow: var(--shadow-1);
+}
+
+.shadow-2 {
+  box-shadow: var(--shadow-2);
+}
+
+.shadow-3 {
+  box-shadow: var(--shadow-3);
+}
+
+.shadow-4 {
+  box-shadow: var(--shadow-4);
 }
 
 menu {
