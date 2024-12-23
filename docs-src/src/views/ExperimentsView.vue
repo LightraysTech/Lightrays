@@ -20,6 +20,16 @@
   <br>
 
   <h4>Components</h4>
+  <div class="shadow-components">
+    abc
+    <div class="lr-box flat">
+    abc
+  </div>
+  <div class="lr-box shadow">
+    abc
+  </div>
+  </div>
+  <br>
   <div class="flex gap ">
     <input type="text">
     <button><i class="fluentIcon save_regular"></i></button>

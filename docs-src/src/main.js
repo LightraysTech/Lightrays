@@ -1,4 +1,5 @@
 import "../../style/Lightrays.scss"
+import "../../style/abstracts/components.css"
 
 import { createApp } from 'vue'
 import App from './App.vue'
