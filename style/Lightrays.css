@@ -552,8 +552,6 @@ input[type=checkbox] {
   align-self: center;
   -webkit-appearance: none;
   appearance: none;
-  box-shadow: none;
-  border: none !important;
   border-radius: 6px;
   width: 24px;
   height: 24px;
@@ -565,8 +563,8 @@ input[type=checkbox] {
 input[type=checkbox]:checked {
   background: url("./img/checkbox.png") no-repeat center center;
   background-size: 13px;
-  background-color: var(--light);
-  outline-color: var(--light);
+  background-color: var(--primary);
+  border-color: var(--primary) !important;
 }
 input[type=checkbox].small {
   height: 18px;
@@ -20566,11 +20564,11 @@ details[open] ::marker {
   accent-color: var(--primary);
   --text-color: light-dark(hsl(0, 0%, 17%), hsl(0, 0%, 95%));
   --subtle-text-color: light-dark(hsl(0, 0%, 45%), hsl(0, 0%, 65%));
-  --site-background: light-dark(hsl(0, 0%, 96%), hsl(0, 0%, 11%));
+  --site-background: light-dark(hsl(0, 0%, 96%), hsl(0, 0%, 10%));
   --component-background: light-dark(hsl(0, 0%, 100%), hsl(0, 0%, 16%));
   --component-hover: light-dark(hsl(0, 0%, 98%), hsl(0, 0%, 22%));
   --component-active: light-dark(hsl(0, 0%, 94%), hsl(0, 0%, 26%));
-  --component-important: light-dark(hsl(0, 0%, 92%), hsl(0, 0%, 10%));
+  --component-important: light-dark(hsl(0, 0%, 92%), hsl(0, 0%, 9%));
   --component-disabled: light-dark(hsl(0, 0%, 98%), hsl(0, 0%, 13%));
   --scrollbar-color: light-dark(hsl(0, 0%, 79%), hsl(0, 0%, 24%));
   --component-stroke-color: light-dark(#ebebeb, #1a1a1a);
@@ -20697,13 +20695,9 @@ nav details {
   padding-left: 30px;
   margin-top: 8px;
 }
-nav details summary,
-nav details a,
-nav details .nav-item {
+nav details summary {
   margin-left: -30px;
   padding-left: 40px;
-}
-nav details summary {
   font-weight: 500;
   padding-left: 10px;
 }

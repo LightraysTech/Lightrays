@@ -93,14 +93,10 @@ nav {
         padding-left: 30px;
         margin-top: 8px;
 
-        summary,
-        a,
-        .nav-item {
-            margin-left: -30px;
-            padding-left: 40px;
-        }
 
         summary {
+            margin-left: -30px;
+            padding-left: 40px; 
             font-weight: 500;
             padding-left: 10px;
 

@@ -34,10 +34,10 @@
   --accent-from: light-dark(oklch(45% .13 calc(var(--hue) - var(--hue-range))), oklch(35% .12 calc(var(--hue) - var(--hue-range))));
   --accent-to: light-dark(oklch(85% .18 calc(var(--hue) + var(--hue-range))), oklch(75% .18 calc(var(--hue) + var(--hue-range))));
 
-  --darkest: color-mix(in oklch, var(--accent-to) 0%, var(--accent-from));
-  --dark: color-mix(in oklch, var(--accent-to) 25%, var(--accent-from));
-  --primary: color-mix(in oklch, var(--accent-to) 50%, var(--accent-from));
-  --light: color-mix(in oklch, var(--accent-to) 75%, var(--accent-from));
+  --darkest:  color-mix(in oklch, var(--accent-to) 0%, var(--accent-from));
+  --dark:     color-mix(in oklch, var(--accent-to) 25%, var(--accent-from));
+  --primary:  color-mix(in oklch, var(--accent-to) 50%, var(--accent-from));
+  --light:    color-mix(in oklch, var(--accent-to) 75%, var(--accent-from));
   --lightest: color-mix(in oklch, var(--accent-to) 100%, var(--accent-from));
 
   --gradient: linear-gradient(in oklch to right, var(--accent-from), var(--accent-to));
@@ -48,11 +48,11 @@
   --subtle-text-color: light-dark(hsl(0, 0%, 45%), hsl(0, 0%, 65%));
 
   // Theme
-  --site-background:      light-dark(hsl(0, 0%, 96%),  hsl(0, 0%, 11%));
+  --site-background:      light-dark(hsl(0, 0%, 96%),  hsl(0, 0%, 10%));
   --component-background: light-dark(hsl(0, 0%, 100%), hsl(0, 0%, 16%));
   --component-hover:      light-dark(hsl(0, 0%, 98%),  hsl(0, 0%, 22%));
   --component-active:     light-dark(hsl(0, 0%, 94%),  hsl(0, 0%, 26%));
-  --component-important:  light-dark(hsl(0, 0%, 92%),  hsl(0, 0%, 10%));
+  --component-important:  light-dark(hsl(0, 0%, 92%),  hsl(0, 0%, 9%));
   --component-disabled:   light-dark(hsl(0, 0%, 98%),  hsl(0, 0%, 13%));
 
 

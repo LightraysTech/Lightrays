@@ -255,8 +255,6 @@ input {
         align-self: center;
         -webkit-appearance: none;
         appearance: none;
-        box-shadow: none;
-        border: none !important;
         border-radius: 6px;
         width: 24px;
         height: 24px;
@@ -268,8 +266,8 @@ input {
         &:checked {
             background: url("./img/checkbox.png") no-repeat center center;
             background-size: 13px;
-            background-color: var(--light);
-            outline-color: var(--light);
+            background-color: var(--primary);
+            border-color: var(--primary) !important;
         }
 
         &.small {
