@@ -31,6 +31,10 @@ const navOpen = ref(false);
       <i class="fluentIcon text_field_regular"></i>
       Input
     </RouterLink>
+    <RouterLink to="/animation">
+      <i class="fluentIcon bezier_curve_square_regular"></i>
+      Animation
+    </RouterLink>
     <label>Label</label>
     <RouterLink to="/experiments">
       <i class="fluentIcon beaker_regular"></i>

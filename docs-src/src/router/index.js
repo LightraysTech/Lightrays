@@ -32,6 +32,11 @@ const router = createRouter({
       name: 'Inputs',
       component: () => import('../views/InputsView.vue')
     },
+    {
+      path: '/animation',
+      name: 'Animation',
+      component: () => import('../views/AnimationView.vue')
+    },
   ]
 })
 

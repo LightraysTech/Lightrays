@@ -20695,13 +20695,9 @@ nav details {
   padding-left: 30px;
   margin-top: 8px;
 }
-nav details summary,
-nav details a,
-nav details .nav-item {
+nav details summary {
   margin-left: -30px;
   padding-left: 40px;
-}
-nav details summary {
   font-weight: 500;
   padding-left: 10px;
 }
