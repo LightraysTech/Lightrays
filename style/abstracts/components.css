@@ -7,30 +7,59 @@
   border-radius: 4px;
   padding: 16px;
 
+  --underline: 0 var(--underline-width, 2px) 0 0 var(--underline-color, transparent);
+
   &,
   .shadow-components > &,
   &.shadow.shadow {
-    box-shadow: var(--shadow-1);
+    box-shadow: var(--underline), var(--shadow-1);
     border: none;
+
+    --hover-shadow: var(--shadow-2);
+    --hover-background: var(--component-hover);
+
+    --active-shadow: var(--shadow-0);
+    --active-background: var(--component-active);
+
+    --underline-width: 2px;
   }
 
   & &,
   &:where(:disabled),
   .flat-components > &,
   &.flat.flat {
-    box-shadow: none;
+    box-shadow: var(--underline);
     border: var(--component-stroke);
+    border-bottom-color: var(--underline-color, var(--component-stroke-color));
+
+    --hover-shadow: var(--shadow-0);
+
+    --underline-width: 1px;
   }
 
   &:where(input:not(:disabled)[type="submit"]),
   .important-components > &,
   &.important.important {
     background-color: var(--primary);
+
+    --hover-background: var(--light);
+    --active-background: var(--dark);
   }
 
   &.transparent.transparent {
     background: none;
     border: none;
+    box-shadow: none;
+
+    --hover-shadow: none;
+    --hover-background: none;
+
+    --active-shadow: none;
+    --active-background: none;
+  }
+
+  &.subtle {
+    background: none;
     box-shadow: none;
   }
 
@@ -63,44 +92,13 @@
 
 
     &:where(:hover) {
-      box-shadow: var(--shadow-2);
-      background: var(--component-hover);
+      box-shadow: var(--hover-shadow);
+      background: var(--hover-background);
     }
 
     &:where(:active) {
-      box-shadow: var(--shadow-0);
-      background: var(--component-active);
-    }
-
-    &.flat {
-      &:hover {
-        box-shadow: var(--shadow-0);
-      }
-    }
-
-    &.subtle {
-      background: none;
-      box-shadow: none;
-
-      &:hover {
-        background: var(--component-hover);
-      }
-
-      &:active {
-        background: var(--component-active);
-      }
-    }
-
-
-    &.important {
-      &:hover {
-        background-color: var(--light);
-      }
-
-      &:active {
-        background-color: var(--dark);
-      }
-
+      box-shadow: var(--active-shadow);
+      background: var(--active-background);
     }
   }
 }
@@ -115,7 +113,6 @@ textarea {
   font-weight: normal;
   line-height: inherit;
   color: var(--color-text);
-  border: none;
 }
 
 input:not(:disabled):where([type="reset"], [type="button"], [type="submit"]),
@@ -153,35 +150,18 @@ select {
 }
 
 input {
-  --underline-color: var(--primary);
-  box-sizing: border-box;
-
   &:not(:where([type=reset], [type=button], [type=submit], [type=checkbox])) {
-    &.flat:not(.shadow),
-    .flat-components > &:not(.shadow),
-    .lr-box &:not(.shadow) {
 
-      box-shadow: 0 1px 0 0 transparent;
+    &:focus {
+      --underline-color: var(--primary);
 
-      &:focus {
-        border-bottom-color: var(--underline-color);
-        box-shadow: 0 1px 0 0 var(--underline-color), var(--shadow-1);
+      &:user-invalid {
+        --underline-color: var(--alert);
       }
     }
 
-    box-shadow: 0 2px 0 0 transparent,
-    var(--shadow-1);
-
-    &:focus {
-      box-shadow: 0 2px 0 0 var(--underline-color), var(--shadow-2);
-    }
-
   }
 
-
-  &:user-invalid {
-    --underline-color: var(--alert);
-  }
 
   &[type="color"] {
     padding: 0;
@@ -208,8 +188,6 @@ input {
     align-self: center;
     -webkit-appearance: none;
     appearance: none;
-    box-shadow: none;
-    border: none !important;
     border-radius: 6px;
     width: 24px;
     height: 24px;
@@ -221,8 +199,8 @@ input {
     &:checked {
       background: url("./img/checkbox.png") no-repeat center center;
       background-size: 13px;
-      background-color: var(--light);
-      outline-color: var(--light);
+      background-color: var(--primary);
+      border-color: var(--primary) !important;
     }
 
     &.small {
@@ -238,7 +216,8 @@ input {
     /* -webkit-appearance: none; appearance: none; */
     height: 0px;
     background: var(--color-darker);
-    outline: none; /*  Remove outline  */
+    outline: none;
+    /*  Remove outline  */
     -webkit-transition: .1s;
     transition: all .1s;
     padding-left: 0;
@@ -250,5 +229,36 @@ input {
     &:focus {
       box-shadow: none;
     }
+  }
+}
+
+label {
+  display: inline-block;
+  margin: 4px 0;
+  font-size: 1em;
+  font-weight: 600;
+
+  &.left {
+      margin: 0;
+      margin-right: 8px;
+  }
+
+  &.right {
+      margin: 0;
+      margin-left: 8px;
+  }
+
+
+  &.disabled {
+      color: var(--subtle-text-color);
+  }
+
+  &[for] {
+      cursor: pointer
+  }
+
+  .small,
+  .small-components > & {
+      /* // TODO label.small*/
   }
 }

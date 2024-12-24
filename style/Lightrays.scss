@@ -16,6 +16,11 @@ body {
   scroll-behavior: smooth;
 }
 
+* {
+  box-sizing: border-box;
+interpolate-size: allow-keywords;
+}
+
 main {
   padding: 16px;
 }

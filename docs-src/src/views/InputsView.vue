@@ -1,7 +1,40 @@
 <script setup>
+import ComponentsTest from '@/components/ComponentsTest.vue';
+import { computed, ref } from 'vue';
+
+
+const pstyle = ref("");
+const psmall = ref(false);
+const pinline = ref(false);
+
+const parentClasses = computed(() => pstyle.value + (psmall.value ? " small-components" : "") + (pinline.value ? " inline-components" : ""));
 </script>
 
 <template>
+  <div class="lr-box ">
+    <h5>Parent class</h5>
+    <br>
+    <label>Style</label>
+    <select v-model="pstyle">
+      <option value="">None</option>
+      <option value="shadow-components">Shadow</option>
+      <option value="flat-components">Flat</option>
+      <option value="important-components">Important</option>
+      <option value="transparent-components">Transparent</option>
+    </select>
+    <br><br>
+    <input type="checkbox" id="psmall" v-model="psmall">
+    <label for="psmall" class="right">small-components</label>
+    <br><br>
+    <input type="checkbox" id="pinline" v-model="pinline">
+    <label for="pinline" class="right">inline-components</label>
+  </div>
+  <div :class="parentClasses" style="padding: 16px;">
+    <ComponentsTest :parent-class="parentClasses"></ComponentsTest>
+  </div>
+  <div :class="parentClasses + ' lr-box'">
+    <ComponentsTest :parent-class="parentClasses"></ComponentsTest>
+  </div>
   <label>Text Input:</label><br>
   <div class="flex-wrap gap">
     <input type="text" placeholder="Input">
@@ -34,7 +67,7 @@
   <label for="cbs" class="right">Small Checkbox</label>
   <div class="lr-box">
     <input type="checkbox" id="cbf">
-  <label for="cbf" class="right">Flat Checkbox</label>
+    <label for="cbf" class="right">Flat Checkbox</label>
   </div>
   <br><br>
   <div class="flex-wrap gap">
