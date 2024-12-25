@@ -20952,8 +20952,8 @@ dialog {
   max-height: calc(100dvh - 2em);
   opacity: 0;
   scale: 0.75;
-  transition: overlay, display, opacity, scale var(--easeInBack);
-  transition-duration: 0.5s;
+  transition: overlay, display, opacity, scale ease-in;
+  transition-duration: 0.25s;
   transition-behavior: allow-discrete;
 }
 dialog::backdrop {
@@ -20964,7 +20964,7 @@ dialog::backdrop {
 }
 dialog[open] {
   transition: overlay, display, opacity, scale var(--easeOutBack);
-  transition-duration: 0.5s;
+  transition-duration: 0.4s;
   transition-behavior: allow-discrete;
   opacity: 1;
   scale: 1;
