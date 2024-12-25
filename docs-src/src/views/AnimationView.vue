@@ -14,6 +14,12 @@ ctx1.beginPath();
 ctx1.moveTo(0, 0);
 ctx1.bezierCurveTo(...ease.match(/(?<=\().*(?=\))/)[0].split(",").map(x=>Number(x)*100), 100, 100);
 ctx1.stroke();
+
+ctx1.beginPath();
+ctx1.moveTo(0, 0);
+ctx1.bezierCurveTo(16,100,30,100, 100, 100);
+ctx1.strokeStyle="tomato"
+ctx1.stroke();
 console.log(ctx1.getTransform());
 })
 </script>
