@@ -178,8 +178,8 @@ dialog {
 
   opacity: 0;
   scale: 0.75;
-  transition: overlay, display, opacity, scale cubic-bezier(0.4, -0.5, 1, 1);
-  transition-duration: .25s;
+  transition: overlay, display, opacity, scale var(--easeInBack);
+  transition-duration: .5s;
   transition-behavior: allow-discrete;
 
   &::backdrop {
@@ -190,8 +190,8 @@ dialog {
   }
 
   &[open] {
-    transition: overlay, display, opacity, scale cubic-bezier(0, 0, 0.4, 1.6);
-    transition-duration: .25s;
+    transition: overlay, display, opacity, scale var(--easeOutBack);
+    transition-duration: .5s;
     transition-behavior: allow-discrete;
 
     opacity: 1;
