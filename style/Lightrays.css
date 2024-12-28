@@ -20685,7 +20685,8 @@ nav summary:active,
 nav .nav-item:active {
   background-color: var(--component-active);
 }
-nav label, nav .nav-label {
+nav label,
+nav .nav-label {
   font-family: var(--component-font);
   font-weight: 600;
   font-size: 0.875rem;
@@ -20799,7 +20800,7 @@ details[open] > summary:first-of-type::after {
 }
 details::details-content {
   interpolate-size: allow-keywords;
-  transition: height 0.25s var(--curve-ease), content-visibility 0.25s allow-discrete;
+  transition: height 0.25s var(--curve-ease), width 0.25s var(--curve-ease), content-visibility 0.25s allow-discrete;
   height: 0;
   overflow: hidden;
 }
