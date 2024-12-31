@@ -21028,8 +21028,7 @@ dialog > form > footer {
   flex-wrap: wrap;
   gap: 8px;
   align-items: center;
-  padding: 1.5em;
-  padding-top: 0em;
+  padding: 0 1.5em 1em 1.5em;
 }
 
 @keyframes box-load-in {

@@ -11,13 +11,19 @@ import Graph from '@/components/Graph.vue';
   <br>
   <details>
     <summary class="caret_left">Summary</summary>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore tempore nulla tempora, dolorum adipisci aperiam vel itaque omnis sint inventore at veritatis libero, ipsa repudiandae iste ipsam voluptatem, molestias quam!
-    Rerum harum expedita natus laudantium quos repudiandae sunt architecto consequatur est aspernatur inventore totam vero, libero sint corrupti voluptatibus et quasi ipsam voluptates perspiciatis quod magni, explicabo iste voluptatum! Ab!
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore tempore nulla tempora, dolorum adipisci aperiam vel
+    itaque omnis sint inventore at veritatis libero, ipsa repudiandae iste ipsam voluptatem, molestias quam!
+    Rerum harum expedita natus laudantium quos repudiandae sunt architecto consequatur est aspernatur inventore totam
+    vero, libero sint corrupti voluptatibus et quasi ipsam voluptates perspiciatis quod magni, explicabo iste
+    voluptatum! Ab!
   </details>
   <details>
     <summary class="caret_right gap" style="align-items: center;"><button>abc</button></summary>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore tempore nulla tempora, dolorum adipisci aperiam vel itaque omnis sint inventore at veritatis libero, ipsa repudiandae iste ipsam voluptatem, molestias quam!
-    Rerum harum expedita natus laudantium quos repudiandae sunt architecto consequatur est aspernatur inventore totam vero, libero sint corrupti voluptatibus et quasi ipsam voluptates perspiciatis quod magni, explicabo iste voluptatum! Ab!
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore tempore nulla tempora, dolorum adipisci aperiam vel
+    itaque omnis sint inventore at veritatis libero, ipsa repudiandae iste ipsam voluptatem, molestias quam!
+    Rerum harum expedita natus laudantium quos repudiandae sunt architecto consequatur est aspernatur inventore totam
+    vero, libero sint corrupti voluptatibus et quasi ipsam voluptates perspiciatis quod magni, explicabo iste
+    voluptatum! Ab!
   </details>
   <br>
 
@@ -93,7 +99,9 @@ import Graph from '@/components/Graph.vue';
   </div>
 
   <div class="lr-box flex-center gap" style="width: 360px;">
-    <img style="border-radius: 4px;" height="44px" src="https://raw.githubusercontent.com/microsoft/fluentui/master/packages/react-components/react-card/stories/src/assets/app_logo.svg" alt="App Name Document">
+    <img style="border-radius: 4px;" height="44px"
+      src="https://raw.githubusercontent.com/microsoft/fluentui/master/packages/react-components/react-card/stories/src/assets/app_logo.svg"
+      alt="App Name Document">
     <div class="flex-vertical">
       <b>App Name</b>
       <small class="subtle-text">Developer</small>
@@ -102,19 +110,100 @@ import Graph from '@/components/Graph.vue';
       <i class="fluentIcon more_horizontal_regular"></i>
     </button>
   </div>
-  <Graph :data="[
-    [0,977],
-    [10,951],
-    [20,901],
-    [30,828],
-    [40,746],
-    [50,685],
-    [60,588],
-    [80,443],
-    [90,391],
-    [100,293],
+  <h4>Chroma</h4>
+  <div class="flex">
+    <Graph :data="[
+      [0, 0.013],
+      [1, 0.026],
+      [2, 0.058],
+      [3, 0.111],
+      [4, 0.16],
+      [5, 0.169],
+      [6, 0.158],
+      [7, 0.134],
+      [8, 0.11],
+      [9, 0.09],
+      [10, 0.066],
 
+    ]"></Graph>
+
+    <Graph :data="[
+      [0, 0.026],
+      [1, 0.071],
+      [2, 0.129],
+      [3, 0.182],
+      [4, 0.199],
+      [5, 0.184],
+      [6, 0.162],
+      [7, 0.135],
+      [8, 0.114],
+      [9, 0.095],
+      [10, 0.066]
+    ]"></Graph>
+
+  </div>
+
+
+  <h4>Lightness</h4>
+  <Graph :data="[
+    [0, 0.971],
+    [1, 0.936],
+    [2, 0.885],
+    [3, 0.808],
+    [4, 0.704],
+    [5, 0.637],
+    [6, 0.577],
+    [7, 0.505],
+    [8, 0.444],
+    [9, 0.396],
+    [10, 0.258]
   ]"></Graph>
+
+  <Graph :data="[
+    [0, 0.987],
+    [1, 0.973],
+    [2, 0.945],
+    [3, 0.905],
+    [4, 0.852],
+    [5, 0.795],
+    [6, 0.681],
+    [7, 0.554],
+    [8, 0.476],
+    [9, 0.421],
+    [10, 0.286]
+  ]"></Graph>
+
+  <h4>Hue</h4>
+
+  <Graph :data="[
+    [0, 17.380],
+    [1, 17.717],
+    [2, 18.334],
+    [3, 19.571],
+    [4, 22.216],
+    [5, 25.331],
+    [6, 27.325],
+    [7, 27.518],
+    [8, 26.899],
+    [9, 25.723],
+    [10, 26.042]
+  ]"></Graph>
+
+  <Graph :data="[
+    [0, 102.21],
+    [1, 103.19],
+    [2, 101.54],
+    [3, 98.111],
+    [4, 91.936],
+    [5, 86.047],
+    [6, 75.834],
+    [7, 66.442],
+    [8, 61.907],
+    [9, 57.708],
+    [10,53.813]
+  ]"></Graph>
+
+
   <div class="grid grid-cols-1 gap-2">
     0,977
     0,951
