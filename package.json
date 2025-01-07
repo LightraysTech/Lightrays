@@ -7,7 +7,7 @@
   ],
   "type": "module",
   "scripts": {
-    "start": "npx sass .\\style\\Lightrays.scss:.\\style\\Lightrays.css -w",
+    "start": "npx sass --style=compressed .\\style\\Lightrays.scss:.\\style\\Lightrays.css -w",
     "dev": "vite --host 0.0.0.0",
     "build": "vite build",
     "preview": "vite preview"
