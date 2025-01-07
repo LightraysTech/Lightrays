@@ -87,7 +87,8 @@ nav {
         }
     }
 
-    label, .nav-label {
+    label,
+    .nav-label {
         font-family: var(--component-font);
         font-weight: 600;
         font-size: 0.875rem;
@@ -103,7 +104,7 @@ nav {
 
         summary {
             margin-left: -30px;
-            padding-left: 40px; 
+            padding-left: 40px;
             font-weight: 500;
             padding-left: 10px;
 
@@ -230,7 +231,7 @@ details {
 
     &::details-content {
         interpolate-size: allow-keywords;
-        transition: height .25s var(--curve-ease), content-visibility .25s allow-discrete;
+        transition: height .25s var(--curve-ease), width .25s var(--curve-ease), content-visibility .25s allow-discrete;
         height: 0;
         overflow: hidden;
     }
