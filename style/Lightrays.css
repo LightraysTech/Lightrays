@@ -20489,7 +20489,54 @@ dialog > form > footer {
   flex-wrap: wrap;
   gap: 8px;
   align-items: center;
-  padding: 0 1.5em 1em 1.5em;
+  padding: 1.5em;
+  padding-top: 0em;
+}
+
+.index-children > *:nth-child(1) {
+  --i: 1;
+}
+.index-children > *:nth-child(2) {
+  --i: 2;
+}
+.index-children > *:nth-child(3) {
+  --i: 3;
+}
+.index-children > *:nth-child(4) {
+  --i: 4;
+}
+.index-children > *:nth-child(5) {
+  --i: 5;
+}
+.index-children > *:nth-child(6) {
+  --i: 6;
+}
+.index-children > *:nth-child(7) {
+  --i: 7;
+}
+.index-children > *:nth-child(8) {
+  --i: 8;
+}
+.index-children > *:nth-child(9) {
+  --i: 9;
+}
+.index-children > *:nth-child(10) {
+  --i: 10;
+}
+.index-children > *:nth-child(11) {
+  --i: 11;
+}
+.index-children > *:nth-child(12) {
+  --i: 12;
+}
+.index-children > *:nth-child(13) {
+  --i: 13;
+}
+.index-children > *:nth-child(14) {
+  --i: 14;
+}
+.index-children > *:nth-child(15) {
+  --i: 15;
 }
 
 @keyframes box-load-in {

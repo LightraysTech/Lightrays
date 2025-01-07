@@ -17,8 +17,10 @@ ctx1.stroke();
 
 
 ease = "cubic-bezier(0.45, 0, 0.55, 1);"
+ease = "cubic-bezier(0.65, 0, 0.35, 1);"
+ease = "cubic-bezier(0.32, 0.72, 0, 1);"
 ctx1.setTransform(3,0,0,-3,0,350)
-ctx1.strokeStyle = "tomato"
+ctx1.strokeStyle = "blue"
 
 ctx1.beginPath();
 ctx1.moveTo(0, 0);

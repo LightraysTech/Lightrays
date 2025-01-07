@@ -18,7 +18,7 @@ body {
 
 * {
   box-sizing: border-box;
-interpolate-size: allow-keywords;
+  interpolate-size: allow-keywords;
 }
 
 main {
@@ -135,9 +135,11 @@ a {
 .gap {
   gap: 16px;
 }
+
 .small-gap {
   gap: 8px;
 }
+
 .tiny-gap {
   gap: 4px;
 }
@@ -151,15 +153,16 @@ pre:has(code) {
   padding: 8px;
   border-radius: 6px;
   background-color: var(--component-important);
-  
+
   code[lang]::before {
     content: attr(lang);
-    display:block;
+    display: block;
     margin-left: auto;
     opacity: .5;
     margin-bottom: 4px;
   }
 }
+
 :not(pre) > code {
   border: var(--site-stroke);
   padding: 2px 4px;
@@ -215,7 +218,7 @@ dialog {
       opacity: 0;
       scale: 0.75;
     }
-  
+
     @starting-style {
       &::backdrop {
         background-color: rgba(0, 0, 0, 0);
@@ -239,9 +242,11 @@ dialog {
       display: flex;
       justify-content: space-between;
       align-items: center;
+
       padding: 1.5em {
         bottom: 0em
-      };
+      }
+
 
       button {
         box-shadow: none;
@@ -267,13 +272,21 @@ dialog {
       flex-wrap: wrap;
       gap: 8px;
       align-items: center;
+
       padding: 1.5em {
         top: 0em
-      };
+      }
     }
   }
 }
 
+.index-children > * {
+  @for $i from 1 through 15 {
+    &:nth-child(#{$i}) {
+      --i: #{$i};
+    }
+  }
+}
 
 // Animations ----------------------------
 @keyframes box-load-in {
