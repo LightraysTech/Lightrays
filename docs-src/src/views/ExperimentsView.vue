@@ -69,6 +69,7 @@ import Graph from '@/components/Graph.vue';
   <menu id="menu1" popover style="position-anchor: --menu1;">
     <button>Button 1</button>
     <button>Button 2</button>
+    <hr>
     <button>Button 3</button>
     <button>Button 4</button>
   </menu>

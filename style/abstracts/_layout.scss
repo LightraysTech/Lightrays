@@ -43,6 +43,13 @@ menu {
             display: none !important;
         }
     }
+
+    hr {
+        width: 100%;
+        border: none;
+        border-top:var(--component-stroke);
+        margin: 2px;
+    }
 }
 
 nav {
