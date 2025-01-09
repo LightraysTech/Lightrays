@@ -1,267 +1,316 @@
-:where(.lr-list > div,
-  .lr-box,
-  button,
-  input,
-  select,
-  textarea) {
-  background-color: var(--component-background);
-  border-radius: 4px;
-  padding: 16px;
+@layer {
 
-  --underline: 0 var(--underline-width, 2px) 0 0 var(--underline-color, transparent);
+  :where(.lr-list > div,
+    .lr-box,
+    button,
+    input,
+    select,
+    textarea) {
+    background-color: var(--component-background);
+    border-radius: 4px;
+    padding: 16px;
 
-  &,
-  .shadow-components > &,
-  &.shadow.shadow {
-    box-shadow: var(--underline), var(--shadow-1);
-    border: none;
+    --underline: 0 var(--underline-width, 2px) 0 0 var(--underline-color, transparent);
 
-    --hover-shadow: var(--shadow-2);
-    --hover-background: var(--component-hover);
+    &,
+    .shadow-components > &,
+    &.shadow.shadow {
+      box-shadow: var(--underline), var(--shadow-1);
+      border: none;
 
-    --active-shadow: var(--shadow-0);
-    --active-background: var(--component-active);
+      --hover-shadow: var(--shadow-2);
+      --hover-background: var(--component-hover);
 
-    --underline-width: 2px;
-  }
+      --active-shadow: var(--shadow-0);
+      --active-background: var(--component-active);
 
-  & &,
-  &:where(:disabled),
-  .flat-components > &,
-  &.flat.flat {
-    box-shadow: var(--underline);
-    border: var(--component-stroke);
-    border-bottom-color: var(--underline-color, var(--component-stroke-color));
+      --underline-width: 2px;
+    }
 
-    --hover-shadow: var(--shadow-0);
+    & &,
+    &:where(:disabled),
+    .flat-components > &,
+    &.flat.flat {
+      box-shadow: var(--underline);
+      border: var(--component-stroke);
+      border-bottom-color: var(--underline-color, var(--component-stroke-color));
 
-    --underline-width: 1px;
-  }
+      --hover-shadow: var(--shadow-0);
 
-  &:where(input:not(:disabled)[type="submit"]),
-  .important-components > &,
-  &.important.important {
-    background-color: var(--primary);
+      --underline-width: 1px;
+    }
 
-    --hover-background: var(--light);
-    --active-background: var(--dark);
-  }
+    &:where(input:not(:disabled)[type="submit"]),
+    .important-components > &,
+    &.important.important {
+      background-color: var(--primary);
 
-  &.transparent.transparent {
-    background: none;
-    border: none;
-    box-shadow: none;
+      --hover-background: var(--light);
+      --active-background: var(--dark);
+    }
 
-    --hover-shadow: none;
-    --hover-background: none;
+    &.transparent.transparent {
+      background: none;
+      border: none;
+      box-shadow: none;
 
-    --active-shadow: none;
-    --active-background: none;
-  }
+      --hover-shadow: none;
+      --hover-background: none;
 
-  &.subtle {
-    background: none;
-    box-shadow: none;
-    border: none;
-    --hover-shadow: none;
-    --active-shadow: none;
-  }
+      --active-shadow: none;
+      --active-background: none;
+    }
+
+    &.subtle {
+      background: none;
+      box-shadow: none;
+      border: none;
+      --hover-shadow: none;
+      --active-shadow: none;
+    }
 
 
-  .small-components > &,
-  &.small.small {
-    padding: 8px;
-  }
-
-  &:where(button, input, select, textarea),
-  .inline-components > &,
-  &.inline {
-    display: inline-block;
-    padding: 8px 16px;
-
-    .small-components > :where(&),
+    .small-components > &,
     &.small.small {
-      padding: 4px 8px;
-    }
-  }
-
-  &:where(input:not(:disabled)):where([type="reset"], [type="button"], [type="submit"]),
-  &:where(button, select):where(:not(:disabled)),
-  .interactive-components > &,
-  &.interactive.interactive {
-    cursor: pointer;
-    transition: background-color, color, box-shadow, border;
-    transition-duration: 0.2s;
-    transition-timing-function: var(--curve-ease);
-
-
-    &:where(:hover) {
-      box-shadow: var(--hover-shadow);
-      background: var(--hover-background);
+      padding: 8px;
     }
 
-    &:where(:active) {
-      box-shadow: var(--active-shadow);
-      background: var(--active-background);
-    }
-  }
-}
+    &:where(button, input, select, textarea),
+    .inline-components > &,
+    &.inline {
+      display: inline-block;
+      padding: 8px 16px;
 
-.lr-list {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin: 8px 0;
-
-  & > div {
-    animation: box-load-in 0.2s ease-out both;
-    animation-delay: calc(0.03s * var(--i));
-
-    &:nth-child(0) {--i: 0}
-    &:nth-child(1) {--i: 1}
-    &:nth-child(2) {--i: 2}
-    &:nth-child(3) {--i: 3}
-    &:nth-child(4) {--i: 4}
-    &:nth-child(5) {--i: 5}
-    &:nth-child(6) {--i: 6}
-    &:nth-child(7) {--i: 7}
-    &:nth-child(8) {--i: 8}
-    &:nth-child(9) {--i: 9}
-    &:nth-child(10) {--i: 10}
-    &:nth-child(11) {--i: 11}
-    &:nth-child(12) {--i: 12}
-    &:nth-child(13) {--i: 13}
-    &:nth-child(14) {--i: 14}
-    &:nth-child(15) {--i: 15}
-  }
-}
-
-button,
-input,
-select,
-textarea {
-  font-family: var(--component-font);
-  font-size: 1em;
-  font-weight: normal;
-  line-height: inherit;
-  color: var(--color-text);
-}
-
-input:not(:disabled):where([type="reset"], [type="button"], [type="submit"]),
-button,
-select {
-  text-align: center;
-
-  &:has(.fluentIcon:only-child) {
-    padding: 10px 10px;
-
-    .fluentIcon {
-      display: block;
-    }
-  }
-
-  &.small,
-  .small-components > & {
-    &:has(.fluentIcon:only-child) {
-      padding: 6px 6px;
-    }
-
-    & > .fluentIcon:not(:only-child) {
-      margin-right: 4px;
-    }
-  }
-
-  & > .fluentIcon:not(:only-child) {
-    margin-right: 8px;
-  }
-}
-
-:disabled {
-  color: var(--subtle-text-color);
-  background-color: var(--component-disabled);
-}
-
-input {
-  --underline-color: transparent;
-  
-  &:not(:where([type=reset], [type=button], [type=submit], [type=checkbox])) {
-
-    &:focus {
-      --underline-color: var(--primary);
-
-      &:user-invalid {
-        --underline-color: var(--alert);
+      .small-components > :where(&),
+      &.small.small {
+        padding: 4px 8px;
       }
     }
 
-  }
+    &:where(input:not(:disabled)):where([type="reset"], [type="button"], [type="submit"]),
+    &:where(button, select):where(:not(:disabled)),
+    .interactive-components > &,
+    &.interactive.interactive {
+      cursor: pointer;
+      transition: background-color, color, box-shadow, border;
+      transition-duration: 0.2s;
+      transition-timing-function: var(--curve-ease);
 
 
-  &[type="color"] {
-    padding: 0;
-    border-radius: 0;
-    background: var(--component-background);
-  }
+      &:where(:hover) {
+        box-shadow: var(--hover-shadow);
+        background: var(--hover-background);
+      }
 
-  &[type="search"] {
-    background-image: url("./img/search.png");
-    background-size: 15px;
-    padding-left: 36px;
-    background-position-x: 12px;
-    background-position-y: center;
-    background-repeat: no-repeat;
-
-    &:focus {
-      background-size: 18px;
-      background-position-x: 11px;
-      transition: background .2s var(--curve-ease);
+      &:where(:active) {
+        box-shadow: var(--active-shadow);
+        background: var(--active-background);
+      }
     }
   }
 
-  &[type=checkbox] {
-    align-self: center;
-    -webkit-appearance: none;
-    appearance: none;
-    border-radius: 6px;
-    width: 24px;
-    height: 24px;
-    vertical-align: bottom;
-    padding: 0;
-    margin: 0;
-    cursor: pointer;
+  .lr-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 8px 0;
 
-    &:checked {
-      background: url("./img/checkbox.png") no-repeat center center;
-      background-size: 13px;
-      background-color: var(--primary);
-      border-color: var(--primary) !important;
-    }
+    & > div {
+      animation: box-load-in 0.2s ease-out both;
+      animation-delay: calc(0.03s * var(--i));
 
-    &.small {
-      height: 18px;
-      width: 18px;
-      border-radius: 4px;
-      vertical-align: text-bottom;
-      background-size: 9px;
+      &:nth-child(0) {
+        --i: 0
+      }
+
+      &:nth-child(1) {
+        --i: 1
+      }
+
+      &:nth-child(2) {
+        --i: 2
+      }
+
+      &:nth-child(3) {
+        --i: 3
+      }
+
+      &:nth-child(4) {
+        --i: 4
+      }
+
+      &:nth-child(5) {
+        --i: 5
+      }
+
+      &:nth-child(6) {
+        --i: 6
+      }
+
+      &:nth-child(7) {
+        --i: 7
+      }
+
+      &:nth-child(8) {
+        --i: 8
+      }
+
+      &:nth-child(9) {
+        --i: 9
+      }
+
+      &:nth-child(10) {
+        --i: 10
+      }
+
+      &:nth-child(11) {
+        --i: 11
+      }
+
+      &:nth-child(12) {
+        --i: 12
+      }
+
+      &:nth-child(13) {
+        --i: 13
+      }
+
+      &:nth-child(14) {
+        --i: 14
+      }
+
+      &:nth-child(15) {
+        --i: 15
+      }
     }
   }
 
-  &[type="range"] {
-    /* -webkit-appearance: none; appearance: none; */
-    height: 0px;
-    background: var(--color-darker);
-    outline: none;
-    /*  Remove outline  */
-    -webkit-transition: .1s;
-    transition: all .1s;
-    padding-left: 0;
-    padding-right: 0;
-    border: none !important;
-    outline: none !important;
-    box-shadow: none;
+  button,
+  input,
+  select,
+  textarea {
+    font-family: var(--component-font);
+    font-size: 1em;
+    font-weight: normal;
+    line-height: inherit;
+    color: var(--color-text);
+  }
 
-    &:focus {
+  input:not(:disabled):where([type="reset"], [type="button"], [type="submit"]),
+  button,
+  select {
+    text-align: center;
+
+    &:has(.fluentIcon:only-child) {
+      padding: 10px 10px;
+
+      .fluentIcon {
+        display: block;
+      }
+    }
+
+    &.small,
+    .small-components > & {
+      &:has(.fluentIcon:only-child) {
+        padding: 6px 6px;
+      }
+
+      & > .fluentIcon:not(:only-child) {
+        margin-right: 4px;
+      }
+    }
+
+    & > .fluentIcon:not(:only-child) {
+      margin-right: 8px;
+    }
+  }
+
+  :disabled {
+    color: var(--subtle-text-color);
+    background-color: var(--component-disabled);
+  }
+
+  input {
+
+    &:not(:where([type=reset], [type=button], [type=submit], [type=checkbox])) {
+
+      &:focus {
+        --underline-color: var(--primary);
+
+        &:user-invalid {
+          --underline-color: var(--alert);
+        }
+      }
+
+    }
+
+
+    &[type="color"] {
+      padding: 0;
+      border-radius: 0;
+      background: var(--component-background);
+    }
+
+    &[type="search"] {
+      background-image: url("./img/search.png");
+      background-size: 15px;
+      padding-left: 36px;
+      background-position-x: 12px;
+      background-position-y: center;
+      background-repeat: no-repeat;
+
+      &:focus {
+        background-size: 18px;
+        background-position-x: 11px;
+        transition: background .2s var(--curve-ease);
+      }
+    }
+
+    &[type=checkbox] {
+      align-self: center;
+      -webkit-appearance: none;
+      appearance: none;
+      border-radius: 6px;
+      width: 24px;
+      height: 24px;
+      vertical-align: bottom;
+      padding: 0;
+      margin: 0;
+      cursor: pointer;
+
+      &:checked {
+        background: url("./img/checkbox.png") no-repeat center center;
+        background-size: 13px;
+        background-color: var(--primary);
+        border-color: var(--primary) !important;
+      }
+
+      &.small {
+        height: 18px;
+        width: 18px;
+        border-radius: 4px;
+        vertical-align: text-bottom;
+        background-size: 9px;
+      }
+    }
+
+    &[type="range"] {
+      /* -webkit-appearance: none; appearance: none; */
+      height: 0px;
+      background: var(--color-darker);
+      outline: none;
+      /*  Remove outline  */
+      -webkit-transition: .1s;
+      transition: all .1s;
+      padding-left: 0;
+      padding-right: 0;
+      border: none !important;
+      outline: none !important;
       box-shadow: none;
+
+      &:focus {
+        box-shadow: none;
+      }
     }
   }
 }
