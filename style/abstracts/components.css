@@ -1,5 +1,4 @@
-@layer components {
-
+@layer lr-components {
   :where(.lr-list > div,
     .lr-box,
     button,
