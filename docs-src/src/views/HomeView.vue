@@ -89,20 +89,19 @@
     <form method="dialog" class="flat-inputs">
       <header>
         <h4>Dialog title</h4>
-        <button formnovalidate><i class="fluentIcon dismiss_regular"></i></button>
+        <button formnovalidate class="small subtle"><i class="fluentIcon dismiss_regular"></i></button>
       </header>
-      <article style="max-width: 600px;">
+      <article style="max-width: 600px;" class="flat-components">
         Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
         <br><br>
-        <label for="">Email:</label>
+        <label>Email</label>
         <input name="email" type="email" required>
         <br>
-        <label for="">Password:</label>
+        <label>Password</label>
         <input name="password" type="password" required>
       </article>
       <footer>
-        <button formnovalidate>Cancel</button>
-        <input type="submit" value="Submit">
+        <input type="submit" value="Submit" style="flat">
       </footer>
     </form>
   </dialog>

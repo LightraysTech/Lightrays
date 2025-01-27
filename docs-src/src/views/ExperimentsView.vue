@@ -27,6 +27,15 @@ import Graph from '@/components/Graph.vue';
   </details>
   <br>
 
+  <div class="flex gap">
+    <button>Button</button>
+    <button disabled>Button</button>
+    <button style="background-color: var(--component-hover);">Button</button>
+    <button style="background-color: var(--component-active);">Button</button>
+    <button style="background-color: var(--component-important);">Button</button>
+  </div>
+
+
   <h4>Components</h4>
   <div class="shadow-components">
     abc
