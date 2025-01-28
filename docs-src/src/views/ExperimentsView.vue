@@ -1,9 +1,89 @@
 <script setup>
+import Card from '@/components/Card.vue';
 import Graph from '@/components/Graph.vue';
 
 </script>
 
 <template>
+
+  <div class="flex-center">
+    <h3>Title</h3>
+    <div style="margin-left: auto">
+      <button class="small flat">Button</button>
+    </div>
+  </div> <br>
+  <h6>Subheader</h6>
+  <div class="lr-list inline-components">
+    <Card>
+      <template #default>List Item</template>
+      <template #description>Description</template>
+      <template #right>
+        <button class="subtle"><i class="fluentIcon more_horizontal_regular"></i></button>
+      </template>
+    </Card>
+    <Card>
+      <template #default>List Item</template>
+      <template #description>Description</template>
+      <template #right>
+        <button class="subtle"><i class="fluentIcon more_horizontal_regular"></i></button>
+      </template>
+    </Card>
+    <Card>
+      <template #default>List Item</template>
+      <template #description>Description</template>
+      <template #right>
+        <button class="subtle"><i class="fluentIcon more_horizontal_regular"></i></button>
+      </template>
+    </Card>
+    <Card>
+      <template #left>
+        <input type="checkbox" name="" id="">
+      </template>
+      <template #default>List Item</template>
+      <template #description>Description</template>
+      <template #right>
+        <button class="subtle"><i class="fluentIcon more_horizontal_regular"></i></button>
+      </template>
+    </Card>
+    <Card>
+      <template #left>
+        <input type="checkbox" name="" id="">
+      </template>
+      <template #default>List Item</template>
+      <template #description>Description</template>
+      <template #right>
+        <button class="subtle"><i class="fluentIcon more_horizontal_regular"></i></button>
+      </template>
+    </Card>
+    <Card>
+      <template #left>
+        <input type="checkbox" name="" id="">
+      </template>
+      <template #default>List Item</template>
+      <template #right>
+        <button class="subtle"><i class="fluentIcon more_horizontal_regular"></i></button>
+      </template>
+    </Card>
+    <Card>
+      <template #left>
+        <i class="fluentIcon re_order_dots_vertical_regular" style="color: var(--subtle-text-color);"></i>
+      </template>
+      <template #default>List Item</template>
+      <template #right>
+        <button class="subtle"><i class="fluentIcon more_horizontal_regular"></i></button>
+      </template>
+    </Card>
+    <Card>
+      <template #left>
+        <i class="fluentIcon re_order_dots_vertical_regular" style="color: var(--subtle-text-color);"></i>
+      </template>
+      <template #default>List Item</template>
+      <template #right>
+        <button class="subtle"><i class="fluentIcon more_horizontal_regular"></i></button>
+      </template>
+    </Card>
+  </div>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
   <h1>Experiments</h1>
   <br>
   <br>
@@ -40,11 +120,11 @@ import Graph from '@/components/Graph.vue';
   <div class="shadow-components">
     abc
     <div class="lr-box flat">
-    abc
-  </div>
-  <div class="lr-box shadow">
-    abc
-  </div>
+      abc
+    </div>
+    <div class="lr-box shadow">
+      abc
+    </div>
   </div>
   <br>
   <div class="flex gap ">
@@ -119,9 +199,7 @@ import Graph from '@/components/Graph.vue';
   </div>
 
   <div class="lr-box flex-center gap" style="width: 360px;">
-    <img style="border-radius: 4px;" height="44px"
-      src="https://raw.githubusercontent.com/microsoft/fluentui/master/packages/react-components/react-card/stories/src/assets/app_logo.svg"
-      alt="App Name Document">
+    <img style="border-radius: 4px;" height="44px" src="https://raw.githubusercontent.com/microsoft/fluentui/master/packages/react-components/react-card/stories/src/assets/app_logo.svg" alt="App Name Document">
     <div class="flex-vertical">
       <b>App Name</b>
       <small class="subtle-text">Developer</small>
@@ -220,7 +298,7 @@ import Graph from '@/components/Graph.vue';
     [7, 66.442],
     [8, 61.907],
     [9, 57.708],
-    [10,53.813]
+    [10, 53.813]
   ]"></Graph>
 
 

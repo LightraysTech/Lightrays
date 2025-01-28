@@ -30,6 +30,8 @@
   --hue-range: 6;
 
   --alert: #c61025;
+  --warning: orange;
+  --success: #007B40;
 
   --accent-from: light-dark(oklch(45% .13 calc(var(--hue) - var(--hue-range))), oklch(35% .12 calc(var(--hue) - var(--hue-range))));
   --accent-to: light-dark(oklch(85% .18 calc(var(--hue) + var(--hue-range))), oklch(75% .18 calc(var(--hue) + var(--hue-range))));
@@ -46,6 +48,54 @@
 
   --text-color: light-dark(hsl(0, 0%, 17%), hsl(0, 0%, 95%));
   --subtle-text-color: light-dark(hsl(0, 0%, 45%), hsl(0, 0%, 65%));
+
+/*   --primary: oklch(0.6 0.214 250);
+  --primary: oklch(0.5 0.2 250);
+  --darkest:  oklch(from var(--primary) calc(l - 0.5 * l) .15 244);
+  --dark:     oklch(from var(--primary) calc(l - 0.13 * l) .17 257);
+  --light:    oklch(from var(--primary) calc(l + 0.23 * (1 - l)) .21 253);
+  --lightest: oklch(from var(--primary) calc(l + 0.49 * (1 - l)) .21 256);
+ */
+/*   --darkest:  hsl(216, 98%, 17%);
+  --dark:     hsl(216, 91%, 36%);
+  --primary:  hsl(216, 82%, 49%);
+  --light:    hsl(216, 89%, 63%);
+  --lightest: hsl(216, 84%, 71%); */
+  
+  
+  
+  --darkest:  hsl(174, 95%, 26%); //oklch(54.28% 0.096 183.01)
+  --dark:     hsl(165, 90%, 38%); //oklch(69.6% 0.1395 168.06)
+  --light:    hsl(114, 56%, 71%); //oklch(83.29% 0.135 141.97)
+  --lightest: hsl(93, 66%, 80%);  //oklch(90.51% 0.0968 131.52)
+  --primary:  color-mix(in oklch, var(--dark), var(--light));
+
+  --darkest:  hsl(40, 89%, 57%); //oklch(80.4% 0.1538 79.48)
+  --dark:     hsl(42, 95%, 68%); //oklch(86.68% 0.136 85.96)
+  --light:    hsl(45, 93%, 77%); //oklch(91.04% 0.1056 91.66)
+  --lightest: hsl(50, 100%, 82%); //oklch(94.93% 0.097 98.248)
+  --primary:  color-mix(in oklch, var(--dark), var(--light));
+
+
+  --darkest:  hsl(218, 48%, 27%);
+  --dark:     hsl(250, 50%, 59%);
+  --light:    hsl(272, 92%, 75%);
+  --lightest: hsl(284, 97%, 85%); 
+  --primary:  color-mix(in oklch, var(--dark), var(--light));
+
+
+  --accent-to: hsl(284, 97%, 85%);
+  --accent-from: hsl(218, 48%, 27%);
+/*   --darkest:  color-mix(in oklch, var(--accent-to) 0%, var(--accent-from));
+  --dark:     color-mix(in oklch, var(--accent-to) 25%, var(--accent-from));
+  --primary:  color-mix(in oklch, var(--accent-to) 50%, var(--accent-from));
+  --light:    color-mix(in oklch, var(--accent-to) 75%, var(--accent-from));
+  --lightest: color-mix(in oklch, var(--accent-to) 100%, var(--accent-from));
+
+ */
+  --gradient: linear-gradient(in oklch to right, var(--darkest), var(--lightest));
+
+
 
   // Theme
   --site-background:      light-dark(hsl(0, 0%, 96%),  hsl(0, 0%, 10%));
