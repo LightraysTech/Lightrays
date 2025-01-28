@@ -36,12 +36,20 @@
   <div>
     <table>
       <tr>
-        <td><label>Hue</label></td>
-        <td><input type="range" value="250" onpointermove="document.documentElement.style.setProperty('--hue', event.target.value)" min="0" max="355"></td>
+        <td><label>Primary </label></td>
+        <td><input type="color" value="#0f74c5" oninput="document.documentElement.style.setProperty('--primary', event.target.value)"></td>
+      </tr>
+      <tr>
+        <td><label>Lightness-range</label></td>
+        <input type="range" value="0.2" onpointermove="document.documentElement.style.setProperty('--l-range', event.target.value)" min="0" max="1" step="0.01">
+      </tr>
+      <tr>
+        <td><label>Chroma-range</label></td>
+        <input type="range" value="0.03" onpointermove="document.documentElement.style.setProperty('--c-range', event.target.value)" min="0" max=".1" step="0.001">
       </tr>
       <tr>
         <td><label>Hue-range</label></td>
-        <input type="range" value="6" onpointermove="document.documentElement.style.setProperty('--hue-range', event.target.value)" min="0" max="20">
+        <input type="range" value="6" onpointermove="document.documentElement.style.setProperty('--h-range', event.target.value)" min="-20" max="20">
       </tr>
     </table>
     <br>
