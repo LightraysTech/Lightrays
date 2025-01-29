@@ -13,12 +13,12 @@ Demo Website: https://lightraystech.github.io/Lightrays/
 $ npm install github:LightraysTech/Lightrays
 ```
 
-#### Vite/Vue example
+#### Vite example
 
 ``` javascript
 main.js:
 
-import 'lightrays/style/Lightrays.css';  
+import 'lightrays';  
 ...
 ```
 
@@ -43,5 +43,5 @@ A demo can be found in the "/examples" folder
 
 **Developers:**
 
-- [JAcoder7](https://github.com/JAcoder7 "go to his github-accont")
-- [Ncoder77](https://github.com/Ncoder77 "go to his github-accont")
+- [JAcoder7](https://github.com/JAcoder7 "go to his github-account")
+- [Ncoder77](https://github.com/Ncoder77 "go to his github-account")

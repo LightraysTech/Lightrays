@@ -2,21 +2,28 @@
   "name": "lightrays",
   "version": "1.2.0",
   "description": "A modern and lightweight web design framework, with Sass support.",
+  "keywords": [
+    "css",
+    "library",
+    "styles",
+    "sass"
+  ],
+  "files": [
+    "style/*",
+    "vue_components/*"
+  ],
   "main": "style/Lightrays.css",
-  "type": "module",
   "scripts": {
-    "start": "npx sass --style=compressed .\\style\\Lightrays.scss:.\\style\\Lightrays.css -w",
-    "dev": "vite --host 0.0.0.0",
-    "build": "vite build",
-    "preview": "vite preview"
-  },
-  "devDependencies": {
-    "@vitejs/plugin-vue": "^5.2.0",
-    "sass-embedded": "^1.83.1",
-    "vite": "^5.4.11",
-    "vue": "^3.5.13",
-    "vue-router": "^4.5.0"
+    "start": "sass --style=compressed .\\style\\Lightrays.scss:.\\style\\Lightrays.css -w",
+    "dev": "npm run dev --prefix ./lightrays_examples",
+    "build": "npm run build-sass & npm run build-docs",
+    "build-sass": "sass --style=compressed .\\style\\Lightrays.scss:.\\style\\Lightrays.css",
+    "build-docs": "npm run build --prefix ./lightrays_examples",
+    "preview-docs": "npm run preview --prefix ./lightrays_examples"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "sass": "^1.83.4"
+  }
 }
