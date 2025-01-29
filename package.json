@@ -5,6 +5,7 @@
   "files": [
     "style/*"
   ],
+  "main": "style/Lightrays.css",
   "type": "module",
   "scripts": {
     "start": "npx sass --style=compressed .\\style\\Lightrays.scss:.\\style\\Lightrays.css -w",
