@@ -2,9 +2,6 @@
   "name": "lightrays",
   "version": "1.2.0",
   "description": "A modern and lightweight web design framework, with Sass support.",
-  "files": [
-    "style/*"
-  ],
   "main": "style/Lightrays.css",
   "type": "module",
   "scripts": {
@@ -21,8 +18,5 @@
     "vue-router": "^4.5.0"
   },
   "author": "",
-  "license": "ISC",
-  "workspaces": [
-    "vue-components"
-  ]
+  "license": "ISC"
 }
