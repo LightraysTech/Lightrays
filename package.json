@@ -3,7 +3,8 @@
   "version": "1.2.0",
   "description": "A modern and lightweight web design framework, with Sass support.",
   "files": [
-    "style/*"
+    "style/*",
+    "vue_components/*"
   ],
   "main": "style/Lightrays.css",
   "type": "module",
