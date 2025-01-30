@@ -1,8 +1,6 @@
 <template>
   <div class="lr-box">
-    <div class="card-left">
-      <slot name="left"></slot>
-    </div>
+    <slot name="left"></slot>
     <div class="card-main">
       <div class="card-title">
         <slot></slot>
@@ -11,9 +9,7 @@
         <slot name="description"></slot>
       </div>
     </div>
-    <div class="card-right">
-      <slot name="right"></slot>
-    </div>
+    <slot name="right"></slot>
   </div>
 </template>
 

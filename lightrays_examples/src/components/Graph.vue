@@ -1,32 +1,23 @@
-<script setup>
-import { onMounted, ref } from 'vue';
+<script setup lang="ts">
+import { onMounted, ref, useTemplateRef } from 'vue';
 
-const props = defineProps({
-  width: {
-    type: Number,
-    default: 600
-  },
-  height: {
-    type: Number,
-    default: 300
-  },
-  data: {
-    required: true
-  },
-  minX: Number,
-  maxX: Number,
-  minY: Number,
-  maxY: Number,
-})
+const props = defineProps<{
+  width: number,
+  height: number,
+  data: number[][],
+  minX: number,
+  maxX: number,
+  minY: number,
+  maxY: number,
+}>()
 
-const canvas = ref(null);
+const canvas = useTemplateRef<HTMLCanvasElement>("canvas");
 
 onMounted(() => {
   if (!canvas.value) throw new Error("Canvas ref not assigned");
 
-  /** @type {CanvasRenderingContext2D} */
   let ctx = canvas.value.getContext("2d")
-console.log(props.data);
+if (!ctx) return
 
   let minX = props.minX != null ? props.minX : Math.min(...props.data.map(d => d[0]))
   let maxX = props.maxX != null ? props.maxX : Math.max(...props.data.map(d => d[0]))

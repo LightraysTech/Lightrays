@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import Card from '@/components/Card.vue';
-import Graph from '@/components/Graph.vue';
+import Card from 'lightrays/vue_components/Card.vue';
+// import Graph from '@/components/Gaph.vue';
 
 </script>
 
@@ -211,7 +211,7 @@ import Graph from '@/components/Graph.vue';
       <i class="fluentIcon more_horizontal_regular"></i>
     </button>
   </div>
-  <h4>Chroma</h4>
+<!--   <h4>Chroma</h4>
   <div class="flex">
     <Graph :data="[
       [0, 0.013],
@@ -303,7 +303,7 @@ import Graph from '@/components/Graph.vue';
     [9, 57.708],
     [10, 53.813]
   ]"></Graph>
-
+ -->
 
   <div class="grid grid-cols-1 gap-2">
     0,977

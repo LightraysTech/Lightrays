@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { onMounted, ref, useModel, watch, watchEffect } from 'vue';
 
 
@@ -14,7 +14,7 @@ const props = defineProps({
   }
 })
 
-const canvas = ref(null);
+const canvas = ref < HTMLCanvasElement | null > (null);
 
 const p0 = defineModel("p0", { default: { x: 0, y: 0 } })
 const p1 = defineModel("p1", { default: { x: 1, y: 0 } })
@@ -22,14 +22,16 @@ const cp0 = defineModel("cp0", { default: { x: .25, y: 1 } })
 const cp1 = defineModel("cp1", { default: { x: .75, y: 1 } })
 
 let padding = 20
-let x0
-let y0
-let x1
-let y1
-let w
-let h
+let x0 = 0
+let y0 = 0
+let x1 = 0
+let y1 = 0
+let w = 0
+let h = 0
 
-function f(p) {
+type Point = { x: number, y: number }
+
+function f(p: Point) {
   return { x: p.x * w + x0, y: (1 - p.y) * h + y0 }
 }
 
@@ -40,8 +42,10 @@ function redraw() {
   if (!canvas.value) return
 
 
-  /** @type {CanvasRenderingContext2D} */
   let ctx = canvas.value.getContext("2d")
+
+  if (!ctx) return
+
   x0 = padding
   y0 = padding
   x1 = canvas.value.width - padding
@@ -88,21 +92,21 @@ function redraw() {
   ctx.ellipse(f(cp0.value).x, f(cp0.value).y, 10, 10, 0, 0, 360)
   ctx.fill()
 
-  for (const p of props.points) {    
+  for (const p of props.points) {
     ctx.beginPath()
     ctx.ellipse(f(p).x, f(p).y, 5, 5, 0, 0, 360)
     ctx.fill()
   }
 }
 
-function dst(a, b) {
+function dst(a: Point, b: Point) {
   return Math.sqrt(Math.pow((a.x - b.x), 2) + Math.pow((a.y - b.y), 2))
 }
 
 const isPtrDown = ref(false);
-const moveP = ref(null)
+const moveP = ref < Point | null > (null)
 const canMoveX = ref(false)
-function ptrDown(e) {
+function ptrDown(e: PointerEvent) {
   isPtrDown.value = true
   window.addEventListener("pointerup", () => { isPtrDown.value = false; moveP.value = null }, { once: true })
 
@@ -121,7 +125,7 @@ function ptrDown(e) {
   }
 }
 
-function ptrMove(e) {
+function ptrMove(e: PointerEvent) {
   if (isPtrDown.value && moveP.value) {
     if (canMoveX.value) {
       moveP.value.x = Math.max(0, Math.min(1, (e.offsetX - padding) / w))

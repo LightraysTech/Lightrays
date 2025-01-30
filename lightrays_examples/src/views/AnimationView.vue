@@ -7,12 +7,13 @@ onMounted(() => {
   /** @type {CanvasRenderingContext2D} */
   const ctx1 = graph1.value.getContext("2d")
 
-  let ease = window.getComputedStyle(document.body).getPropertyValue("--curve-ease")
+  let ease = window.getComputedStyle(document.body).getPropertyValue("--curve-ease") as any
+
   ctx1.setTransform(3, 0, 0, -3, 0, 350)
 
   ctx1.beginPath();
   ctx1.moveTo(0, 0);
-  ctx1.bezierCurveTo(...ease.match(/(?<=\().*(?=\))/)[0].split(",").map(x => Number(x) * 100), 100, 100);
+  ctx1.bezierCurveTo(...ease.match(/(?<=\().*(?=\))/)[0].split(",").map((x:string) => Number(x) * 100), 100, 100);
   ctx1.stroke();
 
 
@@ -24,7 +25,7 @@ onMounted(() => {
 
   ctx1.beginPath();
   ctx1.moveTo(0, 0);
-  ctx1.bezierCurveTo(...ease.match(/(?<=\().*(?=\))/)[0].split(",").map(x => Number(x) * 100), 100, 100);
+  ctx1.bezierCurveTo(...ease.match(/(?<=\().*(?=\))/)[0].split(",").map((x:string) => Number(x) * 100), 100, 100);
   ctx1.stroke();
 
   ctx1.beginPath();

@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "lightrays_examples"
+		},
+		{
+			"path": "style"
+		},
+		{
+			"path": "vue_components"
+		}
+	],
+	"settings": {}
+}
