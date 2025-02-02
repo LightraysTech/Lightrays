@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import Card from 'lightrays/vue_components/Card.vue';
+import Select from 'lightrays/vue_components/inputs/Select.vue';
+import { ref } from 'vue';
 // import Graph from '@/components/Gaph.vue';
 
+const m = ref(1)
 </script>
 
 <template>
@@ -76,7 +79,24 @@ import Card from 'lightrays/vue_components/Card.vue';
       </template>
     </Card>
   </div>
-  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <br><br><br><br><br><br><br><br>
+  <Select v-model="m" placeholder="Select Something">
+    <option value="1">Abc</option>
+    <option value="2">Def</option>
+  </Select>
+  <br>
+  <Select v-model="m">
+    <option :value="null">Null</option>
+    <option value="1">Abc</option>
+    <option value="2">Def</option>
+    <template #value>sdfghj</template>
+  </Select>
+  <br>
+  <select v-model="m">
+    <option value="1">Abc</option>
+    <option value="2">Def</option>
+  </select>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
   <div class="flex-grow" style="width: min(450px, 100%); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow-3);">
     <div style="height: 120px; background: var(--component-important);"> </div>
     <div style="height: 120px; background: var(--site-background);"> </div>
@@ -211,7 +231,7 @@ import Card from 'lightrays/vue_components/Card.vue';
       <i class="fluentIcon more_horizontal_regular"></i>
     </button>
   </div>
-<!--   <h4>Chroma</h4>
+  <!--   <h4>Chroma</h4>
   <div class="flex">
     <Graph :data="[
       [0, 0.013],

@@ -1,23 +1,24 @@
 <template>
   <div class="lr-box">
-    <slot name="left"></slot>
-    <div class="card-main">
-      <div class="card-title">
-        <slot></slot>
+    <slot name="top"></slot>
+    <div class="flex gap" style="align-items: center;">
+      <slot name="left"></slot>
+      <div class="card-main">
+        <div class="card-title">
+          <slot></slot>
+        </div>
+        <div class="card-descr">
+          <slot name="description"></slot>
+        </div>
       </div>
-      <div class="card-descr">
-        <slot name="description"></slot>
-      </div>
+      <slot name="right"></slot>
     </div>
-    <slot name="right"></slot>
+    <slot name="bottom"></slot>
   </div>
 </template>
 
 <style scoped>
 div.lr-box {
-  display: flex;
-  align-items: center;
-  gap: 16px;
   border-radius: 8px;
 }
 
@@ -31,6 +32,7 @@ div.lr-box {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  overflow: hidden;
 }
 
 .card-descr {

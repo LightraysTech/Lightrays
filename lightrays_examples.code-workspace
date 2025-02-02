@@ -10,5 +10,7 @@
 			"path": "vue_components"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"git.openRepositoryInParentFolders": "always"
+	}
 }
