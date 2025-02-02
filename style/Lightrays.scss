@@ -5,6 +5,14 @@
 @use "abstracts/components.css";
 @use 'abstracts/fluentIcons';
 
+@mixin variants($prefix, $property, $map) {
+  @each $name, $value in $map {
+    #{$prefix}-#{$name} {
+      #{$property}: #{$value}
+    }
+  }
+}
+
 body {
   -webkit-tap-highlight-color: transparent;
   font-family: var(--text-font);
@@ -18,7 +26,9 @@ body {
   min-height: 100dvh;
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   interpolate-size: allow-keywords;
 }
@@ -98,19 +108,27 @@ a {
   display: none;
 }
 
+.select-none {
+  user-select: none;
+}
+
 .round-corners {
+  // TODO: deprecate
   border-radius: 8px;
 }
 
 .very-round-corners {
+  // TODO: deprecate
   border-radius: 16px;
 }
 
+// #region Flex
 .flex {
   display: flex
 }
 
 .flex-grow {
+  // TODO: deprecate
   display: flex;
 
   & > * {
@@ -119,8 +137,19 @@ a {
 }
 
 .flex-vertical {
+  // TODO: deprecate
   display: flex;
   flex-direction: column;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .flex-center {
@@ -129,26 +158,102 @@ a {
   align-items: center;
 }
 
-.flex-wrap {
-  display: flex;
-  flex-wrap: wrap;
+.justify-center {
+  justify-content: center;
+}
+
+.justify-stretch {
+  justify-content: stretch;
+}
+
+.align-center {
+  // TODO: rename to items-center ?
+  align-items: center;
+}
+
+.grow {
+  flex-grow: 1;
+}
+
+.shrink {
+  flex-shrink: 1;
 }
 
 .gap {
+  // TODO: deprecate
   gap: 16px;
 }
 
 .small-gap {
+  // TODO: deprecate
   gap: 8px;
 }
 
 .tiny-gap {
+  // TODO: deprecate
   gap: 4px;
 }
 
-.grid {
-  display: grid;
-}
+@include variants("gap", gap, (s: 4px,
+    m: 8px,
+    l: 16px,
+    xl: 32px));
+
+// #endregion
+
+// #region Border Radius
+@include variants("rad", border-radius, (s: 2px,
+    m: 4px,
+    l: 8px,
+    xl: 16px,
+    circ: 1000000px));
+
+// #endregion
+
+// #region padding / margin
+
+@include variants("p", padding, ("xs": 2px,
+    s: 4px,
+    m: 8px,
+    l: 16px,
+    xl: 32px,
+  ));
+
+@include variants("px", padding-inline, ("xs": 2px,
+    s: 4px,
+    m: 8px,
+    l: 16px,
+    xl: 32px,
+  ));
+
+@include variants("py", padding-block, ("xs": 2px,
+    s: 4px,
+    m: 8px,
+    l: 16px,
+    xl: 32px,
+  ));
+
+@include variants("m", margin, ("xs": 2px,
+    s: 4px,
+    m: 8px,
+    l: 16px,
+    xl: 32px,
+  ));
+
+@include variants("mx", margin-inline, ("xs": 2px,
+    s: 4px,
+    m: 8px,
+    l: 16px,
+    xl: 32px,
+  ));
+
+@include variants("my", margin-block, ("xs": 2px,
+    s: 4px,
+    m: 8px,
+    l: 16px,
+    xl: 32px,
+  ));
+// #endregion
 
 pre:has(code) {
   border: var(--site-stroke);
@@ -248,6 +353,7 @@ dialog {
       padding: 16px 24px {
         bottom: 12px
       }
+
       background-color: var(--component-important);
     }
 
