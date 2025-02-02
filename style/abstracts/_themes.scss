@@ -1,27 +1,3 @@
-@property --hue {
-  syntax: "<number>";
-  inherits: true;
-  initial-value: 250;
-}
-
-@property --hue-range {
-  syntax: "<number>";
-  inherits: true;
-  initial-value: 6;
-}
-
-@property --accent-from {
-  syntax: "<color>";
-  inherits: true;
-  initial-value: oklch(45% .13 244);
-}
-
-@property --accent-to {
-  syntax: "<color>";
-  inherits: true;
-  initial-value: oklch(85% .18 256);
-}
-
 :root {
   color-scheme: light dark;
 
@@ -65,7 +41,7 @@
   --subtle-text-color: light-dark(hsl(0, 0%, 45%), hsl(0, 0%, 65%));
 
   // Theme
-  --site-background:      light-dark(hsl(0, 0%, 96%),  hsl(0, 0%, 10%));
+  --site-background:      light-dark(hsl(0, 0%, 96%),  hsl(0, 0%, 11%));
   --component-background: light-dark(hsl(0, 0%, 100%), hsl(0, 0%, 16%));
   --component-hover:      light-dark(hsl(0, 0%, 98%),  hsl(0, 0%, 22%));
   --component-active:     light-dark(hsl(0, 0%, 94%),  hsl(0, 0%, 26%));
@@ -76,10 +52,10 @@
   --scrollbar-color: light-dark(hsl(0, 0%, 79%), hsl(0, 0%, 24%));
 
 
-  --component-stroke-color: light-dark(#ebebeb, #1a1a1a);
+  --component-stroke-color: light-dark(hsl(0, 0%, 88%), hsl(0, 0%, 10%));
   --component-stroke: solid 1px var(--component-stroke-color);
   
-  --site-stroke-color: light-dark(#dadada, #2e2e2e);
+  --site-stroke-color: light-dark(hsl(0, 0%, 85%), #2e2e2e);
   --site-stroke: solid 1px var(--site-stroke-color);
 
   // Shadow

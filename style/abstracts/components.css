@@ -188,10 +188,8 @@
   input,
   select,
   textarea {
+    font: inherit;
     font-family: var(--component-font);
-    font-size: 1em;
-    font-weight: normal;
-    line-height: inherit;
     color: var(--color-text);
   }
 

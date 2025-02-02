@@ -7,7 +7,7 @@ menu {
     border: none;
     border-radius: 4px;
     margin: 8px 0;
-    padding: 4px;
+    padding: 4px 0;
     gap: 4px;
     overflow: hidden;
     position-area: bottom span-right;
@@ -27,6 +27,7 @@ menu {
     & > button,
     &.small-components > button {
         text-align: left;
+        margin: 0 4px;
 
         box-shadow: none !important;
 
@@ -47,8 +48,8 @@ menu {
     hr {
         width: 100%;
         border: none;
-        border-top:var(--component-stroke);
-        margin: 2px;
+        border-top: var(--component-stroke);
+        margin: 2px 0;
     }
 }
 

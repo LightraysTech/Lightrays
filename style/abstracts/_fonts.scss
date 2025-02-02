@@ -1,5 +1,5 @@
 @font-face {
-font-family: "SatoshiVariable";
+  font-family: "SatoshiVariable";
   src: url("./fonts/Satoshi-Variable.ttf");
   font-display: swap;
 }
@@ -16,6 +16,15 @@ font-family: "SatoshiVariable";
 }
 
 // #region Headers
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap-style: balance;
+}
+
 h1 {
   font-size: 3rem; // 48px
   font-weight: 900;
@@ -63,4 +72,5 @@ h6 {
 small {
   font-size: 0.875rem;
 }
+
 // #endregion

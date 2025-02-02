@@ -15,9 +15,10 @@ body {
   line-height: 1.5;
   margin: 0;
   scroll-behavior: smooth;
+  min-height: 100dvh;
 }
 
-* {
+*, *::before, *::after {
   box-sizing: border-box;
   interpolate-size: allow-keywords;
 }
