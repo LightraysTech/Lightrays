@@ -7,21 +7,25 @@
 
 @mixin variants($prefix, $property, $map) {
   @each $name, $value in $map {
-    #{$prefix}-#{$name} {
+    .#{$prefix}-#{$name} {
       #{$property}: #{$value}
     }
   }
 }
 
+html {
+  font-family: var(--text-font);
+  line-height: 1.5;
+}
+
 body {
   -webkit-tap-highlight-color: transparent;
-  font-family: var(--text-font);
   background-color: var(--site-background);
   background-attachment: fixed;
 
   color: var(--text-color);
-  line-height: 1.5;
   margin: 0;
+
   scroll-behavior: smooth;
   min-height: 100dvh;
 }
@@ -52,7 +56,7 @@ main {
 }
 
 :focus {
-  outline: none
+  outline: none //TODO: remove?
 }
 
 //Link
@@ -66,7 +70,7 @@ a {
   }
 
   &:hover {
-    color: var(--color-main);
+    color: var(--primary);
   }
 
   &.noStyle {
@@ -194,7 +198,8 @@ a {
   gap: 4px;
 }
 
-@include variants("gap", gap, (s: 4px,
+@include variants("gap", gap,
+  (s: 4px,
     m: 8px,
     l: 16px,
     xl: 32px));
@@ -202,7 +207,8 @@ a {
 // #endregion
 
 // #region Border Radius
-@include variants("rad", border-radius, (s: 2px,
+@include variants("rad", border-radius,
+  (s: 2px,
     m: 4px,
     l: 8px,
     xl: 16px,
@@ -212,42 +218,48 @@ a {
 
 // #region padding / margin
 
-@include variants("p", padding, ("xs": 2px,
+@include variants("p", padding,
+  (xs: 2px,
     s: 4px,
     m: 8px,
     l: 16px,
     xl: 32px,
   ));
 
-@include variants("px", padding-inline, ("xs": 2px,
+@include variants("px", padding-inline,
+  (xs: 2px,
     s: 4px,
     m: 8px,
     l: 16px,
     xl: 32px,
   ));
 
-@include variants("py", padding-block, ("xs": 2px,
+@include variants("py", padding-block,
+  (xs: 2px,
     s: 4px,
     m: 8px,
     l: 16px,
     xl: 32px,
   ));
 
-@include variants("m", margin, ("xs": 2px,
+@include variants("m", margin,
+  (xs: 2px,
     s: 4px,
     m: 8px,
     l: 16px,
     xl: 32px,
   ));
 
-@include variants("mx", margin-inline, ("xs": 2px,
+@include variants("mx", margin-inline,
+  (xs: 2px,
     s: 4px,
     m: 8px,
     l: 16px,
     xl: 32px,
   ));
 
-@include variants("my", margin-block, ("xs": 2px,
+@include variants("my", margin-block,
+  (xs: 2px,
     s: 4px,
     m: 8px,
     l: 16px,

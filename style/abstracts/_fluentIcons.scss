@@ -50,7 +50,11 @@ input:not(:disabled):where([type="reset"], [type="button"], [type="submit"]),
 button,
 select {
     .fluentIcon:only-child {
-        display: block;
+        height: 1lh;
+        width: 1lh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 }
 

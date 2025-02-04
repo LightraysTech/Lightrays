@@ -4,14 +4,14 @@ menu {
 
     background-color: var(--component-background);
     box-shadow: var(--shadow-3);
-    border: none;
+    border: var(--site-stroke);
     border-radius: 4px;
     margin: 8px 0;
-    padding: 4px 0;
+    padding: 4px;
     gap: 4px;
     overflow: hidden;
     position-area: bottom span-right;
-    position-try: bottom span-right, top span-right, bottom span-left, top span-left;
+    position-try-fallbacks: flip-block, flip-inline, flip-block flip-inline;
 
     transition: all 0.25s var(--curve-ease) allow-discrete;
 
@@ -27,7 +27,7 @@ menu {
     & > button,
     &.small-components > button {
         text-align: left;
-        margin: 0 4px;
+        justify-content: start;
 
         box-shadow: none !important;
 
@@ -46,9 +46,10 @@ menu {
     }
 
     hr {
-        width: 100%;
+        //width: 100%;
+        flex: 1;
         border: none;
-        border-top: var(--component-stroke);
+        border-top: var(--site-stroke);
         margin: 2px 0;
     }
 }

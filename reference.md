@@ -39,10 +39,10 @@
 
 ## Padding / Margin
 
-.p-[ s | m | l | xl ]  
-.px-[ s | m | l | xl ]  
-.py-[ s | m | l | xl ]  
+.p-[ xs | s | m | l | xl ]  
+.px-[ xs | s | m | l | xl ]  
+.py-[ xs | s | m | l | xl ]  
 
-.m-[ s | m | l | xl ]  
-.mx-[ s | m | l | xl ]  
-.my-[ s | m | l | xl ]  
+.m-[ xs | s | m | l | xl ]  
+.mx-[ xs | s | m | l | xl ]  
+.my-[ xs | s | m | l | xl ]  

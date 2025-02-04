@@ -6,6 +6,8 @@
   --warning: orange;
   --success: #007B40;
 
+
+  // #region Accent
   --primary: light-dark(oklch(65% .155 250), oklch(55% .15 250));
 
   --l-range: .2;
@@ -37,7 +39,10 @@
 
   accent-color: var(--primary);
 
+  // #endregion
+
   --text-color: light-dark(hsl(0, 0%, 17%), hsl(0, 0%, 95%));
+  --accent-text-color: light-dark(hsl(0, 0%, 95%), hsl(0, 0%, 95%));
   --subtle-text-color: light-dark(hsl(0, 0%, 45%), hsl(0, 0%, 65%));
 
   // Theme
@@ -55,7 +60,7 @@
   --component-stroke-color: light-dark(hsl(0, 0%, 88%), hsl(0, 0%, 10%));
   --component-stroke: solid 1px var(--component-stroke-color);
   
-  --site-stroke-color: light-dark(hsl(0, 0%, 85%), #2e2e2e);
+  --site-stroke-color: light-dark(hsl(0, 0%, 85%), hsl(0, 0%, 25%));
   --site-stroke: solid 1px var(--site-stroke-color);
 
   // Shadow
@@ -65,7 +70,7 @@
   --shadow-3: 0px 4px 12px 0px  light-dark(rgb(0 0 0 / 0.2),  rgb(0 0 0 / 0.3)), 0px 0px 4px 0px light-dark(rgb(0 0 0 / .1), rgb(0 0 0 / .15));
   --shadow-4: 0px 8px 28px 0px  light-dark(rgb(0 0 0 / 0.25), rgb(0 0 0 / 0.35)), 0px 0px 6px 0px light-dark(rgb(0 0 0 / .1), rgb(0 0 0 / .25));
 
-  // Motion
+  // #region Easings
   --curve-ease-in: cubic-bezier(0.14, 0.73, 0, 1);
   --curve-ease-in-out: cubic-bezier(0.32, 0.72, 0, 1);
   --curve-ease: cubic-bezier(0.4, 0, 0.2, 1);
@@ -103,13 +108,20 @@
   --easeOutBack: cubic-bezier(0.34, 1.56, 0.64, 1);
   --easeInOutBack: cubic-bezier(0.68, -0.6, 0.32, 1.6);
 
-
+  // #endregion
 
   &:has([theme=light]) {
     color-scheme: light;
   }
 
   &:has([theme=dark]) {
+    color-scheme: dark;
+  }
+  &:has([data-theme=light]) {
+    color-scheme: light;
+  }
+
+  &:has([data-theme=dark]) {
     color-scheme: dark;
   }
 }

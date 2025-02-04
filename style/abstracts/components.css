@@ -1,4 +1,5 @@
 @layer lr-components {
+
   :where(.lr-list > div,
     .lr-box,
     button,
@@ -39,10 +40,11 @@
       --underline-width: 1px;
     }
 
-    &:where(input:not(:disabled)[type="submit"]),
+    &:where(:not(:disabled)[type="submit"]),
     .important-components > &,
     &.important.important {
       background-color: var(--primary);
+      color: var(--accent-text-color);
 
       --hover-background: var(--light);
       --active-background: var(--dark);
@@ -66,6 +68,8 @@
       border: none;
       --hover-shadow: none;
       --active-shadow: none;
+      --hover-color: var(--primary);
+      --active-color: var(--dark);
     }
 
 
@@ -86,7 +90,7 @@
       }
     }
 
-    &:where(input:not(:disabled)):where([type="reset"], [type="button"], [type="submit"]),
+    &:where(:not(:disabled)):where([type="reset"], [type="button"], [type="submit"]),
     &:where(button, select):where(:not(:disabled)),
     .interactive-components > &,
     &.interactive.interactive {
@@ -97,11 +101,13 @@
 
 
       &:where(:hover) {
+        color: var(--hover-color);
         box-shadow: var(--hover-shadow);
         background: var(--hover-background);
       }
 
       &:where(:active) {
+        color: var(--active-color);
         box-shadow: var(--active-shadow);
         background: var(--active-background);
       }
@@ -190,36 +196,37 @@
   textarea {
     font: inherit;
     font-family: var(--component-font);
-    color: var(--color-text);
+    color: var(--text-color);
   }
 
-  input:not(:disabled):where([type="reset"], [type="button"], [type="submit"]),
+  :not(:disabled):where([type="reset"], [type="button"], [type="submit"]),
   button,
   select {
     text-align: center;
 
-    &:has(.fluentIcon:only-child) {
-      padding: 10px 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 
-      .fluentIcon {
-        display: block;
-      }
+    &:has(.fluentIcon:only-child) {
+      padding: 8px;
+    }
+
+    & > .fluentIcon:only-child {
+      height: 1lh;
+      width: 1lh;
     }
 
     &.small,
     .small-components > & {
+      gap: 4px;
+
       &:has(.fluentIcon:only-child) {
-        padding: 6px 6px;
-      }
-
-      & > .fluentIcon:not(:only-child) {
-        margin-right: 4px;
+        padding: 4px;
       }
     }
 
-    & > .fluentIcon:not(:only-child) {
-      margin-right: 8px;
-    }
   }
 
   :disabled {
