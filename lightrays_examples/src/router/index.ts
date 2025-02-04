@@ -6,7 +6,7 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'home',
+      name: 'Home',
       component: HomeView,
     },
     {
@@ -39,7 +39,11 @@ const router = createRouter({
       name: 'Animation',
       component: () => import('../views/AnimationView.vue')
     },
-
+    {
+      path: '/examples/list',
+      name: 'List',
+      component: () => import('../views/examples/ListExample.vue')
+    },
   ],
 })
 

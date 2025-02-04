@@ -44,7 +44,15 @@ const navOpen = ref(false);
       <i class="fluentIcon beaker_regular"></i>
       Experiments
     </RouterLink>
-    
+
+    <details>
+      <summary>Example Pages</summary>
+      <RouterLink to="/examples/list">
+        <i class="fluentIcon beaker_regular"></i>
+        List
+      </RouterLink>
+    </details>
+
     <details>
       <summary>Submenu</summary>
       <a>Page</a>
@@ -62,37 +70,37 @@ const navOpen = ref(false);
     </a>
   </nav>
 
-  <header>
-    <img class="mobile-header" @click="navOpen = true" src="/logo.png" height="28" style="filter: hue-rotate(calc(var(--hue) * 1deg - 250deg))">
-    <h3>{{ router.currentRoute.value.name }}</h3>
-
-    <div style="flex-grow: 1;"></div>
-    <button v-if="theme == 'light' || theme == 'auto-light'" @click="theme = 'dark'" class="subtle"><i class="fluentIcon weather_moon_regular"></i></button>
-    <button v-if="theme == 'dark' || theme == 'auto-dark'" @click="theme = 'light'" class="subtle"><i class="fluentIcon weather_sunny_regular"></i></button>
-  </header>
   <main :theme>
-    <RouterView />
+    <header>
+      <img class="mobile-header" @click="navOpen = true" src="/logo.png" height="28" style="filter: hue-rotate(calc(var(--hue) * 1deg - 250deg))">
+      <h3>{{ router.currentRoute.value.name }}</h3>
+
+      <div class="grow"></div>
+      <button v-if="theme == 'light' || theme == 'auto-light'" @click="theme = 'dark'" class="subtle"><i class="fluentIcon weather_moon_regular"></i></button>
+      <button v-if="theme == 'dark' || theme == 'auto-dark'" @click="theme = 'light'" class="subtle"><i class="fluentIcon weather_sunny_regular"></i></button>
+    </header>
+    <article class="p-xl">
+      <RouterView />
+    </article>
   </main>
 
 </template>
 
 <style scoped>
+main {
+  padding: 0;
+}
+
 header {
+  position: sticky;
+  top: 0px;
+  margin-top: 16px;
   display: flex;
   align-items: center;
   gap: 16px;
-  padding: 32px 16px 16px;
+  padding: 16px 32px;
   border-radius: 0;
-  box-shadow: var(--shadow-0);
-}
-
-@media (width > 1000px) {
-  .mobile-header {
-    display: none;
-  }
-
-  header {
-    border: none;
-  }
+  background-color: var(--site-background);
+  z-index: 100;
 }
 </style>

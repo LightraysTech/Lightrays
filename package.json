@@ -15,7 +15,7 @@
   "main": "style/Lightrays.css",
   "scripts": {
     "start": "sass --style=compressed .\\style\\Lightrays.scss:.\\style\\Lightrays.css -w",
-    "dev": "npm run dev --prefix ./lightrays_examples",
+    "dev": "npm run dev --host --prefix ./lightrays_examples",
     "build": "npm run build-sass & npm run build-docs",
     "build-sass": "sass --style=compressed .\\style\\Lightrays.scss:.\\style\\Lightrays.css",
     "build-docs": "npm run build --prefix ./lightrays_examples",

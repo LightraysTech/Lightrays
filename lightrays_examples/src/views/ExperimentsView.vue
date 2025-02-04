@@ -1,85 +1,21 @@
 <script setup lang="ts">
-import Card from 'lightrays/vue_components/Card.vue';
-import Select from 'lightrays/vue_components/inputs/Select.vue';
+import { Picker, Select, Dialog } from 'lightrays/vue_components';
 import { ref } from 'vue';
 // import Graph from '@/components/Gaph.vue';
-
 const m = ref(1)
 </script>
 
 <template>
-  <h6>Subheader</h6>
-  <div class="lr-list inline-components">
-    <Card>
-      <template #default>List Item</template>
-      <template #description>Description</template>
-      <template #right>
-        <button class="subtle"><i class="fluentIcon more_horizontal_regular"></i></button>
-      </template>
-    </Card>
-    <Card>
-      <template #default>List Item</template>
-      <template #description>Description</template>
-      <template #right>
-        <button class="subtle"><i class="fluentIcon more_horizontal_regular"></i></button>
-      </template>
-    </Card>
-    <Card>
-      <template #default>List Item</template>
-      <template #description>Description</template>
-      <template #right>
-        <button class="subtle"><i class="fluentIcon more_horizontal_regular"></i></button>
-      </template>
-    </Card>
-    <Card>
-      <template #left>
-        <input type="checkbox" name="" id="">
-      </template>
-      <template #default>List Item</template>
-      <template #description>Description</template>
-      <template #right>
-        <button class="subtle"><i class="fluentIcon more_horizontal_regular"></i></button>
-      </template>
-    </Card>
-    <Card>
-      <template #left>
-        <input type="checkbox" name="" id="">
-      </template>
-      <template #default>List Item</template>
-      <template #description>Description</template>
-      <template #right>
-        <button class="subtle"><i class="fluentIcon more_horizontal_regular"></i></button>
-      </template>
-    </Card>
-    <Card>
-      <template #left>
-        <input type="checkbox" name="" id="">
-      </template>
-      <template #default>List Item</template>
-      <template #right>
-        <button class="subtle"><i class="fluentIcon more_horizontal_regular"></i></button>
-      </template>
-    </Card>
-    <Card>
-      <template #left>
-        <i class="fluentIcon re_order_dots_vertical_regular" style="color: var(--subtle-text-color);"></i>
-      </template>
-      <template #default>List Item</template>
-      <template #right>
-        <button class="subtle"><i class="fluentIcon more_horizontal_regular"></i></button>
-      </template>
-    </Card>
-    <Card>
-      <template #left>
-        <i class="fluentIcon re_order_dots_vertical_regular" style="color: var(--subtle-text-color);"></i>
-      </template>
-      <template #default>List Item</template>
-      <template #right>
-        <button class="subtle"><i class="fluentIcon more_horizontal_regular"></i></button>
-      </template>
-    </Card>
-  </div>
-  <br><br><br><br><br><br><br><br>
+  <Dialog name="Title">
+    <article>
+      Hello
+    </article>
+    <footer>
+      <button type="submit">
+        Save
+      </button>
+    </footer>
+  </Dialog>
   <Select v-model="m" placeholder="Select Something">
     <option value="1">Abc</option>
     <option value="2">Def</option>
@@ -96,6 +32,52 @@ const m = ref(1)
     <option value="1">Abc</option>
     <option value="2">Def</option>
   </select>
+  <br><br>
+  <Picker class="flat" :center-on-mobile="true" :margin="8">
+    <template #default>asdfrtgzhujiki</template>
+    <template #picker>
+      <menu style="margin: 0;" class="small-components">
+        <button>sdfghjure</button>
+        <button>Btn1</button>
+        <hr>
+        <button>Btn1</button>
+      </menu>
+    </template>
+  </Picker>
+  <Picker>
+    <template #default>H2a</template>
+    <template #picker>
+      <menu style="margin: 0;">
+        <button>Btn2</button>
+      </menu>
+    </template>
+  </Picker>
+  <br>
+  <br>
+  <button class="mx-m">
+    <i class="fluentIcon calendar_regular"></i>
+    <span>Calendar</span>
+  </button>
+  <button class="mx-m">
+    <span>Calendar</span>
+    <i class="fluentIcon calendar_regular"></i>
+  </button>
+  <button class="mx-m">
+    <span>Cal</span>
+    <i class="fluentIcon calendar_regular"></i>
+  </button>
+  <button class="mx-m">
+    <i class="fluentIcon calendar_regular"></i>
+  </button>
+  <br>
+  <br>
+  <div>
+    Lorem ipsum dolor sit amet <i class="fluentIcon calendar_regular"></i><br>
+    Lorem ipsum dolor sit amet <i class="fluentIcon calendar_regular" size="16"></i><br>
+    Lorem ipsum dolor sit amet <i class="fluentIcon calendar_regular" size="24"></i><br>
+    Lorem ipsum dolor sit amet <i class="fluentIcon calendar_regular" style="--size: 32px"></i><br>
+  </div>
+
   <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
   <div class="flex-grow" style="width: min(450px, 100%); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow-3);">
     <div style="height: 120px; background: var(--component-important);"> </div>
