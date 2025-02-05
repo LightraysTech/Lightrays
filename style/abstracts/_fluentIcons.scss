@@ -73,22 +73,22 @@ select {
 
 details {
     .fluentIcon.details_caret_left_regular:before {
-        content: "\e374";
+        content: "\e390";
         transition: rotate .2s var(--curve-ease);
     }
 
     .fluentIcon.details_caret_left_filled:before {
-        content: "\e373";
+        content: "\e38f";
         transition: rotate .2s var(--curve-ease);
     }
 
     .fluentIcon.details_caret_right_regular:before {
-        content: "\e372";
+        content: "\e392";
         transition: rotate .2s var(--curve-ease);
     }
 
     .fluentIcon.details_caret_right_filled:before {
-        content: "\e371";
+        content: "\e391";
         transition: rotate .2s var(--curve-ease);
     }
 
@@ -113,11 +113,11 @@ details {
         text-transform: none;
         vertical-align: baseline;
         transition: rotate .2s var(--curve-ease);
-        content: "\e373";
+        content: "\e38f";
     }
 
     &[open] ::marker {
-        content: "\e36d";
+        content: "\e38b";
     }
 }
 
