@@ -33,6 +33,11 @@ const m = ref(1)
     <option value="2">Def</option>
   </select>
   <br><br>
+  <select class="small " v-model="m">
+    <option value="1">Abc</option>
+    <option value="2">Def</option>
+  </select>
+  <br><br>
   <Picker class="flat" :center-on-mobile="true" :margin="8">
     <template #default>asdfrtgzhujiki</template>
     <template #picker>

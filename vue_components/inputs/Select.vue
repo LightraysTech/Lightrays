@@ -1,7 +1,7 @@
 <script setup lang='ts'>
 import { onMounted, onUpdated, ref, useTemplateRef } from 'vue';
 
-defineProps<{ placeholder?: string }>()
+defineProps<{ placeholder?: string, required?:boolean }>()
 
 const model = defineModel<any>({ default: null })
 const select = useTemplateRef<HTMLSelectElement>("select")
@@ -24,14 +24,15 @@ function click(e: Event) {
 </script>
 
 <template>
-  <button @click="click">
+  <button type="button" @click="click">
     <slot name="value">
       <span v-if="model == null && placeholder" class="subtle-text">{{ placeholder }}</span>
       <span v-else-if="model == null">&nbsp;</span>
       <span v-else>{{ displayValue }}</span>
     </slot>
     <i class="fluentIcon chevron_down_regular" size="18"></i>
-    <select ref="select" v-model="model">
+    <!-- //TODO make required attribute work -->
+    <select ref="select" v-model="model" :required>
       <slot></slot>
     </select>
   </button>

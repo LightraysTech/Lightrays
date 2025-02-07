@@ -202,7 +202,7 @@ details {
             vertical-align: baseline;
             transition: rotate .25s var(--curve-ease);
             display: inline-block;
-            content: "\e391";
+            content: "\e38f";
         }
 
         &.caret_left::before {
@@ -214,7 +214,7 @@ details {
             vertical-align: baseline;
             transition: rotate .25s var(--curve-ease);
             display: inline-block;
-            content: "\e38f";
+            content: "\e391";
         }
 
     }

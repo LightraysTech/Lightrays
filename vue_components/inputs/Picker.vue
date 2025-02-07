@@ -85,8 +85,8 @@ watch(isOpen, () => {
     position-anchor: initial !important;
     top: 0;
     left: 0;
-    width: 100dvw;
-    height: 100dvh;
+    width: 100%;
+    height: 100%;
     margin: 0;
     display: flex;
     justify-content: center;
