@@ -194,7 +194,6 @@
   input,
   select,
   textarea {
-    font: inherit;
     font-family: var(--component-font);
     color: var(--text-color);
   }

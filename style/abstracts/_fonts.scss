@@ -13,18 +13,10 @@
 :root {
   --text-font: "Satoshi Variable", SatoshiVariable, InterVariable, "Segoe UI Variable", Tahoma, Verdana, sans-serif;
   --component-font: "InterVariable", sans-serif;
+  --monospace-font: monospace, sans-serif;
 }
 
 // #region Headers
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  text-wrap-style: balance;
-}
-
 h1 {
   font-size: 3rem; // 48px
   font-weight: 900;

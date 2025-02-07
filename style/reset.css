@@ -1,0 +1,125 @@
+@layer lr-reset {
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    interpolate-size: allow-keywords;
+  }
+
+  [hidden] {
+    display: none !important;
+  }
+
+  html {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-text-size-adjust: none;
+    text-size-adjust: 100%;
+    color-scheme: dark light;
+    tab-size: 2;
+    line-height: 1.5;
+  }
+
+  html:has(dialog:modal[open]) {
+    overflow: clip;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html:focus-within {
+      scroll-behavior: smooth;
+    }
+  }
+
+  body {
+    line-height: inherit;
+    font-family: system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+    min-height: 100dvh;
+  }
+
+  input,
+  button,
+  textarea,
+  select {
+    font: inherit;
+    color: inherit;
+    letter-spacing: inherit;
+    word-spacing: inherit;
+    font-feature-settings: inherit;
+    font-variation-settings: inherit;
+    margin: 0;
+  }
+
+  textarea {
+    resize: block;
+  }
+
+  :is(button,
+    label[name],
+    select,
+    summary,
+    [role='button'],
+    [role='option']):not(:disabled) {
+    cursor: pointer;
+  }
+
+  a {
+    color: inherit;
+    text-underline-offset: 0.2ex;
+  }
+
+  ul,
+  ol {
+    list-style: none;
+  }
+
+  img,
+  svg,
+  video,
+  canvas,
+  audio,
+  iframe,
+  embed,
+  object {
+    display: block;
+  }
+
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    text-wrap: balance;
+  }
+
+  hr {
+    border: none;
+    border-block-start: 1px solid;
+    color: inherit;
+    block-size: 0;
+    overflow: visible;
+  }
+
+  dialog,
+  [popover] {
+    border: none;
+    background: none;
+    color: inherit;
+    max-width: 100dvw;
+    max-height: 100dvh;
+    overflow: unset;
+  }
+
+  dialog:not([open], [popover]),
+  [popover]:not(:popover-open) {
+    display: none !important;
+  }
+
+  :focus-visible,
+  :target {
+    scroll-margin-block: 8vh;
+  }
+}

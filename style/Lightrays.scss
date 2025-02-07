@@ -1,3 +1,4 @@
+@use 'reset.css';
 @use 'abstracts/fonts';
 //@use 'abstracts/components';
 @use "abstracts/themes";
@@ -14,31 +15,17 @@
 }
 
 html {
-  font-family: var(--text-font);
   line-height: 1.5;
 }
 
 body {
-  -webkit-tap-highlight-color: transparent;
-  background-color: var(--site-background);
-  background-attachment: fixed;
-
+  font-family: var(--text-font);
   color: var(--text-color);
-  margin: 0;
-
-  scroll-behavior: smooth;
-  min-height: 100dvh;
+  background-color: var(--site-background);
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  interpolate-size: allow-keywords;
-}
-
-main {
-  padding: 16px;
+hr {
+  border-color: var(--site-stroke bhu);
 }
 
 ::-webkit-scrollbar {
@@ -108,12 +95,16 @@ a {
   color: var(--subtle-text-color)
 }
 
-.hidden {
-  display: none;
-}
-
 .select-none {
   user-select: none;
+}
+
+.index-children > * {
+  @for $i from 1 through 15 {
+    &:nth-child(#{$i}) {
+      --i: #{$i};
+    }
+  }
 }
 
 .round-corners {
@@ -268,6 +259,7 @@ a {
 // #endregion
 
 pre:has(code) {
+  font-family: var(--monospace-font);
   border: var(--site-stroke);
   padding: 8px;
   border-radius: 6px;
@@ -386,14 +378,6 @@ dialog {
       padding: 1rem 1.5rem {
         top: 0em
       }
-    }
-  }
-}
-
-.index-children > * {
-  @for $i from 1 through 15 {
-    &:nth-child(#{$i}) {
-      --i: #{$i};
     }
   }
 }
