@@ -1,4 +1,5 @@
 import 'lightrays/style/Lightrays.scss'
+import 'lightrays/style/fluentIconClasses.css'
 
 import { createApp } from 'vue'
 import App from './App.vue'

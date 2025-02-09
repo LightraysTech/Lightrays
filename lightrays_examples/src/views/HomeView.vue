@@ -34,25 +34,6 @@
   <br><br>
   <h4>Colors</h4>
   <div>
-    <table>
-      <tr>
-        <td><label>Primary </label></td>
-        <td><input type="color" value="#0f74c5" oninput="document.documentElement.style.setProperty('--primary', event.target.value)"></td>
-      </tr>
-      <tr>
-        <td><label>Lightness-range</label></td>
-        <input type="range" value="0.2" onpointermove="document.documentElement.style.setProperty('--l-range', event.target.value)" min="0" max="1" step="0.01">
-      </tr>
-      <tr>
-        <td><label>Chroma-range</label></td>
-        <input type="range" value="0.03" onpointermove="document.documentElement.style.setProperty('--c-range', event.target.value)" min="0" max=".1" step="0.001">
-      </tr>
-      <tr>
-        <td><label>Hue-range</label></td>
-        <input type="range" value="6" onpointermove="document.documentElement.style.setProperty('--h-range', event.target.value)" min="-20" max="20">
-      </tr>
-    </table>
-    <br>
     <div class="flex-grow" style="width: min(350px, 100%); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow-3);">
       <div style="height: 120px; background: var(--darkest);"> </div>
       <div style="height: 120px; background: var(--dark);"> </div>

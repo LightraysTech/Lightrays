@@ -8,33 +8,12 @@
 
 
   // #region Accent
-  --primary: light-dark(oklch(65% .155 250), oklch(55% .15 250));
-
-  --l-range: .2;
-  --c-range: .03;
-  --h-range: 6;
-
-  --l-fac-darkest: -1;
-  --l-fac-dark: -.5;
-  --l-fac-light: .5;
-  --l-fac-lightest: 1;
-
-  --c-fac-darkest: -1;
-  --c-fac-dark: -.5;
-  --c-fac-light: .5;
-  --c-fac-lightest: 1;
-
-  --h-fac-darkest: -1;
-  --h-fac-dark: -.5;
-  --h-fac-light: .5;
-  --h-fac-lightest: 1;
-
-  --darkest:  oklch(from var(--primary) calc(l + var(--l-fac-darkest) *  var(--l-range)) calc(c + var(--c-fac-darkest) *  var(--c-range)) calc(h + var(--h-fac-darkest) *  var(--h-range)));
-  --dark:     oklch(from var(--primary) calc(l + var(--l-fac-dark) *     var(--l-range)) calc(c + var(--c-fac-dark) *     var(--c-range)) calc(h + var(--h-fac-dark) *     var(--h-range)));
-  //--primary:  oklch(from var(--primary) calc(l + var(--l-fac-primary) * var(--l-range))  calc(c + var(--c-fac-primary) * var(--c-range))  calc(h + var(--h-fac-primary) * var(--h-range)))
-  --light:    oklch(from var(--primary) calc(l + var(--l-fac-light) *    var(--l-range)) calc(c + var(--c-fac-light) *    var(--c-range)) calc(h + var(--h-fac-light) *    var(--h-range)));
-  --lightest: oklch(from var(--primary) calc(l + var(--l-fac-lightest) * var(--l-range)) calc(c + var(--c-fac-lightest) * var(--c-range)) calc(h + var(--h-fac-lightest) * var(--h-range)));
-
+  --lightest: light-dark(oklch(0.79 0.13 244.74916863278253), oklch(0.732943550223181 0.14417281523646905 249.4236115718544));
+  --light: light-dark(oklch(0.72 0.15 246.65961845824847), oklch(0.6503162892258696 0.16486541362400792 253.01513337539544));
+  --primary: light-dark(oklch(0.67 0.1647570036981472 248.64231872704713), oklch(0.55 0.15 250));
+  --dark: light-dark(oklch(0.6178788508236821 0.16678083281508277 250.87250598953256), oklch(0.4542496257539689 0.12992137556504074 250.39030286682717));
+  --darkest: light-dark(oklch(0.56453356783737 0.16334517812257926 253.270556246761), oklch(0.3587785117630657 0.10819115307085983 252.26411303986853));
+ 
   --gradient: linear-gradient(in oklch to right, var(--darkest), var(--lightest));
 
   accent-color: var(--primary);

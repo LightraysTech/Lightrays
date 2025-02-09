@@ -1,24 +1,27 @@
 <script setup lang="ts">
-import { onMounted, ref, useTemplateRef } from 'vue';
+import { onMounted, ref, useTemplateRef, watchEffect } from 'vue';
 
 const props = defineProps<{
   width: number,
   height: number,
   data: number[][],
-  minX: number,
-  maxX: number,
-  minY: number,
-  maxY: number,
+  minX: number | null,
+  maxX: number | null,
+  minY: number | null,
+  maxY: number | null,
 }>()
 
 const canvas = useTemplateRef<HTMLCanvasElement>("canvas");
 
-onMounted(() => {
-  if (!canvas.value) throw new Error("Canvas ref not assigned");
+watchEffect(() => {
+  if (!canvas.value) {
+    console.error("Canvas ref not assigned");
+    return
+  }
 
   let ctx = canvas.value.getContext("2d")
-if (!ctx) return
-
+  if (!ctx) return
+  ctx.reset()
   let minX = props.minX != null ? props.minX : Math.min(...props.data.map(d => d[0]))
   let maxX = props.maxX != null ? props.maxX : Math.max(...props.data.map(d => d[0]))
   let minY = props.minY != null ? props.minY : Math.min(...props.data.map(d => d[1]))
@@ -31,8 +34,8 @@ if (!ctx) return
   let h = canvas.value.height
   console.log(minX, maxX, minY, maxY);
 
-  ctx.moveTo(0, h)
-  for (let i = 0; i < props.data.length; i++) {
+  ctx.moveTo((props.data[0][0] - minX) * (w / rangeX), h - (props.data[0][1] - minY) * (h / rangeY))
+  for (let i = 1; i < props.data.length; i++) {
     ctx.lineTo((props.data[i][0] - minX) * (w / rangeX), h - (props.data[i][1] - minY) * (h / rangeY))
   }
   ctx.strokeStyle = "hsl(0, 0%, 95%)"

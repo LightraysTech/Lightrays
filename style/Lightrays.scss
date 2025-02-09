@@ -264,6 +264,7 @@ pre:has(code) {
   padding: 8px;
   border-radius: 6px;
   background-color: var(--component-important);
+  overflow: auto;
 
   code[lang]::before {
     content: attr(lang);

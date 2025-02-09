@@ -2,8 +2,7 @@
 import { ref, watch } from 'vue';
 import { RouterLink, RouterView } from 'vue-router'
 import router from './router';
-
-const theme = ref(window.matchMedia("(prefers-color-scheme: dark)").matches ? "auto-dark" : "auto-light");
+import { theme } from './store';
 
 const navOpen = ref(false);
 </script>
