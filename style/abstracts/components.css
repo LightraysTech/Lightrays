@@ -68,7 +68,7 @@
       border: none;
       --hover-shadow: none;
       --active-shadow: none;
-      --hover-color: var(--primary);
+      /* --hover-color: var(--primary); */
       /*--active-color: var(--dark);*/
     }
 

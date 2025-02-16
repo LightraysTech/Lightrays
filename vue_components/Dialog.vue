@@ -52,6 +52,10 @@ function closeModal() {
 </template>
 
 <style scoped lang='scss'>
+i::before {
+  content: '\e63f';
+}
+
 dialog {
   min-width: min(calc(100dvw - 2rem), 400px);
 }
@@ -65,7 +69,6 @@ header.defaultHeader {
   background-color: var(--component-important);
 
   h4 {
-    overflow: hidden;
     text-overflow: ellipsis;
   }
 }

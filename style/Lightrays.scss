@@ -256,6 +256,22 @@ a {
     l: 16px,
     xl: 32px,
   ));
+
+@include variants("mt", margin-top,
+  (xs: 2px,
+    s: 4px,
+    m: 8px,
+    l: 16px,
+    xl: 32px,
+  ));
+
+@include variants("mb", margin-bottom,
+  (xs: 2px,
+    s: 4px,
+    m: 8px,
+    l: 16px,
+    xl: 32px,
+  ));
 // #endregion
 
 pre:has(code) {
