@@ -25,7 +25,7 @@ body {
 }
 
 hr {
-  border-color: var(--site-stroke bhu);
+  border-color: var(--site-stroke-color);
 }
 
 ::-webkit-scrollbar {
@@ -272,7 +272,14 @@ a {
     l: 16px,
     xl: 32px,
   ));
-// #endregion
+
+  .ml-a {
+    margin-left: auto;
+  }
+  .mr-a {
+    margin-right: auto;
+  }
+  // #endregion
 
 pre:has(code) {
   font-family: var(--monospace-font);

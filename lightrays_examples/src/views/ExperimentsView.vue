@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { Picker, Select, Dialog } from 'lightrays/vue_components';
+import { Picker, Select, Dialog, Dropdown } from 'lightrays/vue_components';
 import { ref } from 'vue';
 // import Graph from '@/components/Gaph.vue';
 const m = ref(1)
+const isOpen = ref(false)
 </script>
 
 <template>
@@ -42,7 +43,7 @@ const m = ref(1)
     <template #default>asdfrtgzhujiki</template>
     <template #picker>
       <menu style="margin: 0;" class="small-components">
-        <button>sdfghjure</button>
+        <button>sdfghjuresdfghjure</button>
         <button>Btn1</button>
         <hr>
         <button>Btn1</button>
@@ -58,7 +59,13 @@ const m = ref(1)
     </template>
   </Picker>
   <br>
-  <br>
+  <button @click="isOpen = !isOpen" style="anchor-name: --a">ABC</button>
+  <Dropdown anchor-name="--a" v-model="isOpen" :position-area-options="['span-bottom right']">
+      <menu style="margin: 0;">
+        <button>Btn2</button>
+      </menu>
+  </Dropdown>
+ <br>
   <button class="mx-m">
     <i class="fluentIcon calendar_regular"></i>
     <span>Calendar</span>
@@ -99,6 +106,14 @@ const m = ref(1)
   <br>
   <h4>Details</h4>
   <br>
+  <details>
+    <summary class="">Summary</summary>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore tempore nulla tempora, dolorum adipisci aperiam vel
+    itaque omnis sint inventore at veritatis libero, ipsa repudiandae iste ipsam voluptatem, molestias quam!
+    Rerum harum expedita natus laudantium quos repudiandae sunt architecto consequatur est aspernatur inventore totam
+    vero, libero sint corrupti voluptatibus et quasi ipsam voluptates perspiciatis quod magni, explicabo iste
+    voluptatum! Ab!
+  </details>
   <details>
     <summary class="caret_left">Summary</summary>
     Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore tempore nulla tempora, dolorum adipisci aperiam vel

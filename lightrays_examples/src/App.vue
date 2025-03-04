@@ -1,14 +1,50 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue';
+import { onMounted, reactive, ref, watch } from 'vue';
 import { RouterLink, RouterView } from 'vue-router'
 import router from './router';
 import { theme } from './store';
+import { startDrag } from 'lightrays/vue_components';
 
 const navOpen = ref(false);
+const navStyle = ref("");
+
+const navDragX = ref(0)
+const I = ref(0)
+/* 
+let startCheck = false
+window.addEventListener("pointerdown", e => {
+  startCheck = false
+  startDrag(e, "touch", (dx) => {
+    console.log(dx);
+
+    if (navOpen.value && dx < -50) {
+      navOpen.value = false;
+    }
+    if (!navOpen.value && dx > 50) {
+      navOpen.value = true;
+    }
+    navStyle.value = navOpen.value ? `transform: translateX(0 0)` : `transform: translateX(-110%)`
+  }, (dx, dy, vx, vy, t, i) => {
+    I.value = dx
+    if (t > 150 && !startCheck) {
+      if (i == 0 || (Math.abs(dy) > Math.abs(dx)) || (navOpen.value && dx > 10) || (!navOpen.value && dx < 20)) {
+        navStyle.value = navOpen.value ? `transform: translateX(0 0)` : `transform: translateX(-110%)`
+        return true // cancel Drag
+      }
+      startCheck = true
+    }
+
+    if (navOpen.value) {
+      navStyle.value = `transition:none; transform: translateX(min(0%, ${dx}px));`
+    } else {
+      navStyle.value = `transition:none; transform: translateX(min(0%, calc(-100% + ${dx}px)));`
+    }
+  })
+}) */
 </script>
 
 <template>
-  <nav :open="navOpen">
+  <nav :open="navOpen || navDragX != 0" :style="navStyle">
     <a @click="navOpen = false">
       <img src="/logo.png" height="20" style="display: block;filter: hue-rotate(calc(var(--hue) * 1deg - 250deg))">
       <b>Lightrays</b>
