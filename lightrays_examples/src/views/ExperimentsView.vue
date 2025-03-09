@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Picker, Select, Dialog, Dropdown } from 'lightrays/vue_components';
+import { Picker, Select, Dialog, Flyout } from 'lightrays/vue_components';
 import { ref } from 'vue';
 // import Graph from '@/components/Gaph.vue';
 const m = ref(1)
@@ -7,6 +7,45 @@ const isOpen = ref(false)
 </script>
 
 <template>
+  <button class="small">Abc</button><button class="flat small">asdfghj</button><br><br>
+  <div class="comp-new flex-col gap-m">
+    <div class="lr-box interactive">
+      Abc
+    </div>
+    <div class="lr-box flat interactive">
+      Abc
+    </div>
+    <div class="lr-box important interactive">
+      Abc
+    </div>
+<input type="text" name="" id="">
+    <div class="lr-box flat important interactive">
+      Abc
+    </div>
+    <br>
+    <div class="lr-box shadow-l" style="background-color: var(--color-layer); border-radius: 8px;">
+      <h5>This is a layer</h5>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo magni cum mollitia in nulla culpa at consectetur quod sequi ad, minima minus incidunt veritatis eum deleniti possimus nihil! Facere, temporibus!
+      </p>
+      <div class="flex" style="min-width: 96px;">
+        <button class="ml-a">This a button</button>
+      </div>
+    </div>
+  </div>
+  <br><br>
+  <div class="flex-wrap justify-center gap-xl p-l my-l rad-l" style="background: #ddd">
+    <div class="shadow-2 rad-l" style="width: 64px; aspect-ratio: 1; background: var(--color-inset);"></div>
+    <div class="shadow-2 rad-l" style="width: 64px; aspect-ratio: 1; background: var(--color-base);"></div>
+    <div class="shadow-2 rad-l" style="width: 64px; aspect-ratio: 1; background: var(--color-layer);"></div>
+    <div class="shadow-2 rad-l" style="width: 64px; aspect-ratio: 1; background: var(--color-surface-0);"></div>
+    <div class="shadow-2 rad-l" style="width: 64px; aspect-ratio: 1; background: var(--color-surface-1);"></div>
+    <div class="shadow-2 rad-l" style="width: 64px; aspect-ratio: 1; background: var(--color-surface-2);"></div>
+    <div class="shadow-2 rad-l" style="width: 64px; aspect-ratio: 1; background: var(--color-text-2);"></div>
+    <div class="shadow-2 rad-l" style="width: 64px; aspect-ratio: 1; background: var(--color-text-1);"></div>
+    <div class="shadow-2 rad-l" style="width: 64px; aspect-ratio: 1; background: var(--color-text);"></div>
+  </div>
+
   <Dialog name="Title">
     <article>
       Hello
@@ -60,12 +99,12 @@ const isOpen = ref(false)
   </Picker>
   <br>
   <button @click="isOpen = !isOpen" style="anchor-name: --a">ABC</button>
-  <Dropdown anchor-name="--a" v-model="isOpen" :position-area-options="['span-bottom right']">
-      <menu style="margin: 0;">
-        <button>Btn2</button>
-      </menu>
-  </Dropdown>
- <br>
+  <Flyout anchor-name="--a" v-model="isOpen" :position-area-options="['span-bottom right']">
+    <menu style="margin: 0;">
+      <button>Btn2</button>
+    </menu>
+  </Flyout>
+  <br>
   <button class="mx-m">
     <i class="fluentIcon calendar_regular"></i>
     <span>Calendar</span>

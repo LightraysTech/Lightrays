@@ -2,10 +2,10 @@
 import { computed, onMounted, ref, useId, useTemplateRef, watch } from "vue";
 
 const props = defineProps<{
-  anchorName:string,
+  anchorName: string,
   margin?: number,
   centerOnMobile?: boolean,
-  positionAreaOptions?:string[]
+  positionAreaOptions?: string[]
 }>()
 
 const isOpen = defineModel({ default: false })
@@ -49,6 +49,8 @@ onMounted(() => {
 const width = ref(0)
 const height = ref(0)
 function pickerIntersect(entries: IntersectionObserverEntry[]) {
+  console.log("intersect");
+
   if (!isOpen.value) return
 
   width.value = dropdown.value?.clientWidth || 0
@@ -56,7 +58,7 @@ function pickerIntersect(entries: IntersectionObserverEntry[]) {
 }
 
 const defaultPositionAreaOptions = ["bottom span-right", "top span-right", "bottom span-left", "top span-left"]
-const posAreaOptions = computed(()=>(props.positionAreaOptions||defaultPositionAreaOptions))
+const posAreaOptions = computed(() => (props.positionAreaOptions || defaultPositionAreaOptions))
 
 const positionArea = ref(posAreaOptions.value[0])
 
@@ -100,7 +102,7 @@ const pickerClasses = computed(() => ({ 'centerOnMobile': props.centerOnMobile }
   position: absolute;
   pointer-events: none;
 
-  /* background: rgba(255, 0, 0, 0.658); */
+  background: rgba(255, 0, 0, 0.658);
   /* outline: 1px solid black; */
 }
 

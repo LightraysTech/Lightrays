@@ -66,7 +66,7 @@ header.defaultHeader {
   align-items: center;
   overflow: hidden;
   padding: 16px 20px 12px 24px;
-  background-color: var(--component-important);
+  background-color: var(--color-inset);
 
   h4 {
     text-overflow: ellipsis;

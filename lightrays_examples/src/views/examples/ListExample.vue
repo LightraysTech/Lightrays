@@ -97,7 +97,7 @@ import Card from 'lightrays/vue_components/Card.vue';
   <div class="lr-list inline-components">
     <Card>
       <template #left>
-        <i class="fluentIcon re_order_dots_vertical_regular" style="color: var(--subtle-text-color);"></i>
+        <i class="fluentIcon re_order_dots_vertical_regular subtle-text"></i>
       </template>
       <template #default>List Item</template>
       <template #right>
@@ -106,7 +106,7 @@ import Card from 'lightrays/vue_components/Card.vue';
     </Card>
     <Card>
       <template #left>
-        <i class="fluentIcon re_order_dots_vertical_regular" style="color: var(--subtle-text-color);"></i>
+        <i class="fluentIcon re_order_dots_vertical_regular subtle-text"></i>
       </template>
       <template #default>List Item</template>
       <template #right>

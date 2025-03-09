@@ -1,6 +1,6 @@
 <script setup lang='ts'>
 import { useId } from "vue";
-import Dropdown from "../Dropdown.vue";
+import Dropdown from "../Flyout.vue";
 
 const props = defineProps<{
   class?: any,

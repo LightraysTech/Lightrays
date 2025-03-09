@@ -1,3 +1,11 @@
+@use "sass:color";
+@function gray($n) {
+  @return color.adjust(rgb($n,$n,$n));
+}
+@function grayHex($n) {
+  @return "#"+$n+""+$n+""+$n;
+}
+
 :root {
   color-scheme: light dark;
 
@@ -20,31 +28,49 @@
 
   // #endregion
 
-  --text-color: light-dark(hsl(0, 0%, 17%), hsl(0, 0%, 95%));
-  --accent-text-color: light-dark(hsl(0, 0%, 95%), hsl(0, 0%, 95%));
-  --subtle-text-color: light-dark(hsl(0, 0%, 45%), hsl(0, 0%, 65%));
+  --text-color: red;
+  --accent-text-color: red;
+  --subtle-text-color: red;
 
   // Theme
-  --site-background:      light-dark(hsl(0, 0%, 96%),  hsl(0, 0%, 11%));
-  --component-background: light-dark(hsl(0, 0%, 100%), hsl(0, 0%, 16%));
-  --component-hover:      light-dark(hsl(0, 0%, 98%),  hsl(0, 0%, 22%));
-  --component-active:     light-dark(hsl(0, 0%, 94%),  hsl(0, 0%, 26%));
-  --component-important:  light-dark(hsl(0, 0%, 92%),  hsl(0, 0%, 9%));
-  --component-disabled:   light-dark(hsl(0, 0%, 98%),  hsl(0, 0%, 13%));
+  --color-inset:          light-dark(#{gray(233)},  #{gray(20)});
+  --color-base:           light-dark(#{gray(240)},  #{gray(24)});
+  --color-layer:          light-dark(#{gray(250)},  #{gray(32)});
+
+  --color-surface-0:      light-dark(#{gray(255)},  #{gray(44)});
+  --color-surface-1:      light-dark(#{gray(250)},  #{gray(56)});
+  --color-surface-2:      light-dark(#{gray(245)},  #{gray(66)});
+  
+  --color-text-2:         light-dark(#{gray(153)},  #{gray(115)});
+  --color-text-1:         light-dark(#{gray(115)},  #{gray(166)});
+  --color-text:           light-dark(#{gray(43)},   #{gray(242)});
+  --color-text-on-accent: light-dark(#{gray(242)},  #{gray(242)});
+
+  --color-stroke-base:    light-dark(#{gray(217)},  #{gray(45)});
+  --color-stroke-surface: light-dark(#{gray(224)},  #{gray(65)});
+
+  --stroke-base: 1px solid var(--color-stroke-base);
+  --stroke-surface: 1px solid var(--color-stroke-surface);
+
+  --site-background:      red;
+  --component-background: red;
+  --component-hover:      red;
+  --component-active:     red;
+  --component-important:  red;
+  --component-disabled:   red;
+
+  --component-stroke-color: red;
+  --component-stroke: solid 10px var(--component-stroke-color);
+  
+  --site-stroke-color: red;
+  --site-stroke: solid 10px var(--site-stroke-color);
 
 
   --scrollbar-color: light-dark(hsl(0, 0%, 79%), hsl(0, 0%, 24%));
 
-
-  --component-stroke-color: light-dark(hsl(0, 0%, 88%), hsl(0, 0%, 10%));
-  --component-stroke: solid 1px var(--component-stroke-color);
-  
-  --site-stroke-color: light-dark(hsl(0, 0%, 85%), hsl(0, 0%, 25%));
-  --site-stroke: solid 1px var(--site-stroke-color);
-
   // Shadow
   --shadow-0: 0px 1px 2px -1px  light-dark(rgb(0 0 0 / 0.25), rgb(0 0 0 / 0.5));
-  --shadow-1: 0px 1.5px 3px 0px   light-dark(rgb(0 0 0 / 0.1),  rgb(0 0 0 / 0.25));
+  --shadow-1: 0px 1.5px 3px 0px light-dark(rgb(0 0 0 / 0.1),  rgb(0 0 0 / 0.25));
   --shadow-2: 0px 2.5px 4px 0px light-dark(rgb(0 0 0 / 0.15), rgb(0 0 0 / 0.3));
   --shadow-3: 0px 4px 12px 0px  light-dark(rgb(0 0 0 / 0.2),  rgb(0 0 0 / 0.3)), 0px 0px 4px 0px light-dark(rgb(0 0 0 / .1), rgb(0 0 0 / .15));
   --shadow-4: 0px 8px 28px 0px  light-dark(rgb(0 0 0 / 0.25), rgb(0 0 0 / 0.35)), 0px 0px 6px 0px light-dark(rgb(0 0 0 / .1), rgb(0 0 0 / .25));
@@ -116,4 +142,25 @@
 
 .shadow-4 {
   box-shadow: var(--shadow-4);
+}
+
+
+.bg-inset {
+  background-color: var(--color-inset);
+}
+.bg-base {
+  background-color: var(--color-base);
+}
+.bg-layer {
+  background-color: var(--color-layer);
+}
+
+.bg-surface-0 {
+  background-color: var(--color-surface-0);
+}
+.bg-surface-1 {
+  background-color: var(--color-surface-1);
+}
+.bg-surface-2 {
+  background-color: var(--color-surface-2);
 }

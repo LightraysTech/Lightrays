@@ -11,45 +11,48 @@ function upperCaseFirst(s: string) {
 <template>
   <div :class="' lr-box'">lr-box</div>
   <br><br>
-  <h5>Inputs</h5>
-  <div class="flex-vertical gap">
-    <div :class="parentClass + ' flex-wrap small-gap'">
+  <h4>Inputs</h4>
+  <div class="flex-vertical gap my-m">
+    <small class="subtle-text"><b>Default</b></small>
+    <div :class="parentClass + ' flex-wrap my-s gap-m'">
       <input v-for="s in styles" :class="s" :value="upperCaseFirst(s)" style="width: 200px;">
     </div>
-    <div :class="parentClass + ' flex-wrap small-gap'">
+    <small class="subtle-text"><b>Disabled</b></small>
+    <div :class="parentClass + ' flex-wrap my-s gap-m'">
       <input disabled v-for="s in styles" :class="s" :value="upperCaseFirst(s)" style="width: 200px;">
     </div>
-    <div :class="parentClass + ' flex-wrap small-gap'">
+    <small class="subtle-text"><b>Small</b></small>
+    <div :class="parentClass + ' flex-wrap my-s gap-m'">
       <input v-for="s in styles" :class="s + ' small'" :value="upperCaseFirst(s)" style="width: 200px;">
     </div>
   </div>
   <br><br>
-  <h5>Buttons</h5>
+  <h4>Buttons</h4>
   <div class="flex-vertical gap">
-    <div :class="parentClass + ' flex-wrap small-gap'">
+    <div :class="parentClass + ' flex-wrap my-s gap-m'">
       <button v-for="s in styles" :class="s">{{ upperCaseFirst(s) }}</button>
     </div>
-    <div :class="parentClass + ' flex-wrap small-gap'">
+    <div :class="parentClass + ' flex-wrap my-s gap-m'">
       <button disabled v-for="s in styles" :class="s">{{ upperCaseFirst(s) }}</button>
     </div>
-    <div :class="parentClass + ' flex-wrap small-gap'">
+    <div :class="parentClass + ' flex-wrap my-s gap-m'">
       <button v-for="s in styles" :class="s + ' small'">{{ upperCaseFirst(s) }}</button>
     </div>
   </div>
   <br><br>
   <h5>Selects</h5>
   <div class="flex-vertical gap">
-    <div :class="parentClass + ' flex-wrap small-gap'">
+    <div :class="parentClass + ' flex-wrap my-s gap-m'">
       <select v-for="s in styles" :class="s">
         <option value="">{{ upperCaseFirst(s) }}</option>
       </select>
     </div>
-    <div :class="parentClass + ' flex-wrap small-gap'">
+    <div :class="parentClass + ' flex-wrap my-s gap-m'">
       <select disabled v-for="s in styles" :class="s">
         <option value="">{{ upperCaseFirst(s) }}</option>
       </select>
     </div>
-    <div :class="parentClass + ' flex-wrap small-gap'">
+    <div :class="parentClass + ' flex-wrap my-s gap-m'">
       <select v-for="s in styles" :class="s + ' small'">
         <option value="">{{ upperCaseFirst(s) }}</option>
       </select>

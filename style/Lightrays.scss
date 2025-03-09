@@ -1,9 +1,9 @@
+@use "abstracts/themes";
 @use 'reset.css';
 @use 'abstracts/fonts';
-//@use 'abstracts/components';
-@use "abstracts/themes";
 @use "abstracts/layout";
-@use "abstracts/components.css";
+//@use "abstracts/components.css";
+@use "abstracts/components.scss" as a;
 @use 'abstracts/fluentIcons';
 
 @mixin variants($prefix, $property, $map) {
@@ -20,40 +20,37 @@ html {
 
 body {
   font-family: var(--text-font);
-  color: var(--text-color);
-  background-color: var(--site-background);
+  color: var(--color-text);
+  background-color: var(--color-base);
 }
 
 hr {
-  border-color: var(--site-stroke-color);
+  border-color: var(--color-stroke-base);
 }
 
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
   border-radius: 4px;
-  background-color: var(--site-background);
+  background-color: var(--color-base);
 }
 
 ::-webkit-scrollbar-thumb {
   background-clip: padding-box;
-  border-right: 2px solid var(--site-background);
+  border-right: 2px solid var(--color-base);
   background-color: var(--scrollbar-color);
   border-radius: 4px;
 }
 
-:focus {
-  outline: none //TODO: remove?
-}
 
 //Link
 a {
-  color: var(--text-color);
+  color: var(--color-text);
   font-weight: 600;
   font-family: var(--component-font);
 
   &:active {
-    color: var(--text-color);
+    color: var(--color-text);
   }
 
   &:hover {
@@ -64,7 +61,7 @@ a {
     text-decoration: none;
 
     &:hover {
-      color: var(--text-color);
+      color: var(--color-text);
     }
   }
 }
@@ -92,7 +89,7 @@ a {
 // --------------------------------------
 
 .subtle-text {
-  color: var(--subtle-text-color)
+  color: var(--color-text-1)
 }
 
 .select-none {
@@ -115,6 +112,10 @@ a {
 .very-round-corners {
   // TODO: deprecate
   border-radius: 16px;
+}
+
+.inline {
+  display: inline;
 }
 
 // #region Flex
@@ -209,84 +210,44 @@ a {
 
 // #region padding / margin
 
-@include variants("p", padding,
-  (xs: 2px,
-    s: 4px,
-    m: 8px,
-    l: 16px,
-    xl: 32px,
-  ));
+$spacing-variants: (
+  xs: 2px,
+  s: 4px,
+  m: 8px,
+  l: 16px,
+  xl: 32px,
+);
 
-@include variants("px", padding-inline,
-  (xs: 2px,
-    s: 4px,
-    m: 8px,
-    l: 16px,
-    xl: 32px,
-  ));
+@include variants("p", padding, $spacing-variants);
 
-@include variants("py", padding-block,
-  (xs: 2px,
-    s: 4px,
-    m: 8px,
-    l: 16px,
-    xl: 32px,
-  ));
+@include variants("px", padding-inline, $spacing-variants);
 
-@include variants("m", margin,
-  (xs: 2px,
-    s: 4px,
-    m: 8px,
-    l: 16px,
-    xl: 32px,
-  ));
+@include variants("py", padding-block, $spacing-variants);
 
-@include variants("mx", margin-inline,
-  (xs: 2px,
-    s: 4px,
-    m: 8px,
-    l: 16px,
-    xl: 32px,
-  ));
+@include variants("m", margin, $spacing-variants);
 
-@include variants("my", margin-block,
-  (xs: 2px,
-    s: 4px,
-    m: 8px,
-    l: 16px,
-    xl: 32px,
-  ));
+@include variants("mx", margin-inline, $spacing-variants);
 
-@include variants("mt", margin-top,
-  (xs: 2px,
-    s: 4px,
-    m: 8px,
-    l: 16px,
-    xl: 32px,
-  ));
+@include variants("my", margin-block, $spacing-variants);
 
-@include variants("mb", margin-bottom,
-  (xs: 2px,
-    s: 4px,
-    m: 8px,
-    l: 16px,
-    xl: 32px,
-  ));
+@include variants("mt", margin-top, $spacing-variants);
 
-  .ml-a {
-    margin-left: auto;
-  }
-  .mr-a {
-    margin-right: auto;
-  }
-  // #endregion
+@include variants("mb", margin-bottom, $spacing-variants);
+
+.ml-a {
+  margin-left: auto;
+}
+.mr-a {
+  margin-right: auto;
+}
+// #endregion
 
 pre:has(code) {
   font-family: var(--monospace-font);
-  border: var(--site-stroke);
+  border: var(--stroke-base);
   padding: 8px;
   border-radius: 6px;
-  background-color: var(--component-important);
+  background-color: var(--color-inset);
   overflow: auto;
 
   code[lang]::before {
@@ -299,18 +260,18 @@ pre:has(code) {
 }
 
 :not(pre) > code {
-  border: var(--site-stroke);
+  border: var(--stroke-base);
   padding: 2px 4px;
   border-radius: 4px;
-  background-color: var(--component-important);
+  background-color: var(--color-inset);
   text-wrap: nowrap;
 }
 
 // Dialog
 dialog {
-  background-color: var(--site-background);
+  background-color: var(--color-base);
   box-shadow: var(--shadow-4);
-  color: var(--text-color);
+  color: var(--color-text);
   border: none;
   margin: auto;
   border-radius: 8px;
@@ -382,7 +343,7 @@ dialog {
         bottom: 12px
       }
 
-      background-color: var(--component-important);
+      background-color: var(--color-inset);
     }
 
     & > article {

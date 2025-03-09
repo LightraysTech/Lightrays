@@ -11,16 +11,17 @@ const parentClasses = computed(() => pstyle.value + (psmall.value ? " small-comp
 </script>
 
 <template>
-  <div class="lr-box ">
+  <div class="lr-box bg-layer">
     <h5>Parent class</h5>
     <br>
-    <label>Style</label>
+    <label class="left">Style:</label>
     <select v-model="pstyle">
       <option value="">None</option>
-      <option value="shadow-components">Shadow</option>
-      <option value="flat-components">Flat</option>
-      <option value="important-components">Important</option>
-      <option value="transparent-components">Transparent</option>
+      <option value="shadow-children">Shadow</option>
+      <option value="flat-children">Flat</option>
+      <option value="important-children">Important</option>
+      <option value="subtle-children">Subtle</option>
+      <option value="transparent-children">Transparent</option>
     </select>
     <br><br>
     <input type="checkbox" id="psmall" v-model="psmall">
@@ -32,7 +33,7 @@ const parentClasses = computed(() => pstyle.value + (psmall.value ? " small-comp
   <div :class="parentClasses" style="padding: 16px;">
     <ComponentsTest :parent-class="parentClasses"></ComponentsTest>
   </div>
-  <div :class="parentClasses + ' lr-box'">
+  <div :class="parentClasses + ' lr-box bg-layer'">
     <ComponentsTest :parent-class="parentClasses"></ComponentsTest>
   </div>
   <label>Text Input:</label><br>

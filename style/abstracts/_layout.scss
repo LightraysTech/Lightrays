@@ -2,10 +2,10 @@ menu {
     display: inline-flex;
     flex-direction: column;
 
-    background-color: var(--component-background);
+    background-color: var(--color-layer);
     box-shadow: var(--shadow-3);
-    border: var(--site-stroke);
-    border-radius: 4px;
+    border: var(--stroke-surface);
+    border-radius: 8px;
     margin: 8px 0;
     padding: 4px;
     gap: 4px;
@@ -49,7 +49,7 @@ menu {
         //width: 100%;
         flex: 1;
         border: none;
-        border-top: var(--site-stroke);
+        border-top: var(--stroke-base);
         margin: 2px 0;
     }
 }
@@ -60,9 +60,9 @@ nav {
     width: min(300px, 90dvw);
     padding: 16px 8px;
     overflow: auto;
-    background-color: var(--component-important);
+    background-color: var(--color-inset);
     border: none;
-    border-right: var(--site-stroke);
+    border-right: var(--stroke-base);
 
     a,
     summary,
@@ -81,11 +81,11 @@ nav {
         margin: 2px 0;
 
         &:hover {
-            background-color: var(--component-hover);
+            background-color: var(--color-surface-2);
         }
 
         &:active {
-            background-color: var(--component-active);
+            background-color: var(--color-surface-1);
         }
     }
 
@@ -94,7 +94,7 @@ nav {
         font-family: var(--component-font);
         font-weight: 600;
         font-size: 0.875rem;
-        color: var(--subtle-text-color);
+        color: var(--color-text-1);
         margin-top: 16px;
         padding-left: 8px;
     }

@@ -135,7 +135,7 @@ header {
   gap: 16px;
   padding: 16px 32px;
   border-radius: 0;
-  background-color: var(--site-background);
+  background-color: var(--color-base);
   z-index: 100;
 }
 </style>
