@@ -3,6 +3,7 @@
 @use 'abstracts/fluentIcons';
 @use "abstracts/themes";
 @use "abstracts/layout";
+@use "abstracts/spacings";
 
 body {
   -webkit-tap-highlight-color: transparent;
@@ -22,21 +23,21 @@ interpolate-size: allow-keywords;
 }
 
 main {
-  padding: 16px;
+  padding:  var(--m-s);
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-  border-radius: 4px;
+  width:  var(--s-l);
+  height:  var(--s-l);
+  border-radius:  var(--s-s);
   background-color: var(--site-background);
 }
 
 ::-webkit-scrollbar-thumb {
   background-clip: padding-box;
-  border-right: 2px solid var(--site-background);
+  border-right:  var(--s-xs) solid var(--site-background);
   background-color: var(--scrollbar-color);
-  border-radius: 4px;
+  border-radius:  var(--s-s);
 }
 
 :focus {
@@ -63,6 +64,13 @@ a {
     &:hover {
       color: var(--text-color);
     }
+  }
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+  & + p {
+    margin-top: var(--m-xs) 0;
   }
 }
 
@@ -97,11 +105,11 @@ a {
 }
 
 .round-corners {
-  border-radius: 8px;
+  border-radius:  var(--s-l);
 }
 
 .very-round-corners {
-  border-radius: 16px;
+  border-radius:  var(--m-s);
 }
 
 .flex {
@@ -133,13 +141,13 @@ a {
 }
 
 .gap {
-  gap: 16px;
+  gap:  var(--m-s);
 }
 .small-gap {
-  gap: 8px;
+  gap:  var(--s-l);
 }
 .tiny-gap {
-  gap: 4px;
+  gap:  var(--s-s);
 }
 
 .grid {
@@ -148,8 +156,8 @@ a {
 
 pre:has(code) {
   border: var(--site-stroke);
-  padding: 8px;
-  border-radius: 6px;
+  padding:  var(--s-l);
+  border-radius:  var(--s-m);
   background-color: var(--component-important);
   
   code[lang]::before {
@@ -157,13 +165,13 @@ pre:has(code) {
     display:block;
     margin-left: auto;
     opacity: .5;
-    margin-bottom: 4px;
+    margin-bottom: var(--s-s);
   }
 }
 :not(pre) > code {
   border: var(--site-stroke);
-  padding: 2px 4px;
-  border-radius: 4px;
+  padding:  var(--s-xs)  var(--s-s);
+  border-radius:  var(--s-s);
   background-color: var(--component-important);
   text-wrap: nowrap;
 }
@@ -175,7 +183,7 @@ dialog {
   color: var(--text-color);
   border: none;
   margin: auto;
-  border-radius: 8px;
+  border-radius:  var(--s-l);
   padding: 1.5em;
   box-sizing: border-box;
   max-width: calc(100dvw - 2em);
@@ -265,7 +273,7 @@ dialog {
       display: flex;
       justify-content: flex-end;
       flex-wrap: wrap;
-      gap: 8px;
+      gap:  var(--s-l);
       align-items: center;
       padding: 1.5em {
         top: 0em

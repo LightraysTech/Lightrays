@@ -5,10 +5,10 @@
   select,
   textarea) {
   background-color: var(--component-background);
-  border-radius: 4px;
-  padding: 16px;
+  border-radius: var(--s-s);
+  padding: var(--m-s);
 
-  --underline: 0 var(--underline-width, 2px) 0 0 var(--underline-color, transparent);
+  --underline: 0 var(--underline-width, var(--s-xs)) 0 0 var(--underline-color, transparent);
 
   &,
   .shadow-components > &,
@@ -22,7 +22,7 @@
     --active-shadow: var(--shadow-0);
     --active-background: var(--component-active);
 
-    --underline-width: 2px;
+    --underline-width: var(--s-xs);
   }
 
   & &,
@@ -68,18 +68,18 @@
 
   .small-components > &,
   &.small.small {
-    padding: 8px;
+    padding: var(--s-l);
   }
 
   &:where(button, input, select, textarea),
   .inline-components > &,
   &.inline {
     display: inline-block;
-    padding: 8px 16px;
+    padding: var(--s-l) var(--m-s);
 
     .small-components > :where(&),
     &.small.small {
-      padding: 4px 8px;
+      padding: var(--s-s) var(--s-l);
     }
   }
 
@@ -108,8 +108,8 @@
 .lr-list {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  margin: 8px 0;
+  gap: var(--s-l);
+  margin: var(--s-l) 0;
 
   & > div {
     animation: box-load-in 0.2s ease-out both;
@@ -151,7 +151,7 @@ select {
   text-align: center;
 
   &:has(.fluentIcon:only-child) {
-    padding: 10px 10px;
+    padding: var(--s-xl) var(--s-xl);
 
     .fluentIcon {
       display: block;
@@ -161,16 +161,16 @@ select {
   &.small,
   .small-components > & {
     &:has(.fluentIcon:only-child) {
-      padding: 6px 6px;
+      padding: var(--s-m) var(--s-m);
     }
 
     & > .fluentIcon:not(:only-child) {
-      margin-right: 4px;
+      margin-right: var(--s-s);
     }
   }
 
   & > .fluentIcon:not(:only-child) {
-    margin-right: 8px;
+    margin-right: var(--s-l);
   }
 }
 
@@ -201,15 +201,15 @@ input {
 
   &[type="search"] {
     background-image: url("./img/search.png");
-    background-size: 15px;
-    padding-left: 36px;
-    background-position-x: 12px;
+    background-size: var(--m-s);
+    padding-left: var(--l-xs);
+    background-position-x: var(--m-xs);
     background-position-y: center;
     background-repeat: no-repeat;
 
     &:focus {
-      background-size: 18px;
-      background-position-x: 11px;
+      background-size: var(--m-s);
+      background-position-x: var(--s-xl);
       transition: background .2s var(--curve-ease);
     }
   }
@@ -218,9 +218,9 @@ input {
     align-self: center;
     -webkit-appearance: none;
     appearance: none;
-    border-radius: 6px;
-    width: 24px;
-    height: 24px;
+    border-radius: var(--s-m);
+    width: var(--m-l);
+    height: var(--m-l);
     vertical-align: bottom;
     padding: 0;
     margin: 0;
@@ -228,23 +228,24 @@ input {
 
     &:checked {
       background: url("./img/checkbox.png") no-repeat center center;
-      background-size: 13px;
+      background-size: var(--m-s);
       background-color: var(--primary);
       border-color: var(--primary) !important;
     }
 
     &.small {
-      height: 18px;
-      width: 18px;
-      border-radius: 4px;
+      height: var(--m-s);
+      width: var(--m-s);
+      border-radius: var(--s-s);
       vertical-align: text-bottom;
-      background-size: 9px;
+      align-self: center;
+      background-size: var(--s-l);
     }
   }
 
   &[type="range"] {
     /* -webkit-appearance: none; appearance: none; */
-    height: 0px;
+    height: 0;
     background: var(--color-darker);
     outline: none;
     /*  Remove outline  */
@@ -264,18 +265,18 @@ input {
 
 label {
   display: inline-block;
-  margin: 4px 0;
+  margin: var(--s-s) 0;
   font-size: 1em;
   font-weight: 600;
 
   &.left {
     margin: 0;
-    margin-right: 8px;
+    margin-right: var(--s-l);
   }
 
   &.right {
     margin: 0;
-    margin-left: 8px;
+    margin-left: var(--s-l);
   }
 
 

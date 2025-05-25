@@ -16,7 +16,7 @@
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.<br> Tempore velit sequi maxime, officiis omnis ipsa reiciendis praesentium modi! Ducimus exercitationem necessitatibus voluptate omnis delectus reiciendis iure quia et maiores minus.</p>
             <a href="">Link</a>
         </div>
-        <div>
+        <p>
             <h1>Header 1 with a lot of text</h1>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, quibusdam voluptatibus vero odio dolore impedit alias nesciunt, sunt accusamus dolor magni nobis dolorem id itaque. Tempore deserunt corporis at rem?
             <h2>Header 2 with a lot of text</h2>
@@ -29,8 +29,8 @@
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, quibusdam voluptatibus vero odio dolore impedit alias nesciunt, sunt accusamus dolor magni nobis dolorem id itaque. Tempore deserunt corporis at rem?
             <h6>Header 6 with a lot of text</h6>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, quibusdam voluptatibus vero odio dolore impedit alias nesciunt, sunt accusamus dolor magni nobis dolorem id itaque. Tempore deserunt corporis at rem?
-        </div>
-        <div>
+        </p>
+        <p>
             <h1>Header 1 with a lot of text</h1>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident nulla voluptatem eum tempora deserunt doloremque soluta, est, ipsam possimus magni sint. Consectetur culpa et consequuntur sunt accusamus ea rerum labore!</p>
             <h2>Header 2 with a lot of text</h2>
@@ -43,7 +43,7 @@
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident nulla voluptatem eum tempora deserunt doloremque soluta, est, ipsam possimus magni sint. Consectetur culpa et consequuntur sunt accusamus ea rerum labore!</p>
             <h6>Header 6 with a lot of text</h6>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident nulla voluptatem eum tempora deserunt doloremque soluta, est, ipsam possimus magni sint. Consectetur culpa et consequuntur sunt accusamus ea rerum labore!</p>
-        </div>
+        </p>
     </div>
 </template>
 
