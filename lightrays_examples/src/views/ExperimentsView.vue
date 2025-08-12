@@ -46,7 +46,7 @@ const isOpen = ref(false)
     <div class="shadow-2 rad-l" style="width: 64px; aspect-ratio: 1; background: var(--color-text);"></div>
   </div>
 
-  <Dialog name="Title">
+ <!--  <Dialog name="Title">
     <article>
       Hello
     </article>
@@ -55,7 +55,7 @@ const isOpen = ref(false)
         Save
       </button>
     </footer>
-  </Dialog>
+  </Dialog> -->
   <Select v-model="m" placeholder="Select Something">
     <option value="1">Abc</option>
     <option value="2">Def</option>

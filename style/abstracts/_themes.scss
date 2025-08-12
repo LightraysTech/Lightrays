@@ -33,16 +33,16 @@
   --subtle-text-color: red;
 
   // Theme
-  --color-inset:          light-dark(#{gray(233)},  #{gray(20)});
+  --color-inset:          light-dark(#{gray(232)},  #{gray(20)});
   --color-base:           light-dark(#{gray(240)},  #{gray(24)});
-  --color-layer:          light-dark(#{gray(250)},  #{gray(32)});
+  --color-layer:          light-dark(#{gray(250)},  #{gray(33)});
 
   --color-surface-0:      light-dark(#{gray(255)},  #{gray(44)});
   --color-surface-1:      light-dark(#{gray(250)},  #{gray(56)});
   --color-surface-2:      light-dark(#{gray(245)},  #{gray(66)});
   
   --color-text-2:         light-dark(#{gray(153)},  #{gray(115)});
-  --color-text-1:         light-dark(#{gray(115)},  #{gray(166)});
+  --color-text-1:         light-dark(#{gray(115)},  #{gray(150)});
   --color-text:           light-dark(#{gray(43)},   #{gray(242)});
   --color-text-on-accent: light-dark(#{gray(242)},  #{gray(242)});
 
@@ -52,12 +52,12 @@
   --stroke-base: 1px solid var(--color-stroke-base);
   --stroke-surface: 1px solid var(--color-stroke-surface);
 
-  --site-background:      red;
-  --component-background: red;
-  --component-hover:      red;
-  --component-active:     red;
-  --component-important:  red;
-  --component-disabled:   red;
+  --site-background:      red;  // base
+  --component-background: red;  // surface-0
+  --component-hover:      red;  // surface-2
+  --component-active:     red;  // surface-1
+  --component-important:  red;  // inset
+  --component-disabled:   red;  // layer
 
   --component-stroke-color: red;
   --component-stroke: solid 10px var(--component-stroke-color);

@@ -32,7 +32,7 @@ const dropdownObserver = new IntersectionObserver(pickerIntersect, {
   threshold: 1
 })
 const observer = new IntersectionObserver(intersect, {
-  threshold: 1
+  threshold: 1,
 })
 
 onMounted(() => {
@@ -49,8 +49,6 @@ onMounted(() => {
 const width = ref(0)
 const height = ref(0)
 function pickerIntersect(entries: IntersectionObserverEntry[]) {
-  console.log("intersect");
-
   if (!isOpen.value) return
 
   width.value = dropdown.value?.clientWidth || 0
@@ -102,7 +100,7 @@ const pickerClasses = computed(() => ({ 'centerOnMobile': props.centerOnMobile }
   position: absolute;
   pointer-events: none;
 
-  background: rgba(255, 0, 0, 0.658);
+  /* background: rgba(255, 0, 0, 0.658); */
   /* outline: 1px solid black; */
 }
 

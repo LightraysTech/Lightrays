@@ -152,6 +152,10 @@ $non-text-inputs: "[type=button], [type=submit], [type=reset], [type=checkbox], 
     background-color: var(--color-layer);
     outline-width: 1px;
     box-shadow: none;
+
+    &.transparent {
+      background: none;
+    }
   }
 
   :is(#{$btn-components}) {

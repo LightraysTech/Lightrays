@@ -287,7 +287,7 @@ const h1 = computed({ get() { return currentColors.value?.darkest.h }, set(v: nu
           <input type="color" v-model="lightest_hex">
           <input type="color" v-model="textColor">
         </div>
-        <Graph class="graph" :min-x="-.1" :max-x="1.1" :min-y="-.1" :max-y="1.1" :width="200" :height="200" :data="graph"></Graph>
+        <Graph class="graph" :min-x="-.1" :max-x="1.1" :min-y="-.1" :max-y="1.1" :width="200" :height="200" :data="graph as any"></Graph>
       </div>
       <div class="flex gap-m align-center"><span>l:</span> <input type="range" v-model.number="avg_l" min="0" max="1" step=".01"><input class="small" style="width: 72px;" v-model.number="avg_l"></div>
       <div class="flex gap-m align-center"><span>c:</span> <input type="range" v-model.number="avg_c" min="0" max="1" step=".01"><input class="small" style="width: 72px;" v-model.number="avg_c"></div>
