@@ -270,6 +270,11 @@ $non-text-inputs: "[type=button], [type=submit], [type=reset], [type=checkbox], 
       margin: 0;
       cursor: pointer;
 
+      background-position: center;
+      background-size: 0px;
+      transition-property: background-color, background-size;
+      transition: .2s var(--curve-ease);
+
       &:checked {
         background: url("./img/checkbox.png") no-repeat center center;
         background-size: 13px;
