@@ -23,3 +23,5 @@ coverage
 *.sw?
 
 *.tsbuildinfo
+
+dont_git

@@ -1,26 +1,26 @@
 // [*-children] [([shadow|flat] [important| ]) | subtle | transparenz] [small | ]
-/* 'button' | 
-'checkbox' | 
-'color' | 
-'date' | 
-'datetime-local' | 
-'email' | 
-'file' | 
-'hidden' | 
-'image' | 
-'month' | 
-'number' | 
-'password' | 
-'radio' | 
-'range' | 
-'reset' | 
-'search' | 
-'submit' | 
-'tel' | 
-'text' | 
-'time' | 
-'url' | 
-'week' | 
+/* 'button' |
+'checkbox' |
+'color' |
+'date' |
+'datetime-local' |
+'email' |
+'file' |
+'hidden' |
+'image' |
+'month' |
+'number' |
+'password' |
+'radio' |
+'range' |
+'reset' |
+'search' |
+'submit' |
+'tel' |
+'text' |
+'time' |
+'url' |
+'week' |
 (string & {});
  */
 
@@ -115,6 +115,7 @@ $non-text-inputs: "[type=button], [type=submit], [type=reset], [type=checkbox], 
     &.interactive,
     &:is(#{$btn-components}) {
       cursor: pointer;
+      user-select: none;
       transition: background-color, color, box-shadow, outline;
       transition-duration: 0.15s;
       transition-timing-function: var(--curve-ease);
@@ -304,6 +305,7 @@ $non-text-inputs: "[type=button], [type=submit], [type=reset], [type=checkbox], 
       border: none !important;
       outline: none !important;
       box-shadow: none;
+      cursor: pointer;
 
       &:focus {
         box-shadow: none;

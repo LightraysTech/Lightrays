@@ -7,6 +7,39 @@ const isOpen = ref(false)
 </script>
 
 <template>
+  <button class="experminental">Button</button>
+  <button class="experminental primary">Button</button>
+  <button class="experminental success">Button</button>
+  <button class="experminental warning">Button</button>
+  <button class="experminental error">Button</button>
+  <button class="experminental complete">Button</button>
+  <br>
+  <button class="experminental muted">Button</button>
+  <button class="experminental muted primary">Button</button>
+  <button class="experminental muted success">Button</button>
+  <button class="experminental muted warning">Button</button>
+  <button class="experminental muted error">Button</button>
+  <button class="experminental muted complete">Button</button>
+  <br>
+  <button class="experminental outline">Button</button>
+  <button class="experminental outline primary">Button</button>
+  <button class="experminental outline success">Button</button>
+  <button class="experminental outline warning">Button</button>
+  <button class="experminental outline error">Button</button>
+  <button class="experminental outline complete">Button</button>
+  <br>
+  <button class="experminental subtle">Button</button>
+  <button class="experminental subtle primary">Button</button>
+  <button class="experminental subtle success">Button</button>
+  <button class="experminental subtle warning">Button</button>
+  <button class="experminental subtle error">Button</button>
+  <button class="experminental subtle complete">Button</button>
+  <br>
+  <button class="experminental very-small">Button</button>
+  <button class="experminental small">Button</button>
+  <button class="experminental medium">Button</button>
+  <button class="experminental large">Button</button>
+  <br><br><br>
   <button class="small">Abc</button><button class="flat small">asdfghj</button><br><br>
   <div class="comp-new flex-col gap-m">
     <div class="lr-box interactive">
@@ -18,7 +51,7 @@ const isOpen = ref(false)
     <div class="lr-box important interactive">
       Abc
     </div>
-<input type="text" name="" id="">
+    <input type="text" name="" id="">
     <div class="lr-box flat important interactive">
       Abc
     </div>
@@ -46,7 +79,7 @@ const isOpen = ref(false)
     <div class="shadow-2 rad-l" style="width: 64px; aspect-ratio: 1; background: var(--color-text);"></div>
   </div>
 
- <!--  <Dialog name="Title">
+  <!--  <Dialog name="Title">
     <article>
       Hello
     </article>
@@ -425,4 +458,161 @@ const isOpen = ref(false)
   </p>
 </template>
 
-<style scoped lang='scss'></style>
+<style scoped lang='scss'>
+@mixin can-hover() {
+  @media screen and (hover: hover) and (pointer: fine) {
+    @content;
+  }
+}
+button.experminental {
+  --btn-bg: var(--color-surface-0);
+  --btn-bg-muted: var(--color-layer);
+  --btn-fg: var(--color-text);
+  --btn-border: var(--color-surface-1);
+  --btn-border-muted: var(--color-surface-2);
+  --btn-fg-on: var(--color-text);
+
+  display: inline-flex;
+  background-color: var(--btn-bg);
+  color: var(--btn-fg-on);
+  cursor: pointer;
+  user-select: none;
+  font-family: SatoshiVariable;
+  font-weight: 600;
+  letter-spacing: .5px;
+  outline-offset: 0px;
+  transition-property: background-color, outline-offset;
+  transition: .15s var(--curve-ease);
+  box-shadow: none;
+  border: 1px solid var(--btn-border);
+
+  @include can-hover {
+    &:hover {
+      background-color: oklch(from var(--btn-bg) calc(l + .03) c h);
+    }
+  }
+
+  &:active {
+    background-color: oklch(from var(--btn-bg) calc(l - .03) c h);
+  }
+
+
+  &:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+
+  // Sizes
+  &.very-small {
+    padding: 2px 4px;
+  }
+  &.small {
+    padding: 4px 8px;
+  }
+  &,
+  &.medium {
+    padding: 8px 16px;
+    border-radius: 4px;
+  }
+  &.large {
+    padding: 10px 20px;
+    border-radius: 8px;
+  }
+
+
+  margin: 8px;
+
+  // Colors
+  &.primary {
+    --btn-bg: var(--bg-primary);
+    --btn-bg-muted: var(--bg-primary-muted);
+    --btn-fg: var(--fg-primary);
+    --btn-fg-on: var(--fg-on-primary);
+    --btn-border: var(--border-primary);
+    --btn-border-muted: var(--border-primary-muted);
+  }
+  &.warning {
+    --btn-bg: var(--bg-warning);
+    --btn-bg-muted: var(--bg-warning-muted);
+    --btn-fg: var(--fg-warning);
+    --btn-fg-on: var(--fg-on-warning);
+    --btn-border: var(--border-warning);
+    --btn-border-muted: var(--border-warning-muted);
+
+  }
+  &.error {
+    --btn-bg: var(--bg-error);
+    --btn-bg-muted: var(--bg-error-muted);
+    --btn-fg: var(--fg-error);
+    --btn-fg-on: var(--fg-on-error);
+    --btn-border: var(--border-error);
+    --btn-border-muted: var(--border-error-muted);
+  }
+  &.success {
+    --btn-bg: var(--bg-success);
+    --btn-bg-muted: var(--bg-success-muted);
+    --btn-fg: var(--fg-success);
+    --btn-fg-on: var(--fg-on-success);
+    --btn-border: var(--border-success);
+    --btn-border-muted: var(--border-success-muted);
+  }
+  &.complete {
+    --btn-bg: var(--bg-complete);
+    --btn-bg-muted: var(--bg-complete-muted);
+    --btn-fg: var(--fg-complete);
+    --btn-fg-on: var(--fg-on-complete);
+    --btn-border: var(--border-complete);
+    --btn-border-muted: var(--border-complete-muted);
+  }
+
+  // Varients
+  &.muted {
+    background-color: var(--btn-bg-muted);
+    border-color: transparent;
+    color: var(--btn-fg);
+
+    @include can-hover {
+      &:hover {
+        background-color: oklch(from var(--btn-bg-muted) calc(l + .04) c h);
+      }
+    }
+    &:active {
+      background-color: oklch(from var(--btn-bg-muted) calc(l - .02) c h);
+    }
+  }
+
+  &.outline {
+    border: 1px solid var(--btn-border-muted);
+    background-color: transparent;
+    color: var(--btn-fg);
+
+    @include can-hover {
+      &:hover {
+        background-color: oklch(from var(--btn-bg) calc(l + .4) c h / .08);
+        background-color: oklch(from var(--btn-bg-muted) calc(l + .1) calc(c * 1.3) h / .4);
+      }
+    }
+    &:active {
+      background-color: oklch(from var(--btn-bg) l c h / .04);
+      background-color: oklch(from var(--btn-bg-muted) calc(l + .05) calc(c * 1.1) h / .3);
+    }
+  }
+
+  &.subtle {
+    border-color: transparent;
+    background-color: transparent;
+    color: var(--btn-fg);
+
+    @include can-hover {
+      &:hover {
+        background-color: oklch(from var(--btn-bg) l c h / .12);
+        background-color: oklch(from var(--btn-bg-muted) calc(l + .1) calc(c * 1.3) h / .4);
+      }
+    }
+    &:active {
+      background-color: oklch(from var(--btn-bg) calc(l - .2) c h / .06);
+      background-color: oklch(from var(--btn-bg-muted) calc(l + .05) calc(c * 1.1) h / .3);
+    }
+  }
+}
+</style>

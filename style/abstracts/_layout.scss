@@ -81,11 +81,12 @@ nav {
         margin: 2px 0;
 
         &:hover {
-            background-color: var(--color-surface-2);
+            background-color: var(--color-surface-1);
+            color: initial;
         }
 
         &:active {
-            background-color: var(--color-surface-1);
+            background-color: var(--color-layer);
         }
     }
 

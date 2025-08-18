@@ -9,6 +9,41 @@
 :root {
   color-scheme: light dark;
 
+  --bg-primary:           light-dark(oklch(0.60 0.16 255), oklch(0.55 0.16 255));
+  --bg-primary-muted:     light-dark(oklch(0.90 0.04 255), oklch(0.26 0.03 255));
+  --border-primary:       light-dark(oklch(0.60 0.16 255), oklch(0.60 0.16 255));
+  --border-primary-muted: light-dark(oklch(0.85 0.08 255), oklch(0.4 0.08 255));
+  --fg-primary:           light-dark(oklch(0.55 0.16 255), oklch(0.7 0.15 255));
+  --fg-on-primary:       rgb(242, 242, 242);
+
+  --bg-warning: oklch(0.65 0.14 55);
+  --bg-warning-muted: oklch(0.25 0.04 55);
+  --border-warning: oklch(0.65 0.14 55);
+  --border-warning-muted: oklch(0.5 0.10 55);
+  --fg-warning: oklch(0.75 0.12 55);
+  --fg-on-warning: rgb(242, 242, 242);
+
+  --bg-error: oklch(0.53 0.16 29.215);
+  --bg-error-muted: oklch(0.25 0.04 29.215);
+  --border-error: oklch(0.53 0.16 29.215);
+  --border-error-muted: oklch(0.4 0.08 29.215);
+  --fg-error: oklch(0.7 0.15 29.215);
+  --fg-on-error: rgb(242, 242, 242);
+
+  --bg-success: oklch(0.52 0.13 153);
+  --bg-success-muted: oklch(0.25 0.04 153);
+  --border-success: oklch(0.52 0.13 153);
+  --border-success-muted: oklch(0.4 0.08 153);
+  --fg-success: oklch(0.7 0.12 153);
+  --fg-on-success: rgb(242, 242, 242);
+
+  --bg-complete: oklch(0.55 0.22 294);
+  --bg-complete-muted: oklch(0.25 0.05 294);
+  --border-complete: oklch(0.55 0.22 294);
+  --border-complete-muted: oklch(0.4 0.1 294);
+  --fg-complete: oklch(0.7 0.18 294);
+  --fg-on-complete: rgb(242, 242, 242);
+
   // Color
   --alert: #c61025;
   --warning: orange;
@@ -21,7 +56,7 @@
   --primary: light-dark(oklch(0.67 0.1647570036981472 248.64231872704713), oklch(0.55 0.15 250));
   --dark: light-dark(oklch(0.6178788508236821 0.16678083281508277 250.87250598953256), oklch(0.4542496257539689 0.12992137556504074 250.39030286682717));
   --darkest: light-dark(oklch(0.56453356783737 0.16334517812257926 253.270556246761), oklch(0.3587785117630657 0.10819115307085983 252.26411303986853));
- 
+
   --gradient: linear-gradient(in oklch to right, var(--darkest), var(--lightest));
 
   accent-color: var(--primary);
@@ -40,7 +75,7 @@
   --color-surface-0:      light-dark(#{gray(255)},  #{gray(44)});
   --color-surface-1:      light-dark(#{gray(250)},  #{gray(56)});
   --color-surface-2:      light-dark(#{gray(245)},  #{gray(66)});
-  
+
   --color-text-2:         light-dark(#{gray(153)},  #{gray(115)});
   --color-text-1:         light-dark(#{gray(115)},  #{gray(150)});
   --color-text:           light-dark(#{gray(43)},   #{gray(242)});
@@ -61,7 +96,7 @@
 
   --component-stroke-color: red;
   --component-stroke: solid 10px var(--component-stroke-color);
-  
+
   --site-stroke-color: red;
   --site-stroke: solid 10px var(--site-stroke-color);
 

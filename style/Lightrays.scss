@@ -28,11 +28,15 @@ hr {
   border-color: var(--color-stroke-base);
 }
 
+
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
-  border-radius: 4px;
-  background-color: var(--color-base);
+}
+
+.small-scrollbar::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -86,6 +90,12 @@ a {
   }
 }
 
+@mixin no-hover() {
+  @media screen and (hover: hover) and (pointer: fine) {
+    @content;
+  }
+}
+
 // --------------------------------------
 
 .subtle-text {
@@ -94,6 +104,14 @@ a {
 
 .select-none {
   user-select: none;
+}
+
+.overlay-children {
+  display: grid;
+  & > * {
+    grid-row: 1;
+    grid-column: 1;
+  }
 }
 
 .index-children > * {
@@ -287,7 +305,8 @@ dialog {
   transition-behavior: allow-discrete;
 
   &::backdrop {
-    transition: all 0.25s var(--curve-ease);
+    transition-property: background-color, backdrop-filter;
+    transition: 0.25s var(--curve-ease);
     transition-behavior: allow-discrete;
     background-color: rgba(0, 0, 0, 0);
     backdrop-filter: blur(0px);
