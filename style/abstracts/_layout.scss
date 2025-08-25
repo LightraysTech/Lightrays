@@ -67,7 +67,7 @@ nav {
     a,
     summary,
     .nav-item {
-        font-family: var(--component-font);
+        font-family: var(--text-font);
         font-weight: normal;
         text-decoration: none;
 
@@ -154,7 +154,7 @@ nav {
     }
 }
 
-body:has(> main) {
+body.deprecated:has(> main) {
     height: 100dvh;
     width: 100dvw;
     display: grid;

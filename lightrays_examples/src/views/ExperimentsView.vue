@@ -7,38 +7,40 @@ const isOpen = ref(false)
 </script>
 
 <template>
-  <button class="experminental">Button</button>
-  <button class="experminental primary">Button</button>
-  <button class="experminental success">Button</button>
-  <button class="experminental warning">Button</button>
-  <button class="experminental error">Button</button>
-  <button class="experminental complete">Button</button>
+  <button class="experimental">Button</button>
+  <button class="experimental primary">Button</button>
+  <button class="experimental success">Button</button>
+  <button class="experimental warning">Button</button>
+  <button class="experimental error">Button</button>
+  <button class="experimental complete">Button</button>
   <br>
-  <button class="experminental muted">Button</button>
-  <button class="experminental muted primary">Button</button>
-  <button class="experminental muted success">Button</button>
-  <button class="experminental muted warning">Button</button>
-  <button class="experminental muted error">Button</button>
-  <button class="experminental muted complete">Button</button>
+  <button class="experimental muted">Button</button>
+  <button class="experimental muted primary">Button</button>
+  <button class="experimental muted success">Button</button>
+  <button class="experimental muted warning">Button</button>
+  <button class="experimental muted error">Button</button>
+  <button class="experimental muted complete">Button</button>
   <br>
-  <button class="experminental outline">Button</button>
-  <button class="experminental outline primary">Button</button>
-  <button class="experminental outline success">Button</button>
-  <button class="experminental outline warning">Button</button>
-  <button class="experminental outline error">Button</button>
-  <button class="experminental outline complete">Button</button>
+  <button class="experimental outline">Button</button>
+  <button class="experimental outline primary">Button</button>
+  <button class="experimental outline success">Button</button>
+  <button class="experimental outline warning">Button</button>
+  <button class="experimental outline error">Button</button>
+  <button class="experimental outline complete">Button</button>
   <br>
-  <button class="experminental subtle">Button</button>
-  <button class="experminental subtle primary">Button</button>
-  <button class="experminental subtle success">Button</button>
-  <button class="experminental subtle warning">Button</button>
-  <button class="experminental subtle error">Button</button>
-  <button class="experminental subtle complete">Button</button>
+  <button class="experimental subtle">Button</button>
+  <button class="experimental subtle primary">Button</button>
+  <button class="experimental subtle success">Button</button>
+  <button class="experimental subtle warning">Button</button>
+  <button class="experimental subtle error">Button</button>
+  <button class="experimental subtle complete">Button</button>
   <br>
-  <button class="experminental very-small">Button</button>
-  <button class="experminental small">Button</button>
-  <button class="experminental medium">Button</button>
-  <button class="experminental large">Button</button>
+  <button class="experimental very-small">Button</button>
+  <button class="experimental small">Button</button>
+  <button class="experimental medium">Button</button>
+  <button class="experimental large">Button</button>
+  <br><br><br>
+  <input type="text" class="experimental">
   <br><br><br>
   <button class="small">Abc</button><button class="flat small">asdfghj</button><br><br>
   <div class="comp-new flex-col gap-m">
@@ -464,7 +466,24 @@ const isOpen = ref(false)
     @content;
   }
 }
-button.experminental {
+
+input.experimental {
+  font-family: SatoshiVariable;
+  color: var(--color-text);
+  background: var(--color-layer);
+  border: 1px solid var(--color-stroke-surface);
+  box-shadow: none;
+
+  border-radius: 4px;
+  padding: 8px 16px;
+
+  &:focus-visible {
+    outline: 1px solid var(--border-primary);
+    outline-offset: -1px;
+  }
+}
+
+button.experimental {
   --btn-bg: var(--color-surface-0);
   --btn-bg-muted: var(--color-layer);
   --btn-fg: var(--color-text);
