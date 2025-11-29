@@ -40,10 +40,12 @@
 
 ## Padding / Margin
 
-.p-[ xs | s | m | l | xl ]
-.px-[ xs | s | m | l | xl ]
-.py-[ xs | s | m | l | xl ]
+.p-[ 0 | xs | s | m | l | xl ]
+.px-[ 0 | xs | s | m | l | xl ]
+.py-[ 0 | xs | s | m | l | xl ]
 
-.m-[ xs | s | m | l | xl ]
-.mx-[ xs | s | m | l | xl ]
-.my-[ xs | s | m | l | xl ]
+.m-[ 0 | xs | s | m | l | xl ]
+.mx-[ 0 | xs | s | m | l | xl ]
+.my-[ 0 | xs | s | m | l | xl ]
+.ml-a  // margin-left:  auto
+.mr-a  // margin-right: auto
