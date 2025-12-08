@@ -4,15 +4,8 @@
   font-display: swap;
 }
 
-@font-face {
-  font-family: "InterVariable";
-  src: url("../fonts/Inter-Variable.ttf");
-  font-display: swap;
-}
-
 :root {
-  --text-font: "Satoshi Variable", SatoshiVariable, InterVariable, "Segoe UI Variable", Tahoma, Verdana, sans-serif;
-  --component-font: "InterVariable", sans-serif;
+  --text-font: "Satoshi Variable", SatoshiVariable, "Segoe UI Variable", Tahoma, Verdana, sans-serif;
   --monospace-font: monospace, sans-serif;
 }
 
