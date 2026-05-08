@@ -1,0 +1,400 @@
+@use "abstracts/themes";
+@use 'reset.css';
+@use 'abstracts/fonts';
+@use "abstracts/layout";
+//@use "abstracts/components.css";
+@use "abstracts/components.scss" as a;
+@use 'abstracts/fluentIcons';
+
+@mixin variants($prefix, $property, $map) {
+  @each $name, $value in $map {
+    .#{$prefix}-#{$name} {
+      #{$property}: #{$value}
+    }
+  }
+}
+
+html {
+  line-height: 1.5;
+}
+
+body {
+  font-family: var(--text-font);
+  color: var(--color-text);
+  background-color: var(--color-base);
+}
+
+hr {
+  border-color: var(--color-stroke-base);
+}
+
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.small-scrollbar::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-clip: padding-box;
+  border-right: 2px solid var(--color-base);
+  background-color: var(--scrollbar-color);
+  border-radius: 4px;
+}
+
+
+//Link
+a {
+  color: var(--color-text);
+  font-weight: 600;
+
+  &:active {
+    color: var(--color-text);
+  }
+
+  &:hover {
+    color: var(--primary);
+  }
+
+  &.noStyle {
+    text-decoration: none;
+
+    &:hover {
+      color: var(--color-text);
+    }
+  }
+}
+
+// Functions ----------------------------------------------
+// TODO: correct @media screen widths
+@mixin mobile() {
+  @media screen and (max-width: 650px) {
+    @content;
+  }
+}
+
+@mixin desktop() {
+  @media screen and (min-width: 650px) {
+    @content;
+  }
+}
+
+@mixin tablet() {
+  @media screen and (min-width: 650px) and (max-width: 1300px) {
+    @content;
+  }
+}
+
+@mixin no-hover() {
+  @media screen and (hover: hover) and (pointer: fine) {
+    @content;
+  }
+}
+
+// --------------------------------------
+
+.subtle-text {
+  color: var(--color-text-1)
+}
+
+.select-none {
+  user-select: none;
+}
+
+.overlay-children {
+  display: grid;
+  & > * {
+    grid-row: 1;
+    grid-column: 1;
+  }
+}
+
+.index-children > * {
+  @for $i from 1 through 15 {
+    &:nth-child(#{$i}) {
+      --i: #{$i};
+    }
+  }
+}
+
+.round-corners {
+  // TODO: deprecate
+  border-radius: 8px;
+}
+
+.very-round-corners {
+  // TODO: deprecate
+  border-radius: 16px;
+}
+
+.inline {
+  display: inline;
+}
+
+// #region Flex
+.flex {
+  display: flex
+}
+
+.flex-grow {
+  // TODO: deprecate
+  display: flex;
+
+  & > * {
+    flex-grow: 1;
+  }
+}
+
+.flex-vertical {
+  // TODO: deprecate
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-stretch {
+  justify-content: stretch;
+}
+
+.align-center {
+  // TODO: rename to items-center ?
+  align-items: center;
+}
+
+.grow {
+  flex-grow: 1;
+}
+
+.shrink {
+  flex-shrink: 1;
+}
+
+.gap {
+  // TODO: deprecate
+  gap: 16px;
+}
+
+.small-gap {
+  // TODO: deprecate
+  gap: 8px;
+}
+
+.tiny-gap {
+  // TODO: deprecate
+  gap: 4px;
+}
+
+@include variants("gap", gap,
+  (s: 4px,
+    m: 8px,
+    l: 16px,
+    xl: 32px));
+
+// #endregion
+
+// #region Border Radius
+@include variants("rad", border-radius,
+  (s: 2px,
+    m: 4px,
+    l: 8px,
+    xl: 16px,
+    circ: 1000000px));
+
+// #endregion
+
+// #region padding / margin
+
+$spacing-variants: (
+  0: 0px,
+  xs: 2px,
+  s: 4px,
+  m: 8px,
+  l: 16px,
+  xl: 32px,
+);
+
+@include variants("p", padding, $spacing-variants);
+
+@include variants("px", padding-inline, $spacing-variants);
+
+@include variants("py", padding-block, $spacing-variants);
+
+@include variants("m", margin, $spacing-variants);
+
+@include variants("mx", margin-inline, $spacing-variants);
+
+@include variants("my", margin-block, $spacing-variants);
+
+@include variants("mt", margin-top, $spacing-variants);
+
+@include variants("mb", margin-bottom, $spacing-variants);
+
+.ml-a {
+  margin-left: auto;
+}
+.mr-a {
+  margin-right: auto;
+}
+// #endregion
+
+pre:has(code) {
+  font-family: var(--monospace-font);
+  border: var(--stroke-base);
+  padding: 8px;
+  border-radius: 6px;
+  background-color: var(--color-inset);
+  overflow: auto;
+
+  code[lang]::before {
+    content: attr(lang);
+    display: block;
+    margin-left: auto;
+    opacity: .5;
+    margin-bottom: 4px;
+  }
+}
+
+:not(pre) > code {
+  border: var(--stroke-base);
+  padding: 2px 4px;
+  border-radius: 4px;
+  background-color: var(--color-inset);
+  text-wrap: nowrap;
+}
+
+// Dialog
+dialog {
+  background-color: var(--color-base);
+  box-shadow: var(--shadow-4);
+  color: var(--color-text);
+  border: none;
+  margin: auto;
+  border-radius: 8px;
+  padding: 1.5em;
+  box-sizing: border-box;
+  max-width: calc(100dvw - 2em);
+  max-height: calc(100dvh - 2em);
+
+  opacity: 0;
+  scale: 0.75;
+  transition: overlay, display, opacity, scale ease-in;
+  transition-duration: .25s;
+  transition-behavior: allow-discrete;
+
+  &::backdrop {
+    transition-property: background-color, backdrop-filter;
+    transition: 0.25s var(--curve-ease);
+    transition-behavior: allow-discrete;
+    background-color: rgba(0, 0, 0, 0);
+    backdrop-filter: blur(0px);
+  }
+
+  &[open] {
+    transition: overlay, display, opacity, scale var(--easeOutBack);
+    transition-duration: .4s;
+    transition-behavior: allow-discrete;
+
+    opacity: 1;
+    scale: 1;
+
+    &::backdrop {
+      backdrop-filter: blur(8px);
+      background-color: hsla(0, 0%, 0%, 0.4);
+
+      @media (prefers-color-scheme: dark) {
+        background-color: hsla(0, 0%, 31%, 0.46);
+      }
+    }
+
+    @starting-style {
+      opacity: 0;
+      scale: 0.75;
+    }
+
+    @starting-style {
+      &::backdrop {
+        background-color: rgba(0, 0, 0, 0);
+        backdrop-filter: blur(0px);
+      }
+    }
+  }
+
+  &:has(form) {
+    padding: 0;
+    overflow: hidden;
+  }
+
+  & > form {
+    height: 100%;
+    max-height: calc(100dvh - 2em);
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+
+    & > header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      padding: 16px 24px {
+        bottom: 12px
+      }
+
+      background-color: var(--color-inset);
+    }
+
+    & > article {
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      padding: 16px 24px;
+    }
+
+    & > footer {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+
+      padding: 1rem 1.5rem {
+        top: 0em
+      }
+    }
+  }
+}
+
+// Animations ----------------------------
+@keyframes box-load-in {
+  0% {
+    transform: scale(70%);
+    opacity: 0%;
+  }
+
+  100% {
+    transform: scale(100%);
+    opacity: 100%;
+  }
+}

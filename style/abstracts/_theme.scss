@@ -1,0 +1,11 @@
+@font-face {
+  font-family: "SatoshiVariable";
+  src: url("../fonts/Satoshi-Variable.ttf");
+  font-display: swap;
+}
+
+:root {
+  --font-sans: "Satoshi Variable", SatoshiVariable, "Segoe UI Variable", system-ui, sans-serif;
+  --font-mono: ui-monospace, Consolas, monospace;
+
+}

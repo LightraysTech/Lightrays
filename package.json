@@ -25,6 +25,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "sass": "^1.83.4"
+    "sass": "^1.99.0"
   }
 }
