@@ -1,0 +1,175 @@
+@mixin can-hover() {
+    // BUG: doesnt work on tablet
+    @media screen and (hover: hover) and (pointer: fine) {
+        @content;
+    }
+}
+
+$button-selectors: "button, [type=button], [type=reset], [type=submit]";
+
+$text-input-selectors: "\
+    input:not(\
+        [type=button], [type=submit], [type=reset],\
+        [type=checkbox], [type=color], [type=file],\
+        [type=image], [type=radio], [type=range]\
+    ),\
+    textarea, select";
+
+input,
+button,
+textarea,
+select {
+    font: inherit;
+    color: inherit;
+    letter-spacing: inherit;
+    word-spacing: inherit;
+    font-feature-settings: inherit;
+    font-variation-settings: inherit;
+    margin: 0;
+}
+
+textarea {
+    resize: block;
+}
+
+:is(button,
+    label[name],
+    select,
+    summary,
+    [role='button'],
+    [role='option']):not(:disabled) {
+    cursor: pointer;
+}
+
+#{$text-input-selectors} {
+    background-color: var(--bg0);
+    border: 1px solid var(--border0);
+    box-shadow: none;
+
+    border-radius: 4px;
+    padding: 8px 16px;
+
+    &:focus-visible {
+        outline: 1px solid var(--border-primary);
+        outline-offset: -1px;
+    }
+}
+
+#{$button-selectors} {
+    --lr-box-bg: var(--bg3);
+    --lr-box-bg-muted: var(--bg2);
+    --lr-box-fg: var(--fg1);
+    --lr-box-border: var(--border1);
+    --lr-box-border-muted: var(--border1);
+    --lr-box-fg-on: var(--fg0);
+
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var(--lr-box-bg);
+    color: var(--lr-box-fg-on);
+    box-shadow: var(--shadow1);
+    box-shadow: 0px 2px 4px 0px color-mix(in oklab, var(--lr-box-bg) 40%, rgba(0, 0, 0, 0.49));
+    user-select: none;
+    font-weight: 600;
+    letter-spacing: .5px;
+    outline-offset: 0px;
+    transition-property: background-color, outline-offset, scale;
+    transition-duration: .15s;
+    transition-timing-function: var(--curve-ease);
+    transition-timing-function: cubic-bezier(.4,0,.2,1);
+    border: 1px solid var(--lr-box-border);
+
+
+    @include can-hover {
+        &:hover {
+            background-color: oklch(from var(--lr-box-bg) calc(l + .03) c h);
+        }
+    }
+
+    &:active {
+        background-color: oklch(from var(--lr-box-bg) calc(l - .03) c h);
+
+        scale: .97;
+    }
+
+
+    &:focus-visible {
+        outline: 2px solid var(--border-primary);
+        outline-offset: 2px;
+    }
+
+    // Sizes
+    &.very-small {
+        padding: .125em .25em;
+    }
+    &.small {
+        padding: .25em .5em;
+    }
+    &,
+    &.medium {
+        padding: .5em 1em;
+        border-radius: .25em;
+    }
+    &.large {
+        padding: .625em 1.25em;
+        border-radius: .5em;
+    }
+
+
+    // Colors
+
+
+    // Varients
+    &.muted {
+        background-color: var(--lr-box-bg-muted);
+        // border-color: transparent;
+        color: var(--lr-box-fg);
+
+        @include can-hover {
+            &:hover {
+                background-color: oklch(from var(--lr-box-bg-muted) calc(l + .04) c h);
+            }
+        }
+        &:active {
+            background-color: oklch(from var(--lr-box-bg-muted) calc(l - .02) c h);
+        }
+    }
+
+    &.outline {
+        border: 1px solid var(--lr-box-border-muted);
+        background-color: transparent;
+        color: var(--lr-box-fg);
+        box-shadow: none;
+
+        @include can-hover {
+            &:hover {
+                background-color: oklch(from var(--lr-box-bg) calc(l + .4) c h / .08);
+                background-color: oklch(from var(--lr-box-bg-muted) calc(l + .1) calc(c * 1.3) h / .4);
+            }
+        }
+        &:active {
+            background-color: oklch(from var(--lr-box-bg) l c h / .04);
+            background-color: oklch(from var(--lr-box-bg-muted) calc(l + .05) calc(c * 1.1) h / .3);
+        }
+    }
+
+    &.subtle {
+        border-color: transparent;
+        background-color: transparent;
+        color: var(--lr-box-fg);
+        box-shadow: none;
+
+        @include can-hover {
+            &:hover {
+                background-color: oklch(from var(--lr-box-bg) l c h / .12);
+                background-color: oklch(from var(--lr-box-bg-muted) calc(l + .1) calc(c * 1.3) h / .4);
+            }
+        }
+        &:active {
+            background-color: oklch(from var(--lr-box-bg) calc(l - .2) c h / .06);
+            background-color: oklch(from var(--lr-box-bg-muted) calc(l + .05) calc(c * 1.1) h / .3);
+        }
+    }
+}

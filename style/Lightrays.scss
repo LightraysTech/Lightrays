@@ -1,4 +1,14 @@
 @use "abstracts/theme";
+@use "abstracts/layout";
+@use "abstracts/elements";
+
+@mixin variants($prefix, $property, $map) {
+    @each $name, $value in $map {
+        .#{$prefix}#{$name} {
+            #{$property}: #{$value}
+        }
+    }
+}
 
 *,
 *::before,
@@ -8,6 +18,11 @@
 }
 
 html {
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
     -webkit-tap-highlight-color: transparent;
     -webkit-text-size-adjust: none;
     text-size-adjust: 100%;
@@ -15,9 +30,8 @@ html {
     tab-size: 2;
     line-height: 1.5;
 
-    scrollbar-color: gray transparent;
-    scrollbar-arrow-color: red;
-    color: red;
+    scrollbar-color: var(--scrollbar-color, gray) transparent; // TODO
+    scrollbar-width: thin;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -28,13 +42,19 @@ html {
 
 body {
     line-height: inherit;
-    -webkit-font-smoothing: antialiased;
     margin: 0;
     min-height: 100dvh;
 
     font-family: var(--font-sans);
     background-color: var(--bg1);
     color: var(--fg0);
-
-    overflow: scroll;
 }
+
+@include variants("rad", border-radius,
+    (0: 0px,
+        2: 2px,
+        4: 4px,
+        8: 8px,
+        16: 16px,
+        32: 32px,
+    ));
