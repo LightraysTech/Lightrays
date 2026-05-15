@@ -1,6 +1,7 @@
 import '../../style/Lightrays.scss'
 import './style.css'
-import { parseCss } from "./cssParser"
+import { cssNodeListToString, cssNodeToString, parseCss, tokenizeCss, type CssNode, type CssRule, type CssToken } from "./cssParser"
+import { parse } from './newCssParser'
 
 type EventRecord<K extends HTMLElement = HTMLElement> = {
     [T in keyof HTMLElementEventMap]?: <F extends Event = HTMLElementEventMap[T]>(this: K, ev: F) => any
@@ -141,85 +142,528 @@ document.body.append(
     //         }
     //     }, rule.selectorText))
     // )
-    createCssEditor(),
-    div({
-        class: "bg0", style: { display: "none", position: "fixed", padding: "8px", inset: "8px", left: "50%", overflow: "auto", whiteSpace: "pre" },
-        contenteditable: "true"
-    },
-        // html("pre", {}, JSON.stringify(parseCss(`
+    // createCssEditor(),
+    // ...tokenizeCss(document.styleSheets[1].ownerNode.innerHTML)
+    //     .map(v => div({}, "|" + document.styleSheets[1].ownerNode.innerHTML.slice(v.start, v.end) + "|", "  ------ ", v.type))
+)
 
-        //     "asdfgf""ne\\"xt"""asdfsfa `), null, 2)),
-        br(),
-        async el => {
-            // el.replaceChildren(htmlFromCssTree(document.styleSheets[0].ownerNode.innerHTML, parseCss(document.styleSheets[0].ownerNode.innerHTML)))
-            el.oninput = e => {
-                document.getSelection()?.setPosition()
-                el.replaceChildren(htmlFromCssTree(el.textContent, parseCss(el.textContent)))
+// let txt = document.styleSheets[1]!.ownerNode!.innerHTML as string
+// let newtxt = tokenizeCss(txt).map(t => txt.slice(t.loc.start, t.loc.end)).join("")
+// // console.log(txt == newtxt);
+// console.log(parseCss(txt));
+
+interface CssRuleRef {
+    stylesheet: StyleSheet;
+    selectorPath: string[];
+    linePath: number[];
+}
+
+fetch("test.css").then(async res => {
+    const txt = await res.text()
+    // console.time()
+    // console.log(parseCss(txt));
+    // console.timeEnd()
+    document.body.append(new NewCssEditor(txt).el)
+
+    // setTimeout(() => {
+    //     const N = 100
+
+    //     const bench: number[] = []
+    //     let sum = 0
+    //     for (let i = 0; i < N; i++) {
+    //         const t0 = performance.now()
+    //         tokenizeCss(txt)
+    //         const t1 = performance.now()
+    //         bench.push(t1 - t0);
+    //         sum += t1 - t0
+    //     }
+
+    //     console.log("Tokenizer Benchmark:", sum / N);
+
+    // }, 10);
+
+    setTimeout(() => {
+        const N = 100
+
+        const bench: number[] = []
+        let sum = 0
+        for (let i = 0; i < N; i++) {
+            const t0 = performance.now()
+            parseCss(txt)
+            const t1 = performance.now()
+            bench.push(t1 - t0);
+            sum += t1 - t0
+        }
+
+        console.log("Parser Benchmark:", sum / N);
+
+    }, 10);
+
+    // const ed = new CssEditor()
+    // ed.addBuffer("test.css", txt)
+    // document.body.append(ed.el)
+})
+
+// interface CssBufferRange {
+//     buffer: CssBuffer
+//     start: number
+//     end: number
+// }
+
+interface CssRuleReference {
+    buffer: CssBuffer
+    idxPath: number[]
+    selectorPath: string[]
+}
+
+class CssBuffer {
+    src: string
+    styleElement: HTMLStyleElement
+
+    tokens: CssToken[] = []
+    ast: CssNode[] = []
+
+    constructor(src: string, element?: HTMLStyleElement) {
+        this.src = src
+        if (element) {
+            this.styleElement = element
+        } else {
+            this.styleElement = document.createElement("style")
+            document.head.append(this.styleElement)
+        }
+
+        this.update()
+    }
+
+    update() {
+        this.tokens = tokenizeCss(this.src)
+        this.ast = parseCss(this.src, this.tokens)
+        this.styleElement.innerHTML = this.src
+    }
+
+    replace(start: number, end: number, replacement: string) {
+        this.src = this.src.slice(0, start)
+            + replacement
+            + this.src.slice(end)
+        this.update()
+    }
+
+
+    findMatchingRules(element: HTMLElement, nodes = this.ast, parentSelector?: string) {
+        const result: CssRuleReference[] = []
+
+        let i = 0;
+        for (const node of nodes) {
+            if (node.type != "rule") continue
+            if (!node.block) continue
+            // if (this.src[node.prelude[0].loc.start] == "@") continue // TODO support @media
+            if (node.prelude.length == 0) continue
+
+            const selector = this.src.slice(node.prelude[0].loc.start, node.prelude[node.prelude.length - 1].loc.end)
+            // if (parentSelector) selector = selector.replaceAll("&", `:is(${parentSelector})`)
+            if (element.matches(selector)) {
+                result.push({ buffer: this, idxPath: [i], selectorPath: [selector] })
+                console.log(selector);
 
             }
 
-            el.onpointerover = e => {
-                const target = e.target as HTMLElement
+            // TODO: nested style rules
+            // result.push(...this.findMatchingRules(element, node.block.children, selector))
 
-                const rule = target.closest("[data-selector]")
-                if (rule) {
-                    console.log((rule as HTMLElement).dataset["selector"]);
-                    document.querySelectorAll((rule as HTMLElement).dataset["selector"])
-                        .forEach(el => el.style.background = "red")
-                }
+            i++ // Dont turn this into for-loop
+        }
+        return result
+    }
 
-                // document.querySelectorAll(src.slice(node.selector.start, node.selector.end)).forEach(el => el.style.background = "red")
-            }
-            el.onpointerout = e => {
-                // document.querySelectorAll(src.slice(node.selector.start, node.selector.end)).forEach(el => el.style.background = "")
+    getAllSelectors(nodes: CssNode[] = this.ast) {
+        let results: string[][] = []
+        for (const node of nodes) {
+            if (node.type != "rule") continue
+            if (node.prelude.length == 0) continue
+
+            const selector = this.src.slice(node.prelude[0].loc.start, node.prelude[node.prelude.length - 1].loc.end)
+            results.push([selector])
+
+            for (const res of this.getAllSelectors(node.block)) {
+                results.push([selector, ...res])
             }
         }
-    ),
-)
+        return results
+    }
+
+    getRuleAtPath(selectorPath: string[], nodes?: CssNode[]): CssRule | null {
+        if (!nodes) nodes = this.ast
+
+
+        for (const node of nodes) {
+            if (node.type != "rule") continue
+            if (node.prelude.length == 0) continue
+
+            const selector = this.src.slice(node.prelude[0].loc.start, node.prelude[node.prelude.length - 1].loc.end)
+            if (selector == selectorPath[0]) {
+                if (selectorPath.length == 1) {
+                    return node
+                } else {
+                    return this.getRuleAtPath(selectorPath.slice(1), node.block)
+                }
+            } else {
+                continue
+            }
+        }
+
+        return null
+    }
+
+}
+
+function arraysEqual<T>(arr1: T[], arr2: T[]): boolean {
+    return arr1.reduce((p, c, i) => p && arr1[i] == arr2[i], true)
+}
+
+class CssEditor {
+    el: HTMLElement
+
+    buffers: CssBuffer[] = []
+
+    selectedElement: HTMLElement | null = null
+    shownRules: {
+        buffer: CssBuffer
+        selectorPath: string[]
+    }[] = []
+
+    constructor() {
+        this.el = document.createElement("div")
+        this.el.className = "cssEditor"
+
+        this.update()
+
+
+        window.addEventListener("click", e => {
+            if (!(e.target instanceof HTMLElement)) return
+            if (this.selectedElement) return
+
+            this.selectedElement = e.target
+            this.update()
+        })
+    }
+
+    addBuffer(src: string, text: string, styleElement?: HTMLStyleElement) {
+        this.buffers.push(new CssBuffer(text))
+        this.update()
+    }
+
+    update() {
+        if (!this.selectedElement) {
+            // TODO print some msg
+            return
+        }
+
+        const prevShownRules = this.shownRules
+        this.shownRules = []
+        for (const buffer of this.buffers) {
+            this.shownRules.push(...buffer.findMatchingRules(this.selectedElement))
+        }
+
+
+        console.log(this.shownRules, prevShownRules);
+
+        // if (arraysEqual(this.shownRules.map(r => r.selectorPath.join("")), prevShownRules.map(r => r.selectorPath.join("")))) return
+
+        this.el.replaceChildren()
+
+        for (const shownRule of this.shownRules) {
+            const rule = shownRule.buffer.getRuleAtPath(shownRule.selectorPath)
+            if (!rule) throw new Error("");
+            console.log(shownRule.buffer.src.slice(rule.loc.start, rule.loc.end));
+            let txt = shownRule.buffer.src.slice(rule.loc.start, rule.loc.end)
+            this.el.append(html("pre", { contenteditable: "plaintext-only" },
+                txt
+                , el => {
+                    el.oninput = e => {
+                        this.handleBufferChange(shownRule.buffer, el, shownRule.selectorPath)
+                    }
+                })
+            )
+        }
+
+
+
+        let nodes: CssNode[] = this.buffers.map(b => b.ast.filter(n => n.type == "rule")).flat()
+        // console.log(nodes);
+
+
+    }
+
+    handleBufferChange(buffer: CssBuffer, el: HTMLElement, ruleSelectorPath: string[]) {
+        const rule = buffer.getRuleAtPath(ruleSelectorPath)
+        if (!rule) {
+            this.update()
+            return
+        }
+
+        // const selectorsBefore = JSON.stringify(buffer.getAllSelectors())
+        buffer.replace(rule.loc.start, rule.loc.end, el.innerText)
+        // const selectorsAfter = JSON.stringify(buffer.getAllSelectors())
+
+        // this.update()
+
+        const newRule = buffer.getRuleAtPath(ruleSelectorPath)
+        if (!newRule) {
+            this.update()
+            return
+        }
+        const newText = buffer.src.slice(newRule.loc.start, newRule.loc.end)
+        console.log("old", el.innerText);
+        console.log("new", newText);
+
+        if (newText != el.innerText) {
+            // el.innerText = newText
+            this.update()
+        }
+
+    }
+
+    htmlFromNode(node: CssNode, src: string): HTMLElement | string {
+        switch (node.type) {
+            case "token":
+                return src.slice(node.loc.start, node.loc.end)
+            case "rule": {
+                const nameEl = span({ class: "selector" }, cssNodeListToString(node.prelude, src))
+                const el = span({ class: "rule" }, nameEl)
+                if (node.block)
+                    el.append(this.htmlFromNode(node.block, src))
+                else
+                    el.append(";")
+                return el
+            }
+            case "block": {
+                const el = span({ class: "body" },
+                    "{",
+                    ...this.htmlFromNodes(node.children, src),
+                    "}"
+                )
+                return el
+            }
+            case "declaration":
+                return span({},
+                    span({ class: "property" }, ...this.htmlFromNodes(node.property, src)),
+                    ":",
+                    span({ class: "value" }, cssNodeListToString(node.value, src)),
+                    ";"
+                )
+            case "comment":
+                return span({}, src.slice(node.loc.start, node.loc.end))
+            default:
+                let _notAllCasesHandeled: never = node
+                return span({}, JSON.stringify(_notAllCasesHandeled))
+        }
+    }
+
+    htmlFromNodes(nodes: CssNode[], src: string) {
+        return nodes.map(node => this.htmlFromNode(node, src))
+    }
+}
+
+class NewCssEditor {
+    src: string
+    el: HTMLElement
+
+    buffer: HTMLElement
+    cursor: HTMLElement
+
+    cursorOffset = 0
+
+    constructor(text: string) {
+        this.src = text
+        this.cursor = div({ style: { width: "2px", height: "1em", backgroundColor: "red", position: "absolute", left: "10ch", top: "3lh" } })
+        this.buffer = html("pre", {})
+        this.el = div({ class: "cssEditor flex" },
+            html("pre", {
+                contenteditable: "true", style: { width: "50vw" }
+            }, this.src, el => el.oninput = e => {
+                this.src = el.innerText
+                this.update()
+            }
+            )
+            , this.buffer,)
+
+        console.log("nkrgnk");
+
+        console.time("Parse")
+        const sheet = parseCss(this.src)
+        console.timeEnd("Parse")
+
+        console.log(sheet);
+        /* this.buffer.oninput = e => {
+            this.update()
+            let selection = window.getSelection()
+            if (selection) {
+                console.log(this.cursorOffset);
+                for (let i = 0; i < this.cursorOffset; i++) {
+                }
+            }
+            e
+        }
+        document.addEventListener("selectioninput", e => {
+            let selection = window.getSelection()
+            console.log(e, selection?.getRangeAt(0));
+
+
+            if (selection) {
+
+                let r = selection.getRangeAt(0).cloneRange()
+                r.setStart(this.buffer, 0)
+                console.log(r, r.toString().length, r.toString());
+                this.cursorOffset = r.toString().length
+                console.log(this.cursorOffset);
+                // selection.setPosition(this.el, this.cursorOffset)
+
+                // console.log(getOffsetFromElement(this.el, selection.baseNode, selection.baseOffset),
+                //     getOffsetFromElement(this.el, selection.extentNode, selection.extentOffset));
+            }
+        }) */
+
+        this.buffer.replaceChildren(...this.htmlFromNodes(sheet))
+    }
+
+    updateTimeout: number | null = null
+    update() {
+        // this.src = this.el.textContent
+
+        if (this.updateTimeout) clearTimeout(this.updateTimeout)
+        this.updateTimeout = setTimeout(() => {
+            console.time("Parse")
+            const sheet = parseCss(this.src)
+            console.timeEnd("Parse")
+
+            // document.styleSheets[1].ownerNode.innerHTML = this.src
+            this.buffer.replaceChildren(...this.htmlFromNodes(sheet))
+        }, 5);
+
+    }
+
+    htmlFromNode(node: CssNode): HTMLElement | string {
+        switch (node.type) {
+            case "token":
+                if (node.kind == "comment") {
+                    return span({ class: "comment" }, this.src.slice(node.loc.start, node.loc.end))
+                } else if (node.kind == "str") {
+                    return span({ class: "string" }, this.src.slice(node.loc.start, node.loc.end))
+                } else {
+                    return this.src.slice(node.loc.start, node.loc.end)
+                }
+            case "rule": {
+                const nameEl = span({ class: "selector" }, cssNodeListToString(node.prelude, this.src))
+                const el = div({ class: "rule", contenteditable: "false" }, nameEl)
+                if (node.block)
+                    el.append(div({ class: "body", contenteditable: "true" }, ...this.htmlFromNodes(node.block)))
+                else
+                    el.append(";")
+                return el
+            }
+            case "decl":
+                return div({},
+                    span({ class: "property" }, cssNodeToString(node.property, this.src)),
+                    ": ",
+                    span({ class: "value" }, cssNodeListToString(node.value, this.src)),
+                    // ";"
+                )
+            default:
+                let _notAllCasesHandeled: never = node
+                return span({}, JSON.stringify(_notAllCasesHandeled))
+        }
+    }
+
+    htmlFromNodes(nodes: CssNode[]) {
+        return nodes.map(node => this.htmlFromNode(node))
+    }
+
+
+}
+
+
+function getOffsetFromElement(parentNode: HTMLElement, startNode: Node, nodeOffset: number) {
+    if (!parentNode.contains(startNode)) return null;
+    let node: Node = startNode;
+    let length = nodeOffset;
+    while (true) {
+        let prev = node.previousSibling;
+        if (prev !== null) {
+            node = prev;
+            length += node.textContent?.length || 0;
+        } else {
+            if (!parentNode.contains(startNode)) break;
+            if (!node.parentElement || !node.parentElement.previousSibling) break;
+            node = node.parentElement.previousSibling;
+            length += node.textContent?.length || 0;
+        }
+    }
+    return length;
+}
+
+// document.body.append(new CssEditor(document.styleSheets[1]).el)
 
 function createCssEditor() {
     const el = div({
-        class: "bg0", style: { position: "fixed", padding: "8px", inset: "8px", left: "50%", overflow: "auto", whiteSpace: "pre" },
-        contenteditable: "true"
+        class: "bg0 cssEditor", style: {
+            position: "fixed",
+            padding: "8px",
+            inset: "8px",
+            left: "50%",
+            overflow: "auto",
+            whiteSpace: "pre"
+        },
+        // contenteditable: "true"
     })
 
-    const cssText = document.styleSheets[0].ownerNode instanceof Element ? document.styleSheets[0].ownerNode.innerHTML : null
+    const cssText = document.styleSheets[1].ownerNode instanceof Element ? document.styleSheets[1].ownerNode.innerHTML : null
     if (!cssText) throw new Error("");
 
     const editor = div()
     el.append(editor)
     el.oninput = e => {
-        document.styleSheets[0].ownerNode.innerHTML = editor.textContent
+        document.styleSheets[1].ownerNode.innerHTML = editor.textContent
     }
 
     editor.replaceChildren(htmlFromCssTree(cssText, parseCss(cssText)))
 
-    let selectedRule = ""
+    let selectedRuleSelector = ""
+    let selectedRule: HTMLElement | null = null
+    let selectedElement: HTMLElement | null = null
 
     let visualizers: HTMLElement = document.createElement("div")
     el.append(visualizers)
 
-    el.onpointerover = e => {
+    el.onclick = e => {
+        if (selectedElement) return
         const target = e.target as HTMLElement
 
-        const rule = target.closest("[data-selector]")
+        const rule = target.closest("[data-selector]") as HTMLElement | null
         if (rule) {
-            selectedRule = (rule as HTMLElement).dataset["selector"] ?? ""
-            visualizers.replaceChildren(...
-                [...document.querySelectorAll((rule as HTMLElement).dataset["selector"])]
-                    .map(el => createVisualizer(el)))
+            selectRule(rule.dataset["selector"] ?? "", rule)
+            // rule.classList.add("selected")
         }
-
-        // document.querySelectorAll(src.slice(node.selector.start, node.selector.end)).forEach(el => el.style.background = "red")
     }
-    el.onpointerout = e => {
-        visualizers.replaceChildren()
+    window.addEventListener("click", e => {
+        let match = (e.target as HTMLElement).closest(selectedRuleSelector)
+
+        if (match) {
+            visualizers.replaceChildren(createVisualEditor(match, selectedRule))
+        }
+    })
+
+    function selectRule(selector: string, body: HTMLElement) {
+        selectedRule = body
+        selectedRuleSelector = selector
+        visualizers.replaceChildren(...
+            [...document.querySelectorAll(selector)]
+                .map(el => createSelectorVisualizer(el)))
     }
 
     return el
 }
 
-function createVisualizer(attached: HTMLElement) {
+function createSelectorVisualizer(attached: HTMLElement) {
     return div(
         {
             popover: "manual",
@@ -238,77 +682,26 @@ function createVisualizer(attached: HTMLElement) {
     )
 }
 
-function htmlFromCssTree(src: string, node: CssAstNode): HTMLElement {
-    switch (node.type) {
-        case 'rulelist': {
-            let el = span({ style: { color: "white" } });
-            let i = node.start
-            for (const rule of node.rules) {
-                el.append(src.slice(i, rule.start))
-                el.append(htmlFromCssTree(src, rule))
-                i = rule.end
+function createVisualEditor(attached: HTMLElement, rule: HTMLElement) {
+    return div(
+        {
+            popover: "manual",
+            style: {
+                backgroundColor: "rgba(219, 219, 219, 0.1)",
+                border: "2px dashed #ffffff",
+                positionArea: "center",
+                margin: "0",
+                inset: "auto",
+                width: "100%",
+                height: "100%",
+                pointerEvents: "none"
             }
-            el.append(src.slice(i, node.end))
-            return el
-        }
-        case 'comment':
-            return span({ style: { color: "gray" } }, src.slice(node.start, node.end))
-        case 'rule':
-            let el = div({
-                style: { color: "white" }, events: {
+        },
+        el => requestAnimationFrame(() => el.showPopover({ source: attached })),
 
-                }
-            });
-            el.dataset["nodetype"] = "rule"
-            el.dataset["selector"] = src.slice(node.selector.start, node.selector.end)
 
-            el.append(src.slice(node.start, node.selector.start))
-            el.append(span({
-                style: { color: "yellow" }
-            },
-                src.slice(node.selector.start, node.selector.end)
-            ))
-            el.append(src.slice(node.selector.end, node.block.start))
-            el.append(htmlFromCssTree(src, node.block))
-            el.append(src.slice(node.block.end, node.end))
-            return el
-        case 'decl': {
-            const property = src.slice(node.property.start, node.property.end)
-            const value = src.slice(node.value.start, node.value.end)
-            const el = span({ style: { color: "white" } });
-            el.append(src.slice(node.start, node.property.start))
-            el.append(span({ style: { color: "blue" } }, property))
-            el.append(src.slice(node.property.end, node.value.start))
-            const valEl = span({ style: { color: "green" } }, value)
-            el.append(valEl)
-            el.append(src.slice(node.value.end, node.end))
-
-            if (/^\s*\d+(\.\d+)?\w*/.test(value))
-                el.append(html("input", {
-                    type: "range",
-                    events: {
-                        input: function () {
-                            valEl.innerHTML = valEl.innerHTML.replace(/(?<=^\s*)\d+(\.\d+)?(?=\w*)/, this.value)
-                        }
-                    }
-                }))
-            return el
-        }
-        case 'unknown':
-            return span({ style: { color: "red" } }, src.slice(node.start, node.end))
-        default:
-            return span({ style: { color: "magenta" } }, src.slice(node.start, node.end))
-    }
+    )
 }
-
-
-
-const layerPicker = div({ class: "flex-col gap4 p4 rad4 bg2 m0", style: { position: "fixed" } },
-    button({ class: "subtle px4 py0" }, "test"),
-    // button({class:"subtle px4 py0"}, "testrt"),
-)
-
-document.body.append(layerPicker)
 
 function addDragEventListeners(
     el: HTMLElement,
@@ -351,4 +744,96 @@ function addDragEventListeners(
         lastClientX = e.clientX
         lastClientY = e.clientY
     })
+}
+
+function findMatchingCssRules(element: HTMLElement, parentRule?: CSSRule, parentSelector?: string) {
+    const result: CSSRule[] = []
+
+
+
+    if (!parentRule) {
+        for (const sheet of document.styleSheets) {
+            for (const rule of sheet.cssRules) {
+                result.push(...findMatchingCssRules(element, rule))
+            }
+        }
+    } else {
+        let selector = parentSelector
+        if (parentRule instanceof CSSStyleRule) {
+            selector = parentRule.selectorText
+            if (parentSelector) selector = selector.replaceAll("&", `:is(${parentSelector})`)
+            if (parentSelector) console.log(parentRule, parentSelector, selector);
+
+            if (element.matches(selector)) {
+                result.push(parentRule)
+            }
+
+            for (const rule of parentRule.cssRules) {
+                result.push(...findMatchingCssRules(element, rule, selector))
+            }
+        }
+        if (parentRule instanceof CSSGroupingRule) {
+            // console.log(parentRule, selector);
+
+        }
+    }
+
+    return result
+}
+
+let selectedRule: CSSStyleRule | null = null
+let selectedElement: HTMLElement | null = null
+
+const ctxMenu = div({ class: "ctxMenu editorGui", popover: "manual" })
+document.body.append(ctxMenu)
+
+let activeResolve: Function | null = null
+function simpleContextMenu<T>(anchor: HTMLElement, options: Record<string, T>): Promise<T | null> {
+    activeResolve?.(null)
+    return new Promise(resolve => {
+        activeResolve = resolve
+        ctxMenu.replaceChildren(...Object.entries(options).map(([k, v]) => div({}, k,
+            el => el.onclick = () => { ctxMenu.hidePopover(); resolve(v); }
+        )))
+        ctxMenu.hidePopover()
+        ctxMenu.showPopover({ source: anchor })
+    })
+}
+
+window.addEventListener("click", async e => {
+    if (!(e.target instanceof HTMLElement)) return
+    if (e.target.matches(".editorGui, .editorGui *")) return
+    return
+
+    selectedElement = e.target
+
+    let options: Record<string, CSSStyleRule> = {}
+    for (const sheet of document.styleSheets) {
+        for (const rule of sheet.cssRules) {
+            if (rule instanceof CSSStyleRule) {
+                if (selectedElement.matches(rule.selectorText)) {
+                    options[rule.selectorText] = rule
+                }
+            }
+        }
+        console.groupEnd()
+    }
+
+    console.log(findMatchingCssRules(selectedElement));
+
+
+    selectedRule = await simpleContextMenu(selectedElement, options)
+    if (selectedRule) {
+        console.log(selectedRule);
+
+        document.body.append(createSelectorVisualizer(selectedElement))
+    }
+
+})
+
+function highlightElement(el: HTMLElement) {
+    el.animate([
+        { background: "red", outline: "2px solid red", outlineOffset: "4px" }
+    ], { duration: 800, direction: "reverse" })
+
 }

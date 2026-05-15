@@ -1,0 +1,9 @@
+button, .imported {
+    .nested {
+/*a*/
+    }
+
+    * {
+/*b*/
+    }
+}

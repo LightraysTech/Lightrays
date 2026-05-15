@@ -1,24 +1,90 @@
 body {
   overflow: scroll;
-  /*esrtegdzhf
-  */
-  overflow: auto;
+
+  body {}
 }
 
-body {
-  overflow: scroll;
-  /*esrtegdzhf
-  */
-  overflow: auto;
+.cssEditor {
+  background-color: var(--bg0);
+  font-family: Consolas, monospace;
+  line-height: 20px;
 
-  body {
-    overflow: scroll;
-    /*esrtegdzhf
-  */
-    overflow: auto;
+  /* padding: 8px; */
+  position: relative;
+
+  .rule {
+    padding-top: 16px;
+
+    .body {
+      margin-left: 4px;
+      padding-left: 16px;
+      border-left: 2px solid rgb(61, 61, 61);
+    }
+
+    &.selected > .body {
+      border-left-color: rgb(25, 115, 189);
+    }
   }
 
+  .selector {
+    color: #fc8d6e;
+    font-weight: 500;
+  }
+
+  .property {
+    color: rgb(25, 115, 189)
+  }
+
+  .value {
+    color: rgb(209, 209, 209)
+  }
+
+  .comment {
+    color: gray;
+  }
+
+  .string {
+    color: greenyellow;
+  }
 }
+
+.ctxMenu {
+  background-color: var(--bg2);
+  border: 1px solid var(--bg5);
+  border-radius: 8px;
+  position: absolute;
+  flex-direction: column;
+  padding: 4px;
+  gap: 4px;
+  max-width: 200px;
+  position-area: bottom span-right;
+  margin: 0;
+  inset: auto;
+
+  &:popover-open {
+    display: flex;
+  }
+
+
+  div {
+    padding: 4px 8px;
+    overflow: hidden;
+    text-wrap: nowrap;
+    cursor: pointer;
+
+    &:hover {
+      background-color: var(--bg3);
+    }
+  }
+}
+
+button {
+  /*width: 100.04px;
+  bottom: calc(100vw + 10px * (4 + 3))*/
+}
+
+
+@media screen {}
 
 /*
 
