@@ -1,3 +1,5 @@
+const DEBUG_ADD_SRC_SLICES = false
+
 const CHAR = {
     NUL: 0,                // Null
     SOH: 1,                // Start of Heading
@@ -127,7 +129,7 @@ const CHAR = {
     RIGHT_BRACE: 125,      // }
     TILDE: 126,            // ~
     DEL: 127,              // (Delete)
-}
+} as const
 
 type Loc = {
     start: number;
@@ -157,8 +159,42 @@ export interface CssDeclaration extends CssNodeBase {
     // important: boolean;
 }
 
-
 export type CssNode = CssToken | CssRule | CssDeclaration;
+
+
+const NodeType = {
+    token: 0,
+    rule: 1,
+    decl: 2,
+} as const
+
+interface NodeBase {
+    type: typeof NodeType[keyof typeof NodeType]
+    start: number
+    end: number
+}
+
+interface Token extends NodeBase {
+    type: typeof NodeType["token"],
+    kind: TokenKind
+}
+
+interface Rule extends NodeBase {
+    type: typeof NodeType["rule"],
+    prelude: Token[];
+    block: Node[];
+}
+
+interface Decl extends NodeBase {
+    type: typeof NodeType["decl"],
+    property: Token;
+    value: Token[];
+    // important: boolean;
+}
+
+export type Node = Token | Rule | Decl;
+
+
 
 const CH_A = "A".charCodeAt(0)
 const CH_Z = "Z".charCodeAt(0)
@@ -205,6 +241,247 @@ const isWhitespaceCode = (c: number) =>
 
 const isNumberCode = (c: number) => (CHAR[0] <= c && c <= CHAR[9])
 const isNumberStartCode = (c: number) => (CH_0 <= c && c <= CH_9) || c == CH_plus || c == CH_minus
+
+
+const TokenKind = {
+    NONE: 0,
+    EOF: 1,
+    ID: 2,
+    STR: 3,
+    NUM: 4,
+    COMMENT: 5,
+    CHAR: 6,
+} as const
+
+export const TokenKindStr = Object.keys(TokenKind)
+
+type TokenKind = typeof TokenKind[keyof typeof TokenKind]
+
+export class Lexer {
+    src: string
+    i = 0
+
+    kind: TokenKind = TokenKind.NONE
+    start = 0
+    end = 0
+    ch = 0
+
+    constructor(src: string) {
+        this.src = src
+        this.next()
+    }
+
+    next() {
+        do {
+            if (this.i >= this.src.length) {
+                this.start = this.end = this.i = this.src.length
+                this.kind = TokenKind.EOF
+                this.ch = CHAR.NUL
+                return false
+            }
+            this.start = this.i
+            this.ch = this.src.charCodeAt(this.i)
+            this.i++
+        }
+        while (this.ch == CHAR.CR ||
+        this.ch == CHAR.LF ||
+        this.ch == CHAR.HTAB ||
+        this.ch == CHAR.VTAB ||
+            this.ch == CHAR.SPACE
+        )
+
+        if (isIdentifierCode(this.ch, false)) {
+            while (isIdentifierCode(this.src.charCodeAt(this.i), true)) {
+                this.i++
+            }
+            this.end = this.i
+            this.kind = TokenKind.ID
+            return true
+        }
+
+        if (isNumberStartCode(this.ch)) {
+            while (isNumberCode(this.src.charCodeAt(this.i))) {
+                this.i++
+            }
+            if (this.src.charCodeAt(this.i) == CHAR.PERIOD
+                && isNumberCode(this.src.charCodeAt(this.i + 1))
+            ) {
+                this.i++
+                while (isNumberCode(this.src.charCodeAt(this.i))) {
+                    this.i++
+                }
+            }
+
+            this.end = this.i
+            this.kind = TokenKind.NUM
+            return true
+        }
+
+        if (this.ch === CHAR.DOUBLE_QUOTE || this.ch === CHAR.SINGLE_QUOTE) {
+            while (this.i < this.src.length
+                && this.src.charCodeAt(this.i) != this.ch
+                && this.src.charCodeAt(this.i) != CHAR.LF
+            ) {
+                this.i++
+                if (this.src.charCodeAt(this.i) == CHAR.BACKSLASH) this.i++
+            }
+            this.i++
+
+            this.end = this.i
+            this.kind = TokenKind.STR
+            return true
+        }
+
+        if (this.ch == CHAR.SLASH && this.src.charCodeAt(this.i) == CHAR.ASTERISK) {
+            this.i++
+            while (this.i < this.src.length
+                && !(this.src.charCodeAt(this.i) == CH_star
+                    && this.src.charCodeAt(this.i + 1) == CH_slash)
+            ) {
+                this.i++
+            }
+            this.i += 2
+
+            this.end = this.i
+            this.kind = TokenKind.COMMENT
+            return true
+        }
+
+        this.end = this.i
+        this.kind = TokenKind.CHAR
+        return true
+    }
+
+    makeToken(): Token {
+        return {
+            type: NodeType.token,
+            kind: this.kind,
+            start: this.start,
+            end: this.end,
+            DEBUG: DEBUG_ADD_SRC_SLICES ? this.src.slice(this.start, this.end) : undefined
+        }
+    }
+
+    rewind(mark: number) {
+        this.i = mark
+        this.next()
+    }
+}
+
+export function parse(src: string) {
+    const l = new Lexer(src)
+
+    const nodes = nodelist(l)
+
+    return nodes
+}
+
+function decl(l: Lexer): Decl | null {
+    const mark = l.start
+
+    if (l.kind != TokenKind.ID) {
+        l.rewind(mark)
+        return null
+    }
+
+    const property = l.makeToken()
+
+    l.next()
+    if (l.ch != CHAR.COLON) {
+        l.rewind(mark)
+        return null
+    }
+    l.next()
+
+    const value: Token[] = []
+    for (; l.kind as number != TokenKind.EOF; l.next()) {
+        if (l.ch as number == CHAR.SEMICOLON) break
+        if (l.ch as number == CHAR.RIGHT_BRACE) break
+        if (l.ch as number == CHAR.LEFT_BRACE) {
+            l.rewind(mark)
+            return null
+        }
+        value.push(l.makeToken())
+    }
+    if (l.ch as number != CHAR.SEMICOLON) l.i--
+
+    l.next()
+
+    return { type: NodeType.decl, property, value, start: mark, end: l.start }
+}
+
+function rule(l: Lexer): Rule | null {
+    const mark = l.start
+
+    const prelude: Token[] = []
+    for (; l.kind as number != TokenKind.EOF; l.next()) {
+        if (l.ch as number == CHAR.LEFT_BRACE) break
+        if (l.ch as number == CHAR.RIGHT_BRACE) {
+            l.rewind(mark)
+            return null
+        }
+        prelude.push(l.makeToken())
+    }
+
+    if (l.ch != CHAR.LEFT_BRACE) {
+        l.rewind(mark)
+        return null
+    }
+    l.next()
+
+    const block = nodelist(l)
+
+    if (l.ch as number != CHAR.RIGHT_BRACE) {
+        l.rewind(mark)
+        return null
+    }
+
+    l.next()
+
+
+    return { type: NodeType.rule, prelude, block, start: mark, end: l.start }
+}
+
+function nodelist(l: Lexer): Node[] {
+    const nodes: Node[] = []
+
+    while (l.kind != TokenKind.EOF && l.ch != CHAR.RIGHT_BRACE) {
+        let res: Node | null = null
+
+        if (l.kind == TokenKind.COMMENT) {
+            nodes.push(l.makeToken())
+            l.next()
+            continue
+        }
+
+        if (res = decl(l)) {
+            nodes.push(res)
+            // console.log(src.slice(res.start, res.end), res);
+            continue
+        }
+
+        if (res = rule(l)) {
+            nodes.push(res)
+            // console.log(src.slice(res.start, res.end), res);
+            continue
+        }
+
+        l.next()
+        res = l.makeToken()
+        nodes.push(res)
+        // console.log(src.slice(res.start, res.end), res);
+    }
+
+    if (DEBUG_ADD_SRC_SLICES) {
+        for (const key in nodes) {
+            if (!Object.hasOwn(nodes, key)) continue;
+
+            nodes[key]._DEBUG = l.src.slice(nodes[key].start, nodes[key].end)
+        }
+    }
+
+    return nodes
+}
 
 export function tokenizeCss(src: string): CssToken[] {
     const toks: CssToken[] = [];

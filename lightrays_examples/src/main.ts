@@ -1,7 +1,6 @@
 import '../../style/Lightrays.scss'
 import './style.css'
-import { cssNodeListToString, cssNodeToString, parseCss, tokenizeCss, type CssNode, type CssRule, type CssToken } from "./cssParser"
-import { parse } from './newCssParser'
+import { cssNodeListToString, cssNodeToString, Lexer, parse, parseCss, tokenizeCss, TokenKindStr, type CssNode, type CssRule, type CssToken } from "./cssParser"
 
 type EventRecord<K extends HTMLElement = HTMLElement> = {
     [T in keyof HTMLElementEventMap]?: <F extends Event = HTMLElementEventMap[T]>(this: K, ev: F) => any
@@ -158,6 +157,34 @@ interface CssRuleRef {
     linePath: number[];
 }
 
+function benchmark(N: number, fn: () => any, name?: string) {
+    let sum = 0
+    for (let i = 0; i < N; i++) {
+        const t0 = performance.now()
+        fn()
+        const t1 = performance.now()
+        sum += t1 - t0
+    }
+
+    console.log("Benchmark:", name || fn.name, sum / N);
+}
+
+function benchmark2(N: number, fn1: () => any, fn2: () => any, name?: string) {
+    let sum1 = 0
+    let sum2 = 0
+    for (let i = 0; i < N; i++) {
+        const t0 = performance.now()
+        fn1()
+        const t1 = performance.now()
+        fn2()
+        const t2 = performance.now()
+        sum1 += t1 - t0
+        sum2 += t2 - t1
+    }
+
+    console.log("Benchmark:", name || (fn1.name + " - " + fn2.name), sum1 / N, "-", sum2 / N);
+}
+
 fetch("test.css").then(async res => {
     const txt = await res.text()
     // console.time()
@@ -183,19 +210,34 @@ fetch("test.css").then(async res => {
     // }, 10);
 
     setTimeout(() => {
-        const N = 100
 
-        const bench: number[] = []
-        let sum = 0
-        for (let i = 0; i < N; i++) {
-            const t0 = performance.now()
-            parseCss(txt)
-            const t1 = performance.now()
-            bench.push(t1 - t0);
-            sum += t1 - t0
-        }
+        benchmark(100, parse.bind(undefined, txt))
+        benchmark(100, parseCss.bind(undefined, txt))
 
-        console.log("Parser Benchmark:", sum / N);
+        benchmark2(2000,  parse.bind(undefined, txt), parseCss.bind(undefined, txt))
+
+        benchmark(1000, () => {
+            const l = new Lexer(txt)
+            while (l.next()) {
+                // console.log(txt.slice(l.start,l.end), TokenKindStr[l.kind], l.ch, l.start, l.end);
+            }
+        }, "Lexer")
+
+        benchmark(1000, tokenizeCss.bind(undefined, txt))
+
+        // const N = 1000
+
+        // const bench: number[] = []
+        // let sum = 0
+        // for (let i = 0; i < N; i++) {
+        //     const t0 = performance.now()
+        //     parseCss(txt)
+        //     const t1 = performance.now()
+        //     bench.push(t1 - t0);
+        //     sum += t1 - t0
+        // }
+
+        // console.log("Parser Benchmark:", sum / N);
 
     }, 10);
 
