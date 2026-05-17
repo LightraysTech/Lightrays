@@ -1,6 +1,7 @@
 import '../../style/Lightrays.scss'
 import './style.css'
-import { cssNodeListToString, cssNodeToString, Lexer, parse, parseCss, tokenizeCss, TokenKindStr, type CssNode, type CssRule, type CssToken } from "./cssParser"
+import { cssNodeListToString, cssNodeToString, CssNodeType, Lexer, parse, TokenKind, TokenKindStr, type CssNode } from "./cssParser"
+import { Patcher } from "./patch";
 
 type EventRecord<K extends HTMLElement = HTMLElement> = {
     [T in keyof HTMLElementEventMap]?: <F extends Event = HTMLElementEventMap[T]>(this: K, ev: F) => any
@@ -209,37 +210,8 @@ fetch("test.css").then(async res => {
 
     // }, 10);
 
-    setTimeout(() => {
+    // benchmark(100, parse.bind(undefined, txt))
 
-        benchmark(100, parse.bind(undefined, txt))
-        benchmark(100, parseCss.bind(undefined, txt))
-
-        benchmark2(2000,  parse.bind(undefined, txt), parseCss.bind(undefined, txt))
-
-        benchmark(1000, () => {
-            const l = new Lexer(txt)
-            while (l.next()) {
-                // console.log(txt.slice(l.start,l.end), TokenKindStr[l.kind], l.ch, l.start, l.end);
-            }
-        }, "Lexer")
-
-        benchmark(1000, tokenizeCss.bind(undefined, txt))
-
-        // const N = 1000
-
-        // const bench: number[] = []
-        // let sum = 0
-        // for (let i = 0; i < N; i++) {
-        //     const t0 = performance.now()
-        //     parseCss(txt)
-        //     const t1 = performance.now()
-        //     bench.push(t1 - t0);
-        //     sum += t1 - t0
-        // }
-
-        // console.log("Parser Benchmark:", sum / N);
-
-    }, 10);
 
     // const ed = new CssEditor()
     // ed.addBuffer("test.css", txt)
@@ -529,10 +501,9 @@ class NewCssEditor {
             )
             , this.buffer,)
 
-        console.log("nkrgnk");
 
         console.time("Parse")
-        const sheet = parseCss(this.src)
+        const sheet = parse(this.src)
         console.timeEnd("Parse")
 
         console.log(sheet);
@@ -565,7 +536,10 @@ class NewCssEditor {
             }
         }) */
 
-        this.buffer.replaceChildren(...this.htmlFromNodes(sheet))
+        console.time("Gen HTML")
+        // this.buffer.replaceChildren(...this.htmlFromNodes(sheet))
+        this.highlight(sheet, this.buffer)
+        console.timeEnd("Gen HTML")
     }
 
     updateTimeout: number | null = null
@@ -575,26 +549,29 @@ class NewCssEditor {
         if (this.updateTimeout) clearTimeout(this.updateTimeout)
         this.updateTimeout = setTimeout(() => {
             console.time("Parse")
-            const sheet = parseCss(this.src)
+            const sheet = parse(this.src)
             console.timeEnd("Parse")
 
             // document.styleSheets[1].ownerNode.innerHTML = this.src
-            this.buffer.replaceChildren(...this.htmlFromNodes(sheet))
+            console.time("Gen HTML")
+            this.highlight(sheet, this.buffer)
+            console.timeEnd("Gen HTML")
+            // this.buffer.replaceChildren(...this.htmlFromNodes(sheet))
         }, 5);
 
     }
 
     htmlFromNode(node: CssNode): HTMLElement | string {
         switch (node.type) {
-            case "token":
-                if (node.kind == "comment") {
-                    return span({ class: "comment" }, this.src.slice(node.loc.start, node.loc.end))
-                } else if (node.kind == "str") {
-                    return span({ class: "string" }, this.src.slice(node.loc.start, node.loc.end))
+            case CssNodeType.token:
+                if (node.kind == TokenKind.COMMENT) {
+                    return span({ class: "comment" }, this.src.slice(node.start, node.end))
+                } else if (node.kind == TokenKind.STR) {
+                    return span({ class: "string" }, this.src.slice(node.start, node.end))
                 } else {
-                    return this.src.slice(node.loc.start, node.loc.end)
+                    return this.src.slice(node.start, node.end)
                 }
-            case "rule": {
+            case CssNodeType.rule: {
                 const nameEl = span({ class: "selector" }, cssNodeListToString(node.prelude, this.src))
                 const el = div({ class: "rule", contenteditable: "false" }, nameEl)
                 if (node.block)
@@ -603,7 +580,7 @@ class NewCssEditor {
                     el.append(";")
                 return el
             }
-            case "decl":
+            case CssNodeType.decl:
                 return div({},
                     span({ class: "property" }, cssNodeToString(node.property, this.src)),
                     ": ",
@@ -620,7 +597,58 @@ class NewCssEditor {
         return nodes.map(node => this.htmlFromNode(node))
     }
 
+    highlight(nodes: CssNode[], parentEl: HTMLElement, lastPos = 0) {
+        // debugger
+        let nextChild = parentEl.firstChild
+        for (const node of nodes) {
+            if (lastPos != node.start) {
+                const prefix = this.src.slice(lastPos, node.start)
+                if (nextChild && nextChild.nodeType == Node.TEXT_NODE) {
+                    if (nextChild.textContent != prefix) {
+                        nextChild.textContent = prefix
+                    }
+                    nextChild = nextChild.nextSibling
+                } else {
+                    const el = document.createTextNode(prefix)
+                    if (nextChild) {
+                        try {
+                        parentEl.insertBefore(nextChild, el)
+                        } catch (error) {
+                            console.error(error,parentEl, nextChild, el);
+                            console.log(nextChild);
+                            new Patcher
 
+                        }
+                    } else {
+                        parentEl.append(el)
+                    }
+                }
+            }
+            switch (node.type) {
+                case CssNodeType.rule:
+                    if (node.prelude.length > 0) {
+                        this.patchNode("", this.src.slice(node.prelude[0].start, node.prelude[node.prelude.length - 1].end), nextChild, parentEl)
+                    }
+                    break;
+                default:
+                    let _notAllCasesHandeled: never = node
+                    break;
+                //return span({}, JSON.stringify(_notAllCasesHandeled))
+            }
+
+            nextChild = nextChild?.nextSibling || null
+            lastPos = node.end
+        }
+    }
+
+    patchNode(className: string, content: string, el: Node | null, parentEl: HTMLElement) {
+        if (!el) {
+            el = document.createElement("span")
+            parentEl.append(el)
+        }
+        el.className = className
+        el.textContent = content
+    }
 }
 
 

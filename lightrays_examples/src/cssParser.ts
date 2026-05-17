@@ -1,4 +1,52 @@
-const DEBUG_ADD_SRC_SLICES = false
+const DEBUG = true
+
+const DEBUG_ADD_SRC_SLICES = DEBUG && false
+const DEBUG_PROFILE = DEBUG && false
+
+class Profiler {
+    stack: { name: string; start: number, notself: number }[] = []
+    metrics: Record<string, { count: number, total: number, self: number }> = {}
+
+    mark(name: string) {
+        this.stack.push({
+            name,
+            start: performance.now(),
+            notself: 0,
+        })
+    }
+
+    end() {
+        const t = performance.now()
+        const item = this.stack.pop()
+        if (!item) throw new Error("Stack empty")
+
+        let m = this.metrics[item.name] || { count: 0, total: 0, self: 0 }
+        m.count++
+        m.total += t - item.start
+        m.self += t - item.start - item.notself
+        this.metrics[item.name] = m
+
+        if (this.stack.length > 0) {
+            this.stack[this.stack.length - 1].notself += t - item.start;
+        }
+    }
+
+    report() {
+        let out: Record<string, any> = {}
+        for (const name in this.metrics) {
+            out[name] = {
+                avg_self: (this.metrics[name].self / this.metrics[name].count).toFixed(2),
+                avg: (this.metrics[name].total / this.metrics[name].count).toFixed(2),
+                count: this.metrics[name].count,
+                total_self: this.metrics[name].self.toFixed(2),
+                total: this.metrics[name].total.toFixed(2),
+            }
+        }
+        console.table(out)
+    }
+}
+
+const prof = DEBUG_PROFILE ? new Profiler() : null
 
 const CHAR = {
     NUL: 0,                // Null
@@ -131,119 +179,8 @@ const CHAR = {
     DEL: 127,              // (Delete)
 } as const
 
-type Loc = {
-    start: number;
-    end: number;
-}
 
-interface CssNodeBase {
-    type: string;
-    loc: Loc;
-}
-
-export interface CssToken extends CssNodeBase {
-    type: "token";
-    kind: "id" | "str" | "num" | "char" | "comment";
-}
-
-export interface CssRule extends CssNodeBase {
-    type: "rule";
-    prelude: CssToken[];
-    block: CssNode[];
-}
-
-export interface CssDeclaration extends CssNodeBase {
-    type: "decl";
-    property: CssToken;
-    value: CssToken[];
-    // important: boolean;
-}
-
-export type CssNode = CssToken | CssRule | CssDeclaration;
-
-
-const NodeType = {
-    token: 0,
-    rule: 1,
-    decl: 2,
-} as const
-
-interface NodeBase {
-    type: typeof NodeType[keyof typeof NodeType]
-    start: number
-    end: number
-}
-
-interface Token extends NodeBase {
-    type: typeof NodeType["token"],
-    kind: TokenKind
-}
-
-interface Rule extends NodeBase {
-    type: typeof NodeType["rule"],
-    prelude: Token[];
-    block: Node[];
-}
-
-interface Decl extends NodeBase {
-    type: typeof NodeType["decl"],
-    property: Token;
-    value: Token[];
-    // important: boolean;
-}
-
-export type Node = Token | Rule | Decl;
-
-
-
-const CH_A = "A".charCodeAt(0)
-const CH_Z = "Z".charCodeAt(0)
-const CH_a = "a".charCodeAt(0)
-const CH_z = "z".charCodeAt(0)
-const CH_0 = "0".charCodeAt(0)
-const CH_9 = "9".charCodeAt(0)
-const CH_plus = "+".charCodeAt(0)
-const CH_minus = "-".charCodeAt(0)
-const CH_hash = "#".charCodeAt(0)
-const CH__ = "_".charCodeAt(0)
-const CH_dot = ".".charCodeAt(0)
-const CH_slash = "/".charCodeAt(0)
-const CH_backslash = "\\".charCodeAt(0)
-const CH_quote = "\"".charCodeAt(0)
-const CH_singe_quote = "'".charCodeAt(0)
-const CH_star = "*".charCodeAt(0)
-
-const CH_brace_open = "{".charCodeAt(0)
-const CH_brace_close = "}".charCodeAt(0)
-const CH_semicolon = ";".charCodeAt(0)
-const CH_colon = ":".charCodeAt(0)
-
-const CH_carriage = "\r".charCodeAt(0)
-const CH_linefeed = "\n".charCodeAt(0)
-const CH_tab = "\t".charCodeAt(0)
-const CH_vertical_space = "\v".charCodeAt(0)
-const CH_space = " ".charCodeAt(0)
-
-const isIdentifierCode = (c: number, numbers: boolean) =>
-    (CH_a <= c && c <= CH_z)
-    || (CH_A <= c && c <= CH_Z)
-    || ((CH_0 <= c && c <= CH_9) && numbers)
-    || c == CH_minus
-    || c == CH_hash
-    || c == CH__
-
-const isWhitespaceCode = (c: number) =>
-    c == CHAR.CR
-    || c == CHAR.LF
-    || c == CHAR.HTAB
-    || c == CH_vertical_space
-    || c == CHAR.SPACE
-
-const isNumberCode = (c: number) => (CHAR[0] <= c && c <= CHAR[9])
-const isNumberStartCode = (c: number) => (CH_0 <= c && c <= CH_9) || c == CH_plus || c == CH_minus
-
-
-const TokenKind = {
+export const TokenKind = {
     NONE: 0,
     EOF: 1,
     ID: 2,
@@ -255,7 +192,52 @@ const TokenKind = {
 
 export const TokenKindStr = Object.keys(TokenKind)
 
-type TokenKind = typeof TokenKind[keyof typeof TokenKind]
+export type TokenKind = typeof TokenKind[keyof typeof TokenKind]
+
+export const CssNodeType = {
+    token: 0,
+    rule: 1,
+    decl: 2,
+} as const
+
+interface CssNodeBase {
+    type: typeof CssNodeType[keyof typeof CssNodeType]
+    start: number
+    end: number
+}
+
+interface Token extends CssNodeBase {
+    type: typeof CssNodeType["token"],
+    kind: TokenKind
+}
+
+interface Rule extends CssNodeBase {
+    type: typeof CssNodeType["rule"],
+    prelude: Token[];
+    block: CssNode[];
+}
+
+interface Decl extends CssNodeBase {
+    type: typeof CssNodeType["decl"],
+    property: Token;
+    value: Token[];
+    // important: boolean;
+}
+
+export type CssNode = Token | Rule | Decl;
+
+
+
+const isIdentifierCode = (c: number, numbers: boolean) =>
+    (CHAR.a <= c && c <= CHAR.z) ||
+    (CHAR.A <= c && c <= CHAR.Z) ||
+    ((CHAR[0] <= c && c <= CHAR[9]) && numbers) ||
+    c == CHAR.MINUS ||
+    c == CHAR.HASH ||
+    c == CHAR.UNDERSCORE
+
+const isNumberCode = (c: number) => (CHAR[0] <= c && c <= CHAR[9])
+const isNumberStartCode = (c: number) => (CHAR[0] <= c && c <= CHAR[9]) || c == CHAR.PLUS || c == CHAR.MINUS
 
 export class Lexer {
     src: string
@@ -335,8 +317,8 @@ export class Lexer {
         if (this.ch == CHAR.SLASH && this.src.charCodeAt(this.i) == CHAR.ASTERISK) {
             this.i++
             while (this.i < this.src.length
-                && !(this.src.charCodeAt(this.i) == CH_star
-                    && this.src.charCodeAt(this.i + 1) == CH_slash)
+                && !(this.src.charCodeAt(this.i) == CHAR.ASTERISK
+                    && this.src.charCodeAt(this.i + 1) == CHAR.SLASH)
             ) {
                 this.i++
             }
@@ -354,7 +336,7 @@ export class Lexer {
 
     makeToken(): Token {
         return {
-            type: NodeType.token,
+            type: CssNodeType.token,
             kind: this.kind,
             start: this.start,
             end: this.end,
@@ -371,7 +353,10 @@ export class Lexer {
 export function parse(src: string) {
     const l = new Lexer(src)
 
+    prof?.mark("parse")
     const nodes = nodelist(l)
+    prof?.end()
+    prof?.report()
 
     return nodes
 }
@@ -407,7 +392,7 @@ function decl(l: Lexer): Decl | null {
 
     l.next()
 
-    return { type: NodeType.decl, property, value, start: mark, end: l.start }
+    return { type: CssNodeType.decl, property, value, start: mark, end: l.start }
 }
 
 function rule(l: Lexer): Rule | null {
@@ -439,14 +424,14 @@ function rule(l: Lexer): Rule | null {
     l.next()
 
 
-    return { type: NodeType.rule, prelude, block, start: mark, end: l.start }
+    return { type: CssNodeType.rule, prelude, block, start: mark, end: l.start }
 }
 
-function nodelist(l: Lexer): Node[] {
-    const nodes: Node[] = []
+function nodelist(l: Lexer): CssNode[] {
+    const nodes: CssNode[] = []
 
     while (l.kind != TokenKind.EOF && l.ch != CHAR.RIGHT_BRACE) {
-        let res: Node | null = null
+        let res: CssNode | null = null
 
         if (l.kind == TokenKind.COMMENT) {
             nodes.push(l.makeToken())
@@ -454,17 +439,23 @@ function nodelist(l: Lexer): Node[] {
             continue
         }
 
+        prof?.mark("decl")
         if (res = decl(l)) {
             nodes.push(res)
             // console.log(src.slice(res.start, res.end), res);
+            prof?.end()
             continue
         }
+        prof?.end()
 
+        prof?.mark("rule")
         if (res = rule(l)) {
             nodes.push(res)
             // console.log(src.slice(res.start, res.end), res);
+            prof?.end()
             continue
         }
+        prof?.end()
 
         l.next()
         res = l.makeToken()
@@ -483,286 +474,6 @@ function nodelist(l: Lexer): Node[] {
     return nodes
 }
 
-export function tokenizeCss(src: string): CssToken[] {
-    const toks: CssToken[] = [];
-
-    let i = 0
-    while (i < src.length) {
-        const start = i
-        const code = src.charCodeAt(i)
-
-        if (isWhitespaceCode(code)) {
-            i++
-            continue;
-        }
-
-        if (isIdentifierCode(code, false)) {
-            i++
-            while (isIdentifierCode(src.charCodeAt(i), true)) {
-                i++
-            }
-            toks.push({ type: "token", kind: "id", loc: { start, end: i } });
-            continue;
-        }
-
-        if (isNumberStartCode(code)) {
-            i++
-            while (isNumberCode(src.charCodeAt(i))) {
-                i++
-            }
-            if (src.charCodeAt(i) == CH_dot && isNumberCode(src.charCodeAt(i + 1))) {
-                i++
-                while (isNumberCode(src.charCodeAt(i))) {
-                    i++
-                }
-            }
-
-            toks.push({ type: "token", kind: "num", loc: { start, end: i } });
-            continue;
-        }
-
-
-        if (code === CH_quote || code === CH_singe_quote) {
-            const openChar = code
-            do {
-                i++
-                if (src.charCodeAt(i) == CH_backslash) i++
-            } while (i < src.length && src.charCodeAt(i) != openChar && src.charCodeAt(i) != CH_linefeed)
-            i++
-            toks.push({ type: "token", kind: "str", loc: { start: start, end: i } });
-            continue;
-        }
-
-        if (code == CH_slash && src.charCodeAt(i + 1) == CH_star) {
-            i += 2
-            while (i < src.length && !(src.charCodeAt(i) == CH_star && src.charCodeAt(i + 1) == CH_slash)) {
-                i++
-            }
-            i += 2
-            toks.push({ type: "token", kind: "comment", loc: { start: start, end: i } });
-            continue;
-        }
-
-
-        toks.push({ type: "token", kind: "char", loc: { start: i, end: i + 1 } });
-        i++
-    }
-    return toks;
-}
-
-interface Parser {
-    src: string
-    tokens: CssToken[]
-    out: CssNode[]
-    current: number
-}
-
-export function parseCss(src: string, toks?: CssToken[]) {
-    // console.time("tokenize")
-    const tokens = toks ?? tokenizeCss(src)
-    // console.timeEnd("tokenize")
-
-    // for (const t of tokens) {
-    //     console.log(src.slice(t.loc.start, t.loc.end), t.kind);
-    // }
-
-    const parser: Parser = {
-        src,
-        tokens,
-        out: [],
-        current: 0
-    }
-
-
-    let current = 0
-
-    const timings: Record<string, number> = {}
-
-    function timed<T, R>(fn: (...args: T[]) => R, ...args: T[]): R {
-        const t0 = performance.now()
-        let res = fn(...args)
-        timings[fn.name] ??= 0
-        timings[fn.name] += performance.now() - t0
-        return res
-    }
-
-    const stylesheet = parseNodeList(parser)
-
-    return stylesheet
-}
-
-
-function peekToken(parser: Parser) {
-    return parser.current < parser.tokens.length && parser.tokens[parser.current].kind == "char"
-}
-
-function peekTokenKind(parser: Parser, kind: CssToken["kind"]) {
-    return parser.current < parser.tokens.length && parser.tokens[parser.current].kind == kind
-}
-
-function peekChar(parser: Parser, ch: string) {
-    return parser.current < parser.tokens.length && parser.src[parser.tokens[parser.current].loc.start] == ch
-}
-
-function peekCharCode(parser: Parser, ch: number) {
-    return parser.current < parser.tokens.length && parser.src.charCodeAt(parser.tokens[parser.current].loc.start) == ch
-}
-
-function peekCharOffset(parser: Parser, ch: string, offset: number) {
-    return parser.current + offset < parser.tokens.length && parser.src[parser.tokens[parser.current + offset].loc.start] == ch
-}
-
-function advanceToken(parser: Parser) {
-    return parser.current < parser.tokens.length ? parser.tokens[parser.current++] : null
-}
-
-function expectTokenKind(parser: Parser, kind: CssToken["kind"]) {
-    return parser.current < parser.tokens.length && parser.tokens[parser.current++].kind == kind
-}
-
-function expectCharr(parser: Parser, ch: string) {
-    return parser.current < parser.tokens.length && parser.src[parser.tokens[parser.current++].loc.start] == ch
-}
-
-function expectCharCode(parser: Parser, ch: number) {
-    return parser.current < parser.tokens.length && parser.src.charCodeAt(parser.tokens[parser.current++].loc.start) == ch
-}
-
-function makeLoc(parser: Parser, start: CssToken, end: CssToken): Loc {
-    return { start: start.loc.start, end: end.loc.end }
-}
-
-function makeLocFromStart(parser: Parser, start: number): Loc {
-    return { start: parser.tokens[start].loc.start, end: parser.tokens[parser.current - 1].loc.end }
-}
-
-const timings: Record<string, number> = {}
-const timings_count: Record<string, number> = {}
-const timings_total: Record<string, number> = {}
-
-function pushTiming(name: string, start: number) {
-    const t1 = performance.now()
-    if (!timings[name]) {
-        timings_total[name] = 0
-        timings_count[name] = 0
-        timings[name] = 0
-    }
-    timings_total[name] += t1 - start
-    timings_count[name] += 1
-    timings[name] = timings_total[name] / timings_count[name]
-}
-
-setTimeout(() => {
-    console.table(timings);
-    console.table(timings_total);
-    console.table(timings_count);
-}, 500);
-
-function parseNodeList(p: Parser) {
-    const nodes: CssNode[] = []
-
-    while (p.current < p.tokens.length && !peekCharCode(p, CH_brace_close)) {
-        const t0 = performance.now()
-
-        if (peekTokenKind(p, "comment")) {
-            // pushTiming("comment", t0)
-            nodes.push(p.tokens[p.current++])
-            continue
-        }
-
-        let decl = parseDecl(p)
-        if (decl) {
-            // pushTiming("decl", t0)
-            // TODO: this should be an error when not in rule
-            nodes.push(decl)
-            continue
-        }
-
-        let rule = parseRule(p)
-        if (rule) {
-            // pushTiming("rule", t0)
-            nodes.push(rule)
-            continue
-        }
-
-        nodes.push(p.tokens[p.current])
-        p.current++
-    }
-    return nodes
-}
-
-function parseDecl(p: Parser): CssDeclaration | null {
-    let mark = p.current
-
-    if (!peekTokenKind(p, "id")) {
-        p.current = mark
-        return null
-    }
-    let property = advanceToken(p)!
-
-    if (!expectCharCode(p, CH_colon)) {
-        p.current = mark
-        return null
-    }
-
-
-    const valueStart = p.current;
-    while (p.current < p.tokens.length && !peekCharCode(p, CH_semicolon) && !peekCharCode(p, CH_brace_close)) {
-        if (peekCharCode(p, CH_brace_open)) {
-            p.current = mark
-            return null
-        }
-        p.current++
-    }
-    let value = p.tokens.slice(valueStart, p.current);
-
-
-    if (!peekCharCode(p, CH_semicolon)) p.current--
-
-    p.current = p.current + 1
-    return { type: "decl", property, value, loc: makeLocFromStart(p, mark) }
-}
-
-function parseRule(p: Parser): CssRule | null {
-    let mark = p.current
-
-    let prelude: CssToken[] = []
-
-    while (p.current < p.tokens.length && !peekCharCode(p, CH_brace_open)) {
-        if (peekCharCode(p, CH_brace_close)) {
-            p.current = mark
-            return null
-        }
-        prelude.push(p.tokens[p.current++])
-    }
-
-    const block = parseBlock(p)
-    if (!block) {
-        p.current = mark
-        return null
-    }
-
-    return { type: "rule", prelude, block, loc: makeLocFromStart(p, mark) }
-}
-
-
-function parseBlock(p: Parser): CssNode[] | null {
-    let mark = p.current
-
-
-    if (!expectCharCode(p, CH_brace_open)) {
-        p.current = mark
-        return null
-    }
-
-    const children = parseNodeList(p)
-
-    if (p.current < p.tokens.length && !expectCharCode(p, CH_brace_close)) { // dont expect } when eof
-        p.current = mark
-        return null
-    }
-    return children
-}
 
 export function cssNodeListToString(nodes: CssNode[], src: string) {
     return nodes.map(node => cssNodeToString(node, src)).join("")
@@ -770,14 +481,14 @@ export function cssNodeListToString(nodes: CssNode[], src: string) {
 
 export function cssNodeToString(node: CssNode, src: string): string {
     switch (node.type) {
-        case "token":
-            return src.slice(node.loc.start, node.loc.end)
-        case "rule":
+        case CssNodeType.token:
+            return src.slice(node.start, node.end)
+        case CssNodeType.rule:
             if (node.block)
                 return cssNodeListToString(node.prelude, src) + cssNodeListToString(node.block, src)
             else
                 return cssNodeListToString(node.prelude, src) + ";"
-        case "decl":
+        case CssNodeType.decl:
             return cssNodeToString(node.property, src) + ":" + cssNodeListToString(node.value, src)
         default:
             let _notAllCasesHandeled: never = node
