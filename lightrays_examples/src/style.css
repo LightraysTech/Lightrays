@@ -26,6 +26,10 @@ body {
     }
   }
 
+  pre {
+    padding: 8px;
+  }
+
   .selector {
     color: #fc8d6e;
     font-weight: 500;

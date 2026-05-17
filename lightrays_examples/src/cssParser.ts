@@ -416,7 +416,7 @@ function rule(l: Lexer): Rule | null {
 
     const block = nodelist(l)
 
-    if (l.ch as number != CHAR.RIGHT_BRACE) {
+    if (l.kind != TokenKind.EOF && l.ch as number != CHAR.RIGHT_BRACE) {
         l.rewind(mark)
         return null
     }

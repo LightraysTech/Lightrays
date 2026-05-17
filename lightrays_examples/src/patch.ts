@@ -13,41 +13,42 @@ const DEFAULT_NAMESPACE = document.documentElement.namespaceURI;
 
 // Checks if node matches expected tag name and key (which might be
 // undefined).
-const matches = (namespace, name, key, node) => (
-    node[meta] &&
-    node[meta].key === key &&
-    node[meta].name === name &&
-    node[meta].namespace === namespace
+const matches = (namespace: string, name: string, key: string | number | null | undefined, node: Node): boolean => (
+    (node as any)[meta] &&
+    (node as any)[meta].key === key &&
+    (node as any)[meta].name === name &&
+    (node as any)[meta].namespace === namespace
 );
 
-const adopt = (namespace, name, key, node) => {
-    node[meta] = {
-        name: node.localName,
-        namespace: node.namespaceURI,
+const adopt = (namespace: string, name: string, key: string | number | null | undefined, node: Node): void => {
+    (node as any)[meta] = {
+        name: (node as Element).localName,
+        namespace: (node as Element).namespaceURI,
     };
     if (matches(namespace, name, undefined, node)) {
         // Assume this is hydration of server-rendered or manually inserted
         // content and optimistically adopt with the provided key if the
         // tag name matches.
-        node[meta].key = key;
+        (node as any)[meta].key = key;
     }
 };
 
 export class Patcher {
-    #visitedAttributes;
-    #removedKeyedNodes;
-    #nextChild;
+    node: Element;
+    #visitedAttributes?: Set<Attr>;
+    #removedKeyedNodes?: Record<string | number, Node>;
+    #nextChild: Node | null;
 
-    constructor(node) {
+    constructor(node: Element) {
         this.node = node;
         this.#nextChild = node.firstChild;
     }
 
-    #align(namespace, name, key) {
-        let el;
+    #align(namespace: string, name: string, key: string | number | null | undefined): Element {
+        let el: Element;
         if (!this.#nextChild) {
             // Reached end of node's children
-            const el = (
+            el = (
                 this.#takeRemovedKey(namespace, name, key) ??
                 this.#create(namespace, name, key)
             );
@@ -55,29 +56,29 @@ export class Patcher {
             return el;
         }
         // On first encounter of nextChild, set its metadata property.
-        if (!this.#nextChild[meta]) {
+        if (!(this.#nextChild as any)[meta]) {
             adopt(namespace, name, key, this.#nextChild);
-        };
+        }
         // Does nextChild match the expected tag name (and possibly key)?
         if (matches(namespace, name, key, this.#nextChild)) {
             // No change required to DOM
-            return this.#nextChild;
+            return this.#nextChild as Element;
         }
         // nextChild did not match desired tag name and key (if any).
         // Search for element with matching key.
         if (key != null) {
             // First, check to see if the key was previously removed
-            if ((el = this.#takeRemovedKey(namespace, name, key))) {
+            if ((el = this.#takeRemovedKey(namespace, name, key) as Element)) {
                 // Do not replace nextChild when matched element was
                 // previously removed (keyed insert optimisation)
                 this.node.insertBefore(el, this.#nextChild);
                 return el;
             }
             // Look for key in later siblings
-            let node = this.#nextChild?.nextSibling;
+            let node: Node | null = this.#nextChild?.nextSibling;
             while (node) {
                 if (matches(namespace, name, key, node)) {
-                    el = node;
+                    el = node as Element;
                     break;
                 }
                 node = node.nextSibling;
@@ -87,48 +88,48 @@ export class Patcher {
         el ??= this.#create(namespace, name, key);
 
         // Replace nextChild with the found or created element
-        this.#replaceWith(this.#nextChild, el);
+        this.#replaceWith(this.#nextChild as Node, el);
 
         // Return aligned node
         return el;
     }
 
-    #replaceWith(a, b) {
-        a.replaceWith(b);
+    #replaceWith(a: Node, b: Element): void {
+        (a as Element).replaceWith(b);
         // If 'a' has a key, add it to the removed nodes list as
         // we might need to re-insert it later.
-        if (a[meta]?.key != null) {
+        if ((a as any)[meta]?.key != null) {
             this.#removedKeyedNodes ??= {};
-            this.#removedKeyedNodes[a[meta].key] = a;
+            this.#removedKeyedNodes[(a as any)[meta].key] = a;
         }
     }
 
-    tagNS(namespace, name, key) {
-        const el = this.#align(namespace, name, key);
+    tagNS(namespace: string, name: string, key?: string | number): Patcher {
+        const el = this.#align(namespace, name, key ?? null);
         this.#nextChild = el.nextSibling;
         return new Patcher(el);
     }
 
-    tag(name, key) {
+    tag(name: string, key?: string | number): Patcher {
         return this.tagNS(DEFAULT_NAMESPACE, name, key);
     }
 
-    attr(name, value) {
+    attr(name: string, value: string | number | null): this {
         return this.attrNS(undefined, name, value);
     }
 
-    attrNS(namespace, name, value) {
+    attrNS(namespace: string | undefined, name: string, value: string | number | null): this {
         // This always needs to be getAttributeNodeNS, otherwise it might
         // return differently namespaced attributes with the same name.
-        let a = this.node.getAttributeNodeNS(namespace, name);
+        let a = this.node.getAttributeNodeNS(namespace ?? null, name);
         if (a) {
             const v = typeof(value) === 'string' ? value : '' + value;
             if (a.value !== v) {
                 a.value = v;
             }
         } else {
-            a = this.node.ownerDocument.createAttributeNS(namespace, name);
-            a.value = value;
+            a = this.node.ownerDocument.createAttributeNS(namespace ?? null, name);
+            a.value = typeof(value) === 'string' ? value : (value === null ? '' : '' + value);
             this.node.setAttributeNodeNS(a);
         }
         this.#visitedAttributes ??= new Set();
@@ -136,14 +137,14 @@ export class Patcher {
         return this;
     }
 
-    #textNode(type_prop, create, value) {
+    #textNode(type_prop: keyof Node, create: 'createTextNode' | 'createComment' | 'createCDATASection', value: string | number): this {
         if (!this.#nextChild) {
-            this.node.append(this.node.ownerDocument[create](value));
+            this.node.append(this.node.ownerDocument[create](String(value)));
         } else {
             const el = this.#nextChild;
             this.#nextChild = el.nextSibling;
-            if (el.nodeType !== el[type_prop]) {
-                this.#replaceWith(el, this.node.ownerDocument[create](value));
+            if (el.nodeType !== (Node as any)[type_prop]) {
+                this.#replaceWith(el, this.node.ownerDocument[create](String(value)) as any);
             } else {
                 const v = typeof(value) === 'string' ? value : '' + value;
                 if (el.nodeValue !== v) {
@@ -154,33 +155,33 @@ export class Patcher {
         return this;
     }
 
-    text(value) {
+    text(value: string | number): this {
         return this.#textNode('TEXT_NODE', 'createTextNode', value);
     }
 
-    comment(value) {
+    comment(value: string | number): this {
         return this.#textNode('COMMENT_NODE', 'createComment', value);
     }
 
     // This will only work with XML, not HTML documents (as HTML
     // documents do not support CDATA sections); attempting it on an
     // HTML document will throw NOT_SUPPORTED_ERR.
-    cdata(value) {
+    cdata(value: string | number): this {
         return this.#textNode('CDATA_SECTION_NODE', 'createCDATASection', value);
     }
 
     // Remove unvisited child nodes
-    cleanupChildNodes() {
+    cleanupChildNodes(): this {
         while (this.#nextChild) {
             const el = this.#nextChild;
             this.#nextChild = el.nextSibling;
-            el.remove();
+            (el as Element).remove();
         }
         return this;
     }
 
     // Remove unvisited attributes
-    cleanupAttributes() {
+    cleanupAttributes(): this {
         if (this.#visitedAttributes || this.node.hasAttributes()) {
             if (this.#visitedAttributes?.size !== this.node.attributes.length) {
                 for (const a of this.node.attributes) {
@@ -193,35 +194,44 @@ export class Patcher {
         return this;
     }
 
-    cleanup() {
+    cleanup(): this {
         return this.cleanupChildNodes().cleanupAttributes();
     }
 
-    patch(callback) {
+    patch(callback: (p: Patcher) => void): this {
         callback(this);
         return this.cleanup();
     }
 
     // Takes node with matching key from the removed nodes array (if any)
-    #takeRemovedKey(namespace, name, key) {
+    #takeRemovedKey(namespace: string, name: string, key: string): Element | undefined {
         const node = this.#removedKeyedNodes?.[key];
         if (node) {
             // Delete whether it matches or not, as we've now seen the key
-            delete this.#removedKeyedNodes[key];
+            delete this.#removedKeyedNodes![key];
             // Only return if the tag name and namespace also match
             if (matches(namespace, name, key, node)) {
-                return node;
+                return node as Element;
             }
         }
     }
 
     // Creates a new element, adding expected metadata.
-    #create(namespace, name, key) {
+    #create(namespace: string, name: string, key: string | number | null | undefined): Element {
         // NOTE: namespace will always be set due to default arg in tag()
         const el = this.node.ownerDocument.createElementNS(namespace, name);
+        // setTimeout(()=>highlightElement(el),10);
         // If setting custom properties is good enough for jQuery, it's good
         // enough for me. I could use a WeakMap but it's slower.
-        el[meta] = {name, key, namespace};
+        (el as any)[meta] = { name, key, namespace };
         return el;
     }
+}
+
+
+function highlightElement(el: HTMLElement) {
+    el.animate([
+        { background: "red", outline: "2px solid red", outlineOffset: "4px" }
+    ], { duration: 800, direction: "reverse" })
+
 }

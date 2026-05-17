@@ -490,10 +490,14 @@ class NewCssEditor {
     constructor(text: string) {
         this.src = text
         this.cursor = div({ style: { width: "2px", height: "1em", backgroundColor: "red", position: "absolute", left: "10ch", top: "3lh" } })
-        this.buffer = html("pre", {})
+        this.buffer = html("pre", {},el => el.oninput = e => {
+                this.src = el.innerText
+                this.update()
+            })
         this.el = div({ class: "cssEditor flex" },
             html("pre", {
-                contenteditable: "true", style: { width: "50vw" }
+                contenteditable: "plaintext-only",
+                style: { width: "50vw" }
             }, this.src, el => el.oninput = e => {
                 this.src = el.innerText
                 this.update()
@@ -516,8 +520,8 @@ class NewCssEditor {
                 }
             }
             e
-        }
-        document.addEventListener("selectioninput", e => {
+        } */
+        document.addEventListener("selectionchange", e => {
             let selection = window.getSelection()
             console.log(e, selection?.getRangeAt(0));
 
@@ -534,11 +538,14 @@ class NewCssEditor {
                 // console.log(getOffsetFromElement(this.el, selection.baseNode, selection.baseOffset),
                 //     getOffsetFromElement(this.el, selection.extentNode, selection.extentOffset));
             }
-        }) */
+        })
 
         console.time("Gen HTML")
         // this.buffer.replaceChildren(...this.htmlFromNodes(sheet))
-        this.highlight(sheet, this.buffer)
+        new Patcher(this.buffer).patch(el => {
+            el.attr("contenteditable", "plaintext-only")
+            this.highlight(sheet, el)
+        })
         console.timeEnd("Gen HTML")
     }
 
@@ -550,11 +557,16 @@ class NewCssEditor {
         this.updateTimeout = setTimeout(() => {
             console.time("Parse")
             const sheet = parse(this.src)
+            console.log(sheet);
+
             console.timeEnd("Parse")
 
             // document.styleSheets[1].ownerNode.innerHTML = this.src
             console.time("Gen HTML")
-            this.highlight(sheet, this.buffer)
+            new Patcher(this.buffer).patch(el => {
+                el.attr("contenteditable", "plaintext-only")
+                this.highlight(sheet, el)
+            })
             console.timeEnd("Gen HTML")
             // this.buffer.replaceChildren(...this.htmlFromNodes(sheet))
         }, 5);
@@ -597,46 +609,118 @@ class NewCssEditor {
         return nodes.map(node => this.htmlFromNode(node))
     }
 
-    highlight(nodes: CssNode[], parentEl: HTMLElement, lastPos = 0) {
+    highlight(nodes: CssNode[], root: Patcher, lastPos = 0) {
+        // root.text(this.src.slice(nodes[0].prelude[0].start, nodes[0].prelude[nodes[0].prelude.length - 1].end));
+        // root.tag('span').patch(span => {
+        //     span.attr('class', 'name');
+        //     span.text('world');
+        // });
+
         // debugger
-        let nextChild = parentEl.firstChild
+        // let nextChild = parentEl.firstChild
         for (const node of nodes) {
             if (lastPos != node.start) {
                 const prefix = this.src.slice(lastPos, node.start)
-                if (nextChild && nextChild.nodeType == Node.TEXT_NODE) {
-                    if (nextChild.textContent != prefix) {
-                        nextChild.textContent = prefix
-                    }
-                    nextChild = nextChild.nextSibling
-                } else {
-                    const el = document.createTextNode(prefix)
-                    if (nextChild) {
-                        try {
-                        parentEl.insertBefore(nextChild, el)
-                        } catch (error) {
-                            console.error(error,parentEl, nextChild, el);
-                            console.log(nextChild);
-                            new Patcher
-
-                        }
-                    } else {
-                        parentEl.append(el)
-                    }
-                }
+                root.text(prefix)
+                // if (nextChild && nextChild.nodeType == Node.TEXT_NODE) {
+                //     if (nextChild.textContent != prefix) {
+                //         nextChild.textContent = prefix
+                //     }
+                //     nextChild = nextChild.nextSibling
+                // } else {
+                //     const el = document.createTextNode(prefix)
+                //     if (nextChild) {
+                //         try {
+                //             parentEl.insertBefore(nextChild, el)
+                //         } catch (error) {
+                //             console.error(error, parentEl, nextChild, el);
+                //             console.log(nextChild);
+                //         }
+                //     } else {
+                //         parentEl.append(el)
+                //     }
+                // }
             }
+            // el.attr('data-nodeType', Object.keys(CssNodeType)[node.type]);
+            // el.attr('title', Object.keys(CssNodeType)[node.type] + " " + JSON.stringify(node, null, 2));
+
             switch (node.type) {
                 case CssNodeType.rule:
-                    if (node.prelude.length > 0) {
-                        this.patchNode("", this.src.slice(node.prelude[0].start, node.prelude[node.prelude.length - 1].end), nextChild, parentEl)
-                    }
+                    const prelude = node.prelude.length > 0 ? this.src.slice(node.prelude[0].start, node.prelude[node.prelude.length - 1].end) : undefined
+                    root.tag('span').patch(el => {
+                        el.attr('class', 'name');
+
+                        if (prelude) {
+                            el.tag('span').patch(selector => {
+                                selector.attr('class', 'selector');
+                                selector.text(prelude);
+                            });
+                        }
+
+                        if (node.block.length > 0) {
+                            el.text(this.src.slice(node.prelude[node.prelude.length - 1].end, node.block[0].start));
+
+                            el.tag('span').patch(block => {
+                                this.highlight(node.block, block, node.block[0].start)
+                            })
+
+                            el.text(this.src.slice(node.block[node.block.length - 1].end, node.end));
+                        } else {
+                            if (prelude) {
+                                el.text(this.src.slice(node.prelude[node.prelude.length - 1].end, node.end));
+                            } else {
+                                el.text(this.src.slice(node.start, node.end));
+                            }
+                        }
+                    });
+                    break;
+                case CssNodeType.decl:
+                    root.tag('span').patch(el => {
+                        // el.attr('class', 'decl');
+                        el.tag('span').patch(property => {
+                            property.attr('class', 'property');
+                            property.text(this.src.slice(node.property.start, node.property.end));
+                        });
+                        if (node.value.length > 0) {
+                            el.text(this.src.slice(node.property.end, node.value[0].start));
+
+                            el.text(this.src.slice(node.value[0].start, node.value[node.value.length - 1].end));
+                            // el.tag('span').patch(block => {
+                            //     el.attr("class", "value")
+                            //     this.highlight(node.value, block, node.value[0].start)
+                            // })
+
+                            el.text(this.src.slice(node.value[node.value.length - 1].end, node.end));
+                        } else {
+                            el.text(this.src.slice(node.property.end, node.end));
+                        }
+
+                    });
+                    break;
+                case CssNodeType.token:
+                    root.tag('span').patch(el => {
+                        if (node.kind == TokenKind.STR) {
+                            el.attr('class', 'string');
+                        } else if (node.kind == TokenKind.COMMENT) {
+                            el.attr('class', 'comment');
+                        } else {
+                        }
+                        el.text(this.src.slice(node.start, node.end));
+                    });
                     break;
                 default:
                     let _notAllCasesHandeled: never = node
+
+                    // el.attr('style', 'color: red');
+                    // el.attr('data-nodeType', Object.keys(CssNodeType)[node.type]);
+
+                    // el.text(this.src.slice(node.start, node.end));
+
                     break;
                 //return span({}, JSON.stringify(_notAllCasesHandeled))
             }
 
-            nextChild = nextChild?.nextSibling || null
+            // nextChild = nextChild?.nextSibling || null
             lastPos = node.end
         }
     }
