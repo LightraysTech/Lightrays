@@ -50,6 +50,19 @@ body {
   .string {
     color: greenyellow;
   }
+
+  .num {
+    color: greenyellow;
+  }
+
+  .control {
+    .num {
+      background-color: rgba(128, 255, 0, 0.346);
+      cursor: ew-resize;
+      user-select: none;
+      -webkit-user-modify: read-only;
+    }
+  }
 }
 
 .ctxMenu {

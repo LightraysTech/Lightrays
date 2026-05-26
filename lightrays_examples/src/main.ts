@@ -480,20 +480,33 @@ class CssEditor {
 
 class NewCssEditor {
     src: string
+    styleElement: HTMLStyleElement
+
     el: HTMLElement
+
+    selectorHighlights: HTMLElement
 
     buffer: HTMLElement
     cursor: HTMLElement
 
     cursorOffset = 0
 
+    controlKey = false
+    shiftKey = false
+
     constructor(text: string) {
         this.src = text
+        this.styleElement = document.head.appendChild(document.createElement("style"))
+        this.styleElement.innerHTML = this.src
+
         this.cursor = div({ style: { width: "2px", height: "1em", backgroundColor: "red", position: "absolute", left: "10ch", top: "3lh" } })
-        this.buffer = html("pre", {},el => el.oninput = e => {
-                this.src = el.innerText
-                this.update()
-            })
+
+        this.selectorHighlights = div()
+
+        this.buffer = html("pre", {}, el => el.oninput = e => {
+            // this.src = el.innerText
+            // this.update()
+        })
         this.el = div({ class: "cssEditor flex" },
             html("pre", {
                 contenteditable: "plaintext-only",
@@ -501,9 +514,10 @@ class NewCssEditor {
             }, this.src, el => el.oninput = e => {
                 this.src = el.innerText
                 this.update()
-            }
-            )
-            , this.buffer,)
+            }),
+            this.buffer,
+            this.selectorHighlights,
+        )
 
 
         console.time("Parse")
@@ -521,31 +535,55 @@ class NewCssEditor {
             }
             e
         } */
-        document.addEventListener("selectionchange", e => {
-            let selection = window.getSelection()
-            console.log(e, selection?.getRangeAt(0));
+        /*         document.addEventListener("selectionchange", e => {
+                    let selection = window.getSelection()
+                    console.log(e, selection?.getRangeAt(0));
 
 
-            if (selection) {
+                    if (selection) {
 
-                let r = selection.getRangeAt(0).cloneRange()
-                r.setStart(this.buffer, 0)
-                console.log(r, r.toString().length, r.toString());
-                this.cursorOffset = r.toString().length
-                console.log(this.cursorOffset);
-                // selection.setPosition(this.el, this.cursorOffset)
+                        let r = selection.getRangeAt(0).cloneRange()
+                        r.setStart(this.buffer, 0)
+                        console.log(r, r.toString().length, r.toString());
+                        this.cursorOffset = r.toString().length
+                        console.log(this.cursorOffset);
+                        // selection.setPosition(this.el, this.cursorOffset)
 
-                // console.log(getOffsetFromElement(this.el, selection.baseNode, selection.baseOffset),
-                //     getOffsetFromElement(this.el, selection.extentNode, selection.extentOffset));
+                        // console.log(getOffsetFromElement(this.el, selection.baseNode, selection.baseOffset),
+                        //     getOffsetFromElement(this.el, selection.extentNode, selection.extentOffset));
+                    }
+                })
+         */
+
+        window.addEventListener("keydown", e => {
+            switch (e.key) {
+                case "Control":
+                    this.controlKey = true
+                    this.buffer.classList.add("control")
+                    break
+                case "Shift":
+                    this.shiftKey = true
+                    break
+            }
+        })
+        window.addEventListener("keyup", e => {
+            switch (e.key) {
+                case "Control":
+                    this.controlKey = false
+                    this.buffer.classList.remove("control")
+                    break
+                case "Shift":
+                    this.shiftKey = false
+                    break
             }
         })
 
         console.time("Gen HTML")
-        // this.buffer.replaceChildren(...this.htmlFromNodes(sheet))
-        new Patcher(this.buffer).patch(el => {
-            el.attr("contenteditable", "plaintext-only")
-            this.highlight(sheet, el)
-        })
+        this.buffer.replaceChildren(...this.htmlFromNodes(sheet))
+        // new Patcher(this.buffer).patch(el => {
+        //     el.attr("contenteditable", "plaintext-only")
+        //     this.highlight(sheet, el)
+        // })
         console.timeEnd("Gen HTML")
     }
 
@@ -563,14 +601,17 @@ class NewCssEditor {
 
             // document.styleSheets[1].ownerNode.innerHTML = this.src
             console.time("Gen HTML")
-            new Patcher(this.buffer).patch(el => {
-                el.attr("contenteditable", "plaintext-only")
-                this.highlight(sheet, el)
-            })
+            // new Patcher(this.buffer).patch(el => {
+            //     el.attr("contenteditable", "plaintext-only")
+            //     this.highlight(sheet, el)
+            // })
+            this.buffer.replaceChildren(...this.htmlFromNodes(sheet))
             console.timeEnd("Gen HTML")
-            // this.buffer.replaceChildren(...this.htmlFromNodes(sheet))
         }, 5);
+    }
 
+    insertText(start: number, end: number, replacement: string) {
+        this.src = this.src.slice(0, start) + replacement + this.src.slice(end)
     }
 
     htmlFromNode(node: CssNode): HTMLElement | string {
@@ -580,23 +621,100 @@ class NewCssEditor {
                     return span({ class: "comment" }, this.src.slice(node.start, node.end))
                 } else if (node.kind == TokenKind.STR) {
                     return span({ class: "string" }, this.src.slice(node.start, node.end))
+                } else if (node.kind == TokenKind.NUM) {
+                    return span(
+                        { class: "num" },
+                        this.src.slice(node.start, node.end),
+                        el => {
+                            let initialVal = Number(el.textContent)
+                            let fac = 1
+                            addDragEventListeners(el, (e, cancel) => {
+                                if (!this.controlKey) {
+                                    cancel()
+                                    return
+                                }
+                                initialVal = Number(el.textContent)
+                                if (initialVal > 0 && initialVal < 1) {
+                                    fac = 0.25
+                                } else {
+                                    fac = Math.pow(10, 0.5 * Math.ceil(Math.log10(Math.abs(initialVal))))
+                                }
+                            }, (e, d) => {
+                                // const delta = d.dxTotal * (this.shiftKey ? 0.5 : 1)
+                                const delta = 0.05 * d.dxTotal * (this.shiftKey ? 1 : fac)
+                                // Math.pow(10, Math.ceil(Math.log10(initialVal)))
+                                const prevStr = el.textContent
+                                el.textContent = (initialVal + delta).toFixed(Number.isInteger(initialVal) ? 0 : 2)
+                                this.src = this.src.slice(0, node.start) + el.textContent + this.src.slice(node.start + prevStr.length)
+                                this.styleElement.innerHTML = this.src
+                            }, e => this.update())
+                        }
+                    )
                 } else {
                     return this.src.slice(node.start, node.end)
                 }
             case CssNodeType.rule: {
-                const nameEl = span({ class: "selector" }, cssNodeListToString(node.prelude, this.src))
+                const nameEl = span({ class: "selector", contenteditable: "plaintext-only" }, ...this.htmlFromNodes(node.prelude, true),
+                    el => {
+                        el.onmouseover = e => {
+                            this.selectorHighlights.replaceChildren(
+                                ...[...document.querySelectorAll(el.textContent)].map(x => createSelectorVisualizer(x))
+                            )
+                        }
+                        el.onbeforeinput = e => {
+                            if (e.inputType == "insertText" && (e.data == "{" || e.data == "}")) {
+                                e.preventDefault()
+                            }
+                        }
+                        el.onblur = e => {
+                            let start = node.start
+                            let end = node.start
+                            if (node.prelude.length > 0) {
+                                start = node.prelude[0].start
+                                end = node.prelude[node.prelude.length - 1].end
+                            }
+
+                            this.src = this.src.slice(0, start) + el.textContent + this.src.slice(end)
+                            this.update()
+                        }
+                    },
+                    el => el.onmouseout = e => this.selectorHighlights.replaceChildren()
+                )
                 const el = div({ class: "rule", contenteditable: "false" }, nameEl)
                 if (node.block)
-                    el.append(div({ class: "body", contenteditable: "true" }, ...this.htmlFromNodes(node.block)))
+                    el.append(div({ class: "body", contenteditable: "" }, ...this.htmlFromNodes(node.block)))
                 else
                     el.append(";")
                 return el
             }
             case CssNodeType.decl:
                 return div({},
-                    span({ class: "property" }, cssNodeToString(node.property, this.src)),
+                    span({ class: "property", contenteditable: "plaintext-only" }, cssNodeToString(node.property, this.src)),
                     ": ",
-                    span({ class: "value" }, cssNodeListToString(node.value, this.src)),
+                    span({ class: "value", contenteditable: "plaintext-only" }, ...this.htmlFromNodes(node.value, true),
+                        el => {
+                            el.onbeforeinput = e => {
+                                if (e.inputType == "insertText" && (e.data == "{" || e.data == "}")) {
+                                    // e.preventDefault()
+                                }
+                                if (e.inputType == "insertLineBreak") {
+                                    e.preventDefault()
+                                    // highlightElement(el.parentElement.parentElement);
+                                    el.parentElement?.insertAdjacentElement("afterend", button())
+                                    this.insertText(node.end, node.end, "\n    test: nothing;")
+                                    this.update()
+                                }
+                            }
+                            let prev = el.textContent
+                            el.oninput = e => {
+
+                                this.src = this.src.slice(0, node.value[0].start) + el.textContent + this.src.slice(node.value[0].start + prev.length)
+                                this.styleElement.innerHTML = this.src
+                                prev = el.textContent
+
+                            }
+                            el.onblur = e => this.update()
+                        }),
                     // ";"
                 )
             default:
@@ -605,8 +723,15 @@ class NewCssEditor {
         }
     }
 
-    htmlFromNodes(nodes: CssNode[]) {
-        return nodes.map(node => this.htmlFromNode(node))
+    htmlFromNodes(nodes: CssNode[], includeInbetween = false) {
+        const arr: (HTMLElement | string)[] = []
+        for (let i = 0; i < nodes.length; i++) {
+            if (includeInbetween && i > 0) {
+                arr.push(this.src.slice(nodes[i - 1].end, nodes[i].start))
+            }
+            arr.push(this.htmlFromNode(nodes[i]))
+        }
+        return arr
     }
 
     highlight(nodes: CssNode[], root: Patcher, lastPos = 0) {
@@ -725,14 +850,7 @@ class NewCssEditor {
         }
     }
 
-    patchNode(className: string, content: string, el: Node | null, parentEl: HTMLElement) {
-        if (!el) {
-            el = document.createElement("span")
-            parentEl.append(el)
-        }
-        el.className = className
-        el.textContent = content
-    }
+
 }
 
 
@@ -859,8 +977,8 @@ function createVisualEditor(attached: HTMLElement, rule: HTMLElement) {
 
 function addDragEventListeners(
     el: HTMLElement,
-    start: ((event: MouseEvent) => any) | null,
-    move: ((event: MouseEvent, detail: { dxTotal: number, dyTotal: number, dx: number, dy: number }) => any) | null,
+    start: ((event: MouseEvent, cancel: () => void) => any) | null,
+    move: ((event: MouseEvent, detail: { dxTotal: number, dyTotal: number, dx: number, dy: number }, cancel: () => void) => any) | null,
     end?: ((event: MouseEvent, detail: { dxTotal: number, dyTotal: number, dx: number, dy: number }) => any) | null
 ) {
     let dragging = false
@@ -869,23 +987,30 @@ function addDragEventListeners(
     let lastClientX = 0
     let lastClientY = 0
 
+
+    function onPtrUp(e: PointerEvent) {
+        if (!dragging) return
+        dragging = false
+        end?.(e, {
+            dxTotal: e.clientX - startClientX,
+            dyTotal: e.clientY - startClientY,
+            dx: e.clientX - lastClientX,
+            dy: e.clientY - lastClientY,
+        })
+    }
+
     el.addEventListener("pointerdown", e => {
         dragging = true
         startClientX = e.clientX
         startClientY = e.clientY
         lastClientX = e.clientX
         lastClientY = e.clientY
-        start?.(e)
-
-        window.addEventListener("pointerup", e => {
+        start?.(e, () => {
             dragging = false
-            end?.(e, {
-                dxTotal: e.clientX - startClientX,
-                dyTotal: e.clientY - startClientY,
-                dx: e.clientX - lastClientX,
-                dy: e.clientY - lastClientY,
-            })
-        }, { once: true })
+            window.removeEventListener("pointerup", onPtrUp)
+        })
+
+        window.addEventListener("pointerup", onPtrUp, { once: true })
     })
     window.addEventListener("pointermove", e => {
         if (!dragging) return
@@ -894,7 +1019,7 @@ function addDragEventListeners(
             dyTotal: e.clientY - startClientY,
             dx: e.clientX - lastClientX,
             dy: e.clientY - lastClientY,
-        })
+        }, () => dragging = false)
         lastClientX = e.clientX
         lastClientY = e.clientY
     })

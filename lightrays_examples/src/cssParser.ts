@@ -272,6 +272,30 @@ export class Lexer {
             this.ch == CHAR.SPACE
         )
 
+        do {
+            if (isNumberStartCode(this.ch)) {
+                if (this.ch == CHAR.PLUS || this.ch == CHAR.MINUS) {
+                    if (!isNumberCode(this.src.charCodeAt(this.i)))
+                        break
+                }
+                while (isNumberCode(this.src.charCodeAt(this.i))) {
+                    this.i++
+                }
+                if (this.src.charCodeAt(this.i) == CHAR.PERIOD
+                    && isNumberCode(this.src.charCodeAt(this.i + 1))
+                ) {
+                    this.i++
+                    while (isNumberCode(this.src.charCodeAt(this.i))) {
+                        this.i++
+                    }
+                }
+
+                this.end = this.i
+                this.kind = TokenKind.NUM
+                return true
+            }
+        } while (false)
+
         if (isIdentifierCode(this.ch, false)) {
             while (isIdentifierCode(this.src.charCodeAt(this.i), true)) {
                 this.i++
@@ -281,23 +305,6 @@ export class Lexer {
             return true
         }
 
-        if (isNumberStartCode(this.ch)) {
-            while (isNumberCode(this.src.charCodeAt(this.i))) {
-                this.i++
-            }
-            if (this.src.charCodeAt(this.i) == CHAR.PERIOD
-                && isNumberCode(this.src.charCodeAt(this.i + 1))
-            ) {
-                this.i++
-                while (isNumberCode(this.src.charCodeAt(this.i))) {
-                    this.i++
-                }
-            }
-
-            this.end = this.i
-            this.kind = TokenKind.NUM
-            return true
-        }
 
         if (this.ch === CHAR.DOUBLE_QUOTE || this.ch === CHAR.SINGLE_QUOTE) {
             while (this.i < this.src.length
