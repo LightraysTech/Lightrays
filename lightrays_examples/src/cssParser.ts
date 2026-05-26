@@ -1,6 +1,6 @@
 const DEBUG = true
 
-const DEBUG_ADD_SRC_SLICES = DEBUG && false
+const DEBUG_ADD_SRC_SLICES = DEBUG && true
 const DEBUG_PROFILE = DEBUG && false
 
 class Profiler {
@@ -359,9 +359,9 @@ export class Lexer {
 
 export function parse(src: string) {
     const l = new Lexer(src)
-
+    debugger
     prof?.mark("parse")
-    const nodes = nodelist(l)
+    const nodes = nodelist(l,false)
     prof?.end()
     prof?.report()
 
@@ -405,27 +405,43 @@ function decl(l: Lexer): Decl | null {
 function rule(l: Lexer): Rule | null {
     const mark = l.start
 
+    const isAtRule = l.ch == CHAR.At
+    let hasBody = true
+
     const prelude: Token[] = []
-    for (; l.kind as number != TokenKind.EOF; l.next()) {
-        if (l.ch as number == CHAR.LEFT_BRACE) break
-        if (l.ch as number == CHAR.RIGHT_BRACE) {
+    for (; l.kind != TokenKind.EOF; l.next()) {
+        if (l.ch == CHAR.SEMICOLON) {
+            if (isAtRule) {
+                hasBody = false
+                break
+            } else {
+                l.rewind(mark)
+                return null
+            }
+        }
+        if (l.ch == CHAR.LEFT_BRACE) break
+        if (l.ch == CHAR.RIGHT_BRACE) {
             l.rewind(mark)
             return null
         }
         prelude.push(l.makeToken())
     }
 
-    if (l.ch != CHAR.LEFT_BRACE) {
-        l.rewind(mark)
-        return null
-    }
-    l.next()
+    let block: CssNode[] = []
 
-    const block = nodelist(l)
+    if (hasBody) {
+        if (l.ch != CHAR.LEFT_BRACE) {
+            l.rewind(mark)
+            return null
+        }
+        l.next()
 
-    if (l.kind != TokenKind.EOF && l.ch as number != CHAR.RIGHT_BRACE) {
-        l.rewind(mark)
-        return null
+        block = nodelist(l,true)
+
+        if (l.kind != TokenKind.EOF && l.ch as number != CHAR.RIGHT_BRACE) {
+            l.rewind(mark)
+            return null
+        }
     }
 
     l.next()
@@ -434,10 +450,10 @@ function rule(l: Lexer): Rule | null {
     return { type: CssNodeType.rule, prelude, block, start: mark, end: l.start }
 }
 
-function nodelist(l: Lexer): CssNode[] {
+function nodelist(l: Lexer, isInBlock: boolean): CssNode[] {
     const nodes: CssNode[] = []
 
-    while (l.kind != TokenKind.EOF && l.ch != CHAR.RIGHT_BRACE) {
+    while (l.kind != TokenKind.EOF && (l.ch != CHAR.RIGHT_BRACE || !isInBlock)) {
         let res: CssNode | null = null
 
         if (l.kind == TokenKind.COMMENT) {
@@ -464,9 +480,9 @@ function nodelist(l: Lexer): CssNode[] {
         }
         prof?.end()
 
-        l.next()
         res = l.makeToken()
         nodes.push(res)
+        l.next()
         // console.log(src.slice(res.start, res.end), res);
     }
 

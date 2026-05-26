@@ -504,8 +504,8 @@ class NewCssEditor {
         this.selectorHighlights = div()
 
         this.buffer = html("pre", {}, el => el.oninput = e => {
-            // this.src = el.innerText
-            // this.update()
+            this.src = el.innerText
+            this.update()
         })
         this.el = div({ class: "cssEditor flex" },
             html("pre", {
@@ -535,25 +535,28 @@ class NewCssEditor {
             }
             e
         } */
-        /*         document.addEventListener("selectionchange", e => {
-                    let selection = window.getSelection()
-                    console.log(e, selection?.getRangeAt(0));
+        document.addEventListener("selectionchange", e => {
+            console.group("select")
+            let selection = window.getSelection()
+            console.log(e, selection?.getRangeAt(0));
 
+            if (selection) {
 
-                    if (selection) {
+                let r = selection.getRangeAt(0).cloneRange()
+                r.setStart(this.buffer, 0)
+                console.log(r, r.toString().length, r.toString());
+                this.cursorOffset = r.toString().length
+                console.log(this.cursorOffset)
+                console.log(this.src.slice(this.cursorOffset, this.cursorOffset + 10));
 
-                        let r = selection.getRangeAt(0).cloneRange()
-                        r.setStart(this.buffer, 0)
-                        console.log(r, r.toString().length, r.toString());
-                        this.cursorOffset = r.toString().length
-                        console.log(this.cursorOffset);
-                        // selection.setPosition(this.el, this.cursorOffset)
+                // selection.setPosition(this.el, this.cursorOffset)
 
-                        // console.log(getOffsetFromElement(this.el, selection.baseNode, selection.baseOffset),
-                        //     getOffsetFromElement(this.el, selection.extentNode, selection.extentOffset));
-                    }
-                })
-         */
+                // console.log(getOffsetFromElement(this.el, selection.baseNode, selection.baseOffset),
+                //     getOffsetFromElement(this.el, selection.extentNode, selection.extentOffset));
+            }
+            console.groupEnd()
+        })
+
 
         window.addEventListener("keydown", e => {
             switch (e.key) {
@@ -579,16 +582,17 @@ class NewCssEditor {
         })
 
         console.time("Gen HTML")
-        this.buffer.replaceChildren(...this.htmlFromNodes(sheet))
-        // new Patcher(this.buffer).patch(el => {
-        //     el.attr("contenteditable", "plaintext-only")
-        //     this.highlight(sheet, el)
-        // })
+        // this.buffer.replaceChildren(...this.htmlFromNodes(sheet))
+        new Patcher(this.buffer).patch(el => {
+            el.attr("contenteditable", "plaintext-only")
+            this.highlight(sheet, el)
+        })
         console.timeEnd("Gen HTML")
     }
 
     updateTimeout: number | null = null
     update() {
+        console.group("update")
         // this.src = this.el.textContent
 
         if (this.updateTimeout) clearTimeout(this.updateTimeout)
@@ -596,18 +600,78 @@ class NewCssEditor {
             console.time("Parse")
             const sheet = parse(this.src)
             console.log(sheet);
+            debugger
 
             console.timeEnd("Parse")
 
+            function getOffsetFromParent(node: Node, parent: Node, offest: number) {
+                let count = offest - (node.textContent?.length || 0)
+                let sib: Node | null = node
+                while (sib && sib != parent) {
+                    if (sib instanceof Element && sib.tagName == "BR") {
+                        count++
+                    } else if (sib instanceof HTMLElement) {
+                        count += sib.innerText?.length || 0
+                    } else {
+                        count += sib.textContent?.length || 0
+                    }
+
+                    while (sib && !sib.previousSibling) {
+                        sib = sib.parentNode
+                        if (sib == parent)
+                            return count
+                    }
+                    if (sib?.previousSibling) {
+                        sib = sib.previousSibling
+                    }
+                }
+                return count
+            }
+
+            // console.warn(window.getSelection()?.anchorNode,window.getSelection()?.anchorOffset);
+            // return
+
+            const selectOffset = getOffsetFromParent(window.getSelection()?.anchorNode, this.buffer, window.getSelection()?.anchorOffset)
+            // console.warn(selectOffset);
+
+
             // document.styleSheets[1].ownerNode.innerHTML = this.src
             console.time("Gen HTML")
-            // new Patcher(this.buffer).patch(el => {
-            //     el.attr("contenteditable", "plaintext-only")
-            //     this.highlight(sheet, el)
-            // })
-            this.buffer.replaceChildren(...this.htmlFromNodes(sheet))
+            new Patcher(this.buffer).patch(el => {
+                el.attr("contenteditable", "plaintext-only")
+                this.highlight(sheet, el)
+            })
+
+
+            function getNodeAtOffset(node: Node, targetLength: number): { node: Node, offset: number } | number {
+                if (node.nodeType == node.TEXT_NODE) {
+                    const len = node.textContent?.length || 0
+                    if (len > targetLength) return { node, offset: targetLength }
+                    return len
+                }
+                if (node instanceof Element && node.tagName == "BR") {
+                    return 1
+                }
+                let count = 0
+                for (const child of node.childNodes) {
+                    const len = getNodeAtOffset(child, targetLength - count)
+                    if (typeof len === "object") {
+                        return len
+                    }
+                    count += len
+                }
+                return count
+            }
+            const res = getNodeAtOffset(this.buffer, selectOffset)
+            if (typeof res == "object") {
+                window.getSelection()?.setPosition(res.node, res.offset)
+            }
+
+
+            // this.buffer.replaceChildren(...this.htmlFromNodes(sheet))
             console.timeEnd("Gen HTML")
         }, 5);
+        console.groupEnd()
     }
 
     insertText(start: number, end: number, replacement: string) {
@@ -774,11 +838,18 @@ class NewCssEditor {
                     const prelude = node.prelude.length > 0 ? this.src.slice(node.prelude[0].start, node.prelude[node.prelude.length - 1].end) : undefined
                     root.tag('span').patch(el => {
                         el.attr('class', 'name');
+                        // el.attr("contenteditable", "plaintext-only")
 
                         if (prelude) {
                             el.tag('span').patch(selector => {
                                 selector.attr('class', 'selector');
                                 selector.text(prelude);
+                                (selector.node as HTMLElement).onmouseover = e => {
+                                    this.selectorHighlights.replaceChildren(
+                                        ...[...document.querySelectorAll(selector.node.textContent)].map(x => createSelectorVisualizer(x))
+                                    )
+                                }
+                                (selector.node as HTMLElement).onmouseout = e => this.selectorHighlights.replaceChildren()
                             });
                         }
 
