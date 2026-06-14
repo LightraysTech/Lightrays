@@ -211,13 +211,13 @@ interface Token extends CssNodeBase {
     kind: TokenKind
 }
 
-interface Rule extends CssNodeBase {
+export interface Rule extends CssNodeBase {
     type: typeof CssNodeType["rule"],
     prelude: Token[];
     block: CssNode[];
 }
 
-interface Decl extends CssNodeBase {
+export interface Decl extends CssNodeBase {
     type: typeof CssNodeType["decl"],
     property: Token;
     value: Token[];

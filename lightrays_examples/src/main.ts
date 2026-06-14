@@ -1,6 +1,6 @@
 import '../../style/Lightrays.scss'
 import './style.css'
-import { cssNodeListToString, cssNodeToString, CssNodeType, Lexer, parse, TokenKind, TokenKindStr, type CssNode } from "./cssParser"
+import { cssNodeListToString, cssNodeToString, CssNodeType, Lexer, parse, TokenKind, TokenKindStr, type CssNode, type Decl } from "./cssParser"
 import { Patcher } from "./patch";
 
 type EventRecord<K extends HTMLElement = HTMLElement> = {
@@ -504,7 +504,7 @@ class NewCssEditor {
         this.selectorHighlights = div()
 
         this.buffer = html("pre", {}, el => el.oninput = e => {
-            this.src = el.innerText
+            // this.src = el.innerText
             this.update()
         })
         this.el = div({ class: "cssEditor flex" },
@@ -582,11 +582,11 @@ class NewCssEditor {
         })
 
         console.time("Gen HTML")
-        // this.buffer.replaceChildren(...this.htmlFromNodes(sheet))
-        new Patcher(this.buffer).patch(el => {
-            el.attr("contenteditable", "plaintext-only")
-            this.highlight(sheet, el)
-        })
+        this.buffer.replaceChildren(...this.htmlFromNodes(sheet))
+        // new Patcher(this.buffer).patch(el => {
+        //     el.attr("contenteditable", "plaintext-only")
+        //     this.highlight(sheet, el)
+        // })
         console.timeEnd("Gen HTML")
     }
 
@@ -637,10 +637,11 @@ class NewCssEditor {
 
             // document.styleSheets[1].ownerNode.innerHTML = this.src
             console.time("Gen HTML")
-            new Patcher(this.buffer).patch(el => {
-                el.attr("contenteditable", "plaintext-only")
-                this.highlight(sheet, el)
-            })
+            // new Patcher(this.buffer).patch(el => {
+            //     el.attr("contenteditable", "plaintext-only")
+            //     this.highlight(sheet, el)
+            // })
+            this.buffer.replaceChildren(...this.htmlFromNodes(sheet))
 
 
             function getNodeAtOffset(node: Node, targetLength: number): { node: Node, offset: number } | number {
@@ -668,7 +669,6 @@ class NewCssEditor {
             }
 
 
-            // this.buffer.replaceChildren(...this.htmlFromNodes(sheet))
             console.timeEnd("Gen HTML")
         }, 5);
         console.groupEnd()
@@ -752,35 +752,7 @@ class NewCssEditor {
                 return el
             }
             case CssNodeType.decl:
-                return div({},
-                    span({ class: "property", contenteditable: "plaintext-only" }, cssNodeToString(node.property, this.src)),
-                    ": ",
-                    span({ class: "value", contenteditable: "plaintext-only" }, ...this.htmlFromNodes(node.value, true),
-                        el => {
-                            el.onbeforeinput = e => {
-                                if (e.inputType == "insertText" && (e.data == "{" || e.data == "}")) {
-                                    // e.preventDefault()
-                                }
-                                if (e.inputType == "insertLineBreak") {
-                                    e.preventDefault()
-                                    // highlightElement(el.parentElement.parentElement);
-                                    el.parentElement?.insertAdjacentElement("afterend", button())
-                                    this.insertText(node.end, node.end, "\n    test: nothing;")
-                                    this.update()
-                                }
-                            }
-                            let prev = el.textContent
-                            el.oninput = e => {
-
-                                this.src = this.src.slice(0, node.value[0].start) + el.textContent + this.src.slice(node.value[0].start + prev.length)
-                                this.styleElement.innerHTML = this.src
-                                prev = el.textContent
-
-                            }
-                            el.onblur = e => this.update()
-                        }),
-                    // ";"
-                )
+                return this.declEl(node)
             default:
                 let _notAllCasesHandeled: never = node
                 return span({}, JSON.stringify(_notAllCasesHandeled))
@@ -922,6 +894,45 @@ class NewCssEditor {
     }
 
 
+    declEl(node: Decl) {
+        return div({},
+            span({ class: "property", contenteditable: "plaintext-only" }, cssNodeToString(node.property, this.src)),
+            ": ",
+            span({ class: "value", contenteditable: "plaintext-only" }, ...this.htmlFromNodes(node.value, true),
+                el => {
+                    el.onbeforeinput = e => {
+                        if (e.inputType == "insertText" && (e.data == "{" || e.data == "}")) {
+                            // e.preventDefault()
+                        }
+                        if (e.inputType == "insertLineBreak") {
+                            e.preventDefault()
+                            // highlightElement(el.parentElement.parentElement);
+                            console.log(el.parentElement?.insertAdjacentElement("afterend", this.declEl({
+                                type: CssNodeType.decl,
+                                start: node.end,
+                                end: node.end,
+                                property: { type: CssNodeType.token, start: node.end, end: node.end, kind: TokenKind.ID },
+                                value: []
+                            }))?.firstChild.focus());
+
+                            window.getSelection()?.modify("move", "forward", "line")
+                            // this.insertText(node.end, node.end, "\n    : ;")
+                            // this.update()
+                        }
+                    }
+                    let prev = el.textContent
+                    el.oninput = e => {
+
+                        this.src = this.src.slice(0, node.value[0].start) + el.textContent + this.src.slice(node.value[0].start + prev.length)
+                        this.styleElement.innerHTML = this.src
+                        prev = el.textContent
+
+                    }
+                    el.onblur = e => this.update()
+                }),
+            // ";"
+        )
+    }
 }
 
 
