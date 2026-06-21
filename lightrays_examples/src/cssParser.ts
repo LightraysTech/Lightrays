@@ -359,9 +359,9 @@ export class Lexer {
 
 export function parse(src: string) {
     const l = new Lexer(src)
-    debugger
+    // debugger
     prof?.mark("parse")
-    const nodes = nodelist(l,false)
+    const nodes = nodelist(l, false)
     prof?.end()
     prof?.report()
 
@@ -436,7 +436,7 @@ function rule(l: Lexer): Rule | null {
         }
         l.next()
 
-        block = nodelist(l,true)
+        block = nodelist(l, true)
 
         if (l.kind != TokenKind.EOF && l.ch as number != CHAR.RIGHT_BRACE) {
             l.rewind(mark)
@@ -497,6 +497,10 @@ function nodelist(l: Lexer, isInBlock: boolean): CssNode[] {
     return nodes
 }
 
+export function nodeSlice(nodes: CssNode[], src: string) {
+    if (nodes.length == 0) return ""
+    return src.slice(nodes[0].start, nodes[nodes.length - 1].end)
+}
 
 export function cssNodeListToString(nodes: CssNode[], src: string) {
     return nodes.map(node => cssNodeToString(node, src)).join("")

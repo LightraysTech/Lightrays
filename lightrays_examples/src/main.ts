@@ -1,7 +1,8 @@
 import '../../style/Lightrays.scss'
 import './style.css'
-import { cssNodeListToString, cssNodeToString, CssNodeType, Lexer, parse, TokenKind, TokenKindStr, type CssNode, type Decl } from "./cssParser"
+import { cssNodeListToString, cssNodeToString, CssNodeType, Lexer, nodeSlice, parse, TokenKind, TokenKindStr, type CssNode, type Decl, type Rule } from "./cssParser"
 import { Patcher } from "./patch";
+import nanomorph from 'nanomorph';
 
 type EventRecord<K extends HTMLElement = HTMLElement> = {
     [T in keyof HTMLElementEventMap]?: <F extends Event = HTMLElementEventMap[T]>(this: K, ev: F) => any
@@ -223,6 +224,7 @@ fetch("test.css").then(async res => {
 //     start: number
 //     end: number
 // }
+
 
 interface CssRuleReference {
     buffer: CssBuffer
@@ -505,7 +507,7 @@ class NewCssEditor {
 
         this.buffer = html("pre", {}, el => el.oninput = e => {
             // this.src = el.innerText
-            this.update()
+            // this.update()
         })
         this.el = div({ class: "cssEditor flex" },
             html("pre", {
@@ -536,25 +538,25 @@ class NewCssEditor {
             e
         } */
         document.addEventListener("selectionchange", e => {
-            console.group("select")
-            let selection = window.getSelection()
-            console.log(e, selection?.getRangeAt(0));
+            // console.group("select")
+            // let selection = window.getSelection()
+            // console.log(e, selection?.getRangeAt(0));
 
-            if (selection) {
+            // if (selection) {
 
-                let r = selection.getRangeAt(0).cloneRange()
-                r.setStart(this.buffer, 0)
-                console.log(r, r.toString().length, r.toString());
-                this.cursorOffset = r.toString().length
-                console.log(this.cursorOffset)
-                console.log(this.src.slice(this.cursorOffset, this.cursorOffset + 10));
+            //     let r = selection.getRangeAt(0).cloneRange()
+            //     r.setStart(this.buffer, 0)
+            //     console.log(r, r.toString().length, r.toString());
+            //     this.cursorOffset = r.toString().length
+            //     console.log(this.cursorOffset)
+            //     console.log(this.src.slice(this.cursorOffset, this.cursorOffset + 10));
 
-                // selection.setPosition(this.el, this.cursorOffset)
+            //     // selection.setPosition(this.el, this.cursorOffset)
 
-                // console.log(getOffsetFromElement(this.el, selection.baseNode, selection.baseOffset),
-                //     getOffsetFromElement(this.el, selection.extentNode, selection.extentOffset));
-            }
-            console.groupEnd()
+            //     // console.log(getOffsetFromElement(this.el, selection.baseNode, selection.baseOffset),
+            //     //     getOffsetFromElement(this.el, selection.extentNode, selection.extentOffset));
+            // }
+            // console.groupEnd()
         })
 
 
@@ -592,15 +594,17 @@ class NewCssEditor {
 
     updateTimeout: number | null = null
     update() {
+        console.warn("update")
         console.group("update")
         // this.src = this.el.textContent
+        this.el.firstChild.textContent = this.src
 
         if (this.updateTimeout) clearTimeout(this.updateTimeout)
         this.updateTimeout = setTimeout(() => {
             console.time("Parse")
             const sheet = parse(this.src)
             console.log(sheet);
-            debugger
+            // debugger
 
             console.timeEnd("Parse")
 
@@ -628,6 +632,7 @@ class NewCssEditor {
                 return count
             }
 
+
             // console.warn(window.getSelection()?.anchorNode,window.getSelection()?.anchorOffset);
             // return
 
@@ -641,7 +646,10 @@ class NewCssEditor {
             //     el.attr("contenteditable", "plaintext-only")
             //     this.highlight(sheet, el)
             // })
-            this.buffer.replaceChildren(...this.htmlFromNodes(sheet))
+
+            morph(this.buffer, html("pre", {}, ...this.htmlFromNodes(sheet)))
+
+            // this.buffer.replaceChildren(...this.htmlFromNodes(sheet))
 
 
             function getNodeAtOffset(node: Node, targetLength: number): { node: Node, offset: number } | number {
@@ -665,7 +673,7 @@ class NewCssEditor {
             }
             const res = getNodeAtOffset(this.buffer, selectOffset)
             if (typeof res == "object") {
-                window.getSelection()?.setPosition(res.node, res.offset)
+                // window.getSelection()?.setPosition(res.node, res.offset)
             }
 
 
@@ -896,17 +904,17 @@ class NewCssEditor {
 
     declEl(node: Decl) {
         return div({},
-            span({ class: "property", contenteditable: "plaintext-only" }, cssNodeToString(node.property, this.src)),
-            ": ",
-            span({ class: "value", contenteditable: "plaintext-only" }, ...this.htmlFromNodes(node.value, true),
+            span({ class: "property", contenteditable: "plaintext-only" }, cssNodeToString(node.property, this.src),
                 el => {
+                    let disableUpdateOnBlur = false
                     el.onbeforeinput = e => {
                         if (e.inputType == "insertText" && (e.data == "{" || e.data == "}")) {
-                            // e.preventDefault()
+                            e.preventDefault()
                         }
                         if (e.inputType == "insertLineBreak") {
                             e.preventDefault()
                             // highlightElement(el.parentElement.parentElement);
+                            disableUpdateOnBlur = true
                             console.log(el.parentElement?.insertAdjacentElement("afterend", this.declEl({
                                 type: CssNodeType.decl,
                                 start: node.end,
@@ -922,19 +930,90 @@ class NewCssEditor {
                     }
                     let prev = el.textContent
                     el.oninput = e => {
+                        if (node.start == node.end) {
+                            const str = el.textContent + ": ;"
+                            this.src = this.src.slice(0, node.start) + str + this.src.slice(node.end)
+                            node.property.start = node.start
+                            node.property.end = node.start + el.textContent.length
+                            node.value = []
+                            node.end += str.length
+                        }
+                        console.log(prev.length);
 
+                        this.src = this.src.slice(0, node.property.start) + el.textContent + this.src.slice(node.property.start + prev.length)
+                        this.styleElement.innerHTML = this.src
+                        prev = el.textContent
+
+                    }
+                    el.onblur = e => {
+                        if (!disableUpdateOnBlur) this.update()
+                    }
+                }),
+            ": ",
+            span({ class: "value", contenteditable: "plaintext-only" }, ...this.htmlFromNodes(node.value, true),
+                el => {
+                    let disableUpdateOnBlur = false
+                    el.onbeforeinput = e => {
+                        if (e.inputType == "insertText" && (e.data == "{" || e.data == "}")) {
+                            // e.preventDefault()
+                        }
+                        if (e.inputType == "insertLineBreak") {
+                            e.preventDefault()
+                            // highlightElement(el.parentElement.parentElement);
+                            disableUpdateOnBlur = true
+                            console.log(el.parentElement?.insertAdjacentElement("afterend", this.declEl({
+                                type: CssNodeType.decl,
+                                start: node.end,
+                                end: node.end,
+                                property: { type: CssNodeType.token, start: node.end, end: node.end, kind: TokenKind.ID },
+                                value: []
+                            }))?.firstChild.focus());
+
+                            window.getSelection()?.modify("move", "forward", "line")
+                            // this.insertText(node.end, node.end, "\n    : ;")
+                            // this.update()
+                        }
+                    }
+                    let prev = el.textContent
+                    el.oninput = e => {
+                        if (node.start == node.end) {
+                            const str = "_: " + el.textContent + ";"
+                            this.src = this.src.slice(0, node.start) + str + this.src.slice(node.end)
+                            node.property.start = node.start
+                            node.property.end = node.start + 1
+                            node.value = [{ type: CssNodeType.token, kind: TokenKind.CHAR, start: node.start + 2, end: node.start + 2 + el.textContent.length }]
+                            node.end += str.length
+                        }
                         this.src = this.src.slice(0, node.value[0].start) + el.textContent + this.src.slice(node.value[0].start + prev.length)
                         this.styleElement.innerHTML = this.src
                         prev = el.textContent
 
                     }
-                    el.onblur = e => this.update()
+                    el.onblur = e => {
+                        if (!disableUpdateOnBlur) this.update()
+                    }
                 }),
             // ";"
         )
     }
 }
 
+function morphChildren(oldTree: HTMLElement, children: Element[]) {
+    let i = 0
+    for (; i < oldTree.childNodes.length; i++) {
+        const oldChild = oldTree.children[i];
+        const newChild = oldTree.children[i];
+        if (oldChild.nodeType != newChild.nodeType) {
+            oldTree.replaceChild(newChild, oldChild);
+        } else if (oldChild.nodeType == Node.TEXT_NODE) {
+          if(oldChild.textContent != newChild.textContent) {
+            oldChild.textContent = newChild.textContent
+          }
+        } else if (oldChild.nodeType == Node.ELEMENT_NODE && oldChild.tagName != newChild.tagName) {
+            oldTree.replaceChild(newChild, oldChild);
+        }
+    }
+}
 
 function getOffsetFromElement(parentNode: HTMLElement, startNode: Node, nodeOffset: number) {
     if (!parentNode.contains(startNode)) return null;
@@ -1142,6 +1221,26 @@ function findMatchingCssRules(element: HTMLElement, parentRule?: CSSRule, parent
     return result
 }
 
+function gatherSelectors(nodes: CssNode[], src: string) {
+    const result: Record<string, Rule> = {}
+    for (const node of nodes) {
+        if (node.type == CssNodeType.rule && node.prelude.length > 0) {
+            if (src[node.prelude[0].start] == "@") {
+                const type = src.slice(node.prelude[1].start, node.prelude[1].end)
+                if (type == "layer" || type == "media") {
+                    Object.assign(result, gatherSelectors(node.block, src))
+                } else {
+                    console.warn(type);
+                }
+            } else {
+                const selector = src.slice(node.prelude[0].start, node.prelude[node.prelude.length - 1].end)
+                result[selector] = node
+            }
+        }
+    }
+    return result
+}
+
 let selectedRule: CSSStyleRule | null = null
 let selectedElement: HTMLElement | null = null
 
@@ -1161,26 +1260,70 @@ function simpleContextMenu<T>(anchor: HTMLElement, options: Record<string, T>): 
     })
 }
 
+let sheetText = ""
+let sheet: CssNode[] = [];
+
+fetch("test2.css").then(async res => {
+    sheetText = await res.text()
+    sheet = parse(sheetText)
+})
+
+
 window.addEventListener("click", async e => {
     if (!(e.target instanceof HTMLElement)) return
     if (e.target.matches(".editorGui, .editorGui *")) return
-    return
 
+    return
     selectedElement = e.target
 
-    let options: Record<string, CSSStyleRule> = {}
-    for (const sheet of document.styleSheets) {
-        for (const rule of sheet.cssRules) {
-            if (rule instanceof CSSStyleRule) {
-                if (selectedElement.matches(rule.selectorText)) {
-                    options[rule.selectorText] = rule
+    console.log(Object.keys(gatherSelectors(sheet, sheetText)))
+
+    let options: Record<string, Rule> = {}
+
+    const allRules = gatherSelectors(sheet, sheetText)
+    for (const selector in allRules) {
+        try {
+            if (selectedElement.matches(selector)) {
+                options[selector] = allRules[selector]
+            }
+        } catch (error) {
+            console.error(error);
+
+        }
+    }
+
+    let paddingLeft: CssNode[] | null = null;
+
+    for (const rule of Object.values(options)) {
+        // console.log(rule.block.filter(v => v.type == CssNodeType.decl));
+        for (const node of rule.block) {
+            if (node.type == CssNodeType.decl) {
+                const text = nodeSlice([node.property], sheetText)
+                switch (text) {
+                    case "padding-left":
+                        paddingLeft = node.value
+                        break;
+                    case "padding":
+                        console.log(node.value);
+
+                        break;
                 }
             }
         }
-        console.groupEnd()
     }
 
-    console.log(findMatchingCssRules(selectedElement));
+    // for (const sheet of document.styleSheets) {
+    //     for (const rule of sheet.cssRules) {
+    //         if (rule instanceof CSSStyleRule) {
+    //             if (selectedElement.matches(rule.selectorText)) {
+    //                 options[rule.selectorText] = rule
+    //             }
+    //         }
+    //     }
+    //     console.groupEnd()
+    // }
+
+    // console.log(findMatchingCssRules(selectedElement));
 
 
     selectedRule = await simpleContextMenu(selectedElement, options)
