@@ -9,9 +9,13 @@ menu {
     margin: 8px 0;
     padding: 4px;
     gap: 4px;
-    overflow: hidden;
-    position-area: bottom span-right;
-    position-try-fallbacks: flip-block, flip-inline, flip-block flip-inline;
+    min-inline-size: anchor-size(self-inline);
+    max-block-size: stretch;
+    position-area: self-block-end span-self-inline-end;
+    position-try-order: most-block-size;
+    position-try-fallbacks: self-block-start span-self-inline-end, self-block-end span-self-inline-start, self-block-start span-self-inline-start;
+    inset: auto;
+    overflow: auto;
 
     transition: all 0.25s var(--curve-ease) allow-discrete;
 
@@ -77,7 +81,7 @@ nav {
         gap: 10px;
         padding: 8px 10px;
         border-radius: 6px;
-        transition: background-color var(--curve-ease) .2s;
+        // transition: background-color var(--curve-ease) .2s;
         margin: 2px 0;
 
         &:hover {
