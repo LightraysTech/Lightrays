@@ -5,6 +5,8 @@
 //@use "abstracts/components.css";
 @use "abstracts/components.scss" as a;
 @use 'abstracts/fluentIcons';
+@use 'abstracts/elements';
+@use 'abstracts/mixins' as m;
 
 @mixin variants($prefix, $property, $map) {
   @each $name, $value in $map {
@@ -14,61 +16,57 @@
   }
 }
 
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    interpolate-size: allow-keywords;
+}
+
 html {
-  line-height: 1.5;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    -webkit-tap-highlight-color: transparent;
+    -webkit-text-size-adjust: none;
+    text-size-adjust: 100%;
+    color-scheme: dark light;
+    tab-size: 2;
+    line-height: 1.5;
+
+    scrollbar-color: var(--scrollbar-color, gray) transparent; // TODO
+    scrollbar-width: thin;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    html:focus-within {
+        scroll-behavior: smooth;
+    }
 }
 
 body {
-  font-family: var(--text-font);
-  color: var(--color-text);
-  background-color: var(--color-base);
-}
+    line-height: inherit;
+    margin: 0;
+    min-height: 100dvh;
 
-hr {
-  border-color: var(--color-stroke-base);
-}
-
-
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-.small-scrollbar::-webkit-scrollbar {
-  width: 4px;
-  height: 4px;
-}
-
-::-webkit-scrollbar-thumb {
-  background-clip: padding-box;
-  border-right: 2px solid var(--color-base);
-  background-color: var(--scrollbar-color);
-  border-radius: 4px;
-}
-
-
-//Link
-a {
-  color: var(--color-text);
-  font-weight: 600;
-  font-family: var(--component-font);
-
-  &:active {
+    font-family: var(--text-font);
+    background-color: var(color-base);
     color: var(--color-text);
-  }
-
-  &:hover {
-    color: var(--primary);
-  }
-
-  &.noStyle {
-    text-decoration: none;
-
-    &:hover {
-      color: var(--color-text);
-    }
-  }
 }
+
+
+.debug {
+    border: 1px solid tomato;
+    background-color: rgba(255, 99, 71, 0.237);
+}
+
+.debug > .debug:not(.debug > .debug > .debug) {
+    border: 1px solid hsl(149, 100%, 64%);
+    background-color: hsla(149, 100%, 64%, 0.237);
+}
+
 
 // Functions ----------------------------------------------
 // TODO: correct @media screen widths
@@ -123,74 +121,22 @@ a {
 }
 
 .round-corners {
-  // TODO: deprecate
-  border-radius: 8px;
+  @include m.deprecate("round-corners");
 }
 
 .very-round-corners {
-  // TODO: deprecate
-  border-radius: 16px;
+  @include m.deprecate("very-round-corners");
 }
 
 .inline {
   display: inline;
 }
 
-// #region Flex
-.flex {
-  display: flex
-}
-
-.flex-grow {
-  // TODO: deprecate
-  display: flex;
-
-  & > * {
-    flex-grow: 1;
-  }
-}
-
 .flex-vertical {
   // TODO: deprecate
+  @include m.deprecate("flex-vertical");
   display: flex;
   flex-direction: column;
-}
-
-.flex-col {
-  display: flex;
-  flex-direction: column;
-}
-
-.flex-wrap {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.flex-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.justify-center {
-  justify-content: center;
-}
-
-.justify-stretch {
-  justify-content: stretch;
-}
-
-.align-center {
-  // TODO: rename to items-center ?
-  align-items: center;
-}
-
-.grow {
-  flex-grow: 1;
-}
-
-.shrink {
-  flex-shrink: 1;
 }
 
 .gap {

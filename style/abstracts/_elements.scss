@@ -1,0 +1,25 @@
+hr {
+  border-color: var(--color-stroke-base);
+}
+
+a {
+  color: var(--color-text);
+  font-weight: 600;
+  // font-family: var(--component-font);
+
+  &:active {
+    color: var(--color-text);
+  }
+
+  &:hover {
+    color: var(--primary);
+  }
+
+  &.noStyle {
+    text-decoration: none;
+
+    &:hover {
+      color: var(--color-text);
+    }
+  }
+}

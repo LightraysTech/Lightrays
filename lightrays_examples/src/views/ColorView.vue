@@ -289,31 +289,31 @@ const h1 = computed({ get() { return currentColors.value?.darkest.h }, set(v: nu
         </div>
         <Graph class="graph" :min-x="-.1" :max-x="1.1" :min-y="-.1" :max-y="1.1" :width="200" :height="200" :data="graph as any"></Graph>
       </div>
-      <div class="flex gap-m align-center"><span>l:</span> <input type="range" v-model.number="avg_l" min="0" max="1" step=".01"><input class="small" style="width: 72px;" v-model.number="avg_l"></div>
-      <div class="flex gap-m align-center"><span>c:</span> <input type="range" v-model.number="avg_c" min="0" max="1" step=".01"><input class="small" style="width: 72px;" v-model.number="avg_c"></div>
-      <div class="flex gap-m align-center"><span>h:</span> <input type="range" v-model.number="avg_h" min="0" max="360" step=".1"><input class="small" style="width: 72px;" v-model.number="avg_h"></div>
+      <div class="flex gap-m items-center"><span>l:</span> <input type="range" v-model.number="avg_l" min="0" max="1" step=".01"><input class="small" style="width: 72px;" v-model.number="avg_l"></div>
+      <div class="flex gap-m items-center"><span>c:</span> <input type="range" v-model.number="avg_c" min="0" max="1" step=".01"><input class="small" style="width: 72px;" v-model.number="avg_c"></div>
+      <div class="flex gap-m items-center"><span>h:</span> <input type="range" v-model.number="avg_h" min="0" max="360" step=".1"><input class="small" style="width: 72px;" v-model.number="avg_h"></div>
       <br>
-      <div class="flex gap-m align-center"><span>l_range:</span> <input type="range" v-model.number="range_l" min="0" max="1" step=".01"><input class="small" style="width: 72px;" v-model.number="range_l"></div>
-      <div class="flex gap-m align-center"><span>c_range:</span> <input type="range" v-model.number="range_c" min="0" max="1" step=".01"><input class="small" style="width: 72px;" v-model.number="range_c"></div>
-      <div class="flex gap-m align-center"><span>h_range:</span> <input type="range" v-model.number="range_h" min="-360" max="360" step=".1"><input class="small" style="width: 72px;" v-model.number="range_h"></div>
+      <div class="flex gap-m items-center"><span>l_range:</span> <input type="range" v-model.number="range_l" min="0" max="1" step=".01"><input class="small" style="width: 72px;" v-model.number="range_l"></div>
+      <div class="flex gap-m items-center"><span>c_range:</span> <input type="range" v-model.number="range_c" min="0" max="1" step=".01"><input class="small" style="width: 72px;" v-model.number="range_c"></div>
+      <div class="flex gap-m items-center"><span>h_range:</span> <input type="range" v-model.number="range_h" min="-360" max="360" step=".1"><input class="small" style="width: 72px;" v-model.number="range_h"></div>
       <br>
-      <div class="flex gap-m align-center"><span>l1:</span> <input type="range" v-model.number="l1" min="0" max="1" step=".01"><input class="small" style="width: 72px;" v-model.number="l1"></div>
-      <div class="flex gap-m align-center"><span>l2:</span> <input type="range" v-model.number="l2" min="0" max="1" step=".01"><input class="small" style="width: 72px;" v-model.number="l2"></div>
-      <div class="flex gap-m align-center"><span>l3:</span> <input type="range" v-model.number="l3" min="0" max="1" step=".01"><input class="small" style="width: 72px;" v-model.number="l3"></div>
-      <div class="flex gap-m align-center"><span>l4:</span> <input type="range" v-model.number="l4" min="0" max="1" step=".01"><input class="small" style="width: 72px;" v-model.number="l4"></div>
-      <div class="flex gap-m align-center"><span>l5:</span> <input type="range" v-model.number="l5" min="0" max="1" step=".01"><input class="small" style="width: 72px;" v-model.number="l5"></div>
+      <div class="flex gap-m items-center"><span>l1:</span> <input type="range" v-model.number="l1" min="0" max="1" step=".01"><input class="small" style="width: 72px;" v-model.number="l1"></div>
+      <div class="flex gap-m items-center"><span>l2:</span> <input type="range" v-model.number="l2" min="0" max="1" step=".01"><input class="small" style="width: 72px;" v-model.number="l2"></div>
+      <div class="flex gap-m items-center"><span>l3:</span> <input type="range" v-model.number="l3" min="0" max="1" step=".01"><input class="small" style="width: 72px;" v-model.number="l3"></div>
+      <div class="flex gap-m items-center"><span>l4:</span> <input type="range" v-model.number="l4" min="0" max="1" step=".01"><input class="small" style="width: 72px;" v-model.number="l4"></div>
+      <div class="flex gap-m items-center"><span>l5:</span> <input type="range" v-model.number="l5" min="0" max="1" step=".01"><input class="small" style="width: 72px;" v-model.number="l5"></div>
       <br>
-      <div class="flex gap-m align-center"><span>c1:</span> <input type="range" v-model.number="c1" min="0" max="0.5" step=".01"><input class="small" style="width: 72px;" v-model.number="c1"></div>
-      <div class="flex gap-m align-center"><span>c2:</span> <input type="range" v-model.number="c2" min="0" max="0.5" step=".01"><input class="small" style="width: 72px;" v-model.number="c2"></div>
-      <div class="flex gap-m align-center"><span>c3:</span> <input type="range" v-model.number="c3" min="0" max="0.5" step=".01"><input class="small" style="width: 72px;" v-model.number="c3"></div>
-      <div class="flex gap-m align-center"><span>c4:</span> <input type="range" v-model.number="c4" min="0" max="0.5" step=".01"><input class="small" style="width: 72px;" v-model.number="c4"></div>
-      <div class="flex gap-m align-center"><span>c5:</span> <input type="range" v-model.number="c5" min="0" max="0.5" step=".01"><input class="small" style="width: 72px;" v-model.number="c5"></div>
+      <div class="flex gap-m items-center"><span>c1:</span> <input type="range" v-model.number="c1" min="0" max="0.5" step=".01"><input class="small" style="width: 72px;" v-model.number="c1"></div>
+      <div class="flex gap-m items-center"><span>c2:</span> <input type="range" v-model.number="c2" min="0" max="0.5" step=".01"><input class="small" style="width: 72px;" v-model.number="c2"></div>
+      <div class="flex gap-m items-center"><span>c3:</span> <input type="range" v-model.number="c3" min="0" max="0.5" step=".01"><input class="small" style="width: 72px;" v-model.number="c3"></div>
+      <div class="flex gap-m items-center"><span>c4:</span> <input type="range" v-model.number="c4" min="0" max="0.5" step=".01"><input class="small" style="width: 72px;" v-model.number="c4"></div>
+      <div class="flex gap-m items-center"><span>c5:</span> <input type="range" v-model.number="c5" min="0" max="0.5" step=".01"><input class="small" style="width: 72px;" v-model.number="c5"></div>
       <br>
-      <div class="flex gap-m align-center"><span>h1:</span> <input type="range" v-model.number="h1" min="0" max="360" step=".1"><input class="small" style="width: 72px;" v-model.number="h1"></div>
-      <div class="flex gap-m align-center"><span>h2:</span> <input type="range" v-model.number="h2" min="0" max="360" step=".1"><input class="small" style="width: 72px;" v-model.number="h2"></div>
-      <div class="flex gap-m align-center"><span>h3:</span> <input type="range" v-model.number="h3" min="0" max="360" step=".1"><input class="small" style="width: 72px;" v-model.number="h3"></div>
-      <div class="flex gap-m align-center"><span>h4:</span> <input type="range" v-model.number="h4" min="0" max="360" step=".1"><input class="small" style="width: 72px;" v-model.number="h4"></div>
-      <div class="flex gap-m align-center"><span>h5:</span> <input type="range" v-model.number="h5" min="0" max="360" step=".1"><input class="small" style="width: 72px;" v-model.number="h5"></div>
+      <div class="flex gap-m items-center"><span>h1:</span> <input type="range" v-model.number="h1" min="0" max="360" step=".1"><input class="small" style="width: 72px;" v-model.number="h1"></div>
+      <div class="flex gap-m items-center"><span>h2:</span> <input type="range" v-model.number="h2" min="0" max="360" step=".1"><input class="small" style="width: 72px;" v-model.number="h2"></div>
+      <div class="flex gap-m items-center"><span>h3:</span> <input type="range" v-model.number="h3" min="0" max="360" step=".1"><input class="small" style="width: 72px;" v-model.number="h3"></div>
+      <div class="flex gap-m items-center"><span>h4:</span> <input type="range" v-model.number="h4" min="0" max="360" step=".1"><input class="small" style="width: 72px;" v-model.number="h4"></div>
+      <div class="flex gap-m items-center"><span>h5:</span> <input type="range" v-model.number="h5" min="0" max="360" step=".1"><input class="small" style="width: 72px;" v-model.number="h5"></div>
       <br>
     </div>
     <div class="grow">

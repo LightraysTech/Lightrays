@@ -1,3 +1,184 @@
+@use "mixins" as m;
+
+/// --- Spacing --- ///
+
+$spacing-variants: (
+    0: 0px,
+    2: 2px,
+    4: 4px,
+    8: 8px,
+    16: 16px,
+    32: 32px,
+);
+
+@include m.variants("gap", gap, $spacing-variants);
+
+@include m.variants("p", padding, $spacing-variants);
+@include m.variants("px", padding-inline, $spacing-variants);
+@include m.variants("py", padding-block, $spacing-variants);
+
+@include m.variants("m", margin, $spacing-variants);
+@include m.variants("mx", margin-inline, $spacing-variants);
+@include m.variants("my", margin-block, $spacing-variants);
+@include m.variants("mt", margin-top, $spacing-variants);
+@include m.variants("mb", margin-bottom, $spacing-variants);
+
+.ml-a {
+    margin-left: auto;
+}
+
+.mr-a {
+    margin-right: auto;
+}
+
+
+/// --- Flexbox --- ///
+
+.flex {
+    display: flex;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-wrap {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.grow {
+    flex-grow: 1;
+}
+
+.shrink {
+    flex-shrink: 1;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.justify-start {
+    justify-content: flex-start;
+}
+.justify-end {
+    justify-content: flex-end;
+}
+.justify-end-safe {
+    justify-content: safe flex-end;
+}
+.justify-center {
+    justify-content: center;
+}
+.justify-center-safe {
+    justify-content: safe center;
+}
+.justify-between {
+    justify-content: space-between;
+}
+.justify-around {
+    justify-content: space-around;
+}
+.justify-evenly {
+    justify-content: space-evenly;
+}
+.justify-stretch {
+    justify-content: stretch;
+}
+.justify-baseline {
+    justify-content: baseline;
+}
+.justify-normal {
+    justify-content: normal;
+}
+
+.items-start {
+    align-items: flex-start;
+}
+.items-end {
+    align-items: flex-end;
+}
+.items-end-safe {
+    align-items: safe flex-end;
+}
+.items-center {
+    align-items: center;
+}
+.items-center-safe {
+    align-items: safe center;
+}
+.items-baseline {
+    align-items: baseline;
+}
+.items-baseline-last {
+    align-items: last baseline;
+}
+.items-stretch {
+    align-items: stretch;
+}
+
+.content-normal {
+    align-content: normal;
+}
+.content-center {
+    align-content: center;
+}
+.content-start {
+    align-content: flex-start;
+}
+.content-end {
+    align-content: flex-end;
+}
+.content-between {
+    align-content: space-between;
+}
+.content-around {
+    align-content: space-around;
+}
+.content-evenly {
+    align-content: space-evenly;
+}
+.content-baseline {
+    align-content: baseline;
+}
+.content-stretch {
+    align-content: stretch;
+}
+
+
+.flex-grow {
+    // TODO: deprecate
+    display: flex;
+
+    & > * {
+        flex-grow: 1;
+    }
+}
+
+/// --- Tables --- ///
+
+.table {
+    display: table;
+}
+
+.row,
+.rows > * {
+    display: table-row;
+
+    & > *:not([specificity-hack]) {
+        display: table-cell;
+    }
+}
+
 menu {
     display: inline-flex;
     flex-direction: column;

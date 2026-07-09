@@ -18,7 +18,7 @@
 .flex-center
 .justify-center
 .justify-stretch
-.align-center
+.items-center
 
 .grow
 .shrink

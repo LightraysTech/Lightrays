@@ -1,0 +1,33 @@
+@mixin deprecate($msg) {
+    appearance: none !important;
+    width: unset !important;
+    height: unset !important;
+    padding: 0 !important;
+    margin: 0 !important;
+
+    display: flex !important;
+    background-color: red !important;
+    position: absolute !important;
+    inset: 0 !important;
+    text-align: center !important;
+    justify-content: center !important;
+    align-items: center !important;
+    font-size: 0px !important;
+    color: transparent !important;
+    &:before {
+        content: "CSS class .#{$msg} is deprecated. Dont use it!" !important;
+        color: black !important;
+        font-size: 64px !important;
+    }
+    * {
+        display: none !important;
+    }
+}
+
+@mixin variants($prefix, $property, $map) {
+  @each $name, $value in $map {
+    .#{$prefix}#{$name} {
+      #{$property}: #{$value}
+    }
+  }
+}
