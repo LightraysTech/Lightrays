@@ -299,7 +299,7 @@ const isOpen = ref(false)
 
   <div class="lr-box flex-center gap" style="width: 360px;">
     <img style="border-radius: 4px;" height="44px" src="https://raw.githubusercontent.com/microsoft/fluentui/master/packages/react-components/react-card/stories/src/assets/app_logo.svg" alt="App Name Document">
-    <div class="flex-vertical">
+    <div class="flex-col">
       <b>App Name</b>
       <small class="subtle-text">Developer</small>
     </div>

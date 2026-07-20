@@ -11,6 +11,70 @@ const parentClasses = computed(() => pstyle.value + (psmall.value ? " small-comp
 </script>
 
 <template>
+  <div class="flex gap8 my8">
+    <button class=""">Button</button>
+    <button class=" primary">Button</button>
+    <button class="success">Button</button>
+    <button class="warning">Button</button>
+    <button class="error">Button</button>
+    <button class="complete">Button</button>
+  </div>
+  <div class="flex gap8 my8">
+    <button class="outline">Button</button>
+    <button class="outline primary">Button</button>
+    <button class="outline success">Button</button>
+    <button class="outline warning">Button</button>
+    <button class="outline error">Button</button>
+    <button class="outline complete">Button</button>
+  </div>
+  <div class="flex gap8 my8">
+    <button class="subtle">Button</button>
+    <button class="subtle primary">Button</button>
+    <button class="subtle success">Button</button>
+    <button class="subtle warning">Button</button>
+    <button class="subtle error">Button</button>
+    <button class="subtle complete">Button</button>
+  </div>
+  <div class="flex items-center gap8 my8">
+    <button class="very-small">Button</button>
+    <button class="small">Button</button>
+    <button class="medium">Button</button>
+    <button class="large">Button</button>
+  </div>
+  <div class="bg-layer p16">
+    <div class="flex gap8 my8">
+      <button class=""">Button</button>
+    <button class=" primary">Button</button>
+      <button class="success">Button</button>
+      <button class="warning">Button</button>
+      <button class="error">Button</button>
+      <button class="complete">Button</button>
+    </div>
+    <div class="flex gap8 my8">
+      <button class="outline">Button</button>
+      <button class="outline primary">Button</button>
+      <button class="outline success">Button</button>
+      <button class="outline warning">Button</button>
+      <button class="outline error">Button</button>
+      <button class="outline complete">Button</button>
+    </div>
+    <div class="flex gap8 my8">
+      <button class="subtle">Button</button>
+      <button class="subtle primary">Button</button>
+      <button class="subtle success">Button</button>
+      <button class="subtle warning">Button</button>
+      <button class="subtle error">Button</button>
+      <button class="subtle complete">Button</button>
+    </div>
+    <div class="flex items-center gap8 my8">
+      <button class="very-small">Button</button>
+      <button class="small">Button</button>
+      <button class="medium">Button</button>
+      <button class="large">Button</button>
+    </div>
+  </div>
+  <br><br><br>
+
   <div class="lr-box bg-layer">
     <h5>Parent class</h5>
     <br>
@@ -178,6 +242,14 @@ const parentClasses = computed(() => pstyle.value + (psmall.value ? " small-comp
       <tr>
         <td><label>Submit:</label></td>
         <td><input type="submit" value="Submit Form"></td>
+      </tr>
+      <tr>
+        <td><label>Color:</label></td>
+        <td><input type="color" value="#ff0000"></td>
+      </tr>
+      <tr>
+        <td><label>Textarea:</label></td>
+        <td><textarea name="" id=""></textarea></td>
       </tr>
     </tbody>
   </table>

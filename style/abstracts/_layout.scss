@@ -255,6 +255,7 @@ nav {
         font-family: var(--text-font);
         font-weight: normal;
         text-decoration: none;
+        color: var(--color-text-0);
 
         cursor: pointer;
         display: flex;
@@ -262,7 +263,7 @@ nav {
         gap: 10px;
         padding: 8px 10px;
         border-radius: 6px;
-        // transition: background-color var(--curve-ease) .2s;
+        transition: color var(--curve-ease) .15s;
         margin: 2px 0;
 
         &:hover {

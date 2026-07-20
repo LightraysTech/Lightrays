@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        button {
+            transition: all .1s;
+            padding: 10px 16px;
+            border-radius: 3px;
+            border: 1px solid #9999ac;
+            background: white;
+
+            box-shadow:
+                inset 0px -5px #ebebf6,
+                0 4px 3px 0 rgb(20, 20, 96, .1);
+
+            &:active {
+                box-shadow:
+                    inset 0px 0px #ebebf6,
+                    0 4px 3px 0 rgb(20, 20, 96, .0);
+                margin-top: 5px;
+                /* padding-top: 15px; */
+                padding-bottom: 5px;
+            }
+        }
+
+        button.in {
+            transition: all .1s;
+            padding: 10px 16px;
+            border-radius: 3px;
+            border: 1px solid #9999ac;
+            background: white;
+
+            box-shadow:
+                inset 0px 0px #ebebf6,
+                inset 0 9px 3px 0 rgb(20, 20, 96, .0);
+
+            &:active {
+                box-shadow:
+                    inset 0px 6px #ebebf6,
+                    inset 0 7px 0px 0 #9999ac,
+                    inset 0 9px 3px 0 rgb(20, 20, 96, .10);
+                /* margin-top: 5px; */
+                margin: 0;
+                padding-top: 15px;
+                padding-bottom: 5px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <button>Button</button>
+    <br><br>
+    <button class="in">Button</button>
+</body>
+
+</html>

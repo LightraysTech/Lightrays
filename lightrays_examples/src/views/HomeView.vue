@@ -12,7 +12,7 @@
   <h4>Component types</h4>
   <br>
   <div class="flex-grow gap">
-    <div class="flex-vertical gap">
+    <div class="flex-col gap">
       <div class="lr-box">Normal</div>
       <div class="lr-box flat">Flat</div>
       <div class="lr-box important">Important</div>
@@ -21,7 +21,7 @@
       <div class="lr-box inline">Inline</div>
       <div class="lr-box small inline">Small Inline</div>
     </div>
-    <div class="flex-vertical gap">
+    <div class="flex-col gap">
       <div class="interactive lr-box">Normal</div>
       <div class="interactive lr-box flat">Flat</div>
       <div class="interactive lr-box important">Important</div>
@@ -51,19 +51,27 @@
   <h4>Shadows</h4>
   <div class="lr-list gap">
     <div class="flat">Flat</div>
-    <div style="box-shadow: none;">No Shadow</div>
-    <div style="box-shadow: var(--shadow-0);">Shadow 0</div>
-    <div style="box-shadow: var(--shadow-1);">Shadow 1</div>
-    <div style="box-shadow: var(--shadow-2);">Shadow 2</div>
-    <div style="box-shadow: var(--shadow-3);">Shadow 3</div>
-    <div style="box-shadow: var(--shadow-4);">Shadow 4</div>
+    <div class="p8 my16 bg-surface-0 rad-m shadow-none">No Shadow</div>
+    <div class="p8 my16 bg-surface-0 rad-m shadow-0">Shadow 0</div>
+    <div class="p8 my16 bg-surface-0 rad-m shadow-1">Shadow 1</div>
+    <div class="p8 my16 bg-surface-0 rad-m shadow-2">Shadow 2</div>
+    <div class="p8 my16 bg-surface-0 rad-m shadow-3">Shadow 3</div>
+    <div class="p8 my16 bg-surface-0 rad-m shadow-4">Shadow 4</div>
   </div>
   <br>
   <br>
   <br>
   <br>
   <br>
-  <div class="flex-wrap gap" style="justify-content: space-evenly;">
+  <div class="flex-wrap gap32  p16" style="justify-content: space-evenly;">
+    <div class="lr-box" style="box-shadow: var(--shadow-0); width: 100px; height: 100px;"></div>
+    <div class="lr-box" style="box-shadow: var(--shadow-1); width: 100px; height: 100px;"></div>
+    <div class="lr-box" style="box-shadow: var(--shadow-2); width: 100px; height: 100px;"></div>
+    <div class="lr-box" style="box-shadow: var(--shadow-3); width: 100px; height: 100px;"></div>
+    <div class="lr-box" style="box-shadow: var(--shadow-4); width: 100px; height: 100px;"></div>
+  </div>
+  <br><br>
+   <div class="flex-wrap gap32 bg-surface-0 p16 py32" style="justify-content: space-evenly;">
     <div class="lr-box" style="box-shadow: var(--shadow-0); width: 100px; height: 100px;"></div>
     <div class="lr-box" style="box-shadow: var(--shadow-1); width: 100px; height: 100px;"></div>
     <div class="lr-box" style="box-shadow: var(--shadow-2); width: 100px; height: 100px;"></div>

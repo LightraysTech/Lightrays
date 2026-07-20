@@ -12,7 +12,7 @@ function upperCaseFirst(s: string) {
   <div :class="' lr-box'">lr-box</div>
   <br><br>
   <h4>Inputs</h4>
-  <div class="flex-vertical gap my-m">
+  <div class="flex-col gap my-m">
     <small class="subtle-text"><b>Default</b></small>
     <div :class="parentClass + ' flex-wrap my-s gap-m'">
       <input v-for="s in styles" :class="s" :value="upperCaseFirst(s)" style="width: 200px;">
@@ -28,7 +28,7 @@ function upperCaseFirst(s: string) {
   </div>
   <br><br>
   <h4>Buttons</h4>
-  <div class="flex-vertical gap">
+  <div class="flex-col gap">
     <div :class="parentClass + ' flex-wrap my-s gap-m'">
       <button v-for="s in styles" :class="s">{{ upperCaseFirst(s) }}</button>
     </div>
@@ -41,10 +41,27 @@ function upperCaseFirst(s: string) {
   </div>
   <br><br>
   <h5>Selects</h5>
-  <div class="flex-vertical gap">
+  <div class="flex-col gap">
     <div :class="parentClass + ' flex-wrap my-s gap-m'">
       <select v-for="s in styles" :class="s">
-        <option value="">{{ upperCaseFirst(s) }}</option>
+        <optgroup label="Group 1">
+          <legend>Group1</legend>
+          <option value="">{{ upperCaseFirst(s) }}</option>
+          <option value="">{{ upperCaseFirst(s) }}</option>
+        </optgroup>
+        <optgroup label="Group 2">
+          <legend>Group2</legend>
+          <option value="">{{ upperCaseFirst(s) }}</option>
+          <option value="">{{ upperCaseFirst(s) }}</option>
+        </optgroup>
+        <optgroup label="Group 3">
+          <option value="">{{ upperCaseFirst(s) }}</option>
+          <option value="">{{ upperCaseFirst(s) }}</option>
+        </optgroup>
+        <optgroup>
+          <option value="">{{ upperCaseFirst(s) }}</option>
+          <option value="">{{ upperCaseFirst(s) }}</option>
+        </optgroup>
       </select>
     </div>
     <div :class="parentClass + ' flex-wrap my-s gap-m'">

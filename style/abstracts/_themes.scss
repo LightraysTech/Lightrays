@@ -1,47 +1,61 @@
 @use "sass:color";
 @function gray($n) {
-  @return color.adjust(rgb($n,$n,$n));
+  @return color.adjust(rgb($n, $n, $n));
 }
 @function grayHex($n) {
-  @return "#"+$n+""+$n+""+$n;
+  @return "#" + $n + "" + $n + "" + $n;
 }
 
 :root {
   color-scheme: light dark;
 
-  --bg-primary:           light-dark(oklch(0.60 0.16 255), oklch(0.55 0.16 255));
-  --bg-primary-muted:     light-dark(oklch(0.90 0.04 255), oklch(0.26 0.03 255));
-  --border-primary:       light-dark(oklch(0.60 0.16 255), oklch(0.60 0.16 255));
-  --border-primary-muted: light-dark(oklch(0.85 0.08 255), oklch(0.4 0.08 255));
-  --fg-primary:           light-dark(oklch(0.55 0.16 255), oklch(0.7 0.15 255));
-  --fg-on-primary:       rgb(242, 242, 242);
+  --bg-primary: light-dark(oklch(0.60 0.16 255), oklch(0.6 0.2 255));
+  --bg-primary-hover: light-dark(oklch(0.65 0.16 255), oklch(0.65 0.2 255));
+  --bg-primary-active: light-dark(oklch(0.55 0.16 255), oklch(0.55 0.15 255));
+  --bg-primary-faded: light-dark(oklch(0.80 0.08 255 / 40%), oklch(0.45 0.12 255 / 30%));
+  --bg-primary-faded-active: light-dark(oklch(0.70 0.1 255 / 40%), oklch(0.4 0.1 255 / 30%));
+  --border-primary: light-dark(oklch(0.60 0.16 255), oklch(0.68 0.15 255));
+  --fg-primary: light-dark(oklch(0.55 0.16 255), oklch(0.8 0.16 255));
+  --fg-on-primary: rgb(242, 242, 242);
 
-  --bg-warning: oklch(0.65 0.14 55);
-  --bg-warning-muted: oklch(0.25 0.04 55);
-  --border-warning: oklch(0.65 0.14 55);
-  --border-warning-muted: oklch(0.5 0.10 55);
-  --fg-warning: oklch(0.75 0.12 55);
+  --bg-warning: light-dark(oklch(0.72 0.15 55), oklch(0.72 0.16 55));
+  --bg-warning-hover: light-dark(oklch(0.65 0.16 55), oklch(0.65 0.2 55));
+  --bg-warning-active: light-dark(oklch(0.55 0.16 55), oklch(0.55 0.15 55));
+  --bg-warning-faded: light-dark(oklch(0.90 0.04 55), oklch(0.25 0.04 55)); /* reused existing muted */
+  --bg-warning-faded-active: light-dark(oklch(0.70 0.1 55 / 40%), oklch(0.4 0.1 55 / 30%));
+  --border-warning: light-dark(oklch(0.72 0.15 55), oklch(0.65 0.14 55));
+  --border-warning-muted: light-dark(oklch(0.85 0.08 55), oklch(0.5 0.10 55));
+  --fg-warning: light-dark(oklch(0.55 0.16 55), oklch(0.8 0.14 55));
   --fg-on-warning: rgb(242, 242, 242);
 
-  --bg-error: oklch(0.53 0.16 29.215);
-  --bg-error-muted: oklch(0.25 0.04 29.215);
-  --border-error: oklch(0.53 0.16 29.215);
-  --border-error-muted: oklch(0.4 0.08 29.215);
-  --fg-error: oklch(0.7 0.15 29.215);
+  --bg-error: light-dark(oklch(0.63 0.16 29.215), oklch(0.6 0.18 29.215));
+  --bg-error-hover: light-dark(oklch(0.65 0.16 29.215), oklch(0.65 0.2 29.215));
+  --bg-error-active: light-dark(oklch(0.55 0.16 29.215), oklch(0.55 0.15 29.215));
+  --bg-error-faded: light-dark(oklch(0.90 0.04 29.215), oklch(0.25 0.04 29.215)); /* reused existing muted */
+  --bg-error-faded-active: light-dark(oklch(0.70 0.1 29.215 / 40%), oklch(0.4 0.1 29.215 / 30%));
+  --border-error: light-dark(oklch(0.63 0.16 29.215), oklch(0.53 0.16 29.215));
+  --border-error-muted: light-dark(oklch(0.85 0.08 29.215), oklch(0.4 0.08 29.215));
+  --fg-error: light-dark(oklch(0.55 0.16 29.215), oklch(0.75 0.16 29.215));
   --fg-on-error: rgb(242, 242, 242);
 
-  --bg-success: oklch(0.52 0.13 153);
-  --bg-success-muted: oklch(0.25 0.04 153);
-  --border-success: oklch(0.52 0.13 153);
-  --border-success-muted: oklch(0.4 0.08 153);
-  --fg-success: oklch(0.7 0.12 153);
+  --bg-success: light-dark(oklch(0.64 0.15 153), oklch(0.6 0.15 153));
+  --bg-success-hover: light-dark(oklch(0.65 0.16 153), oklch(0.65 0.2 153));
+  --bg-success-active: light-dark(oklch(0.55 0.16 153), oklch(0.55 0.15 153));
+  --bg-success-faded: light-dark(oklch(0.90 0.04 153), oklch(0.25 0.04 153)); /* reused existing muted */
+  --bg-success-faded-active: light-dark(oklch(0.70 0.1 153 / 40%), oklch(0.4 0.1 153 / 30%));
+  --border-success: light-dark(oklch(0.64 0.15 153), oklch(0.52 0.13 153));
+  --border-success-muted: light-dark(oklch(0.85 0.08 153), oklch(0.4 0.08 153));
+  --fg-success: light-dark(oklch(0.55 0.16 153), oklch(0.8 0.14 153));
   --fg-on-success: rgb(242, 242, 242);
 
-  --bg-complete: oklch(0.55 0.22 294);
-  --bg-complete-muted: oklch(0.25 0.05 294);
-  --border-complete: oklch(0.55 0.22 294);
-  --border-complete-muted: oklch(0.4 0.1 294);
-  --fg-complete: oklch(0.7 0.18 294);
+  --bg-complete: light-dark(oklch(0.65 0.22 294), oklch(0.55 0.22 294));
+  --bg-complete-hover: light-dark(oklch(0.65 0.16 294), oklch(0.65 0.2 294));
+  --bg-complete-active: light-dark(oklch(0.55 0.16 294), oklch(0.55 0.15 294));
+  --bg-complete-faded: light-dark(oklch(0.90 0.05 294), oklch(0.25 0.05 294)); /* reused existing muted */
+  --bg-complete-faded-active: light-dark(oklch(0.70 0.1 294 / 40%), oklch(0.4 0.1 294 / 30%));
+  --border-complete: light-dark(oklch(0.65 0.22 294), oklch(0.55 0.22 294));
+  --border-complete-muted: light-dark(oklch(0.85 0.1 294), oklch(0.4 0.1 294));
+  --fg-complete: light-dark(oklch(0.55 0.18 294), oklch(0.7 0.18 294));
   --fg-on-complete: rgb(242, 242, 242);
 
   // Color
@@ -63,53 +77,81 @@
 
   // #endregion
 
-  --text-color: red;
-  --accent-text-color: red;
-  --subtle-text-color: red;
+  --bg0: light-dark(rgb(215, 215, 215), rgb(20, 20, 20));
+  --bg1: light-dark(rgb(228, 228, 228), rgb(24, 24, 24));
+  --bg2: light-dark(rgb(240, 240, 240), rgb(33, 33, 33));
+
+  --bg3: light-dark(rgb(240, 240, 240), rgb(44, 44, 44));
+  --bg4: light-dark(rgb(245, 245, 245), rgb(55, 55, 55));
+  --bg5: light-dark(rgb(255, 255, 255), rgb(65, 65, 65));
 
   // Theme
-  --color-inset:          light-dark(#{gray(232)},  #{gray(20)});
-  --color-base:           light-dark(#{gray(240)},  #{gray(24)});
-  --color-layer:          light-dark(#{gray(250)},  #{gray(33)});
+  --color-inset: light-dark(#{gray(232)}, #{gray(20)});
+  --color-base: light-dark(#{gray(240)}, #{gray(24)});
+  --color-layer: light-dark(#{gray(250)}, #{gray(33)});
 
-  --color-surface-0:      light-dark(#{gray(255)},  #{gray(44)});
-  --color-surface-1:      light-dark(#{gray(250)},  #{gray(56)});
-  --color-surface-2:      light-dark(#{gray(245)},  #{gray(66)});
+  --color-surface-0: light-dark(#{gray(255)}, #{gray(44)});
+  --color-surface-1: light-dark(#{gray(250)}, #{gray(35)});
+  --color-surface-2: light-dark(#{gray(245)}, #{gray(30)});
 
-  --color-text-2:         light-dark(#{gray(153)},  #{gray(110)});
-  --color-text-1:         light-dark(#{gray(115)},  #{gray(145)});
-  --color-text-0:         light-dark(#{gray(80)},   #{gray(210)});
-  --color-text:           light-dark(#{gray(43)},   #{gray(242)});
-  --color-text-on-accent: light-dark(#{gray(242)},  #{gray(242)});
+  --color-text-2: light-dark(#{gray(153)}, #{gray(110)});
+  --color-text-1: light-dark(#{gray(115)}, #{gray(145)});
+  --color-text-0: light-dark(#{gray(80)}, #{gray(200)});
+  --color-text: light-dark(#{gray(43)}, #{gray(242)});
+  --color-text-on-accent: light-dark(#{gray(242)}, #{gray(242)});
 
-  --color-stroke-base:    light-dark(#{gray(217)},  #{gray(45)});
-  --color-stroke-surface: light-dark(#{gray(224)},  #{gray(65)});
+  --color-stroke-base: light-dark(#{gray(217)}, #{gray(45)});
+  --color-stroke-surface: light-dark(#{gray(224)}, #{gray(65)});
 
   --stroke-base: 1px solid var(--color-stroke-base);
   --stroke-surface: 1px solid var(--color-stroke-surface);
 
-  --site-background:      red;  // base
-  --component-background: red;  // surface-0
-  --component-hover:      red;  // surface-2
-  --component-active:     red;  // surface-1
-  --component-important:  red;  // inset
-  --component-disabled:   red;  // layer
+  --gray1: light-dark(#fcfcfc, #161616);
+  --gray2: light-dark(#f8f8f8, #1c1c1c);
+  --gray3: light-dark(#f3f3f3, #232323);
+  --gray4: light-dark(#ededed, #282828);
+  --gray5: light-dark(#e8e8e8, #2e2e2e);
+  --gray6: light-dark(#e2e2e2, #343434);
+  --gray7: light-dark(#dbdbdb, #3e3e3e);
+  --gray8: light-dark(#c7c7c7, #505050);
+  --gray9: light-dark(#8f8f8f, #707070);
+  --gray10: light-dark(#858585, #7e7e7e);
+  --gray11: light-dark(#6f6f6f, #a0a0a0);
+  --gray12: light-dark(#171717, #ededed);
 
-  --component-stroke-color: red;
-  --component-stroke: solid 10px var(--component-stroke-color);
-
-  --site-stroke-color: red;
-  --site-stroke: solid 10px var(--site-stroke-color);
-
+  --color-inset: var(--bg0);
+  --color-base: var(--bg1);
+  --color-layer: var(--bg2);
+  --color-surface-0: light-dark(var(--bg5), var(--bg3));
+  --color-surface-1: light-dark(var(--bg4), var(--bg5));
+  --color-surface-2: light-dark(var(--bg3), var(--bg4));
+  // --color-surface-0: var(--bg3);
+  // --color-surface-1: var(--bg5);
+  // --color-surface-2: var(--bg4);
 
   --scrollbar-color: light-dark(hsl(0, 0%, 79%), hsl(0, 0%, 24%));
 
   // Shadow
-  --shadow-0: 0px 1px 2px -1px  light-dark(rgb(0 0 0 / 0.25), rgb(0 0 0 / 0.5));
-  --shadow-1: 0px 1.5px 3px 0px light-dark(rgb(0 0 0 / 0.1),  rgb(0 0 0 / 0.25));
+
+  --shadow-0: 0px 1px 2px -1px light-dark(rgb(0 0 0 / 0.25), rgb(0 0 0 / 0.5));
+  --shadow-1: 0px 1.5px 3px 0px light-dark(rgb(0 0 0 / 0.1), rgb(0 0 0 / 0.25));
   --shadow-2: 0px 2.5px 4px 0px light-dark(rgb(0 0 0 / 0.15), rgb(0 0 0 / 0.3));
-  --shadow-3: 0px 4px 12px 0px  light-dark(rgb(0 0 0 / 0.2),  rgb(0 0 0 / 0.3)), 0px 0px 4px 0px light-dark(rgb(0 0 0 / .1), rgb(0 0 0 / .15));
-  --shadow-4: 0px 8px 28px 0px  light-dark(rgb(0 0 0 / 0.25), rgb(0 0 0 / 0.35)), 0px 0px 6px 0px light-dark(rgb(0 0 0 / .1), rgb(0 0 0 / .25));
+  --shadow-3: 0px 4px 12px 0px light-dark(rgb(0 0 0 / 0.2), rgb(0 0 0 / 0.3)), 0px 0px 4px 0px light-dark(rgb(0 0 0 / .1), rgb(0 0 0 / .15));
+  --shadow-4: 0px 8px 28px 0px light-dark(rgb(0 0 0 / 0.25), rgb(0 0 0 / 0.35)), 0px 0px 6px 0px light-dark(rgb(0 0 0 / .1), rgb(0 0 0 / .25));
+
+  // --shadow-0: 0px 1px 2px -1px light-dark(rgb(0 0 0 / 0.25), rgb(0 0 0 / 0.5));
+  // --shadow-1: 0px 2px 3px 0px light-dark(rgb(0 0 0 / 0.15), rgb(0 0 0 / 0.25));
+  // --shadow-2:
+  //   0px 1px 4px 0px light-dark(rgb(0 0 0 / 0.10), rgb(0 0 0 / 0.20)),
+  //   0px 4px 8px 0px light-dark(rgb(0 0 0 / 0.15), rgb(0 0 0 / 0.15));
+  // --shadow-3:
+  //   0px 1px 4px 0px light-dark(rgb(0 0 0 / .1), rgb(0 0 0 / .15)),
+  //   0px 2px 8px 0px light-dark(rgb(0 0 0 / .1), rgb(0 0 0 / .15)),
+  //   0px 4px 16px 0px light-dark(rgb(0 0 0 / .1), rgb(0 0 0 / .15));
+  // --shadow-4:
+  //   0px 2px 8px 0px light-dark(rgb(0 0 0 / .15), rgb(0 0 0 / .20)),
+  //   0px 4px 16px 0px light-dark(rgb(0 0 0 / 0.05), rgb(0 0 0 / 0.15)),
+  //   0px 8px 32px 0px light-dark(rgb(0 0 0 / 0.20), rgb(0 0 0 / 0.20));
 
   // #region Easings
   --curve-ease-in: cubic-bezier(0.14, 0.73, 0, 1);
@@ -158,6 +200,31 @@
   &:has([theme=dark]) {
     color-scheme: dark;
   }
+
+
+
+
+  --text-color: red;
+  --accent-text-color: red;
+  --subtle-text-color: red;
+
+  --site-background: red; // base
+  --component-background: red; // surface-0
+  --component-hover: red; // surface-2
+  --component-active: red; // surface-1
+  --component-important: red; // inset
+  --component-disabled: red; // layer
+
+  --component-stroke-color: red;
+  --component-stroke: solid 10px var(--component-stroke-color);
+
+  --site-stroke-color: red;
+  --site-stroke: solid 10px var(--site-stroke-color);
+
+}
+
+.shadow-none {
+  box-shadow: none;
 }
 
 .shadow-0 {
@@ -199,4 +266,70 @@
 }
 .bg-surface-2 {
   background-color: var(--color-surface-2);
+}
+
+
+
+
+
+.neutral, :root {
+  --lr-box-bg: light-dark(var(--bg5), var(--bg3));
+  --lr-box-bg-hover: light-dark(var(--bg4), var(--bg5));
+  --lr-box-bg-active: light-dark(var(--bg3), var(--bg4));
+  --lr-box-bg-faded: var(--bg3);
+  --lr-box-bg-faded-active: var(--bg2);
+  --lr-box-fg: var(--fg0);
+  --lr-box-fg-on: var(--fg0);
+  --lr-box-border: var(--bg4);
+}
+.primary {
+  --lr-box-bg: var(--bg-primary);
+  --lr-box-bg-hover: var(--bg-primary-hover);
+  --lr-box-bg-active: var(--bg-primary-active);
+  --lr-box-bg-faded: var(--bg-primary-faded);
+  --lr-box-bg-faded-active: var(--bg-primary-faded-active);
+  --lr-box-fg: var(--fg-primary);
+  --lr-box-fg-on: var(--fg-on-primary);
+  --lr-box-border: var(--border-primary);
+  // --border-muted: var(--border-primary-muted);
+}
+.warning {
+  --lr-box-bg: var(--bg-warning);
+  --lr-box-bg-hover: var(--bg-warning-hover);
+  --lr-box-bg-active: var(--bg-warning-active);
+  --lr-box-bg-faded: var(--bg-warning-faded);
+  --lr-box-bg-faded-active: var(--bg-warning-faded-active);
+  --lr-box-fg: var(--fg-warning);
+  --lr-box-fg-on: var(--fg-on-warning);
+  --lr-box-border: var(--border-warning);
+}
+.error {
+  --lr-box-bg: var(--bg-error);
+  --lr-box-bg-hover: var(--bg-error-hover);
+  --lr-box-bg-active: var(--bg-error-active);
+  --lr-box-bg-faded: var(--bg-error-faded);
+  --lr-box-bg-faded-active: var(--bg-error-faded-active);
+  --lr-box-fg: var(--fg-error);
+  --lr-box-fg-on: var(--fg-on-error);
+  --lr-box-border: var(--border-error);
+}
+.success {
+  --lr-box-bg: var(--bg-success);
+  --lr-box-bg-hover: var(--bg-success-hover);
+  --lr-box-bg-active: var(--bg-success-active);
+  --lr-box-bg-faded: var(--bg-success-faded);
+  --lr-box-bg-faded-active: var(--bg-success-faded-active);
+  --lr-box-fg: var(--fg-success);
+  --lr-box-fg-on: var(--fg-on-success);
+  --lr-box-border: var(--border-success);
+}
+.complete {
+  --lr-box-bg: var(--bg-complete);
+  --lr-box-bg-hover: var(--bg-complete-hover);
+  --lr-box-bg-active: var(--bg-complete-active);
+  --lr-box-bg-faded: var(--bg-complete-faded);
+  --lr-box-bg-faded-active: var(--bg-complete-faded-active);
+  --lr-box-fg: var(--fg-complete);
+  --lr-box-fg-on: var(--fg-on-complete);
+  --lr-box-border: var(--border-complete);
 }

@@ -52,7 +52,7 @@ body {
     min-height: 100dvh;
 
     font-family: var(--text-font);
-    background-color: var(color-base);
+    background-color: var(--color-base);
     color: var(--color-text);
 }
 
@@ -268,7 +268,7 @@ dialog {
     scale: 1;
 
     &::backdrop {
-      backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px) saturate(50%) contrast(80%);
       background-color: hsla(0, 0%, 0%, 0.4);
 
       @media (prefers-color-scheme: dark) {
